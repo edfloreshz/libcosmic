@@ -39,8 +39,8 @@ fn wayland_create(app: &Application, monitor: &gdk4_wayland::WaylandMonitor) {
 
     let window = cascade! {
         LayerShellWindow::new(Some(monitor), Layer::Top, "");
-        ..set_width_request(800);
-        ..set_height_request(600);
+        ..set_width_request(1200);
+        ..set_height_request(800);
         // ..set_title(Some("Cosmic App Library"));
         // ..set_decorated(false);
         ..set_keyboard_interactivity(KeyboardInteractivity::OnDemand);
