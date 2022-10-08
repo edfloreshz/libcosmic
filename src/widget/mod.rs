@@ -21,3 +21,6 @@ pub use toggler::*;
 
 mod scrollbar;
 pub use scrollbar::*;
+
+mod expander;
+pub use expander::*;
