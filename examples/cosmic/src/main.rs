@@ -150,7 +150,13 @@ impl Application for Window {
                 nav_button!("system-software-update", "OS Upgrade & Recovery", condensed)
                     .on_press(Message::Page(2))
                     .style(if self.page == 2 { theme::Button::Primary } else { theme::Button::Text }),
-                self.expander.render(),
+                self.expander.render(
+                    vec![
+                        text("Content").into(),
+                        text("Content 2").into(),
+                        text("Content 3").into()
+                    ]
+                ),
             ]
             .active(self.headerbar.sidebar_active)
             .condensed(condensed)
