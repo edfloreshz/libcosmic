@@ -3,11 +3,18 @@ use std::ops::Deref;
 use super::{Font, FontMatches};
 
 pub struct FontSystem {
+    pub locale: String,
     db: fontdb::Database,
 }
 
 impl FontSystem {
     pub fn new() -> Self {
+        let locale = sys_locale::get_locale().unwrap_or_else(|| {
+            log::warn!("failed to get system locale, falling back to en-US");
+            String::from("en-US")
+        });
+        log::info!("Locale: {}", locale);
+
         let mut db = fontdb::Database::new();
         let now = std::time::Instant::now();
         db.load_system_fonts();
@@ -15,7 +22,7 @@ impl FontSystem {
         db.set_monospace_family("Fira Mono");
         db.set_sans_serif_family("Fira Sans");
         db.set_serif_family("DejaVu Serif");
-        println!(
+        log::info!(
             "Loaded {} font faces in {}ms.",
             db.len(),
             now.elapsed().as_millis()
@@ -44,11 +51,11 @@ impl FontSystem {
             }
 
             let font_opt = Font::new(
-                &face.post_script_name,
+                face,
                 match &face.source {
                     fontdb::Source::Binary(data) => data.deref().as_ref(),
                     fontdb::Source::File(path) => {
-                        println!("Unsupported fontdb Source::File('{}')", path.display());
+                        log::warn!("Unsupported fontdb Source::File('{}')", path.display());
                         continue;
                     }
                     fontdb::Source::SharedFile(_path, data) => data.deref().as_ref(),
@@ -59,7 +66,7 @@ impl FontSystem {
             match font_opt {
                 Some(font) => fonts.push(font),
                 None => {
-                    eprintln!("failed to load font '{}'", face.post_script_name);
+                    log::warn!("failed to load font '{}'", face.post_script_name);
                 }
             }
         }

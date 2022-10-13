@@ -1,6 +1,7 @@
 use super::{Font, FontLineIndex, FontShapeGlyph, FontShapeLine, FontShapeSpan, FontShapeWord};
 
 pub struct FontMatches<'a> {
+    pub locale: &'a str,
     pub fonts: Vec<Font<'a>>,
 }
 
@@ -16,7 +17,7 @@ impl<'a> FontMatches<'a> {
     ) -> (Vec<FontShapeGlyph>, Vec<usize>) {
         let word = &line[start_word..end_word];
 
-        let font_scale = self.fonts[font_i].rustybuzz.units_per_em() as f32;
+        let font_scale = font.rustybuzz.units_per_em() as f32;
 
         let mut buffer = rustybuzz::UnicodeBuffer::new();
         buffer.set_direction(if span_rtl {
@@ -34,16 +35,7 @@ impl<'a> FontMatches<'a> {
         };
         assert_eq!(rtl, span_rtl);
 
-        if font_i == 0 {
-            log::debug!(
-                "    Word {}{}: '{}'",
-                if rtl { "RTL" } else { "LTR" },
-                if blank { " BLANK" } else { "" },
-                word
-            );
-        }
-
-        let glyph_buffer = rustybuzz::shape(&self.fonts[font_i].rustybuzz, &[], buffer);
+        let glyph_buffer = rustybuzz::shape(&font.rustybuzz, &[], buffer);
         let glyph_infos = glyph_buffer.glyph_infos();
         let glyph_positions = glyph_buffer.glyph_positions();
 
@@ -76,7 +68,7 @@ impl<'a> FontMatches<'a> {
                 y_advance,
                 x_offset,
                 y_offset,
-                font: &self.fonts[font_i],
+                font,
                 inner,
             });
         }
@@ -164,7 +156,7 @@ impl<'a> FontMatches<'a> {
                 while i < glyphs.len() {
                     if glyphs[i].start >= start && glyphs[i].end <= end {
                         let _glyph = glyphs.remove(i);
-                        // println!("Removed {},{} from {}", _glyph.start, _glyph.end, i);
+                        // log::trace!("Removed {},{} from {}", _glyph.start, _glyph.end, i);
                     } else {
                         break;
                     }
@@ -173,7 +165,7 @@ impl<'a> FontMatches<'a> {
                 while fb_i < fb_glyphs.len() {
                     if fb_glyphs[fb_i].start >= start && fb_glyphs[fb_i].end <= end {
                         let fb_glyph = fb_glyphs.remove(fb_i);
-                        // println!("Insert {},{} from font {} at {}", fb_glyph.start, fb_glyph.end, font_i, i);
+                        // log::trace!("Insert {},{} from font {} at {}", fb_glyph.start, fb_glyph.end, font_i, i);
                         glyphs.insert(i, fb_glyph);
                         i += 1;
                     } else {
@@ -181,13 +173,11 @@ impl<'a> FontMatches<'a> {
                     }
                 }
             }
-
-            font_i += 1;
         }
 
         /*
         for glyph in glyphs.iter() {
-            println!("'{}': {}, {}, {}, {}", &line[glyph.start..glyph.end], glyph.x_advance, glyph.y_advance, glyph.x_offset, glyph.y_offset);
+            log::trace!("'{}': {}, {}, {}, {}", &line[glyph.start..glyph.end], glyph.x_advance, glyph.y_advance, glyph.x_offset, glyph.y_offset);
         }
         */
 
