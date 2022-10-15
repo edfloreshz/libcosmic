@@ -1,4 +1,4 @@
-use cosmic::widget::{expander, nav_bar, nav_bar_item};
+use cosmic::widget::{expander, nav_bar, nav_bar_item, view_switcher};
 use cosmic::{
     iced::widget::{
         checkbox, column, container, horizontal_space, pick_list, progress_bar, radio, row, slider,
@@ -57,6 +57,7 @@ pub enum Message {
     TogglerToggled(bool),
     PickListSelected(&'static str),
     RowSelected(usize),
+    ViewChanged(usize),
     Close,
     ToggleSidebar,
     Drag,
@@ -104,6 +105,7 @@ impl Application for Window {
             Message::Minimize => return minimize(),
             Message::Maximize => return maximize(),
             Message::RowSelected(row) => println!("Selected row {row}"),
+            Message::ViewChanged(view) => println!("Selected view {view}"),
         }
 
         Command::none()
@@ -264,6 +266,12 @@ impl Application for Window {
                             .height(Length::Units(4))
                     ),
                     checkbox("Checkbox", self.checkbox_value, Message::CheckboxToggled),
+                ),
+                list_view_section!(
+                    "View Switcher",
+                    view_switcher()
+                        .options(vec!["Details", "Identity", "IPv4", "IPv6", "Security"])
+                        .on_view_changed(Box::new(Message::ViewChanged))
                 ),
                 list_view_section!(
                     "Expander",
