@@ -1,4 +1,4 @@
-use cosmic::widget::{expander, nav_bar, nav_bar_item, spin_button, view_switcher};
+use cosmic::widget::{expander, nav_bar, nav_bar_item, spin_button, segmented_button, view_switcher};
 use cosmic::{
     iced::widget::{
         checkbox, column, container, horizontal_space, pick_list, progress_bar, radio, row, slider,
@@ -59,6 +59,7 @@ pub enum Message {
     SpinValueChanged(i32),
     RowSelected(usize),
     ViewChanged(usize),
+    SegmentatedButtonPressed(usize),
     Close,
     ToggleSidebar,
     Drag,
@@ -108,6 +109,9 @@ impl Application for Window {
             Message::RowSelected(row) => println!("Selected row {row}"),
             Message::ViewChanged(view) => println!("Selected view {view}"),
             Message::SpinValueChanged(value) => println!("Spin value: {value}"),
+            Message::SegmentatedButtonPressed(index) => {
+                println!("Segmented button at index: {index}")
+            }
         }
 
         Command::none()
@@ -137,6 +141,7 @@ impl Application for Window {
         let content = responsive(|size| {
             let condensed = size.width < 900.0;
             let sidebar: Element<_> = nav_bar()
+                // TODO: Make this take an iterator
                 .source(BTreeMap::from([
                     (
                         nav_bar_item()
@@ -272,6 +277,12 @@ impl Application for Window {
                         progress_bar(0.0..=100.0, self.slider_value)
                             .width(Length::Units(250))
                             .height(Length::Units(4))
+                    ),
+                    list_view_item!(
+                        "Segmented Button",
+                        segmented_button()
+                            .options(vec!["Vertical", "Horizontal"])
+                            .on_button_pressed(Box::new(Message::SegmentatedButtonPressed))
                     ),
                     checkbox("Checkbox", self.checkbox_value, Message::CheckboxToggled),
                 ),

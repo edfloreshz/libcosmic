@@ -30,3 +30,6 @@ pub use view_switcher::*;
 
 pub mod spin_button;
 pub use spin_button::*;
+
+pub mod segmented_button;
+pub use segmented_button::*;
