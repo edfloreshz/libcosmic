@@ -1,4 +1,4 @@
-use cosmic::widget::{expander, nav_bar, nav_bar_item, view_switcher};
+use cosmic::widget::{expander, nav_bar, nav_bar_item, spin_button, view_switcher};
 use cosmic::{
     iced::widget::{
         checkbox, column, container, horizontal_space, pick_list, progress_bar, radio, row, slider,
@@ -56,6 +56,7 @@ pub enum Message {
     CheckboxToggled(bool),
     TogglerToggled(bool),
     PickListSelected(&'static str),
+    SpinValueChanged(i32),
     RowSelected(usize),
     ViewChanged(usize),
     Close,
@@ -106,6 +107,7 @@ impl Application for Window {
             Message::Maximize => return maximize(),
             Message::RowSelected(row) => println!("Selected row {row}"),
             Message::ViewChanged(view) => println!("Selected view {view}"),
+            Message::SpinValueChanged(value) => println!("Spin value: {value}"),
         }
 
         Command::none()
@@ -258,6 +260,12 @@ impl Application for Window {
                         "Slider",
                         slider(0.0..=100.0, self.slider_value, Message::SliderChanged)
                             .width(Length::Units(250))
+                    ),
+                    list_view_item!(
+                        "Spin Button",
+                        spin_button()
+                            .value(4)
+                            .on_value_change(Box::new(Message::SpinValueChanged))
                     ),
                     list_view_item!(
                         "Progress",

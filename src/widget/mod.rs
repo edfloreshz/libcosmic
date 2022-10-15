@@ -27,3 +27,6 @@ pub use separator::*;
 
 pub mod view_switcher;
 pub use view_switcher::*;
+
+pub mod spin_button;
+pub use spin_button::*;
