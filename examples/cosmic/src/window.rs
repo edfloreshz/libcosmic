@@ -1,4 +1,6 @@
-use cosmic::widget::{expander, nav_bar, nav_bar_item, spin_button, segmented_button, view_switcher};
+use cosmic::widget::{
+    expander, nav_bar, nav_item, nav_list, segmented_button, spin_button, view_switcher,
+};
 use cosmic::{
     iced::widget::{
         checkbox, column, container, horizontal_space, pick_list, progress_bar, radio, row, slider,
@@ -144,53 +146,47 @@ impl Application for Window {
                 // TODO: Make this take an iterator
                 .source(BTreeMap::from([
                     (
-                        nav_bar_item()
+                        nav_item()
                             .title("Network & Wireless")
                             .icon("nm-device-wired"),
-                        vec![nav_bar_item().title("Wi-Fi").icon("network-wireless")],
+                        vec![nav_item().title("Wi-Fi").icon("network-wireless")],
                     ),
                     (
-                        nav_bar_item().title("Bluetooth").icon("cs-bluetooth"),
-                        vec![nav_bar_item().title("Devices").icon("computer")],
+                        nav_item().title("Bluetooth").icon("cs-bluetooth"),
+                        vec![nav_item().title("Devices").icon("computer")],
                     ),
                     (
-                        nav_bar_item()
+                        nav_item()
                             .title("Personalization")
                             .icon("applications-system"),
                         vec![
-                            nav_bar_item()
-                                .title("Desktop Session")
-                                .icon("desktop-panel"),
-                            nav_bar_item()
+                            nav_item().title("Desktop Session").icon("desktop-panel"),
+                            nav_item()
                                 .title("Wallpaper")
                                 .icon("preferences-desktop-wallpaper"),
-                            nav_bar_item().title("Appearance").icon("cs-color"),
-                            nav_bar_item()
-                                .title("Dock & Top Panel")
-                                .icon("desktop-panel"),
-                            nav_bar_item()
+                            nav_item().title("Appearance").icon("cs-color"),
+                            nav_item().title("Dock & Top Panel").icon("desktop-panel"),
+                            nav_item()
                                 .title("Workspaces")
                                 .icon("preferences-system-windows"),
-                            nav_bar_item()
-                                .title("Notifications")
-                                .icon("cs-notifications"),
+                            nav_item().title("Notifications").icon("cs-notifications"),
                         ],
                     ),
                     (
-                        nav_bar_item().title("Input Devices").icon("input-keyboard"),
-                        vec![nav_bar_item().title("Keyboard").icon("computer")],
+                        nav_item().title("Input Devices").icon("input-keyboard"),
+                        vec![nav_item().title("Keyboard").icon("computer")],
                     ),
                     (
-                        nav_bar_item().title("Displays").icon("cs-display"),
-                        vec![nav_bar_item().title("External Monitors").icon("computer")],
+                        nav_item().title("Displays").icon("cs-display"),
+                        vec![nav_item().title("External Monitors").icon("computer")],
                     ),
                     (
-                        nav_bar_item().title("Power & Battery").icon("battery"),
-                        vec![nav_bar_item().title("Status").icon("computer")],
+                        nav_item().title("Power & Battery").icon("battery"),
+                        vec![nav_item().title("Status").icon("computer")],
                     ),
                     (
-                        nav_bar_item().title("Sound").icon("sound"),
-                        vec![nav_bar_item().title("Volume").icon("computer")],
+                        nav_item().title("Sound").icon("sound"),
+                        vec![nav_item().title("Volume").icon("computer")],
                     ),
                 ]))
                 .on_page_selected(Box::new(Message::Page))

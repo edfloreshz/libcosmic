@@ -7,6 +7,7 @@ pub struct ListRow<'a> {
     pub subtitle: Option<&'a str>,
     #[setters(strip_option)]
     pub icon: Option<String>,
+    pub active: bool
 }
 
 pub fn list_row<'a>() -> ListRow<'a> {
@@ -14,5 +15,6 @@ pub fn list_row<'a>() -> ListRow<'a> {
         title: "",
         subtitle: None,
         icon: None,
+        active: false,
     }
 }

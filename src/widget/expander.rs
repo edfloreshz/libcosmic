@@ -22,6 +22,8 @@ pub struct Expander<'a, Message> {
     #[setters(skip)]
     rows: Option<Vec<ListRow<'a>>>,
     #[setters(strip_option)]
+    on_press: Option<Message>,
+    #[setters(strip_option)]
     on_row_selected: Option<Box<dyn Fn(usize) -> Message + 'a>>,
 }
 
@@ -33,6 +35,7 @@ pub fn expander<'a, Message>() -> Expander<'a, Message> {
         expansible: false,
         rows: None,
         on_row_selected: None,
+        on_press: None,
     }
 }
 
@@ -49,6 +52,7 @@ impl Default for ExpanderState {
 #[derive(Clone, Copy, Debug)]
 pub enum ExpanderEvent {
     Expand,
+    OnPress,
     RowSelected(usize),
 }
 
@@ -82,6 +86,7 @@ impl<'a, Message: Clone + 'a> Component<Message, Renderer> for Expander<'a, Mess
                 .on_row_selected
                 .as_ref()
                 .map(|on_row_selected| (on_row_selected)(index)),
+            ExpanderEvent::OnPress => self.on_press.clone(),
         }
     }
 
@@ -95,7 +100,9 @@ impl<'a, Message: Clone + 'a> Component<Message, Renderer> for Expander<'a, Mess
             let space: Element<ExpanderEvent, Renderer> = horizontal_space(Length::Fill).into();
             let toggler: Element<ExpanderEvent, Renderer> = {
                 let mut icon = super::icon(
-                    if state.expanded {
+                    if !self.expansible {
+                        "go-next-symbolic"
+                    } else if state.expanded {
                         "go-down-symbolic"
                     } else {
                         "go-next-symbolic"
@@ -119,8 +126,9 @@ impl<'a, Message: Clone + 'a> Component<Message, Renderer> for Expander<'a, Mess
                 row![text, space, toggler]
             };
 
-            container(items.align_items(Alignment::Center))
-                .style(theme::Container::Custom(expander_heading_style))
+            button(items.align_items(Alignment::Center))
+                .on_press(ExpanderEvent::OnPress)
+                .style(theme::Button::Secondary)
                 .padding(10)
                 .into()
         };
@@ -132,12 +140,22 @@ impl<'a, Message: Clone + 'a> Component<Message, Renderer> for Expander<'a, Mess
                     let subtitle = row.subtitle.unwrap_or_default();
                     if let Some(icon) = &row.icon {
                         list_box_row!(row.title, subtitle, icon.as_str())
-                            .apply(event_container)
+                            .apply(button)
+                            .style(if row.active {
+                                theme::Button::Primary
+                            } else {
+                                theme::Button::Text
+                            })
                             .on_press(ExpanderEvent::RowSelected(index))
                             .into()
                     } else {
                         list_box_row!(row.title, subtitle)
-                            .apply(event_container)
+                            .apply(button)
+                            .style(if row.active {
+                                theme::Button::Primary
+                            } else {
+                                theme::Button::Text
+                            })
                             .on_press(ExpanderEvent::RowSelected(index))
                             .into()
                     }
@@ -155,18 +173,23 @@ impl<'a, Message: Clone + 'a> Component<Message, Renderer> for Expander<'a, Mess
             vec![]
         };
 
-        let rows: Element<ExpanderEvent> = Column::with_children(rows).into();
+        let rows: Element<ExpanderEvent> =
+            Column::with_children(rows).spacing(4).padding(10).into();
 
         let mut layout = vec![heading];
         if state.expanded && self.expansible {
             layout.push(rows)
         }
 
-        column(layout)
-            .apply(widget::container)
-            .height(Length::Shrink)
-            .style(theme::Container::Custom(expander_row_style))
-            .into()
+        if self.expansible {
+            column(layout)
+                .apply(widget::container)
+                .height(Length::Shrink)
+                .style(theme::Container::Custom(expander_row_style))
+                .into()
+        } else {
+            column(layout).height(Length::Shrink).into()
+        }
     }
 }
 
@@ -193,7 +216,7 @@ pub fn expander_row_style(theme: &Theme) -> widget::container::Appearance {
     widget::container::Appearance {
         text_color: Some(cosmic.on.into()),
         background: Some(Background::Color(cosmic.base.into())),
-        border_radius: 8.0,
+        border_radius: 24.0,
         border_width: 0.4,
         border_color: cosmic.divider.into(),
     }

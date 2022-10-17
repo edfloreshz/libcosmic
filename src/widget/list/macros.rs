@@ -103,8 +103,7 @@ pub mod list_box {
                 .height(Length::Fill)
                 .align_items($crate::iced::alignment::Alignment::Center),
             )
-            .max_height(60)
-            .padding(10)
+            .max_height(50)
         };
         ($title:expr, $subtitle:expr) => {
             $crate::iced::widget::container(
@@ -119,8 +118,7 @@ pub mod list_box {
                 .height(Length::Fill)
                 .align_items($crate::iced::alignment::Alignment::Center),
             )
-            .max_height(60)
-            .padding(10)
+            .max_height(50)
         };
         ($title:expr, $subtitle:expr, $icon:expr) => {
             $crate::iced::widget::container(
@@ -136,8 +134,7 @@ pub mod list_box {
                 .height(Length::Fill)
                 .align_items($crate::iced::alignment::Alignment::Center),
             )
-            .max_height(60)
-            .padding(10)
+            .max_height(50)
         };
     }
 

@@ -1,19 +1,21 @@
 use crate::scrollable;
-use crate::widget::nav_bar::{nav_bar_pages_style, nav_bar_sections_style};
+use crate::widget::nav_bar::nav_bar_sections_style;
 use crate::widget::Background;
 use derive_setters::Setters;
 use iced::Length;
+use iced::Renderer;
 use iced_lazy::Component;
 use iced_native::widget::{column, container};
 use iced_native::{row, Alignment, Element};
 use iced_style::button::Appearance;
 use iced_style::{theme, Theme};
 use std::collections::BTreeMap;
-use iced::Renderer;
+
+use super::NavItem;
 
 #[derive(Setters, Default)]
 pub struct NavBar<'a, Message> {
-    source: BTreeMap<NavBarItem, Vec<NavBarItem>>,
+    source: BTreeMap<NavItem, Vec<NavItem>>,
     active: bool,
     condensed: bool,
     #[setters(strip_option)]
@@ -35,27 +37,6 @@ pub fn nav_bar<'a, Message>() -> NavBar<'a, Message> {
     NavBar::new()
 }
 
-#[derive(Setters, Clone, Default, PartialOrd, Ord, PartialEq, Eq, Hash)]
-pub struct NavBarItem {
-    #[setters(into)]
-    title: String,
-    #[setters(into)]
-    icon: String,
-}
-
-impl NavBarItem {
-    pub fn new() -> Self {
-        Self {
-            title: String::new(),
-            icon: String::new(),
-        }
-    }
-}
-
-pub fn nav_bar_item() -> NavBarItem {
-    NavBarItem::new()
-}
-
 #[derive(Clone)]
 pub enum NavBarEvent {
     SectionSelected(usize),
@@ -69,8 +50,7 @@ pub struct NavBarState {
     selected_page: Option<usize>,
 }
 
-impl<'a, Message> Component<Message, Renderer> for NavBar<'a, Message>
-{
+impl<'a, Message> Component<Message, Renderer> for NavBar<'a, Message> {
     type State = NavBarState;
     type Event = NavBarEvent;
 
@@ -138,7 +118,7 @@ impl<'a, Message> Component<Message, Renderer> for NavBar<'a, Message>
                     .width(Length::Units(width))
                     .height(Length::Shrink)))
                 .height(Length::Fill)
-                .style(theme::Container::Custom(nav_bar_pages_style)),
+                .style(theme::Container::Custom(nav_bar_sections_style)),
             ])
             .height(Length::Fill)
             .style(theme::Container::Custom(nav_bar_sections_style))
@@ -150,8 +130,7 @@ impl<'a, Message> Component<Message, Renderer> for NavBar<'a, Message>
     }
 }
 
-impl<'a, Message: 'a> From<NavBar<'a, Message>> for Element<'a, Message, Renderer>
-{
+impl<'a, Message: 'a> From<NavBar<'a, Message>> for Element<'a, Message, Renderer> {
     fn from(nav_bar: NavBar<'a, Message>) -> Self {
         iced_lazy::component(nav_bar)
     }
