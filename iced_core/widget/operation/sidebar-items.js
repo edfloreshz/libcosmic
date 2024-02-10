@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["OperationOutputWrapper","OperationWrapper","Outcome"],"fn":["map","scoped"],"mod":["focusable","scrollable","text_input"],"struct":["MapOperation"],"trait":["Operation"]};
