@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/palette-0.7.4/src/serde.rs`."><title>serde.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="palette" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/palette-0.7.5/src/serde.rs`."><title>serde.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="palette" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -329,9 +330,9 @@
 <a href="#329" id="329">329</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Utilities for serializing and deserializing with `serde`.
 //!
-//! These modules and functions can be combined with `serde`&#39;s [field
+//! These modules and functions can be combined with `serde`'s [field
 //! attributes](https://serde.rs/field-attrs.html) to better control how to
-//! serialize and deserialize colors. See each item&#39;s examples for more details.
+//! serialize and deserialize colors. See each item's examples for more details.
 
 </span><span class="kw">use </span>serde::{Deserialize, Deserializer, Serialize, Serializer};
 
@@ -347,7 +348,7 @@
 <span class="kw">mod </span>alpha_deserializer;
 <span class="kw">mod </span>alpha_serializer;
 
-<span class="doccomment">/// Combines [`serialize_as_array`] and [`deserialize_as_array`] as a module for `#[serde(with = &quot;...&quot;)]`.
+<span class="doccomment">/// Combines [`serialize_as_array`] and [`deserialize_as_array`] as a module for `#[serde(with = "...")]`.
 ///
 /// ```
 /// use serde::{Serialize, Deserialize};
@@ -355,9 +356,9 @@
 ///
 /// #[derive(Serialize, Deserialize, PartialEq, Debug)]
 /// struct MyColors {
-///     #[serde(with = &quot;palette::serde::as_array&quot;)]
+///     #[serde(with = "palette::serde::as_array")]
 ///     opaque: Srgb,
-///     #[serde(with = &quot;palette::serde::as_array&quot;)]
+///     #[serde(with = "palette::serde::as_array")]
 ///     transparent: Srgba,
 /// }
 ///
@@ -370,7 +371,7 @@
 ///
 /// assert_eq!(
 ///     json,
-///     r#&quot;{&quot;opaque&quot;:[0.6,0.8,0.3],&quot;transparent&quot;:[0.6,0.8,0.3,0.5]}&quot;#
+///     r#"{"opaque":[0.6,0.8,0.3],"transparent":[0.6,0.8,0.3,0.5]}"#
 /// );
 ///
 /// assert_eq!(
@@ -391,9 +392,9 @@
 ///
 /// #[derive(Serialize)]
 /// struct MyColors {
-///     #[serde(serialize_with = &quot;palette::serde::serialize_as_array&quot;)]
+///     #[serde(serialize_with = "palette::serde::serialize_as_array")]
 ///     opaque: Srgb,
-///     #[serde(serialize_with = &quot;palette::serde::serialize_as_array&quot;)]
+///     #[serde(serialize_with = "palette::serde::serialize_as_array")]
 ///     transparent: Srgba,
 /// }
 ///
@@ -404,7 +405,7 @@
 ///
 /// assert_eq!(
 ///     serde_json::to_string(&amp;my_colors).unwrap(),
-///     r#&quot;{&quot;opaque&quot;:[0.6,0.8,0.3],&quot;transparent&quot;:[0.6,0.8,0.3,0.5]}&quot;#
+///     r#"{"opaque":[0.6,0.8,0.3],"transparent":[0.6,0.8,0.3,0.5]}"#
 /// );
 /// ```
 </span><span class="kw">pub fn </span>serialize_as_array&lt;T, S&gt;(value: <span class="kw-2">&amp;</span>T, serializer: S) -&gt; <span class="prelude-ty">Result</span>&lt;S::Ok, S::Error&gt;
@@ -424,9 +425,9 @@
 ///
 /// #[derive(Deserialize, PartialEq, Debug)]
 /// struct MyColors {
-///     #[serde(deserialize_with = &quot;palette::serde::deserialize_as_array&quot;)]
+///     #[serde(deserialize_with = "palette::serde::deserialize_as_array")]
 ///     opaque: Srgb,
-///     #[serde(deserialize_with = &quot;palette::serde::deserialize_as_array&quot;)]
+///     #[serde(deserialize_with = "palette::serde::deserialize_as_array")]
 ///     transparent: Srgba,
 /// }
 ///
@@ -435,22 +436,22 @@
 ///     transparent: Srgba::new(0.6, 0.8, 0.3, 0.5),
 /// };
 ///
-/// let json = r#&quot;{&quot;opaque&quot;:[0.6,0.8,0.3],&quot;transparent&quot;:[0.6,0.8,0.3,0.5]}&quot;#;
+/// let json = r#"{"opaque":[0.6,0.8,0.3],"transparent":[0.6,0.8,0.3,0.5]}"#;
 /// assert_eq!(
 ///     serde_json::from_str::&lt;MyColors&gt;(json).unwrap(),
 ///     my_colors
 /// );
 /// ```
-</span><span class="kw">pub fn </span>deserialize_as_array&lt;<span class="lifetime">&#39;de</span>, T, D&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;T, D::Error&gt;
+</span><span class="kw">pub fn </span>deserialize_as_array&lt;<span class="lifetime">'de</span>, T, D&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;T, D::Error&gt;
 <span class="kw">where
     </span>T: ArrayCast,
-    T::Array: Deserialize&lt;<span class="lifetime">&#39;de</span>&gt;,
-    D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;,
+    T::Array: Deserialize&lt;<span class="lifetime">'de</span>&gt;,
+    D: Deserializer&lt;<span class="lifetime">'de</span>&gt;,
 {
     <span class="prelude-val">Ok</span>(cast::from_array(T::Array::deserialize(deserializer)<span class="question-mark">?</span>))
 }
 
-<span class="doccomment">/// Combines [`serialize_as_uint`] and [`deserialize_as_uint`] as a module for `#[serde(with = &quot;...&quot;)]`.
+<span class="doccomment">/// Combines [`serialize_as_uint`] and [`deserialize_as_uint`] as a module for `#[serde(with = "...")]`.
 ///
 /// ```
 /// use serde::{Serialize, Deserialize};
@@ -458,9 +459,9 @@
 ///
 /// #[derive(Serialize, Deserialize, PartialEq, Debug)]
 /// struct MyColors {
-///     #[serde(with = &quot;palette::serde::as_uint&quot;)]
+///     #[serde(with = "palette::serde::as_uint")]
 ///     argb: PackedArgb,
-///     #[serde(with = &quot;palette::serde::as_uint&quot;)]
+///     #[serde(with = "palette::serde::as_uint")]
 ///     rgba: PackedRgba,
 /// }
 ///
@@ -473,7 +474,7 @@
 ///
 /// assert_eq!(
 ///     json,
-///     r#&quot;{&quot;argb&quot;:4279748172,&quot;rgba&quot;:398871807}&quot;#
+///     r#"{"argb":4279748172,"rgba":398871807}"#
 /// );
 ///
 /// assert_eq!(
@@ -494,9 +495,9 @@
 ///
 /// #[derive(Serialize)]
 /// struct MyColors {
-///     #[serde(serialize_with = &quot;palette::serde::serialize_as_uint&quot;)]
+///     #[serde(serialize_with = "palette::serde::serialize_as_uint")]
 ///     argb: PackedArgb,
-///     #[serde(serialize_with = &quot;palette::serde::serialize_as_uint&quot;)]
+///     #[serde(serialize_with = "palette::serde::serialize_as_uint")]
 ///     rgba: PackedRgba,
 /// }
 ///
@@ -507,7 +508,7 @@
 ///
 /// assert_eq!(
 ///     serde_json::to_string(&amp;my_colors).unwrap(),
-///     r#&quot;{&quot;argb&quot;:4279748172,&quot;rgba&quot;:398871807}&quot;#
+///     r#"{"argb":4279748172,"rgba":398871807}"#
 /// );
 /// ```
 </span><span class="kw">pub fn </span>serialize_as_uint&lt;T, S&gt;(value: <span class="kw-2">&amp;</span>T, serializer: S) -&gt; <span class="prelude-ty">Result</span>&lt;S::Ok, S::Error&gt;
@@ -527,9 +528,9 @@
 ///
 /// #[derive(Deserialize, PartialEq, Debug)]
 /// struct MyColors {
-///     #[serde(deserialize_with = &quot;palette::serde::deserialize_as_uint&quot;)]
+///     #[serde(deserialize_with = "palette::serde::deserialize_as_uint")]
 ///     argb: PackedArgb,
-///     #[serde(deserialize_with = &quot;palette::serde::deserialize_as_uint&quot;)]
+///     #[serde(deserialize_with = "palette::serde::deserialize_as_uint")]
 ///     rgba: PackedRgba,
 /// }
 ///
@@ -538,17 +539,17 @@
 ///     rgba: Srgba::new(0x17, 0xC6, 0x4C, 0xFF).into(),
 /// };
 ///
-/// let json = r#&quot;{&quot;argb&quot;:4279748172,&quot;rgba&quot;:398871807}&quot;#;
+/// let json = r#"{"argb":4279748172,"rgba":398871807}"#;
 /// assert_eq!(
 ///     serde_json::from_str::&lt;MyColors&gt;(json).unwrap(),
 ///     my_colors
 /// );
 /// ```
-</span><span class="kw">pub fn </span>deserialize_as_uint&lt;<span class="lifetime">&#39;de</span>, T, D&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;T, D::Error&gt;
+</span><span class="kw">pub fn </span>deserialize_as_uint&lt;<span class="lifetime">'de</span>, T, D&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;T, D::Error&gt;
 <span class="kw">where
     </span>T: UintCast,
-    T::Uint: Deserialize&lt;<span class="lifetime">&#39;de</span>&gt;,
-    D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;,
+    T::Uint: Deserialize&lt;<span class="lifetime">'de</span>&gt;,
+    D: Deserializer&lt;<span class="lifetime">'de</span>&gt;,
 {
     <span class="prelude-val">Ok</span>(cast::from_uint(T::Uint::deserialize(deserializer)<span class="question-mark">?</span>))
 }
@@ -563,9 +564,9 @@
 ///
 /// #[derive(Deserialize, PartialEq, Debug)]
 /// struct MyColors {
-///     #[serde(deserialize_with = &quot;palette::serde::deserialize_with_optional_alpha&quot;)]
+///     #[serde(deserialize_with = "palette::serde::deserialize_with_optional_alpha")]
 ///     opaque: Srgba,
-///     #[serde(deserialize_with = &quot;palette::serde::deserialize_with_optional_alpha&quot;)]
+///     #[serde(deserialize_with = "palette::serde::deserialize_with_optional_alpha")]
 ///     transparent: Srgba,
 /// }
 ///
@@ -574,22 +575,22 @@
 ///     transparent: Srgba::new(0.6, 0.8, 0.3, 0.5),
 /// };
 ///
-/// let json = r#&quot;{
-///     &quot;opaque&quot;:{&quot;red&quot;:0.6,&quot;green&quot;:0.8,&quot;blue&quot;:0.3},
-///     &quot;transparent&quot;:{&quot;red&quot;:0.6,&quot;green&quot;:0.8,&quot;blue&quot;:0.3,&quot;alpha&quot;:0.5}
-/// }&quot;#;
+/// let json = r#"{
+///     "opaque":{"red":0.6,"green":0.8,"blue":0.3},
+///     "transparent":{"red":0.6,"green":0.8,"blue":0.3,"alpha":0.5}
+/// }"#;
 /// assert_eq!(
 ///     serde_json::from_str::&lt;MyColors&gt;(json).unwrap(),
 ///     my_colors
 /// );
 /// ```
-</span><span class="kw">pub fn </span>deserialize_with_optional_alpha&lt;<span class="lifetime">&#39;de</span>, T, A, D&gt;(
+</span><span class="kw">pub fn </span>deserialize_with_optional_alpha&lt;<span class="lifetime">'de</span>, T, A, D&gt;(
     deserializer: D,
 ) -&gt; <span class="prelude-ty">Result</span>&lt;Alpha&lt;T, A&gt;, D::Error&gt;
 <span class="kw">where
-    </span>T: Deserialize&lt;<span class="lifetime">&#39;de</span>&gt;,
-    A: Stimulus + Deserialize&lt;<span class="lifetime">&#39;de</span>&gt;,
-    D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;,
+    </span>T: Deserialize&lt;<span class="lifetime">'de</span>&gt;,
+    A: Stimulus + Deserialize&lt;<span class="lifetime">'de</span>&gt;,
+    D: Deserializer&lt;<span class="lifetime">'de</span>&gt;,
 {
     <span class="kw">let </span><span class="kw-2">mut </span>alpha: <span class="prelude-ty">Option</span>&lt;A&gt; = <span class="prelude-val">None</span>;
 
@@ -616,9 +617,9 @@
 ///
 /// #[derive(Deserialize, PartialEq, Debug)]
 /// struct MyColors {
-///     #[serde(deserialize_with = &quot;palette::serde::deserialize_with_optional_pre_alpha&quot;)]
+///     #[serde(deserialize_with = "palette::serde::deserialize_with_optional_pre_alpha")]
 ///     opaque: PreRgba,
-///     #[serde(deserialize_with = &quot;palette::serde::deserialize_with_optional_pre_alpha&quot;)]
+///     #[serde(deserialize_with = "palette::serde::deserialize_with_optional_pre_alpha")]
 ///     transparent: PreRgba,
 /// }
 ///
@@ -627,22 +628,22 @@
 ///     transparent: LinSrgba::new(0.6, 0.8, 0.3, 0.5).into(),
 /// };
 ///
-/// let json = r#&quot;{
-///     &quot;opaque&quot;:{&quot;red&quot;:0.6,&quot;green&quot;:0.8,&quot;blue&quot;:0.3},
-///     &quot;transparent&quot;:{&quot;red&quot;:0.3,&quot;green&quot;:0.4,&quot;blue&quot;:0.15,&quot;alpha&quot;:0.5}
-/// }&quot;#;
+/// let json = r#"{
+///     "opaque":{"red":0.6,"green":0.8,"blue":0.3},
+///     "transparent":{"red":0.3,"green":0.4,"blue":0.15,"alpha":0.5}
+/// }"#;
 /// assert_eq!(
 ///     serde_json::from_str::&lt;MyColors&gt;(json).unwrap(),
 ///     my_colors
 /// );
 /// ```
-</span><span class="kw">pub fn </span>deserialize_with_optional_pre_alpha&lt;<span class="lifetime">&#39;de</span>, T, D&gt;(
+</span><span class="kw">pub fn </span>deserialize_with_optional_pre_alpha&lt;<span class="lifetime">'de</span>, T, D&gt;(
     deserializer: D,
 ) -&gt; <span class="prelude-ty">Result</span>&lt;PreAlpha&lt;T&gt;, D::Error&gt;
 <span class="kw">where
-    </span>T: Premultiply + Deserialize&lt;<span class="lifetime">&#39;de</span>&gt;,
-    T::Scalar: Stimulus + Deserialize&lt;<span class="lifetime">&#39;de</span>&gt;,
-    D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;,
+    </span>T: Premultiply + Deserialize&lt;<span class="lifetime">'de</span>&gt;,
+    T::Scalar: Stimulus + Deserialize&lt;<span class="lifetime">'de</span>&gt;,
+    D: Deserializer&lt;<span class="lifetime">'de</span>&gt;,
 {
     <span class="kw">let </span><span class="kw-2">mut </span>alpha: <span class="prelude-ty">Option</span>&lt;T::Scalar&gt; = <span class="prelude-val">None</span>;
 

@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/softbuffer-b53d51e2579e9817/6e75b1a/src/wayland/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="softbuffer" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/softbuffer-b53d51e2579e9817/6e75b1a/src/wayland/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="softbuffer" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -355,11 +356,11 @@
         <span class="kw">let </span>backend = <span class="kw">unsafe </span>{ Backend::from_foreign_display(wayland_handle.as_ptr().cast()) };
         <span class="kw">let </span>conn = Connection::from_backend(backend);
         <span class="kw">let </span>(globals, event_queue) =
-            registry_queue_init(<span class="kw-2">&amp;</span>conn).swbuf_err(<span class="string">&quot;Failed to make round trip to server&quot;</span>)<span class="question-mark">?</span>;
+            registry_queue_init(<span class="kw-2">&amp;</span>conn).swbuf_err(<span class="string">"Failed to make round trip to server"</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>qh = event_queue.handle();
         <span class="kw">let </span>shm: wl_shm::WlShm = globals
             .bind(<span class="kw-2">&amp;</span>qh, <span class="number">1</span>..=<span class="number">1</span>, ())
-            .swbuf_err(<span class="string">&quot;Failed to instantiate Wayland Shm&quot;</span>)<span class="question-mark">?</span>;
+            .swbuf_err(<span class="string">"Failed to instantiate Wayland Shm"</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="self">Self </span>{
             conn: <span class="prelude-val">Some</span>(conn),
             event_queue: RefCell::new(event_queue),
@@ -409,9 +410,9 @@
                 wayland_handle.as_ptr().cast(),
             )
         }
-        .swbuf_err(<span class="string">&quot;Failed to create proxy for surface ID.&quot;</span>)<span class="question-mark">?</span>;
+        .swbuf_err(<span class="string">"Failed to create proxy for surface ID."</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>surface = wl_surface::WlSurface::from_id(display.conn(), surface_id)
-            .swbuf_err(<span class="string">&quot;Failed to create proxy for surface ID.&quot;</span>)<span class="question-mark">?</span>;
+            .swbuf_err(<span class="string">"Failed to create proxy for surface ID."</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="self">Self </span>{
             display,
             surface: <span class="prelude-val">Some</span>(surface),
@@ -439,10 +440,10 @@
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub fn </span>buffer_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;BufferImpl&lt;<span class="lifetime">&#39;_</span>, D, W&gt;, SoftBufferError&gt; {
+    <span class="kw">pub fn </span>buffer_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;BufferImpl&lt;<span class="lifetime">'_</span>, D, W&gt;, SoftBufferError&gt; {
         <span class="kw">let </span>(width, height) = <span class="self">self
             </span>.size
-            .expect(<span class="string">&quot;Must set size of surface before calling `buffer_mut()`&quot;</span>);
+            .expect(<span class="string">"Must set size of surface before calling `buffer_mut()`"</span>);
 
         <span class="kw">if let </span><span class="prelude-val">Some</span>((_front, back)) = <span class="kw-2">&amp;mut </span><span class="self">self</span>.buffers {
             <span class="comment">// Block if back buffer not released yet
@@ -451,14 +452,14 @@
                 <span class="kw">while </span>!back.released() {
                     event_queue.blocking_dispatch(<span class="kw-2">&amp;mut </span>State).map_err(|err| {
                         SoftBufferError::PlatformError(
-                            <span class="prelude-val">Some</span>(<span class="string">&quot;Wayland dispatch failure&quot;</span>.to_string()),
+                            <span class="prelude-val">Some</span>(<span class="string">"Wayland dispatch failure"</span>.to_string()),
                             <span class="prelude-val">Some</span>(Box::new(err)),
                         )
                     })<span class="question-mark">?</span>;
                 }
             }
 
-            <span class="comment">// Resize, if buffer isn&#39;t large enough
+            <span class="comment">// Resize, if buffer isn't large enough
             </span>back.resize(width.get(), height.get());
         } <span class="kw">else </span>{
             <span class="comment">// Allocate front and back buffer
@@ -510,8 +511,8 @@
 
             front.attach(<span class="self">self</span>.surface.as_ref().unwrap());
 
-            <span class="comment">// Like Mesa&#39;s EGL/WSI implementation, we damage the whole buffer with `i32::MAX` if
-            // the compositor doesn&#39;t support `damage_buffer`.
+            <span class="comment">// Like Mesa's EGL/WSI implementation, we damage the whole buffer with `i32::MAX` if
+            // the compositor doesn't support `damage_buffer`.
             // https://bugs.freedesktop.org/show_bug.cgi?id=78190
             </span><span class="kw">if </span><span class="self">self</span>.surface().version() &lt; <span class="number">4 </span>{
                 <span class="self">self</span>.surface().damage(<span class="number">0</span>, <span class="number">0</span>, i32::MAX, i32::MAX);
@@ -551,12 +552,12 @@
     }
 }
 
-<span class="kw">pub struct </span>BufferImpl&lt;<span class="lifetime">&#39;a</span>, D: <span class="question-mark">?</span>Sized, W&gt; {
-    stack: util::BorrowStack&lt;<span class="lifetime">&#39;a</span>, WaylandImpl&lt;D, W&gt;, [u32]&gt;,
+<span class="kw">pub struct </span>BufferImpl&lt;<span class="lifetime">'a</span>, D: <span class="question-mark">?</span>Sized, W&gt; {
+    stack: util::BorrowStack&lt;<span class="lifetime">'a</span>, WaylandImpl&lt;D, W&gt;, [u32]&gt;,
     age: u8,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, D: HasDisplayHandle + <span class="question-mark">?</span>Sized, W: HasWindowHandle&gt; BufferImpl&lt;<span class="lifetime">&#39;a</span>, D, W&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, D: HasDisplayHandle + <span class="question-mark">?</span>Sized, W: HasWindowHandle&gt; BufferImpl&lt;<span class="lifetime">'a</span>, D, W&gt; {
     <span class="attr">#[inline]
     </span><span class="kw">pub fn </span>pixels(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[u32] {
         <span class="self">self</span>.stack.member()
@@ -579,7 +580,7 @@
         <span class="kw">let </span>imp = <span class="self">self</span>.stack.into_container();
         <span class="kw">let </span>(width, height) = imp
             .size
-            .expect(<span class="string">&quot;Must set size of surface before calling `present()`&quot;</span>);
+            .expect(<span class="string">"Must set size of surface before calling `present()`"</span>);
         imp.present_with_damage(<span class="kw-2">&amp;</span>[Rect {
             x: <span class="number">0</span>,
             y: <span class="number">0</span>,

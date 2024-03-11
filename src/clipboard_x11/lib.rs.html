@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/clipboard_x11-0.4.1/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="clipboard_x11" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/clipboard_x11-0.4.2/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="clipboard_x11" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -413,6 +414,26 @@
 <a href="#413" id="413">413</a>
 <a href="#414" id="414">414</a>
 <a href="#415" id="415">415</a>
+<a href="#416" id="416">416</a>
+<a href="#417" id="417">417</a>
+<a href="#418" id="418">418</a>
+<a href="#419" id="419">419</a>
+<a href="#420" id="420">420</a>
+<a href="#421" id="421">421</a>
+<a href="#422" id="422">422</a>
+<a href="#423" id="423">423</a>
+<a href="#424" id="424">424</a>
+<a href="#425" id="425">425</a>
+<a href="#426" id="426">426</a>
+<a href="#427" id="427">427</a>
+<a href="#428" id="428">428</a>
+<a href="#429" id="429">429</a>
+<a href="#430" id="430">430</a>
+<a href="#431" id="431">431</a>
+<a href="#432" id="432">432</a>
+<a href="#433" id="433">433</a>
+<a href="#434" id="434">434</a>
+<a href="#435" id="435">435</a>
 </pre></div><pre class="rust"><code><span class="attr">#[forbid(unsafe_code)]
 </span><span class="kw">mod </span>error;
 
@@ -460,10 +481,9 @@
         })
     }
 
-    <span class="doccomment">/// Read the current [`Clipboard`] value.
-    </span><span class="kw">pub fn </span>read(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;String, Error&gt; {
+    <span class="kw">fn </span>read_selection(<span class="kw-2">&amp;</span><span class="self">self</span>, selection: Atom) -&gt; <span class="prelude-ty">Result</span>&lt;String, Error&gt; {
         <span class="prelude-val">Ok</span>(String::from_utf8(<span class="self">self</span>.load(
-            <span class="self">self</span>.reader.atoms.clipboard,
+            selection,
             <span class="self">self</span>.reader.atoms.utf8_string,
             <span class="self">self</span>.reader.atoms.property,
             std::time::Duration::from_secs(<span class="number">3</span>),
@@ -471,9 +491,18 @@
         .map_err(Error::InvalidUtf8)<span class="question-mark">?</span>)
     }
 
-    <span class="doccomment">/// Write a new value to the [`Clipboard`].
-    </span><span class="kw">pub fn </span>write(<span class="kw-2">&amp;mut </span><span class="self">self</span>, contents: String) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
-        <span class="kw">let </span>selection = <span class="self">self</span>.writer.atoms.clipboard;
+    <span class="doccomment">/// Read the current CLIPBOARD [`Clipboard`] value.
+    </span><span class="kw">pub fn </span>read(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;String, Error&gt; {
+        <span class="self">self</span>.read_selection(<span class="self">self</span>.reader.atoms.clipboard)
+    }
+
+
+    <span class="doccomment">/// Read the current PRIMARY [`Clipboard`] value.
+    </span><span class="kw">pub fn </span>read_primary(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;String, Error&gt; {
+        <span class="self">self</span>.read_selection(<span class="self">self</span>.reader.atoms.primary)
+    }
+
+    <span class="kw">fn </span>write_selection(<span class="kw-2">&amp;mut </span><span class="self">self</span>, selection: Atom, contents: String) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
         <span class="kw">let </span>target = <span class="self">self</span>.writer.atoms.utf8_string;
 
         <span class="self">self</span>.selections
@@ -500,6 +529,18 @@
         } <span class="kw">else </span>{
             <span class="prelude-val">Err</span>(Error::InvalidOwner)
         }
+    }
+
+    <span class="doccomment">/// Write a new value to the CLIPBOARD [`Clipboard`].
+    </span><span class="kw">pub fn </span>write(<span class="kw-2">&amp;mut </span><span class="self">self</span>, contents: String) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+        <span class="kw">let </span>selection = <span class="self">self</span>.writer.atoms.clipboard;
+        <span class="self">self</span>.write_selection(selection, contents)
+    }
+
+    <span class="doccomment">/// Write a new value to the PRIMARY [`Clipboard`].
+    </span><span class="kw">pub fn </span>write_primary(<span class="kw-2">&amp;mut </span><span class="self">self</span>, contents: String) -&gt; <span class="prelude-ty">Result</span>&lt;(), Error&gt; {
+        <span class="kw">let </span>selection = <span class="self">self</span>.writer.atoms.primary;
+        <span class="self">self</span>.write_selection(selection, contents)
     }
 
     <span class="doccomment">/// load value.
@@ -732,12 +773,12 @@
 
         <span class="kw">let </span>atoms = Atoms {
             primary: AtomEnum::PRIMARY.into(),
-            clipboard: get_atom(<span class="kw-2">&amp;</span>connection, <span class="string">&quot;CLIPBOARD&quot;</span>)<span class="question-mark">?</span>,
-            property: get_atom(<span class="kw-2">&amp;</span>connection, <span class="string">&quot;THIS_CLIPBOARD_OUT&quot;</span>)<span class="question-mark">?</span>,
-            targets: get_atom(<span class="kw-2">&amp;</span>connection, <span class="string">&quot;TARGETS&quot;</span>)<span class="question-mark">?</span>,
+            clipboard: get_atom(<span class="kw-2">&amp;</span>connection, <span class="string">"CLIPBOARD"</span>)<span class="question-mark">?</span>,
+            property: get_atom(<span class="kw-2">&amp;</span>connection, <span class="string">"THIS_CLIPBOARD_OUT"</span>)<span class="question-mark">?</span>,
+            targets: get_atom(<span class="kw-2">&amp;</span>connection, <span class="string">"TARGETS"</span>)<span class="question-mark">?</span>,
             string: AtomEnum::STRING.into(),
-            utf8_string: get_atom(<span class="kw-2">&amp;</span>connection, <span class="string">&quot;UTF8_STRING&quot;</span>)<span class="question-mark">?</span>,
-            incr: get_atom(<span class="kw-2">&amp;</span>connection, <span class="string">&quot;INCR&quot;</span>)<span class="question-mark">?</span>,
+            utf8_string: get_atom(<span class="kw-2">&amp;</span>connection, <span class="string">"UTF8_STRING"</span>)<span class="question-mark">?</span>,
+            incr: get_atom(<span class="kw-2">&amp;</span>connection, <span class="string">"INCR"</span>)<span class="question-mark">?</span>,
         };
 
         <span class="prelude-val">Ok</span>(Context {
@@ -784,7 +825,7 @@
                                 xproto::AtomEnum::ATOM,
                                 <span class="kw-2">&amp;</span>data,
                             )
-                            .expect(<span class="string">&quot;Change property&quot;</span>);
+                            .expect(<span class="string">"Change property"</span>);
                     } <span class="kw">else </span>{
                         <span class="kw">let _ </span>= <span class="self">self
                             </span>.context
@@ -796,7 +837,7 @@
                                 target,
                                 value,
                             )
-                            .expect(<span class="string">&quot;Change property&quot;</span>);
+                            .expect(<span class="string">"Change property"</span>);
                     }
 
                     <span class="kw">let _ </span>= xproto::send_event(
@@ -814,7 +855,7 @@
                             property: event.property,
                         },
                     )
-                    .expect(<span class="string">&quot;Send event&quot;</span>);
+                    .expect(<span class="string">"Send event"</span>);
 
                     <span class="kw">let _ </span>= <span class="self">self</span>.context.connection.flush();
                 }

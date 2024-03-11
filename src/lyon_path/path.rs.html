@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_path-1.0.4/src/path.rs`."><title>path.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_path" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../lyon_path/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_path"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_path-1.0.4/src/path.rs`."><title>path.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_path" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><a class="sub-logo-container" href="../../lyon_path/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_path"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -2258,7 +2259,7 @@
 /// This is used by the [Path](struct.Path.html) data structure to store path events a tad
 /// more efficiently.
 </span><span class="attr">#[derive(Copy, Clone, Debug, PartialEq, Eq)]
-#[cfg_attr(feature = <span class="string">&quot;serialization&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serialization"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum </span>Verb {
     LineTo,
     QuadraticTo,
@@ -2273,7 +2274,7 @@
 /// # Custom attributes
 ///
 /// Paths can store a fixed number of extra `f32` values per endpoint, called
-/// &quot;custom attributes&quot; or &quot;interpolated attributes&quot; through the documentation.
+/// "custom attributes" or "interpolated attributes" through the documentation.
 /// These can be handy to represent arbitrary attributes such as variable colors,
 /// line width, etc.
 ///
@@ -2304,7 +2305,7 @@
 /// ```
 ///
 </span><span class="attr">#[derive(Clone, Default)]
-#[cfg_attr(feature = <span class="string">&quot;serialization&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serialization"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub struct </span>Path {
     points: Box&lt;[Point]&gt;,
     verbs: Box&lt;[Verb]&gt;,
@@ -2313,9 +2314,9 @@
 
 <span class="doccomment">/// A view on a `Path`.
 </span><span class="attr">#[derive(Copy, Clone)]
-</span><span class="kw">pub struct </span>PathSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) points: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[Point],
-    <span class="kw">pub</span>(<span class="kw">crate</span>) verbs: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[Verb],
+</span><span class="kw">pub struct </span>PathSlice&lt;<span class="lifetime">'l</span>&gt; {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) points: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[Point],
+    <span class="kw">pub</span>(<span class="kw">crate</span>) verbs: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[Verb],
     <span class="kw">pub</span>(<span class="kw">crate</span>) num_attributes: usize,
 }
 
@@ -2368,7 +2369,7 @@
         }
     }
 
-    <span class="doccomment">/// Returns a slice over an endpoint&#39;s custom attributes.
+    <span class="doccomment">/// Returns a slice over an endpoint's custom attributes.
     </span><span class="attr">#[inline]
     </span><span class="kw">pub fn </span>attributes(<span class="kw-2">&amp;</span><span class="self">self</span>, endpoint: EndpointId) -&gt; Attributes {
         interpolated_attributes(<span class="self">self</span>.num_attributes, <span class="kw-2">&amp;</span><span class="self">self</span>.points, endpoint)
@@ -2474,17 +2475,17 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>Path {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'l </span>Path {
     <span class="kw">type </span>Item = PathEvent;
-    <span class="kw">type </span>IntoIter = Iter&lt;<span class="lifetime">&#39;l</span>&gt;;
+    <span class="kw">type </span>IntoIter = Iter&lt;<span class="lifetime">'l</span>&gt;;
 
-    <span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">&#39;l</span>&gt; {
+    <span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">'l</span>&gt; {
         <span class="self">self</span>.iter()
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; From&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>Path&gt; <span class="kw">for </span>PathSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
-    <span class="kw">fn </span>from(path: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>Path) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; From&lt;<span class="kw-2">&amp;</span><span class="lifetime">'l </span>Path&gt; <span class="kw">for </span>PathSlice&lt;<span class="lifetime">'l</span>&gt; {
+    <span class="kw">fn </span>from(path: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>Path) -&gt; <span class="self">Self </span>{
         path.as_slice()
     }
 }
@@ -2516,8 +2517,8 @@
 }
 
 <span class="doccomment">/// An immutable view over a Path.
-</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; PathSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
-    <span class="kw">pub fn </span>first_endpoint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(Point, Attributes&lt;<span class="lifetime">&#39;l</span>&gt;)&gt; {
+</span><span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; PathSlice&lt;<span class="lifetime">'l</span>&gt; {
+    <span class="kw">pub fn </span>first_endpoint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(Point, Attributes&lt;<span class="lifetime">'l</span>&gt;)&gt; {
         <span class="kw">if </span><span class="self">self</span>.points.is_empty() {
             <span class="kw">return </span><span class="prelude-val">None</span>;
         }
@@ -2528,7 +2529,7 @@
         <span class="prelude-val">Some</span>((pos, attributes))
     }
 
-    <span class="kw">pub fn </span>last_endpoint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(Point, Attributes&lt;<span class="lifetime">&#39;l</span>&gt;)&gt; {
+    <span class="kw">pub fn </span>last_endpoint(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;(Point, Attributes&lt;<span class="lifetime">'l</span>&gt;)&gt; {
         <span class="kw">if </span><span class="self">self</span>.points.is_empty() {
             <span class="kw">return </span><span class="prelude-val">None</span>;
         }
@@ -2544,7 +2545,7 @@
     }
 
     <span class="doccomment">/// Iterates over the path.
-    </span><span class="kw">pub fn </span>iter&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">&#39;l</span>&gt; {
+    </span><span class="kw">pub fn </span>iter&lt;<span class="lifetime">'a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">'l</span>&gt; {
         Iter::new(<span class="self">self</span>.num_attributes, <span class="self">self</span>.points, <span class="self">self</span>.verbs)
     }
 
@@ -2562,9 +2563,9 @@
         <span class="self">self</span>.verbs.is_empty()
     }
 
-    <span class="doccomment">/// Returns a slice over an endpoint&#39;s custom attributes.
+    <span class="doccomment">/// Returns a slice over an endpoint's custom attributes.
     </span><span class="attr">#[inline]
-    </span><span class="kw">pub fn </span>attributes(<span class="kw-2">&amp;</span><span class="self">self</span>, endpoint: EndpointId) -&gt; Attributes&lt;<span class="lifetime">&#39;l</span>&gt; {
+    </span><span class="kw">pub fn </span>attributes(<span class="kw-2">&amp;</span><span class="self">self</span>, endpoint: EndpointId) -&gt; Attributes&lt;<span class="lifetime">'l</span>&gt; {
         interpolated_attributes(<span class="self">self</span>.num_attributes, <span class="self">self</span>.points, endpoint)
     }
 
@@ -2574,45 +2575,45 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; fmt::Debug <span class="kw">for </span>PathSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; fmt::Debug <span class="kw">for </span>PathSlice&lt;<span class="lifetime">'l</span>&gt; {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
         <span class="kw">fn </span>write_point(formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter, point: Point) -&gt; fmt::Result {
-            <span class="macro">write!</span>(formatter, <span class="string">&quot; &quot;</span>)<span class="question-mark">?</span>;
+            <span class="macro">write!</span>(formatter, <span class="string">" "</span>)<span class="question-mark">?</span>;
             fmt::Debug::fmt(<span class="kw-2">&amp;</span>point.x, formatter)<span class="question-mark">?</span>;
-            <span class="macro">write!</span>(formatter, <span class="string">&quot; &quot;</span>)<span class="question-mark">?</span>;
+            <span class="macro">write!</span>(formatter, <span class="string">" "</span>)<span class="question-mark">?</span>;
             fmt::Debug::fmt(<span class="kw-2">&amp;</span>point.y, formatter)
         }
 
         <span class="kw">fn </span>write_attributes(formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter, attributes: Attributes) -&gt; fmt::Result {
             <span class="kw">for </span>val <span class="kw">in </span>attributes {
-                <span class="macro">write!</span>(formatter, <span class="string">&quot; &quot;</span>)<span class="question-mark">?</span>;
+                <span class="macro">write!</span>(formatter, <span class="string">" "</span>)<span class="question-mark">?</span>;
                 fmt::Debug::fmt(val, formatter)<span class="question-mark">?</span>;
             }
 
             <span class="prelude-val">Ok</span>(())
         }
 
-        <span class="macro">write!</span>(formatter, <span class="string">&quot;\&quot;&quot;</span>)<span class="question-mark">?</span>;
+        <span class="macro">write!</span>(formatter, <span class="string">"\""</span>)<span class="question-mark">?</span>;
 
         <span class="kw">for </span>evt <span class="kw">in </span><span class="self">self</span>.iter_with_attributes() {
             <span class="kw">match </span>evt {
                 Event::Begin {
                     at: (at, attributes),
                 } =&gt; {
-                    <span class="macro">write!</span>(formatter, <span class="string">&quot; M&quot;</span>)<span class="question-mark">?</span>;
+                    <span class="macro">write!</span>(formatter, <span class="string">" M"</span>)<span class="question-mark">?</span>;
                     write_point(formatter, at)<span class="question-mark">?</span>;
                     write_attributes(formatter, attributes)<span class="question-mark">?</span>;
                 }
                 Event::End { close, .. } =&gt; {
                     <span class="kw">if </span>close {
-                        <span class="macro">write!</span>(formatter, <span class="string">&quot; Z&quot;</span>)<span class="question-mark">?</span>;
+                        <span class="macro">write!</span>(formatter, <span class="string">" Z"</span>)<span class="question-mark">?</span>;
                     }
                 }
                 Event::Line {
                     to: (to, attributes),
                     ..
                 } =&gt; {
-                    <span class="macro">write!</span>(formatter, <span class="string">&quot; L&quot;</span>)<span class="question-mark">?</span>;
+                    <span class="macro">write!</span>(formatter, <span class="string">" L"</span>)<span class="question-mark">?</span>;
                     write_point(formatter, to)<span class="question-mark">?</span>;
                     write_attributes(formatter, attributes)<span class="question-mark">?</span>;
                 }
@@ -2621,7 +2622,7 @@
                     to: (to, attributes),
                     ..
                 } =&gt; {
-                    <span class="macro">write!</span>(formatter, <span class="string">&quot; Q&quot;</span>)<span class="question-mark">?</span>;
+                    <span class="macro">write!</span>(formatter, <span class="string">" Q"</span>)<span class="question-mark">?</span>;
                     write_point(formatter, ctrl)<span class="question-mark">?</span>;
                     write_point(formatter, to)<span class="question-mark">?</span>;
                     write_attributes(formatter, attributes)<span class="question-mark">?</span>;
@@ -2632,7 +2633,7 @@
                     to: (to, attributes),
                     ..
                 } =&gt; {
-                    <span class="macro">write!</span>(formatter, <span class="string">&quot; C&quot;</span>)<span class="question-mark">?</span>;
+                    <span class="macro">write!</span>(formatter, <span class="string">" C"</span>)<span class="question-mark">?</span>;
                     write_point(formatter, ctrl1)<span class="question-mark">?</span>;
                     write_point(formatter, ctrl2)<span class="question-mark">?</span>;
                     write_point(formatter, to)<span class="question-mark">?</span>;
@@ -2641,43 +2642,43 @@
             }
         }
 
-        <span class="macro">write!</span>(formatter, <span class="string">&quot;\&quot;&quot;</span>)
+        <span class="macro">write!</span>(formatter, <span class="string">"\""</span>)
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; core::ops::Index&lt;EndpointId&gt; <span class="kw">for </span>PathSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; core::ops::Index&lt;EndpointId&gt; <span class="kw">for </span>PathSlice&lt;<span class="lifetime">'l</span>&gt; {
     <span class="kw">type </span>Output = Point;
     <span class="kw">fn </span>index(<span class="kw-2">&amp;</span><span class="self">self</span>, id: EndpointId) -&gt; <span class="kw-2">&amp;</span>Point {
         <span class="kw-2">&amp;</span><span class="self">self</span>.points[id.to_usize()]
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; core::ops::Index&lt;ControlPointId&gt; <span class="kw">for </span>PathSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; core::ops::Index&lt;ControlPointId&gt; <span class="kw">for </span>PathSlice&lt;<span class="lifetime">'l</span>&gt; {
     <span class="kw">type </span>Output = Point;
     <span class="kw">fn </span>index(<span class="kw-2">&amp;</span><span class="self">self</span>, id: ControlPointId) -&gt; <span class="kw-2">&amp;</span>Point {
         <span class="kw-2">&amp;</span><span class="self">self</span>.points[id.to_usize()]
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; IntoIterator <span class="kw">for </span>PathSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; IntoIterator <span class="kw">for </span>PathSlice&lt;<span class="lifetime">'l</span>&gt; {
     <span class="kw">type </span>Item = PathEvent;
-    <span class="kw">type </span>IntoIter = Iter&lt;<span class="lifetime">&#39;l</span>&gt;;
+    <span class="kw">type </span>IntoIter = Iter&lt;<span class="lifetime">'l</span>&gt;;
 
-    <span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">&#39;l</span>&gt; {
+    <span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">'l</span>&gt; {
         <span class="self">self</span>.iter()
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, <span class="lifetime">&#39;a</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>PathSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, <span class="lifetime">'a</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'a </span>PathSlice&lt;<span class="lifetime">'l</span>&gt; {
     <span class="kw">type </span>Item = PathEvent;
-    <span class="kw">type </span>IntoIter = Iter&lt;<span class="lifetime">&#39;l</span>&gt;;
+    <span class="kw">type </span>IntoIter = Iter&lt;<span class="lifetime">'l</span>&gt;;
 
-    <span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">&#39;l</span>&gt; {
+    <span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">'l</span>&gt; {
         <span class="self">self</span>.iter()
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; PositionStore <span class="kw">for </span>PathSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; PositionStore <span class="kw">for </span>PathSlice&lt;<span class="lifetime">'l</span>&gt; {
     <span class="kw">fn </span>get_endpoint(<span class="kw-2">&amp;</span><span class="self">self</span>, id: EndpointId) -&gt; Point {
         <span class="self">self</span>.points[id.to_usize()]
     }
@@ -2687,8 +2688,8 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; AttributeStore <span class="kw">for </span>PathSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
-    <span class="kw">fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, id: EndpointId) -&gt; Attributes&lt;<span class="lifetime">&#39;l</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; AttributeStore <span class="kw">for </span>PathSlice&lt;<span class="lifetime">'l</span>&gt; {
+    <span class="kw">fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, id: EndpointId) -&gt; Attributes&lt;<span class="lifetime">'l</span>&gt; {
         interpolated_attributes(<span class="self">self</span>.num_attributes, <span class="self">self</span>.points, id)
     }
 
@@ -3047,17 +3048,17 @@
 
 <span class="doccomment">/// An iterator for `Path` and `PathSlice`.
 </span><span class="attr">#[derive(Clone)]
-</span><span class="kw">pub struct </span>Iter&lt;<span class="lifetime">&#39;l</span>&gt; {
-    points: PointIter&lt;<span class="lifetime">&#39;l</span>&gt;,
-    verbs: ::core::slice::Iter&lt;<span class="lifetime">&#39;l</span>, Verb&gt;,
+</span><span class="kw">pub struct </span>Iter&lt;<span class="lifetime">'l</span>&gt; {
+    points: PointIter&lt;<span class="lifetime">'l</span>&gt;,
+    verbs: ::core::slice::Iter&lt;<span class="lifetime">'l</span>, Verb&gt;,
     current: Point,
     first: Point,
     <span class="comment">// Number of slots in the points array occupied by the custom attributes.
     </span>attrib_stride: usize,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; Iter&lt;<span class="lifetime">&#39;l</span>&gt; {
-    <span class="kw">fn </span>new(num_attributes: usize, points: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[Point], verbs: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[Verb]) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; Iter&lt;<span class="lifetime">'l</span>&gt; {
+    <span class="kw">fn </span>new(num_attributes: usize, points: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[Point], verbs: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[Verb]) -&gt; <span class="self">Self </span>{
         Iter {
             points: PointIter::new(points),
             verbs: verbs.iter(),
@@ -3073,7 +3074,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; Iterator <span class="kw">for </span>Iter&lt;<span class="lifetime">&#39;l</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; Iterator <span class="kw">for </span>Iter&lt;<span class="lifetime">'l</span>&gt; {
     <span class="kw">type </span>Item = PathEvent;
     <span class="attr">#[inline]
     </span><span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;PathEvent&gt; {
@@ -3147,14 +3148,14 @@
 /// It makes an unfortunately large difference (the simple iterator
 /// benchmarks are 2 to 3 times faster).
 </span><span class="attr">#[derive(Copy, Clone)]
-</span><span class="kw">struct </span>PointIter&lt;<span class="lifetime">&#39;l</span>&gt; {
+</span><span class="kw">struct </span>PointIter&lt;<span class="lifetime">'l</span>&gt; {
     ptr: <span class="kw-2">*const </span>Point,
     end: <span class="kw-2">*const </span>Point,
-    _marker: core::marker::PhantomData&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>Point&gt;,
+    _marker: core::marker::PhantomData&lt;<span class="kw-2">&amp;</span><span class="lifetime">'l </span>Point&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; PointIter&lt;<span class="lifetime">&#39;l</span>&gt; {
-    <span class="kw">fn </span>new(slice: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[Point]) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; PointIter&lt;<span class="lifetime">'l</span>&gt; {
+    <span class="kw">fn </span>new(slice: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[Point]) -&gt; <span class="self">Self </span>{
         <span class="kw">let </span>ptr = slice.as_ptr();
         <span class="kw">let </span>end = <span class="kw">unsafe </span>{ ptr.add(slice.len()) };
         PointIter {
@@ -3171,7 +3172,7 @@
 
     <span class="attr">#[inline]
     </span><span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; Point {
-        <span class="comment">// Don&#39;t bother panicking here. calls to next
+        <span class="comment">// Don't bother panicking here. calls to next
         // are always followed by advance_n which will
         // catch the issue and panic.
         </span><span class="kw">if </span><span class="self">self</span>.ptr &gt;= <span class="self">self</span>.end {
@@ -3197,17 +3198,17 @@
 
 <span class="doccomment">/// An iterator for `Path` and `PathSlice`.
 </span><span class="attr">#[derive(Clone)]
-</span><span class="kw">pub struct </span>IterWithAttributes&lt;<span class="lifetime">&#39;l</span>&gt; {
-    points: PointIter&lt;<span class="lifetime">&#39;l</span>&gt;,
-    verbs: ::core::slice::Iter&lt;<span class="lifetime">&#39;l</span>, Verb&gt;,
-    current: (Point, Attributes&lt;<span class="lifetime">&#39;l</span>&gt;),
-    first: (Point, Attributes&lt;<span class="lifetime">&#39;l</span>&gt;),
+</span><span class="kw">pub struct </span>IterWithAttributes&lt;<span class="lifetime">'l</span>&gt; {
+    points: PointIter&lt;<span class="lifetime">'l</span>&gt;,
+    verbs: ::core::slice::Iter&lt;<span class="lifetime">'l</span>, Verb&gt;,
+    current: (Point, Attributes&lt;<span class="lifetime">'l</span>&gt;),
+    first: (Point, Attributes&lt;<span class="lifetime">'l</span>&gt;),
     num_attributes: usize,
     attrib_stride: usize,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; IterWithAttributes&lt;<span class="lifetime">&#39;l</span>&gt; {
-    <span class="kw">fn </span>new(num_attributes: usize, points: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[Point], verbs: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[Verb]) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; IterWithAttributes&lt;<span class="lifetime">'l</span>&gt; {
+    <span class="kw">fn </span>new(num_attributes: usize, points: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[Point], verbs: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[Verb]) -&gt; <span class="self">Self </span>{
         IterWithAttributes {
             points: PointIter::new(points),
             verbs: verbs.iter(),
@@ -3218,7 +3219,7 @@
         }
     }
 
-    <span class="kw">pub fn </span>points(<span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">&#39;l</span>&gt; {
+    <span class="kw">pub fn </span>points(<span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">'l</span>&gt; {
         Iter {
             points: <span class="self">self</span>.points,
             verbs: <span class="self">self</span>.verbs,
@@ -3329,7 +3330,7 @@
     }
 
     <span class="attr">#[inline]
-    </span><span class="kw">fn </span>pop_endpoint(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; (Point, Attributes&lt;<span class="lifetime">&#39;l</span>&gt;) {
+    </span><span class="kw">fn </span>pop_endpoint(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; (Point, Attributes&lt;<span class="lifetime">'l</span>&gt;) {
         <span class="kw">let </span>position = <span class="self">self</span>.points.next();
         <span class="kw">let </span>attributes_ptr = <span class="self">self</span>.points.ptr <span class="kw">as </span><span class="kw-2">*const </span>f32;
         <span class="self">self</span>.points.advance_n(<span class="self">self</span>.attrib_stride);
@@ -3342,8 +3343,8 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; Iterator <span class="kw">for </span>IterWithAttributes&lt;<span class="lifetime">&#39;l</span>&gt; {
-    <span class="kw">type </span>Item = Event&lt;(Point, Attributes&lt;<span class="lifetime">&#39;l</span>&gt;), Point&gt;;
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; Iterator <span class="kw">for </span>IterWithAttributes&lt;<span class="lifetime">'l</span>&gt; {
+    <span class="kw">type </span>Item = Event&lt;(Point, Attributes&lt;<span class="lifetime">'l</span>&gt;), Point&gt;;
     <span class="attr">#[inline]
     </span><span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
         <span class="kw">match </span><span class="self">self</span>.verbs.next() {
@@ -3407,16 +3408,16 @@
 
 <span class="doccomment">/// An iterator of endpoint and control point ids for `Path` and `PathSlice`.
 </span><span class="attr">#[derive(Clone, Debug)]
-</span><span class="kw">pub struct </span>IdIter&lt;<span class="lifetime">&#39;l</span>&gt; {
-    verbs: ::core::slice::Iter&lt;<span class="lifetime">&#39;l</span>, Verb&gt;,
+</span><span class="kw">pub struct </span>IdIter&lt;<span class="lifetime">'l</span>&gt; {
+    verbs: ::core::slice::Iter&lt;<span class="lifetime">'l</span>, Verb&gt;,
     current: u32,
     first: u32,
     evt: u32,
     endpoint_stride: u32,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; IdIter&lt;<span class="lifetime">&#39;l</span>&gt; {
-    <span class="kw">fn </span>new(num_attributes: usize, verbs: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[Verb]) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; IdIter&lt;<span class="lifetime">'l</span>&gt; {
+    <span class="kw">fn </span>new(num_attributes: usize, verbs: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[Verb]) -&gt; <span class="self">Self </span>{
         IdIter {
             verbs: verbs.iter(),
             current: <span class="number">0</span>,
@@ -3427,7 +3428,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; Iterator <span class="kw">for </span>IdIter&lt;<span class="lifetime">&#39;l</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; Iterator <span class="kw">for </span>IdIter&lt;<span class="lifetime">'l</span>&gt; {
     <span class="kw">type </span>Item = IdEvent;
     <span class="attr">#[inline]
     </span><span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;IdEvent&gt; {
@@ -3539,18 +3540,18 @@
 }
 
 <span class="doccomment">/// An iterator of over a `Path` traversing the path in reverse.
-</span><span class="kw">pub struct </span>Reversed&lt;<span class="lifetime">&#39;l</span>&gt; {
-    verbs: core::iter::Rev&lt;core::slice::Iter&lt;<span class="lifetime">&#39;l</span>, Verb&gt;&gt;,
-    path: PathSlice&lt;<span class="lifetime">&#39;l</span>&gt;,
+</span><span class="kw">pub struct </span>Reversed&lt;<span class="lifetime">'l</span>&gt; {
+    verbs: core::iter::Rev&lt;core::slice::Iter&lt;<span class="lifetime">'l</span>, Verb&gt;&gt;,
+    path: PathSlice&lt;<span class="lifetime">'l</span>&gt;,
     num_attributes: usize,
     attrib_stride: usize,
     p: usize,
     need_close: bool,
-    first: <span class="prelude-ty">Option</span>&lt;(Point, Attributes&lt;<span class="lifetime">&#39;l</span>&gt;)&gt;,
+    first: <span class="prelude-ty">Option</span>&lt;(Point, Attributes&lt;<span class="lifetime">'l</span>&gt;)&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; Reversed&lt;<span class="lifetime">&#39;l</span>&gt; {
-    <span class="kw">fn </span>new(path: PathSlice&lt;<span class="lifetime">&#39;l</span>&gt;) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; Reversed&lt;<span class="lifetime">'l</span>&gt; {
+    <span class="kw">fn </span>new(path: PathSlice&lt;<span class="lifetime">'l</span>&gt;) -&gt; <span class="self">Self </span>{
         Reversed {
             verbs: path.verbs.iter().rev(),
             num_attributes: path.num_attributes(),
@@ -3575,8 +3576,8 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; Iterator <span class="kw">for </span>Reversed&lt;<span class="lifetime">&#39;l</span>&gt; {
-    <span class="kw">type </span>Item = Event&lt;(Point, Attributes&lt;<span class="lifetime">&#39;l</span>&gt;), Point&gt;;
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; Iterator <span class="kw">for </span>Reversed&lt;<span class="lifetime">'l</span>&gt; {
+    <span class="kw">type </span>Item = Event&lt;(Point, Attributes&lt;<span class="lifetime">'l</span>&gt;), Point&gt;;
     <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
         <span class="comment">// At the beginning of each iteration, `self.p` points to the index
         // directly after the endpoint of the current verb.
@@ -3596,7 +3597,7 @@
                 Event::Begin { at: first }
             }
             Verb::End =&gt; {
-                <span class="comment">// End events don&#39;t push an endpoint, the current endpoint
+                <span class="comment">// End events don't push an endpoint, the current endpoint
                 // is the one of the previous command (or next going in reverse).
                 </span><span class="kw">let </span>idx = <span class="self">self</span>.p - endpoint_stride;
                 <span class="self">self</span>.need_close = <span class="bool-val">false</span>;
@@ -3707,13 +3708,13 @@
     <span class="kw">let </span><span class="kw-2">mut </span>it = p2.iter_with_attributes();
 
     <span class="comment">// Using a function that explicits the argument types works around type inference issue.
-    </span><span class="kw">fn </span>check&lt;<span class="lifetime">&#39;l</span>&gt;(
-        a: <span class="prelude-ty">Option</span>&lt;Event&lt;(Point, Attributes&lt;<span class="lifetime">&#39;l</span>&gt;), Point&gt;&gt;,
-        b: <span class="prelude-ty">Option</span>&lt;Event&lt;(Point, Attributes&lt;<span class="lifetime">&#39;l</span>&gt;), Point&gt;&gt;,
+    </span><span class="kw">fn </span>check&lt;<span class="lifetime">'l</span>&gt;(
+        a: <span class="prelude-ty">Option</span>&lt;Event&lt;(Point, Attributes&lt;<span class="lifetime">'l</span>&gt;), Point&gt;&gt;,
+        b: <span class="prelude-ty">Option</span>&lt;Event&lt;(Point, Attributes&lt;<span class="lifetime">'l</span>&gt;), Point&gt;&gt;,
     ) -&gt; bool {
         <span class="kw">if </span>a != b {
-            <span class="macro">std::println!</span>(<span class="string">&quot;left: {a:?}&quot;</span>);
-            <span class="macro">std::println!</span>(<span class="string">&quot;right: {b:?}&quot;</span>);
+            <span class="macro">std::println!</span>(<span class="string">"left: {a:?}"</span>);
+            <span class="macro">std::println!</span>(<span class="string">"right: {b:?}"</span>);
         }
 
         a == b
@@ -3786,13 +3787,13 @@
     <span class="kw">let </span><span class="kw-2">mut </span>it = p1.reversed().with_attributes();
 
     <span class="comment">// Using a function that explicits the argument types works around type inference issue.
-    </span><span class="kw">fn </span>check&lt;<span class="lifetime">&#39;l</span>&gt;(
-        a: <span class="prelude-ty">Option</span>&lt;Event&lt;(Point, Attributes&lt;<span class="lifetime">&#39;l</span>&gt;), Point&gt;&gt;,
-        b: <span class="prelude-ty">Option</span>&lt;Event&lt;(Point, Attributes&lt;<span class="lifetime">&#39;l</span>&gt;), Point&gt;&gt;,
+    </span><span class="kw">fn </span>check&lt;<span class="lifetime">'l</span>&gt;(
+        a: <span class="prelude-ty">Option</span>&lt;Event&lt;(Point, Attributes&lt;<span class="lifetime">'l</span>&gt;), Point&gt;&gt;,
+        b: <span class="prelude-ty">Option</span>&lt;Event&lt;(Point, Attributes&lt;<span class="lifetime">'l</span>&gt;), Point&gt;&gt;,
     ) -&gt; bool {
         <span class="kw">if </span>a != b {
-            <span class="macro">std::println!</span>(<span class="string">&quot;left: {a:?}&quot;</span>);
-            <span class="macro">std::println!</span>(<span class="string">&quot;right: {b:?}&quot;</span>);
+            <span class="macro">std::println!</span>(<span class="string">"left: {a:?}"</span>);
+            <span class="macro">std::println!</span>(<span class="string">"right: {b:?}"</span>);
         }
 
         a == b
@@ -4366,7 +4367,7 @@
                     <span class="kw">return</span>;
                 }
                 Event::Quadratic { .. } | Event::Cubic { .. } =&gt; {
-                    <span class="macro">panic!</span>(<span class="string">&quot;Should not get a curve in for_each_flattened&quot;</span>);
+                    <span class="macro">panic!</span>(<span class="string">"Should not get a curve in for_each_flattened"</span>);
                 }
             };
 

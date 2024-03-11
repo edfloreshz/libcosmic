@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-protocol-0.13.0/src/protocol/xfixes.rs`."><title>xfixes.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb_protocol" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-protocol-0.13.0/src/protocol/xfixes.rs`."><title>xfixes.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb_protocol" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -3765,7 +3766,7 @@
 <a href="#3765" id="3765">3765</a>
 <a href="#3766" id="3766">3766</a>
 </pre></div><pre class="rust"><code><span class="comment">// This file contains generated code. Do not edit directly.
-// To regenerate this, run &#39;make&#39;.
+// To regenerate this, run 'make'.
 
 </span><span class="doccomment">//! Bindings to the `XFixes` X11 extension.
 
@@ -3796,7 +3797,7 @@
 </span><span class="kw">use </span><span class="kw">super</span>::xproto;
 
 <span class="doccomment">/// The X11 name of the extension for QueryExtension
-</span><span class="kw">pub const </span>X11_EXTENSION_NAME: <span class="kw-2">&amp;</span>str = <span class="string">&quot;XFIXES&quot;</span>;
+</span><span class="kw">pub const </span>X11_EXTENSION_NAME: <span class="kw-2">&amp;</span>str = <span class="string">"XFIXES"</span>;
 
 <span class="doccomment">/// The version number of this extension that this client library supports.
 ///
@@ -3809,16 +3810,16 @@
 <span class="doccomment">/// Opcode for the QueryVersion request
 </span><span class="kw">pub const </span>QUERY_VERSION_REQUEST: u8 = <span class="number">0</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>QueryVersionRequest {
     <span class="kw">pub </span>client_major_version: u32,
     <span class="kw">pub </span>client_minor_version: u32,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(QueryVersionRequest, <span class="string">&quot;QueryVersionRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(QueryVersionRequest, <span class="string">"QueryVersionRequest"</span>);
 <span class="kw">impl </span>QueryVersionRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>client_major_version_bytes = <span class="self">self</span>.client_major_version.serialize();
         <span class="kw">let </span>client_minor_version_bytes = <span class="self">self</span>.client_minor_version.serialize();
@@ -3843,7 +3844,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != QUERY_VERSION_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -3858,7 +3859,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>QueryVersionRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -3872,15 +3873,15 @@
 }
 
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>QueryVersionReply {
     <span class="kw">pub </span>sequence: u16,
     <span class="kw">pub </span>length: u32,
     <span class="kw">pub </span>major_version: u32,
     <span class="kw">pub </span>minor_version: u32,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(QueryVersionReply, <span class="string">&quot;QueryVersionReply&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(QueryVersionReply, <span class="string">"QueryVersionReply"</span>);
 <span class="kw">impl </span>TryParse <span class="kw">for </span>QueryVersionReply {
     <span class="kw">fn </span>try_parse(initial_value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, <span class="kw-2">&amp;</span>[u8]), ParseError&gt; {
         <span class="kw">let </span>remaining = initial_value;
@@ -3958,7 +3959,7 @@
 }
 
 <span class="attr">#[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>SaveSetMode(u8);
 <span class="kw">impl </span>SaveSetMode {
     <span class="kw">pub const </span>INSERT: <span class="self">Self </span>= <span class="self">Self</span>(<span class="number">0</span>);
@@ -4007,17 +4008,17 @@
     }
 }
 <span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>SaveSetMode  {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; core::fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; core::fmt::Result {
         <span class="kw">let </span>variants = [
-            (<span class="self">Self</span>::INSERT.<span class="number">0</span>.into(), <span class="string">&quot;INSERT&quot;</span>, <span class="string">&quot;Insert&quot;</span>),
-            (<span class="self">Self</span>::DELETE.<span class="number">0</span>.into(), <span class="string">&quot;DELETE&quot;</span>, <span class="string">&quot;Delete&quot;</span>),
+            (<span class="self">Self</span>::INSERT.<span class="number">0</span>.into(), <span class="string">"INSERT"</span>, <span class="string">"Insert"</span>),
+            (<span class="self">Self</span>::DELETE.<span class="number">0</span>.into(), <span class="string">"DELETE"</span>, <span class="string">"Delete"</span>),
         ];
         pretty_print_enum(fmt, <span class="self">self</span>.<span class="number">0</span>.into(), <span class="kw-2">&amp;</span>variants)
     }
 }
 
 <span class="attr">#[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>SaveSetTarget(u8);
 <span class="kw">impl </span>SaveSetTarget {
     <span class="kw">pub const </span>NEAREST: <span class="self">Self </span>= <span class="self">Self</span>(<span class="number">0</span>);
@@ -4066,17 +4067,17 @@
     }
 }
 <span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>SaveSetTarget  {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; core::fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; core::fmt::Result {
         <span class="kw">let </span>variants = [
-            (<span class="self">Self</span>::NEAREST.<span class="number">0</span>.into(), <span class="string">&quot;NEAREST&quot;</span>, <span class="string">&quot;Nearest&quot;</span>),
-            (<span class="self">Self</span>::ROOT.<span class="number">0</span>.into(), <span class="string">&quot;ROOT&quot;</span>, <span class="string">&quot;Root&quot;</span>),
+            (<span class="self">Self</span>::NEAREST.<span class="number">0</span>.into(), <span class="string">"NEAREST"</span>, <span class="string">"Nearest"</span>),
+            (<span class="self">Self</span>::ROOT.<span class="number">0</span>.into(), <span class="string">"ROOT"</span>, <span class="string">"Root"</span>),
         ];
         pretty_print_enum(fmt, <span class="self">self</span>.<span class="number">0</span>.into(), <span class="kw-2">&amp;</span>variants)
     }
 }
 
 <span class="attr">#[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>SaveSetMapping(u8);
 <span class="kw">impl </span>SaveSetMapping {
     <span class="kw">pub const </span>MAP: <span class="self">Self </span>= <span class="self">Self</span>(<span class="number">0</span>);
@@ -4125,10 +4126,10 @@
     }
 }
 <span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>SaveSetMapping  {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; core::fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; core::fmt::Result {
         <span class="kw">let </span>variants = [
-            (<span class="self">Self</span>::MAP.<span class="number">0</span>.into(), <span class="string">&quot;MAP&quot;</span>, <span class="string">&quot;Map&quot;</span>),
-            (<span class="self">Self</span>::UNMAP.<span class="number">0</span>.into(), <span class="string">&quot;UNMAP&quot;</span>, <span class="string">&quot;Unmap&quot;</span>),
+            (<span class="self">Self</span>::MAP.<span class="number">0</span>.into(), <span class="string">"MAP"</span>, <span class="string">"Map"</span>),
+            (<span class="self">Self</span>::UNMAP.<span class="number">0</span>.into(), <span class="string">"UNMAP"</span>, <span class="string">"Unmap"</span>),
         ];
         pretty_print_enum(fmt, <span class="self">self</span>.<span class="number">0</span>.into(), <span class="kw-2">&amp;</span>variants)
     }
@@ -4137,18 +4138,18 @@
 <span class="doccomment">/// Opcode for the ChangeSaveSet request
 </span><span class="kw">pub const </span>CHANGE_SAVE_SET_REQUEST: u8 = <span class="number">1</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>ChangeSaveSetRequest {
     <span class="kw">pub </span>mode: SaveSetMode,
     <span class="kw">pub </span>target: SaveSetTarget,
     <span class="kw">pub </span>map: SaveSetMapping,
     <span class="kw">pub </span>window: xproto::Window,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(ChangeSaveSetRequest, <span class="string">&quot;ChangeSaveSetRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(ChangeSaveSetRequest, <span class="string">"ChangeSaveSetRequest"</span>);
 <span class="kw">impl </span>ChangeSaveSetRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>mode_bytes = u8::from(<span class="self">self</span>.mode).serialize();
         <span class="kw">let </span>target_bytes = u8::from(<span class="self">self</span>.target).serialize();
@@ -4175,7 +4176,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != CHANGE_SAVE_SET_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -4198,7 +4199,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>ChangeSaveSetRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -4211,7 +4212,7 @@
 }
 
 <span class="attr">#[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>SelectionEvent(u8);
 <span class="kw">impl </span>SelectionEvent {
     <span class="kw">pub const </span>SET_SELECTION_OWNER: <span class="self">Self </span>= <span class="self">Self</span>(<span class="number">0</span>);
@@ -4261,18 +4262,18 @@
     }
 }
 <span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>SelectionEvent  {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; core::fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; core::fmt::Result {
         <span class="kw">let </span>variants = [
-            (<span class="self">Self</span>::SET_SELECTION_OWNER.<span class="number">0</span>.into(), <span class="string">&quot;SET_SELECTION_OWNER&quot;</span>, <span class="string">&quot;SetSelectionOwner&quot;</span>),
-            (<span class="self">Self</span>::SELECTION_WINDOW_DESTROY.<span class="number">0</span>.into(), <span class="string">&quot;SELECTION_WINDOW_DESTROY&quot;</span>, <span class="string">&quot;SelectionWindowDestroy&quot;</span>),
-            (<span class="self">Self</span>::SELECTION_CLIENT_CLOSE.<span class="number">0</span>.into(), <span class="string">&quot;SELECTION_CLIENT_CLOSE&quot;</span>, <span class="string">&quot;SelectionClientClose&quot;</span>),
+            (<span class="self">Self</span>::SET_SELECTION_OWNER.<span class="number">0</span>.into(), <span class="string">"SET_SELECTION_OWNER"</span>, <span class="string">"SetSelectionOwner"</span>),
+            (<span class="self">Self</span>::SELECTION_WINDOW_DESTROY.<span class="number">0</span>.into(), <span class="string">"SELECTION_WINDOW_DESTROY"</span>, <span class="string">"SelectionWindowDestroy"</span>),
+            (<span class="self">Self</span>::SELECTION_CLIENT_CLOSE.<span class="number">0</span>.into(), <span class="string">"SELECTION_CLIENT_CLOSE"</span>, <span class="string">"SelectionClientClose"</span>),
         ];
         pretty_print_enum(fmt, <span class="self">self</span>.<span class="number">0</span>.into(), <span class="kw-2">&amp;</span>variants)
     }
 }
 
 <span class="attr">#[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>SelectionEventMask(u32);
 <span class="kw">impl </span>SelectionEventMask {
     <span class="kw">pub const </span>SET_SELECTION_OWNER: <span class="self">Self </span>= <span class="self">Self</span>(<span class="number">1 </span>&lt;&lt; <span class="number">0</span>);
@@ -4310,11 +4311,11 @@
     }
 }
 <span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>SelectionEventMask  {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; core::fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; core::fmt::Result {
         <span class="kw">let </span>variants = [
-            (<span class="self">Self</span>::SET_SELECTION_OWNER.<span class="number">0</span>, <span class="string">&quot;SET_SELECTION_OWNER&quot;</span>, <span class="string">&quot;SetSelectionOwner&quot;</span>),
-            (<span class="self">Self</span>::SELECTION_WINDOW_DESTROY.<span class="number">0</span>, <span class="string">&quot;SELECTION_WINDOW_DESTROY&quot;</span>, <span class="string">&quot;SelectionWindowDestroy&quot;</span>),
-            (<span class="self">Self</span>::SELECTION_CLIENT_CLOSE.<span class="number">0</span>, <span class="string">&quot;SELECTION_CLIENT_CLOSE&quot;</span>, <span class="string">&quot;SelectionClientClose&quot;</span>),
+            (<span class="self">Self</span>::SET_SELECTION_OWNER.<span class="number">0</span>, <span class="string">"SET_SELECTION_OWNER"</span>, <span class="string">"SetSelectionOwner"</span>),
+            (<span class="self">Self</span>::SELECTION_WINDOW_DESTROY.<span class="number">0</span>, <span class="string">"SELECTION_WINDOW_DESTROY"</span>, <span class="string">"SelectionWindowDestroy"</span>),
+            (<span class="self">Self</span>::SELECTION_CLIENT_CLOSE.<span class="number">0</span>, <span class="string">"SELECTION_CLIENT_CLOSE"</span>, <span class="string">"SelectionClientClose"</span>),
         ];
         pretty_print_bitmask(fmt, <span class="self">self</span>.<span class="number">0</span>, <span class="kw-2">&amp;</span>variants)
     }
@@ -4324,8 +4325,8 @@
 <span class="doccomment">/// Opcode for the SelectionNotify event
 </span><span class="kw">pub const </span>SELECTION_NOTIFY_EVENT: u8 = <span class="number">0</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>SelectionNotifyEvent {
     <span class="kw">pub </span>response_type: u8,
     <span class="kw">pub </span>subtype: SelectionEvent,
@@ -4336,7 +4337,7 @@
     <span class="kw">pub </span>timestamp: xproto::Timestamp,
     <span class="kw">pub </span>selection_timestamp: xproto::Timestamp,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(SelectionNotifyEvent, <span class="string">&quot;SelectionNotifyEvent&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(SelectionNotifyEvent, <span class="string">"SelectionNotifyEvent"</span>);
 <span class="kw">impl </span>TryParse <span class="kw">for </span>SelectionNotifyEvent {
     <span class="kw">fn </span>try_parse(initial_value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, <span class="kw-2">&amp;</span>[u8]), ParseError&gt; {
         <span class="kw">let </span>remaining = initial_value;
@@ -4471,17 +4472,17 @@
 <span class="doccomment">/// Opcode for the SelectSelectionInput request
 </span><span class="kw">pub const </span>SELECT_SELECTION_INPUT_REQUEST: u8 = <span class="number">2</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>SelectSelectionInputRequest {
     <span class="kw">pub </span>window: xproto::Window,
     <span class="kw">pub </span>selection: xproto::Atom,
     <span class="kw">pub </span>event_mask: SelectionEventMask,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(SelectSelectionInputRequest, <span class="string">&quot;SelectSelectionInputRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(SelectSelectionInputRequest, <span class="string">"SelectSelectionInputRequest"</span>);
 <span class="kw">impl </span>SelectSelectionInputRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>window_bytes = <span class="self">self</span>.window.serialize();
         <span class="kw">let </span>selection_bytes = <span class="self">self</span>.selection.serialize();
@@ -4511,7 +4512,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != SELECT_SELECTION_INPUT_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -4529,7 +4530,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>SelectSelectionInputRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -4542,7 +4543,7 @@
 }
 
 <span class="attr">#[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>CursorNotify(u8);
 <span class="kw">impl </span>CursorNotify {
     <span class="kw">pub const </span>DISPLAY_CURSOR: <span class="self">Self </span>= <span class="self">Self</span>(<span class="number">0</span>);
@@ -4590,16 +4591,16 @@
     }
 }
 <span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>CursorNotify  {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; core::fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; core::fmt::Result {
         <span class="kw">let </span>variants = [
-            (<span class="self">Self</span>::DISPLAY_CURSOR.<span class="number">0</span>.into(), <span class="string">&quot;DISPLAY_CURSOR&quot;</span>, <span class="string">&quot;DisplayCursor&quot;</span>),
+            (<span class="self">Self</span>::DISPLAY_CURSOR.<span class="number">0</span>.into(), <span class="string">"DISPLAY_CURSOR"</span>, <span class="string">"DisplayCursor"</span>),
         ];
         pretty_print_enum(fmt, <span class="self">self</span>.<span class="number">0</span>.into(), <span class="kw-2">&amp;</span>variants)
     }
 }
 
 <span class="attr">#[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>CursorNotifyMask(u32);
 <span class="kw">impl </span>CursorNotifyMask {
     <span class="kw">pub const </span>DISPLAY_CURSOR: <span class="self">Self </span>= <span class="self">Self</span>(<span class="number">1 </span>&lt;&lt; <span class="number">0</span>);
@@ -4635,9 +4636,9 @@
     }
 }
 <span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>CursorNotifyMask  {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; core::fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; core::fmt::Result {
         <span class="kw">let </span>variants = [
-            (<span class="self">Self</span>::DISPLAY_CURSOR.<span class="number">0</span>, <span class="string">&quot;DISPLAY_CURSOR&quot;</span>, <span class="string">&quot;DisplayCursor&quot;</span>),
+            (<span class="self">Self</span>::DISPLAY_CURSOR.<span class="number">0</span>, <span class="string">"DISPLAY_CURSOR"</span>, <span class="string">"DisplayCursor"</span>),
         ];
         pretty_print_bitmask(fmt, <span class="self">self</span>.<span class="number">0</span>, <span class="kw-2">&amp;</span>variants)
     }
@@ -4647,8 +4648,8 @@
 <span class="doccomment">/// Opcode for the CursorNotify event
 </span><span class="kw">pub const </span>CURSOR_NOTIFY_EVENT: u8 = <span class="number">1</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>CursorNotifyEvent {
     <span class="kw">pub </span>response_type: u8,
     <span class="kw">pub </span>subtype: CursorNotify,
@@ -4658,7 +4659,7 @@
     <span class="kw">pub </span>timestamp: xproto::Timestamp,
     <span class="kw">pub </span>name: xproto::Atom,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(CursorNotifyEvent, <span class="string">&quot;CursorNotifyEvent&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(CursorNotifyEvent, <span class="string">"CursorNotifyEvent"</span>);
 <span class="kw">impl </span>TryParse <span class="kw">for </span>CursorNotifyEvent {
     <span class="kw">fn </span>try_parse(initial_value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, <span class="kw-2">&amp;</span>[u8]), ParseError&gt; {
         <span class="kw">let </span>remaining = initial_value;
@@ -4789,16 +4790,16 @@
 <span class="doccomment">/// Opcode for the SelectCursorInput request
 </span><span class="kw">pub const </span>SELECT_CURSOR_INPUT_REQUEST: u8 = <span class="number">3</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>SelectCursorInputRequest {
     <span class="kw">pub </span>window: xproto::Window,
     <span class="kw">pub </span>event_mask: CursorNotifyMask,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(SelectCursorInputRequest, <span class="string">&quot;SelectCursorInputRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(SelectCursorInputRequest, <span class="string">"SelectCursorInputRequest"</span>);
 <span class="kw">impl </span>SelectCursorInputRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>window_bytes = <span class="self">self</span>.window.serialize();
         <span class="kw">let </span>event_mask_bytes = u32::from(<span class="self">self</span>.event_mask).serialize();
@@ -4823,7 +4824,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != SELECT_CURSOR_INPUT_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -4839,7 +4840,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>SelectCursorInputRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -4854,13 +4855,13 @@
 <span class="doccomment">/// Opcode for the GetCursorImage request
 </span><span class="kw">pub const </span>GET_CURSOR_IMAGE_REQUEST: u8 = <span class="number">4</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>GetCursorImageRequest;
-<span class="macro">impl_debug_if_no_extra_traits!</span>(GetCursorImageRequest, <span class="string">&quot;GetCursorImageRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(GetCursorImageRequest, <span class="string">"GetCursorImageRequest"</span>);
 <span class="kw">impl </span>GetCursorImageRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>request0 = <span class="macro">vec!</span>[
             major_opcode,
@@ -4875,7 +4876,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != GET_CURSOR_IMAGE_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -4886,7 +4887,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>GetCursorImageRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -4900,8 +4901,8 @@
 }
 
 <span class="attr">#[derive(Clone, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>GetCursorImageReply {
     <span class="kw">pub </span>sequence: u16,
     <span class="kw">pub </span>length: u32,
@@ -4914,7 +4915,7 @@
     <span class="kw">pub </span>cursor_serial: u32,
     <span class="kw">pub </span>cursor_image: Vec&lt;u32&gt;,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(GetCursorImageReply, <span class="string">&quot;GetCursorImageReply&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(GetCursorImageReply, <span class="string">"GetCursorImageReply"</span>);
 <span class="kw">impl </span>TryParse <span class="kw">for </span>GetCursorImageReply {
     <span class="kw">fn </span>try_parse(initial_value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, <span class="kw-2">&amp;</span>[u8]), ParseError&gt; {
         <span class="kw">let </span>remaining = initial_value;
@@ -4963,7 +4964,7 @@
         <span class="self">self</span>.yhot.serialize_into(bytes);
         <span class="self">self</span>.cursor_serial.serialize_into(bytes);
         bytes.extend_from_slice(<span class="kw-2">&amp;</span>[<span class="number">0</span>; <span class="number">8</span>]);
-        <span class="macro">assert_eq!</span>(<span class="self">self</span>.cursor_image.len(), usize::try_from(u32::from(<span class="self">self</span>.width).checked_mul(u32::from(<span class="self">self</span>.height)).unwrap()).unwrap(), <span class="string">&quot;`cursor_image` has an incorrect length&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="self">self</span>.cursor_image.len(), usize::try_from(u32::from(<span class="self">self</span>.width).checked_mul(u32::from(<span class="self">self</span>.height)).unwrap()).unwrap(), <span class="string">"`cursor_image` has an incorrect length"</span>);
         <span class="self">self</span>.cursor_image.serialize_into(bytes);
     }
 }
@@ -4974,7 +4975,7 @@
 </span><span class="kw">pub const </span>BAD_REGION_ERROR: u8 = <span class="number">0</span>;
 
 <span class="attr">#[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>RegionEnum(u8);
 <span class="kw">impl </span>RegionEnum {
     <span class="kw">pub const </span>NONE: <span class="self">Self </span>= <span class="self">Self</span>(<span class="number">0</span>);
@@ -5022,9 +5023,9 @@
     }
 }
 <span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>RegionEnum  {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; core::fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; core::fmt::Result {
         <span class="kw">let </span>variants = [
-            (<span class="self">Self</span>::NONE.<span class="number">0</span>.into(), <span class="string">&quot;NONE&quot;</span>, <span class="string">&quot;None&quot;</span>),
+            (<span class="self">Self</span>::NONE.<span class="number">0</span>.into(), <span class="string">"NONE"</span>, <span class="string">"None"</span>),
         ];
         pretty_print_enum(fmt, <span class="self">self</span>.<span class="number">0</span>.into(), <span class="kw-2">&amp;</span>variants)
     }
@@ -5033,16 +5034,16 @@
 <span class="doccomment">/// Opcode for the CreateRegion request
 </span><span class="kw">pub const </span>CREATE_REGION_REQUEST: u8 = <span class="number">5</span>;
 <span class="attr">#[derive(Clone, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
-</span><span class="kw">pub struct </span>CreateRegionRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
+</span><span class="kw">pub struct </span>CreateRegionRequest&lt;<span class="lifetime">'input</span>&gt; {
     <span class="kw">pub </span>region: Region,
-    <span class="kw">pub </span>rectangles: Cow&lt;<span class="lifetime">&#39;input</span>, [xproto::Rectangle]&gt;,
+    <span class="kw">pub </span>rectangles: Cow&lt;<span class="lifetime">'input</span>, [xproto::Rectangle]&gt;,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(CreateRegionRequest&lt;<span class="lifetime">&#39;_</span>&gt;, <span class="string">&quot;CreateRegionRequest&quot;</span>);
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;input</span>&gt; CreateRegionRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
+<span class="macro">impl_debug_if_no_extra_traits!</span>(CreateRegionRequest&lt;<span class="lifetime">'_</span>&gt;, <span class="string">"CreateRegionRequest"</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">'input</span>&gt; CreateRegionRequest&lt;<span class="lifetime">'input</span>&gt; {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;input</span>, [u8]&gt;; <span class="number">3</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'input</span>, [u8]&gt;; <span class="number">3</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>region_bytes = <span class="self">self</span>.region.serialize();
         <span class="kw">let </span><span class="kw-2">mut </span>request0 = <span class="macro">vec!</span>[
@@ -5066,14 +5067,14 @@
         ([request0.into(), rectangles_bytes.into(), padding0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
-    </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
+    </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != CREATE_REGION_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
         }
         <span class="kw">let </span>(region, remaining) = Region::try_parse(value)<span class="question-mark">?</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>remaining = remaining;
-        <span class="comment">// Length is &#39;everything left in the input&#39;
+        <span class="comment">// Length is 'everything left in the input'
         </span><span class="kw">let </span><span class="kw-2">mut </span>rectangles = Vec::new();
         <span class="kw">while </span>!remaining.is_empty() {
             <span class="kw">let </span>(v, new_remaining) = xproto::Rectangle::try_parse(remaining)<span class="question-mark">?</span>;
@@ -5087,15 +5088,15 @@
         })
     }
     <span class="doccomment">/// Clone all borrowed data in this CreateRegionRequest.
-    </span><span class="kw">pub fn </span>into_owned(<span class="self">self</span>) -&gt; CreateRegionRequest&lt;<span class="lifetime">&#39;static</span>&gt; {
+    </span><span class="kw">pub fn </span>into_owned(<span class="self">self</span>) -&gt; CreateRegionRequest&lt;<span class="lifetime">'static</span>&gt; {
         CreateRegionRequest {
             region: <span class="self">self</span>.region,
             rectangles: Cow::Owned(<span class="self">self</span>.rectangles.into_owned()),
         }
     }
 }
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;input</span>&gt; Request <span class="kw">for </span>CreateRegionRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+<span class="kw">impl</span>&lt;<span class="lifetime">'input</span>&gt; Request <span class="kw">for </span>CreateRegionRequest&lt;<span class="lifetime">'input</span>&gt; {
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -5104,22 +5105,22 @@
         (buf, fds)
     }
 }
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;input</span>&gt; <span class="kw">crate</span>::x11_utils::VoidRequest <span class="kw">for </span>CreateRegionRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'input</span>&gt; <span class="kw">crate</span>::x11_utils::VoidRequest <span class="kw">for </span>CreateRegionRequest&lt;<span class="lifetime">'input</span>&gt; {
 }
 
 <span class="doccomment">/// Opcode for the CreateRegionFromBitmap request
 </span><span class="kw">pub const </span>CREATE_REGION_FROM_BITMAP_REQUEST: u8 = <span class="number">6</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>CreateRegionFromBitmapRequest {
     <span class="kw">pub </span>region: Region,
     <span class="kw">pub </span>bitmap: xproto::Pixmap,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(CreateRegionFromBitmapRequest, <span class="string">&quot;CreateRegionFromBitmapRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(CreateRegionFromBitmapRequest, <span class="string">"CreateRegionFromBitmapRequest"</span>);
 <span class="kw">impl </span>CreateRegionFromBitmapRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>region_bytes = <span class="self">self</span>.region.serialize();
         <span class="kw">let </span>bitmap_bytes = <span class="self">self</span>.bitmap.serialize();
@@ -5144,7 +5145,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != CREATE_REGION_FROM_BITMAP_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -5159,7 +5160,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>CreateRegionFromBitmapRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -5174,17 +5175,17 @@
 <span class="doccomment">/// Opcode for the CreateRegionFromWindow request
 </span><span class="kw">pub const </span>CREATE_REGION_FROM_WINDOW_REQUEST: u8 = <span class="number">7</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>CreateRegionFromWindowRequest {
     <span class="kw">pub </span>region: Region,
     <span class="kw">pub </span>window: xproto::Window,
     <span class="kw">pub </span>kind: shape::SK,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(CreateRegionFromWindowRequest, <span class="string">&quot;CreateRegionFromWindowRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(CreateRegionFromWindowRequest, <span class="string">"CreateRegionFromWindowRequest"</span>);
 <span class="kw">impl </span>CreateRegionFromWindowRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>region_bytes = <span class="self">self</span>.region.serialize();
         <span class="kw">let </span>window_bytes = <span class="self">self</span>.window.serialize();
@@ -5214,7 +5215,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != CREATE_REGION_FROM_WINDOW_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -5233,7 +5234,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>CreateRegionFromWindowRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -5248,16 +5249,16 @@
 <span class="doccomment">/// Opcode for the CreateRegionFromGC request
 </span><span class="kw">pub const </span>CREATE_REGION_FROM_GC_REQUEST: u8 = <span class="number">8</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>CreateRegionFromGCRequest {
     <span class="kw">pub </span>region: Region,
     <span class="kw">pub </span>gc: xproto::Gcontext,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(CreateRegionFromGCRequest, <span class="string">&quot;CreateRegionFromGCRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(CreateRegionFromGCRequest, <span class="string">"CreateRegionFromGCRequest"</span>);
 <span class="kw">impl </span>CreateRegionFromGCRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>region_bytes = <span class="self">self</span>.region.serialize();
         <span class="kw">let </span>gc_bytes = <span class="self">self</span>.gc.serialize();
@@ -5282,7 +5283,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != CREATE_REGION_FROM_GC_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -5297,7 +5298,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>CreateRegionFromGCRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -5312,16 +5313,16 @@
 <span class="doccomment">/// Opcode for the CreateRegionFromPicture request
 </span><span class="kw">pub const </span>CREATE_REGION_FROM_PICTURE_REQUEST: u8 = <span class="number">9</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>CreateRegionFromPictureRequest {
     <span class="kw">pub </span>region: Region,
     <span class="kw">pub </span>picture: render::Picture,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(CreateRegionFromPictureRequest, <span class="string">&quot;CreateRegionFromPictureRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(CreateRegionFromPictureRequest, <span class="string">"CreateRegionFromPictureRequest"</span>);
 <span class="kw">impl </span>CreateRegionFromPictureRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>region_bytes = <span class="self">self</span>.region.serialize();
         <span class="kw">let </span>picture_bytes = <span class="self">self</span>.picture.serialize();
@@ -5346,7 +5347,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != CREATE_REGION_FROM_PICTURE_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -5361,7 +5362,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>CreateRegionFromPictureRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -5376,15 +5377,15 @@
 <span class="doccomment">/// Opcode for the DestroyRegion request
 </span><span class="kw">pub const </span>DESTROY_REGION_REQUEST: u8 = <span class="number">10</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>DestroyRegionRequest {
     <span class="kw">pub </span>region: Region,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(DestroyRegionRequest, <span class="string">&quot;DestroyRegionRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(DestroyRegionRequest, <span class="string">"DestroyRegionRequest"</span>);
 <span class="kw">impl </span>DestroyRegionRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>region_bytes = <span class="self">self</span>.region.serialize();
         <span class="kw">let </span><span class="kw-2">mut </span>request0 = <span class="macro">vec!</span>[
@@ -5404,7 +5405,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != DESTROY_REGION_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -5417,7 +5418,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>DestroyRegionRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -5432,16 +5433,16 @@
 <span class="doccomment">/// Opcode for the SetRegion request
 </span><span class="kw">pub const </span>SET_REGION_REQUEST: u8 = <span class="number">11</span>;
 <span class="attr">#[derive(Clone, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
-</span><span class="kw">pub struct </span>SetRegionRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
+</span><span class="kw">pub struct </span>SetRegionRequest&lt;<span class="lifetime">'input</span>&gt; {
     <span class="kw">pub </span>region: Region,
-    <span class="kw">pub </span>rectangles: Cow&lt;<span class="lifetime">&#39;input</span>, [xproto::Rectangle]&gt;,
+    <span class="kw">pub </span>rectangles: Cow&lt;<span class="lifetime">'input</span>, [xproto::Rectangle]&gt;,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(SetRegionRequest&lt;<span class="lifetime">&#39;_</span>&gt;, <span class="string">&quot;SetRegionRequest&quot;</span>);
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;input</span>&gt; SetRegionRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
+<span class="macro">impl_debug_if_no_extra_traits!</span>(SetRegionRequest&lt;<span class="lifetime">'_</span>&gt;, <span class="string">"SetRegionRequest"</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">'input</span>&gt; SetRegionRequest&lt;<span class="lifetime">'input</span>&gt; {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;input</span>, [u8]&gt;; <span class="number">3</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'input</span>, [u8]&gt;; <span class="number">3</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>region_bytes = <span class="self">self</span>.region.serialize();
         <span class="kw">let </span><span class="kw-2">mut </span>request0 = <span class="macro">vec!</span>[
@@ -5465,14 +5466,14 @@
         ([request0.into(), rectangles_bytes.into(), padding0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
-    </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
+    </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != SET_REGION_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
         }
         <span class="kw">let </span>(region, remaining) = Region::try_parse(value)<span class="question-mark">?</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>remaining = remaining;
-        <span class="comment">// Length is &#39;everything left in the input&#39;
+        <span class="comment">// Length is 'everything left in the input'
         </span><span class="kw">let </span><span class="kw-2">mut </span>rectangles = Vec::new();
         <span class="kw">while </span>!remaining.is_empty() {
             <span class="kw">let </span>(v, new_remaining) = xproto::Rectangle::try_parse(remaining)<span class="question-mark">?</span>;
@@ -5486,15 +5487,15 @@
         })
     }
     <span class="doccomment">/// Clone all borrowed data in this SetRegionRequest.
-    </span><span class="kw">pub fn </span>into_owned(<span class="self">self</span>) -&gt; SetRegionRequest&lt;<span class="lifetime">&#39;static</span>&gt; {
+    </span><span class="kw">pub fn </span>into_owned(<span class="self">self</span>) -&gt; SetRegionRequest&lt;<span class="lifetime">'static</span>&gt; {
         SetRegionRequest {
             region: <span class="self">self</span>.region,
             rectangles: Cow::Owned(<span class="self">self</span>.rectangles.into_owned()),
         }
     }
 }
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;input</span>&gt; Request <span class="kw">for </span>SetRegionRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+<span class="kw">impl</span>&lt;<span class="lifetime">'input</span>&gt; Request <span class="kw">for </span>SetRegionRequest&lt;<span class="lifetime">'input</span>&gt; {
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -5503,22 +5504,22 @@
         (buf, fds)
     }
 }
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;input</span>&gt; <span class="kw">crate</span>::x11_utils::VoidRequest <span class="kw">for </span>SetRegionRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'input</span>&gt; <span class="kw">crate</span>::x11_utils::VoidRequest <span class="kw">for </span>SetRegionRequest&lt;<span class="lifetime">'input</span>&gt; {
 }
 
 <span class="doccomment">/// Opcode for the CopyRegion request
 </span><span class="kw">pub const </span>COPY_REGION_REQUEST: u8 = <span class="number">12</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>CopyRegionRequest {
     <span class="kw">pub </span>source: Region,
     <span class="kw">pub </span>destination: Region,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(CopyRegionRequest, <span class="string">&quot;CopyRegionRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(CopyRegionRequest, <span class="string">"CopyRegionRequest"</span>);
 <span class="kw">impl </span>CopyRegionRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>source_bytes = <span class="self">self</span>.source.serialize();
         <span class="kw">let </span>destination_bytes = <span class="self">self</span>.destination.serialize();
@@ -5543,7 +5544,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != COPY_REGION_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -5558,7 +5559,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>CopyRegionRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -5573,17 +5574,17 @@
 <span class="doccomment">/// Opcode for the UnionRegion request
 </span><span class="kw">pub const </span>UNION_REGION_REQUEST: u8 = <span class="number">13</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>UnionRegionRequest {
     <span class="kw">pub </span>source1: Region,
     <span class="kw">pub </span>source2: Region,
     <span class="kw">pub </span>destination: Region,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(UnionRegionRequest, <span class="string">&quot;UnionRegionRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(UnionRegionRequest, <span class="string">"UnionRegionRequest"</span>);
 <span class="kw">impl </span>UnionRegionRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>source1_bytes = <span class="self">self</span>.source1.serialize();
         <span class="kw">let </span>source2_bytes = <span class="self">self</span>.source2.serialize();
@@ -5613,7 +5614,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != UNION_REGION_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -5630,7 +5631,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>UnionRegionRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -5645,17 +5646,17 @@
 <span class="doccomment">/// Opcode for the IntersectRegion request
 </span><span class="kw">pub const </span>INTERSECT_REGION_REQUEST: u8 = <span class="number">14</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>IntersectRegionRequest {
     <span class="kw">pub </span>source1: Region,
     <span class="kw">pub </span>source2: Region,
     <span class="kw">pub </span>destination: Region,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(IntersectRegionRequest, <span class="string">&quot;IntersectRegionRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(IntersectRegionRequest, <span class="string">"IntersectRegionRequest"</span>);
 <span class="kw">impl </span>IntersectRegionRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>source1_bytes = <span class="self">self</span>.source1.serialize();
         <span class="kw">let </span>source2_bytes = <span class="self">self</span>.source2.serialize();
@@ -5685,7 +5686,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != INTERSECT_REGION_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -5702,7 +5703,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>IntersectRegionRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -5717,17 +5718,17 @@
 <span class="doccomment">/// Opcode for the SubtractRegion request
 </span><span class="kw">pub const </span>SUBTRACT_REGION_REQUEST: u8 = <span class="number">15</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>SubtractRegionRequest {
     <span class="kw">pub </span>source1: Region,
     <span class="kw">pub </span>source2: Region,
     <span class="kw">pub </span>destination: Region,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(SubtractRegionRequest, <span class="string">&quot;SubtractRegionRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(SubtractRegionRequest, <span class="string">"SubtractRegionRequest"</span>);
 <span class="kw">impl </span>SubtractRegionRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>source1_bytes = <span class="self">self</span>.source1.serialize();
         <span class="kw">let </span>source2_bytes = <span class="self">self</span>.source2.serialize();
@@ -5757,7 +5758,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != SUBTRACT_REGION_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -5774,7 +5775,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>SubtractRegionRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -5789,17 +5790,17 @@
 <span class="doccomment">/// Opcode for the InvertRegion request
 </span><span class="kw">pub const </span>INVERT_REGION_REQUEST: u8 = <span class="number">16</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>InvertRegionRequest {
     <span class="kw">pub </span>source: Region,
     <span class="kw">pub </span>bounds: xproto::Rectangle,
     <span class="kw">pub </span>destination: Region,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(InvertRegionRequest, <span class="string">&quot;InvertRegionRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(InvertRegionRequest, <span class="string">"InvertRegionRequest"</span>);
 <span class="kw">impl </span>InvertRegionRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>source_bytes = <span class="self">self</span>.source.serialize();
         <span class="kw">let </span>bounds_bytes = <span class="self">self</span>.bounds.serialize();
@@ -5833,7 +5834,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != INVERT_REGION_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -5850,7 +5851,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>InvertRegionRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -5865,17 +5866,17 @@
 <span class="doccomment">/// Opcode for the TranslateRegion request
 </span><span class="kw">pub const </span>TRANSLATE_REGION_REQUEST: u8 = <span class="number">17</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>TranslateRegionRequest {
     <span class="kw">pub </span>region: Region,
     <span class="kw">pub </span>dx: i16,
     <span class="kw">pub </span>dy: i16,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(TranslateRegionRequest, <span class="string">&quot;TranslateRegionRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(TranslateRegionRequest, <span class="string">"TranslateRegionRequest"</span>);
 <span class="kw">impl </span>TranslateRegionRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>region_bytes = <span class="self">self</span>.region.serialize();
         <span class="kw">let </span>dx_bytes = <span class="self">self</span>.dx.serialize();
@@ -5901,7 +5902,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != TRANSLATE_REGION_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -5918,7 +5919,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>TranslateRegionRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -5933,16 +5934,16 @@
 <span class="doccomment">/// Opcode for the RegionExtents request
 </span><span class="kw">pub const </span>REGION_EXTENTS_REQUEST: u8 = <span class="number">18</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>RegionExtentsRequest {
     <span class="kw">pub </span>source: Region,
     <span class="kw">pub </span>destination: Region,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(RegionExtentsRequest, <span class="string">&quot;RegionExtentsRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(RegionExtentsRequest, <span class="string">"RegionExtentsRequest"</span>);
 <span class="kw">impl </span>RegionExtentsRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>source_bytes = <span class="self">self</span>.source.serialize();
         <span class="kw">let </span>destination_bytes = <span class="self">self</span>.destination.serialize();
@@ -5967,7 +5968,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != REGION_EXTENTS_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -5982,7 +5983,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>RegionExtentsRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -5997,15 +5998,15 @@
 <span class="doccomment">/// Opcode for the FetchRegion request
 </span><span class="kw">pub const </span>FETCH_REGION_REQUEST: u8 = <span class="number">19</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>FetchRegionRequest {
     <span class="kw">pub </span>region: Region,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(FetchRegionRequest, <span class="string">&quot;FetchRegionRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(FetchRegionRequest, <span class="string">"FetchRegionRequest"</span>);
 <span class="kw">impl </span>FetchRegionRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>region_bytes = <span class="self">self</span>.region.serialize();
         <span class="kw">let </span><span class="kw-2">mut </span>request0 = <span class="macro">vec!</span>[
@@ -6025,7 +6026,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != FETCH_REGION_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -6038,7 +6039,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>FetchRegionRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -6052,14 +6053,14 @@
 }
 
 <span class="attr">#[derive(Clone, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>FetchRegionReply {
     <span class="kw">pub </span>sequence: u16,
     <span class="kw">pub </span>extents: xproto::Rectangle,
     <span class="kw">pub </span>rectangles: Vec&lt;xproto::Rectangle&gt;,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(FetchRegionReply, <span class="string">&quot;FetchRegionReply&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(FetchRegionReply, <span class="string">"FetchRegionReply"</span>);
 <span class="kw">impl </span>TryParse <span class="kw">for </span>FetchRegionReply {
     <span class="kw">fn </span>try_parse(initial_value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, <span class="kw-2">&amp;</span>[u8]), ParseError&gt; {
         <span class="kw">let </span>remaining = initial_value;
@@ -6093,7 +6094,7 @@
         bytes.push(response_type_bytes[<span class="number">0</span>]);
         bytes.extend_from_slice(<span class="kw-2">&amp;</span>[<span class="number">0</span>; <span class="number">1</span>]);
         <span class="self">self</span>.sequence.serialize_into(bytes);
-        <span class="kw">let </span>length = u32::try_from(<span class="self">self</span>.rectangles.len()).ok().and_then(|len| len.checked_mul(<span class="number">2</span>)).expect(<span class="string">&quot;`rectangles` has too many elements&quot;</span>);
+        <span class="kw">let </span>length = u32::try_from(<span class="self">self</span>.rectangles.len()).ok().and_then(|len| len.checked_mul(<span class="number">2</span>)).expect(<span class="string">"`rectangles` has too many elements"</span>);
         length.serialize_into(bytes);
         <span class="self">self</span>.extents.serialize_into(bytes);
         bytes.extend_from_slice(<span class="kw-2">&amp;</span>[<span class="number">0</span>; <span class="number">16</span>]);
@@ -6104,7 +6105,7 @@
     <span class="doccomment">/// Get the value of the `length` field.
     ///
     /// The `length` field is used as the length field of the `rectangles` field.
-    /// This function computes the field&#39;s value again based on the length of the list.
+    /// This function computes the field's value again based on the length of the list.
     ///
     /// # Panics
     ///
@@ -6120,18 +6121,18 @@
 <span class="doccomment">/// Opcode for the SetGCClipRegion request
 </span><span class="kw">pub const </span>SET_GC_CLIP_REGION_REQUEST: u8 = <span class="number">20</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>SetGCClipRegionRequest {
     <span class="kw">pub </span>gc: xproto::Gcontext,
     <span class="kw">pub </span>region: Region,
     <span class="kw">pub </span>x_origin: i16,
     <span class="kw">pub </span>y_origin: i16,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(SetGCClipRegionRequest, <span class="string">&quot;SetGCClipRegionRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(SetGCClipRegionRequest, <span class="string">"SetGCClipRegionRequest"</span>);
 <span class="kw">impl </span>SetGCClipRegionRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>gc_bytes = <span class="self">self</span>.gc.serialize();
         <span class="kw">let </span>region_bytes = <span class="self">self</span>.region.serialize();
@@ -6162,7 +6163,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != SET_GC_CLIP_REGION_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -6181,7 +6182,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>SetGCClipRegionRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -6196,8 +6197,8 @@
 <span class="doccomment">/// Opcode for the SetWindowShapeRegion request
 </span><span class="kw">pub const </span>SET_WINDOW_SHAPE_REGION_REQUEST: u8 = <span class="number">21</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>SetWindowShapeRegionRequest {
     <span class="kw">pub </span>dest: xproto::Window,
     <span class="kw">pub </span>dest_kind: shape::SK,
@@ -6205,10 +6206,10 @@
     <span class="kw">pub </span>y_offset: i16,
     <span class="kw">pub </span>region: Region,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(SetWindowShapeRegionRequest, <span class="string">&quot;SetWindowShapeRegionRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(SetWindowShapeRegionRequest, <span class="string">"SetWindowShapeRegionRequest"</span>);
 <span class="kw">impl </span>SetWindowShapeRegionRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>dest_bytes = <span class="self">self</span>.dest.serialize();
         <span class="kw">let </span>dest_kind_bytes = shape::Kind::from(<span class="self">self</span>.dest_kind).serialize();
@@ -6244,7 +6245,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != SET_WINDOW_SHAPE_REGION_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -6267,7 +6268,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>SetWindowShapeRegionRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -6282,18 +6283,18 @@
 <span class="doccomment">/// Opcode for the SetPictureClipRegion request
 </span><span class="kw">pub const </span>SET_PICTURE_CLIP_REGION_REQUEST: u8 = <span class="number">22</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>SetPictureClipRegionRequest {
     <span class="kw">pub </span>picture: render::Picture,
     <span class="kw">pub </span>region: Region,
     <span class="kw">pub </span>x_origin: i16,
     <span class="kw">pub </span>y_origin: i16,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(SetPictureClipRegionRequest, <span class="string">&quot;SetPictureClipRegionRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(SetPictureClipRegionRequest, <span class="string">"SetPictureClipRegionRequest"</span>);
 <span class="kw">impl </span>SetPictureClipRegionRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>picture_bytes = <span class="self">self</span>.picture.serialize();
         <span class="kw">let </span>region_bytes = <span class="self">self</span>.region.serialize();
@@ -6324,7 +6325,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != SET_PICTURE_CLIP_REGION_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -6343,7 +6344,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>SetPictureClipRegionRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -6358,19 +6359,19 @@
 <span class="doccomment">/// Opcode for the SetCursorName request
 </span><span class="kw">pub const </span>SET_CURSOR_NAME_REQUEST: u8 = <span class="number">23</span>;
 <span class="attr">#[derive(Clone, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
-</span><span class="kw">pub struct </span>SetCursorNameRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
+</span><span class="kw">pub struct </span>SetCursorNameRequest&lt;<span class="lifetime">'input</span>&gt; {
     <span class="kw">pub </span>cursor: xproto::Cursor,
-    <span class="kw">pub </span>name: Cow&lt;<span class="lifetime">&#39;input</span>, [u8]&gt;,
+    <span class="kw">pub </span>name: Cow&lt;<span class="lifetime">'input</span>, [u8]&gt;,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(SetCursorNameRequest&lt;<span class="lifetime">&#39;_</span>&gt;, <span class="string">&quot;SetCursorNameRequest&quot;</span>);
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;input</span>&gt; SetCursorNameRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
+<span class="macro">impl_debug_if_no_extra_traits!</span>(SetCursorNameRequest&lt;<span class="lifetime">'_</span>&gt;, <span class="string">"SetCursorNameRequest"</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">'input</span>&gt; SetCursorNameRequest&lt;<span class="lifetime">'input</span>&gt; {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;input</span>, [u8]&gt;; <span class="number">3</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'input</span>, [u8]&gt;; <span class="number">3</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>cursor_bytes = <span class="self">self</span>.cursor.serialize();
-        <span class="kw">let </span>nbytes = u16::try_from(<span class="self">self</span>.name.len()).expect(<span class="string">&quot;`name` has too many elements&quot;</span>);
+        <span class="kw">let </span>nbytes = u16::try_from(<span class="self">self</span>.name.len()).expect(<span class="string">"`name` has too many elements"</span>);
         <span class="kw">let </span>nbytes_bytes = nbytes.serialize();
         <span class="kw">let </span><span class="kw-2">mut </span>request0 = <span class="macro">vec!</span>[
             major_opcode,
@@ -6396,8 +6397,8 @@
         ([request0.into(), <span class="self">self</span>.name, padding0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
-    </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
+    </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != SET_CURSOR_NAME_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
         }
@@ -6412,15 +6413,15 @@
         })
     }
     <span class="doccomment">/// Clone all borrowed data in this SetCursorNameRequest.
-    </span><span class="kw">pub fn </span>into_owned(<span class="self">self</span>) -&gt; SetCursorNameRequest&lt;<span class="lifetime">&#39;static</span>&gt; {
+    </span><span class="kw">pub fn </span>into_owned(<span class="self">self</span>) -&gt; SetCursorNameRequest&lt;<span class="lifetime">'static</span>&gt; {
         SetCursorNameRequest {
             cursor: <span class="self">self</span>.cursor,
             name: Cow::Owned(<span class="self">self</span>.name.into_owned()),
         }
     }
 }
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;input</span>&gt; Request <span class="kw">for </span>SetCursorNameRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+<span class="kw">impl</span>&lt;<span class="lifetime">'input</span>&gt; Request <span class="kw">for </span>SetCursorNameRequest&lt;<span class="lifetime">'input</span>&gt; {
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -6429,21 +6430,21 @@
         (buf, fds)
     }
 }
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;input</span>&gt; <span class="kw">crate</span>::x11_utils::VoidRequest <span class="kw">for </span>SetCursorNameRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'input</span>&gt; <span class="kw">crate</span>::x11_utils::VoidRequest <span class="kw">for </span>SetCursorNameRequest&lt;<span class="lifetime">'input</span>&gt; {
 }
 
 <span class="doccomment">/// Opcode for the GetCursorName request
 </span><span class="kw">pub const </span>GET_CURSOR_NAME_REQUEST: u8 = <span class="number">24</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>GetCursorNameRequest {
     <span class="kw">pub </span>cursor: xproto::Cursor,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(GetCursorNameRequest, <span class="string">&quot;GetCursorNameRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(GetCursorNameRequest, <span class="string">"GetCursorNameRequest"</span>);
 <span class="kw">impl </span>GetCursorNameRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>cursor_bytes = <span class="self">self</span>.cursor.serialize();
         <span class="kw">let </span><span class="kw-2">mut </span>request0 = <span class="macro">vec!</span>[
@@ -6463,7 +6464,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != GET_CURSOR_NAME_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -6476,7 +6477,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>GetCursorNameRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -6490,15 +6491,15 @@
 }
 
 <span class="attr">#[derive(Clone, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>GetCursorNameReply {
     <span class="kw">pub </span>sequence: u16,
     <span class="kw">pub </span>length: u32,
     <span class="kw">pub </span>atom: xproto::Atom,
     <span class="kw">pub </span>name: Vec&lt;u8&gt;,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(GetCursorNameReply, <span class="string">&quot;GetCursorNameReply&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(GetCursorNameReply, <span class="string">"GetCursorNameReply"</span>);
 <span class="kw">impl </span>TryParse <span class="kw">for </span>GetCursorNameReply {
     <span class="kw">fn </span>try_parse(initial_value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, <span class="kw-2">&amp;</span>[u8]), ParseError&gt; {
         <span class="kw">let </span>remaining = initial_value;
@@ -6536,7 +6537,7 @@
         <span class="self">self</span>.sequence.serialize_into(bytes);
         <span class="self">self</span>.length.serialize_into(bytes);
         <span class="self">self</span>.atom.serialize_into(bytes);
-        <span class="kw">let </span>nbytes = u16::try_from(<span class="self">self</span>.name.len()).expect(<span class="string">&quot;`name` has too many elements&quot;</span>);
+        <span class="kw">let </span>nbytes = u16::try_from(<span class="self">self</span>.name.len()).expect(<span class="string">"`name` has too many elements"</span>);
         nbytes.serialize_into(bytes);
         bytes.extend_from_slice(<span class="kw-2">&amp;</span>[<span class="number">0</span>; <span class="number">18</span>]);
         bytes.extend_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.name);
@@ -6546,7 +6547,7 @@
     <span class="doccomment">/// Get the value of the `nbytes` field.
     ///
     /// The `nbytes` field is used as the length field of the `name` field.
-    /// This function computes the field&#39;s value again based on the length of the list.
+    /// This function computes the field's value again based on the length of the list.
     ///
     /// # Panics
     ///
@@ -6561,13 +6562,13 @@
 <span class="doccomment">/// Opcode for the GetCursorImageAndName request
 </span><span class="kw">pub const </span>GET_CURSOR_IMAGE_AND_NAME_REQUEST: u8 = <span class="number">25</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>GetCursorImageAndNameRequest;
-<span class="macro">impl_debug_if_no_extra_traits!</span>(GetCursorImageAndNameRequest, <span class="string">&quot;GetCursorImageAndNameRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(GetCursorImageAndNameRequest, <span class="string">"GetCursorImageAndNameRequest"</span>);
 <span class="kw">impl </span>GetCursorImageAndNameRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>request0 = <span class="macro">vec!</span>[
             major_opcode,
@@ -6582,7 +6583,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != GET_CURSOR_IMAGE_AND_NAME_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -6593,7 +6594,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>GetCursorImageAndNameRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -6607,8 +6608,8 @@
 }
 
 <span class="attr">#[derive(Clone, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>GetCursorImageAndNameReply {
     <span class="kw">pub </span>sequence: u16,
     <span class="kw">pub </span>length: u32,
@@ -6623,7 +6624,7 @@
     <span class="kw">pub </span>cursor_image: Vec&lt;u32&gt;,
     <span class="kw">pub </span>name: Vec&lt;u8&gt;,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(GetCursorImageAndNameReply, <span class="string">&quot;GetCursorImageAndNameReply&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(GetCursorImageAndNameReply, <span class="string">"GetCursorImageAndNameReply"</span>);
 <span class="kw">impl </span>TryParse <span class="kw">for </span>GetCursorImageAndNameReply {
     <span class="kw">fn </span>try_parse(initial_value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, <span class="kw-2">&amp;</span>[u8]), ParseError&gt; {
         <span class="kw">let </span>remaining = initial_value;
@@ -6676,10 +6677,10 @@
         <span class="self">self</span>.yhot.serialize_into(bytes);
         <span class="self">self</span>.cursor_serial.serialize_into(bytes);
         <span class="self">self</span>.cursor_atom.serialize_into(bytes);
-        <span class="kw">let </span>nbytes = u16::try_from(<span class="self">self</span>.name.len()).expect(<span class="string">&quot;`name` has too many elements&quot;</span>);
+        <span class="kw">let </span>nbytes = u16::try_from(<span class="self">self</span>.name.len()).expect(<span class="string">"`name` has too many elements"</span>);
         nbytes.serialize_into(bytes);
         bytes.extend_from_slice(<span class="kw-2">&amp;</span>[<span class="number">0</span>; <span class="number">2</span>]);
-        <span class="macro">assert_eq!</span>(<span class="self">self</span>.cursor_image.len(), usize::try_from(u32::from(<span class="self">self</span>.width).checked_mul(u32::from(<span class="self">self</span>.height)).unwrap()).unwrap(), <span class="string">&quot;`cursor_image` has an incorrect length&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="self">self</span>.cursor_image.len(), usize::try_from(u32::from(<span class="self">self</span>.width).checked_mul(u32::from(<span class="self">self</span>.height)).unwrap()).unwrap(), <span class="string">"`cursor_image` has an incorrect length"</span>);
         <span class="self">self</span>.cursor_image.serialize_into(bytes);
         bytes.extend_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.name);
     }
@@ -6688,7 +6689,7 @@
     <span class="doccomment">/// Get the value of the `nbytes` field.
     ///
     /// The `nbytes` field is used as the length field of the `name` field.
-    /// This function computes the field&#39;s value again based on the length of the list.
+    /// This function computes the field's value again based on the length of the list.
     ///
     /// # Panics
     ///
@@ -6703,16 +6704,16 @@
 <span class="doccomment">/// Opcode for the ChangeCursor request
 </span><span class="kw">pub const </span>CHANGE_CURSOR_REQUEST: u8 = <span class="number">26</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>ChangeCursorRequest {
     <span class="kw">pub </span>source: xproto::Cursor,
     <span class="kw">pub </span>destination: xproto::Cursor,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(ChangeCursorRequest, <span class="string">&quot;ChangeCursorRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(ChangeCursorRequest, <span class="string">"ChangeCursorRequest"</span>);
 <span class="kw">impl </span>ChangeCursorRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>source_bytes = <span class="self">self</span>.source.serialize();
         <span class="kw">let </span>destination_bytes = <span class="self">self</span>.destination.serialize();
@@ -6737,7 +6738,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != CHANGE_CURSOR_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -6752,7 +6753,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>ChangeCursorRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -6767,19 +6768,19 @@
 <span class="doccomment">/// Opcode for the ChangeCursorByName request
 </span><span class="kw">pub const </span>CHANGE_CURSOR_BY_NAME_REQUEST: u8 = <span class="number">27</span>;
 <span class="attr">#[derive(Clone, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
-</span><span class="kw">pub struct </span>ChangeCursorByNameRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
+</span><span class="kw">pub struct </span>ChangeCursorByNameRequest&lt;<span class="lifetime">'input</span>&gt; {
     <span class="kw">pub </span>src: xproto::Cursor,
-    <span class="kw">pub </span>name: Cow&lt;<span class="lifetime">&#39;input</span>, [u8]&gt;,
+    <span class="kw">pub </span>name: Cow&lt;<span class="lifetime">'input</span>, [u8]&gt;,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(ChangeCursorByNameRequest&lt;<span class="lifetime">&#39;_</span>&gt;, <span class="string">&quot;ChangeCursorByNameRequest&quot;</span>);
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;input</span>&gt; ChangeCursorByNameRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
+<span class="macro">impl_debug_if_no_extra_traits!</span>(ChangeCursorByNameRequest&lt;<span class="lifetime">'_</span>&gt;, <span class="string">"ChangeCursorByNameRequest"</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">'input</span>&gt; ChangeCursorByNameRequest&lt;<span class="lifetime">'input</span>&gt; {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;input</span>, [u8]&gt;; <span class="number">3</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'input</span>, [u8]&gt;; <span class="number">3</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>src_bytes = <span class="self">self</span>.src.serialize();
-        <span class="kw">let </span>nbytes = u16::try_from(<span class="self">self</span>.name.len()).expect(<span class="string">&quot;`name` has too many elements&quot;</span>);
+        <span class="kw">let </span>nbytes = u16::try_from(<span class="self">self</span>.name.len()).expect(<span class="string">"`name` has too many elements"</span>);
         <span class="kw">let </span>nbytes_bytes = nbytes.serialize();
         <span class="kw">let </span><span class="kw-2">mut </span>request0 = <span class="macro">vec!</span>[
             major_opcode,
@@ -6805,8 +6806,8 @@
         ([request0.into(), <span class="self">self</span>.name, padding0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
-    </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
+    </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != CHANGE_CURSOR_BY_NAME_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
         }
@@ -6821,15 +6822,15 @@
         })
     }
     <span class="doccomment">/// Clone all borrowed data in this ChangeCursorByNameRequest.
-    </span><span class="kw">pub fn </span>into_owned(<span class="self">self</span>) -&gt; ChangeCursorByNameRequest&lt;<span class="lifetime">&#39;static</span>&gt; {
+    </span><span class="kw">pub fn </span>into_owned(<span class="self">self</span>) -&gt; ChangeCursorByNameRequest&lt;<span class="lifetime">'static</span>&gt; {
         ChangeCursorByNameRequest {
             src: <span class="self">self</span>.src,
             name: Cow::Owned(<span class="self">self</span>.name.into_owned()),
         }
     }
 }
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;input</span>&gt; Request <span class="kw">for </span>ChangeCursorByNameRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+<span class="kw">impl</span>&lt;<span class="lifetime">'input</span>&gt; Request <span class="kw">for </span>ChangeCursorByNameRequest&lt;<span class="lifetime">'input</span>&gt; {
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -6838,14 +6839,14 @@
         (buf, fds)
     }
 }
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;input</span>&gt; <span class="kw">crate</span>::x11_utils::VoidRequest <span class="kw">for </span>ChangeCursorByNameRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'input</span>&gt; <span class="kw">crate</span>::x11_utils::VoidRequest <span class="kw">for </span>ChangeCursorByNameRequest&lt;<span class="lifetime">'input</span>&gt; {
 }
 
 <span class="doccomment">/// Opcode for the ExpandRegion request
 </span><span class="kw">pub const </span>EXPAND_REGION_REQUEST: u8 = <span class="number">28</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>ExpandRegionRequest {
     <span class="kw">pub </span>source: Region,
     <span class="kw">pub </span>destination: Region,
@@ -6854,10 +6855,10 @@
     <span class="kw">pub </span>top: u16,
     <span class="kw">pub </span>bottom: u16,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(ExpandRegionRequest, <span class="string">&quot;ExpandRegionRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(ExpandRegionRequest, <span class="string">"ExpandRegionRequest"</span>);
 <span class="kw">impl </span>ExpandRegionRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>source_bytes = <span class="self">self</span>.source.serialize();
         <span class="kw">let </span>destination_bytes = <span class="self">self</span>.destination.serialize();
@@ -6894,7 +6895,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != EXPAND_REGION_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -6917,7 +6918,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>ExpandRegionRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -6932,15 +6933,15 @@
 <span class="doccomment">/// Opcode for the HideCursor request
 </span><span class="kw">pub const </span>HIDE_CURSOR_REQUEST: u8 = <span class="number">29</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>HideCursorRequest {
     <span class="kw">pub </span>window: xproto::Window,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(HideCursorRequest, <span class="string">&quot;HideCursorRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(HideCursorRequest, <span class="string">"HideCursorRequest"</span>);
 <span class="kw">impl </span>HideCursorRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>window_bytes = <span class="self">self</span>.window.serialize();
         <span class="kw">let </span><span class="kw-2">mut </span>request0 = <span class="macro">vec!</span>[
@@ -6960,7 +6961,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != HIDE_CURSOR_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -6973,7 +6974,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>HideCursorRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -6988,15 +6989,15 @@
 <span class="doccomment">/// Opcode for the ShowCursor request
 </span><span class="kw">pub const </span>SHOW_CURSOR_REQUEST: u8 = <span class="number">30</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>ShowCursorRequest {
     <span class="kw">pub </span>window: xproto::Window,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(ShowCursorRequest, <span class="string">&quot;ShowCursorRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(ShowCursorRequest, <span class="string">"ShowCursorRequest"</span>);
 <span class="kw">impl </span>ShowCursorRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>window_bytes = <span class="self">self</span>.window.serialize();
         <span class="kw">let </span><span class="kw-2">mut </span>request0 = <span class="macro">vec!</span>[
@@ -7016,7 +7017,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != SHOW_CURSOR_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -7029,7 +7030,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>ShowCursorRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -7044,7 +7045,7 @@
 <span class="kw">pub type </span>Barrier = u32;
 
 <span class="attr">#[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>BarrierDirections(u32);
 <span class="kw">impl </span>BarrierDirections {
     <span class="kw">pub const </span>POSITIVE_X: <span class="self">Self </span>= <span class="self">Self</span>(<span class="number">1 </span>&lt;&lt; <span class="number">0</span>);
@@ -7083,12 +7084,12 @@
     }
 }
 <span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>BarrierDirections  {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; core::fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; core::fmt::Result {
         <span class="kw">let </span>variants = [
-            (<span class="self">Self</span>::POSITIVE_X.<span class="number">0</span>, <span class="string">&quot;POSITIVE_X&quot;</span>, <span class="string">&quot;PositiveX&quot;</span>),
-            (<span class="self">Self</span>::POSITIVE_Y.<span class="number">0</span>, <span class="string">&quot;POSITIVE_Y&quot;</span>, <span class="string">&quot;PositiveY&quot;</span>),
-            (<span class="self">Self</span>::NEGATIVE_X.<span class="number">0</span>, <span class="string">&quot;NEGATIVE_X&quot;</span>, <span class="string">&quot;NegativeX&quot;</span>),
-            (<span class="self">Self</span>::NEGATIVE_Y.<span class="number">0</span>, <span class="string">&quot;NEGATIVE_Y&quot;</span>, <span class="string">&quot;NegativeY&quot;</span>),
+            (<span class="self">Self</span>::POSITIVE_X.<span class="number">0</span>, <span class="string">"POSITIVE_X"</span>, <span class="string">"PositiveX"</span>),
+            (<span class="self">Self</span>::POSITIVE_Y.<span class="number">0</span>, <span class="string">"POSITIVE_Y"</span>, <span class="string">"PositiveY"</span>),
+            (<span class="self">Self</span>::NEGATIVE_X.<span class="number">0</span>, <span class="string">"NEGATIVE_X"</span>, <span class="string">"NegativeX"</span>),
+            (<span class="self">Self</span>::NEGATIVE_Y.<span class="number">0</span>, <span class="string">"NEGATIVE_Y"</span>, <span class="string">"NegativeY"</span>),
         ];
         pretty_print_bitmask(fmt, <span class="self">self</span>.<span class="number">0</span>, <span class="kw-2">&amp;</span>variants)
     }
@@ -7098,9 +7099,9 @@
 <span class="doccomment">/// Opcode for the CreatePointerBarrier request
 </span><span class="kw">pub const </span>CREATE_POINTER_BARRIER_REQUEST: u8 = <span class="number">31</span>;
 <span class="attr">#[derive(Clone, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
-</span><span class="kw">pub struct </span>CreatePointerBarrierRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
+</span><span class="kw">pub struct </span>CreatePointerBarrierRequest&lt;<span class="lifetime">'input</span>&gt; {
     <span class="kw">pub </span>barrier: Barrier,
     <span class="kw">pub </span>window: xproto::Window,
     <span class="kw">pub </span>x1: u16,
@@ -7108,12 +7109,12 @@
     <span class="kw">pub </span>x2: u16,
     <span class="kw">pub </span>y2: u16,
     <span class="kw">pub </span>directions: BarrierDirections,
-    <span class="kw">pub </span>devices: Cow&lt;<span class="lifetime">&#39;input</span>, [u16]&gt;,
+    <span class="kw">pub </span>devices: Cow&lt;<span class="lifetime">'input</span>, [u16]&gt;,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(CreatePointerBarrierRequest&lt;<span class="lifetime">&#39;_</span>&gt;, <span class="string">&quot;CreatePointerBarrierRequest&quot;</span>);
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;input</span>&gt; CreatePointerBarrierRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
+<span class="macro">impl_debug_if_no_extra_traits!</span>(CreatePointerBarrierRequest&lt;<span class="lifetime">'_</span>&gt;, <span class="string">"CreatePointerBarrierRequest"</span>);
+<span class="kw">impl</span>&lt;<span class="lifetime">'input</span>&gt; CreatePointerBarrierRequest&lt;<span class="lifetime">'input</span>&gt; {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;input</span>, [u8]&gt;; <span class="number">3</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'input</span>, [u8]&gt;; <span class="number">3</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>barrier_bytes = <span class="self">self</span>.barrier.serialize();
         <span class="kw">let </span>window_bytes = <span class="self">self</span>.window.serialize();
@@ -7122,7 +7123,7 @@
         <span class="kw">let </span>x2_bytes = <span class="self">self</span>.x2.serialize();
         <span class="kw">let </span>y2_bytes = <span class="self">self</span>.y2.serialize();
         <span class="kw">let </span>directions_bytes = u32::from(<span class="self">self</span>.directions).serialize();
-        <span class="kw">let </span>num_devices = u16::try_from(<span class="self">self</span>.devices.len()).expect(<span class="string">&quot;`devices` has too many elements&quot;</span>);
+        <span class="kw">let </span>num_devices = u16::try_from(<span class="self">self</span>.devices.len()).expect(<span class="string">"`devices` has too many elements"</span>);
         <span class="kw">let </span>num_devices_bytes = num_devices.serialize();
         <span class="kw">let </span><span class="kw-2">mut </span>request0 = <span class="macro">vec!</span>[
             major_opcode,
@@ -7165,8 +7166,8 @@
         ([request0.into(), devices_bytes.into(), padding0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
-    </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
+    </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != CREATE_POINTER_BARRIER_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
         }
@@ -7194,7 +7195,7 @@
         })
     }
     <span class="doccomment">/// Clone all borrowed data in this CreatePointerBarrierRequest.
-    </span><span class="kw">pub fn </span>into_owned(<span class="self">self</span>) -&gt; CreatePointerBarrierRequest&lt;<span class="lifetime">&#39;static</span>&gt; {
+    </span><span class="kw">pub fn </span>into_owned(<span class="self">self</span>) -&gt; CreatePointerBarrierRequest&lt;<span class="lifetime">'static</span>&gt; {
         CreatePointerBarrierRequest {
             barrier: <span class="self">self</span>.barrier,
             window: <span class="self">self</span>.window,
@@ -7207,8 +7208,8 @@
         }
     }
 }
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;input</span>&gt; Request <span class="kw">for </span>CreatePointerBarrierRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+<span class="kw">impl</span>&lt;<span class="lifetime">'input</span>&gt; Request <span class="kw">for </span>CreatePointerBarrierRequest&lt;<span class="lifetime">'input</span>&gt; {
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -7217,21 +7218,21 @@
         (buf, fds)
     }
 }
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;input</span>&gt; <span class="kw">crate</span>::x11_utils::VoidRequest <span class="kw">for </span>CreatePointerBarrierRequest&lt;<span class="lifetime">&#39;input</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'input</span>&gt; <span class="kw">crate</span>::x11_utils::VoidRequest <span class="kw">for </span>CreatePointerBarrierRequest&lt;<span class="lifetime">'input</span>&gt; {
 }
 
 <span class="doccomment">/// Opcode for the DeletePointerBarrier request
 </span><span class="kw">pub const </span>DELETE_POINTER_BARRIER_REQUEST: u8 = <span class="number">32</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>DeletePointerBarrierRequest {
     <span class="kw">pub </span>barrier: Barrier,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(DeletePointerBarrierRequest, <span class="string">&quot;DeletePointerBarrierRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(DeletePointerBarrierRequest, <span class="string">"DeletePointerBarrierRequest"</span>);
 <span class="kw">impl </span>DeletePointerBarrierRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>barrier_bytes = <span class="self">self</span>.barrier.serialize();
         <span class="kw">let </span><span class="kw-2">mut </span>request0 = <span class="macro">vec!</span>[
@@ -7251,7 +7252,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != DELETE_POINTER_BARRIER_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -7264,7 +7265,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>DeletePointerBarrierRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -7278,14 +7279,14 @@
 
 <span class="doccomment">/// # Fields
 ///
-/// * `Default` - The default behavior for regular clients: the X11 server won&#39;t terminate as long
+/// * `Default` - The default behavior for regular clients: the X11 server won't terminate as long
 /// as such clients are still connected, and should this client disconnect, the
 /// server will continue running so long as other clients (that have not set
 /// XFixesClientDisconnectFlagTerminate) are connected.
 /// * `Terminate` - Indicates to the X11 server that it can ignore the client and terminate itself
 /// even though the client is still connected to the X11 server.
 </span><span class="attr">#[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>ClientDisconnectFlags(u32);
 <span class="kw">impl </span>ClientDisconnectFlags {
     <span class="kw">pub const </span>DEFAULT: <span class="self">Self </span>= <span class="self">Self</span>(<span class="number">0</span>);
@@ -7322,10 +7323,10 @@
     }
 }
 <span class="kw">impl </span>core::fmt::Debug <span class="kw">for </span>ClientDisconnectFlags  {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; core::fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, fmt: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; core::fmt::Result {
         <span class="kw">let </span>variants = [
-            (<span class="self">Self</span>::DEFAULT.<span class="number">0</span>, <span class="string">&quot;DEFAULT&quot;</span>, <span class="string">&quot;Default&quot;</span>),
-            (<span class="self">Self</span>::TERMINATE.<span class="number">0</span>, <span class="string">&quot;TERMINATE&quot;</span>, <span class="string">&quot;Terminate&quot;</span>),
+            (<span class="self">Self</span>::DEFAULT.<span class="number">0</span>, <span class="string">"DEFAULT"</span>, <span class="string">"Default"</span>),
+            (<span class="self">Self</span>::TERMINATE.<span class="number">0</span>, <span class="string">"TERMINATE"</span>, <span class="string">"Terminate"</span>),
         ];
         pretty_print_bitmask(fmt, <span class="self">self</span>.<span class="number">0</span>, <span class="kw-2">&amp;</span>variants)
     }
@@ -7340,15 +7341,15 @@
 ///
 /// * `disconnect_mode` - The new disconnect mode.
 </span><span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>SetClientDisconnectModeRequest {
     <span class="kw">pub </span>disconnect_mode: ClientDisconnectFlags,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(SetClientDisconnectModeRequest, <span class="string">&quot;SetClientDisconnectModeRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(SetClientDisconnectModeRequest, <span class="string">"SetClientDisconnectModeRequest"</span>);
 <span class="kw">impl </span>SetClientDisconnectModeRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span>disconnect_mode_bytes = u32::from(<span class="self">self</span>.disconnect_mode).serialize();
         <span class="kw">let </span><span class="kw-2">mut </span>request0 = <span class="macro">vec!</span>[
@@ -7368,7 +7369,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != SET_CLIENT_DISCONNECT_MODE_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -7382,7 +7383,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>SetClientDisconnectModeRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -7397,13 +7398,13 @@
 <span class="doccomment">/// Opcode for the GetClientDisconnectMode request
 </span><span class="kw">pub const </span>GET_CLIENT_DISCONNECT_MODE_REQUEST: u8 = <span class="number">34</span>;
 <span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>GetClientDisconnectModeRequest;
-<span class="macro">impl_debug_if_no_extra_traits!</span>(GetClientDisconnectModeRequest, <span class="string">&quot;GetClientDisconnectModeRequest&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(GetClientDisconnectModeRequest, <span class="string">"GetClientDisconnectModeRequest"</span>);
 <span class="kw">impl </span>GetClientDisconnectModeRequest {
     <span class="doccomment">/// Serialize this request into bytes for the provided connection
-    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">&#39;static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
+    </span><span class="kw">pub fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;[Cow&lt;<span class="lifetime">'static</span>, [u8]&gt;; <span class="number">1</span>]&gt; {
         <span class="kw">let </span>length_so_far = <span class="number">0</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>request0 = <span class="macro">vec!</span>[
             major_opcode,
@@ -7418,7 +7419,7 @@
         ([request0.into()], <span class="macro">vec!</span>[])
     }
     <span class="doccomment">/// Parse this request given its header, its body, and any fds that go along with it
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;request-parsing&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"request-parsing"</span>)]
     </span><span class="kw">pub fn </span>try_parse_request(header: RequestHeader, value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ParseError&gt; {
         <span class="kw">if </span>header.minor_opcode != GET_CLIENT_DISCONNECT_MODE_REQUEST {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ParseError::InvalidValue);
@@ -7429,7 +7430,7 @@
     }
 }
 <span class="kw">impl </span>Request <span class="kw">for </span>GetClientDisconnectModeRequest {
-    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
+    <span class="kw">const </span>EXTENSION_NAME: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="prelude-val">Some</span>(X11_EXTENSION_NAME);
 
     <span class="kw">fn </span>serialize(<span class="self">self</span>, major_opcode: u8) -&gt; BufWithFds&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span>(bufs, fds) = <span class="self">self</span>.serialize(major_opcode);
@@ -7448,14 +7449,14 @@
 ///
 /// * `disconnect_mode` - The current disconnect mode.
 </span><span class="attr">#[derive(Clone, Copy, Default)]
-#[cfg_attr(feature = <span class="string">&quot;extra-traits&quot;</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"extra-traits"</span>, derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>GetClientDisconnectModeReply {
     <span class="kw">pub </span>sequence: u16,
     <span class="kw">pub </span>length: u32,
     <span class="kw">pub </span>disconnect_mode: ClientDisconnectFlags,
 }
-<span class="macro">impl_debug_if_no_extra_traits!</span>(GetClientDisconnectModeReply, <span class="string">&quot;GetClientDisconnectModeReply&quot;</span>);
+<span class="macro">impl_debug_if_no_extra_traits!</span>(GetClientDisconnectModeReply, <span class="string">"GetClientDisconnectModeReply"</span>);
 <span class="kw">impl </span>TryParse <span class="kw">for </span>GetClientDisconnectModeReply {
     <span class="kw">fn </span>try_parse(initial_value: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, <span class="kw-2">&amp;</span>[u8]), ParseError&gt; {
         <span class="kw">let </span>remaining = initial_value;

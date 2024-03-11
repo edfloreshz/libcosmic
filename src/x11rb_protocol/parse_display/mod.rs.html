@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-protocol-0.13.0/src/parse_display/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb_protocol" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-protocol-0.13.0/src/parse_display/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb_protocol" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -674,7 +675,7 @@
 <span class="kw">impl </span>ParsedDisplay {
     <span class="doccomment">/// Get an iterator over `ConnectAddress`es from this parsed display for connecting
     /// to the server.
-    </span><span class="kw">pub fn </span>connect_instruction(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">impl </span>Iterator&lt;Item = ConnectAddress&lt;<span class="lifetime">&#39;_</span>&gt;&gt; {
+    </span><span class="kw">pub fn </span>connect_instruction(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">impl </span>Iterator&lt;Item = ConnectAddress&lt;<span class="lifetime">'_</span>&gt;&gt; {
         connect_instruction::connect_addresses(<span class="self">self</span>)
     }
 }
@@ -684,7 +685,7 @@
 /// If `dpy_name` is `None`, the display is parsed from the environment variable `DISPLAY`.
 ///
 /// This function is only available when the `std` feature is enabled.
-</span><span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+</span><span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
 </span><span class="kw">pub fn </span>parse_display(dpy_name: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;ParsedDisplay, DisplayParsingError&gt; {
     <span class="kw">fn </span>file_exists(path: <span class="kw-2">&amp;</span>str) -&gt; bool {
         std::path::Path::new(path).exists()
@@ -693,7 +694,7 @@
     <span class="kw">match </span>dpy_name {
         <span class="prelude-val">Some</span>(dpy_name) =&gt; parse_display_with_file_exists_callback(dpy_name, file_exists),
         <span class="comment">// If no dpy name was provided, use the env var. If no env var exists, return an error.
-        </span><span class="prelude-val">None </span>=&gt; <span class="kw">match </span>std::env::var(<span class="string">&quot;DISPLAY&quot;</span>) {
+        </span><span class="prelude-val">None </span>=&gt; <span class="kw">match </span>std::env::var(<span class="string">"DISPLAY"</span>) {
             <span class="prelude-val">Ok</span>(dpy_name) =&gt; parse_display_with_file_exists_callback(<span class="kw-2">&amp;</span>dpy_name, file_exists),
             <span class="prelude-val">Err</span>(std::env::VarError::NotPresent) =&gt; <span class="prelude-val">Err</span>(DisplayParsingError::DisplayNotSet),
             <span class="prelude-val">Err</span>(std::env::VarError::NotUnicode(<span class="kw">_</span>)) =&gt; <span class="prelude-val">Err</span>(DisplayParsingError::NotUnicode),
@@ -714,28 +715,28 @@
     <span class="kw">let </span>malformed = || DisplayParsingError::MalformedValue(dpy_name.to_string().into());
     <span class="kw">let </span>map_malformed = |<span class="kw">_</span>| malformed();
 
-    <span class="kw">if </span>dpy_name.starts_with(<span class="string">&#39;/&#39;</span>) {
+    <span class="kw">if </span>dpy_name.starts_with(<span class="string">'/'</span>) {
         <span class="kw">return </span>parse_display_direct_path(dpy_name, file_exists);
     }
-    <span class="kw">if let </span><span class="prelude-val">Some</span>(remaining) = dpy_name.strip_prefix(<span class="string">&quot;unix:&quot;</span>) {
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(remaining) = dpy_name.strip_prefix(<span class="string">"unix:"</span>) {
         <span class="kw">return </span>parse_display_direct_path(remaining, file_exists);
     }
 
-    <span class="comment">// Everything up to the last &#39;/&#39; is the protocol. This part is optional.
-    </span><span class="kw">let </span>(protocol, remaining) = <span class="kw">if let </span><span class="prelude-val">Some</span>(pos) = dpy_name.rfind(<span class="string">&#39;/&#39;</span>) {
+    <span class="comment">// Everything up to the last '/' is the protocol. This part is optional.
+    </span><span class="kw">let </span>(protocol, remaining) = <span class="kw">if let </span><span class="prelude-val">Some</span>(pos) = dpy_name.rfind(<span class="string">'/'</span>) {
         (<span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>dpy_name[..pos]), <span class="kw-2">&amp;</span>dpy_name[pos + <span class="number">1</span>..])
     } <span class="kw">else </span>{
         (<span class="prelude-val">None</span>, dpy_name)
     };
 
-    <span class="comment">// Everything up to the last &#39;:&#39; is the host. This part is required.
-    </span><span class="kw">let </span>pos = remaining.rfind(<span class="string">&#39;:&#39;</span>).ok_or_else(malformed)<span class="question-mark">?</span>;
+    <span class="comment">// Everything up to the last ':' is the host. This part is required.
+    </span><span class="kw">let </span>pos = remaining.rfind(<span class="string">':'</span>).ok_or_else(malformed)<span class="question-mark">?</span>;
     <span class="kw">let </span>(host, remaining) = (<span class="kw-2">&amp;</span>remaining[..pos], <span class="kw-2">&amp;</span>remaining[pos + <span class="number">1</span>..]);
 
     <span class="comment">// The remaining part is display.screen. The display is required and the screen optional.
-    </span><span class="kw">let </span>(display, screen) = <span class="kw">match </span>remaining.find(<span class="string">&#39;.&#39;</span>) {
+    </span><span class="kw">let </span>(display, screen) = <span class="kw">match </span>remaining.find(<span class="string">'.'</span>) {
         <span class="prelude-val">Some</span>(pos) =&gt; (<span class="kw-2">&amp;</span>remaining[..pos], <span class="kw-2">&amp;</span>remaining[pos + <span class="number">1</span>..]),
-        <span class="prelude-val">None </span>=&gt; (remaining, <span class="string">&quot;0&quot;</span>),
+        <span class="prelude-val">None </span>=&gt; (remaining, <span class="string">"0"</span>),
     };
 
     <span class="comment">// Parse the display and screen number
@@ -754,7 +755,7 @@
     })
 }
 
-<span class="comment">// Check for &quot;launchd mode&quot; where we get the full path to a unix socket
+<span class="comment">// Check for "launchd mode" where we get the full path to a unix socket
 </span><span class="kw">fn </span>parse_display_direct_path(
     dpy_name: <span class="kw-2">&amp;</span>str,
     file_exists: <span class="kw">impl </span>Fn(<span class="kw-2">&amp;</span>str) -&gt; bool,
@@ -762,18 +763,18 @@
     <span class="kw">if </span>file_exists(dpy_name) {
         <span class="kw">return </span><span class="prelude-val">Ok</span>(ParsedDisplay {
             host: dpy_name.to_string(),
-            protocol: <span class="prelude-val">Some</span>(<span class="string">&quot;unix&quot;</span>.to_string()),
+            protocol: <span class="prelude-val">Some</span>(<span class="string">"unix"</span>.to_string()),
             display: <span class="number">0</span>,
             screen: <span class="number">0</span>,
         });
     }
 
-    <span class="comment">// Optionally, a screen number may be appended as &quot;.n&quot;.
-    </span><span class="kw">if let </span><span class="prelude-val">Some</span>((path, screen)) = dpy_name.rsplit_once(<span class="string">&#39;.&#39;</span>) {
+    <span class="comment">// Optionally, a screen number may be appended as ".n".
+    </span><span class="kw">if let </span><span class="prelude-val">Some</span>((path, screen)) = dpy_name.rsplit_once(<span class="string">'.'</span>) {
         <span class="kw">if </span>file_exists(path) {
             <span class="kw">return </span><span class="prelude-val">Ok</span>(ParsedDisplay {
                 host: path.to_string(),
-                protocol: <span class="prelude-val">Some</span>(<span class="string">&quot;unix&quot;</span>.to_string()),
+                protocol: <span class="prelude-val">Some</span>(<span class="string">"unix"</span>.to_string()),
                 display: <span class="number">0</span>,
                 screen: screen.parse().map_err(|<span class="kw">_</span>| {
                     DisplayParsingError::MalformedValue(dpy_name.to_string().into())
@@ -795,10 +796,10 @@
     <span class="kw">use </span>core::cell::RefCell;
 
     <span class="kw">fn </span>do_parse_display(input: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;ParsedDisplay, DisplayParsingError&gt; {
-        std::env::set_var(<span class="string">&quot;DISPLAY&quot;</span>, input);
+        std::env::set_var(<span class="string">"DISPLAY"</span>, input);
         <span class="kw">let </span>result1 = parse_display(<span class="prelude-val">None</span>);
 
-        std::env::remove_var(<span class="string">&quot;DISPLAY&quot;</span>);
+        std::env::remove_var(<span class="string">"DISPLAY"</span>);
         <span class="kw">let </span>result2 = parse_display(<span class="prelude-val">Some</span>(input));
 
         <span class="macro">assert_eq!</span>(result1, result2);
@@ -818,7 +819,7 @@
     }
 
     <span class="kw">fn </span>test_missing_input() {
-        std::env::remove_var(<span class="string">&quot;DISPLAY&quot;</span>);
+        std::env::remove_var(<span class="string">"DISPLAY"</span>);
         <span class="macro">assert_eq!</span>(parse_display(<span class="prelude-val">None</span>), <span class="prelude-val">Err</span>(DisplayParsingError::DisplayNotSet));
     }
 
@@ -826,28 +827,28 @@
         <span class="comment">// The XCB test suite does not test protocol parsing
         </span><span class="kw">for </span>(input, output) <span class="kw">in </span><span class="kw-2">&amp;</span>[
             (
-                <span class="string">&quot;foo/bar:1&quot;</span>,
+                <span class="string">"foo/bar:1"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;bar&quot;</span>.to_string(),
-                    protocol: <span class="prelude-val">Some</span>(<span class="string">&quot;foo&quot;</span>.to_string()),
+                    host: <span class="string">"bar"</span>.to_string(),
+                    protocol: <span class="prelude-val">Some</span>(<span class="string">"foo"</span>.to_string()),
                     display: <span class="number">1</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;foo/bar:1.2&quot;</span>,
+                <span class="string">"foo/bar:1.2"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;bar&quot;</span>.to_string(),
-                    protocol: <span class="prelude-val">Some</span>(<span class="string">&quot;foo&quot;</span>.to_string()),
+                    host: <span class="string">"bar"</span>.to_string(),
+                    protocol: <span class="prelude-val">Some</span>(<span class="string">"foo"</span>.to_string()),
                     display: <span class="number">1</span>,
                     screen: <span class="number">2</span>,
                 },
             ),
             (
-                <span class="string">&quot;a:b/c/foo:bar:1.2&quot;</span>,
+                <span class="string">"a:b/c/foo:bar:1.2"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;foo:bar&quot;</span>.to_string(),
-                    protocol: <span class="prelude-val">Some</span>(<span class="string">&quot;a:b/c&quot;</span>.to_string()),
+                    host: <span class="string">"foo:bar"</span>.to_string(),
+                    protocol: <span class="prelude-val">Some</span>(<span class="string">"a:b/c"</span>.to_string()),
                     display: <span class="number">1</span>,
                     screen: <span class="number">2</span>,
                 },
@@ -856,90 +857,90 @@
             <span class="macro">assert_eq!</span>(
                 do_parse_display(input).as_ref(),
                 <span class="prelude-val">Ok</span>(output),
-                <span class="string">&quot;Failed parsing correctly: {}&quot;</span>,
+                <span class="string">"Failed parsing correctly: {}"</span>,
                 input
             );
         }
     }
 
     <span class="kw">fn </span>own_bad_cases() {
-        <span class="kw">let </span>non_existing_file = <span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;CARGO_MANIFEST_DIR&quot;</span>), <span class="string">&quot;/this_file_does_not_exist&quot;</span>);
+        <span class="kw">let </span>non_existing_file = <span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"CARGO_MANIFEST_DIR"</span>), <span class="string">"/this_file_does_not_exist"</span>);
         <span class="macro">assert_eq!</span>(
             do_parse_display(non_existing_file),
             <span class="prelude-val">Err</span>(DisplayParsingError::MalformedValue(
                 non_existing_file.to_string().into()
             )),
-            <span class="string">&quot;Unexpectedly parsed: {}&quot;</span>,
+            <span class="string">"Unexpectedly parsed: {}"</span>,
             non_existing_file
         );
     }
 
-    <span class="comment">// Based on libxcb&#39;s test suite; (C) 2001-2006 Bart Massey, Jamey Sharp, and Josh Triplett
+    <span class="comment">// Based on libxcb's test suite; (C) 2001-2006 Bart Massey, Jamey Sharp, and Josh Triplett
     </span><span class="kw">fn </span>xcb_good_cases() {
         <span class="comment">// The libxcb code creates a temporary file. We can just use a known-to-exist file.
-        </span><span class="kw">let </span>existing_file = <span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;CARGO_MANIFEST_DIR&quot;</span>), <span class="string">&quot;/Cargo.toml&quot;</span>);
+        </span><span class="kw">let </span>existing_file = <span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"CARGO_MANIFEST_DIR"</span>), <span class="string">"/Cargo.toml"</span>);
 
         <span class="kw">for </span>(input, output) <span class="kw">in </span><span class="kw-2">&amp;</span>[
-            <span class="comment">// unix in &quot;launchd mode&quot;
+            <span class="comment">// unix in "launchd mode"
             </span>(
                 existing_file,
                 ParsedDisplay {
                     host: existing_file.to_string(),
-                    protocol: <span class="prelude-val">Some</span>(<span class="string">&quot;unix&quot;</span>.to_string()),
+                    protocol: <span class="prelude-val">Some</span>(<span class="string">"unix"</span>.to_string()),
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="kw-2">&amp;</span><span class="macro">alloc::format!</span>(<span class="string">&quot;unix:{existing_file}&quot;</span>),
+                <span class="kw-2">&amp;</span><span class="macro">alloc::format!</span>(<span class="string">"unix:{existing_file}"</span>),
                 ParsedDisplay {
                     host: existing_file.to_string(),
-                    protocol: <span class="prelude-val">Some</span>(<span class="string">&quot;unix&quot;</span>.to_string()),
+                    protocol: <span class="prelude-val">Some</span>(<span class="string">"unix"</span>.to_string()),
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="kw-2">&amp;</span><span class="macro">alloc::format!</span>(<span class="string">&quot;unix:{existing_file}.1&quot;</span>),
+                <span class="kw-2">&amp;</span><span class="macro">alloc::format!</span>(<span class="string">"unix:{existing_file}.1"</span>),
                 ParsedDisplay {
                     host: existing_file.to_string(),
-                    protocol: <span class="prelude-val">Some</span>(<span class="string">&quot;unix&quot;</span>.to_string()),
+                    protocol: <span class="prelude-val">Some</span>(<span class="string">"unix"</span>.to_string()),
                     display: <span class="number">0</span>,
                     screen: <span class="number">1</span>,
                 },
             ),
             (
-                <span class="kw-2">&amp;</span><span class="macro">alloc::format!</span>(<span class="string">&quot;{existing_file}.1&quot;</span>),
+                <span class="kw-2">&amp;</span><span class="macro">alloc::format!</span>(<span class="string">"{existing_file}.1"</span>),
                 ParsedDisplay {
                     host: existing_file.to_string(),
-                    protocol: <span class="prelude-val">Some</span>(<span class="string">&quot;unix&quot;</span>.to_string()),
+                    protocol: <span class="prelude-val">Some</span>(<span class="string">"unix"</span>.to_string()),
                     display: <span class="number">0</span>,
                     screen: <span class="number">1</span>,
                 },
             ),
             <span class="comment">// unix
             </span>(
-                <span class="string">&quot;:0&quot;</span>,
+                <span class="string">":0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;&quot;</span>.to_string(),
+                    host: <span class="string">""</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;:1&quot;</span>,
+                <span class="string">":1"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;&quot;</span>.to_string(),
+                    host: <span class="string">""</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">1</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;:0.1&quot;</span>,
+                <span class="string">":0.1"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;&quot;</span>.to_string(),
+                    host: <span class="string">""</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">1</span>,
@@ -947,36 +948,36 @@
             ),
             <span class="comment">// ip
             </span>(
-                <span class="string">&quot;x.org:0&quot;</span>,
+                <span class="string">"x.org:0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;x.org&quot;</span>.to_string(),
+                    host: <span class="string">"x.org"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;expo:0&quot;</span>,
+                <span class="string">"expo:0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;expo&quot;</span>.to_string(),
+                    host: <span class="string">"expo"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;bigmachine:1&quot;</span>,
+                <span class="string">"bigmachine:1"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;bigmachine&quot;</span>.to_string(),
+                    host: <span class="string">"bigmachine"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">1</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;hydra:0.1&quot;</span>,
+                <span class="string">"hydra:0.1"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;hydra&quot;</span>.to_string(),
+                    host: <span class="string">"hydra"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">1</span>,
@@ -984,18 +985,18 @@
             ),
             <span class="comment">// ipv4
             </span>(
-                <span class="string">&quot;198.112.45.11:0&quot;</span>,
+                <span class="string">"198.112.45.11:0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;198.112.45.11&quot;</span>.to_string(),
+                    host: <span class="string">"198.112.45.11"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;198.112.45.11:0.1&quot;</span>,
+                <span class="string">"198.112.45.11:0.1"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;198.112.45.11&quot;</span>.to_string(),
+                    host: <span class="string">"198.112.45.11"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">1</span>,
@@ -1003,135 +1004,135 @@
             ),
             <span class="comment">// ipv6
             </span>(
-                <span class="string">&quot;:::0&quot;</span>,
+                <span class="string">":::0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;::&quot;</span>.to_string(),
+                    host: <span class="string">"::"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;1:::0&quot;</span>,
+                <span class="string">"1:::0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;1::&quot;</span>.to_string(),
+                    host: <span class="string">"1::"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;::1:0&quot;</span>,
+                <span class="string">"::1:0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;::1&quot;</span>.to_string(),
+                    host: <span class="string">"::1"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;::1:0.1&quot;</span>,
+                <span class="string">"::1:0.1"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;::1&quot;</span>.to_string(),
+                    host: <span class="string">"::1"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">1</span>,
                 },
             ),
             (
-                <span class="string">&quot;::127.0.0.1:0&quot;</span>,
+                <span class="string">"::127.0.0.1:0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;::127.0.0.1&quot;</span>.to_string(),
+                    host: <span class="string">"::127.0.0.1"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;::ffff:127.0.0.1:0&quot;</span>,
+                <span class="string">"::ffff:127.0.0.1:0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;::ffff:127.0.0.1&quot;</span>.to_string(),
+                    host: <span class="string">"::ffff:127.0.0.1"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;2002:83fc:3052::1:0&quot;</span>,
+                <span class="string">"2002:83fc:3052::1:0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;2002:83fc:3052::1&quot;</span>.to_string(),
+                    host: <span class="string">"2002:83fc:3052::1"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;2002:83fc:3052::1:0.1&quot;</span>,
+                <span class="string">"2002:83fc:3052::1:0.1"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;2002:83fc:3052::1&quot;</span>.to_string(),
+                    host: <span class="string">"2002:83fc:3052::1"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">1</span>,
                 },
             ),
             (
-                <span class="string">&quot;[::]:0&quot;</span>,
+                <span class="string">"[::]:0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;[::]&quot;</span>.to_string(),
+                    host: <span class="string">"[::]"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;[1::]:0&quot;</span>,
+                <span class="string">"[1::]:0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;[1::]&quot;</span>.to_string(),
+                    host: <span class="string">"[1::]"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;[::1]:0&quot;</span>,
+                <span class="string">"[::1]:0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;[::1]&quot;</span>.to_string(),
+                    host: <span class="string">"[::1]"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;[::1]:0.1&quot;</span>,
+                <span class="string">"[::1]:0.1"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;[::1]&quot;</span>.to_string(),
+                    host: <span class="string">"[::1]"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">1</span>,
                 },
             ),
             (
-                <span class="string">&quot;[::127.0.0.1]:0&quot;</span>,
+                <span class="string">"[::127.0.0.1]:0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;[::127.0.0.1]&quot;</span>.to_string(),
+                    host: <span class="string">"[::127.0.0.1]"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;[2002:83fc:d052::1]:0&quot;</span>,
+                <span class="string">"[2002:83fc:d052::1]:0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;[2002:83fc:d052::1]&quot;</span>.to_string(),
+                    host: <span class="string">"[2002:83fc:d052::1]"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;[2002:83fc:d052::1]:0.1&quot;</span>,
+                <span class="string">"[2002:83fc:d052::1]:0.1"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;[2002:83fc:d052::1]&quot;</span>.to_string(),
+                    host: <span class="string">"[2002:83fc:d052::1]"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">1</span>,
@@ -1139,27 +1140,27 @@
             ),
             <span class="comment">// decnet
             </span>(
-                <span class="string">&quot;myws::0&quot;</span>,
+                <span class="string">"myws::0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;myws:&quot;</span>.to_string(),
+                    host: <span class="string">"myws:"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;big::0&quot;</span>,
+                <span class="string">"big::0"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;big:&quot;</span>.to_string(),
+                    host: <span class="string">"big:"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">0</span>,
                 },
             ),
             (
-                <span class="string">&quot;hydra::0.1&quot;</span>,
+                <span class="string">"hydra::0.1"</span>,
                 ParsedDisplay {
-                    host: <span class="string">&quot;hydra:&quot;</span>.to_string(),
+                    host: <span class="string">"hydra:"</span>.to_string(),
                     protocol: <span class="prelude-val">None</span>,
                     display: <span class="number">0</span>,
                     screen: <span class="number">1</span>,
@@ -1169,46 +1170,46 @@
             <span class="macro">assert_eq!</span>(
                 do_parse_display(input).as_ref(),
                 <span class="prelude-val">Ok</span>(output),
-                <span class="string">&quot;Failed parsing correctly: {}&quot;</span>,
+                <span class="string">"Failed parsing correctly: {}"</span>,
                 input
             );
         }
     }
 
-    <span class="comment">// Based on libxcb&#39;s test suite; (C) 2001-2006 Bart Massey, Jamey Sharp, and Josh Triplett
+    <span class="comment">// Based on libxcb's test suite; (C) 2001-2006 Bart Massey, Jamey Sharp, and Josh Triplett
     </span><span class="kw">fn </span>xcb_bad_cases() {
         <span class="kw">for </span>input <span class="kw">in </span><span class="kw-2">&amp;</span>[
-            <span class="string">&quot;&quot;</span>,
-            <span class="string">&quot;:&quot;</span>,
-            <span class="string">&quot;::&quot;</span>,
-            <span class="string">&quot;:::&quot;</span>,
-            <span class="string">&quot;:.&quot;</span>,
-            <span class="string">&quot;:a&quot;</span>,
-            <span class="string">&quot;:a.&quot;</span>,
-            <span class="string">&quot;:0.&quot;</span>,
-            <span class="string">&quot;:.a&quot;</span>,
-            <span class="string">&quot;:.0&quot;</span>,
-            <span class="string">&quot;:0.a&quot;</span>,
-            <span class="string">&quot;:0.0.&quot;</span>,
-            <span class="string">&quot;127.0.0.1&quot;</span>,
-            <span class="string">&quot;127.0.0.1:&quot;</span>,
-            <span class="string">&quot;127.0.0.1::&quot;</span>,
-            <span class="string">&quot;::127.0.0.1&quot;</span>,
-            <span class="string">&quot;::127.0.0.1:&quot;</span>,
-            <span class="string">&quot;::127.0.0.1::&quot;</span>,
-            <span class="string">&quot;::ffff:127.0.0.1&quot;</span>,
-            <span class="string">&quot;::ffff:127.0.0.1:&quot;</span>,
-            <span class="string">&quot;::ffff:127.0.0.1::&quot;</span>,
-            <span class="string">&quot;localhost&quot;</span>,
-            <span class="string">&quot;localhost:&quot;</span>,
-            <span class="string">&quot;localhost::&quot;</span>,
+            <span class="string">""</span>,
+            <span class="string">":"</span>,
+            <span class="string">"::"</span>,
+            <span class="string">":::"</span>,
+            <span class="string">":."</span>,
+            <span class="string">":a"</span>,
+            <span class="string">":a."</span>,
+            <span class="string">":0."</span>,
+            <span class="string">":.a"</span>,
+            <span class="string">":.0"</span>,
+            <span class="string">":0.a"</span>,
+            <span class="string">":0.0."</span>,
+            <span class="string">"127.0.0.1"</span>,
+            <span class="string">"127.0.0.1:"</span>,
+            <span class="string">"127.0.0.1::"</span>,
+            <span class="string">"::127.0.0.1"</span>,
+            <span class="string">"::127.0.0.1:"</span>,
+            <span class="string">"::127.0.0.1::"</span>,
+            <span class="string">"::ffff:127.0.0.1"</span>,
+            <span class="string">"::ffff:127.0.0.1:"</span>,
+            <span class="string">"::ffff:127.0.0.1::"</span>,
+            <span class="string">"localhost"</span>,
+            <span class="string">"localhost:"</span>,
+            <span class="string">"localhost::"</span>,
         ] {
             <span class="macro">assert_eq!</span>(
                 do_parse_display(input),
                 <span class="prelude-val">Err</span>(DisplayParsingError::MalformedValue(
                     input.to_string().into()
                 )),
-                <span class="string">&quot;Unexpectedly parsed: {}&quot;</span>,
+                <span class="string">"Unexpectedly parsed: {}"</span>,
                 input
             );
         }
@@ -1217,7 +1218,7 @@
     <span class="kw">fn </span>make_unix_path(host: <span class="kw-2">&amp;</span>str, screen: u16) -&gt; <span class="prelude-ty">Result</span>&lt;ParsedDisplay, DisplayParsingError&gt; {
         <span class="prelude-val">Ok</span>(ParsedDisplay {
             host: host.to_string(),
-            protocol: <span class="prelude-val">Some</span>(<span class="string">&quot;unix&quot;</span>.to_string()),
+            protocol: <span class="prelude-val">Some</span>(<span class="string">"unix"</span>.to_string()),
             display: <span class="number">0</span>,
             screen,
         })
@@ -1239,10 +1240,10 @@
             <span class="macro">assert_eq!</span>(result, make_unix_path(expected_path, <span class="number">0</span>));
         }
 
-        run_test(<span class="string">&quot;/path/to/file&quot;</span>, <span class="string">&quot;/path/to/file&quot;</span>);
-        run_test(<span class="string">&quot;/path/to/file.123&quot;</span>, <span class="string">&quot;/path/to/file.123&quot;</span>);
-        run_test(<span class="string">&quot;unix:whatever&quot;</span>, <span class="string">&quot;whatever&quot;</span>);
-        run_test(<span class="string">&quot;unix:whatever.123&quot;</span>, <span class="string">&quot;whatever.123&quot;</span>);
+        run_test(<span class="string">"/path/to/file"</span>, <span class="string">"/path/to/file"</span>);
+        run_test(<span class="string">"/path/to/file.123"</span>, <span class="string">"/path/to/file.123"</span>);
+        run_test(<span class="string">"unix:whatever"</span>, <span class="string">"whatever"</span>);
+        run_test(<span class="string">"unix:whatever.123"</span>, <span class="string">"whatever.123"</span>);
     }
 
     <span class="attr">#[test]
@@ -1254,14 +1255,14 @@
                 <span class="kw-2">*</span>called += <span class="number">1</span>;
                 <span class="kw">match </span><span class="kw-2">*</span>called {
                     <span class="number">1 </span>=&gt; {
-                        <span class="macro">assert_eq!</span>(path, <span class="macro">alloc::format!</span>(<span class="string">&quot;{expected_path}.42&quot;</span>));
+                        <span class="macro">assert_eq!</span>(path, <span class="macro">alloc::format!</span>(<span class="string">"{expected_path}.42"</span>));
                         <span class="bool-val">false
                     </span>}
                     <span class="number">2 </span>=&gt; {
                         <span class="macro">assert_eq!</span>(path, expected_path);
                         <span class="bool-val">true
                     </span>}
-                    <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Unexpected call count {}&quot;</span>, <span class="kw-2">*</span>called),
+                    <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">"Unexpected call count {}"</span>, <span class="kw-2">*</span>called),
                 }
             };
             <span class="kw">let </span>result = parse_display_with_file_exists_callback(display, callback);
@@ -1269,19 +1270,19 @@
             <span class="macro">assert_eq!</span>(result, make_unix_path(expected_path, <span class="number">42</span>));
         }
 
-        run_test(<span class="string">&quot;/path/to/file.42&quot;</span>, <span class="string">&quot;/path/to/file&quot;</span>);
-        run_test(<span class="string">&quot;unix:whatever.42&quot;</span>, <span class="string">&quot;whatever&quot;</span>);
+        run_test(<span class="string">"/path/to/file.42"</span>, <span class="string">"/path/to/file"</span>);
+        run_test(<span class="string">"unix:whatever.42"</span>, <span class="string">"whatever"</span>);
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>test_file_exists_callback_not_called_without_path() {
-        <span class="kw">let </span>callback = |path: <span class="kw-2">&amp;</span>str| <span class="macro">unreachable!</span>(<span class="string">&quot;Called with {path}&quot;</span>);
-        <span class="kw">let </span>result = parse_display_with_file_exists_callback(<span class="string">&quot;foo/bar:1.2&quot;</span>, callback);
+        <span class="kw">let </span>callback = |path: <span class="kw-2">&amp;</span>str| <span class="macro">unreachable!</span>(<span class="string">"Called with {path}"</span>);
+        <span class="kw">let </span>result = parse_display_with_file_exists_callback(<span class="string">"foo/bar:1.2"</span>, callback);
         <span class="macro">assert_eq!</span>(
             result,
             <span class="prelude-val">Ok</span>(ParsedDisplay {
-                host: <span class="string">&quot;bar&quot;</span>.to_string(),
-                protocol: <span class="prelude-val">Some</span>(<span class="string">&quot;foo&quot;</span>.to_string()),
+                host: <span class="string">"bar"</span>.to_string(),
+                protocol: <span class="prelude-val">Some</span>(<span class="string">"foo"</span>.to_string()),
                 display: <span class="number">1</span>,
                 screen: <span class="number">2</span>,
             },)

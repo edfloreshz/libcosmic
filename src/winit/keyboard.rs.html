@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/8987daa/src/keyboard.rs`."><title>keyboard.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/bdc6610/src/keyboard.rs`."><title>keyboard.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1834,12 +1835,12 @@
 // - Any pre-existing intellectual property disclaimers, notices, or terms and conditions. If none
 //   exist, the W3C Software and Document Short Notice should be included.
 // - Notice of any changes or modifications, through a copyright statement on the new code or
-//   document such as &quot;This software or document includes material copied from or derived from
-//   [title and URI of the W3C document]. Copyright © [YEAR] W3C® (MIT, ERCIM, Keio, Beihang).&quot;
+//   document such as "This software or document includes material copied from or derived from
+//   [title and URI of the W3C document]. Copyright © [YEAR] W3C® (MIT, ERCIM, Keio, Beihang)."
 //
 // Disclaimers
 //
-// THIS WORK IS PROVIDED &quot;AS IS,&quot; AND COPYRIGHT HOLDERS MAKE NO REPRESENTATIONS OR WARRANTIES,
+// THIS WORK IS PROVIDED "AS IS," AND COPYRIGHT HOLDERS MAKE NO REPRESENTATIONS OR WARRANTIES,
 // EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY OR FITNESS FOR
 // ANY PARTICULAR PURPOSE OR THAT THE USE OF THE SOFTWARE OR DOCUMENT WILL NOT INFRINGE ANY THIRD
 // PARTY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
@@ -1872,51 +1873,51 @@
 <span class="doccomment">/// Contains the platform-native physical key identifier
 ///
 /// The exact values vary from platform to platform (which is part of why this is a per-platform
-/// enum), but the values are primarily tied to the key&#39;s physical location on the keyboard.
+/// enum), but the values are primarily tied to the key's physical location on the keyboard.
 ///
-/// This enum is primarily used to store raw keycodes when Winit doesn&#39;t map a given native
+/// This enum is primarily used to store raw keycodes when Winit doesn't map a given native
 /// physical key identifier to a meaningful [`KeyCode`] variant. In the presence of identifiers we
-/// haven&#39;t mapped for you yet, this lets you use use [`KeyCode`] to:
+/// haven't mapped for you yet, this lets you use use [`KeyCode`] to:
 ///
 /// - Correctly match key press and release events.
 /// - On non-web platforms, support assigning keybinds to virtually any key through a UI.
 </span><span class="attr">#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>NativeKeyCode {
     Unidentified,
-    <span class="doccomment">/// An Android &quot;scancode&quot;.
+    <span class="doccomment">/// An Android "scancode".
     </span>Android(u32),
-    <span class="doccomment">/// A macOS &quot;scancode&quot;.
+    <span class="doccomment">/// A macOS "scancode".
     </span>MacOS(u16),
-    <span class="doccomment">/// A Windows &quot;scancode&quot;.
+    <span class="doccomment">/// A Windows "scancode".
     </span>Windows(u16),
-    <span class="doccomment">/// An XKB &quot;keycode&quot;.
+    <span class="doccomment">/// An XKB "keycode".
     </span>Xkb(u32),
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>NativeKeyCode {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; std::fmt::Result {
         <span class="kw">use </span>NativeKeyCode::{Android, MacOS, Unidentified, Windows, Xkb};
         <span class="kw">let </span><span class="kw-2">mut </span>debug_tuple;
         <span class="kw">match </span><span class="self">self </span>{
             Unidentified =&gt; {
-                debug_tuple = f.debug_tuple(<span class="string">&quot;Unidentified&quot;</span>);
+                debug_tuple = f.debug_tuple(<span class="string">"Unidentified"</span>);
             }
             Android(code) =&gt; {
-                debug_tuple = f.debug_tuple(<span class="string">&quot;Android&quot;</span>);
-                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{code:04X}&quot;</span>));
+                debug_tuple = f.debug_tuple(<span class="string">"Android"</span>);
+                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">"0x{code:04X}"</span>));
             }
             MacOS(code) =&gt; {
-                debug_tuple = f.debug_tuple(<span class="string">&quot;MacOS&quot;</span>);
-                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{code:04X}&quot;</span>));
+                debug_tuple = f.debug_tuple(<span class="string">"MacOS"</span>);
+                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">"0x{code:04X}"</span>));
             }
             Windows(code) =&gt; {
-                debug_tuple = f.debug_tuple(<span class="string">&quot;Windows&quot;</span>);
-                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{code:04X}&quot;</span>));
+                debug_tuple = f.debug_tuple(<span class="string">"Windows"</span>);
+                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">"0x{code:04X}"</span>));
             }
             Xkb(code) =&gt; {
-                debug_tuple = f.debug_tuple(<span class="string">&quot;Xkb&quot;</span>);
-                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{code:04X}&quot;</span>));
+                debug_tuple = f.debug_tuple(<span class="string">"Xkb"</span>);
+                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">"0x{code:04X}"</span>));
             }
         }
         debug_tuple.finish()
@@ -1930,52 +1931,52 @@
 /// different values on different platforms, which is one of the reasons this is a per-platform
 /// enum.
 ///
-/// This enum is primarily used to store raw keysym when Winit doesn&#39;t map a given native logical
+/// This enum is primarily used to store raw keysym when Winit doesn't map a given native logical
 /// key identifier to a meaningful [`Key`] variant. This lets you use [`Key`], and let the user
-/// define keybinds which work in the presence of identifiers we haven&#39;t mapped for you yet.
+/// define keybinds which work in the presence of identifiers we haven't mapped for you yet.
 </span><span class="attr">#[derive(Clone, PartialEq, Eq, Hash, PartialOrd, Ord)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>NativeKey {
     Unidentified,
-    <span class="doccomment">/// An Android &quot;keycode&quot;, which is similar to a &quot;virtual-key code&quot; on Windows.
+    <span class="doccomment">/// An Android "keycode", which is similar to a "virtual-key code" on Windows.
     </span>Android(u32),
-    <span class="doccomment">/// A macOS &quot;scancode&quot;. There does not appear to be any direct analogue to either keysyms or
-    /// &quot;virtual-key&quot; codes in macOS, so we report the scancode instead.
+    <span class="doccomment">/// A macOS "scancode". There does not appear to be any direct analogue to either keysyms or
+    /// "virtual-key" codes in macOS, so we report the scancode instead.
     </span>MacOS(u16),
-    <span class="doccomment">/// A Windows &quot;virtual-key code&quot;.
+    <span class="doccomment">/// A Windows "virtual-key code".
     </span>Windows(u16),
-    <span class="doccomment">/// An XKB &quot;keysym&quot;.
+    <span class="doccomment">/// An XKB "keysym".
     </span>Xkb(u32),
-    <span class="doccomment">/// A &quot;key value string&quot;.
+    <span class="doccomment">/// A "key value string".
     </span>Web(SmolStr),
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>NativeKey {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; std::fmt::Result {
         <span class="kw">use </span>NativeKey::{Android, MacOS, Unidentified, Web, Windows, Xkb};
         <span class="kw">let </span><span class="kw-2">mut </span>debug_tuple;
         <span class="kw">match </span><span class="self">self </span>{
             Unidentified =&gt; {
-                debug_tuple = f.debug_tuple(<span class="string">&quot;Unidentified&quot;</span>);
+                debug_tuple = f.debug_tuple(<span class="string">"Unidentified"</span>);
             }
             Android(code) =&gt; {
-                debug_tuple = f.debug_tuple(<span class="string">&quot;Android&quot;</span>);
-                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{code:04X}&quot;</span>));
+                debug_tuple = f.debug_tuple(<span class="string">"Android"</span>);
+                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">"0x{code:04X}"</span>));
             }
             MacOS(code) =&gt; {
-                debug_tuple = f.debug_tuple(<span class="string">&quot;MacOS&quot;</span>);
-                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{code:04X}&quot;</span>));
+                debug_tuple = f.debug_tuple(<span class="string">"MacOS"</span>);
+                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">"0x{code:04X}"</span>));
             }
             Windows(code) =&gt; {
-                debug_tuple = f.debug_tuple(<span class="string">&quot;Windows&quot;</span>);
-                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{code:04X}&quot;</span>));
+                debug_tuple = f.debug_tuple(<span class="string">"Windows"</span>);
+                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">"0x{code:04X}"</span>));
             }
             Xkb(code) =&gt; {
-                debug_tuple = f.debug_tuple(<span class="string">&quot;Xkb&quot;</span>);
-                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;0x{code:04X}&quot;</span>));
+                debug_tuple = f.debug_tuple(<span class="string">"Xkb"</span>);
+                debug_tuple.field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">"0x{code:04X}"</span>));
             }
             Web(code) =&gt; {
-                debug_tuple = f.debug_tuple(<span class="string">&quot;Web&quot;</span>);
+                debug_tuple = f.debug_tuple(<span class="string">"Web"</span>);
                 debug_tuple.field(code);
             }
         }
@@ -2016,13 +2017,13 @@
 /// This type is a superset of [`KeyCode`], including an [`Unidentified`](Self::Unidentified)
 /// variant.
 </span><span class="attr">#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>PhysicalKey {
     <span class="doccomment">/// A known key code
     </span>Code(KeyCode),
     <span class="doccomment">/// This variant is used when the key cannot be translated to a [`KeyCode`]
     ///
-    /// The native keycode is provided (if available) so you&#39;re able to more reliably match
+    /// The native keycode is provided (if available) so you're able to more reliably match
     /// key-press and key-release events by hashing the [`PhysicalKey`]. It is also possible to use
     /// this for keybinds for non-standard keys, but such keybinds are tied to a given platform.
     </span>Unidentified(NativeKeyCode),
@@ -2078,23 +2079,23 @@
 
 <span class="doccomment">/// Code representing the location of a physical key
 ///
-/// This mostly conforms to the UI Events Specification&#39;s [`KeyboardEvent.code`] with a few
+/// This mostly conforms to the UI Events Specification's [`KeyboardEvent.code`] with a few
 /// exceptions:
-/// - The keys that the specification calls &quot;MetaLeft&quot; and &quot;MetaRight&quot; are named &quot;SuperLeft&quot; and
-///   &quot;SuperRight&quot; here.
-/// - The key that the specification calls &quot;Super&quot; is reported as `Unidentified` here.
+/// - The keys that the specification calls "MetaLeft" and "MetaRight" are named "SuperLeft" and
+///   "SuperRight" here.
+/// - The key that the specification calls "Super" is reported as `Unidentified` here.
 ///
 /// [`KeyboardEvent.code`]: https://w3c.github.io/uievents-code/#code-value-tables
 </span><span class="attr">#[non_exhaustive]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>KeyCode {
     <span class="doccomment">/// &lt;kbd&gt;`&lt;/kbd&gt; on a US keyboard. This is also called a backtick or grave.
     /// This is the &lt;kbd&gt;半角&lt;/kbd&gt;/&lt;kbd&gt;全角&lt;/kbd&gt;/&lt;kbd&gt;漢字&lt;/kbd&gt;
     /// (hankaku/zenkaku/kanji) key on Japanese keyboards
     </span>Backquote,
     <span class="doccomment">/// Used for both the US &lt;kbd&gt;\\&lt;/kbd&gt; (on the 101-key layout) and also for the key
-    /// located between the &lt;kbd&gt;&quot;&lt;/kbd&gt; and &lt;kbd&gt;Enter&lt;/kbd&gt; keys on row C of the 102-,
+    /// located between the &lt;kbd&gt;"&lt;/kbd&gt; and &lt;kbd&gt;Enter&lt;/kbd&gt; keys on row C of the 102-,
     /// 104- and 106-key layouts.
     /// Labeled &lt;kbd&gt;#&lt;/kbd&gt; on a UK (102) keyboard.
     </span>Backslash,
@@ -2198,7 +2199,7 @@
     </span>Minus,
     <span class="doccomment">/// &lt;kbd&gt;.&lt;/kbd&gt; on a US keyboard.
     </span>Period,
-    <span class="doccomment">/// &lt;kbd&gt;&#39;&lt;/kbd&gt; on a US keyboard.
+    <span class="doccomment">/// &lt;kbd&gt;'&lt;/kbd&gt; on a US keyboard.
     </span>Quote,
     <span class="doccomment">/// &lt;kbd&gt;;&lt;/kbd&gt; on a US keyboard.
     </span>Semicolon,
@@ -2318,9 +2319,9 @@
     <span class="doccomment">/// &lt;kbd&gt;C&lt;/kbd&gt; (Clear Entry)
     </span>NumpadClearEntry,
     <span class="doccomment">/// &lt;kbd&gt;,&lt;/kbd&gt; (thousands separator). For locales where the thousands separator
-    /// is a &quot;.&quot; (e.g., Brazil), this key may generate a &lt;kbd&gt;.&lt;/kbd&gt;.
+    /// is a "." (e.g., Brazil), this key may generate a &lt;kbd&gt;.&lt;/kbd&gt;.
     </span>NumpadComma,
-    <span class="doccomment">/// &lt;kbd&gt;. Del&lt;/kbd&gt;. For locales where the decimal separator is &quot;,&quot; (e.g.,
+    <span class="doccomment">/// &lt;kbd&gt;. Del&lt;/kbd&gt;. For locales where the decimal separator is "," (e.g.,
     /// Brazil), this key may generate a &lt;kbd&gt;,&lt;/kbd&gt;.
     </span>NumpadDecimal,
     <span class="doccomment">/// &lt;kbd&gt;/&lt;/kbd&gt;
@@ -2355,7 +2356,7 @@
     /// This key is typically found below the &lt;kbd&gt;7&lt;/kbd&gt; key and to the left of
     /// the &lt;kbd&gt;0&lt;/kbd&gt; key.
     ///
-    /// Use &lt;kbd&gt;&quot;NumpadMultiply&quot;&lt;/kbd&gt; for the &lt;kbd&gt;*&lt;/kbd&gt; key on
+    /// Use &lt;kbd&gt;"NumpadMultiply"&lt;/kbd&gt; for the &lt;kbd&gt;*&lt;/kbd&gt; key on
     /// numeric keypads.
     </span>NumpadStar,
     <span class="doccomment">/// &lt;kbd&gt;-&lt;/kbd&gt;
@@ -2375,12 +2376,12 @@
     </span>Pause,
     <span class="doccomment">/// Some laptops place this key to the left of the &lt;kbd&gt;↑&lt;/kbd&gt; key.
     ///
-    /// This also the &quot;back&quot; button (triangle) on Android.
+    /// This also the "back" button (triangle) on Android.
     </span>BrowserBack,
     BrowserFavorites,
     <span class="doccomment">/// Some laptops place this key to the right of the &lt;kbd&gt;↑&lt;/kbd&gt; key.
     </span>BrowserForward,
-    <span class="doccomment">/// The &quot;home&quot; button on Android.
+    <span class="doccomment">/// The "home" button on Android.
     </span>BrowserHome,
     BrowserRefresh,
     BrowserSearch,
@@ -2406,7 +2407,7 @@
     AudioVolumeMute,
     AudioVolumeUp,
     WakeUp,
-    <span class="comment">// Legacy modifier key. Also called &quot;Super&quot; in certain places.
+    <span class="comment">// Legacy modifier key. Also called "Super" in certain places.
     </span>Meta,
     <span class="comment">// Legacy modifier key.
     </span>Hyper,
@@ -2534,9 +2535,9 @@
 
 <span class="doccomment">/// A [`Key::Named`] value
 ///
-/// This mostly conforms to the UI Events Specification&#39;s [`KeyboardEvent.key`] with a few
+/// This mostly conforms to the UI Events Specification's [`KeyboardEvent.key`] with a few
 /// exceptions:
-/// - The `Super` variant here, is named `Meta` in the aforementioned specification. (There&#39;s
+/// - The `Super` variant here, is named `Meta` in the aforementioned specification. (There's
 ///   another key which the specification calls `Super`. That does not exist here.)
 /// - The `Space` variant here, can be identified by the character it generates in the
 ///   specificaiton.
@@ -2544,7 +2545,7 @@
 /// [`KeyboardEvent.key`]: https://w3c.github.io/uievents-key/
 </span><span class="attr">#[non_exhaustive]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>NamedKey {
     <span class="doccomment">/// The `Alt` (Alternative) key.
     ///
@@ -2570,7 +2571,7 @@
     /// in the keyboard hardware and does not usually generate key events.
     </span>Fn,
     <span class="doccomment">/// The Function-Lock (`FnLock` or `F-Lock`) key. Activating this key switches the mode of the
-    /// keyboard to changes some keys&#39; values to an alternate character or function. This key is
+    /// keyboard to changes some keys' values to an alternate character or function. This key is
     /// often handled directly in the keyboard hardware and does not usually generate key events.
     </span>FnLock,
     <span class="doccomment">/// The `NumLock` or Number Lock key. Used to toggle numpad mode function for interpreting
@@ -2584,14 +2585,14 @@
     <span class="doccomment">/// The Symbol modifier key (used on some virtual keyboards).
     </span>Symbol,
     SymbolLock,
-    <span class="comment">// Legacy modifier key. Also called &quot;Super&quot; in certain places.
+    <span class="comment">// Legacy modifier key. Also called "Super" in certain places.
     </span>Meta,
     <span class="comment">// Legacy modifier key.
     </span>Hyper,
-    <span class="doccomment">/// Used to enable &quot;super&quot; modifier function for interpreting concurrent or subsequent keyboard
-    /// input. This key value is used for the &quot;Windows Logo&quot; key and the Apple `Command` or `⌘` key.
+    <span class="doccomment">/// Used to enable "super" modifier function for interpreting concurrent or subsequent keyboard
+    /// input. This key value is used for the "Windows Logo" key and the Apple `Command` or `⌘` key.
     ///
-    /// Note: In some contexts (e.g. the Web) this is referred to as the &quot;Meta&quot; key.
+    /// Note: In some contexts (e.g. the Web) this is referred to as the "Meta" key.
     </span>Super,
     <span class="doccomment">/// The `Enter` or `↵` key. Used to activate current selection or accept current input. This key
     /// value is also used for the `Return` (Macintosh numpad) key. This key value is also used for
@@ -2659,7 +2660,7 @@
     /// This key is commonly found between the right `Super` key and the right `Control` key.
     </span>ContextMenu,
     <span class="doccomment">/// The `Esc` key. This key was originally used to initiate an escape sequence, but is
-    /// now more generally used to exit or &quot;escape&quot; the current context, such as closing a dialog
+    /// now more generally used to exit or "escape" the current context, such as closing a dialog
     /// or exiting full screen mode.
     </span>Escape,
     Execute,
@@ -2670,12 +2671,12 @@
     </span>Help,
     <span class="doccomment">/// Pause the current state or application (as appropriate).
     ///
-    /// Note: Do not use this value for the `Pause` button on media controllers. Use `&quot;MediaPause&quot;`
+    /// Note: Do not use this value for the `Pause` button on media controllers. Use `"MediaPause"`
     /// instead.
     </span>Pause,
     <span class="doccomment">/// Play or resume the current state or application (as appropriate).
     ///
-    /// Note: Do not use this value for the `Play` button on media controllers. Use `&quot;MediaPlay&quot;`
+    /// Note: Do not use this value for the `Play` button on media controllers. Use `"MediaPlay"`
     /// instead.
     </span>Play,
     <span class="doccomment">/// The properties (Props) key.
@@ -2715,7 +2716,7 @@
     <span class="doccomment">/// Initiate the Code Input mode to allow characters to be entered by
     /// their code points.
     </span>CodeInput,
-    <span class="doccomment">/// The Compose key, also known as &quot;Multi_key&quot; on the X Window System. This key acts in a
+    <span class="doccomment">/// The Compose key, also known as "Multi_key" on the X Window System. This key acts in a
     /// manner similar to a dead key, triggering a mode where subsequent key presses are combined to
     /// produce a different character.
     </span>Compose,
@@ -2798,7 +2799,7 @@
     </span>MediaFastForward,
     <span class="doccomment">/// Pause the currently playing media. (`APPCOMMAND_MEDIA_PAUSE`, `KEYCODE_MEDIA_PAUSE`)
     ///
-    /// Note: Media controller devices should use this value rather than `&quot;Pause&quot;` for their pause
+    /// Note: Media controller devices should use this value rather than `"Pause"` for their pause
     /// keys.
     </span>MediaPause,
     <span class="doccomment">/// Initiate or continue media playback at normal speed, if not currently playing at normal
@@ -2879,20 +2880,20 @@
     <span class="doccomment">/// Toggle between dictation mode and command/control mode.
     /// (`APPCOMMAND_DICTATE_OR_COMMAND_CONTROL_TOGGLE`)
     </span>SpeechInputToggle,
-    <span class="doccomment">/// The first generic &quot;LaunchApplication&quot; key. This is commonly associated with launching &quot;My
-    /// Computer&quot;, and may have a computer symbol on the key. (`APPCOMMAND_LAUNCH_APP1`)
+    <span class="doccomment">/// The first generic "LaunchApplication" key. This is commonly associated with launching "My
+    /// Computer", and may have a computer symbol on the key. (`APPCOMMAND_LAUNCH_APP1`)
     </span>LaunchApplication1,
-    <span class="doccomment">/// The second generic &quot;LaunchApplication&quot; key. This is commonly associated with launching
-    /// &quot;Calculator&quot;, and may have a calculator symbol on the key. (`APPCOMMAND_LAUNCH_APP2`,
+    <span class="doccomment">/// The second generic "LaunchApplication" key. This is commonly associated with launching
+    /// "Calculator", and may have a calculator symbol on the key. (`APPCOMMAND_LAUNCH_APP2`,
     /// `KEYCODE_CALCULATOR`)
     </span>LaunchApplication2,
-    <span class="doccomment">/// The &quot;Calendar&quot; key. (`KEYCODE_CALENDAR`)
+    <span class="doccomment">/// The "Calendar" key. (`KEYCODE_CALENDAR`)
     </span>LaunchCalendar,
-    <span class="doccomment">/// The &quot;Contacts&quot; key. (`KEYCODE_CONTACTS`)
+    <span class="doccomment">/// The "Contacts" key. (`KEYCODE_CONTACTS`)
     </span>LaunchContacts,
-    <span class="doccomment">/// The &quot;Mail&quot; key. (`APPCOMMAND_LAUNCH_MAIL`)
+    <span class="doccomment">/// The "Mail" key. (`APPCOMMAND_LAUNCH_MAIL`)
     </span>LaunchMail,
-    <span class="doccomment">/// The &quot;Media Player&quot; key. (`APPCOMMAND_LAUNCH_MEDIA_SELECT`)
+    <span class="doccomment">/// The "Media Player" key. (`APPCOMMAND_LAUNCH_MEDIA_SELECT`)
     </span>LaunchMediaPlayer,
     LaunchMusicPlayer,
     LaunchPhone,
@@ -3073,8 +3074,8 @@
     </span>Lock,
     <span class="doccomment">/// Show a list of media applications: audio/video players and image viewers. (`VK_APPS`)
     ///
-    /// Note: Do not confuse this key value with the Windows&#39; `VK_APPS` / `VK_CONTEXT_MENU` key,
-    /// which is encoded as `&quot;ContextMenu&quot;`.
+    /// Note: Do not confuse this key value with the Windows' `VK_APPS` / `VK_CONTEXT_MENU` key,
+    /// which is encoded as `"ContextMenu"`.
     </span>MediaApps,
     <span class="doccomment">/// Audio track key. (`KEYCODE_MEDIA_AUDIO_TRACK`)
     </span>MediaAudioTrack,
@@ -3251,16 +3252,16 @@
 
 <span class="doccomment">/// Key represents the meaning of a keypress.
 ///
-/// This is a superset of the UI Events Specification&#39;s [`KeyboardEvent.key`] with
+/// This is a superset of the UI Events Specification's [`KeyboardEvent.key`] with
 /// additions:
 /// - All simple variants are wrapped under the `Named` variant
-/// - The `Unidentified` variant here, can still identifiy a key through it&#39;s `NativeKeyCode`.
+/// - The `Unidentified` variant here, can still identifiy a key through it's `NativeKeyCode`.
 /// - The `Dead` variant here, can specify the character which is inserted when pressing the
 ///   dead-key twice.
 ///
 /// [`KeyboardEvent.key`]: https://w3c.github.io/uievents-key/
 </span><span class="attr">#[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>Key&lt;Str = SmolStr&gt; {
     <span class="doccomment">/// A simple (unparameterised) action
     </span>Named(NamedKey),
@@ -3362,16 +3363,16 @@
     /// ```
     /// use winit::keyboard::NamedKey;
     ///
-    /// assert_eq!(NamedKey::Enter.to_text(), Some(&quot;\r&quot;));
+    /// assert_eq!(NamedKey::Enter.to_text(), Some("\r"));
     /// assert_eq!(NamedKey::F20.to_text(), None);
     /// ```
     </span><span class="kw">pub fn </span>to_text(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt; {
         <span class="kw">match </span><span class="self">self </span>{
-            NamedKey::Enter =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;\r&quot;</span>),
-            NamedKey::Backspace =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;\x08&quot;</span>),
-            NamedKey::Tab =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;\t&quot;</span>),
-            NamedKey::Space =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot; &quot;</span>),
-            NamedKey::Escape =&gt; <span class="prelude-val">Some</span>(<span class="string">&quot;\x1b&quot;</span>),
+            NamedKey::Enter =&gt; <span class="prelude-val">Some</span>(<span class="string">"\r"</span>),
+            NamedKey::Backspace =&gt; <span class="prelude-val">Some</span>(<span class="string">"\x08"</span>),
+            NamedKey::Tab =&gt; <span class="prelude-val">Some</span>(<span class="string">"\t"</span>),
+            NamedKey::Space =&gt; <span class="prelude-val">Some</span>(<span class="string">" "</span>),
+            NamedKey::Escape =&gt; <span class="prelude-val">Some</span>(<span class="string">"\x1b"</span>),
             <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
         }
     }
@@ -3385,8 +3386,8 @@
     /// ```
     /// use winit::keyboard::{NamedKey, Key};
     ///
-    /// assert_eq!(Key::Character(&quot;a&quot;.into()).to_text(), Some(&quot;a&quot;));
-    /// assert_eq!(Key::Named(NamedKey::Enter).to_text(), Some(&quot;\r&quot;));
+    /// assert_eq!(Key::Character("a".into()).to_text(), Some("a"));
+    /// assert_eq!(Key::Named(NamedKey::Enter).to_text(), Some("\r"));
     /// assert_eq!(Key::Named(NamedKey::F20).to_text(), None);
     /// ```
     </span><span class="kw">pub fn </span>to_text(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt; {
@@ -3410,18 +3411,18 @@
 /// [`location`]: ../event/struct.KeyEvent.html#structfield.location
 /// [`KeyEvent`]: crate::event::KeyEvent
 </span><span class="attr">#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>KeyLocation {
-    <span class="doccomment">/// The key is in its &quot;normal&quot; location on the keyboard.
+    <span class="doccomment">/// The key is in its "normal" location on the keyboard.
     ///
-    /// For instance, the &quot;1&quot; key above the &quot;Q&quot; key on a QWERTY keyboard will use this location. This
+    /// For instance, the "1" key above the "Q" key on a QWERTY keyboard will use this location. This
     /// invariant is also returned when the location of the key cannot be identified.
     ///
     /// ![Standard 1 key](https://raw.githubusercontent.com/rust-windowing/winit/master/docs/res/keyboard_standard_1_key.svg)
     ///
     /// &lt;sub&gt;
     ///   For image attribution, see the
-    ///   &lt;a href=&quot;https://github.com/rust-windowing/winit/blob/master/docs/res/ATTRIBUTION.md&quot;&gt;
+    ///   &lt;a href="https://github.com/rust-windowing/winit/blob/master/docs/res/ATTRIBUTION.md"&gt;
     ///     ATTRIBUTION.md
     ///   &lt;/a&gt;
     ///   file.
@@ -3437,7 +3438,7 @@
     ///
     /// &lt;sub&gt;
     ///   For image attribution, see the
-    ///   &lt;a href=&quot;https://github.com/rust-windowing/winit/blob/master/docs/res/ATTRIBUTION.md&quot;&gt;
+    ///   &lt;a href="https://github.com/rust-windowing/winit/blob/master/docs/res/ATTRIBUTION.md"&gt;
     ///     ATTRIBUTION.md
     ///   &lt;/a&gt;
     ///   file.
@@ -3453,7 +3454,7 @@
     ///
     /// &lt;sub&gt;
     ///   For image attribution, see the
-    ///   &lt;a href=&quot;https://github.com/rust-windowing/winit/blob/master/docs/res/ATTRIBUTION.md&quot;&gt;
+    ///   &lt;a href="https://github.com/rust-windowing/winit/blob/master/docs/res/ATTRIBUTION.md"&gt;
     ///     ATTRIBUTION.md
     ///   &lt;/a&gt;
     ///   file.
@@ -3462,13 +3463,13 @@
 
     <span class="doccomment">/// The key is on the numpad.
     ///
-    /// For instance, the &quot;1&quot; key on the numpad will use this location.
+    /// For instance, the "1" key on the numpad will use this location.
     ///
     /// ![Numpad 1 key](https://raw.githubusercontent.com/rust-windowing/winit/master/docs/res/keyboard_numpad_1_key.svg)
     ///
     /// &lt;sub&gt;
     ///   For image attribution, see the
-    ///   &lt;a href=&quot;https://github.com/rust-windowing/winit/blob/master/docs/res/ATTRIBUTION.md&quot;&gt;
+    ///   &lt;a href="https://github.com/rust-windowing/winit/blob/master/docs/res/ATTRIBUTION.md"&gt;
     ///     ATTRIBUTION.md
     ///   &lt;/a&gt;
     ///   file.
@@ -3482,13 +3483,13 @@
     /// Each flag represents a modifier and is set if this modifier is active.
     </span><span class="attr">#[derive(Default, Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
     </span><span class="kw">pub struct </span>ModifiersState: u32 {
-        <span class="doccomment">/// The &quot;shift&quot; key.
+        <span class="doccomment">/// The "shift" key.
         </span><span class="kw">const </span>SHIFT = <span class="number">0b100</span>;
-        <span class="doccomment">/// The &quot;control&quot; key.
+        <span class="doccomment">/// The "control" key.
         </span><span class="kw">const </span>CONTROL = <span class="number">0b100 </span>&lt;&lt; <span class="number">3</span>;
-        <span class="doccomment">/// The &quot;alt&quot; key.
+        <span class="doccomment">/// The "alt" key.
         </span><span class="kw">const </span>ALT = <span class="number">0b100 </span>&lt;&lt; <span class="number">6</span>;
-        <span class="doccomment">/// This is the &quot;windows&quot; key on PC and &quot;command&quot; key on Mac.
+        <span class="doccomment">/// This is the "windows" key on PC and "command" key on Mac.
         </span><span class="kw">const </span>SUPER = <span class="number">0b100 </span>&lt;&lt; <span class="number">9</span>;
     }
 }
@@ -3544,14 +3545,14 @@
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;serde&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"serde"</span>)]
 </span><span class="kw">mod </span>modifiers_serde {
     <span class="kw">use </span><span class="kw">super</span>::ModifiersState;
     <span class="kw">use </span>serde::{Deserialize, Deserializer, Serialize, Serializer};
 
     <span class="attr">#[derive(Default, Serialize, Deserialize)]
     #[serde(default)]
-    #[serde(rename = <span class="string">&quot;ModifiersState&quot;</span>)]
+    #[serde(rename = <span class="string">"ModifiersState"</span>)]
     </span><span class="kw">pub struct </span>ModifiersStateSerialize {
         <span class="kw">pub </span>shift_key: bool,
         <span class="kw">pub </span>control_key: bool,
@@ -3574,10 +3575,10 @@
         }
     }
 
-    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>&gt; Deserialize&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>ModifiersState {
+    <span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; Deserialize&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>ModifiersState {
         <span class="kw">fn </span>deserialize&lt;D&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt;
         <span class="kw">where
-            </span>D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;,
+            </span>D: Deserializer&lt;<span class="lifetime">'de</span>&gt;,
         {
             <span class="kw">let </span>ModifiersStateSerialize {
                 shift_key,

@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/app/cosmic.rs`."><title>cosmic.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/app/cosmic.rs`."><title>cosmic.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -419,34 +420,209 @@
 <a href="#419" id="419">419</a>
 <a href="#420" id="420">420</a>
 <a href="#421" id="421">421</a>
+<a href="#422" id="422">422</a>
+<a href="#423" id="423">423</a>
+<a href="#424" id="424">424</a>
+<a href="#425" id="425">425</a>
+<a href="#426" id="426">426</a>
+<a href="#427" id="427">427</a>
+<a href="#428" id="428">428</a>
+<a href="#429" id="429">429</a>
+<a href="#430" id="430">430</a>
+<a href="#431" id="431">431</a>
+<a href="#432" id="432">432</a>
+<a href="#433" id="433">433</a>
+<a href="#434" id="434">434</a>
+<a href="#435" id="435">435</a>
+<a href="#436" id="436">436</a>
+<a href="#437" id="437">437</a>
+<a href="#438" id="438">438</a>
+<a href="#439" id="439">439</a>
+<a href="#440" id="440">440</a>
+<a href="#441" id="441">441</a>
+<a href="#442" id="442">442</a>
+<a href="#443" id="443">443</a>
+<a href="#444" id="444">444</a>
+<a href="#445" id="445">445</a>
+<a href="#446" id="446">446</a>
+<a href="#447" id="447">447</a>
+<a href="#448" id="448">448</a>
+<a href="#449" id="449">449</a>
+<a href="#450" id="450">450</a>
+<a href="#451" id="451">451</a>
+<a href="#452" id="452">452</a>
+<a href="#453" id="453">453</a>
+<a href="#454" id="454">454</a>
+<a href="#455" id="455">455</a>
+<a href="#456" id="456">456</a>
+<a href="#457" id="457">457</a>
+<a href="#458" id="458">458</a>
+<a href="#459" id="459">459</a>
+<a href="#460" id="460">460</a>
+<a href="#461" id="461">461</a>
+<a href="#462" id="462">462</a>
+<a href="#463" id="463">463</a>
+<a href="#464" id="464">464</a>
+<a href="#465" id="465">465</a>
+<a href="#466" id="466">466</a>
+<a href="#467" id="467">467</a>
+<a href="#468" id="468">468</a>
+<a href="#469" id="469">469</a>
+<a href="#470" id="470">470</a>
+<a href="#471" id="471">471</a>
+<a href="#472" id="472">472</a>
+<a href="#473" id="473">473</a>
+<a href="#474" id="474">474</a>
+<a href="#475" id="475">475</a>
+<a href="#476" id="476">476</a>
+<a href="#477" id="477">477</a>
+<a href="#478" id="478">478</a>
+<a href="#479" id="479">479</a>
+<a href="#480" id="480">480</a>
+<a href="#481" id="481">481</a>
+<a href="#482" id="482">482</a>
+<a href="#483" id="483">483</a>
+<a href="#484" id="484">484</a>
+<a href="#485" id="485">485</a>
+<a href="#486" id="486">486</a>
+<a href="#487" id="487">487</a>
+<a href="#488" id="488">488</a>
+<a href="#489" id="489">489</a>
+<a href="#490" id="490">490</a>
+<a href="#491" id="491">491</a>
+<a href="#492" id="492">492</a>
+<a href="#493" id="493">493</a>
+<a href="#494" id="494">494</a>
+<a href="#495" id="495">495</a>
+<a href="#496" id="496">496</a>
+<a href="#497" id="497">497</a>
+<a href="#498" id="498">498</a>
+<a href="#499" id="499">499</a>
+<a href="#500" id="500">500</a>
+<a href="#501" id="501">501</a>
+<a href="#502" id="502">502</a>
+<a href="#503" id="503">503</a>
+<a href="#504" id="504">504</a>
+<a href="#505" id="505">505</a>
+<a href="#506" id="506">506</a>
+<a href="#507" id="507">507</a>
+<a href="#508" id="508">508</a>
+<a href="#509" id="509">509</a>
+<a href="#510" id="510">510</a>
+<a href="#511" id="511">511</a>
+<a href="#512" id="512">512</a>
+<a href="#513" id="513">513</a>
+<a href="#514" id="514">514</a>
+<a href="#515" id="515">515</a>
+<a href="#516" id="516">516</a>
+<a href="#517" id="517">517</a>
+<a href="#518" id="518">518</a>
+<a href="#519" id="519">519</a>
+<a href="#520" id="520">520</a>
+<a href="#521" id="521">521</a>
+<a href="#522" id="522">522</a>
+<a href="#523" id="523">523</a>
+<a href="#524" id="524">524</a>
+<a href="#525" id="525">525</a>
+<a href="#526" id="526">526</a>
+<a href="#527" id="527">527</a>
+<a href="#528" id="528">528</a>
+<a href="#529" id="529">529</a>
+<a href="#530" id="530">530</a>
+<a href="#531" id="531">531</a>
+<a href="#532" id="532">532</a>
+<a href="#533" id="533">533</a>
+<a href="#534" id="534">534</a>
+<a href="#535" id="535">535</a>
+<a href="#536" id="536">536</a>
+<a href="#537" id="537">537</a>
+<a href="#538" id="538">538</a>
+<a href="#539" id="539">539</a>
+<a href="#540" id="540">540</a>
+<a href="#541" id="541">541</a>
+<a href="#542" id="542">542</a>
+<a href="#543" id="543">543</a>
+<a href="#544" id="544">544</a>
+<a href="#545" id="545">545</a>
+<a href="#546" id="546">546</a>
+<a href="#547" id="547">547</a>
+<a href="#548" id="548">548</a>
+<a href="#549" id="549">549</a>
+<a href="#550" id="550">550</a>
+<a href="#551" id="551">551</a>
+<a href="#552" id="552">552</a>
+<a href="#553" id="553">553</a>
+<a href="#554" id="554">554</a>
+<a href="#555" id="555">555</a>
+<a href="#556" id="556">556</a>
+<a href="#557" id="557">557</a>
+<a href="#558" id="558">558</a>
+<a href="#559" id="559">559</a>
+<a href="#560" id="560">560</a>
+<a href="#561" id="561">561</a>
+<a href="#562" id="562">562</a>
+<a href="#563" id="563">563</a>
+<a href="#564" id="564">564</a>
+<a href="#565" id="565">565</a>
+<a href="#566" id="566">566</a>
+<a href="#567" id="567">567</a>
+<a href="#568" id="568">568</a>
+<a href="#569" id="569">569</a>
+<a href="#570" id="570">570</a>
+<a href="#571" id="571">571</a>
+<a href="#572" id="572">572</a>
+<a href="#573" id="573">573</a>
+<a href="#574" id="574">574</a>
+<a href="#575" id="575">575</a>
+<a href="#576" id="576">576</a>
+<a href="#577" id="577">577</a>
+<a href="#578" id="578">578</a>
+<a href="#579" id="579">579</a>
+<a href="#580" id="580">580</a>
+<a href="#581" id="581">581</a>
+<a href="#582" id="582">582</a>
+<a href="#583" id="583">583</a>
+<a href="#584" id="584">584</a>
+<a href="#585" id="585">585</a>
+<a href="#586" id="586">586</a>
+<a href="#587" id="587">587</a>
+<a href="#588" id="588">588</a>
+<a href="#589" id="589">589</a>
+<a href="#590" id="590">590</a>
+<a href="#591" id="591">591</a>
+<a href="#592" id="592">592</a>
+<a href="#593" id="593">593</a>
+<a href="#594" id="594">594</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2023 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
 </span><span class="kw">use </span>std::sync::Arc;
 
 <span class="kw">use super</span>::{command, Application, ApplicationExt, Core, Subscription};
+<span class="kw">use </span><span class="kw">crate</span>::config::CosmicTk;
 <span class="kw">use </span><span class="kw">crate</span>::theme::{<span class="self">self</span>, Theme, ThemeType, THEME};
 <span class="kw">use </span><span class="kw">crate</span>::widget::nav_bar;
 <span class="kw">use crate</span>::{keyboard_nav, Element};
-<span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
 </span><span class="kw">use </span>cctk::sctk::reexports::csd_frame::{WindowManagerCapabilities, WindowState};
 <span class="kw">use </span>cosmic_theme::ThemeMode;
-<span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
 </span><span class="kw">use </span>iced::event::wayland::{<span class="self">self</span>, WindowEvent};
-<span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
 </span><span class="kw">use </span>iced::event::PlatformSpecific;
-<span class="attr">#[cfg(all(feature = <span class="string">&quot;winit&quot;</span>, feature = <span class="string">&quot;multi-window&quot;</span>))]
+<span class="attr">#[cfg(all(feature = <span class="string">"winit"</span>, feature = <span class="string">"multi-window"</span>))]
 </span><span class="kw">use </span>iced::multi_window::Application <span class="kw">as </span>IcedApplication;
-<span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
 </span><span class="kw">use </span>iced::wayland::Application <span class="kw">as </span>IcedApplication;
-<span class="kw">use </span>iced::window;
-<span class="attr">#[cfg(not(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>)))]
+<span class="attr">#[cfg(not(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>)))]
 </span><span class="kw">use </span>iced::Application <span class="kw">as </span>IcedApplication;
-<span class="kw">use </span>iced_futures::event::{listen_raw, listen_with};
-<span class="attr">#[cfg(not(feature = <span class="string">&quot;wayland&quot;</span>))]
+<span class="kw">use </span>iced::{window, Command};
+<span class="kw">use </span>iced_futures::event::listen_with;
+<span class="attr">#[cfg(not(feature = <span class="string">"wayland"</span>))]
 </span><span class="kw">use </span>iced_runtime::command::Action;
-<span class="attr">#[cfg(not(feature = <span class="string">&quot;wayland&quot;</span>))]
+<span class="attr">#[cfg(not(feature = <span class="string">"wayland"</span>))]
 </span><span class="kw">use </span>iced_runtime::window::Action <span class="kw">as </span>WindowAction;
+<span class="kw">use </span>palette::color_difference::EuclideanDistance;
 
 <span class="doccomment">/// A message managed internally by COSMIC.
 </span><span class="attr">#[derive(Clone, Debug)]
@@ -469,37 +645,48 @@
     </span>NavBar(nav_bar::Id),
     <span class="doccomment">/// Set scaling factor
     </span>ScaleFactor(f32),
+    <span class="doccomment">/// Notification of system theme changes.
+    </span>SystemThemeChange(Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt;, Theme),
+    <span class="doccomment">/// Notification of system theme mode changes.
+    </span>SystemThemeModeChange(Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt;, ThemeMode),
     <span class="doccomment">/// Toggles visibility of the nav bar.
     </span>ToggleNavBar,
     <span class="doccomment">/// Toggles the condensed status of the nav bar.
     </span>ToggleNavBarCondensed,
-    <span class="doccomment">/// Notification of system theme changes.
-    </span>SystemThemeChange(Theme),
-    <span class="doccomment">/// Notification of system theme mode changes.
-    </span>SystemThemeModeChange(ThemeMode),
+    <span class="doccomment">/// Toolkit configuration update
+    </span>ToolkitConfig(CosmicTk),
+    <span class="doccomment">/// Updates the window maximized state
+    </span>WindowMaximized(window::Id, bool),
     <span class="doccomment">/// Updates the tracked window geometry.
     </span>WindowResize(window::Id, u32, u32),
     <span class="doccomment">/// Tracks updates to window state.
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
     </span>WindowState(window::Id, WindowState),
     <span class="doccomment">/// Capabilities the window manager supports
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
     </span>WmCapabilities(window::Id, WindowManagerCapabilities),
     <span class="doccomment">/// Notifies that a surface was closed.
     /// Any data relating to the surface should be cleaned up.
     </span>SurfaceClosed(window::Id),
     <span class="doccomment">/// Activate the application
     </span>Activate(String),
+    ShowWindowMenu,
+    <span class="attr">#[cfg(feature = <span class="string">"xdg-portal"</span>)]
+    </span>DesktopSettings(<span class="kw">crate</span>::theme::portal::Desktop),
+    <span class="doccomment">/// Window focus changed
+    </span>Focus(window::Id),
+    <span class="doccomment">/// Window focus lost
+    </span>Unfocus(window::Id),
 }
 
 <span class="attr">#[derive(Default)]
-</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>Cosmic&lt;App&gt; {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) app: App,
+</span><span class="kw">pub struct </span>Cosmic&lt;App&gt; {
+    <span class="kw">pub </span>app: App,
 }
 
 <span class="kw">impl</span>&lt;T: Application&gt; IcedApplication <span class="kw">for </span>Cosmic&lt;T&gt;
 <span class="kw">where
-    </span>T::Message: Send + <span class="lifetime">&#39;static</span>,
+    </span>T::Message: Send + <span class="lifetime">'static</span>,
 {
     <span class="kw">type </span>Executor = T::Executor;
     <span class="kw">type </span>Flags = (Core, T::Flags);
@@ -507,7 +694,7 @@
     <span class="kw">type </span>Theme = Theme;
 
     <span class="kw">fn </span>new((<span class="kw-2">mut </span>core, flags): <span class="self">Self</span>::Flags) -&gt; (<span class="self">Self</span>, iced::Command&lt;<span class="self">Self</span>::Message&gt;) {
-        <span class="attr">#[cfg(feature = <span class="string">&quot;dbus-config&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"dbus-config"</span>)]
         </span>{
             <span class="kw">use </span>iced_futures::futures::executor::block_on;
             core.settings_daemon = block_on(cosmic_config::dbus::settings_daemon_proxy()).ok();
@@ -518,12 +705,12 @@
         (<span class="self">Self</span>::new(model), command)
     }
 
-    <span class="attr">#[cfg(not(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>)))]
+    <span class="attr">#[cfg(not(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>)))]
     </span><span class="kw">fn </span>title(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
         <span class="self">self</span>.app.title().to_string()
     }
 
-    <span class="attr">#[cfg(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>))]
+    <span class="attr">#[cfg(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>))]
     </span><span class="kw">fn </span>title(<span class="kw-2">&amp;</span><span class="self">self</span>, id: window::Id) -&gt; String {
         <span class="self">self</span>.app.title(id).to_string()
     }
@@ -533,17 +720,17 @@
             <span class="kw">super</span>::Message::App(message) =&gt; <span class="self">self</span>.app.update(message),
             <span class="kw">super</span>::Message::Cosmic(message) =&gt; <span class="self">self</span>.cosmic_update(message),
             <span class="kw">super</span>::Message::None =&gt; iced::Command::none(),
-            <span class="attr">#[cfg(feature = <span class="string">&quot;single-instance&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"single-instance"</span>)]
             </span><span class="kw">super</span>::Message::DbusActivation(message) =&gt; <span class="self">self</span>.app.dbus_activation(message),
         }
     }
 
-    <span class="attr">#[cfg(not(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>)))]
+    <span class="attr">#[cfg(not(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>)))]
     </span><span class="kw">fn </span>scale_factor(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; f64 {
         f64::from(<span class="self">self</span>.app.core().scale_factor())
     }
 
-    <span class="attr">#[cfg(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>))]
+    <span class="attr">#[cfg(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>))]
     </span><span class="kw">fn </span>scale_factor(<span class="kw-2">&amp;</span><span class="self">self</span>, _id: window::Id) -&gt; f64 {
         f64::from(<span class="self">self</span>.app.core().scale_factor())
     }
@@ -571,7 +758,11 @@
                 iced::Event::Window(id, window::Event::Closed) =&gt; {
                     <span class="kw">return </span><span class="prelude-val">Some</span>(Message::SurfaceClosed(id))
                 }
-                <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+                iced::Event::Window(id, window::Event::Focused) =&gt; <span class="kw">return </span><span class="prelude-val">Some</span>(Message::Focus(id)),
+                iced::Event::Window(id, window::Event::Unfocused) =&gt; {
+                    <span class="kw">return </span><span class="prelude-val">Some</span>(Message::Unfocus(id))
+                }
+                <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
                 </span>iced::Event::PlatformSpecific(PlatformSpecific::Wayland(event)) =&gt; <span class="kw">match </span>event {
                     wayland::Event::Window(WindowEvent::State(state), _surface, id) =&gt; {
                         <span class="kw">return </span><span class="prelude-val">Some</span>(Message::WindowState(id, state));
@@ -595,11 +786,18 @@
             <span class="prelude-val">None
         </span>});
 
-        Subscription::batch(<span class="macro">vec!</span>[
+        <span class="kw">let </span><span class="kw-2">mut </span>subscriptions = <span class="macro">vec!</span>[
             <span class="self">self</span>.app.subscription().map(<span class="kw">super</span>::Message::App),
-            keyboard_nav::subscription()
-                .map(Message::KeyboardNav)
-                .map(<span class="kw">super</span>::Message::Cosmic),
+            <span class="self">self</span>.app
+                .core()
+                .watch_config::&lt;<span class="kw">crate</span>::config::CosmicTk&gt;(<span class="kw">crate</span>::config::toolkit::ID)
+                .map(|update| {
+                    <span class="kw">for </span>why <span class="kw">in </span>update.errors {
+                        <span class="macro">tracing::error!</span>(<span class="question-mark">?</span>why, <span class="string">"cosmic toolkit config update error"</span>);
+                    }
+
+                    <span class="kw">super</span>::Message::Cosmic(Message::ToolkitConfig(update.config))
+                }),
             <span class="self">self</span>.app
                 .core()
                 .watch_config::&lt;cosmic_theme::Theme&gt;(<span class="kw">if </span><span class="self">self</span>.app.core().system_theme_mode.is_dark {
@@ -608,10 +806,13 @@
                     cosmic_theme::LIGHT_THEME_ID
                 })
                 .map(|update| {
-                    <span class="kw">for </span>e <span class="kw">in </span>update.errors {
-                        <span class="macro">tracing::error!</span>(<span class="string">&quot;{e}&quot;</span>);
+                    <span class="kw">for </span>why <span class="kw">in </span>update.errors {
+                        <span class="macro">tracing::error!</span>(<span class="question-mark">?</span>why, <span class="string">"cosmic theme config update error"</span>);
                     }
-                    Message::SystemThemeChange(<span class="kw">crate</span>::theme::Theme::system(Arc::new(update.config)))
+                    Message::SystemThemeChange(
+                        update.keys,
+                        <span class="kw">crate</span>::theme::Theme::system(Arc::new(update.config)),
+                    )
                 })
                 .map(<span class="kw">super</span>::Message::Cosmic),
             <span class="self">self</span>.app
@@ -619,34 +820,47 @@
                 .watch_config::&lt;ThemeMode&gt;(cosmic_theme::THEME_MODE_ID)
                 .map(|update| {
                     <span class="kw">for </span>e <span class="kw">in </span>update.errors {
-                        <span class="macro">tracing::error!</span>(<span class="string">&quot;{e}&quot;</span>);
+                        <span class="macro">tracing::error!</span>(<span class="string">"{e}"</span>);
                     }
-                    Message::SystemThemeModeChange(update.config)
+                    Message::SystemThemeModeChange(update.keys, update.config)
                 })
                 .map(<span class="kw">super</span>::Message::Cosmic),
             window_events.map(<span class="kw">super</span>::Message::Cosmic),
-            <span class="attr">#[cfg(feature = <span class="string">&quot;single-instance&quot;</span>)]
-            </span><span class="self">self</span>.app
-                .core()
-                .single_instance
-                .then(|| <span class="kw">super</span>::single_instance_subscription::&lt;T&gt;())
-                .unwrap_or_else(Subscription::none),
-        ])
+            <span class="attr">#[cfg(feature = <span class="string">"xdg-portal"</span>)]
+            </span><span class="kw">crate</span>::theme::portal::desktop_settings()
+                .map(Message::DesktopSettings)
+                .map(<span class="kw">super</span>::Message::Cosmic),
+        ];
+
+        <span class="kw">if </span><span class="self">self</span>.app.core().keyboard_nav {
+            subscriptions.push(
+                keyboard_nav::subscription()
+                    .map(Message::KeyboardNav)
+                    .map(<span class="kw">super</span>::Message::Cosmic),
+            );
+        }
+
+        <span class="attr">#[cfg(feature = <span class="string">"single-instance"</span>)]
+        </span><span class="kw">if </span><span class="self">self</span>.app.core().single_instance {
+            subscriptions.push(<span class="kw">super</span>::single_instance_subscription::&lt;T&gt;());
+        }
+
+        Subscription::batch(subscriptions)
     }
 
-    <span class="attr">#[cfg(not(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>)))]
+    <span class="attr">#[cfg(not(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>)))]
     </span><span class="kw">fn </span>theme(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::Theme {
         <span class="kw">crate</span>::theme::active()
     }
 
-    <span class="attr">#[cfg(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>))]
+    <span class="attr">#[cfg(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>))]
     </span><span class="kw">fn </span>theme(<span class="kw-2">&amp;</span><span class="self">self</span>, _id: window::Id) -&gt; <span class="self">Self</span>::Theme {
         <span class="kw">crate</span>::theme::active()
     }
 
-    <span class="attr">#[cfg(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>))]
+    <span class="attr">#[cfg(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>))]
     </span><span class="kw">fn </span>view(<span class="kw-2">&amp;</span><span class="self">self</span>, id: window::Id) -&gt; Element&lt;<span class="self">Self</span>::Message&gt; {
-        <span class="kw">if </span>id != window::Id::MAIN {
+        <span class="kw">if </span>id != <span class="self">self</span>.app.main_window_id() {
             <span class="kw">return </span><span class="self">self</span>.app.view_window(id).map(<span class="kw">super</span>::Message::App);
         }
 
@@ -657,39 +871,53 @@
         }
     }
 
-    <span class="attr">#[cfg(not(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>)))]
+    <span class="attr">#[cfg(not(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>)))]
     </span><span class="kw">fn </span>view(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Element&lt;<span class="self">Self</span>::Message&gt; {
         <span class="self">self</span>.app.view_main()
     }
 }
 
 <span class="kw">impl</span>&lt;T: Application&gt; Cosmic&lt;T&gt; {
-    <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
     </span><span class="kw">pub fn </span>close(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; iced::Command&lt;<span class="kw">super</span>::Message&lt;T::Message&gt;&gt; {
-        iced_sctk::commands::window::close_window(window::Id::MAIN)
+        iced_sctk::commands::window::close_window(<span class="self">self</span>.app.main_window_id())
     }
 
-    <span class="attr">#[cfg(not(feature = <span class="string">&quot;wayland&quot;</span>))]
+    <span class="attr">#[cfg(not(feature = <span class="string">"wayland"</span>))]
     #[allow(clippy::unused_self)]
     </span><span class="kw">pub fn </span>close(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; iced::Command&lt;<span class="kw">super</span>::Message&lt;T::Message&gt;&gt; {
-        iced::Command::single(Action::Window(WindowAction::Close(window::Id::MAIN)))
+        iced::Command::single(Action::Window(WindowAction::Close(
+            <span class="self">self</span>.app.main_window_id(),
+        )))
     }
 
     <span class="attr">#[allow(clippy::too_many_lines)]
     </span><span class="kw">fn </span>cosmic_update(<span class="kw-2">&amp;mut </span><span class="self">self</span>, message: Message) -&gt; iced::Command&lt;<span class="kw">super</span>::Message&lt;T::Message&gt;&gt; {
         <span class="kw">match </span>message {
+            Message::WindowMaximized(id, maximized) =&gt; {
+                <span class="kw">if </span><span class="self">self</span>.app.main_window_id() == id {
+                    <span class="self">self</span>.app.core_mut().window.sharp_corners = maximized;
+                }
+            }
+
             Message::WindowResize(id, width, height) =&gt; {
-                <span class="kw">if </span>window::Id::MAIN == id {
+                <span class="kw">if </span><span class="self">self</span>.app.main_window_id() == id {
                     <span class="self">self</span>.app.core_mut().set_window_width(width);
                     <span class="self">self</span>.app.core_mut().set_window_height(height);
                 }
 
                 <span class="self">self</span>.app.on_window_resize(id, width, height);
+
+                <span class="comment">//TODO: more efficient test of maximized (winit has no event for maximize if set by the OS)
+                </span><span class="attr">#[cfg(not(feature = <span class="string">"wayland"</span>))]
+                </span><span class="kw">return </span>iced::window::fetch_maximized(id, <span class="kw">move </span>|maximized| {
+                    <span class="kw">super</span>::Message::Cosmic(Message::WindowMaximized(id, maximized))
+                });
             }
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
             </span>Message::WindowState(id, state) =&gt; {
-                <span class="kw">if </span>window::Id::MAIN == id {
+                <span class="kw">if </span><span class="self">self</span>.app.main_window_id() == id {
                     <span class="self">self</span>.app.core_mut().window.sharp_corners = state.intersects(
                         WindowState::MAXIMIZED
                             | WindowState::FULLSCREEN
@@ -702,11 +930,9 @@
                 }
             }
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
             </span>Message::WmCapabilities(id, capabilities) =&gt; {
-                <span class="kw">if </span>window::Id::MAIN == id {
-                    <span class="self">self</span>.app.core_mut().window.can_fullscreen =
-                        capabilities.contains(WindowManagerCapabilities::FULLSCREEN);
+                <span class="kw">if </span><span class="self">self</span>.app.main_window_id() == id {
                     <span class="self">self</span>.app.core_mut().window.show_maximize =
                         capabilities.contains(WindowManagerCapabilities::MAXIMIZE);
                     <span class="self">self</span>.app.core_mut().window.show_minimize =
@@ -729,7 +955,9 @@
                 keyboard_nav::Message::Escape =&gt; <span class="kw">return </span><span class="self">self</span>.app.on_escape(),
                 keyboard_nav::Message::Search =&gt; <span class="kw">return </span><span class="self">self</span>.app.on_search(),
 
-                keyboard_nav::Message::Fullscreen =&gt; <span class="kw">return </span>command::toggle_fullscreen(<span class="prelude-val">None</span>),
+                keyboard_nav::Message::Fullscreen =&gt; {
+                    <span class="kw">return </span>command::toggle_maximize(<span class="prelude-val">Some</span>(<span class="self">self</span>.app.main_window_id()))
+                }
             },
 
             Message::ContextDrawer(show) =&gt; {
@@ -737,19 +965,11 @@
                 <span class="kw">return </span><span class="self">self</span>.app.on_context_drawer();
             }
 
-            Message::Drag =&gt; <span class="kw">return </span>command::drag(<span class="prelude-val">None</span>),
+            Message::Drag =&gt; <span class="kw">return </span>command::drag(<span class="prelude-val">Some</span>(<span class="self">self</span>.app.main_window_id())),
 
-            Message::Minimize =&gt; <span class="kw">return </span>command::minimize(<span class="prelude-val">None</span>),
+            Message::Minimize =&gt; <span class="kw">return </span>command::minimize(<span class="prelude-val">Some</span>(<span class="self">self</span>.app.main_window_id())),
 
-            Message::Maximize =&gt; {
-                <span class="kw">if </span><span class="self">self</span>.app.core().window.sharp_corners {
-                    <span class="self">self</span>.app.core_mut().window.sharp_corners = <span class="bool-val">false</span>;
-                    <span class="kw">return </span>command::set_windowed(<span class="prelude-val">None</span>);
-                }
-
-                <span class="self">self</span>.app.core_mut().window.sharp_corners = <span class="bool-val">true</span>;
-                <span class="kw">return </span>command::fullscreen(<span class="prelude-val">None</span>);
-            }
+            Message::Maximize =&gt; <span class="kw">return </span>command::toggle_maximize(<span class="prelude-val">Some</span>(<span class="self">self</span>.app.main_window_id())),
 
             Message::NavBar(key) =&gt; {
                 <span class="self">self</span>.app.core_mut().nav_bar_set_toggled_condensed(<span class="bool-val">false</span>);
@@ -768,7 +988,15 @@
                 <span class="comment">// Apply last-known system theme if the system theme is preferred.
                 </span><span class="kw">if let </span>ThemeType::System(<span class="kw">_</span>) = theme.theme_type {
                     <span class="self">self</span>.app.core_mut().theme_sub_counter += <span class="number">1</span>;
+
                     theme = <span class="self">self</span>.app.core().system_theme.clone();
+                    <span class="kw">let </span>portal_accent = <span class="self">self</span>.app.core().portal_accent;
+                    <span class="kw">if let </span><span class="prelude-val">Some</span>(a) = portal_accent {
+                        <span class="kw">let </span>t_inner = theme.cosmic();
+                        <span class="kw">if </span>a.distance_squared(<span class="kw-2">*</span>t_inner.accent_color()) &gt; <span class="number">0.00001 </span>{
+                            theme = Theme::system(Arc::new(t_inner.with_accent(a)));
+                        }
+                    };
                 }
 
                 THEME.with(<span class="kw">move </span>|t| {
@@ -777,17 +1005,31 @@
                 });
             }
 
-            Message::SystemThemeChange(theme) =&gt; {
+            Message::SystemThemeChange(keys, theme) =&gt; {
+                <span class="kw">let </span>cmd = <span class="self">self</span>.app.system_theme_update(<span class="kw-2">&amp;</span>keys, theme.cosmic());
                 <span class="comment">// Record the last-known system theme in event that the current theme is custom.
                 </span><span class="self">self</span>.app.core_mut().system_theme = theme.clone();
+                <span class="kw">let </span>portal_accent = <span class="self">self</span>.app.core().portal_accent;
                 THEME.with(<span class="kw">move </span>|t| {
                     <span class="kw">let </span><span class="kw-2">mut </span>cosmic_theme = t.borrow_mut();
 
                     <span class="comment">// Only apply update if the theme is set to load a system theme
                     </span><span class="kw">if let </span>ThemeType::System(<span class="kw">_</span>) = cosmic_theme.theme_type {
-                        cosmic_theme.set_theme(theme.theme_type);
+                        <span class="kw">let </span>new_theme = <span class="kw">if let </span><span class="prelude-val">Some</span>(a) = portal_accent {
+                            <span class="kw">let </span>t_inner = theme.cosmic();
+                            <span class="kw">if </span>a.distance_squared(<span class="kw-2">*</span>t_inner.accent_color()) &gt; <span class="number">0.00001 </span>{
+                                Theme::system(Arc::new(t_inner.with_accent(a)))
+                            } <span class="kw">else </span>{
+                                theme
+                            }
+                        } <span class="kw">else </span>{
+                            theme
+                        };
+                        cosmic_theme.set_theme(new_theme.theme_type);
                     }
                 });
+
+                <span class="kw">return </span>cmd;
             }
 
             Message::ScaleFactor(factor) =&gt; {
@@ -798,13 +1040,84 @@
                 <span class="self">self</span>.app.on_app_exit();
                 <span class="kw">return </span><span class="self">self</span>.close();
             }
-            Message::SystemThemeModeChange(mode) =&gt; {
+            Message::SystemThemeModeChange(keys, mode) =&gt; {
+                <span class="kw">let </span><span class="kw-2">mut </span>cmds = <span class="macro">vec!</span>[<span class="self">self</span>.app.system_theme_mode_update(<span class="kw-2">&amp;</span>keys, <span class="kw-2">&amp;</span>mode)];
+
                 <span class="kw">let </span>core = <span class="self">self</span>.app.core_mut();
-                <span class="kw">let </span>changed = core.system_theme_mode.is_dark != mode.is_dark;
+                <span class="kw">let </span>prev_is_dark = core.system_is_dark();
                 core.system_theme_mode = mode;
-                core.theme_sub_counter += <span class="number">1</span>;
+                <span class="kw">let </span>is_dark = core.system_is_dark();
+                <span class="kw">let </span>changed = prev_is_dark != is_dark;
                 <span class="kw">if </span>changed {
-                    <span class="kw">let </span>new_theme = <span class="kw">crate</span>::theme::system_preference();
+                    core.theme_sub_counter += <span class="number">1</span>;
+                    <span class="kw">let </span><span class="kw-2">mut </span>new_theme = <span class="kw">if </span>is_dark {
+                        <span class="kw">crate</span>::theme::system_dark()
+                    } <span class="kw">else </span>{
+                        <span class="kw">crate</span>::theme::system_light()
+                    };
+                    cmds.push(<span class="self">self</span>.app.system_theme_update(<span class="kw-2">&amp;</span>[], new_theme.cosmic()));
+
+                    <span class="kw">let </span>core = <span class="self">self</span>.app.core_mut();
+                    new_theme = <span class="kw">if let </span><span class="prelude-val">Some</span>(a) = core.portal_accent {
+                        <span class="kw">let </span>t_inner = new_theme.cosmic();
+                        <span class="kw">if </span>a.distance_squared(<span class="kw-2">*</span>t_inner.accent_color()) &gt; <span class="number">0.00001 </span>{
+                            Theme::system(Arc::new(t_inner.with_accent(a)))
+                        } <span class="kw">else </span>{
+                            new_theme
+                        }
+                    } <span class="kw">else </span>{
+                        new_theme
+                    };
+
+                    core.system_theme = new_theme.clone();
+                    THEME.with(<span class="kw">move </span>|t| {
+                        <span class="kw">let </span><span class="kw-2">mut </span>cosmic_theme = t.borrow_mut();
+
+                        <span class="comment">// Only apply update if the theme is set to load a system theme
+                        </span><span class="kw">if let </span>ThemeType::System(<span class="kw">_</span>) = cosmic_theme.theme_type {
+                            cosmic_theme.set_theme(new_theme.theme_type);
+                        }
+                    });
+                }
+                <span class="kw">return </span>Command::batch(cmds);
+            }
+            Message::Activate(_token) =&gt; {
+                <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
+                </span><span class="kw">return </span>iced_sctk::commands::activation::activate(
+                    <span class="self">self</span>.app.main_window_id(),
+                    <span class="attr">#[allow(clippy::used_underscore_binding)]
+                    </span>_token,
+                );
+            }
+            Message::SurfaceClosed(id) =&gt; {
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(msg) = <span class="self">self</span>.app.on_close_requested(id) {
+                    <span class="kw">return </span><span class="self">self</span>.app.update(msg);
+                }
+            }
+            Message::ShowWindowMenu =&gt; {
+                <span class="attr">#[cfg(not(feature = <span class="string">"wayland"</span>))]
+                </span><span class="kw">return </span>window::show_window_menu(window::Id::MAIN);
+            }
+            <span class="attr">#[cfg(feature = <span class="string">"xdg-portal"</span>)]
+            </span>Message::DesktopSettings(<span class="kw">crate</span>::theme::portal::Desktop::ColorScheme(s)) =&gt; {
+                <span class="kw">use </span>ashpd::desktop::settings::ColorScheme;
+                <span class="kw">let </span>is_dark = <span class="kw">match </span>s {
+                    ColorScheme::NoPreference =&gt; <span class="prelude-val">None</span>,
+                    ColorScheme::PreferDark =&gt; <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
+                    ColorScheme::PreferLight =&gt; <span class="prelude-val">Some</span>(<span class="bool-val">false</span>),
+                };
+                <span class="kw">let </span>core = <span class="self">self</span>.app.core_mut();
+                <span class="kw">let </span>prev_is_dark = core.system_is_dark();
+                core.portal_is_dark = is_dark;
+                <span class="kw">let </span>is_dark = core.system_is_dark();
+                <span class="kw">let </span>changed = prev_is_dark != is_dark;
+                <span class="kw">if </span>changed {
+                    core.theme_sub_counter += <span class="number">1</span>;
+                    <span class="kw">let </span>new_theme = <span class="kw">if </span>is_dark {
+                        <span class="kw">crate</span>::theme::system_dark()
+                    } <span class="kw">else </span>{
+                        <span class="kw">crate</span>::theme::system_light()
+                    };
                     core.system_theme = new_theme.clone();
                     THEME.with(<span class="kw">move </span>|t| {
                         <span class="kw">let </span><span class="kw-2">mut </span>cosmic_theme = t.borrow_mut();
@@ -816,17 +1129,51 @@
                     });
                 }
             }
-            Message::Activate(_token) =&gt; {
-                <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
-                </span><span class="kw">return </span>iced_sctk::commands::activation::activate(
-                    iced::window::Id::MAIN,
-                    <span class="attr">#[allow(clippy::used_underscore_binding)]
-                    </span>_token,
-                );
+            <span class="attr">#[cfg(feature = <span class="string">"xdg-portal"</span>)]
+            </span>Message::DesktopSettings(<span class="kw">crate</span>::theme::portal::Desktop::Accent(c)) =&gt; {
+                <span class="kw">use </span>palette::Srgba;
+
+                <span class="kw">let </span>c = Srgba::new(c.red() <span class="kw">as </span>f32, c.green() <span class="kw">as </span>f32, c.blue() <span class="kw">as </span>f32, <span class="number">1.0</span>);
+                <span class="kw">let </span>core = <span class="self">self</span>.app.core_mut();
+                core.portal_accent = <span class="prelude-val">Some</span>(c);
+                <span class="kw">let </span>cur_accent = core.system_theme.cosmic().accent_color();
+
+                <span class="kw">if </span>cur_accent.distance_squared(<span class="kw-2">*</span>c) &lt; <span class="number">0.00001 </span>{
+                    <span class="comment">// skip calculations if we already have the same color
+                    </span><span class="kw">return </span>iced::Command::none();
+                }
+
+                THEME.with(<span class="kw">move </span>|t| {
+                    <span class="kw">let </span><span class="kw-2">mut </span>cosmic_theme = t.borrow_mut();
+
+                    <span class="comment">// Only apply update if the theme is set to load a system theme
+                    </span><span class="kw">if let </span>ThemeType::System(t) = cosmic_theme.theme_type.clone() {
+                        cosmic_theme.set_theme(ThemeType::System(Arc::new(t.with_accent(c))));
+                    }
+                });
             }
-            Message::SurfaceClosed(id) =&gt; {
-                <span class="kw">if let </span><span class="prelude-val">Some</span>(msg) = <span class="self">self</span>.app.on_close_requested(id) {
-                    <span class="kw">return </span><span class="self">self</span>.app.update(msg);
+            <span class="attr">#[cfg(feature = <span class="string">"xdg-portal"</span>)]
+            </span>Message::DesktopSettings(<span class="kw">crate</span>::theme::portal::Desktop::Contrast(<span class="kw">_</span>)) =&gt; {
+                <span class="comment">// TODO when high contrast is integrated in settings and all custom themes
+            </span>}
+
+            Message::ToolkitConfig(config) =&gt; {
+                <span class="self">self</span>.app.core_mut().toolkit_config = config;
+            }
+
+            Message::Focus(f) =&gt; {
+                <span class="self">self</span>.app.core_mut().focused_window = <span class="prelude-val">Some</span>(f);
+            }
+
+            Message::Unfocus(id) =&gt; {
+                <span class="kw">let </span>core = <span class="self">self</span>.app.core_mut();
+                <span class="kw">if </span>core
+                    .focused_window
+                    .as_ref()
+                    .map(|cur| <span class="kw-2">*</span>cur == id)
+                    .unwrap_or_default()
+                {
+                    core.focused_window = <span class="prelude-val">None</span>;
                 }
             }
         }

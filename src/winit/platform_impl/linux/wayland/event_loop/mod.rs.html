@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/8987daa/src/platform_impl/linux/wayland/event_loop/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../../" data-static-root-path="../../../../../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../../src-files.js"></script><script defer src="../../../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/bdc6610/src/platform_impl/linux/wayland/event_loop/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../../../" data-static-root-path="../../../../../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../../src-files.js"></script><script defer src="../../../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -722,10 +723,10 @@
 <span class="kw">use </span><span class="kw">super</span>::window::state::FrameCallbackState;
 <span class="kw">use super</span>::{logical_to_physical_rounded, DeviceId, WaylandError, WindowId};
 
-<span class="kw">type </span>WaylandDispatcher = calloop::Dispatcher&lt;<span class="lifetime">&#39;static</span>, WaylandSource&lt;WinitState&gt;, WinitState&gt;;
+<span class="kw">type </span>WaylandDispatcher = calloop::Dispatcher&lt;<span class="lifetime">'static</span>, WaylandSource&lt;WinitState&gt;, WinitState&gt;;
 
 <span class="doccomment">/// The Wayland event loop.
-</span><span class="kw">pub struct </span>EventLoop&lt;T: <span class="lifetime">&#39;static</span>&gt; {
+</span><span class="kw">pub struct </span>EventLoop&lt;T: <span class="lifetime">'static</span>&gt; {
     <span class="doccomment">/// Has `run` or `run_on_demand` been called or a call to `pump_events` that starts the loop
     </span>loop_running: bool,
 
@@ -736,8 +737,8 @@
     <span class="doccomment">/// Sender of user events.
     </span>user_events_sender: calloop::channel::Sender&lt;T&gt;,
 
-    <span class="comment">// XXX can&#39;t remove RefCell out of here, unless we can plumb generics into the `Window`, which
-    // we don&#39;t really want, since it&#39;ll break public API by a lot.
+    <span class="comment">// XXX can't remove RefCell out of here, unless we can plumb generics into the `Window`, which
+    // we don't really want, since it'll break public API by a lot.
     </span><span class="doccomment">/// Pending events from the user.
     </span>pending_user_events: Rc&lt;RefCell&lt;Vec&lt;T&gt;&gt;&gt;,
 
@@ -752,11 +753,11 @@
     </span>window_target: RootEventLoopWindowTarget&lt;T&gt;,
 
     <span class="comment">// XXX drop after everything else, just to be safe.
-    </span><span class="doccomment">/// Calloop&#39;s event loop.
-    </span>event_loop: calloop::EventLoop&lt;<span class="lifetime">&#39;static</span>, WinitState&gt;,
+    </span><span class="doccomment">/// Calloop's event loop.
+    </span>event_loop: calloop::EventLoop&lt;<span class="lifetime">'static</span>, WinitState&gt;,
 }
 
-<span class="kw">impl</span>&lt;T: <span class="lifetime">&#39;static</span>&gt; EventLoop&lt;T&gt; {
+<span class="kw">impl</span>&lt;T: <span class="lifetime">'static</span>&gt; EventLoop&lt;T&gt; {
     <span class="kw">pub fn </span>new() -&gt; <span class="prelude-ty">Result</span>&lt;EventLoop&lt;T&gt;, EventLoopError&gt; {
         <span class="macro">macro_rules! </span>map_err {
             (<span class="macro-nonterminal">$e</span>:expr, <span class="macro-nonterminal">$err</span>:expr) =&gt; {
@@ -826,7 +827,7 @@
             .map_err(|error| error.error);
         <span class="macro">map_err!</span>(result, WaylandError::Calloop)<span class="question-mark">?</span>;
 
-        <span class="comment">// An event&#39;s loop awakener to wake up for window events from winit&#39;s windows.
+        <span class="comment">// An event's loop awakener to wake up for window events from winit's windows.
         </span><span class="kw">let </span>(event_loop_awakener, event_loop_awakener_source) = <span class="macro">map_err!</span>(
             calloop::ping::make_ping()
                 .map_err(|error| CalloopError::OtherError(Box::new(error).into())),
@@ -897,7 +898,7 @@
             }
         };
 
-        <span class="comment">// Applications aren&#39;t allowed to carry windows between separate
+        <span class="comment">// Applications aren't allowed to carry windows between separate
         // `run_on_demand` calls but if they have only just dropped their
         // windows we need to make sure those last requests are sent to the
         // compositor.
@@ -963,18 +964,18 @@
             }
 
             <span class="kw">if let </span><span class="prelude-val">Err</span>(error) = <span class="self">self</span>.loop_dispatch(timeout) {
-                <span class="comment">// NOTE We exit on errors from dispatches, since if we&#39;ve got protocol error
+                <span class="comment">// NOTE We exit on errors from dispatches, since if we've got protocol error
                 // libwayland-client/wayland-rs will inform us anyway, but crashing downstream is not
                 // really an option. Instead we inform that the event loop got destroyed. We may
-                // communicate an error that something was terminated, but winit doesn&#39;t provide us
+                // communicate an error that something was terminated, but winit doesn't provide us
                 // with an API to do that via some event.
-                // Still, we set the exit code to the error&#39;s OS error code, or to 1 if not possible.
+                // Still, we set the exit code to the error's OS error code, or to 1 if not possible.
                 </span><span class="kw">let </span>exit_code = error.raw_os_error().unwrap_or(<span class="number">1</span>);
                 <span class="self">self</span>.set_exit_code(exit_code);
                 <span class="kw">return</span>;
             }
 
-            <span class="comment">// NB: `StartCause::Init` is handled as a special case and doesn&#39;t need
+            <span class="comment">// NB: `StartCause::Init` is handled as a special case and doesn't need
             // to be considered here
             </span><span class="kw">let </span>cause = <span class="kw">match </span><span class="self">self</span>.control_flow() {
                 ControlFlow::Poll =&gt; StartCause::Poll,
@@ -1025,13 +1026,13 @@
 
         callback(Event::NewEvents(cause), <span class="kw-2">&amp;</span><span class="self">self</span>.window_target);
 
-        <span class="comment">// NB: For consistency all platforms must emit a &#39;resumed&#39; event even though Wayland
-        // applications don&#39;t themselves have a formal suspend/resume lifecycle.
+        <span class="comment">// NB: For consistency all platforms must emit a 'resumed' event even though Wayland
+        // applications don't themselves have a formal suspend/resume lifecycle.
         </span><span class="kw">if </span>cause == StartCause::Init {
             callback(Event::Resumed, <span class="kw-2">&amp;</span><span class="self">self</span>.window_target);
         }
 
-        <span class="comment">// Handle pending user events. We don&#39;t need back buffer, since we can&#39;t dispatch
+        <span class="comment">// Handle pending user events. We don't need back buffer, since we can't dispatch
         // user events indirectly via callback to the user.
         </span><span class="kw">for </span>user_event <span class="kw">in </span><span class="self">self</span>.pending_user_events.borrow_mut().drain(..) {
             callback(Event::UserEvent(user_event), <span class="kw-2">&amp;</span><span class="self">self</span>.window_target);
@@ -1197,7 +1198,7 @@
             }
         }
 
-        <span class="comment">// Reset the hint that we&#39;ve dispatched events.
+        <span class="comment">// Reset the hint that we've dispatched events.
         </span><span class="self">self</span>.with_state(|state| {
             state.dispatched_events = <span class="bool-val">false</span>;
         });
@@ -1220,7 +1221,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>.window_target
     }
 
-    <span class="kw">fn </span>with_state&lt;<span class="lifetime">&#39;a</span>, U: <span class="lifetime">&#39;a</span>, F: FnOnce(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>WinitState) -&gt; U&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span><span class="self">self</span>, callback: F) -&gt; U {
+    <span class="kw">fn </span>with_state&lt;<span class="lifetime">'a</span>, U: <span class="lifetime">'a</span>, F: FnOnce(<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>WinitState) -&gt; U&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span><span class="self">self</span>, callback: F) -&gt; U {
         <span class="kw">let </span>state = <span class="kw">match </span><span class="kw-2">&amp;mut </span><span class="self">self</span>.window_target.p {
             PlatformEventLoopWindowTarget::Wayland(window_target) =&gt; window_target.state.get_mut(),
             <span class="attr">#[cfg(x11_platform)]
@@ -1233,12 +1234,12 @@
     <span class="kw">fn </span>loop_dispatch&lt;D: Into&lt;<span class="prelude-ty">Option</span>&lt;std::time::Duration&gt;&gt;&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, timeout: D) -&gt; IOResult&lt;()&gt; {
         <span class="kw">let </span>state = <span class="kw">match </span><span class="kw-2">&amp;mut </span><span class="self">self</span>.window_target.p {
             PlatformEventLoopWindowTarget::Wayland(window_target) =&gt; window_target.state.get_mut(),
-            <span class="attr">#[cfg(feature = <span class="string">&quot;x11&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"x11"</span>)]
             </span><span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(),
         };
 
         <span class="self">self</span>.event_loop.dispatch(timeout, state).map_err(|error| {
-            <span class="macro">error!</span>(<span class="string">&quot;Error dispatching event loop: {}&quot;</span>, error);
+            <span class="macro">error!</span>(<span class="string">"Error dispatching event loop: {}"</span>, error);
             error.into()
         })
     }
@@ -1246,7 +1247,7 @@
     <span class="kw">fn </span>roundtrip(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;usize, RootOsError&gt; {
         <span class="kw">let </span>state = <span class="kw">match </span><span class="kw-2">&amp;mut </span><span class="self">self</span>.window_target.p {
             PlatformEventLoopWindowTarget::Wayland(window_target) =&gt; window_target.state.get_mut(),
-            <span class="attr">#[cfg(feature = <span class="string">&quot;x11&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"x11"</span>)]
             </span><span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(),
         };
 
@@ -1277,7 +1278,7 @@
 }
 
 <span class="kw">impl</span>&lt;T&gt; AsFd <span class="kw">for </span>EventLoop&lt;T&gt; {
-    <span class="kw">fn </span>as_fd(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>as_fd(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; BorrowedFd&lt;<span class="lifetime">'_</span>&gt; {
         <span class="self">self</span>.event_loop.as_fd()
     }
 }
@@ -1295,10 +1296,10 @@
     <span class="doccomment">/// The main queue used by the event loop.
     </span><span class="kw">pub </span>queue_handle: QueueHandle&lt;WinitState&gt;,
 
-    <span class="doccomment">/// The application&#39;s latest control_flow state
+    <span class="doccomment">/// The application's latest control_flow state
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) control_flow: Cell&lt;ControlFlow&gt;,
 
-    <span class="doccomment">/// The application&#39;s exit state.
+    <span class="doccomment">/// The application's exit state.
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) exit: Cell&lt;<span class="prelude-ty">Option</span>&lt;i32&gt;&gt;,
 
     <span class="comment">// TODO remove that RefCell once we can pass `&amp;mut` in `Window::new`.
@@ -1346,7 +1347,7 @@
     <span class="attr">#[inline]
     </span><span class="kw">pub fn </span>listen_device_events(<span class="kw-2">&amp;</span><span class="self">self</span>, _allowed: DeviceEvents) {}
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;rwh_05&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"rwh_05"</span>)]
     #[inline]
     </span><span class="kw">pub fn </span>raw_display_handle_rwh_05(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; rwh_05::RawDisplayHandle {
         <span class="kw">use </span>sctk::reexports::client::Proxy;
@@ -1356,7 +1357,7 @@
         rwh_05::RawDisplayHandle::Wayland(display_handle)
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;rwh_06&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"rwh_06"</span>)]
     #[inline]
     </span><span class="kw">pub fn </span>raw_display_handle_rwh_06(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -1365,7 +1366,7 @@
 
         <span class="prelude-val">Ok</span>(rwh_06::WaylandDisplayHandle::new({
             <span class="kw">let </span>ptr = <span class="self">self</span>.connection.display().id().as_ptr();
-            std::ptr::NonNull::new(ptr <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>).expect(<span class="string">&quot;wl_display should never be null&quot;</span>)
+            std::ptr::NonNull::new(ptr <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>).expect(<span class="string">"wl_display should never be null"</span>)
         })
         .into())
     }

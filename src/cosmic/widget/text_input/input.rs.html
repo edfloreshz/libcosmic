@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/text_input/input.rs`."><title>input.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/text_input/input.rs`."><title>input.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -2484,6 +2485,31 @@
 <a href="#2484" id="2484">2484</a>
 <a href="#2485" id="2485">2485</a>
 <a href="#2486" id="2486">2486</a>
+<a href="#2487" id="2487">2487</a>
+<a href="#2488" id="2488">2488</a>
+<a href="#2489" id="2489">2489</a>
+<a href="#2490" id="2490">2490</a>
+<a href="#2491" id="2491">2491</a>
+<a href="#2492" id="2492">2492</a>
+<a href="#2493" id="2493">2493</a>
+<a href="#2494" id="2494">2494</a>
+<a href="#2495" id="2495">2495</a>
+<a href="#2496" id="2496">2496</a>
+<a href="#2497" id="2497">2497</a>
+<a href="#2498" id="2498">2498</a>
+<a href="#2499" id="2499">2499</a>
+<a href="#2500" id="2500">2500</a>
+<a href="#2501" id="2501">2501</a>
+<a href="#2502" id="2502">2502</a>
+<a href="#2503" id="2503">2503</a>
+<a href="#2504" id="2504">2504</a>
+<a href="#2505" id="2505">2505</a>
+<a href="#2506" id="2506">2506</a>
+<a href="#2507" id="2507">2507</a>
+<a href="#2508" id="2508">2508</a>
+<a href="#2509" id="2509">2509</a>
+<a href="#2510" id="2510">2510</a>
+<a href="#2511" id="2511">2511</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2019 H�ctor Ram�n, Iced contributors
 // Copyright 2023 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MIT
@@ -2521,27 +2547,27 @@
     Clipboard, Color, Element, Layout, Length, Padding, Pixels, Point, Rectangle, Shell, Size,
     Vector, Widget,
 };
-<span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
 </span><span class="kw">use </span>iced_renderer::core::event::{wayland, PlatformSpecific};
 <span class="kw">use </span>iced_renderer::core::widget::OperationOutputWrapper;
-<span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
 </span><span class="kw">use </span>iced_runtime::command::platform_specific;
 <span class="kw">use </span>iced_runtime::Command;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
 </span><span class="kw">use </span>cctk::sctk::reexports::client::protocol::wl_data_device_manager::DndAction;
-<span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
 </span><span class="kw">use </span>iced_runtime::command::platform_specific::wayland::data_device::{DataFromMimeType, DndIcon};
 
 <span class="doccomment">/// Creates a new [`TextInput`].
 ///
 /// [`TextInput`]: widget::TextInput
-</span><span class="kw">pub fn </span>text_input&lt;<span class="lifetime">&#39;a</span>, Message&gt;(
-    placeholder: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;,
-    value: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;,
-) -&gt; TextInput&lt;<span class="lifetime">&#39;a</span>, Message&gt;
+</span><span class="kw">pub fn </span>text_input&lt;<span class="lifetime">'a</span>, Message&gt;(
+    placeholder: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;,
+    value: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;,
+) -&gt; TextInput&lt;<span class="lifetime">'a</span>, Message&gt;
 <span class="kw">where
-    </span>Message: Clone + <span class="lifetime">&#39;static</span>,
+    </span>Message: Clone + <span class="lifetime">'static</span>,
 {
     TextInput::new(placeholder, value)
 }
@@ -2549,12 +2575,12 @@
 <span class="doccomment">/// Creates a new search [`TextInput`].
 ///
 /// [`TextInput`]: widget::TextInput
-</span><span class="kw">pub fn </span>search_input&lt;<span class="lifetime">&#39;a</span>, Message&gt;(
-    placeholder: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;,
-    value: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;,
-) -&gt; TextInput&lt;<span class="lifetime">&#39;a</span>, Message&gt;
+</span><span class="kw">pub fn </span>search_input&lt;<span class="lifetime">'a</span>, Message&gt;(
+    placeholder: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;,
+    value: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;,
+) -&gt; TextInput&lt;<span class="lifetime">'a</span>, Message&gt;
 <span class="kw">where
-    </span>Message: Clone + <span class="lifetime">&#39;static</span>,
+    </span>Message: Clone + <span class="lifetime">'static</span>,
 {
     <span class="kw">let </span>spacing = THEME.with(|t| t.borrow().cosmic().space_xxs());
 
@@ -2562,7 +2588,7 @@
         .padding([<span class="number">0</span>, spacing, <span class="number">0</span>, spacing])
         .style(<span class="kw">crate</span>::theme::TextInput::Search)
         .leading_icon(
-            <span class="kw">crate</span>::widget::icon::from_name(<span class="string">&quot;system-search-symbolic&quot;</span>)
+            <span class="kw">crate</span>::widget::icon::from_name(<span class="string">"system-search-symbolic"</span>)
                 .size(<span class="number">16</span>)
                 .apply(<span class="kw">crate</span>::widget::container)
                 .padding([spacing, spacing, spacing, spacing])
@@ -2572,21 +2598,21 @@
 <span class="doccomment">/// Creates a new search [`TextInput`].
 ///
 /// [`TextInput`]: widget::TextInput
-</span><span class="kw">pub fn </span>secure_input&lt;<span class="lifetime">&#39;a</span>, Message&gt;(
-    placeholder: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;,
-    value: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;,
+</span><span class="kw">pub fn </span>secure_input&lt;<span class="lifetime">'a</span>, Message&gt;(
+    placeholder: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;,
+    value: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;,
     on_visible_toggle: <span class="prelude-ty">Option</span>&lt;Message&gt;,
     hidden: bool,
-) -&gt; TextInput&lt;<span class="lifetime">&#39;a</span>, Message&gt;
+) -&gt; TextInput&lt;<span class="lifetime">'a</span>, Message&gt;
 <span class="kw">where
-    </span>Message: Clone + <span class="lifetime">&#39;static</span>,
+    </span>Message: Clone + <span class="lifetime">'static</span>,
 {
     <span class="kw">let </span>spacing = THEME.with(|t| t.borrow().cosmic().space_xxs());
     <span class="kw">let </span><span class="kw-2">mut </span>input = TextInput::new(placeholder, value)
         .padding([<span class="number">0</span>, spacing, <span class="number">0</span>, spacing])
         .style(<span class="kw">crate</span>::theme::TextInput::Default)
         .leading_icon(
-            <span class="kw">crate</span>::widget::icon::from_name(<span class="string">&quot;system-lock-screen-symbolic&quot;</span>)
+            <span class="kw">crate</span>::widget::icon::from_name(<span class="string">"system-lock-screen-symbolic"</span>)
                 .size(<span class="number">16</span>)
                 .apply(<span class="kw">crate</span>::widget::container)
                 .padding([spacing, spacing, spacing, spacing])
@@ -2597,7 +2623,7 @@
     }
     <span class="kw">if let </span><span class="prelude-val">Some</span>(msg) = on_visible_toggle {
         input.trailing_icon(
-            <span class="kw">crate</span>::widget::icon::from_name(<span class="string">&quot;document-properties-symbolic&quot;</span>)
+            <span class="kw">crate</span>::widget::icon::from_name(<span class="string">"document-properties-symbolic"</span>)
                 .size(<span class="number">16</span>)
                 .apply(<span class="kw">crate</span>::widget::button)
                 .style(<span class="kw">crate</span>::theme::Button::Icon)
@@ -2613,38 +2639,38 @@
 <span class="doccomment">/// Creates a new inline [`TextInput`].
 ///
 /// [`TextInput`]: widget::TextInput
-</span><span class="kw">pub fn </span>inline_input&lt;<span class="lifetime">&#39;a</span>, Message&gt;(value: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;) -&gt; TextInput&lt;<span class="lifetime">&#39;a</span>, Message&gt;
+</span><span class="kw">pub fn </span>inline_input&lt;<span class="lifetime">'a</span>, Message&gt;(value: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;) -&gt; TextInput&lt;<span class="lifetime">'a</span>, Message&gt;
 <span class="kw">where
-    </span>Message: Clone + <span class="lifetime">&#39;static</span>,
+    </span>Message: Clone + <span class="lifetime">'static</span>,
 {
     <span class="kw">let </span>spacing = THEME.with(|t| t.borrow().cosmic().space_xxs());
 
-    TextInput::new(<span class="string">&quot;&quot;</span>, value)
+    TextInput::new(<span class="string">""</span>, value)
         .style(<span class="kw">crate</span>::theme::TextInput::Inline)
         .padding([spacing, spacing, spacing, spacing])
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const </span>SUPPORTED_TEXT_MIME_TYPES: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str; <span class="number">6</span>] = <span class="kw-2">&amp;</span>[
-    <span class="string">&quot;text/plain;charset=utf-8&quot;</span>,
-    <span class="string">&quot;text/plain;charset=UTF-8&quot;</span>,
-    <span class="string">&quot;UTF8_STRING&quot;</span>,
-    <span class="string">&quot;STRING&quot;</span>,
-    <span class="string">&quot;text/plain&quot;</span>,
-    <span class="string">&quot;TEXT&quot;</span>,
+    <span class="string">"text/plain;charset=utf-8"</span>,
+    <span class="string">"text/plain;charset=UTF-8"</span>,
+    <span class="string">"UTF8_STRING"</span>,
+    <span class="string">"STRING"</span>,
+    <span class="string">"text/plain"</span>,
+    <span class="string">"TEXT"</span>,
 ];
-<span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
 </span><span class="kw">pub type </span>DnDCommand =
     Box&lt;<span class="kw">dyn </span>Send + Sync + Fn() -&gt; platform_specific::wayland::data_device::ActionInner&gt;;
-<span class="attr">#[cfg(not(feature = <span class="string">&quot;wayland&quot;</span>))]
+<span class="attr">#[cfg(not(feature = <span class="string">"wayland"</span>))]
 </span><span class="kw">pub type </span>DnDCommand = ();
 
 <span class="doccomment">/// A field that can be filled with text.
 </span><span class="attr">#[allow(missing_debug_implementations)]
 #[must_use]
-</span><span class="kw">pub struct </span>TextInput&lt;<span class="lifetime">&#39;a</span>, Message&gt; {
+</span><span class="kw">pub struct </span>TextInput&lt;<span class="lifetime">'a</span>, Message&gt; {
     id: <span class="prelude-ty">Option</span>&lt;Id&gt;,
-    placeholder: Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;,
+    placeholder: Cow&lt;<span class="lifetime">'a</span>, str&gt;,
     value: Value,
     is_secure: bool,
     font: <span class="prelude-ty">Option</span>&lt;&lt;<span class="kw">crate</span>::Renderer <span class="kw">as </span>iced_core::text::Renderer&gt;::Font&gt;,
@@ -2652,36 +2678,36 @@
     padding: Padding,
     size: <span class="prelude-ty">Option</span>&lt;f32&gt;,
     helper_size: f32,
-    label: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
-    helper_text: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
-    error: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;,
-    on_input: <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Fn(String) -&gt; Message + <span class="lifetime">&#39;a</span>&gt;&gt;,
-    on_paste: <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Fn(String) -&gt; Message + <span class="lifetime">&#39;a</span>&gt;&gt;,
+    label: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
+    helper_text: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
+    error: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;,
+    on_input: <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Fn(String) -&gt; Message + <span class="lifetime">'a</span>&gt;&gt;,
+    on_paste: <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Fn(String) -&gt; Message + <span class="lifetime">'a</span>&gt;&gt;,
     on_submit: <span class="prelude-ty">Option</span>&lt;Message&gt;,
-    leading_icon: <span class="prelude-ty">Option</span>&lt;Element&lt;<span class="lifetime">&#39;a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt;,
-    trailing_icon: <span class="prelude-ty">Option</span>&lt;Element&lt;<span class="lifetime">&#39;a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt;,
+    leading_icon: <span class="prelude-ty">Option</span>&lt;Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt;,
+    trailing_icon: <span class="prelude-ty">Option</span>&lt;Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt;,
     style: &lt;<span class="kw">crate</span>::Theme <span class="kw">as </span>StyleSheet&gt;::Style,
-    on_create_dnd_source: <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Fn(State) -&gt; Message + <span class="lifetime">&#39;a</span>&gt;&gt;,
-    on_dnd_command_produced: <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Fn(DnDCommand) -&gt; Message + <span class="lifetime">&#39;a</span>&gt;&gt;,
+    on_create_dnd_source: <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Fn(State) -&gt; Message + <span class="lifetime">'a</span>&gt;&gt;,
+    on_dnd_command_produced: <span class="prelude-ty">Option</span>&lt;Box&lt;<span class="kw">dyn </span>Fn(DnDCommand) -&gt; Message + <span class="lifetime">'a</span>&gt;&gt;,
     surface_ids: <span class="prelude-ty">Option</span>&lt;(window::Id, window::Id)&gt;,
     dnd_icon: bool,
     line_height: text::LineHeight,
     helper_line_height: text::LineHeight,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, Message&gt; TextInput&lt;<span class="lifetime">&#39;a</span>, Message&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message&gt; TextInput&lt;<span class="lifetime">'a</span>, Message&gt;
 <span class="kw">where
-    </span>Message: Clone + <span class="lifetime">&#39;static</span>,
+    </span>Message: Clone + <span class="lifetime">'static</span>,
 {
     <span class="doccomment">/// Creates a new [`TextInput`].
     ///
     /// It expects:
     /// - a placeholder,
     /// - the current value
-    </span><span class="kw">pub fn </span>new(placeholder: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;, value: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>new(placeholder: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;, value: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;) -&gt; <span class="self">Self </span>{
         <span class="kw">let </span>spacing = THEME.with(|t| t.borrow().cosmic().space_xxs());
 
-        <span class="kw">let </span>v: Cow&lt;<span class="lifetime">&#39;a</span>, str&gt; = value.into();
+        <span class="kw">let </span>v: Cow&lt;<span class="lifetime">'a</span>, str&gt; = value.into();
         TextInput {
             id: <span class="prelude-val">None</span>,
             placeholder: placeholder.into(),
@@ -2711,13 +2737,13 @@
     }
 
     <span class="doccomment">/// Sets the text of the [`TextInput`].
-    </span><span class="kw">pub fn </span>label(<span class="kw-2">mut </span><span class="self">self</span>, label: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>label(<span class="kw-2">mut </span><span class="self">self</span>, label: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.label = <span class="prelude-val">Some</span>(label);
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Sets the helper text of the [`TextInput`].
-    </span><span class="kw">pub fn </span>helper_text(<span class="kw-2">mut </span><span class="self">self</span>, helper_text: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>helper_text(<span class="kw-2">mut </span><span class="self">self</span>, helper_text: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.helper_text = <span class="prelude-val">Some</span>(helper_text);
         <span class="self">self
     </span>}
@@ -2729,7 +2755,7 @@
     </span>}
 
     <span class="doccomment">/// Sets the error message of the [`TextInput`].
-    </span><span class="kw">pub fn </span>error(<span class="kw-2">mut </span><span class="self">self</span>, error: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>error(<span class="kw-2">mut </span><span class="self">self</span>, error: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.error = <span class="prelude-val">Some</span>(error);
         <span class="self">self
     </span>}
@@ -2752,7 +2778,7 @@
     /// If this method is not called, the [`TextInput`] will be disabled.
     </span><span class="kw">pub fn </span>on_input&lt;F&gt;(<span class="kw-2">mut </span><span class="self">self</span>, callback: F) -&gt; <span class="self">Self
     </span><span class="kw">where
-        </span>F: <span class="lifetime">&#39;a </span>+ Fn(String) -&gt; Message,
+        </span>F: <span class="lifetime">'a </span>+ Fn(String) -&gt; Message,
     {
         <span class="self">self</span>.on_input = <span class="prelude-val">Some</span>(Box::new(callback));
         <span class="self">self
@@ -2773,7 +2799,7 @@
 
     <span class="doccomment">/// Sets the message that should be produced when some text is pasted into
     /// the [`TextInput`].
-    </span><span class="kw">pub fn </span>on_paste(<span class="kw-2">mut </span><span class="self">self</span>, on_paste: <span class="kw">impl </span>Fn(String) -&gt; Message + <span class="lifetime">&#39;a</span>) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>on_paste(<span class="kw-2">mut </span><span class="self">self</span>, on_paste: <span class="kw">impl </span>Fn(String) -&gt; Message + <span class="lifetime">'a</span>) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.on_paste = <span class="prelude-val">Some</span>(Box::new(on_paste));
         <span class="self">self
     </span>}
@@ -2789,7 +2815,7 @@
     <span class="doccomment">/// Sets the start [`Icon`] of the [`TextInput`].
     </span><span class="kw">pub fn </span>leading_icon(
         <span class="kw-2">mut </span><span class="self">self</span>,
-        icon: Element&lt;<span class="lifetime">&#39;a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;,
+        icon: Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;,
     ) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.leading_icon = <span class="prelude-val">Some</span>(icon);
         <span class="self">self
@@ -2798,7 +2824,7 @@
     <span class="doccomment">/// Sets the end [`Icon`] of the [`TextInput`].
     </span><span class="kw">pub fn </span>trailing_icon(
         <span class="kw-2">mut </span><span class="self">self</span>,
-        icon: Element&lt;<span class="lifetime">&#39;a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;,
+        icon: Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;,
     ) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.trailing_icon = <span class="prelude-val">Some</span>(icon);
         <span class="self">self
@@ -2838,7 +2864,7 @@
         tree: <span class="kw-2">&amp;</span>Tree,
         renderer: <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::Renderer,
         theme: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Theme,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         cursor_position: mouse::Cursor,
         value: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Value&gt;,
         style: <span class="kw-2">&amp;</span>renderer::Style,
@@ -2871,21 +2897,21 @@
     }
 
     <span class="doccomment">/// Sets the start dnd handler of the [`TextInput`].
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
-    </span><span class="kw">pub fn </span>on_start_dnd(<span class="kw-2">mut </span><span class="self">self</span>, on_start_dnd: <span class="kw">impl </span>Fn(State) -&gt; Message + <span class="lifetime">&#39;a</span>) -&gt; <span class="self">Self </span>{
+    </span><span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
+    </span><span class="kw">pub fn </span>on_start_dnd(<span class="kw-2">mut </span><span class="self">self</span>, on_start_dnd: <span class="kw">impl </span>Fn(State) -&gt; Message + <span class="lifetime">'a</span>) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.on_create_dnd_source = <span class="prelude-val">Some</span>(Box::new(on_start_dnd));
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Sets the dnd command produced handler of the [`TextInput`].
     /// Commands should be returned in the update function of the application.
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
     </span><span class="kw">pub fn </span>on_dnd_command_produced(
         <span class="kw-2">mut </span><span class="self">self</span>,
         on_dnd_command_produced: <span class="kw">impl </span>Fn(
                 Box&lt;<span class="kw">dyn </span>Send + Sync + Fn() -&gt; platform_specific::wayland::data_device::ActionInner&gt;,
             ) -&gt; Message
-            + <span class="lifetime">&#39;a</span>,
+            + <span class="lifetime">'a</span>,
     ) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.on_dnd_command_produced = <span class="prelude-val">Some</span>(Box::new(on_dnd_command_produced));
         <span class="self">self
@@ -2909,7 +2935,7 @@
         <span class="kw">let </span>spacing = THEME.with(|t| t.borrow().cosmic().space_xxs());
 
         <span class="self">self</span>.trailing_icon(
-            <span class="kw">crate</span>::widget::icon::from_name(<span class="string">&quot;edit-clear-symbolic&quot;</span>)
+            <span class="kw">crate</span>::widget::icon::from_name(<span class="string">"edit-clear-symbolic"</span>)
                 .size(<span class="number">16</span>)
                 .apply(<span class="kw">crate</span>::widget::button)
                 .style(<span class="kw">crate</span>::theme::Button::Icon)
@@ -2922,7 +2948,7 @@
     }
 
     <span class="doccomment">/// Get the layout node of the actual text input
-    </span><span class="kw">fn </span>text_layout&lt;<span class="lifetime">&#39;b</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>, layout: Layout&lt;<span class="lifetime">&#39;b</span>&gt;) -&gt; Layout&lt;<span class="lifetime">&#39;b</span>&gt; {
+    </span><span class="kw">fn </span>text_layout&lt;<span class="lifetime">'b</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>, layout: Layout&lt;<span class="lifetime">'b</span>&gt;) -&gt; Layout&lt;<span class="lifetime">'b</span>&gt; {
         <span class="kw">if </span><span class="self">self</span>.dnd_icon {
             layout
         } <span class="kw">else if </span><span class="self">self</span>.label.is_some() {
@@ -2935,9 +2961,9 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, Message&gt; Widget&lt;Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt; <span class="kw">for </span>TextInput&lt;<span class="lifetime">&#39;a</span>, Message&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message&gt; Widget&lt;Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt; <span class="kw">for </span>TextInput&lt;<span class="lifetime">'a</span>, Message&gt;
 <span class="kw">where
-    </span>Message: Clone + <span class="lifetime">&#39;static</span>,
+    </span>Message: Clone + <span class="lifetime">'static</span>,
 {
     <span class="kw">fn </span>tag(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; tree::Tag {
         tree::Tag::of::&lt;State&gt;()
@@ -2958,7 +2984,32 @@
             state.dragging_state = <span class="prelude-val">None</span>;
         }
 
-        <span class="kw">if </span>state.is_secure != <span class="self">self</span>.is_secure {
+        <span class="kw">if </span>state.is_secure != <span class="self">self</span>.is_secure
+            || state
+                .value
+                .buffer()
+                .lines
+                .iter()
+                .map(|l| l.text())
+                .collect::&lt;String&gt;()
+                != <span class="self">self</span>.value.to_string()
+            || state
+                .label
+                .buffer()
+                .lines
+                .iter()
+                .map(|l| l.text())
+                .collect::&lt;String&gt;()
+                != <span class="self">self</span>.label.unwrap_or_default()
+            || state
+                .helper_text
+                .buffer()
+                .lines
+                .iter()
+                .map(|l| l.text())
+                .collect::&lt;String&gt;()
+                != <span class="self">self</span>.helper_text.unwrap_or_default()
+        {
             state.is_secure = <span class="self">self</span>.is_secure;
             state.dirty = <span class="bool-val">true</span>;
         }
@@ -3069,7 +3120,7 @@
     <span class="kw">fn </span>operate(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         tree: <span class="kw-2">&amp;mut </span>Tree,
-        _layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        _layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         _renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
         operation: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>Operation&lt;OperationOutputWrapper&lt;Message&gt;&gt;,
     ) {
@@ -3079,12 +3130,12 @@
         operation.text_input(state, <span class="self">self</span>.id.as_ref());
     }
 
-    <span class="kw">fn </span>overlay&lt;<span class="lifetime">&#39;b</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="kw-2">mut </span><span class="self">self</span>,
-        tree: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="kw-2">mut </span>Tree,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+    <span class="kw">fn </span>overlay&lt;<span class="lifetime">'b</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'b </span><span class="kw-2">mut </span><span class="self">self</span>,
+        tree: <span class="kw-2">&amp;</span><span class="lifetime">'b </span><span class="kw-2">mut </span>Tree,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;overlay::Element&lt;<span class="lifetime">&#39;b</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;overlay::Element&lt;<span class="lifetime">'b</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>layout_ = Vec::with_capacity(<span class="number">2</span>);
         <span class="kw">if </span><span class="self">self</span>.leading_icon.is_some() {
             <span class="kw">let </span><span class="kw-2">mut </span>children = <span class="self">self</span>.text_layout(layout).children();
@@ -3117,11 +3168,11 @@
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         tree: <span class="kw-2">&amp;mut </span>Tree,
         event: Event,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         cursor_position: mouse::Cursor,
         renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
         clipboard: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>Clipboard,
-        shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">&#39;_</span>, Message&gt;,
+        shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">'_</span>, Message&gt;,
         viewport: <span class="kw-2">&amp;</span>Rectangle,
     ) -&gt; event::Status {
         <span class="kw">let </span>text_layout = <span class="self">self</span>.text_layout(layout);
@@ -3220,7 +3271,7 @@
         renderer: <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::Renderer,
         theme: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Theme,
         style: <span class="kw-2">&amp;</span>renderer::Style,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         cursor_position: mouse::Cursor,
         viewport: <span class="kw-2">&amp;</span>Rectangle,
     ) {
@@ -3254,7 +3305,7 @@
     <span class="kw">fn </span>mouse_interaction(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         state: <span class="kw-2">&amp;</span>Tree,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         cursor_position: mouse::Cursor,
         viewport: <span class="kw-2">&amp;</span>Rectangle,
         renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
@@ -3307,43 +3358,43 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, Message&gt; From&lt;TextInput&lt;<span class="lifetime">&#39;a</span>, Message&gt;&gt;
-    <span class="kw">for </span>Element&lt;<span class="lifetime">&#39;a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message&gt; From&lt;TextInput&lt;<span class="lifetime">'a</span>, Message&gt;&gt;
+    <span class="kw">for </span>Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;
 <span class="kw">where
-    </span>Message: <span class="lifetime">&#39;static </span>+ Clone,
+    </span>Message: <span class="lifetime">'static </span>+ Clone,
 {
     <span class="kw">fn </span>from(
-        text_input: TextInput&lt;<span class="lifetime">&#39;a</span>, Message&gt;,
-    ) -&gt; Element&lt;<span class="lifetime">&#39;a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt; {
+        text_input: TextInput&lt;<span class="lifetime">'a</span>, Message&gt;,
+    ) -&gt; Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt; {
         Element::new(text_input)
     }
 }
 
 <span class="doccomment">/// Produces a [`Command`] that focuses the [`TextInput`] with the given [`Id`].
-</span><span class="kw">pub fn </span>focus&lt;Message: <span class="lifetime">&#39;static</span>&gt;(id: Id) -&gt; Command&lt;Message&gt; {
+</span><span class="kw">pub fn </span>focus&lt;Message: <span class="lifetime">'static</span>&gt;(id: Id) -&gt; Command&lt;Message&gt; {
     Command::widget(operation::focusable::focus(id))
 }
 
 <span class="doccomment">/// Produces a [`Command`] that moves the cursor of the [`TextInput`] with the given [`Id`] to the
 /// end.
-</span><span class="kw">pub fn </span>move_cursor_to_end&lt;Message: <span class="lifetime">&#39;static</span>&gt;(id: Id) -&gt; Command&lt;Message&gt; {
+</span><span class="kw">pub fn </span>move_cursor_to_end&lt;Message: <span class="lifetime">'static</span>&gt;(id: Id) -&gt; Command&lt;Message&gt; {
     Command::widget(operation::text_input::move_cursor_to_end(id))
 }
 
 <span class="doccomment">/// Produces a [`Command`] that moves the cursor of the [`TextInput`] with the given [`Id`] to the
 /// front.
-</span><span class="kw">pub fn </span>move_cursor_to_front&lt;Message: <span class="lifetime">&#39;static</span>&gt;(id: Id) -&gt; Command&lt;Message&gt; {
+</span><span class="kw">pub fn </span>move_cursor_to_front&lt;Message: <span class="lifetime">'static</span>&gt;(id: Id) -&gt; Command&lt;Message&gt; {
     Command::widget(operation::text_input::move_cursor_to_front(id))
 }
 
 <span class="doccomment">/// Produces a [`Command`] that moves the cursor of the [`TextInput`] with the given [`Id`] to the
 /// provided position.
-</span><span class="kw">pub fn </span>move_cursor_to&lt;Message: <span class="lifetime">&#39;static</span>&gt;(id: Id, position: usize) -&gt; Command&lt;Message&gt; {
+</span><span class="kw">pub fn </span>move_cursor_to&lt;Message: <span class="lifetime">'static</span>&gt;(id: Id, position: usize) -&gt; Command&lt;Message&gt; {
     Command::widget(operation::text_input::move_cursor_to(id, position))
 }
 
 <span class="doccomment">/// Produces a [`Command`] that selects all the content of the [`TextInput`] with the given [`Id`].
-</span><span class="kw">pub fn </span>select_all&lt;Message: <span class="lifetime">&#39;static</span>&gt;(id: Id) -&gt; Command&lt;Message&gt; {
+</span><span class="kw">pub fn </span>select_all&lt;Message: <span class="lifetime">'static</span>&gt;(id: Id) -&gt; Command&lt;Message&gt; {
     Command::widget(operation::text_input::select_all(id))
 }
 
@@ -3357,8 +3408,8 @@
     width: Length,
     padding: Padding,
     size: <span class="prelude-ty">Option</span>&lt;f32&gt;,
-    leading_icon: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Element&lt;<span class="lifetime">&#39;_</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt;,
-    trailing_icon: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Element&lt;<span class="lifetime">&#39;_</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt;,
+    leading_icon: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Element&lt;<span class="lifetime">'_</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt;,
+    trailing_icon: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Element&lt;<span class="lifetime">'_</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt;,
     line_height: text::LineHeight,
     label: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt;,
     helper_text: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt;,
@@ -3551,12 +3602,12 @@
 #[allow(clippy::missing_panics_doc)]
 #[allow(clippy::cast_lossless)]
 #[allow(clippy::cast_possible_truncation)]
-</span><span class="kw">pub fn </span>update&lt;<span class="lifetime">&#39;a</span>, Message&gt;(
+</span><span class="kw">pub fn </span>update&lt;<span class="lifetime">'a</span>, Message&gt;(
     event: Event,
-    text_layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+    text_layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
     cursor_position: mouse::Cursor,
     clipboard: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>Clipboard,
-    shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">&#39;_</span>, Message&gt;,
+    shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">'_</span>, Message&gt;,
     value: <span class="kw-2">&amp;mut </span>Value,
     size: f32,
     font: &lt;<span class="kw">crate</span>::Renderer <span class="kw">as </span>iced_core::text::Renderer&gt;::Font,
@@ -3564,13 +3615,13 @@
     on_input: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="kw">dyn </span>Fn(String) -&gt; Message&gt;,
     on_paste: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="kw">dyn </span>Fn(String) -&gt; Message&gt;,
     on_submit: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span>&lt;Message&gt;,
-    state: <span class="kw">impl </span>FnOnce() -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>State,
+    state: <span class="kw">impl </span>FnOnce() -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>State,
     <span class="attr">#[allow(unused_variables)] </span>on_start_dnd_source: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="kw">dyn </span>Fn(State) -&gt; Message&gt;,
     <span class="attr">#[allow(unused_variables)] </span>dnd_icon: bool,
     <span class="attr">#[allow(unused_variables)] </span>on_dnd_command_produced: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="kw">dyn </span>Fn(DnDCommand) -&gt; Message&gt;,
     <span class="attr">#[allow(unused_variables)] </span>surface_ids: <span class="prelude-ty">Option</span>&lt;(window::Id, window::Id)&gt;,
     line_height: text::LineHeight,
-    layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+    layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
 ) -&gt; event::Status
 <span class="kw">where
     </span>Message: Clone,
@@ -3618,7 +3669,7 @@
                     click.kind(),
                     state.cursor().state(value),
                 ) {
-                    <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+                    <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
                     </span>(<span class="prelude-val">None</span>, click::Kind::Single, cursor::State::Selection { start, end }) =&gt; {
                         <span class="comment">// if something is already selected, we can start a drag and drop for a
                         // single click that is on top of the selected text
@@ -3898,7 +3949,7 @@
                         }
                     }
                     keyboard::Key::Character(<span class="kw-2">ref </span>c)
-                        <span class="kw">if </span><span class="string">&quot;c&quot; </span>== c &amp;&amp; state.keyboard_modifiers.command() =&gt;
+                        <span class="kw">if </span><span class="string">"c" </span>== c &amp;&amp; state.keyboard_modifiers.command() =&gt;
                     {
                         <span class="kw">if </span>!is_secure {
                             <span class="kw">if let </span><span class="prelude-val">Some</span>((start, end)) = state.cursor.selection(value) {
@@ -3909,7 +3960,7 @@
                     <span class="comment">// XXX if we want to allow cutting of secure text, we need to
                     // update the cache and decide which value to cut
                     </span>keyboard::Key::Character(c)
-                        <span class="kw">if </span><span class="string">&quot;x&quot; </span>== c &amp;&amp; state.keyboard_modifiers.command() =&gt;
+                        <span class="kw">if </span><span class="string">"x" </span>== c &amp;&amp; state.keyboard_modifiers.command() =&gt;
                     {
                         <span class="kw">if </span>!is_secure {
                             <span class="kw">if let </span><span class="prelude-val">Some</span>((start, end)) = state.cursor.selection(value) {
@@ -3925,7 +3976,7 @@
                         }
                     }
                     keyboard::Key::Character(c)
-                        <span class="kw">if </span><span class="string">&quot;v&quot; </span>== c &amp;&amp; state.keyboard_modifiers.command() =&gt;
+                        <span class="kw">if </span><span class="string">"v" </span>== c &amp;&amp; state.keyboard_modifiers.command() =&gt;
                     {
                         <span class="kw">let </span>content = <span class="kw">if let </span><span class="prelude-val">Some</span>(content) = state.is_pasting.take() {
                             content
@@ -3964,7 +4015,7 @@
                         update_cache(state, <span class="kw-2">&amp;</span>value);
                     }
                     keyboard::Key::Character(c)
-                        <span class="kw">if </span><span class="string">&quot;a&quot; </span>== c &amp;&amp; state.keyboard_modifiers.command() =&gt;
+                        <span class="kw">if </span><span class="string">"a" </span>== c &amp;&amp; state.keyboard_modifiers.command() =&gt;
                     {
                         state.cursor.select_all(value);
                     }
@@ -4021,7 +4072,7 @@
 
             <span class="kw">if </span>state.is_focused.is_some() {
                 <span class="kw">match </span>key {
-                    keyboard::Key::Character(c) <span class="kw">if </span><span class="string">&quot;v&quot; </span>== c =&gt; {
+                    keyboard::Key::Character(c) <span class="kw">if </span><span class="string">"v" </span>== c =&gt; {
                         state.is_pasting = <span class="prelude-val">None</span>;
                     }
                     keyboard::Key::Named(keyboard::key::Named::Tab)
@@ -4054,7 +4105,7 @@
                 ));
             }
         }
-        <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
         </span>Event::PlatformSpecific(PlatformSpecific::Wayland(wayland::Event::DataSource(
             wayland::DataSourceEvent::DndFinished | wayland::DataSourceEvent::Cancelled,
         ))) =&gt; {
@@ -4064,7 +4115,7 @@
                 <span class="kw">return </span>event::Status::Captured;
             }
         }
-        <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
         </span>Event::PlatformSpecific(PlatformSpecific::Wayland(wayland::Event::DataSource(
             wayland::DataSourceEvent::DndActionAccepted(action),
         ))) =&gt; {
@@ -4074,7 +4125,7 @@
                 <span class="kw">return </span>event::Status::Captured;
             }
         }
-        <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
         </span>Event::PlatformSpecific(PlatformSpecific::Wayland(wayland::Event::DndOffer(
             wayland::DndOfferEvent::Enter { x, y, mime_types },
         ))) =&gt; {
@@ -4125,7 +4176,7 @@
                 <span class="kw">return </span>event::Status::Captured;
             }
         }
-        <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
         </span>Event::PlatformSpecific(PlatformSpecific::Wayland(wayland::Event::DndOffer(
             wayland::DndOfferEvent::Motion { x, y },
         ))) =&gt; {
@@ -4189,7 +4240,7 @@
             state.cursor.move_to(position.unwrap_or(<span class="number">0</span>));
             <span class="kw">return </span>event::Status::Captured;
         }
-        <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
         </span>Event::PlatformSpecific(PlatformSpecific::Wayland(wayland::Event::DndOffer(
             wayland::DndOfferEvent::DropPerformed,
         ))) =&gt; {
@@ -4218,12 +4269,12 @@
             }
             <span class="kw">return </span>event::Status::Ignored;
         }
-        <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
         </span>Event::PlatformSpecific(PlatformSpecific::Wayland(wayland::Event::DndOffer(
             wayland::DndOfferEvent::Leave,
         ))) =&gt; {
             <span class="kw">let </span>state = state();
-            <span class="comment">// ASHLEY TODO we should be able to reset but for now we don&#39;t if we are handling a
+            <span class="comment">// ASHLEY TODO we should be able to reset but for now we don't if we are handling a
             // drop
             </span><span class="kw">match </span>state.dnd_offer {
                 DndOfferState::Dropped =&gt; {}
@@ -4233,7 +4284,7 @@
             };
             <span class="kw">return </span>event::Status::Captured;
         }
-        <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
         </span>Event::PlatformSpecific(PlatformSpecific::Wayland(wayland::Event::DndOffer(
             wayland::DndOfferEvent::DndData { mime_type, data },
         ))) =&gt; {
@@ -4275,7 +4326,7 @@
             }
             <span class="kw">return </span>event::Status::Ignored;
         }
-        <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
         </span>Event::PlatformSpecific(PlatformSpecific::Wayland(wayland::Event::DndOffer(
             wayland::DndOfferEvent::SourceActions(actions),
         ))) =&gt; {
@@ -4308,10 +4359,10 @@
 </span><span class="attr">#[allow(clippy::too_many_arguments)]
 #[allow(clippy::too_many_lines)]
 #[allow(clippy::missing_panics_doc)]
-</span><span class="kw">pub fn </span>draw&lt;<span class="lifetime">&#39;a</span>, Message&gt;(
+</span><span class="kw">pub fn </span>draw&lt;<span class="lifetime">'a</span>, Message&gt;(
     renderer: <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::Renderer,
     theme: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Theme,
-    layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+    layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
     cursor_position: mouse::Cursor,
     tree: <span class="kw-2">&amp;</span>Tree,
     value: <span class="kw-2">&amp;</span>Value,
@@ -4320,8 +4371,8 @@
     font: <span class="prelude-ty">Option</span>&lt;&lt;<span class="kw">crate</span>::Renderer <span class="kw">as </span>iced_core::text::Renderer&gt;::Font&gt;,
     is_disabled: bool,
     is_secure: bool,
-    icon: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Element&lt;<span class="lifetime">&#39;a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt;,
-    trailing_icon: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Element&lt;<span class="lifetime">&#39;a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt;,
+    icon: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt;,
+    trailing_icon: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt;,
     style: <span class="kw-2">&amp;</span>&lt;<span class="kw">crate</span>::Theme <span class="kw">as </span>StyleSheet&gt;::Style,
     dnd_icon: bool,
     line_height: text::LineHeight,
@@ -4666,7 +4717,7 @@
 <span class="doccomment">/// Computes the current [`mouse::Interaction`] of the [`TextInput`].
 </span><span class="attr">#[must_use]
 </span><span class="kw">pub fn </span>mouse_interaction(
-    layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+    layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
     cursor_position: mouse::Cursor,
     is_disabled: bool,
 ) -&gt; mouse::Interaction {
@@ -4685,7 +4736,7 @@
 </span><span class="attr">#[derive(Debug, Clone)]
 </span><span class="kw">pub struct </span>TextInputString(<span class="kw">pub </span>String);
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
 </span><span class="kw">impl </span>DataFromMimeType <span class="kw">for </span>TextInputString {
     <span class="kw">fn </span>from_mime_type(<span class="kw-2">&amp;</span><span class="self">self</span>, mime_type: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;Vec&lt;u8&gt;&gt; {
         SUPPORTED_TEXT_MIME_TYPES
@@ -4697,11 +4748,11 @@
 <span class="attr">#[derive(Debug, Clone, PartialEq, Eq)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum </span>DraggingState {
     Selection,
-    <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
     </span>Dnd(DndAction, String),
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
 #[derive(Debug, Default, Clone)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum </span>DndOfferState {
     <span class="attr">#[default]
@@ -4711,7 +4762,7 @@
     Dropped,
 }
 <span class="attr">#[derive(Debug, Default, Clone)]
-#[cfg(not(feature = <span class="string">&quot;wayland&quot;</span>))]
+#[cfg(not(feature = <span class="string">"wayland"</span>))]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>DndOfferState;
 
 <span class="doccomment">/// The state of a [`TextInput`].
@@ -4726,7 +4777,7 @@
     <span class="kw">pub </span>is_secure: bool,
     is_focused: <span class="prelude-ty">Option</span>&lt;Focus&gt;,
     dragging_state: <span class="prelude-ty">Option</span>&lt;DraggingState&gt;,
-    <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
     </span>dnd_offer: DndOfferState,
     is_pasting: <span class="prelude-ty">Option</span>&lt;Value&gt;,
     last_click: <span class="prelude-ty">Option</span>&lt;mouse::Click&gt;,
@@ -4764,7 +4815,7 @@
         }
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
     </span><span class="doccomment">/// Returns the current value of the dragged text in the [`TextInput`].
     </span><span class="attr">#[must_use]
     </span><span class="kw">pub fn </span>dragged_text(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;String&gt; {
@@ -4785,7 +4836,7 @@
 
             is_focused: <span class="prelude-val">None</span>,
             dragging_state: <span class="prelude-val">None</span>,
-            <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
             </span>dnd_offer: DndOfferState::default(),
             is_pasting: <span class="prelude-val">None</span>,
             last_click: <span class="prelude-val">None</span>,
@@ -4918,7 +4969,7 @@
 
 <span class="kw">fn </span>replace_paragraph(
     state: <span class="kw-2">&amp;mut </span>State,
-    layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+    layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
     value: <span class="kw-2">&amp;</span>Value,
     font: &lt;<span class="kw">crate</span>::Renderer <span class="kw">as </span>iced_core::text::Renderer&gt;::Font,
     text_size: Pixels,
@@ -4945,7 +4996,7 @@
     <span class="kw">use </span>iced_core::keyboard;
 
     <span class="kw">pub fn </span>is_jump_modifier_pressed(modifiers: keyboard::Modifiers) -&gt; bool {
-        <span class="kw">if </span><span class="macro">cfg!</span>(target_os = <span class="string">&quot;macos&quot;</span>) {
+        <span class="kw">if </span><span class="macro">cfg!</span>(target_os = <span class="string">"macos"</span>) {
             modifiers.alt()
         } <span class="kw">else </span>{
             modifiers.control()

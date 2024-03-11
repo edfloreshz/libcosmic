@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/kamadak-exif-0.5.5/src/writer.rs`."><title>writer.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="exif" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/kamadak-exif-0.5.5/src/writer.rs`."><title>writer.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="exif" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -864,7 +865,7 @@
 <a href="#864" id="864">864</a>
 <a href="#865" id="865">865</a>
 </pre></div><pre class="rust"><code><span class="comment">//
-// Copyright (c) 2017 KAMADA Ken&#39;ichi.
+// Copyright (c) 2017 KAMADA Ken'ichi.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -876,7 +877,7 @@
 //    notice, this list of conditions and the following disclaimer in the
 //    documentation and/or other materials provided with the distribution.
 //
-// THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS&#39;&#39; AND
+// THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
 // ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
 // ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
@@ -909,37 +910,37 @@
 /// let image_desc = Field {
 ///     tag: Tag::ImageDescription,
 ///     ifd_num: In::PRIMARY,
-///     value: Value::Ascii(vec![b&quot;Sample&quot;.to_vec()]),
+///     value: Value::Ascii(vec![b"Sample".to_vec()]),
 /// };
 /// let mut writer = Writer::new();
 /// let mut buf = std::io::Cursor::new(Vec::new());
 /// writer.push_field(&amp;image_desc);
 /// writer.write(&amp;mut buf, false)?;
 /// static expected: &amp;[u8] =
-///     b&quot;\x4d\x4d\x00\x2a\x00\x00\x00\x08\
+///     b"\x4d\x4d\x00\x2a\x00\x00\x00\x08\
 ///       \x00\x01\x01\x0e\x00\x02\x00\x00\x00\x07\x00\x00\x00\x1a\
 ///       \x00\x00\x00\x00\
-///       Sample\0&quot;;
+///       Sample\0";
 /// assert_eq!(buf.into_inner(), expected);
 /// # Ok(()) }
 /// ```
 </span><span class="attr">#[derive(Debug)]
-</span><span class="kw">pub struct </span>Writer&lt;<span class="lifetime">&#39;a</span>&gt; {
-    ifd_list: Vec&lt;Ifd&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
+</span><span class="kw">pub struct </span>Writer&lt;<span class="lifetime">'a</span>&gt; {
+    ifd_list: Vec&lt;Ifd&lt;<span class="lifetime">'a</span>&gt;&gt;,
 }
 
 <span class="attr">#[derive(Debug, Default)]
-</span><span class="kw">struct </span>Ifd&lt;<span class="lifetime">&#39;a</span>&gt; {
-    tiff_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Field&gt;,
-    exif_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Field&gt;,
-    gps_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Field&gt;,
-    interop_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Field&gt;,
-    strips: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]]&gt;,
-    tiles: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]]&gt;,
-    jpeg: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]&gt;,
+</span><span class="kw">struct </span>Ifd&lt;<span class="lifetime">'a</span>&gt; {
+    tiff_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>Field&gt;,
+    exif_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>Field&gt;,
+    gps_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>Field&gt;,
+    interop_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>Field&gt;,
+    strips: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]]&gt;,
+    tiles: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]]&gt;,
+    jpeg: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Ifd&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; Ifd&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">fn </span>is_empty(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
         <span class="self">self</span>.tiff_fields.is_empty() &amp;&amp;
             <span class="self">self</span>.exif_fields.is_empty() &amp;&amp;
@@ -951,20 +952,20 @@
     }
 }
 
-<span class="kw">struct </span>WriterState&lt;<span class="lifetime">&#39;a</span>&gt; {
-    tiff_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Field&gt;,
-    exif_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Field&gt;,
-    gps_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Field&gt;,
-    interop_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Field&gt;,
+<span class="kw">struct </span>WriterState&lt;<span class="lifetime">'a</span>&gt; {
+    tiff_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>Field&gt;,
+    exif_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>Field&gt;,
+    gps_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>Field&gt;,
+    interop_fields: Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>Field&gt;,
     tiff_ifd_offset: u32,
     exif_ifd_offset: u32,
     gps_ifd_offset: u32,
     interop_ifd_offset: u32,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Writer&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; Writer&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Constructs an empty `Writer`.
-    </span><span class="kw">pub fn </span>new() -&gt; Writer&lt;<span class="lifetime">&#39;a</span>&gt; {
+    </span><span class="kw">pub fn </span>new() -&gt; Writer&lt;<span class="lifetime">'a</span>&gt; {
         Writer {
             ifd_list: Vec::new(),
         }
@@ -979,7 +980,7 @@
     /// ExifIFDPointer, GPSInfoIFDPointer, InteropIFDPointer,
     /// StripOffsets, StripByteCounts, TileOffsets, TileByteCounts,
     /// JPEGInterchangeFormat, and JPEGInterchangeFormatLength.
-    </span><span class="kw">pub fn </span>push_field(<span class="kw-2">&amp;mut </span><span class="self">self</span>, field: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Field) {
+    </span><span class="kw">pub fn </span>push_field(<span class="kw-2">&amp;mut </span><span class="self">self</span>, field: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Field) {
         <span class="kw">match </span><span class="kw-2">*</span>field {
             <span class="comment">// Ignore the tags for the internal data structure.
             </span>Field { tag: Tag::ExifIFDPointer, .. } |
@@ -1008,19 +1009,19 @@
 
     <span class="doccomment">/// Sets TIFF strips for the specified IFD.
     /// If this method is called multiple times, the last one is used.
-    </span><span class="kw">pub fn </span>set_strips(<span class="kw-2">&amp;mut </span><span class="self">self</span>, strips: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]], ifd_num: In) {
+    </span><span class="kw">pub fn </span>set_strips(<span class="kw-2">&amp;mut </span><span class="self">self</span>, strips: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]], ifd_num: In) {
         <span class="self">self</span>.pick_ifd(ifd_num).strips = <span class="prelude-val">Some</span>(strips);
     }
 
     <span class="doccomment">/// Sets TIFF tiles for the specified IFD.
     /// If this method is called multiple times, the last one is used.
-    </span><span class="kw">pub fn </span>set_tiles(<span class="kw-2">&amp;mut </span><span class="self">self</span>, tiles: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]], ifd_num: In) {
+    </span><span class="kw">pub fn </span>set_tiles(<span class="kw-2">&amp;mut </span><span class="self">self</span>, tiles: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]], ifd_num: In) {
         <span class="self">self</span>.pick_ifd(ifd_num).tiles = <span class="prelude-val">Some</span>(tiles);
     }
 
     <span class="doccomment">/// Sets JPEG data for the specified IFD.
     /// If this method is called multiple times, the last one is used.
-    </span><span class="kw">pub fn </span>set_jpeg(<span class="kw-2">&amp;mut </span><span class="self">self</span>, jpeg: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], ifd_num: In) {
+    </span><span class="kw">pub fn </span>set_jpeg(<span class="kw-2">&amp;mut </span><span class="self">self</span>, jpeg: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8], ifd_num: In) {
         <span class="self">self</span>.pick_ifd(ifd_num).jpeg = <span class="prelude-val">Some</span>(jpeg);
     }
 
@@ -1042,7 +1043,7 @@
         <span class="comment">// There must be at least 1 IFD in a TIFF file [TIFF6, Section 2,
         // Image File Directory].
         </span><span class="kw">if </span><span class="self">self</span>.ifd_list.is_empty() {
-            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::InvalidFormat(<span class="string">&quot;At least one IFD must exist&quot;</span>));
+            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::InvalidFormat(<span class="string">"At least one IFD must exist"</span>));
         }
         <span class="kw">let </span><span class="kw-2">mut </span>ifd_num_ck = <span class="prelude-val">Some</span>(<span class="number">0</span>);
         <span class="kw">let </span><span class="kw-2">mut </span>next_ifd_offset_offset = <span class="number">4</span>;
@@ -1050,10 +1051,10 @@
             <span class="comment">// Each IFD must have at least one entry [TIFF6, Section 2,
             // Image File Directory].
             </span><span class="kw">if </span>ifd.is_empty() {
-                <span class="kw">return </span><span class="prelude-val">Err</span>(Error::InvalidFormat(<span class="string">&quot;IFD must not be empty&quot;</span>));
+                <span class="kw">return </span><span class="prelude-val">Err</span>(Error::InvalidFormat(<span class="string">"IFD must not be empty"</span>));
             }
             <span class="kw">let </span>ifd_num =
-                ifd_num_ck.ok_or(Error::InvalidFormat(<span class="string">&quot;Too many IFDs&quot;</span>))<span class="question-mark">?</span>;
+                ifd_num_ck.ok_or(Error::InvalidFormat(<span class="string">"Too many IFDs"</span>))<span class="question-mark">?</span>;
             <span class="kw">if </span>ifd_num &gt; <span class="number">0 </span>{
                 <span class="kw">let </span>next_ifd_offset = pad_and_get_offset(w)<span class="question-mark">?</span>;
                 <span class="kw">let </span>origpos = w.seek(SeekFrom::Current(<span class="number">0</span>))<span class="question-mark">?</span>;
@@ -1072,7 +1073,7 @@
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">fn </span>pick_ifd(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ifd_num: In) -&gt; <span class="kw-2">&amp;mut </span>Ifd&lt;<span class="lifetime">&#39;a</span>&gt; {
+    <span class="kw">fn </span>pick_ifd(<span class="kw-2">&amp;mut </span><span class="self">self</span>, ifd_num: In) -&gt; <span class="kw-2">&amp;mut </span>Ifd&lt;<span class="lifetime">'a</span>&gt; {
         <span class="kw">let </span>ifd_num = ifd_num.index() <span class="kw">as </span>usize;
         <span class="kw">if </span><span class="self">self</span>.ifd_list.len() &lt;= ifd_num {
             <span class="self">self</span>.ifd_list.resize_with(ifd_num + <span class="number">1</span>, Default::default);
@@ -1288,7 +1289,7 @@
     </span><span class="kw">for </span>f <span class="kw">in </span>fields {
         <span class="kw">let </span>(typ, cnt, <span class="kw-2">mut </span>valbuf) = compose_value::&lt;E&gt;(<span class="kw-2">&amp;</span>f.value)<span class="question-mark">?</span>;
         <span class="kw">if </span>cnt <span class="kw">as </span>u32 <span class="kw">as </span>usize != cnt {
-            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::TooBig(<span class="string">&quot;Too long array&quot;</span>));
+            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::TooBig(<span class="string">"Too long array"</span>));
         }
         E::writeu16(<span class="kw-2">&amp;mut </span>ifd, f.tag.number())<span class="question-mark">?</span>;
         E::writeu16(<span class="kw-2">&amp;mut </span>ifd, typ)<span class="question-mark">?</span>;
@@ -1411,7 +1412,7 @@
             <span class="prelude-val">Ok</span>((<span class="number">12</span>, vec.len(), buf))
         },
         Value::Unknown(<span class="kw">_</span>, <span class="kw">_</span>, <span class="kw">_</span>) =&gt;
-            <span class="prelude-val">Err</span>(Error::NotSupported(<span class="string">&quot;Cannot write unknown field types&quot;</span>)),
+            <span class="prelude-val">Err</span>(Error::NotSupported(<span class="string">"Cannot write unknown field types"</span>)),
     }
 }
 
@@ -1429,7 +1430,7 @@
                          -&gt; <span class="prelude-ty">Result</span>&lt;u32, Error&gt; <span class="kw">where </span>W: Write + Seek {
     <span class="kw">let </span><span class="kw-2">mut </span>pos = w.seek(SeekFrom::Current(<span class="number">0</span>))<span class="question-mark">?</span>;
     <span class="kw">if </span>pos &gt;= (<span class="number">1 </span>&lt;&lt; <span class="number">32</span>) - <span class="number">1 </span>{
-        <span class="kw">return </span><span class="prelude-val">Err</span>(Error::TooBig(<span class="string">&quot;Offset too large&quot;</span>));
+        <span class="kw">return </span><span class="prelude-val">Err</span>(Error::TooBig(<span class="string">"Offset too large"</span>));
     }
     <span class="kw">if </span>pos % <span class="number">2 </span>!= <span class="number">0 </span>{
         w.write_all(<span class="kw-2">&amp;</span>[<span class="number">0</span>])<span class="question-mark">?</span>;
@@ -1442,7 +1443,7 @@
                  -&gt; <span class="prelude-ty">Result</span>&lt;u32, Error&gt; <span class="kw">where </span>W: Write + Seek {
     <span class="kw">let </span>pos = w.seek(SeekFrom::Current(<span class="number">0</span>))<span class="question-mark">?</span>;
     <span class="kw">if </span>pos <span class="kw">as </span>u32 <span class="kw">as </span>u64 != pos {
-        <span class="kw">return </span><span class="prelude-val">Err</span>(Error::TooBig(<span class="string">&quot;Offset too large&quot;</span>));
+        <span class="kw">return </span><span class="prelude-val">Err</span>(Error::TooBig(<span class="string">"Offset too large"</span>));
     }
     <span class="prelude-val">Ok</span>(pos <span class="kw">as </span>u32)
 }
@@ -1457,17 +1458,17 @@
         <span class="kw">let </span>image_desc = Field {
             tag: Tag::ImageDescription,
             ifd_num: In::PRIMARY,
-            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b&quot;Sample&quot;</span>.to_vec()]),
+            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b"Sample"</span>.to_vec()]),
         };
         <span class="kw">let </span><span class="kw-2">mut </span>writer = Writer::new();
         <span class="kw">let </span><span class="kw-2">mut </span>buf = Cursor::new(Vec::new());
         writer.push_field(<span class="kw-2">&amp;</span>image_desc);
         writer.write(<span class="kw-2">&amp;mut </span>buf, <span class="bool-val">false</span>).unwrap();
         <span class="kw">let </span>expected: <span class="kw-2">&amp;</span>[u8] =
-            <span class="string">b&quot;\x4d\x4d\x00\x2a\x00\x00\x00\x08\
+            <span class="string">b"\x4d\x4d\x00\x2a\x00\x00\x00\x08\
               \x00\x01\x01\x0e\x00\x02\x00\x00\x00\x07\x00\x00\x00\x1a\
               \x00\x00\x00\x00\
-              Sample\0&quot;</span>;
+              Sample\0"</span>;
         <span class="macro">assert_eq!</span>(buf.into_inner(), expected);
     }
 
@@ -1476,46 +1477,46 @@
         <span class="kw">let </span>exif_ver = Field {
             tag: Tag::ExifVersion,
             ifd_num: In::PRIMARY,
-            value: Value::Undefined(<span class="string">b&quot;0231&quot;</span>.to_vec(), <span class="number">0</span>),
+            value: Value::Undefined(<span class="string">b"0231"</span>.to_vec(), <span class="number">0</span>),
         };
         <span class="kw">let </span><span class="kw-2">mut </span>writer = Writer::new();
         <span class="kw">let </span><span class="kw-2">mut </span>buf = Cursor::new(Vec::new());
         writer.push_field(<span class="kw-2">&amp;</span>exif_ver);
         writer.write(<span class="kw-2">&amp;mut </span>buf, <span class="bool-val">false</span>).unwrap();
         <span class="kw">let </span>expected: <span class="kw-2">&amp;</span>[u8] =
-            <span class="string">b&quot;\x4d\x4d\x00\x2a\x00\x00\x00\x08\
+            <span class="string">b"\x4d\x4d\x00\x2a\x00\x00\x00\x08\
               \x00\x01\x87\x69\x00\x04\x00\x00\x00\x01\x00\x00\x00\x1a\
               \x00\x00\x00\x00\
               \x00\x01\x90\x00\x00\x07\x00\x00\x00\x040231\
-              \x00\x00\x00\x00&quot;</span>;
+              \x00\x00\x00\x00"</span>;
         <span class="macro">assert_eq!</span>(buf.into_inner(), expected);
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>primary_tiff_tiled() {
         <span class="comment">// This is not a valid TIFF tile (only for testing).
-        </span><span class="kw">let </span>tiles: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>[u8]] = <span class="kw-2">&amp;</span>[<span class="string">b&quot;TILE&quot;</span>];
+        </span><span class="kw">let </span>tiles: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>[u8]] = <span class="kw-2">&amp;</span>[<span class="string">b"TILE"</span>];
         <span class="kw">let </span><span class="kw-2">mut </span>writer = Writer::new();
         <span class="kw">let </span><span class="kw-2">mut </span>buf = Cursor::new(Vec::new());
         writer.set_tiles(tiles, In::PRIMARY);
         writer.write(<span class="kw-2">&amp;mut </span>buf, <span class="bool-val">false</span>).unwrap();
         <span class="kw">let </span>expected: <span class="kw-2">&amp;</span>[u8] =
-            <span class="string">b&quot;\x4d\x4d\x00\x2a\x00\x00\x00\x08\
+            <span class="string">b"\x4d\x4d\x00\x2a\x00\x00\x00\x08\
               \x00\x02\x01\x44\x00\x04\x00\x00\x00\x01\x00\x00\x00\x26\
                       \x01\x45\x00\x04\x00\x00\x00\x01\x00\x00\x00\x04\
               \x00\x00\x00\x00\
-              TILE&quot;</span>;
+              TILE"</span>;
         <span class="macro">assert_eq!</span>(buf.into_inner(), expected);
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>thumbnail_jpeg() {
         <span class="comment">// This is not a valid JPEG data (only for testing).
-        </span><span class="kw">let </span>jpeg = <span class="string">b&quot;JPEG&quot;</span>;
+        </span><span class="kw">let </span>jpeg = <span class="string">b"JPEG"</span>;
         <span class="kw">let </span>desc = Field {
             tag: Tag::ImageDescription,
             ifd_num: In::PRIMARY,
-            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b&quot;jpg&quot;</span>.to_vec()]),
+            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b"jpg"</span>.to_vec()]),
         };
         <span class="kw">let </span><span class="kw-2">mut </span>writer = Writer::new();
         <span class="kw">let </span><span class="kw-2">mut </span>buf = Cursor::new(Vec::new());
@@ -1523,13 +1524,13 @@
         writer.set_jpeg(jpeg, In::THUMBNAIL);
         writer.write(<span class="kw-2">&amp;mut </span>buf, <span class="bool-val">false</span>).unwrap();
         <span class="kw">let </span>expected: <span class="kw-2">&amp;</span>[u8] =
-            <span class="string">b&quot;\x4d\x4d\x00\x2a\x00\x00\x00\x08\
+            <span class="string">b"\x4d\x4d\x00\x2a\x00\x00\x00\x08\
               \x00\x01\x01\x0e\x00\x02\x00\x00\x00\x04jpg\x00\
               \x00\x00\x00\x1a\
               \x00\x02\x02\x01\x00\x04\x00\x00\x00\x01\x00\x00\x00\x38\
                       \x02\x02\x00\x04\x00\x00\x00\x01\x00\x00\x00\x04\
               \x00\x00\x00\x00\
-              JPEG&quot;</span>;
+              JPEG"</span>;
         <span class="macro">assert_eq!</span>(buf.into_inner(), expected);
     }
 
@@ -1539,22 +1540,22 @@
         </span><span class="kw">let </span>desc = Field {
             tag: Tag::ImageDescription,
             ifd_num: In::PRIMARY,
-            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b&quot;tif&quot;</span>.to_vec()]),
+            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b"tif"</span>.to_vec()]),
         };
-        <span class="kw">let </span>strips: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>[u8]] = <span class="kw-2">&amp;</span>[<span class="string">b&quot;STRIP&quot;</span>];
+        <span class="kw">let </span>strips: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>[u8]] = <span class="kw-2">&amp;</span>[<span class="string">b"STRIP"</span>];
         <span class="kw">let </span><span class="kw-2">mut </span>writer = Writer::new();
         <span class="kw">let </span><span class="kw-2">mut </span>buf = Cursor::new(Vec::new());
         writer.push_field(<span class="kw-2">&amp;</span>desc);
         writer.set_strips(strips, In::THUMBNAIL);
         writer.write(<span class="kw-2">&amp;mut </span>buf, <span class="bool-val">false</span>).unwrap();
         <span class="kw">let </span>expected: <span class="kw-2">&amp;</span>[u8] =
-            <span class="string">b&quot;\x4d\x4d\x00\x2a\x00\x00\x00\x08\
+            <span class="string">b"\x4d\x4d\x00\x2a\x00\x00\x00\x08\
               \x00\x01\x01\x0e\x00\x02\x00\x00\x00\x04tif\x00\
               \x00\x00\x00\x1a\
               \x00\x02\x01\x11\x00\x04\x00\x00\x00\x01\x00\x00\x00\x38\
                       \x01\x17\x00\x04\x00\x00\x00\x01\x00\x00\x00\x05\
               \x00\x00\x00\x00\
-              STRIP&quot;</span>;
+              STRIP"</span>;
         <span class="macro">assert_eq!</span>(buf.into_inner(), expected);
     }
 
@@ -1563,12 +1564,12 @@
         <span class="kw">let </span>image_desc = Field {
             tag: Tag::ImageDescription,
             ifd_num: In::PRIMARY,
-            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b&quot;Sample&quot;</span>.to_vec()]),
+            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b"Sample"</span>.to_vec()]),
         };
         <span class="kw">let </span>exif_ver = Field {
             tag: Tag::ExifVersion,
             ifd_num: In::PRIMARY,
-            value: Value::Undefined(<span class="string">b&quot;0231&quot;</span>.to_vec(), <span class="number">0</span>),
+            value: Value::Undefined(<span class="string">b"0231"</span>.to_vec(), <span class="number">0</span>),
         };
         <span class="kw">let </span>gps_ver = Field {
             tag: Tag::GPSVersionID,
@@ -1578,9 +1579,9 @@
         <span class="kw">let </span>interop_index = Field {
             tag: Tag::InteroperabilityIndex,
             ifd_num: In::PRIMARY,
-            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b&quot;ABC&quot;</span>.to_vec()]),
+            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b"ABC"</span>.to_vec()]),
         };
-        <span class="kw">let </span>jpeg = <span class="string">b&quot;JPEG&quot;</span>;
+        <span class="kw">let </span>jpeg = <span class="string">b"JPEG"</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>writer = Writer::new();
         <span class="kw">let </span><span class="kw-2">mut </span>buf = Cursor::new(Vec::new());
         writer.push_field(<span class="kw-2">&amp;</span>image_desc);
@@ -1590,7 +1591,7 @@
         writer.set_jpeg(jpeg, In::THUMBNAIL);
         writer.write(<span class="kw-2">&amp;mut </span>buf, <span class="bool-val">false</span>).unwrap();
         <span class="kw">let </span>expected: <span class="kw-2">&amp;</span>[u8] =
-            <span class="string">b&quot;\x4d\x4d\x00\x2a\x00\x00\x00\x08\
+            <span class="string">b"\x4d\x4d\x00\x2a\x00\x00\x00\x08\
               \x00\x03\x01\x0e\x00\x02\x00\x00\x00\x07\x00\x00\x00\x74\
                       \x87\x69\x00\x04\x00\x00\x00\x01\x00\x00\x00\x32\
                       \x88\x25\x00\x04\x00\x00\x00\x01\x00\x00\x00\x50\
@@ -1606,7 +1607,7 @@
               \x00\x02\x02\x01\x00\x04\x00\x00\x00\x01\x00\x00\x00\x9a\
                       \x02\x02\x00\x04\x00\x00\x00\x01\x00\x00\x00\x04\
               \x00\x00\x00\x00\
-              JPEG&quot;</span>;
+              JPEG"</span>;
         <span class="macro">assert_eq!</span>(buf.into_inner(), expected);
     }
 
@@ -1615,17 +1616,17 @@
         <span class="kw">let </span>desc0 = Field {
             tag: Tag::ImageDescription,
             ifd_num: In::PRIMARY,
-            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b&quot;p&quot;</span>.to_vec()]),
+            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b"p"</span>.to_vec()]),
         };
         <span class="kw">let </span>desc1 = Field {
             tag: Tag::ImageDescription,
             ifd_num: In::THUMBNAIL,
-            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b&quot;t&quot;</span>.to_vec()]),
+            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b"t"</span>.to_vec()]),
         };
         <span class="kw">let </span>desc2 = Field {
             tag: Tag::ImageDescription,
             ifd_num: In(<span class="number">2</span>),
-            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b&quot;2&quot;</span>.to_vec()]),
+            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b"2"</span>.to_vec()]),
         };
         <span class="kw">let </span><span class="kw-2">mut </span>writer = Writer::new();
         <span class="kw">let </span><span class="kw-2">mut </span>buf = Cursor::new(Vec::new());
@@ -1634,13 +1635,13 @@
         writer.push_field(<span class="kw-2">&amp;</span>desc2);
         writer.write(<span class="kw-2">&amp;mut </span>buf, <span class="bool-val">false</span>).unwrap();
         <span class="kw">let </span>expected: <span class="kw-2">&amp;</span>[u8] =
-            <span class="string">b&quot;\x4d\x4d\x00\x2a\x00\x00\x00\x08\
+            <span class="string">b"\x4d\x4d\x00\x2a\x00\x00\x00\x08\
               \x00\x01\x01\x0e\x00\x02\x00\x00\x00\x02p\x00\x00\x00\
               \x00\x00\x00\x1a\
               \x00\x01\x01\x0e\x00\x02\x00\x00\x00\x02t\x00\x00\x00\
               \x00\x00\x00\x2c\
               \x00\x01\x01\x0e\x00\x02\x00\x00\x00\x022\x00\x00\x00\
-              \x00\x00\x00\x00&quot;</span>;
+              \x00\x00\x00\x00"</span>;
         <span class="macro">assert_eq!</span>(buf.into_inner(), expected);
     }
 
@@ -1649,17 +1650,17 @@
         <span class="kw">let </span><span class="kw-2">mut </span>writer = Writer::new();
         <span class="kw">let </span><span class="kw-2">mut </span>buf = Cursor::new(Vec::new());
         <span class="macro">assert_pat!</span>(writer.write(<span class="kw-2">&amp;mut </span>buf, <span class="bool-val">false</span>),
-                    <span class="prelude-val">Err</span>(Error::InvalidFormat(<span class="string">&quot;At least one IFD must exist&quot;</span>)));
+                    <span class="prelude-val">Err</span>(Error::InvalidFormat(<span class="string">"At least one IFD must exist"</span>)));
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>missing_primary() {
-        <span class="kw">let </span>jpeg = <span class="string">b&quot;JPEG&quot;</span>;
+        <span class="kw">let </span>jpeg = <span class="string">b"JPEG"</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>writer = Writer::new();
         <span class="kw">let </span><span class="kw-2">mut </span>buf = Cursor::new(Vec::new());
         writer.set_jpeg(jpeg, In::THUMBNAIL);
         <span class="macro">assert_pat!</span>(writer.write(<span class="kw-2">&amp;mut </span>buf, <span class="bool-val">false</span>),
-                    <span class="prelude-val">Err</span>(Error::InvalidFormat(<span class="string">&quot;IFD must not be empty&quot;</span>)));
+                    <span class="prelude-val">Err</span>(Error::InvalidFormat(<span class="string">"IFD must not be empty"</span>)));
     }
 
     <span class="attr">#[test]
@@ -1667,7 +1668,7 @@
         <span class="kw">let </span>image_desc = Field {
             tag: Tag::ImageDescription,
             ifd_num: In::PRIMARY,
-            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b&quot;Sample&quot;</span>.to_vec()]),
+            value: Value::Ascii(<span class="macro">vec!</span>[<span class="string">b"Sample"</span>.to_vec()]),
         };
         <span class="kw">let </span><span class="kw-2">mut </span>writer = Writer::new();
         writer.push_field(<span class="kw-2">&amp;</span>image_desc);
@@ -1684,43 +1685,43 @@
             (Value::Byte(<span class="macro">vec!</span>[<span class="number">1</span>, <span class="number">2</span>]),
              (<span class="number">1</span>, <span class="number">2</span>, <span class="macro">vec!</span>[<span class="number">1</span>, <span class="number">2</span>]),
              (<span class="number">1</span>, <span class="number">2</span>, <span class="macro">vec!</span>[<span class="number">1</span>, <span class="number">2</span>])),
-            (Value::Ascii(<span class="macro">vec!</span>[<span class="string">b&quot;a&quot;</span>.to_vec(), <span class="string">b&quot;b&quot;</span>.to_vec()]),
-             (<span class="number">2</span>, <span class="number">4</span>, <span class="string">b&quot;a\0b\0&quot;</span>.to_vec()),
-             (<span class="number">2</span>, <span class="number">4</span>, <span class="string">b&quot;a\0b\0&quot;</span>.to_vec())),
+            (Value::Ascii(<span class="macro">vec!</span>[<span class="string">b"a"</span>.to_vec(), <span class="string">b"b"</span>.to_vec()]),
+             (<span class="number">2</span>, <span class="number">4</span>, <span class="string">b"a\0b\0"</span>.to_vec()),
+             (<span class="number">2</span>, <span class="number">4</span>, <span class="string">b"a\0b\0"</span>.to_vec())),
             (Value::Short(<span class="macro">vec!</span>[<span class="number">0x0102</span>, <span class="number">0x0304</span>]),
-             (<span class="number">3</span>, <span class="number">2</span>, <span class="string">b&quot;\x01\x02\x03\x04&quot;</span>.to_vec()),
-             (<span class="number">3</span>, <span class="number">2</span>, <span class="string">b&quot;\x02\x01\x04\x03&quot;</span>.to_vec())),
+             (<span class="number">3</span>, <span class="number">2</span>, <span class="string">b"\x01\x02\x03\x04"</span>.to_vec()),
+             (<span class="number">3</span>, <span class="number">2</span>, <span class="string">b"\x02\x01\x04\x03"</span>.to_vec())),
             (Value::Long(<span class="macro">vec!</span>[<span class="number">0x01020304</span>, <span class="number">0x05060708</span>]),
-             (<span class="number">4</span>, <span class="number">2</span>, <span class="string">b&quot;\x01\x02\x03\x04\x05\x06\x07\x08&quot;</span>.to_vec()),
-             (<span class="number">4</span>, <span class="number">2</span>, <span class="string">b&quot;\x04\x03\x02\x01\x08\x07\x06\x05&quot;</span>.to_vec())),
+             (<span class="number">4</span>, <span class="number">2</span>, <span class="string">b"\x01\x02\x03\x04\x05\x06\x07\x08"</span>.to_vec()),
+             (<span class="number">4</span>, <span class="number">2</span>, <span class="string">b"\x04\x03\x02\x01\x08\x07\x06\x05"</span>.to_vec())),
             (Value::Rational(<span class="macro">vec!</span>[(<span class="number">1</span>, <span class="number">2</span>).into(), (<span class="number">3</span>, <span class="number">4</span>).into()]),
-             (<span class="number">5</span>, <span class="number">2</span>, <span class="string">b&quot;\0\0\0\x01\0\0\0\x02\0\0\0\x03\0\0\0\x04&quot;</span>.to_vec()),
-             (<span class="number">5</span>, <span class="number">2</span>, <span class="string">b&quot;\x01\0\0\0\x02\0\0\0\x03\0\0\0\x04\0\0\0&quot;</span>.to_vec())),
+             (<span class="number">5</span>, <span class="number">2</span>, <span class="string">b"\0\0\0\x01\0\0\0\x02\0\0\0\x03\0\0\0\x04"</span>.to_vec()),
+             (<span class="number">5</span>, <span class="number">2</span>, <span class="string">b"\x01\0\0\0\x02\0\0\0\x03\0\0\0\x04\0\0\0"</span>.to_vec())),
             (Value::SByte(<span class="macro">vec!</span>[-<span class="number">2</span>, -<span class="number">128</span>]),
-             (<span class="number">6</span>, <span class="number">2</span>, <span class="string">b&quot;\xfe\x80&quot;</span>.to_vec()),
-             (<span class="number">6</span>, <span class="number">2</span>, <span class="string">b&quot;\xfe\x80&quot;</span>.to_vec())),
-            (Value::Undefined(<span class="string">b&quot;abc&quot;</span>.to_vec(), <span class="number">0</span>),
-             (<span class="number">7</span>, <span class="number">3</span>, <span class="string">b&quot;abc&quot;</span>.to_vec()),
-             (<span class="number">7</span>, <span class="number">3</span>, <span class="string">b&quot;abc&quot;</span>.to_vec())),
+             (<span class="number">6</span>, <span class="number">2</span>, <span class="string">b"\xfe\x80"</span>.to_vec()),
+             (<span class="number">6</span>, <span class="number">2</span>, <span class="string">b"\xfe\x80"</span>.to_vec())),
+            (Value::Undefined(<span class="string">b"abc"</span>.to_vec(), <span class="number">0</span>),
+             (<span class="number">7</span>, <span class="number">3</span>, <span class="string">b"abc"</span>.to_vec()),
+             (<span class="number">7</span>, <span class="number">3</span>, <span class="string">b"abc"</span>.to_vec())),
             (Value::SShort(<span class="macro">vec!</span>[-<span class="number">2</span>, -<span class="number">0x8000</span>]),
-             (<span class="number">8</span>, <span class="number">2</span>, <span class="string">b&quot;\xff\xfe\x80\x00&quot;</span>.to_vec()),
-             (<span class="number">8</span>, <span class="number">2</span>, <span class="string">b&quot;\xfe\xff\x00\x80&quot;</span>.to_vec())),
+             (<span class="number">8</span>, <span class="number">2</span>, <span class="string">b"\xff\xfe\x80\x00"</span>.to_vec()),
+             (<span class="number">8</span>, <span class="number">2</span>, <span class="string">b"\xfe\xff\x00\x80"</span>.to_vec())),
             (Value::SLong(<span class="macro">vec!</span>[-<span class="number">2</span>, -<span class="number">0x80000000</span>]),
-             (<span class="number">9</span>, <span class="number">2</span>, <span class="string">b&quot;\xff\xff\xff\xfe\x80\x00\x00\x00&quot;</span>.to_vec()),
-             (<span class="number">9</span>, <span class="number">2</span>, <span class="string">b&quot;\xfe\xff\xff\xff\x00\x00\x00\x80&quot;</span>.to_vec())),
+             (<span class="number">9</span>, <span class="number">2</span>, <span class="string">b"\xff\xff\xff\xfe\x80\x00\x00\x00"</span>.to_vec()),
+             (<span class="number">9</span>, <span class="number">2</span>, <span class="string">b"\xfe\xff\xff\xff\x00\x00\x00\x80"</span>.to_vec())),
             (Value::SRational(<span class="macro">vec!</span>[(-<span class="number">1</span>, -<span class="number">2</span>).into(), (-<span class="number">3</span>, -<span class="number">4</span>).into()]),
-             (<span class="number">10</span>, <span class="number">2</span>, <span class="string">b&quot;\xff\xff\xff\xff\xff\xff\xff\xfe\
-                       \xff\xff\xff\xfd\xff\xff\xff\xfc&quot;</span>.to_vec()),
-             (<span class="number">10</span>, <span class="number">2</span>, <span class="string">b&quot;\xff\xff\xff\xff\xfe\xff\xff\xff\
-                       \xfd\xff\xff\xff\xfc\xff\xff\xff&quot;</span>.to_vec())),
+             (<span class="number">10</span>, <span class="number">2</span>, <span class="string">b"\xff\xff\xff\xff\xff\xff\xff\xfe\
+                       \xff\xff\xff\xfd\xff\xff\xff\xfc"</span>.to_vec()),
+             (<span class="number">10</span>, <span class="number">2</span>, <span class="string">b"\xff\xff\xff\xff\xfe\xff\xff\xff\
+                       \xfd\xff\xff\xff\xfc\xff\xff\xff"</span>.to_vec())),
             (Value::Float(<span class="macro">vec!</span>[<span class="number">2.5</span>, -<span class="number">0.5</span>]),
-             (<span class="number">11</span>, <span class="number">2</span>, <span class="string">b&quot;\x40\x20\x00\x00\xbf\x00\x00\x00&quot;</span>.to_vec()),
-             (<span class="number">11</span>, <span class="number">2</span>, <span class="string">b&quot;\x00\x00\x20\x40\x00\x00\x00\xbf&quot;</span>.to_vec())),
+             (<span class="number">11</span>, <span class="number">2</span>, <span class="string">b"\x40\x20\x00\x00\xbf\x00\x00\x00"</span>.to_vec()),
+             (<span class="number">11</span>, <span class="number">2</span>, <span class="string">b"\x00\x00\x20\x40\x00\x00\x00\xbf"</span>.to_vec())),
             (Value::Double(<span class="macro">vec!</span>[<span class="number">2.5</span>, -<span class="number">0.5</span>]),
-             (<span class="number">12</span>, <span class="number">2</span>, <span class="string">b&quot;\x40\x04\x00\x00\x00\x00\x00\x00\
-                       \xbf\xe0\x00\x00\x00\x00\x00\x00&quot;</span>.to_vec()),
-             (<span class="number">12</span>, <span class="number">2</span>, <span class="string">b&quot;\x00\x00\x00\x00\x00\x00\x04\x40\
-                       \x00\x00\x00\x00\x00\x00\xe0\xbf&quot;</span>.to_vec())),
+             (<span class="number">12</span>, <span class="number">2</span>, <span class="string">b"\x40\x04\x00\x00\x00\x00\x00\x00\
+                       \xbf\xe0\x00\x00\x00\x00\x00\x00"</span>.to_vec()),
+             (<span class="number">12</span>, <span class="number">2</span>, <span class="string">b"\x00\x00\x00\x00\x00\x00\x04\x40\
+                       \x00\x00\x00\x00\x00\x00\xe0\xbf"</span>.to_vec())),
         ];
         <span class="kw">for </span>(val, be, le) <span class="kw">in </span>patterns.into_iter() {
             <span class="macro">assert_eq!</span>(compose_value::&lt;BigEndian&gt;(<span class="kw-2">&amp;</span>val).unwrap(), be);

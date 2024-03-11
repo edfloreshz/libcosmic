@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/segmented_button/horizontal.rs`."><title>horizontal.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/segmented_button/horizontal.rs`."><title>horizontal.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -204,22 +205,29 @@
 <a href="#204" id="204">204</a>
 <a href="#205" id="205">205</a>
 <a href="#206" id="206">206</a>
+<a href="#207" id="207">207</a>
+<a href="#208" id="208">208</a>
+<a href="#209" id="209">209</a>
+<a href="#210" id="210">210</a>
+<a href="#211" id="211">211</a>
+<a href="#212" id="212">212</a>
+<a href="#213" id="213">213</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2022 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
 </span><span class="doccomment">//! Implementation details for the horizontal layout of a segmented button.
 
-</span><span class="kw">use </span><span class="kw">super</span>::model::{Entity, Model, Selectable};
+</span><span class="kw">use </span><span class="kw">super</span>::model::{Model, Selectable};
 <span class="kw">use </span><span class="kw">super</span>::style::StyleSheet;
-<span class="kw">use </span><span class="kw">super</span>::widget::{LocalState, SegmentedButton, SegmentedVariant};
+<span class="kw">use </span><span class="kw">super</span>::widget::{ItemBounds, LocalState, SegmentedButton, SegmentedVariant};
 
 <span class="kw">use </span>iced::{Length, Rectangle, Size};
 <span class="kw">use </span>iced_core::layout;
 <span class="kw">use </span>iced_core::text::Renderer;
 
 <span class="doccomment">/// Horizontal [`SegmentedButton`].
-</span><span class="kw">pub type </span>HorizontalSegmentedButton&lt;<span class="lifetime">&#39;a</span>, SelectionMode, Message&gt; =
-    SegmentedButton&lt;<span class="lifetime">&#39;a</span>, Horizontal, SelectionMode, Message&gt;;
+</span><span class="kw">pub type </span>HorizontalSegmentedButton&lt;<span class="lifetime">'a</span>, SelectionMode, Message&gt; =
+    SegmentedButton&lt;<span class="lifetime">'a</span>, Horizontal, SelectionMode, Message&gt;;
 
 <span class="doccomment">/// A type marker defining the horizontal variant of a [`SegmentedButton`].
 </span><span class="kw">pub struct </span>Horizontal;
@@ -227,7 +235,6 @@
 <span class="doccomment">/// Horizontal implementation of the [`SegmentedButton`].
 ///
 /// For details on the model, see the [`segmented_button`](super) module for more details.
-</span><span class="attr">#[must_use]
 </span><span class="kw">pub fn </span>horizontal&lt;SelectionMode: Default, Message&gt;(
     model: <span class="kw-2">&amp;</span>Model&lt;SelectionMode&gt;,
 ) -&gt; SegmentedButton&lt;Horizontal, SelectionMode, Message&gt;
@@ -237,8 +244,8 @@
     SegmentedButton::new(model)
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, SelectionMode, Message&gt; SegmentedVariant
-    <span class="kw">for </span>SegmentedButton&lt;<span class="lifetime">&#39;a</span>, Horizontal, SelectionMode, Message&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, SelectionMode, Message&gt; SegmentedVariant
+    <span class="kw">for </span>SegmentedButton&lt;<span class="lifetime">'a</span>, Horizontal, SelectionMode, Message&gt;
 <span class="kw">where
     </span>Model&lt;SelectionMode&gt;: Selectable,
     SelectionMode: Default,
@@ -251,11 +258,11 @@
     }
 
     <span class="attr">#[allow(clippy::cast_precision_loss)]
-    </span><span class="kw">fn </span>variant_button_bounds&lt;<span class="lifetime">&#39;b</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="self">self</span>,
-        state: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>LocalState,
+    </span><span class="kw">fn </span>variant_bounds&lt;<span class="lifetime">'b</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'b </span><span class="self">self</span>,
+        state: <span class="kw-2">&amp;</span><span class="lifetime">'b </span>LocalState,
         <span class="kw-2">mut </span>bounds: Rectangle,
-    ) -&gt; Box&lt;<span class="kw">dyn </span>Iterator&lt;Item = (Entity, Rectangle)&gt; + <span class="lifetime">&#39;b</span>&gt; {
+    ) -&gt; Box&lt;<span class="kw">dyn </span>Iterator&lt;Item = ItemBounds&gt; + <span class="lifetime">'b</span>&gt; {
         <span class="kw">let </span>num = state.buttons_visible;
         <span class="kw">let </span>spacing = f32::from(<span class="self">self</span>.spacing);
         <span class="kw">let </span><span class="kw-2">mut </span>homogenous_width = <span class="number">0.0</span>;
@@ -272,6 +279,8 @@
                 / num <span class="kw">as </span>f32;
         }
 
+        <span class="kw">let </span>segmetned_control = <span class="macro">matches!</span>(<span class="self">self</span>.style, <span class="kw">crate</span>::theme::SegmentedButton::Control);
+
         Box::new(
             <span class="self">self</span>.model
                 .order
@@ -280,17 +289,32 @@
                 .enumerate()
                 .skip(state.buttons_offset)
                 .take(state.buttons_visible)
-                .map(<span class="kw">move </span>|(nth, key)| {
-                    <span class="kw">let </span><span class="kw-2">mut </span>this_bounds = bounds;
+                .flat_map(<span class="kw">move </span>|(nth, key)| {
+                    <span class="kw">let </span><span class="kw-2">mut </span>layout_bounds = bounds;
+
+                    <span class="kw">let </span>layout_size = <span class="kw-2">&amp;</span>state.internal_layout[nth].<span class="number">0</span>;
 
                     <span class="kw">if </span>!state.collapsed &amp;&amp; Length::Shrink == <span class="self">self</span>.width {
-                        this_bounds.width = state.internal_layout[nth].width;
+                        layout_bounds.width = layout_size.width;
                     } <span class="kw">else </span>{
-                        this_bounds.width = homogenous_width;
+                        layout_bounds.width = homogenous_width;
                     }
 
-                    bounds.x += this_bounds.width + spacing;
-                    (key, this_bounds)
+                    bounds.x += layout_bounds.width + spacing;
+
+                    <span class="kw">let </span>button_bounds = ItemBounds::Button(key, layout_bounds);
+                    <span class="kw">let </span><span class="kw-2">mut </span>divider = <span class="prelude-val">None</span>;
+
+                    <span class="kw">if </span><span class="self">self</span>.dividers &amp;&amp; segmetned_control &amp;&amp; nth + <span class="number">1 </span>&lt; num {
+                        divider = <span class="prelude-val">Some</span>(ItemBounds::Divider(Rectangle {
+                            width: <span class="number">1.0</span>,
+                            ..bounds
+                        }));
+
+                        bounds.x += <span class="number">1.0</span>;
+                    }
+
+                    std::iter::once(button_bounds).chain(divider)
                 }),
         )
     }
@@ -303,18 +327,18 @@
         state: <span class="kw-2">&amp;mut </span>LocalState,
         renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
         limits: <span class="kw-2">&amp;</span>layout::Limits,
-    ) -&gt; layout::Node {
+    ) -&gt; Size {
+        state.internal_layout.clear();
         <span class="kw">let </span>num = <span class="self">self</span>.model.order.len();
-        <span class="kw">let </span><span class="kw-2">mut </span>total_width = <span class="number">0.0</span>;
         <span class="kw">let </span>spacing = f32::from(<span class="self">self</span>.spacing);
-        <span class="kw">let </span>limits = limits.width(<span class="self">self</span>.width);
-        <span class="kw">let </span><span class="kw-2">mut </span>size;
+        <span class="kw">let </span>size;
 
+        <span class="kw">let </span><span class="kw-2">mut </span>reduce_button_offset = <span class="bool-val">false</span>;
         <span class="kw">if </span>state.known_length != num {
             <span class="kw">if </span>state.known_length &gt; num {
                 state.buttons_offset -= state.buttons_offset.min(state.known_length - num);
             } <span class="kw">else </span>{
-                state.buttons_offset += num - state.known_length;
+                reduce_button_offset = <span class="bool-val">true</span>;
             }
 
             state.known_length = num;
@@ -322,82 +346,71 @@
 
         <span class="kw">if let </span>Length::Shrink = <span class="self">self</span>.width {
             <span class="comment">// Buttons will be rendered at their smallest widths possible.
-            </span>state.internal_layout.clear();
-
-            <span class="kw">let </span>font = renderer.default_font();
-            <span class="kw">let </span><span class="kw-2">mut </span>total_height = <span class="number">0.0f32</span>;
-
-            <span class="kw">for </span><span class="kw-2">&amp;</span>button <span class="kw">in </span><span class="kw-2">&amp;</span><span class="self">self</span>.model.order {
-                <span class="kw">let </span>(<span class="kw-2">mut </span>width, height) = <span class="self">self</span>.button_dimensions(state, font, button);
-                width = f32::from(<span class="self">self</span>.minimum_button_width).max(width);
-                total_width += width + spacing;
-                total_height = total_height.max(height);
-
-                state.internal_layout.push(Size::new(width, height));
-            }
+            </span><span class="kw">let </span>max_height = <span class="self">self</span>.max_button_dimensions(state, renderer).<span class="number">1</span>;
 
             <span class="comment">// Get the max available width for placing buttons into.
-            </span><span class="kw">let </span>max_size = limits.height(Length::Fixed(total_height)).resolve(
+            </span><span class="kw">let </span>max_size = limits.height(Length::Fixed(max_height)).resolve(
                 Length::Fill,
-                total_height,
-                Size::new(f32::MAX, total_height),
+                max_height,
+                Size::new(f32::MAX, max_height),
             );
 
-            <span class="kw">let </span><span class="kw-2">mut </span>visible_width = f32::from(<span class="self">self</span>.button_height) * <span class="number">2.0</span>;
+            <span class="kw">let </span><span class="kw-2">mut </span>visible_width = <span class="number">0.0</span>;
             state.buttons_visible = <span class="number">0</span>;
 
-            <span class="kw">for </span>button_size <span class="kw">in </span><span class="kw-2">&amp;</span>state.internal_layout {
+            <span class="kw">for </span>(button_size, _actual_size) <span class="kw">in </span><span class="kw-2">&amp;</span>state.internal_layout {
                 visible_width += button_size.width;
 
                 <span class="kw">if </span>max_size.width &gt;= visible_width {
                     state.buttons_visible += <span class="number">1</span>;
                 } <span class="kw">else </span>{
+                    visible_width = max_size.width - max_height;
                     <span class="kw">break</span>;
                 }
 
                 visible_width += spacing;
             }
 
+            visible_width -= spacing;
+
             state.collapsed = num &gt; <span class="number">1 </span>&amp;&amp; state.buttons_visible != num;
 
-            <span class="comment">// If collapsed, use the maximum width available.
-            </span>visible_width = <span class="kw">if </span>state.collapsed {
-                max_size.width
-            } <span class="kw">else </span>{
-                total_width
-            };
-
             size = limits
-                .width(Length::Fixed(visible_width))
-                .height(Length::Fixed(total_height))
-                .resolve(
-                    visible_width,
-                    total_height,
-                    Size::new(visible_width, total_height),
-                );
+                .height(Length::Fixed(max_height))
+                .min_width(visible_width)
+                .min();
         } <span class="kw">else </span>{
             <span class="comment">// Buttons will be rendered with equal widths.
             </span>state.buttons_visible = <span class="self">self</span>.model.items.len();
-            <span class="kw">let </span>(width, height) = <span class="self">self</span>.max_button_dimensions(state, renderer, limits.max());
-            <span class="kw">let </span>total_width = (state.buttons_visible <span class="kw">as </span>f32) * (width + spacing);
 
-            size = limits.height(Length::Fixed(height)).resolve(
-                <span class="self">self</span>.width,
-                <span class="self">self</span>.height,
-                Size::new(total_width, height),
-            );
+            <span class="kw">let </span><span class="kw-2">mut </span>width = <span class="number">0.0f32</span>;
+            <span class="kw">let </span>font = renderer.default_font();
+
+            <span class="kw">for </span>key <span class="kw">in </span><span class="self">self</span>.model.order.iter().copied() {
+                <span class="kw">let </span>(button_width, button_height) = <span class="self">self</span>.button_dimensions(state, font, key);
+
+                state.internal_layout.push((
+                    Size::new(button_width, button_height),
+                    Size::new(
+                        button_width
+                            - f32::from(<span class="self">self</span>.button_padding[<span class="number">0</span>])
+                            - f32::from(<span class="self">self</span>.button_padding[<span class="number">2</span>]),
+                        button_height,
+                    ),
+                ));
+
+                width = width.max(button_width);
+            }
+
+            <span class="kw">let </span>height = f32::from(<span class="self">self</span>.button_height);
+
+            size = limits.height(Length::Fixed(height)).max();
 
             <span class="kw">let </span>actual_width = size.width <span class="kw">as </span>usize;
             <span class="kw">let </span>minimum_width = state.buttons_visible * <span class="self">self</span>.minimum_button_width <span class="kw">as </span>usize;
             state.collapsed = actual_width &lt; minimum_width;
 
             <span class="kw">if </span>state.collapsed {
-                size = limits.height(Length::Fixed(height)).resolve(
-                    Length::Fill,
-                    height,
-                    Size::new(f32::MAX, height),
-                );
-
                 state.buttons_visible =
                     (actual_width / <span class="self">self</span>.minimum_button_width <span class="kw">as </span>usize).min(state.buttons_visible);
             }
@@ -405,9 +418,11 @@
 
         <span class="kw">if </span>!state.collapsed {
             state.buttons_offset = <span class="number">0</span>;
+        } <span class="kw">else if </span>reduce_button_offset {
+            state.buttons_offset = num - state.buttons_visible;
         }
 
-        layout::Node::new(size)
+        size
     }
 }
 </code></pre></div></section></main></body></html>

@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/calloop-0.12.4/src/sys.rs`."><title>sys.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="calloop" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/calloop-0.12.4/src/sys.rs`."><title>sys.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="calloop" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -479,7 +480,7 @@
     <span class="doccomment">/// Edge-triggering
     ///
     /// This FD will report events only when it *gains* one of the requested interests.
-    /// it must thus be fully processed before it&#39;ll generate events again.
+    /// it must thus be fully processed before it'll generate events again.
     ///
     /// This mode is not supported on certain platforms, and an error will be returned
     /// if it is used.
@@ -577,7 +578,7 @@
         }
     }
 
-    <span class="doccomment">/// Get the &quot;raw&quot; registration token of this TokenFactory
+    <span class="doccomment">/// Get the "raw" registration token of this TokenFactory
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>registration_token(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; RegistrationToken {
         RegistrationToken::new(<span class="self">self</span>.next_token.forget_sub_id())
     }
@@ -627,16 +628,16 @@
     ///
     /// One can emulate level triggered events on top of oneshot events by just re-registering the
     /// file descriptor every time it is polled. However, this is not ideal, as it requires a
-    /// system call every time. It&#39;s better to use the intergrated system, if available.
+    /// system call every time. It's better to use the intergrated system, if available.
     </span>level_triggered: <span class="prelude-ty">Option</span>&lt;RefCell&lt;HashMap&lt;usize, (Raw, polling::Event)&gt;&gt;&gt;,
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) timers: Rc&lt;RefCell&lt;TimerWheel&gt;&gt;,
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>Poll {
-    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;nightly_coverage&quot;</span>, coverage(off))]
-    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
-        f.write_str(<span class="string">&quot;Poll { ... }&quot;</span>)
+    <span class="attr">#[cfg_attr(feature = <span class="string">"nightly_coverage"</span>, coverage(off))]
+    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; std::fmt::Result {
+        f.write_str(<span class="string">"Poll { ... }"</span>)
     }
 }
 
@@ -710,7 +711,7 @@
 
         drop(events);
 
-        <span class="comment">// Update &#39;now&#39; as some time may have elapsed in poll()
+        <span class="comment">// Update 'now' as some time may have elapsed in poll()
         </span><span class="kw">let </span>now = std::time::Instant::now();
         <span class="kw">let </span><span class="kw-2">mut </span>timers = <span class="self">self</span>.timers.borrow_mut();
         <span class="kw">while let </span><span class="prelude-val">Some</span>((<span class="kw">_</span>, token)) = timers.next_expired(now) {
@@ -771,7 +772,7 @@
                 .add_with_mode(raw, ev, cvt_mode(mode, <span class="self">self</span>.poller.supports_level()))<span class="question-mark">?</span>;
         }
 
-        <span class="comment">// If this is level triggered and we&#39;re emulating level triggered mode...
+        <span class="comment">// If this is level triggered and we're emulating level triggered mode...
         </span><span class="kw">if let </span>(Mode::Level, <span class="prelude-val">Some</span>(level_triggered)) = (mode, <span class="self">self</span>.level_triggered.as_ref()) {
             <span class="comment">// ...then we need to keep track of the source.
             </span><span class="kw">let </span><span class="kw-2">mut </span>level_triggered = level_triggered.borrow_mut();
@@ -811,7 +812,7 @@
         <span class="self">self</span>.poller
             .modify_with_mode(borrowed, ev, cvt_mode(mode, <span class="self">self</span>.poller.supports_level()))<span class="question-mark">?</span>;
 
-        <span class="comment">// If this is level triggered and we&#39;re emulating level triggered mode...
+        <span class="comment">// If this is level triggered and we're emulating level triggered mode...
         </span><span class="kw">if let </span>(Mode::Level, <span class="prelude-val">Some</span>(level_triggered)) = (mode, <span class="self">self</span>.level_triggered.as_ref()) {
             <span class="comment">// ...then we need to keep track of the source.
             </span><span class="kw">let </span><span class="kw-2">mut </span>level_triggered = level_triggered.borrow_mut();

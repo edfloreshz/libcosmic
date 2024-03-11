@@ -1,3 +1,4 @@
 (function() {var implementors = {
+"cosmic":[["impl&lt;T: <a class=\"trait\" href=\"cosmic/app/trait.Application.html\" title=\"trait cosmic::app::Application\">Application</a>&gt; <a class=\"trait\" href=\"iced/application/trait.Application.html\" title=\"trait iced::application::Application\">Application</a> for <a class=\"struct\" href=\"cosmic/app/cosmic/struct.Cosmic.html\" title=\"struct cosmic::app::cosmic::Cosmic\">Cosmic</a>&lt;T&gt;<div class=\"where\">where\n    T::<a class=\"associatedtype\" href=\"cosmic/app/trait.Application.html#associatedtype.Message\" title=\"type cosmic::app::Application::Message\">Message</a>: <a class=\"trait\" href=\"https://doc.rust-lang.org/1.76.0/core/marker/trait.Send.html\" title=\"trait core::marker::Send\">Send</a> + 'static,</div>"]],
 "iced":[]
 };if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

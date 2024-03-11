@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/calloop-0.12.4/src/loop_logic.rs`."><title>loop_logic.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="calloop" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/calloop-0.12.4/src/loop_logic.rs`."><title>loop_logic.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="calloop" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1693,7 +1694,7 @@
 <span class="kw">use </span>std::time::{Duration, Instant};
 <span class="kw">use </span>std::{io, slice};
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;block_on&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"block_on"</span>)]
 </span><span class="kw">use </span>std::future::Future;
 
 <span class="attr">#[cfg(unix)]
@@ -1712,7 +1713,7 @@
     AdditionalLifecycleEventsSet, InsertError, Poll, PostAction, Readiness, Token, TokenFactory,
 };
 
-<span class="kw">type </span>IdleCallback&lt;<span class="lifetime">&#39;i</span>, Data&gt; = Rc&lt;RefCell&lt;<span class="kw">dyn </span>IdleDispatcher&lt;Data&gt; + <span class="lifetime">&#39;i</span>&gt;&gt;;
+<span class="kw">type </span>IdleCallback&lt;<span class="lifetime">'i</span>, Data&gt; = Rc&lt;RefCell&lt;<span class="kw">dyn </span>IdleDispatcher&lt;Data&gt; + <span class="lifetime">'i</span>&gt;&gt;;
 
 <span class="doccomment">/// A token representing a registration in the [`EventLoop`].
 ///
@@ -1734,13 +1735,13 @@
     }
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>LoopInner&lt;<span class="lifetime">&#39;l</span>, Data&gt; {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>LoopInner&lt;<span class="lifetime">'l</span>, Data&gt; {
     <span class="kw">pub</span>(<span class="kw">crate</span>) poll: RefCell&lt;Poll&gt;,
     <span class="comment">// The `Option` is used to keep slots of the slab occipied, to prevent id reuse
     // while in-flight events might still referr to a recently destroyed event source.
-    </span><span class="kw">pub</span>(<span class="kw">crate</span>) sources: RefCell&lt;SourceList&lt;<span class="lifetime">&#39;l</span>, Data&gt;&gt;,
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) sources: RefCell&lt;SourceList&lt;<span class="lifetime">'l</span>, Data&gt;&gt;,
     <span class="kw">pub</span>(<span class="kw">crate</span>) sources_with_additional_lifecycle_events: RefCell&lt;AdditionalLifecycleEventsSet&gt;,
-    idles: RefCell&lt;Vec&lt;IdleCallback&lt;<span class="lifetime">&#39;l</span>, Data&gt;&gt;&gt;,
+    idles: RefCell&lt;Vec&lt;IdleCallback&lt;<span class="lifetime">'l</span>, Data&gt;&gt;&gt;,
     pending_action: Cell&lt;PostAction&gt;,
 }
 
@@ -1749,19 +1750,19 @@
 /// This handle allows you to insert new sources and idles in this event loop,
 /// it can be cloned, and it is possible to insert new sources from within a source
 /// callback.
-</span><span class="kw">pub struct </span>LoopHandle&lt;<span class="lifetime">&#39;l</span>, Data&gt; {
-    inner: Rc&lt;LoopInner&lt;<span class="lifetime">&#39;l</span>, Data&gt;&gt;,
+</span><span class="kw">pub struct </span>LoopHandle&lt;<span class="lifetime">'l</span>, Data&gt; {
+    inner: Rc&lt;LoopInner&lt;<span class="lifetime">'l</span>, Data&gt;&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, Data&gt; std::fmt::Debug <span class="kw">for </span>LoopHandle&lt;<span class="lifetime">&#39;l</span>, Data&gt; {
-    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;nightly_coverage&quot;</span>, coverage(off))]
-    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
-        f.write_str(<span class="string">&quot;LoopHandle { ... }&quot;</span>)
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, Data&gt; std::fmt::Debug <span class="kw">for </span>LoopHandle&lt;<span class="lifetime">'l</span>, Data&gt; {
+    <span class="attr">#[cfg_attr(feature = <span class="string">"nightly_coverage"</span>, coverage(off))]
+    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; std::fmt::Result {
+        f.write_str(<span class="string">"LoopHandle { ... }"</span>)
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, Data&gt; Clone <span class="kw">for </span>LoopHandle&lt;<span class="lifetime">&#39;l</span>, Data&gt; {
-    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;nightly_coverage&quot;</span>, coverage(off))]
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, Data&gt; Clone <span class="kw">for </span>LoopHandle&lt;<span class="lifetime">'l</span>, Data&gt; {
+    <span class="attr">#[cfg_attr(feature = <span class="string">"nightly_coverage"</span>, coverage(off))]
     </span><span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
         LoopHandle {
             inner: <span class="self">self</span>.inner.clone(),
@@ -1769,7 +1770,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, Data&gt; LoopHandle&lt;<span class="lifetime">&#39;l</span>, Data&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, Data&gt; LoopHandle&lt;<span class="lifetime">'l</span>, Data&gt; {
     <span class="doccomment">/// Inserts a new event source in the loop.
     ///
     /// The provided callback will be called during the dispatching cycles whenever the
@@ -1783,8 +1784,8 @@
         callback: F,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;RegistrationToken, InsertError&lt;S&gt;&gt;
     <span class="kw">where
-        </span>S: EventSource + <span class="lifetime">&#39;l</span>,
-        F: FnMut(S::Event, <span class="kw-2">&amp;mut </span>S::Metadata, <span class="kw-2">&amp;mut </span>Data) -&gt; S::Ret + <span class="lifetime">&#39;l</span>,
+        </span>S: EventSource + <span class="lifetime">'l</span>,
+        F: FnMut(S::Event, <span class="kw-2">&amp;mut </span>S::Metadata, <span class="kw-2">&amp;mut </span>Data) -&gt; S::Ret + <span class="lifetime">'l</span>,
     {
         <span class="kw">let </span>dispatcher = Dispatcher::new(source, callback);
         <span class="self">self</span>.register_dispatcher(dispatcher.clone())
@@ -1799,13 +1800,13 @@
     /// Use this function if you need access to the event source after its insertion in the loop.
     ///
     /// See also `insert_source`.
-    </span><span class="attr">#[cfg_attr(feature = <span class="string">&quot;nightly_coverage&quot;</span>, coverage(off))] </span><span class="comment">// Contains a branch we can&#39;t hit w/o OOM
+    </span><span class="attr">#[cfg_attr(feature = <span class="string">"nightly_coverage"</span>, coverage(off))] </span><span class="comment">// Contains a branch we can't hit w/o OOM
     </span><span class="kw">pub fn </span>register_dispatcher&lt;S&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        dispatcher: Dispatcher&lt;<span class="lifetime">&#39;l</span>, S, Data&gt;,
+        dispatcher: Dispatcher&lt;<span class="lifetime">'l</span>, S, Data&gt;,
     ) -&gt; <span class="kw">crate</span>::Result&lt;RegistrationToken&gt;
     <span class="kw">where
-        </span>S: EventSource + <span class="lifetime">&#39;l</span>,
+        </span>S: EventSource + <span class="lifetime">'l</span>,
     {
         <span class="kw">let </span><span class="kw-2">mut </span>sources = <span class="self">self</span>.inner.sources.borrow_mut();
         <span class="kw">let </span><span class="kw-2">mut </span>poll = <span class="self">self</span>.inner.poll.borrow_mut();
@@ -1814,7 +1815,7 @@
         </span><span class="kw">let </span>slot = sources.vacant_entry();
 
         slot.source = <span class="prelude-val">Some</span>(dispatcher.clone_as_event_dispatcher());
-        <span class="macro">trace!</span>(<span class="string">&quot;[calloop] Inserting new source #{}&quot;</span>, slot.token.get_id());
+        <span class="macro">trace!</span>(<span class="string">"[calloop] Inserting new source #{}"</span>, slot.token.get_id());
         <span class="kw">let </span>ret = slot.source.as_ref().unwrap().register(
             <span class="kw-2">&amp;mut </span>poll,
             <span class="kw-2">&amp;mut </span><span class="self">self
@@ -1836,7 +1837,7 @@
     ///
     /// This callback will be called during a dispatching cycle when the event loop has
     /// finished processing all pending events from the sources and becomes idle.
-    </span><span class="kw">pub fn </span>insert_idle&lt;<span class="lifetime">&#39;i</span>, F: FnOnce(<span class="kw-2">&amp;mut </span>Data) + <span class="lifetime">&#39;l </span>+ <span class="lifetime">&#39;i</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, callback: F) -&gt; Idle&lt;<span class="lifetime">&#39;i</span>&gt; {
+    </span><span class="kw">pub fn </span>insert_idle&lt;<span class="lifetime">'i</span>, F: FnOnce(<span class="kw-2">&amp;mut </span>Data) + <span class="lifetime">'l </span>+ <span class="lifetime">'i</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, callback: F) -&gt; Idle&lt;<span class="lifetime">'i</span>&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>opt_cb = <span class="prelude-val">Some</span>(callback);
         <span class="kw">let </span>callback = Rc::new(RefCell::new(<span class="prelude-val">Some</span>(<span class="kw">move </span>|data: <span class="kw-2">&amp;mut </span>Data| {
             <span class="kw">if let </span><span class="prelude-val">Some</span>(cb) = opt_cb.take() {
@@ -1858,7 +1859,7 @@
             source: <span class="prelude-val">Some</span>(<span class="kw-2">ref </span>source),
         } = <span class="self">self</span>.inner.sources.borrow().get(token.inner)<span class="question-mark">?
         </span>{
-            <span class="macro">trace!</span>(<span class="string">&quot;[calloop] Registering source #{}&quot;</span>, entry_token.get_id());
+            <span class="macro">trace!</span>(<span class="string">"[calloop] Registering source #{}"</span>, entry_token.get_id());
             source.register(
                 <span class="kw-2">&amp;mut </span><span class="self">self</span>.inner.poll.borrow_mut(),
                 <span class="kw-2">&amp;mut </span><span class="self">self
@@ -1883,7 +1884,7 @@
         } = <span class="self">self</span>.inner.sources.borrow().get(token.inner)<span class="question-mark">?
         </span>{
             <span class="macro">trace!</span>(
-                <span class="string">&quot;[calloop] Updating registration of source #{}&quot;</span>,
+                <span class="string">"[calloop] Updating registration of source #{}"</span>,
                 entry_token.get_id()
             );
             <span class="kw">if </span>!source.reregister(
@@ -1894,7 +1895,7 @@
                     .borrow_mut(),
                 <span class="kw-2">&amp;mut </span>TokenFactory::new(entry_token),
             )<span class="question-mark">? </span>{
-                <span class="macro">trace!</span>(<span class="string">&quot;[calloop] Cannot do it now, storing for later.&quot;</span>);
+                <span class="macro">trace!</span>(<span class="string">"[calloop] Cannot do it now, storing for later."</span>);
                 <span class="comment">// we are in a callback, store for later processing
                 </span><span class="self">self</span>.inner.pending_action.set(PostAction::Reregister);
             }
@@ -1906,7 +1907,7 @@
 
     <span class="doccomment">/// Disables this event source.
     ///
-    /// The source remains in the event loop, but it&#39;ll no longer generate events
+    /// The source remains in the event loop, but it'll no longer generate events
     </span><span class="kw">pub fn </span>disable(<span class="kw-2">&amp;</span><span class="self">self</span>, token: <span class="kw-2">&amp;</span>RegistrationToken) -&gt; <span class="kw">crate</span>::Result&lt;()&gt; {
         <span class="kw">if let </span><span class="kw-2">&amp;</span>SourceEntry {
             token: entry_token,
@@ -1917,7 +1918,7 @@
                 <span class="comment">// The token provided by the user is no longer valid
                 </span><span class="kw">return </span><span class="prelude-val">Err</span>(<span class="kw">crate</span>::Error::InvalidToken);
             }
-            <span class="macro">trace!</span>(<span class="string">&quot;[calloop] Unregistering source #{}&quot;</span>, entry_token.get_id());
+            <span class="macro">trace!</span>(<span class="string">"[calloop] Unregistering source #{}"</span>, entry_token.get_id());
             <span class="kw">if </span>!source.unregister(
                 <span class="kw-2">&amp;mut </span><span class="self">self</span>.inner.poll.borrow_mut(),
                 <span class="kw-2">&amp;mut </span><span class="self">self
@@ -1926,7 +1927,7 @@
                     .borrow_mut(),
                 <span class="kw-2">*</span>token,
             )<span class="question-mark">? </span>{
-                <span class="macro">trace!</span>(<span class="string">&quot;[calloop] Cannot do it now, storing for later.&quot;</span>);
+                <span class="macro">trace!</span>(<span class="string">"[calloop] Cannot do it now, storing for later."</span>);
                 <span class="comment">// we are in a callback, store for later processing
                 </span><span class="self">self</span>.inner.pending_action.set(PostAction::Disable);
             }
@@ -1944,7 +1945,7 @@
         }) = <span class="self">self</span>.inner.sources.borrow_mut().get_mut(token.inner)
         {
             <span class="kw">if let </span><span class="prelude-val">Some</span>(source) = source.take() {
-                <span class="macro">trace!</span>(<span class="string">&quot;[calloop] Removing source #{}&quot;</span>, entry_token.get_id());
+                <span class="macro">trace!</span>(<span class="string">"[calloop] Removing source #{}"</span>, entry_token.get_id());
                 <span class="kw">if let </span><span class="prelude-val">Err</span>(e) = source.unregister(
                     <span class="kw-2">&amp;mut </span><span class="self">self</span>.inner.poll.borrow_mut(),
                     <span class="kw-2">&amp;mut </span><span class="self">self
@@ -1954,7 +1955,7 @@
                     token,
                 ) {
                     <span class="macro">log::warn!</span>(
-                        <span class="string">&quot;[calloop] Failed to unregister source from the polling system: {:?}&quot;</span>,
+                        <span class="string">"[calloop] Failed to unregister source from the polling system: {:?}"</span>,
                         e
                     );
                 }
@@ -1969,7 +1970,7 @@
     ///
     /// The produced futures can be polled in any executor, and notably the one provided by
     /// calloop.
-    </span><span class="kw">pub fn </span>adapt_io&lt;F: AsFd&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, fd: F) -&gt; <span class="kw">crate</span>::Result&lt;<span class="kw">crate</span>::io::Async&lt;<span class="lifetime">&#39;l</span>, F&gt;&gt; {
+    </span><span class="kw">pub fn </span>adapt_io&lt;F: AsFd&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, fd: F) -&gt; <span class="kw">crate</span>::Result&lt;<span class="kw">crate</span>::io::Async&lt;<span class="lifetime">'l</span>, F&gt;&gt; {
         <span class="kw">crate</span>::io::Async::new(<span class="self">self</span>.inner.clone(), fd)
     }
 }
@@ -1977,19 +1978,19 @@
 <span class="doccomment">/// An event loop
 ///
 /// This loop can host several event sources, that can be dynamically added or removed.
-</span><span class="kw">pub struct </span>EventLoop&lt;<span class="lifetime">&#39;l</span>, Data&gt; {
+</span><span class="kw">pub struct </span>EventLoop&lt;<span class="lifetime">'l</span>, Data&gt; {
     <span class="attr">#[allow(dead_code)]
     </span>poller: Arc&lt;Poller&gt;,
-    handle: LoopHandle&lt;<span class="lifetime">&#39;l</span>, Data&gt;,
+    handle: LoopHandle&lt;<span class="lifetime">'l</span>, Data&gt;,
     signals: Arc&lt;Signals&gt;,
     <span class="comment">// A caching vector for synthetic poll events
     </span>synthetic_events: Vec&lt;PollEvent&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, Data&gt; std::fmt::Debug <span class="kw">for </span>EventLoop&lt;<span class="lifetime">&#39;l</span>, Data&gt; {
-    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;nightly_coverage&quot;</span>, coverage(off))]
-    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
-        f.write_str(<span class="string">&quot;EventLoop { ... }&quot;</span>)
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, Data&gt; std::fmt::Debug <span class="kw">for </span>EventLoop&lt;<span class="lifetime">'l</span>, Data&gt; {
+    <span class="attr">#[cfg_attr(feature = <span class="string">"nightly_coverage"</span>, coverage(off))]
+    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; std::fmt::Result {
+        f.write_str(<span class="string">"EventLoop { ... }"</span>)
     }
 }
 
@@ -1999,11 +2000,11 @@
     </span>stop: AtomicBool,
 
     <span class="doccomment">/// Signal that the future is ready.
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;block_on&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"block_on"</span>)]
     </span>future_ready: AtomicBool,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, Data&gt; EventLoop&lt;<span class="lifetime">&#39;l</span>, Data&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, Data&gt; EventLoop&lt;<span class="lifetime">'l</span>, Data&gt; {
     <span class="doccomment">/// Create a new event loop
     ///
     /// Fails if the initialization of the polling system failed.
@@ -2024,7 +2025,7 @@
             handle,
             signals: Arc::new(Signals {
                 stop: AtomicBool::new(<span class="bool-val">false</span>),
-                <span class="attr">#[cfg(feature = <span class="string">&quot;block_on&quot;</span>)]
+                <span class="attr">#[cfg(feature = <span class="string">"block_on"</span>)]
                 </span>future_ready: AtomicBool::new(<span class="bool-val">false</span>),
             }),
             poller,
@@ -2033,7 +2034,7 @@
     }
 
     <span class="doccomment">/// Retrieve a loop handle
-    </span><span class="kw">pub fn </span>handle(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; LoopHandle&lt;<span class="lifetime">&#39;l</span>, Data&gt; {
+    </span><span class="kw">pub fn </span>handle(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; LoopHandle&lt;<span class="lifetime">'l</span>, Data&gt; {
         <span class="self">self</span>.handle.clone()
     }
 
@@ -2126,7 +2127,7 @@
 
             <span class="kw">if let </span><span class="prelude-val">Some</span>(disp) = opt_disp {
                 <span class="macro">trace!</span>(
-                    <span class="string">&quot;[calloop] Dispatching events for source #{}&quot;</span>,
+                    <span class="string">"[calloop] Dispatching events for source #{}"</span>,
                     reg_token.get_id()
                 );
                 <span class="kw">let </span><span class="kw-2">mut </span>ret = disp.process_events(event.readiness, event.token, data)<span class="question-mark">?</span>;
@@ -2144,7 +2145,7 @@
                 <span class="kw">match </span>ret {
                     PostAction::Reregister =&gt; {
                         <span class="macro">trace!</span>(
-                            <span class="string">&quot;[calloop] Postaction reregister for source #{}&quot;</span>,
+                            <span class="string">"[calloop] Postaction reregister for source #{}"</span>,
                             reg_token.get_id()
                         );
                         disp.reregister(
@@ -2159,7 +2160,7 @@
                     }
                     PostAction::Disable =&gt; {
                         <span class="macro">trace!</span>(
-                            <span class="string">&quot;[calloop] Postaction unregister for source #{}&quot;</span>,
+                            <span class="string">"[calloop] Postaction unregister for source #{}"</span>,
                             reg_token.get_id()
                         );
                         disp.unregister(
@@ -2174,7 +2175,7 @@
                     }
                     PostAction::Remove =&gt; {
                         <span class="macro">trace!</span>(
-                            <span class="string">&quot;[calloop] Postaction remove for source #{}&quot;</span>,
+                            <span class="string">"[calloop] Postaction remove for source #{}"</span>,
                             reg_token.get_id()
                         );
                         <span class="kw">if let </span><span class="prelude-val">Ok</span>(entry) = <span class="self">self</span>.handle.inner.sources.borrow_mut().get_mut(reg_token)
@@ -2207,14 +2208,14 @@
                         RegistrationToken::new(reg_token),
                     ) {
                         <span class="macro">log::warn!</span>(
-                            <span class="string">&quot;[calloop] Failed to unregister source from the polling system: {:?}&quot;</span>,
+                            <span class="string">"[calloop] Failed to unregister source from the polling system: {:?}"</span>,
                             e
                         );
                     }
                 }
             } <span class="kw">else </span>{
                 <span class="macro">log::warn!</span>(
-                    <span class="string">&quot;[calloop] Received an event for non-existence source: {:?}&quot;</span>,
+                    <span class="string">"[calloop] Received an event for non-existence source: {:?}"</span>,
                     reg_token
                 );
             }
@@ -2293,7 +2294,7 @@
     ///
     /// If [`LoopSignal::stop()`] is called before the future is resolved, this function returns
     /// `None`.
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;block_on&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"block_on"</span>)]
     </span><span class="kw">pub fn </span>block_on&lt;R&gt;(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         future: <span class="kw">impl </span>Future&lt;Output = R&gt;,
@@ -2339,7 +2340,7 @@
         <span class="kw">while </span>!<span class="self">self</span>.signals.stop.load(Ordering::Acquire) {
             <span class="comment">// If the future is ready to be polled, poll it.
             </span><span class="kw">if </span><span class="self">self</span>.signals.future_ready.swap(<span class="bool-val">false</span>, Ordering::AcqRel) {
-                <span class="comment">// Poll the future and break the loop if it&#39;s ready.
+                <span class="comment">// Poll the future and break the loop if it's ready.
                 </span><span class="kw">if let </span>Poll::Ready(result) = future.as_mut().poll(<span class="kw-2">&amp;mut </span>context) {
                     output = <span class="prelude-val">Some</span>(result);
                     <span class="kw">break</span>;
@@ -2357,11 +2358,11 @@
 }
 
 <span class="attr">#[cfg(unix)]
-</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, Data&gt; AsRawFd <span class="kw">for </span>EventLoop&lt;<span class="lifetime">&#39;l</span>, Data&gt; {
+</span><span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, Data&gt; AsRawFd <span class="kw">for </span>EventLoop&lt;<span class="lifetime">'l</span>, Data&gt; {
     <span class="doccomment">/// Get the underlying raw-fd of the poller.
     ///
     /// This could be used to create [`Generic`] source out of the current loop
-    /// and inserting into some other [`EventLoop`]. It&#39;s recommended to clone `fd`
+    /// and inserting into some other [`EventLoop`]. It's recommended to clone `fd`
     /// before doing so.
     ///
     /// [`Generic`]: crate::generic::Generic
@@ -2371,28 +2372,28 @@
 }
 
 <span class="attr">#[cfg(unix)]
-</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, Data&gt; AsFd <span class="kw">for </span>EventLoop&lt;<span class="lifetime">&#39;l</span>, Data&gt; {
+</span><span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, Data&gt; AsFd <span class="kw">for </span>EventLoop&lt;<span class="lifetime">'l</span>, Data&gt; {
     <span class="doccomment">/// Get the underlying fd of the poller.
     ///
     /// This could be used to create [`Generic`] source out of the current loop
     /// and inserting into some other [`EventLoop`].
     ///
     /// [`Generic`]: crate::generic::Generic
-    </span><span class="kw">fn </span>as_fd(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt; {
+    </span><span class="kw">fn </span>as_fd(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; BorrowedFd&lt;<span class="lifetime">'_</span>&gt; {
         <span class="self">self</span>.poller.as_fd()
     }
 }
 
 <span class="attr">#[cfg(windows)]
-</span><span class="kw">impl</span>&lt;Data&gt; AsRawHandle <span class="kw">for </span>EventLoop&lt;<span class="lifetime">&#39;_</span>, Data&gt; {
+</span><span class="kw">impl</span>&lt;Data&gt; AsRawHandle <span class="kw">for </span>EventLoop&lt;<span class="lifetime">'_</span>, Data&gt; {
     <span class="kw">fn </span>as_raw_handle(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; RawHandle {
         <span class="self">self</span>.poller.as_raw_handle()
     }
 }
 
 <span class="attr">#[cfg(windows)]
-</span><span class="kw">impl</span>&lt;Data&gt; AsHandle <span class="kw">for </span>EventLoop&lt;<span class="lifetime">&#39;_</span>, Data&gt; {
-    <span class="kw">fn </span>as_handle(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; BorrowedHandle&lt;<span class="lifetime">&#39;_</span>&gt; {
+</span><span class="kw">impl</span>&lt;Data&gt; AsHandle <span class="kw">for </span>EventLoop&lt;<span class="lifetime">'_</span>, Data&gt; {
+    <span class="kw">fn </span>as_handle(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; BorrowedHandle&lt;<span class="lifetime">'_</span>&gt; {
         <span class="self">self</span>.poller.as_handle()
     }
 }
@@ -2404,12 +2405,12 @@
 /// - To avoid dynamic dispatch overhead
 /// - Secondly, it is to allow this type to be `Clone`, which is not
 /// possible with dynamic dispatch
-</span><span class="kw">pub struct </span>EventIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
-    inner: slice::Iter&lt;<span class="lifetime">&#39;a</span>, PollEvent&gt;,
+</span><span class="kw">pub struct </span>EventIterator&lt;<span class="lifetime">'a</span>&gt; {
+    inner: slice::Iter&lt;<span class="lifetime">'a</span>, PollEvent&gt;,
     registration_token: RegistrationToken,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>EventIterator&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; Iterator <span class="kw">for </span>EventIterator&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">type </span>Item = (Readiness, Token);
 
     <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
@@ -2435,9 +2436,9 @@
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>LoopSignal {
-    <span class="attr">#[cfg_attr(feature = <span class="string">&quot;nightly_coverage&quot;</span>, coverage(off))]
-    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
-        f.write_str(<span class="string">&quot;LoopSignal { ... }&quot;</span>)
+    <span class="attr">#[cfg_attr(feature = <span class="string">"nightly_coverage"</span>, coverage(off))]
+    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; std::fmt::Result {
+        f.write_str(<span class="string">"LoopSignal { ... }"</span>)
     }
 }
 
@@ -2549,7 +2550,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>additional_events() {
-        <span class="kw">let </span><span class="kw-2">mut </span>event_loop: EventLoop&lt;<span class="lifetime">&#39;_</span>, Lock&gt; = EventLoop::try_new().unwrap();
+        <span class="kw">let </span><span class="kw-2">mut </span>event_loop: EventLoop&lt;<span class="lifetime">'_</span>, Lock&gt; = EventLoop::try_new().unwrap();
         <span class="kw">let </span><span class="kw-2">mut </span>lock = Lock {
             lock: Rc::new((
                 <span class="comment">// Whether the lock is locked
@@ -2742,7 +2743,7 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>additional_events_synthetic() {
-        <span class="kw">let </span><span class="kw-2">mut </span>event_loop: EventLoop&lt;<span class="lifetime">&#39;_</span>, Lock&gt; = EventLoop::try_new().unwrap();
+        <span class="kw">let </span><span class="kw-2">mut </span>event_loop: EventLoop&lt;<span class="lifetime">'_</span>, Lock&gt; = EventLoop::try_new().unwrap();
         <span class="kw">let </span><span class="kw-2">mut </span>lock = Lock {
             lock: Rc::new(Cell::new(<span class="bool-val">false</span>)),
         };
@@ -2994,7 +2995,7 @@
         event_loop
             .handle()
             .insert_source(source, |i, <span class="kw">_</span>, d| {
-                <span class="macro">eprintln!</span>(<span class="string">&quot;Dispatching {}&quot;</span>, i);
+                <span class="macro">eprintln!</span>(<span class="string">"Dispatching {}"</span>, i);
                 <span class="kw-2">*</span>d += i
             })
             .unwrap();
@@ -3142,10 +3143,10 @@
         <span class="kw">let </span>(sender, receiver) = mpsc::channel();
 
         {
-            <span class="kw">struct </span>RefSender&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>mpsc::Sender&lt;()&gt;);
+            <span class="kw">struct </span>RefSender&lt;<span class="lifetime">'a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'a </span>mpsc::Sender&lt;()&gt;);
             <span class="kw">let </span><span class="kw-2">mut </span>ref_sender = RefSender(<span class="kw-2">&amp;</span>sender);
 
-            <span class="kw">let </span><span class="kw-2">mut </span>event_loop = EventLoop::&lt;RefSender&lt;<span class="lifetime">&#39;_</span>&gt;&gt;::try_new().unwrap();
+            <span class="kw">let </span><span class="kw-2">mut </span>event_loop = EventLoop::&lt;RefSender&lt;<span class="lifetime">'_</span>&gt;&gt;::try_new().unwrap();
             <span class="kw">let </span>(ping, ping_source) = make_ping().unwrap();
             <span class="kw">let </span>_ping_token = event_loop
                 .handle()
@@ -3166,7 +3167,7 @@
         </span>drop(sender);
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;block_on&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"block_on"</span>)]
     #[test]
     </span><span class="kw">fn </span>block_on_test() {
         <span class="kw">use </span><span class="kw">crate</span>::sources::timer::TimeoutFuture;
@@ -3191,7 +3192,7 @@
         <span class="macro">assert_eq!</span>(data, <span class="number">32</span>);
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;block_on&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"block_on"</span>)]
     #[test]
     </span><span class="kw">fn </span>block_on_early_cancel() {
         <span class="kw">use </span><span class="kw">crate</span>::sources::timer;

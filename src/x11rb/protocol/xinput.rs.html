@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-0.13.0/src/protocol/xinput.rs`."><title>xinput.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-0.13.0/src/protocol/xinput.rs`."><title>xinput.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1338,7 +1339,7 @@
 <a href="#1338" id="1338">1338</a>
 <a href="#1339" id="1339">1339</a>
 </pre></div><pre class="rust"><code><span class="comment">// This file contains generated code. Do not edit directly.
-// To regenerate this, run &#39;make&#39;.
+// To regenerate this, run 'make'.
 
 </span><span class="doccomment">//! Bindings to the `Input` X11 extension.
 
@@ -1375,7 +1376,7 @@
     <span class="prelude-val">Ok</span>(info.major_opcode)
 }
 
-<span class="kw">pub fn </span>get_extension_version&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, Conn, GetExtensionVersionReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_extension_version&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, name: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, Conn, GetExtensionVersionReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1388,7 +1389,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>list_input_devices&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, ListInputDevicesReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>list_input_devices&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, ListInputDevicesReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1399,7 +1400,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>open_device&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, OpenDeviceReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>open_device&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, OpenDeviceReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1412,7 +1413,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>close_device&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>close_device&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1425,7 +1426,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_device_mode&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8, mode: ValuatorMode) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, SetDeviceModeReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_device_mode&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8, mode: ValuatorMode) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, SetDeviceModeReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1439,7 +1440,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>select_extension_event&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, window: xproto::Window, classes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>select_extension_event&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, window: xproto::Window, classes: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1453,7 +1454,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_selected_extension_events&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetSelectedExtensionEventsReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_selected_extension_events&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetSelectedExtensionEventsReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1466,7 +1467,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>change_device_dont_propagate_list&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, window: xproto::Window, mode: PropagateMode, classes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>change_device_dont_propagate_list&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, window: xproto::Window, mode: PropagateMode, classes: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1481,7 +1482,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_device_dont_propagate_list&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetDeviceDontPropagateListReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_device_dont_propagate_list&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetDeviceDontPropagateListReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1494,7 +1495,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_device_motion_events&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, start: xproto::Timestamp, stop: A, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetDeviceMotionEventsReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_device_motion_events&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, start: xproto::Timestamp, stop: A, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetDeviceMotionEventsReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;xproto::Timestamp&gt;,
@@ -1511,7 +1512,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>change_keyboard_device&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, ChangeKeyboardDeviceReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>change_keyboard_device&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, ChangeKeyboardDeviceReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1524,7 +1525,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>change_pointer_device&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, x_axis: u8, y_axis: u8, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, ChangePointerDeviceReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>change_pointer_device&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, x_axis: u8, y_axis: u8, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, ChangePointerDeviceReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1539,7 +1540,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>grab_device&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn, A&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, grab_window: xproto::Window, time: A, this_device_mode: xproto::GrabMode, other_device_mode: xproto::GrabMode, owner_events: bool, device_id: u8, classes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, Conn, GrabDeviceReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>grab_device&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn, A&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, grab_window: xproto::Window, time: A, this_device_mode: xproto::GrabMode, other_device_mode: xproto::GrabMode, owner_events: bool, device_id: u8, classes: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, Conn, GrabDeviceReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;xproto::Timestamp&gt;,
@@ -1560,7 +1561,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>ungrab_device&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, time: A, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>ungrab_device&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, time: A, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;xproto::Timestamp&gt;,
@@ -1576,7 +1577,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>grab_device_key&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, grab_window: xproto::Window, modifiers: xproto::ModMask, modifier_device: A, grabbed_device: u8, key: B, this_device_mode: xproto::GrabMode, other_device_mode: xproto::GrabMode, owner_events: bool, classes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>grab_device_key&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, grab_window: xproto::Window, modifiers: xproto::ModMask, modifier_device: A, grabbed_device: u8, key: B, this_device_mode: xproto::GrabMode, other_device_mode: xproto::GrabMode, owner_events: bool, classes: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;u8&gt;,
@@ -1601,7 +1602,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>ungrab_device_key&lt;Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span>Conn, grab_window: xproto::Window, modifiers: xproto::ModMask, modifier_device: A, key: B, grabbed_device: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>ungrab_device_key&lt;Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span>Conn, grab_window: xproto::Window, modifiers: xproto::ModMask, modifier_device: A, key: B, grabbed_device: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;u8&gt;,
@@ -1622,7 +1623,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>grab_device_button&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, grab_window: xproto::Window, grabbed_device: u8, modifier_device: A, modifiers: xproto::ModMask, this_device_mode: xproto::GrabMode, other_device_mode: xproto::GrabMode, button: B, owner_events: bool, classes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>grab_device_button&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, grab_window: xproto::Window, grabbed_device: u8, modifier_device: A, modifiers: xproto::ModMask, this_device_mode: xproto::GrabMode, other_device_mode: xproto::GrabMode, button: B, owner_events: bool, classes: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;u8&gt;,
@@ -1647,7 +1648,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>ungrab_device_button&lt;Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span>Conn, grab_window: xproto::Window, modifiers: xproto::ModMask, modifier_device: A, button: B, grabbed_device: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>ungrab_device_button&lt;Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span>Conn, grab_window: xproto::Window, modifiers: xproto::ModMask, modifier_device: A, button: B, grabbed_device: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;u8&gt;,
@@ -1668,7 +1669,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>allow_device_events&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, time: A, mode: DeviceInputMode, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>allow_device_events&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, time: A, mode: DeviceInputMode, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;xproto::Timestamp&gt;,
@@ -1685,7 +1686,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_device_focus&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetDeviceFocusReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_device_focus&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetDeviceFocusReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1698,7 +1699,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_device_focus&lt;Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span>Conn, focus: A, time: B, revert_to: xproto::InputFocus, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_device_focus&lt;Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span>Conn, focus: A, time: B, revert_to: xproto::InputFocus, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;xproto::Window&gt;,
@@ -1718,7 +1719,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_feedback_control&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetFeedbackControlReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_feedback_control&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetFeedbackControlReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1731,7 +1732,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>change_feedback_control&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, mask: ChangeFeedbackControlMask, device_id: u8, feedback_id: u8, feedback: FeedbackCtl) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>change_feedback_control&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, mask: ChangeFeedbackControlMask, device_id: u8, feedback_id: u8, feedback: FeedbackCtl) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1747,7 +1748,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_device_key_mapping&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8, first_keycode: KeyCode, count: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetDeviceKeyMappingReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_device_key_mapping&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8, first_keycode: KeyCode, count: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetDeviceKeyMappingReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1762,7 +1763,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>change_device_key_mapping&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, device_id: u8, first_keycode: KeyCode, keysyms_per_keycode: u8, keycode_count: u8, keysyms: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[xproto::Keysym]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>change_device_key_mapping&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, device_id: u8, first_keycode: KeyCode, keysyms_per_keycode: u8, keycode_count: u8, keysyms: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[xproto::Keysym]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1779,7 +1780,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_device_modifier_mapping&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetDeviceModifierMappingReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_device_modifier_mapping&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetDeviceModifierMappingReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1792,7 +1793,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_device_modifier_mapping&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, device_id: u8, keymaps: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, Conn, SetDeviceModifierMappingReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_device_modifier_mapping&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, device_id: u8, keymaps: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, Conn, SetDeviceModifierMappingReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1806,7 +1807,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_device_button_mapping&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetDeviceButtonMappingReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_device_button_mapping&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetDeviceButtonMappingReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1819,7 +1820,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_device_button_mapping&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, device_id: u8, map: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, Conn, SetDeviceButtonMappingReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_device_button_mapping&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, device_id: u8, map: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, Conn, SetDeviceButtonMappingReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1833,7 +1834,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>query_device_state&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, QueryDeviceStateReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>query_device_state&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, QueryDeviceStateReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1846,7 +1847,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>device_bell&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8, feedback_id: u8, feedback_class: u8, percent: i8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>device_bell&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8, feedback_id: u8, feedback_class: u8, percent: i8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1862,7 +1863,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_device_valuators&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, device_id: u8, first_valuator: u8, valuators: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[i32]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, Conn, SetDeviceValuatorsReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_device_valuators&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, device_id: u8, first_valuator: u8, valuators: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[i32]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, Conn, SetDeviceValuatorsReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1877,7 +1878,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_device_control&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, control_id: DeviceControl, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetDeviceControlReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_device_control&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, control_id: DeviceControl, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetDeviceControlReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1891,7 +1892,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>change_device_control&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, control_id: DeviceControl, device_id: u8, control: DeviceCtl) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, ChangeDeviceControlReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>change_device_control&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, control_id: DeviceControl, device_id: u8, control: DeviceCtl) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, ChangeDeviceControlReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1906,7 +1907,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>list_device_properties&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, ListDevicePropertiesReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>list_device_properties&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, ListDevicePropertiesReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1919,7 +1920,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>change_device_property&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, property: xproto::Atom, type_: xproto::Atom, device_id: u8, mode: xproto::PropMode, num_items: u32, items: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>ChangeDevicePropertyAux) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>change_device_property&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, property: xproto::Atom, type_: xproto::Atom, device_id: u8, mode: xproto::PropMode, num_items: u32, items: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>ChangeDevicePropertyAux) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1937,7 +1938,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>delete_device_property&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, property: xproto::Atom, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>delete_device_property&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, property: xproto::Atom, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1951,7 +1952,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_device_property&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, property: xproto::Atom, type_: xproto::Atom, offset: u32, len: u32, device_id: u8, delete: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetDevicePropertyReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_device_property&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, property: xproto::Atom, type_: xproto::Atom, offset: u32, len: u32, device_id: u8, delete: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetDevicePropertyReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1969,7 +1970,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_query_pointer&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, XIQueryPointerReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_query_pointer&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, XIQueryPointerReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;DeviceId&gt;,
@@ -1985,7 +1986,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_warp_pointer&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, src_win: xproto::Window, dst_win: xproto::Window, src_x: Fp1616, src_y: Fp1616, src_width: u16, src_height: u16, dst_x: Fp1616, dst_y: Fp1616, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_warp_pointer&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, src_win: xproto::Window, dst_win: xproto::Window, src_x: Fp1616, src_y: Fp1616, src_width: u16, src_height: u16, dst_x: Fp1616, dst_y: Fp1616, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;DeviceId&gt;,
@@ -2008,7 +2009,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_change_cursor&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, cursor: xproto::Cursor, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_change_cursor&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, cursor: xproto::Cursor, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;DeviceId&gt;,
@@ -2025,7 +2026,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_change_hierarchy&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, changes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[HierarchyChange]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_change_hierarchy&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, changes: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[HierarchyChange]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -2038,7 +2039,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_set_client_pointer&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_set_client_pointer&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;DeviceId&gt;,
@@ -2054,7 +2055,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_get_client_pointer&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, XIGetClientPointerReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_get_client_pointer&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, XIGetClientPointerReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -2067,7 +2068,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_select_events&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, window: xproto::Window, masks: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventMask]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_select_events&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, window: xproto::Window, masks: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventMask]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -2081,7 +2082,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_query_version&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, major_version: u16, minor_version: u16) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, XIQueryVersionReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_query_version&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, major_version: u16, minor_version: u16) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, XIQueryVersionReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -2095,7 +2096,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_query_device&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, XIQueryDeviceReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_query_device&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, XIQueryDeviceReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;DeviceId&gt;,
@@ -2110,7 +2111,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_set_focus&lt;Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, time: A, deviceid: B) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_set_focus&lt;Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, time: A, deviceid: B) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;xproto::Timestamp&gt;,
@@ -2129,7 +2130,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_get_focus&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, XIGetFocusReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_get_focus&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, XIGetFocusReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;DeviceId&gt;,
@@ -2144,7 +2145,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_grab_device&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, window: xproto::Window, time: A, cursor: xproto::Cursor, deviceid: B, mode: xproto::GrabMode, paired_device_mode: xproto::GrabMode, owner_events: GrabOwner, mask: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u32]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, Conn, XIGrabDeviceReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_grab_device&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, window: xproto::Window, time: A, cursor: xproto::Cursor, deviceid: B, mode: xproto::GrabMode, paired_device_mode: xproto::GrabMode, owner_events: GrabOwner, mask: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u32]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, Conn, XIGrabDeviceReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;xproto::Timestamp&gt;,
@@ -2168,7 +2169,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_ungrab_device&lt;Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span>Conn, time: A, deviceid: B) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_ungrab_device&lt;Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span>Conn, time: A, deviceid: B) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;xproto::Timestamp&gt;,
@@ -2186,7 +2187,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_allow_events&lt;Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span>Conn, time: A, deviceid: B, event_mode: EventMode, touchid: u32, grab_window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_allow_events&lt;Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span>Conn, time: A, deviceid: B, event_mode: EventMode, touchid: u32, grab_window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;xproto::Timestamp&gt;,
@@ -2207,7 +2208,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_passive_grab_device&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, time: A, grab_window: xproto::Window, cursor: xproto::Cursor, detail: u32, deviceid: B, grab_type: GrabType, grab_mode: GrabMode22, paired_device_mode: xproto::GrabMode, owner_events: GrabOwner, mask: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u32], modifiers: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u32]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, Conn, XIPassiveGrabDeviceReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_passive_grab_device&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn, A, B&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, time: A, grab_window: xproto::Window, cursor: xproto::Cursor, detail: u32, deviceid: B, grab_type: GrabType, grab_mode: GrabMode22, paired_device_mode: xproto::GrabMode, owner_events: GrabOwner, mask: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u32], modifiers: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u32]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, Conn, XIPassiveGrabDeviceReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;xproto::Timestamp&gt;,
@@ -2234,7 +2235,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_passive_ungrab_device&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn, A&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, grab_window: xproto::Window, detail: u32, deviceid: A, grab_type: GrabType, modifiers: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u32]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_passive_ungrab_device&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn, A&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, grab_window: xproto::Window, detail: u32, deviceid: A, grab_type: GrabType, modifiers: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u32]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;DeviceId&gt;,
@@ -2253,7 +2254,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_list_properties&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, XIListPropertiesReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_list_properties&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, XIListPropertiesReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;DeviceId&gt;,
@@ -2268,7 +2269,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_change_property&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn, A&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, deviceid: A, mode: xproto::PropMode, property: xproto::Atom, type_: xproto::Atom, num_items: u32, items: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>XIChangePropertyAux) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_change_property&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn, A&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, deviceid: A, mode: xproto::PropMode, property: xproto::Atom, type_: xproto::Atom, num_items: u32, items: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>XIChangePropertyAux) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;DeviceId&gt;,
@@ -2288,7 +2289,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_delete_property&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, deviceid: A, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_delete_property&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, deviceid: A, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;DeviceId&gt;,
@@ -2304,7 +2305,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_get_property&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, deviceid: A, delete: bool, property: xproto::Atom, type_: xproto::Atom, offset: u32, len: u32) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, XIGetPropertyReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_get_property&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, deviceid: A, delete: bool, property: xproto::Atom, type_: xproto::Atom, offset: u32, len: u32) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, XIGetPropertyReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;DeviceId&gt;,
@@ -2324,7 +2325,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_get_selected_events&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, XIGetSelectedEventsReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_get_selected_events&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, XIGetSelectedEventsReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -2337,7 +2338,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>xi_barrier_release_pointer&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, barriers: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[BarrierReleasePointerInfo]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>xi_barrier_release_pointer&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, barriers: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[BarrierReleasePointerInfo]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -2350,7 +2351,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>send_extension_event&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, destination: xproto::Window, device_id: u8, propagate: bool, events: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventForSend], classes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>send_extension_event&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, destination: xproto::Window, device_id: u8, propagate: bool, events: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventForSend], classes: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -2369,307 +2370,307 @@
 
 <span class="doccomment">/// Extension trait defining the requests of this extension.
 </span><span class="kw">pub trait </span>ConnectionExt: RequestConnection {
-    <span class="kw">fn </span>xinput_get_extension_version&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>, GetExtensionVersionReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_get_extension_version&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, name: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>, GetExtensionVersionReply&gt;, ConnectionError&gt;
     {
         get_extension_version(<span class="self">self</span>, name)
     }
-    <span class="kw">fn </span>xinput_list_input_devices(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, ListInputDevicesReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_list_input_devices(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, ListInputDevicesReply&gt;, ConnectionError&gt;
     {
         list_input_devices(<span class="self">self</span>)
     }
-    <span class="kw">fn </span>xinput_open_device(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, OpenDeviceReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_open_device(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, OpenDeviceReply&gt;, ConnectionError&gt;
     {
         open_device(<span class="self">self</span>, device_id)
     }
-    <span class="kw">fn </span>xinput_close_device(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_close_device(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         close_device(<span class="self">self</span>, device_id)
     }
-    <span class="kw">fn </span>xinput_set_device_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8, mode: ValuatorMode) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, SetDeviceModeReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_set_device_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8, mode: ValuatorMode) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, SetDeviceModeReply&gt;, ConnectionError&gt;
     {
         set_device_mode(<span class="self">self</span>, device_id, mode)
     }
-    <span class="kw">fn </span>xinput_select_extension_event&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, window: xproto::Window, classes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_select_extension_event&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, window: xproto::Window, classes: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         select_extension_event(<span class="self">self</span>, window, classes)
     }
-    <span class="kw">fn </span>xinput_get_selected_extension_events(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetSelectedExtensionEventsReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_get_selected_extension_events(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetSelectedExtensionEventsReply&gt;, ConnectionError&gt;
     {
         get_selected_extension_events(<span class="self">self</span>, window)
     }
-    <span class="kw">fn </span>xinput_change_device_dont_propagate_list&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, window: xproto::Window, mode: PropagateMode, classes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_change_device_dont_propagate_list&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, window: xproto::Window, mode: PropagateMode, classes: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         change_device_dont_propagate_list(<span class="self">self</span>, window, mode, classes)
     }
-    <span class="kw">fn </span>xinput_get_device_dont_propagate_list(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetDeviceDontPropagateListReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_get_device_dont_propagate_list(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetDeviceDontPropagateListReply&gt;, ConnectionError&gt;
     {
         get_device_dont_propagate_list(<span class="self">self</span>, window)
     }
-    <span class="kw">fn </span>xinput_get_device_motion_events&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, start: xproto::Timestamp, stop: A, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetDeviceMotionEventsReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_get_device_motion_events&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, start: xproto::Timestamp, stop: A, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetDeviceMotionEventsReply&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;xproto::Timestamp&gt;,
     {
         get_device_motion_events(<span class="self">self</span>, start, stop, device_id)
     }
-    <span class="kw">fn </span>xinput_change_keyboard_device(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, ChangeKeyboardDeviceReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_change_keyboard_device(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, ChangeKeyboardDeviceReply&gt;, ConnectionError&gt;
     {
         change_keyboard_device(<span class="self">self</span>, device_id)
     }
-    <span class="kw">fn </span>xinput_change_pointer_device(<span class="kw-2">&amp;</span><span class="self">self</span>, x_axis: u8, y_axis: u8, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, ChangePointerDeviceReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_change_pointer_device(<span class="kw-2">&amp;</span><span class="self">self</span>, x_axis: u8, y_axis: u8, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, ChangePointerDeviceReply&gt;, ConnectionError&gt;
     {
         change_pointer_device(<span class="self">self</span>, x_axis, y_axis, device_id)
     }
-    <span class="kw">fn </span>xinput_grab_device&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, A&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, grab_window: xproto::Window, time: A, this_device_mode: xproto::GrabMode, other_device_mode: xproto::GrabMode, owner_events: bool, device_id: u8, classes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>, GrabDeviceReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_grab_device&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, A&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, grab_window: xproto::Window, time: A, this_device_mode: xproto::GrabMode, other_device_mode: xproto::GrabMode, owner_events: bool, device_id: u8, classes: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>, GrabDeviceReply&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;xproto::Timestamp&gt;,
     {
         grab_device(<span class="self">self</span>, grab_window, time, this_device_mode, other_device_mode, owner_events, device_id, classes)
     }
-    <span class="kw">fn </span>xinput_ungrab_device&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, time: A, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_ungrab_device&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, time: A, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;xproto::Timestamp&gt;,
     {
         ungrab_device(<span class="self">self</span>, time, device_id)
     }
-    <span class="kw">fn </span>xinput_grab_device_key&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, A, B&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, grab_window: xproto::Window, modifiers: xproto::ModMask, modifier_device: A, grabbed_device: u8, key: B, this_device_mode: xproto::GrabMode, other_device_mode: xproto::GrabMode, owner_events: bool, classes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_grab_device_key&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, A, B&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, grab_window: xproto::Window, modifiers: xproto::ModMask, modifier_device: A, grabbed_device: u8, key: B, this_device_mode: xproto::GrabMode, other_device_mode: xproto::GrabMode, owner_events: bool, classes: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;u8&gt;,
         B: Into&lt;u8&gt;,
     {
         grab_device_key(<span class="self">self</span>, grab_window, modifiers, modifier_device, grabbed_device, key, this_device_mode, other_device_mode, owner_events, classes)
     }
-    <span class="kw">fn </span>xinput_ungrab_device_key&lt;A, B&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, grab_window: xproto::Window, modifiers: xproto::ModMask, modifier_device: A, key: B, grabbed_device: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_ungrab_device_key&lt;A, B&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, grab_window: xproto::Window, modifiers: xproto::ModMask, modifier_device: A, key: B, grabbed_device: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;u8&gt;,
         B: Into&lt;u8&gt;,
     {
         ungrab_device_key(<span class="self">self</span>, grab_window, modifiers, modifier_device, key, grabbed_device)
     }
-    <span class="kw">fn </span>xinput_grab_device_button&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, A, B&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, grab_window: xproto::Window, grabbed_device: u8, modifier_device: A, modifiers: xproto::ModMask, this_device_mode: xproto::GrabMode, other_device_mode: xproto::GrabMode, button: B, owner_events: bool, classes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_grab_device_button&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, A, B&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, grab_window: xproto::Window, grabbed_device: u8, modifier_device: A, modifiers: xproto::ModMask, this_device_mode: xproto::GrabMode, other_device_mode: xproto::GrabMode, button: B, owner_events: bool, classes: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;u8&gt;,
         B: Into&lt;u8&gt;,
     {
         grab_device_button(<span class="self">self</span>, grab_window, grabbed_device, modifier_device, modifiers, this_device_mode, other_device_mode, button, owner_events, classes)
     }
-    <span class="kw">fn </span>xinput_ungrab_device_button&lt;A, B&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, grab_window: xproto::Window, modifiers: xproto::ModMask, modifier_device: A, button: B, grabbed_device: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_ungrab_device_button&lt;A, B&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, grab_window: xproto::Window, modifiers: xproto::ModMask, modifier_device: A, button: B, grabbed_device: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;u8&gt;,
         B: Into&lt;u8&gt;,
     {
         ungrab_device_button(<span class="self">self</span>, grab_window, modifiers, modifier_device, button, grabbed_device)
     }
-    <span class="kw">fn </span>xinput_allow_device_events&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, time: A, mode: DeviceInputMode, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_allow_device_events&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, time: A, mode: DeviceInputMode, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;xproto::Timestamp&gt;,
     {
         allow_device_events(<span class="self">self</span>, time, mode, device_id)
     }
-    <span class="kw">fn </span>xinput_get_device_focus(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetDeviceFocusReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_get_device_focus(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetDeviceFocusReply&gt;, ConnectionError&gt;
     {
         get_device_focus(<span class="self">self</span>, device_id)
     }
-    <span class="kw">fn </span>xinput_set_device_focus&lt;A, B&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, focus: A, time: B, revert_to: xproto::InputFocus, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_set_device_focus&lt;A, B&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, focus: A, time: B, revert_to: xproto::InputFocus, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;xproto::Window&gt;,
         B: Into&lt;xproto::Timestamp&gt;,
     {
         set_device_focus(<span class="self">self</span>, focus, time, revert_to, device_id)
     }
-    <span class="kw">fn </span>xinput_get_feedback_control(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetFeedbackControlReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_get_feedback_control(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetFeedbackControlReply&gt;, ConnectionError&gt;
     {
         get_feedback_control(<span class="self">self</span>, device_id)
     }
-    <span class="kw">fn </span>xinput_change_feedback_control(<span class="kw-2">&amp;</span><span class="self">self</span>, mask: ChangeFeedbackControlMask, device_id: u8, feedback_id: u8, feedback: FeedbackCtl) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_change_feedback_control(<span class="kw-2">&amp;</span><span class="self">self</span>, mask: ChangeFeedbackControlMask, device_id: u8, feedback_id: u8, feedback: FeedbackCtl) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         change_feedback_control(<span class="self">self</span>, mask, device_id, feedback_id, feedback)
     }
-    <span class="kw">fn </span>xinput_get_device_key_mapping(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8, first_keycode: KeyCode, count: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetDeviceKeyMappingReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_get_device_key_mapping(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8, first_keycode: KeyCode, count: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetDeviceKeyMappingReply&gt;, ConnectionError&gt;
     {
         get_device_key_mapping(<span class="self">self</span>, device_id, first_keycode, count)
     }
-    <span class="kw">fn </span>xinput_change_device_key_mapping&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, device_id: u8, first_keycode: KeyCode, keysyms_per_keycode: u8, keycode_count: u8, keysyms: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[xproto::Keysym]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_change_device_key_mapping&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, device_id: u8, first_keycode: KeyCode, keysyms_per_keycode: u8, keycode_count: u8, keysyms: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[xproto::Keysym]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         change_device_key_mapping(<span class="self">self</span>, device_id, first_keycode, keysyms_per_keycode, keycode_count, keysyms)
     }
-    <span class="kw">fn </span>xinput_get_device_modifier_mapping(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetDeviceModifierMappingReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_get_device_modifier_mapping(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetDeviceModifierMappingReply&gt;, ConnectionError&gt;
     {
         get_device_modifier_mapping(<span class="self">self</span>, device_id)
     }
-    <span class="kw">fn </span>xinput_set_device_modifier_mapping&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, device_id: u8, keymaps: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>, SetDeviceModifierMappingReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_set_device_modifier_mapping&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, device_id: u8, keymaps: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>, SetDeviceModifierMappingReply&gt;, ConnectionError&gt;
     {
         set_device_modifier_mapping(<span class="self">self</span>, device_id, keymaps)
     }
-    <span class="kw">fn </span>xinput_get_device_button_mapping(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetDeviceButtonMappingReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_get_device_button_mapping(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetDeviceButtonMappingReply&gt;, ConnectionError&gt;
     {
         get_device_button_mapping(<span class="self">self</span>, device_id)
     }
-    <span class="kw">fn </span>xinput_set_device_button_mapping&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, device_id: u8, map: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>, SetDeviceButtonMappingReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_set_device_button_mapping&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, device_id: u8, map: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>, SetDeviceButtonMappingReply&gt;, ConnectionError&gt;
     {
         set_device_button_mapping(<span class="self">self</span>, device_id, map)
     }
-    <span class="kw">fn </span>xinput_query_device_state(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, QueryDeviceStateReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_query_device_state(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, QueryDeviceStateReply&gt;, ConnectionError&gt;
     {
         query_device_state(<span class="self">self</span>, device_id)
     }
-    <span class="kw">fn </span>xinput_device_bell(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8, feedback_id: u8, feedback_class: u8, percent: i8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_device_bell(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8, feedback_id: u8, feedback_class: u8, percent: i8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         device_bell(<span class="self">self</span>, device_id, feedback_id, feedback_class, percent)
     }
-    <span class="kw">fn </span>xinput_set_device_valuators&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, device_id: u8, first_valuator: u8, valuators: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[i32]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>, SetDeviceValuatorsReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_set_device_valuators&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, device_id: u8, first_valuator: u8, valuators: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[i32]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>, SetDeviceValuatorsReply&gt;, ConnectionError&gt;
     {
         set_device_valuators(<span class="self">self</span>, device_id, first_valuator, valuators)
     }
-    <span class="kw">fn </span>xinput_get_device_control(<span class="kw-2">&amp;</span><span class="self">self</span>, control_id: DeviceControl, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetDeviceControlReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_get_device_control(<span class="kw-2">&amp;</span><span class="self">self</span>, control_id: DeviceControl, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetDeviceControlReply&gt;, ConnectionError&gt;
     {
         get_device_control(<span class="self">self</span>, control_id, device_id)
     }
-    <span class="kw">fn </span>xinput_change_device_control(<span class="kw-2">&amp;</span><span class="self">self</span>, control_id: DeviceControl, device_id: u8, control: DeviceCtl) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, ChangeDeviceControlReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_change_device_control(<span class="kw-2">&amp;</span><span class="self">self</span>, control_id: DeviceControl, device_id: u8, control: DeviceCtl) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, ChangeDeviceControlReply&gt;, ConnectionError&gt;
     {
         change_device_control(<span class="self">self</span>, control_id, device_id, control)
     }
-    <span class="kw">fn </span>xinput_list_device_properties(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, ListDevicePropertiesReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_list_device_properties(<span class="kw-2">&amp;</span><span class="self">self</span>, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, ListDevicePropertiesReply&gt;, ConnectionError&gt;
     {
         list_device_properties(<span class="self">self</span>, device_id)
     }
-    <span class="kw">fn </span>xinput_change_device_property&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, property: xproto::Atom, type_: xproto::Atom, device_id: u8, mode: xproto::PropMode, num_items: u32, items: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>ChangeDevicePropertyAux) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_change_device_property&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, property: xproto::Atom, type_: xproto::Atom, device_id: u8, mode: xproto::PropMode, num_items: u32, items: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>ChangeDevicePropertyAux) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         change_device_property(<span class="self">self</span>, property, type_, device_id, mode, num_items, items)
     }
-    <span class="kw">fn </span>xinput_delete_device_property(<span class="kw-2">&amp;</span><span class="self">self</span>, property: xproto::Atom, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_delete_device_property(<span class="kw-2">&amp;</span><span class="self">self</span>, property: xproto::Atom, device_id: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         delete_device_property(<span class="self">self</span>, property, device_id)
     }
-    <span class="kw">fn </span>xinput_get_device_property(<span class="kw-2">&amp;</span><span class="self">self</span>, property: xproto::Atom, type_: xproto::Atom, offset: u32, len: u32, device_id: u8, delete: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetDevicePropertyReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_get_device_property(<span class="kw-2">&amp;</span><span class="self">self</span>, property: xproto::Atom, type_: xproto::Atom, offset: u32, len: u32, device_id: u8, delete: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetDevicePropertyReply&gt;, ConnectionError&gt;
     {
         get_device_property(<span class="self">self</span>, property, type_, offset, len, device_id, delete)
     }
-    <span class="kw">fn </span>xinput_xi_query_pointer&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, XIQueryPointerReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_query_pointer&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, XIQueryPointerReply&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;DeviceId&gt;,
     {
         xi_query_pointer(<span class="self">self</span>, window, deviceid)
     }
-    <span class="kw">fn </span>xinput_xi_warp_pointer&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, src_win: xproto::Window, dst_win: xproto::Window, src_x: Fp1616, src_y: Fp1616, src_width: u16, src_height: u16, dst_x: Fp1616, dst_y: Fp1616, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_warp_pointer&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, src_win: xproto::Window, dst_win: xproto::Window, src_x: Fp1616, src_y: Fp1616, src_width: u16, src_height: u16, dst_x: Fp1616, dst_y: Fp1616, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;DeviceId&gt;,
     {
         xi_warp_pointer(<span class="self">self</span>, src_win, dst_win, src_x, src_y, src_width, src_height, dst_x, dst_y, deviceid)
     }
-    <span class="kw">fn </span>xinput_xi_change_cursor&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, cursor: xproto::Cursor, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_change_cursor&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, cursor: xproto::Cursor, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;DeviceId&gt;,
     {
         xi_change_cursor(<span class="self">self</span>, window, cursor, deviceid)
     }
-    <span class="kw">fn </span>xinput_xi_change_hierarchy&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, changes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[HierarchyChange]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_change_hierarchy&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, changes: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[HierarchyChange]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         xi_change_hierarchy(<span class="self">self</span>, changes)
     }
-    <span class="kw">fn </span>xinput_xi_set_client_pointer&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_set_client_pointer&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;DeviceId&gt;,
     {
         xi_set_client_pointer(<span class="self">self</span>, window, deviceid)
     }
-    <span class="kw">fn </span>xinput_xi_get_client_pointer(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, XIGetClientPointerReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_get_client_pointer(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, XIGetClientPointerReply&gt;, ConnectionError&gt;
     {
         xi_get_client_pointer(<span class="self">self</span>, window)
     }
-    <span class="kw">fn </span>xinput_xi_select_events&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, window: xproto::Window, masks: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventMask]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_select_events&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, window: xproto::Window, masks: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventMask]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         xi_select_events(<span class="self">self</span>, window, masks)
     }
-    <span class="kw">fn </span>xinput_xi_query_version(<span class="kw-2">&amp;</span><span class="self">self</span>, major_version: u16, minor_version: u16) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, XIQueryVersionReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_query_version(<span class="kw-2">&amp;</span><span class="self">self</span>, major_version: u16, minor_version: u16) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, XIQueryVersionReply&gt;, ConnectionError&gt;
     {
         xi_query_version(<span class="self">self</span>, major_version, minor_version)
     }
-    <span class="kw">fn </span>xinput_xi_query_device&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, XIQueryDeviceReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_query_device&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, XIQueryDeviceReply&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;DeviceId&gt;,
     {
         xi_query_device(<span class="self">self</span>, deviceid)
     }
-    <span class="kw">fn </span>xinput_xi_set_focus&lt;A, B&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, time: A, deviceid: B) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_set_focus&lt;A, B&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, time: A, deviceid: B) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;xproto::Timestamp&gt;,
         B: Into&lt;DeviceId&gt;,
     {
         xi_set_focus(<span class="self">self</span>, window, time, deviceid)
     }
-    <span class="kw">fn </span>xinput_xi_get_focus&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, XIGetFocusReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_get_focus&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, XIGetFocusReply&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;DeviceId&gt;,
     {
         xi_get_focus(<span class="self">self</span>, deviceid)
     }
-    <span class="kw">fn </span>xinput_xi_grab_device&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, A, B&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, window: xproto::Window, time: A, cursor: xproto::Cursor, deviceid: B, mode: xproto::GrabMode, paired_device_mode: xproto::GrabMode, owner_events: GrabOwner, mask: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u32]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>, XIGrabDeviceReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_grab_device&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, A, B&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, window: xproto::Window, time: A, cursor: xproto::Cursor, deviceid: B, mode: xproto::GrabMode, paired_device_mode: xproto::GrabMode, owner_events: GrabOwner, mask: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u32]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>, XIGrabDeviceReply&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;xproto::Timestamp&gt;,
         B: Into&lt;DeviceId&gt;,
     {
         xi_grab_device(<span class="self">self</span>, window, time, cursor, deviceid, mode, paired_device_mode, owner_events, mask)
     }
-    <span class="kw">fn </span>xinput_xi_ungrab_device&lt;A, B&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, time: A, deviceid: B) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_ungrab_device&lt;A, B&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, time: A, deviceid: B) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;xproto::Timestamp&gt;,
         B: Into&lt;DeviceId&gt;,
     {
         xi_ungrab_device(<span class="self">self</span>, time, deviceid)
     }
-    <span class="kw">fn </span>xinput_xi_allow_events&lt;A, B&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, time: A, deviceid: B, event_mode: EventMode, touchid: u32, grab_window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_allow_events&lt;A, B&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, time: A, deviceid: B, event_mode: EventMode, touchid: u32, grab_window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;xproto::Timestamp&gt;,
         B: Into&lt;DeviceId&gt;,
     {
         xi_allow_events(<span class="self">self</span>, time, deviceid, event_mode, touchid, grab_window)
     }
-    <span class="kw">fn </span>xinput_xi_passive_grab_device&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, A, B&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, time: A, grab_window: xproto::Window, cursor: xproto::Cursor, detail: u32, deviceid: B, grab_type: GrabType, grab_mode: GrabMode22, paired_device_mode: xproto::GrabMode, owner_events: GrabOwner, mask: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u32], modifiers: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u32]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>, XIPassiveGrabDeviceReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_passive_grab_device&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, A, B&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, time: A, grab_window: xproto::Window, cursor: xproto::Cursor, detail: u32, deviceid: B, grab_type: GrabType, grab_mode: GrabMode22, paired_device_mode: xproto::GrabMode, owner_events: GrabOwner, mask: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u32], modifiers: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u32]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>, XIPassiveGrabDeviceReply&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;xproto::Timestamp&gt;,
         B: Into&lt;DeviceId&gt;,
     {
         xi_passive_grab_device(<span class="self">self</span>, time, grab_window, cursor, detail, deviceid, grab_type, grab_mode, paired_device_mode, owner_events, mask, modifiers)
     }
-    <span class="kw">fn </span>xinput_xi_passive_ungrab_device&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, A&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, grab_window: xproto::Window, detail: u32, deviceid: A, grab_type: GrabType, modifiers: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u32]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_passive_ungrab_device&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, A&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, grab_window: xproto::Window, detail: u32, deviceid: A, grab_type: GrabType, modifiers: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u32]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;DeviceId&gt;,
     {
         xi_passive_ungrab_device(<span class="self">self</span>, grab_window, detail, deviceid, grab_type, modifiers)
     }
-    <span class="kw">fn </span>xinput_xi_list_properties&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, XIListPropertiesReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_list_properties&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, deviceid: A) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, XIListPropertiesReply&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;DeviceId&gt;,
     {
         xi_list_properties(<span class="self">self</span>, deviceid)
     }
-    <span class="kw">fn </span>xinput_xi_change_property&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, A&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, deviceid: A, mode: xproto::PropMode, property: xproto::Atom, type_: xproto::Atom, num_items: u32, items: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>XIChangePropertyAux) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_change_property&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, A&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, deviceid: A, mode: xproto::PropMode, property: xproto::Atom, type_: xproto::Atom, num_items: u32, items: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>XIChangePropertyAux) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;DeviceId&gt;,
     {
         xi_change_property(<span class="self">self</span>, deviceid, mode, property, type_, num_items, items)
     }
-    <span class="kw">fn </span>xinput_xi_delete_property&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, deviceid: A, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_delete_property&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, deviceid: A, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;DeviceId&gt;,
     {
         xi_delete_property(<span class="self">self</span>, deviceid, property)
     }
-    <span class="kw">fn </span>xinput_xi_get_property&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, deviceid: A, delete: bool, property: xproto::Atom, type_: xproto::Atom, offset: u32, len: u32) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, XIGetPropertyReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_get_property&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, deviceid: A, delete: bool, property: xproto::Atom, type_: xproto::Atom, offset: u32, len: u32) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, XIGetPropertyReply&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;DeviceId&gt;,
     {
         xi_get_property(<span class="self">self</span>, deviceid, delete, property, type_, offset, len)
     }
-    <span class="kw">fn </span>xinput_xi_get_selected_events(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, XIGetSelectedEventsReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_get_selected_events(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, XIGetSelectedEventsReply&gt;, ConnectionError&gt;
     {
         xi_get_selected_events(<span class="self">self</span>, window)
     }
-    <span class="kw">fn </span>xinput_xi_barrier_release_pointer&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, barriers: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[BarrierReleasePointerInfo]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_xi_barrier_release_pointer&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, barriers: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[BarrierReleasePointerInfo]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         xi_barrier_release_pointer(<span class="self">self</span>, barriers)
     }
-    <span class="kw">fn </span>xinput_send_extension_event&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, destination: xproto::Window, device_id: u8, propagate: bool, events: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventForSend], classes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xinput_send_extension_event&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, destination: xproto::Window, device_id: u8, propagate: bool, events: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventForSend], classes: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[EventClass]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         send_extension_event(<span class="self">self</span>, destination, device_id, propagate, events, classes)
     }

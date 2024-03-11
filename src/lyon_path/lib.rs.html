@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_path-1.0.4/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_path" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../lyon_path/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_path"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_path-1.0.4/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_path" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><a class="sub-logo-container" href="../../lyon_path/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_path"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -457,7 +458,7 @@
 <a href="#457" id="457">457</a>
 <a href="#458" id="458">458</a>
 <a href="#459" id="459">459</a>
-</pre></div><pre class="rust"><code><span class="attr">#![doc(html_logo_url = <span class="string">&quot;https://nical.github.io/lyon-doc/lyon-logo.svg&quot;</span>)]
+</pre></div><pre class="rust"><code><span class="attr">#![doc(html_logo_url = <span class="string">"https://nical.github.io/lyon-doc/lyon-logo.svg"</span>)]
 #![deny(bare_trait_objects)]
 #![deny(unconditional_recursion)]
 #![allow(clippy::match_like_matches_macro)]
@@ -494,7 +495,7 @@
 //! let path = builder.build();
 //!
 //! for event in &amp;path {
-//!     println!(&quot;{:?}&quot;, event);
+//!     println!("{:?}", event);
 //! }
 //! # }
 //! ```
@@ -502,12 +503,12 @@
 
 </span><span class="kw">extern crate </span>alloc;
 
-<span class="attr">#[cfg(any(test, feature = <span class="string">&quot;std&quot;</span>))]
+<span class="attr">#[cfg(any(test, feature = <span class="string">"std"</span>))]
 </span><span class="kw">extern crate </span>std;
 
 <span class="kw">pub use </span>lyon_geom <span class="kw">as </span>geom;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;serialization&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"serialization"</span>)]
 #[macro_use]
 </span><span class="kw">pub extern crate </span>serde;
 
@@ -601,27 +602,27 @@
 ///
 /// See: &lt;https://svgwg.org/specs/strokes/#StrokeLinecapProperty&gt;
 ///
-/// &lt;svg viewBox=&quot;0 0 400 399.99998&quot; height=&quot;400&quot; width=&quot;400&quot;&gt;
-///   &lt;g transform=&quot;translate(0,-652.36229)&quot;&gt;
-///     &lt;path style=&quot;opacity:1;fill:#80b3ff;stroke:#000000;stroke-width:1;stroke-linejoin:round;&quot; d=&quot;m 240,983 a 30,30 0 0 1 -25,-15 30,30 0 0 1 0,-30.00001 30,30 0 0 1 25.98076,-15 l 0,30 z&quot;/&gt;
-///     &lt;path style=&quot;fill:#80b3ff;stroke:#000000;stroke-width:1px;stroke-linecap:butt;&quot; d=&quot;m 390,782.6 -150,0 0,-60 150,0.5&quot;/&gt;
-///     &lt;circle style=&quot;opacity:1;fill:#ff7f2a;stroke:#000000;stroke-width:1;stroke-linejoin:round;&quot; r=&quot;10&quot; cy=&quot;752.89227&quot; cx=&quot;240.86813&quot;/&gt;
-///     &lt;path style=&quot;fill:none;stroke:#000000;stroke-width:1px;stroke-linejoin:round;&quot; d=&quot;m 240,722.6 150,60&quot;/&gt;
-///     &lt;path style=&quot;fill:#80b3ff;stroke:#000000;stroke-width:1px;stroke-linecap:butt;&quot; d=&quot;m 390,882 -180,0 0,-60 180,0.4&quot;/&gt;
-///     &lt;circle style=&quot;opacity:1;fill:#ff7f2a;stroke:#000000;stroke-width:1;stroke-linejoin:round;&quot; cx=&quot;239.86813&quot; cy=&quot;852.20868&quot; r=&quot;10&quot; /&gt;
-///     &lt;path style=&quot;fill:none;stroke:#000000;stroke-width:1px;stroke-linejoin:round;&quot; d=&quot;m 210.1,822.3 180,60&quot;/&gt;
-///     &lt;path style=&quot;fill:#80b3ff;stroke:#000000;stroke-width:1px;stroke-linecap:butt;&quot; d=&quot;m 390,983 -150,0 0,-60 150,0.4&quot;/&gt;
-///     &lt;circle style=&quot;opacity:1;fill:#ff7f2a;stroke:#000000;stroke-width:1;stroke-linejoin:round;&quot; cx=&quot;239.86813&quot; cy=&quot;953.39734&quot; r=&quot;10&quot; /&gt;
-///     &lt;path style=&quot;fill:none;stroke:#000000;stroke-width:1px;stroke-linejoin:round;&quot; d=&quot;m 390,983 -150,-60 L 210,953 l 30,30 -21.5,-9.5 L 210,953 218.3,932.5 240,923.4&quot;/&gt;
-///     &lt;text y=&quot;757.61273&quot; x=&quot;183.65314&quot; style=&quot;font-style:normal;font-weight:normal;font-size:20px;line-height:125%;font-family:Sans;text-align:end;text-anchor:end;fill:#000000;stroke:none;&quot;&gt;
-///        &lt;tspan y=&quot;757.61273&quot; x=&quot;183.65314&quot;&gt;LineCap::Butt&lt;/tspan&gt;
-///        &lt;tspan y=&quot;857.61273&quot; x=&quot;183.65314&quot;&gt;LineCap::Square&lt;/tspan&gt;
-///        &lt;tspan y=&quot;957.61273&quot; x=&quot;183.65314&quot;&gt;LineCap::Round&lt;/tspan&gt;
+/// &lt;svg viewBox="0 0 400 399.99998" height="400" width="400"&gt;
+///   &lt;g transform="translate(0,-652.36229)"&gt;
+///     &lt;path style="opacity:1;fill:#80b3ff;stroke:#000000;stroke-width:1;stroke-linejoin:round;" d="m 240,983 a 30,30 0 0 1 -25,-15 30,30 0 0 1 0,-30.00001 30,30 0 0 1 25.98076,-15 l 0,30 z"/&gt;
+///     &lt;path style="fill:#80b3ff;stroke:#000000;stroke-width:1px;stroke-linecap:butt;" d="m 390,782.6 -150,0 0,-60 150,0.5"/&gt;
+///     &lt;circle style="opacity:1;fill:#ff7f2a;stroke:#000000;stroke-width:1;stroke-linejoin:round;" r="10" cy="752.89227" cx="240.86813"/&gt;
+///     &lt;path style="fill:none;stroke:#000000;stroke-width:1px;stroke-linejoin:round;" d="m 240,722.6 150,60"/&gt;
+///     &lt;path style="fill:#80b3ff;stroke:#000000;stroke-width:1px;stroke-linecap:butt;" d="m 390,882 -180,0 0,-60 180,0.4"/&gt;
+///     &lt;circle style="opacity:1;fill:#ff7f2a;stroke:#000000;stroke-width:1;stroke-linejoin:round;" cx="239.86813" cy="852.20868" r="10" /&gt;
+///     &lt;path style="fill:none;stroke:#000000;stroke-width:1px;stroke-linejoin:round;" d="m 210.1,822.3 180,60"/&gt;
+///     &lt;path style="fill:#80b3ff;stroke:#000000;stroke-width:1px;stroke-linecap:butt;" d="m 390,983 -150,0 0,-60 150,0.4"/&gt;
+///     &lt;circle style="opacity:1;fill:#ff7f2a;stroke:#000000;stroke-width:1;stroke-linejoin:round;" cx="239.86813" cy="953.39734" r="10" /&gt;
+///     &lt;path style="fill:none;stroke:#000000;stroke-width:1px;stroke-linejoin:round;" d="m 390,983 -150,-60 L 210,953 l 30,30 -21.5,-9.5 L 210,953 218.3,932.5 240,923.4"/&gt;
+///     &lt;text y="757.61273" x="183.65314" style="font-style:normal;font-weight:normal;font-size:20px;line-height:125%;font-family:Sans;text-align:end;text-anchor:end;fill:#000000;stroke:none;"&gt;
+///        &lt;tspan y="757.61273" x="183.65314"&gt;LineCap::Butt&lt;/tspan&gt;
+///        &lt;tspan y="857.61273" x="183.65314"&gt;LineCap::Square&lt;/tspan&gt;
+///        &lt;tspan y="957.61273" x="183.65314"&gt;LineCap::Round&lt;/tspan&gt;
 ///      &lt;/text&gt;
 ///   &lt;/g&gt;
 /// &lt;/svg&gt;
 </span><span class="attr">#[derive(Copy, Clone, Debug, PartialEq)]
-#[cfg_attr(feature = <span class="string">&quot;serialization&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serialization"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>LineCap {
     <span class="doccomment">/// The stroke for each sub-path does not extend beyond its two endpoints.
     /// A zero length sub-path will therefore not have any stroke.
@@ -631,12 +632,12 @@
     /// whose length is half of the stroke width. If a sub-path has zero length,
     /// then the resulting effect is that the stroke for that sub-path consists
     /// solely of a square with side length equal to the stroke width, centered
-    /// at the sub-path&#39;s point.
+    /// at the sub-path's point.
     </span>Square,
     <span class="doccomment">/// At each end of each sub-path, the shape representing the stroke will be extended
     /// by a half circle with a radius equal to the stroke width.
     /// If a sub-path has zero length, then the resulting effect is that the stroke for
-    /// that sub-path consists solely of a full circle centered at the sub-path&#39;s point.
+    /// that sub-path consists solely of a full circle centered at the sub-path's point.
     </span>Round,
 }
 
@@ -644,7 +645,7 @@
 ///
 /// See: &lt;https://svgwg.org/specs/strokes/#StrokeLinejoinProperty&gt;
 </span><span class="attr">#[derive(Copy, Clone, Debug, PartialEq)]
-#[cfg_attr(feature = <span class="string">&quot;serialization&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serialization"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>LineJoin {
     <span class="doccomment">/// A sharp corner is to be used to join path segments.
     </span>Miter,
@@ -669,13 +670,13 @@
 /// left-handed / right-handed coordinate systems. Right-handed coordinate systems
 /// seem to be what a lot of people are most familiar with (especially in 2D), however
 /// most vector graphics specifications use y-down left-handed coordinate systems.
-/// Unfortunately mirroring the y axis inverts the meaning of &quot;left&quot; and &quot;right&quot;, which
+/// Unfortunately mirroring the y axis inverts the meaning of "left" and "right", which
 /// causes confusion. In practice:
 ///
-/// - In a y-down left-handed coordinate system such as `SVG`&#39;s, `Side::Positive` is the right side.
+/// - In a y-down left-handed coordinate system such as `SVG`'s, `Side::Positive` is the right side.
 /// - In a y-up right-handed coordinate system, `Side::Positive` is the left side.
 </span><span class="attr">#[derive(Copy, Clone, Debug, PartialEq)]
-#[cfg_attr(feature = <span class="string">&quot;serialization&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serialization"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>Side {
     Positive,
     Negative,
@@ -713,7 +714,7 @@
 ///
 /// See the SVG specification.
 </span><span class="attr">#[derive(Copy, Clone, Debug, PartialEq)]
-#[cfg_attr(feature = <span class="string">&quot;serialization&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serialization"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>FillRule {
     EvenOdd,
     NonZero,
@@ -738,7 +739,7 @@
 ///
 /// Positive winding corresponds to the positive orientation in trigonometry.
 </span><span class="attr">#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serialization&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serialization"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>Winding {
     Positive,
     Negative,
@@ -746,7 +747,7 @@
 
 <span class="doccomment">/// ID of a control point in a path.
 </span><span class="attr">#[derive(Copy, Clone, PartialEq, Eq, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serialization&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serialization"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub struct </span>ControlPointId(<span class="kw">pub </span>u32);
 
 <span class="kw">impl </span>ControlPointId {
@@ -764,13 +765,13 @@
 
 <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>ControlPointId {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-        <span class="macro">write!</span>(f, <span class="string">&quot;#{}&quot;</span>, <span class="self">self</span>.<span class="number">0</span>)
+        <span class="macro">write!</span>(f, <span class="string">"#{}"</span>, <span class="self">self</span>.<span class="number">0</span>)
     }
 }
 
 <span class="doccomment">/// ID of an endpoint point in a path.
 </span><span class="attr">#[derive(Copy, Clone, PartialEq, Eq, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serialization&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serialization"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub struct </span>EndpointId(<span class="kw">pub </span>u32);
 <span class="kw">impl </span>EndpointId {
     <span class="kw">pub const </span>INVALID: <span class="self">Self </span>= EndpointId(u32::MAX);
@@ -787,13 +788,13 @@
 
 <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>EndpointId {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-        <span class="macro">write!</span>(f, <span class="string">&quot;#{}&quot;</span>, <span class="self">self</span>.<span class="number">0</span>)
+        <span class="macro">write!</span>(f, <span class="string">"#{}"</span>, <span class="self">self</span>.<span class="number">0</span>)
     }
 }
 
 <span class="doccomment">/// Refers to an event in a path.
 </span><span class="attr">#[derive(Copy, Clone, Debug, PartialEq, Eq, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serialization&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serialization"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub struct </span>EventId(<span class="attr">#[doc(hidden)] </span><span class="kw">pub </span>u32);
 
 <span class="kw">impl </span>EventId {
@@ -815,7 +816,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, T: Position&gt; Position <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>T {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, T: Position&gt; Position <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'l </span>T {
     <span class="kw">fn </span>position(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Point {
         (<span class="kw-2">*</span><span class="self">self</span>).position()
     }
@@ -848,7 +849,7 @@
     <span class="kw">fn </span>get_control_point(<span class="kw-2">&amp;</span><span class="self">self</span>, id: ControlPointId) -&gt; Point;
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; PositionStore <span class="kw">for </span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[Point], <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[Point]) {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; PositionStore <span class="kw">for </span>(<span class="kw-2">&amp;</span><span class="lifetime">'l </span>[Point], <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[Point]) {
     <span class="kw">fn </span>get_endpoint(<span class="kw-2">&amp;</span><span class="self">self</span>, id: EndpointId) -&gt; Point {
         <span class="self">self</span>.<span class="number">0</span>[id.to_usize()]
     }
@@ -862,7 +863,7 @@
 /// This interface can be implemented by path objects themselves or via external
 /// data structures.
 </span><span class="kw">pub trait </span>AttributeStore {
-    <span class="doccomment">/// Returns the endpoint&#39;s custom attributes as a slice of 32 bits floats.
+    <span class="doccomment">/// Returns the endpoint's custom attributes as a slice of 32 bits floats.
     ///
     /// The size of the slice must be equal to the result of `num_attributes()`.
     </span><span class="kw">fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, id: EndpointId) -&gt; Attributes;
@@ -884,13 +885,13 @@
 }
 
 <span class="doccomment">/// A view over a contiguous storage of custom attributes.
-</span><span class="kw">pub struct </span>AttributeSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
-    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[f32],
+</span><span class="kw">pub struct </span>AttributeSlice&lt;<span class="lifetime">'l</span>&gt; {
+    data: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[f32],
     stride: usize,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; AttributeSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
-    <span class="kw">pub fn </span>new(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[f32], num_attributes: usize) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; AttributeSlice&lt;<span class="lifetime">'l</span>&gt; {
+    <span class="kw">pub fn </span>new(data: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[f32], num_attributes: usize) -&gt; <span class="self">Self </span>{
         AttributeSlice {
             data,
             stride: num_attributes,
@@ -898,7 +899,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; AttributeStore <span class="kw">for </span>AttributeSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; AttributeStore <span class="kw">for </span>AttributeSlice&lt;<span class="lifetime">'l</span>&gt; {
     <span class="kw">fn </span>get(<span class="kw-2">&amp;</span><span class="self">self</span>, id: EndpointId) -&gt; Attributes {
         <span class="kw">let </span>start = id.to_usize() * <span class="self">self</span>.stride;
         <span class="kw">let </span>end = start + <span class="self">self</span>.stride;
@@ -913,7 +914,7 @@
 <span class="doccomment">/// An alias for `usize`.
 </span><span class="kw">pub type </span>AttributeIndex = usize;
 <span class="doccomment">/// An alias for a slice of `f32` values.
-</span><span class="kw">pub type </span>Attributes&lt;<span class="lifetime">&#39;l</span>&gt; = <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[f32];
+</span><span class="kw">pub type </span>Attributes&lt;<span class="lifetime">'l</span>&gt; = <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[f32];
 <span class="doccomment">/// An empty attribute slice.
-</span><span class="kw">pub const </span>NO_ATTRIBUTES: Attributes&lt;<span class="lifetime">&#39;static</span>&gt; = <span class="kw-2">&amp;</span>[];
+</span><span class="kw">pub const </span>NO_ATTRIBUTES: Attributes&lt;<span class="lifetime">'static</span>&gt; = <span class="kw-2">&amp;</span>[];
 </code></pre></div></section></main></body></html>

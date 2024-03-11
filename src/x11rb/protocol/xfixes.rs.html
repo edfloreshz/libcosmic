@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-0.13.0/src/protocol/xfixes.rs`."><title>xfixes.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-0.13.0/src/protocol/xfixes.rs`."><title>xfixes.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -958,7 +959,7 @@
 <a href="#958" id="958">958</a>
 <a href="#959" id="959">959</a>
 </pre></div><pre class="rust"><code><span class="comment">// This file contains generated code. Do not edit directly.
-// To regenerate this, run &#39;make&#39;.
+// To regenerate this, run 'make'.
 
 </span><span class="doccomment">//! Bindings to the `XFixes` X11 extension.
 
@@ -997,7 +998,7 @@
     <span class="prelude-val">Ok</span>(info.major_opcode)
 }
 
-<span class="kw">pub fn </span>query_version&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, client_major_version: u32, client_minor_version: u32) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, QueryVersionReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>query_version&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, client_major_version: u32, client_minor_version: u32) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, QueryVersionReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1011,7 +1012,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>change_save_set&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, mode: SaveSetMode, target: SaveSetTarget, map: SaveSetMapping, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>change_save_set&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, mode: SaveSetMode, target: SaveSetTarget, map: SaveSetMapping, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1027,7 +1028,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>select_selection_input&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, selection: xproto::Atom, event_mask: SelectionEventMask) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>select_selection_input&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, selection: xproto::Atom, event_mask: SelectionEventMask) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1042,7 +1043,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>select_cursor_input&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, event_mask: CursorNotifyMask) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>select_cursor_input&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, event_mask: CursorNotifyMask) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1056,7 +1057,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_cursor_image&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetCursorImageReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_cursor_image&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetCursorImageReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1067,7 +1068,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>create_region&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, region: Region, rectangles: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[xproto::Rectangle]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>create_region&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, region: Region, rectangles: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[xproto::Rectangle]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1081,7 +1082,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>create_region_from_bitmap&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, region: Region, bitmap: xproto::Pixmap) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>create_region_from_bitmap&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, region: Region, bitmap: xproto::Pixmap) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1095,7 +1096,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>create_region_from_window&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, region: Region, window: xproto::Window, kind: shape::SK) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>create_region_from_window&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, region: Region, window: xproto::Window, kind: shape::SK) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1110,7 +1111,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>create_region_from_gc&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, region: Region, gc: xproto::Gcontext) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>create_region_from_gc&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, region: Region, gc: xproto::Gcontext) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1124,7 +1125,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>create_region_from_picture&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, region: Region, picture: render::Picture) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>create_region_from_picture&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, region: Region, picture: render::Picture) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1138,7 +1139,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>destroy_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, region: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>destroy_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, region: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1151,7 +1152,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_region&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, region: Region, rectangles: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[xproto::Rectangle]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_region&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, region: Region, rectangles: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[xproto::Rectangle]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1165,7 +1166,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>copy_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>copy_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1179,7 +1180,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>union_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source1: Region, source2: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>union_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source1: Region, source2: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1194,7 +1195,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>intersect_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source1: Region, source2: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>intersect_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source1: Region, source2: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1209,7 +1210,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>subtract_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source1: Region, source2: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>subtract_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source1: Region, source2: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1224,7 +1225,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>invert_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source: Region, bounds: xproto::Rectangle, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>invert_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source: Region, bounds: xproto::Rectangle, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1239,7 +1240,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>translate_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, region: Region, dx: i16, dy: i16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>translate_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, region: Region, dx: i16, dy: i16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1254,7 +1255,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>region_extents&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>region_extents&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1268,7 +1269,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>fetch_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, region: Region) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, FetchRegionReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>fetch_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, region: Region) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, FetchRegionReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1281,7 +1282,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_gc_clip_region&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, gc: xproto::Gcontext, region: A, x_origin: i16, y_origin: i16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_gc_clip_region&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, gc: xproto::Gcontext, region: A, x_origin: i16, y_origin: i16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;Region&gt;,
@@ -1299,7 +1300,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_window_shape_region&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, dest: xproto::Window, dest_kind: shape::SK, x_offset: i16, y_offset: i16, region: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_window_shape_region&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, dest: xproto::Window, dest_kind: shape::SK, x_offset: i16, y_offset: i16, region: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;Region&gt;,
@@ -1318,7 +1319,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_picture_clip_region&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, picture: render::Picture, region: A, x_origin: i16, y_origin: i16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_picture_clip_region&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, picture: render::Picture, region: A, x_origin: i16, y_origin: i16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;Region&gt;,
@@ -1336,7 +1337,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_cursor_name&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, cursor: xproto::Cursor, name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_cursor_name&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, cursor: xproto::Cursor, name: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1350,7 +1351,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_cursor_name&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, cursor: xproto::Cursor) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetCursorNameReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_cursor_name&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, cursor: xproto::Cursor) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetCursorNameReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1363,7 +1364,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_cursor_image_and_name&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetCursorImageAndNameReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_cursor_image_and_name&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetCursorImageAndNameReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1374,7 +1375,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>change_cursor&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source: xproto::Cursor, destination: xproto::Cursor) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>change_cursor&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source: xproto::Cursor, destination: xproto::Cursor) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1388,7 +1389,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>change_cursor_by_name&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, src: xproto::Cursor, name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>change_cursor_by_name&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, src: xproto::Cursor, name: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1402,7 +1403,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>expand_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source: Region, destination: Region, left: u16, right: u16, top: u16, bottom: u16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>expand_region&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, source: Region, destination: Region, left: u16, right: u16, top: u16, bottom: u16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1420,7 +1421,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>hide_cursor&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>hide_cursor&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1433,7 +1434,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>show_cursor&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>show_cursor&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1446,7 +1447,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>create_pointer_barrier&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, barrier: Barrier, window: xproto::Window, x1: u16, y1: u16, x2: u16, y2: u16, directions: BarrierDirections, devices: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u16]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>create_pointer_barrier&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, barrier: Barrier, window: xproto::Window, x1: u16, y1: u16, x2: u16, y2: u16, directions: BarrierDirections, devices: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u16]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1466,7 +1467,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>delete_pointer_barrier&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, barrier: Barrier) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>delete_pointer_barrier&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, barrier: Barrier) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1484,7 +1485,7 @@
 /// # Fields
 ///
 /// * `disconnect_mode` - The new disconnect mode.
-</span><span class="kw">pub fn </span>set_client_disconnect_mode&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, disconnect_mode: ClientDisconnectFlags) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+</span><span class="kw">pub fn </span>set_client_disconnect_mode&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, disconnect_mode: ClientDisconnectFlags) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1497,7 +1498,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_client_disconnect_mode&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetClientDisconnectModeReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_client_disconnect_mode&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetClientDisconnectModeReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1510,141 +1511,141 @@
 
 <span class="doccomment">/// Extension trait defining the requests of this extension.
 </span><span class="kw">pub trait </span>ConnectionExt: RequestConnection {
-    <span class="kw">fn </span>xfixes_query_version(<span class="kw-2">&amp;</span><span class="self">self</span>, client_major_version: u32, client_minor_version: u32) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, QueryVersionReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_query_version(<span class="kw-2">&amp;</span><span class="self">self</span>, client_major_version: u32, client_minor_version: u32) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, QueryVersionReply&gt;, ConnectionError&gt;
     {
         query_version(<span class="self">self</span>, client_major_version, client_minor_version)
     }
-    <span class="kw">fn </span>xfixes_change_save_set(<span class="kw-2">&amp;</span><span class="self">self</span>, mode: SaveSetMode, target: SaveSetTarget, map: SaveSetMapping, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_change_save_set(<span class="kw-2">&amp;</span><span class="self">self</span>, mode: SaveSetMode, target: SaveSetTarget, map: SaveSetMapping, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         change_save_set(<span class="self">self</span>, mode, target, map, window)
     }
-    <span class="kw">fn </span>xfixes_select_selection_input(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, selection: xproto::Atom, event_mask: SelectionEventMask) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_select_selection_input(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, selection: xproto::Atom, event_mask: SelectionEventMask) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         select_selection_input(<span class="self">self</span>, window, selection, event_mask)
     }
-    <span class="kw">fn </span>xfixes_select_cursor_input(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, event_mask: CursorNotifyMask) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_select_cursor_input(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, event_mask: CursorNotifyMask) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         select_cursor_input(<span class="self">self</span>, window, event_mask)
     }
-    <span class="kw">fn </span>xfixes_get_cursor_image(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetCursorImageReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_get_cursor_image(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetCursorImageReply&gt;, ConnectionError&gt;
     {
         get_cursor_image(<span class="self">self</span>)
     }
-    <span class="kw">fn </span>xfixes_create_region&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, region: Region, rectangles: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[xproto::Rectangle]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_create_region&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, region: Region, rectangles: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[xproto::Rectangle]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         create_region(<span class="self">self</span>, region, rectangles)
     }
-    <span class="kw">fn </span>xfixes_create_region_from_bitmap(<span class="kw-2">&amp;</span><span class="self">self</span>, region: Region, bitmap: xproto::Pixmap) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_create_region_from_bitmap(<span class="kw-2">&amp;</span><span class="self">self</span>, region: Region, bitmap: xproto::Pixmap) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         create_region_from_bitmap(<span class="self">self</span>, region, bitmap)
     }
-    <span class="kw">fn </span>xfixes_create_region_from_window(<span class="kw-2">&amp;</span><span class="self">self</span>, region: Region, window: xproto::Window, kind: shape::SK) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_create_region_from_window(<span class="kw-2">&amp;</span><span class="self">self</span>, region: Region, window: xproto::Window, kind: shape::SK) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         create_region_from_window(<span class="self">self</span>, region, window, kind)
     }
-    <span class="kw">fn </span>xfixes_create_region_from_gc(<span class="kw-2">&amp;</span><span class="self">self</span>, region: Region, gc: xproto::Gcontext) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_create_region_from_gc(<span class="kw-2">&amp;</span><span class="self">self</span>, region: Region, gc: xproto::Gcontext) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         create_region_from_gc(<span class="self">self</span>, region, gc)
     }
-    <span class="kw">fn </span>xfixes_create_region_from_picture(<span class="kw-2">&amp;</span><span class="self">self</span>, region: Region, picture: render::Picture) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_create_region_from_picture(<span class="kw-2">&amp;</span><span class="self">self</span>, region: Region, picture: render::Picture) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         create_region_from_picture(<span class="self">self</span>, region, picture)
     }
-    <span class="kw">fn </span>xfixes_destroy_region(<span class="kw-2">&amp;</span><span class="self">self</span>, region: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_destroy_region(<span class="kw-2">&amp;</span><span class="self">self</span>, region: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         destroy_region(<span class="self">self</span>, region)
     }
-    <span class="kw">fn </span>xfixes_set_region&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, region: Region, rectangles: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[xproto::Rectangle]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_set_region&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, region: Region, rectangles: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[xproto::Rectangle]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         set_region(<span class="self">self</span>, region, rectangles)
     }
-    <span class="kw">fn </span>xfixes_copy_region(<span class="kw-2">&amp;</span><span class="self">self</span>, source: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_copy_region(<span class="kw-2">&amp;</span><span class="self">self</span>, source: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         copy_region(<span class="self">self</span>, source, destination)
     }
-    <span class="kw">fn </span>xfixes_union_region(<span class="kw-2">&amp;</span><span class="self">self</span>, source1: Region, source2: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_union_region(<span class="kw-2">&amp;</span><span class="self">self</span>, source1: Region, source2: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         union_region(<span class="self">self</span>, source1, source2, destination)
     }
-    <span class="kw">fn </span>xfixes_intersect_region(<span class="kw-2">&amp;</span><span class="self">self</span>, source1: Region, source2: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_intersect_region(<span class="kw-2">&amp;</span><span class="self">self</span>, source1: Region, source2: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         intersect_region(<span class="self">self</span>, source1, source2, destination)
     }
-    <span class="kw">fn </span>xfixes_subtract_region(<span class="kw-2">&amp;</span><span class="self">self</span>, source1: Region, source2: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_subtract_region(<span class="kw-2">&amp;</span><span class="self">self</span>, source1: Region, source2: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         subtract_region(<span class="self">self</span>, source1, source2, destination)
     }
-    <span class="kw">fn </span>xfixes_invert_region(<span class="kw-2">&amp;</span><span class="self">self</span>, source: Region, bounds: xproto::Rectangle, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_invert_region(<span class="kw-2">&amp;</span><span class="self">self</span>, source: Region, bounds: xproto::Rectangle, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         invert_region(<span class="self">self</span>, source, bounds, destination)
     }
-    <span class="kw">fn </span>xfixes_translate_region(<span class="kw-2">&amp;</span><span class="self">self</span>, region: Region, dx: i16, dy: i16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_translate_region(<span class="kw-2">&amp;</span><span class="self">self</span>, region: Region, dx: i16, dy: i16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         translate_region(<span class="self">self</span>, region, dx, dy)
     }
-    <span class="kw">fn </span>xfixes_region_extents(<span class="kw-2">&amp;</span><span class="self">self</span>, source: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_region_extents(<span class="kw-2">&amp;</span><span class="self">self</span>, source: Region, destination: Region) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         region_extents(<span class="self">self</span>, source, destination)
     }
-    <span class="kw">fn </span>xfixes_fetch_region(<span class="kw-2">&amp;</span><span class="self">self</span>, region: Region) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, FetchRegionReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_fetch_region(<span class="kw-2">&amp;</span><span class="self">self</span>, region: Region) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, FetchRegionReply&gt;, ConnectionError&gt;
     {
         fetch_region(<span class="self">self</span>, region)
     }
-    <span class="kw">fn </span>xfixes_set_gc_clip_region&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, gc: xproto::Gcontext, region: A, x_origin: i16, y_origin: i16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_set_gc_clip_region&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, gc: xproto::Gcontext, region: A, x_origin: i16, y_origin: i16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;Region&gt;,
     {
         set_gc_clip_region(<span class="self">self</span>, gc, region, x_origin, y_origin)
     }
-    <span class="kw">fn </span>xfixes_set_window_shape_region&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, dest: xproto::Window, dest_kind: shape::SK, x_offset: i16, y_offset: i16, region: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_set_window_shape_region&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, dest: xproto::Window, dest_kind: shape::SK, x_offset: i16, y_offset: i16, region: A) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;Region&gt;,
     {
         set_window_shape_region(<span class="self">self</span>, dest, dest_kind, x_offset, y_offset, region)
     }
-    <span class="kw">fn </span>xfixes_set_picture_clip_region&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, picture: render::Picture, region: A, x_origin: i16, y_origin: i16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_set_picture_clip_region&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, picture: render::Picture, region: A, x_origin: i16, y_origin: i16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;Region&gt;,
     {
         set_picture_clip_region(<span class="self">self</span>, picture, region, x_origin, y_origin)
     }
-    <span class="kw">fn </span>xfixes_set_cursor_name&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, cursor: xproto::Cursor, name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_set_cursor_name&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, cursor: xproto::Cursor, name: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         set_cursor_name(<span class="self">self</span>, cursor, name)
     }
-    <span class="kw">fn </span>xfixes_get_cursor_name(<span class="kw-2">&amp;</span><span class="self">self</span>, cursor: xproto::Cursor) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetCursorNameReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_get_cursor_name(<span class="kw-2">&amp;</span><span class="self">self</span>, cursor: xproto::Cursor) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetCursorNameReply&gt;, ConnectionError&gt;
     {
         get_cursor_name(<span class="self">self</span>, cursor)
     }
-    <span class="kw">fn </span>xfixes_get_cursor_image_and_name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetCursorImageAndNameReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_get_cursor_image_and_name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetCursorImageAndNameReply&gt;, ConnectionError&gt;
     {
         get_cursor_image_and_name(<span class="self">self</span>)
     }
-    <span class="kw">fn </span>xfixes_change_cursor(<span class="kw-2">&amp;</span><span class="self">self</span>, source: xproto::Cursor, destination: xproto::Cursor) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_change_cursor(<span class="kw-2">&amp;</span><span class="self">self</span>, source: xproto::Cursor, destination: xproto::Cursor) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         change_cursor(<span class="self">self</span>, source, destination)
     }
-    <span class="kw">fn </span>xfixes_change_cursor_by_name&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, src: xproto::Cursor, name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_change_cursor_by_name&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, src: xproto::Cursor, name: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         change_cursor_by_name(<span class="self">self</span>, src, name)
     }
-    <span class="kw">fn </span>xfixes_expand_region(<span class="kw-2">&amp;</span><span class="self">self</span>, source: Region, destination: Region, left: u16, right: u16, top: u16, bottom: u16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_expand_region(<span class="kw-2">&amp;</span><span class="self">self</span>, source: Region, destination: Region, left: u16, right: u16, top: u16, bottom: u16) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         expand_region(<span class="self">self</span>, source, destination, left, right, top, bottom)
     }
-    <span class="kw">fn </span>xfixes_hide_cursor(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_hide_cursor(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         hide_cursor(<span class="self">self</span>, window)
     }
-    <span class="kw">fn </span>xfixes_show_cursor(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_show_cursor(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         show_cursor(<span class="self">self</span>, window)
     }
-    <span class="kw">fn </span>xfixes_create_pointer_barrier&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, barrier: Barrier, window: xproto::Window, x1: u16, y1: u16, x2: u16, y2: u16, directions: BarrierDirections, devices: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u16]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_create_pointer_barrier&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, barrier: Barrier, window: xproto::Window, x1: u16, y1: u16, x2: u16, y2: u16, directions: BarrierDirections, devices: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u16]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         create_pointer_barrier(<span class="self">self</span>, barrier, window, x1, y1, x2, y2, directions, devices)
     }
-    <span class="kw">fn </span>xfixes_delete_pointer_barrier(<span class="kw-2">&amp;</span><span class="self">self</span>, barrier: Barrier) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_delete_pointer_barrier(<span class="kw-2">&amp;</span><span class="self">self</span>, barrier: Barrier) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         delete_pointer_barrier(<span class="self">self</span>, barrier)
     }
@@ -1653,11 +1654,11 @@
     /// # Fields
     ///
     /// * `disconnect_mode` - The new disconnect mode.
-    </span><span class="kw">fn </span>xfixes_set_client_disconnect_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, disconnect_mode: ClientDisconnectFlags) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    </span><span class="kw">fn </span>xfixes_set_client_disconnect_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, disconnect_mode: ClientDisconnectFlags) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         set_client_disconnect_mode(<span class="self">self</span>, disconnect_mode)
     }
-    <span class="kw">fn </span>xfixes_get_client_disconnect_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetClientDisconnectModeReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>xfixes_get_client_disconnect_mode(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetClientDisconnectModeReply&gt;, ConnectionError&gt;
     {
         get_client_disconnect_mode(<span class="self">self</span>)
     }
@@ -1696,7 +1697,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;c</span>, C: X11Connection&gt; RegionWrapper&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>C&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'c</span>, C: X11Connection&gt; RegionWrapper&lt;<span class="kw-2">&amp;</span><span class="lifetime">'c </span>C&gt;
 {
     <span class="doccomment">/// Create a new Region and return a Region wrapper and a cookie.
     ///
@@ -1706,7 +1707,7 @@
     /// [create_region].
     ///
     /// Errors can come from the call to [X11Connection::generate_id] or [create_region].
-    </span><span class="kw">pub fn </span>create_region_and_get_cookie(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>C, rectangles: <span class="kw-2">&amp;</span>[xproto::Rectangle]) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, VoidCookie&lt;<span class="lifetime">&#39;c</span>, C&gt;), ReplyOrIdError&gt;
+    </span><span class="kw">pub fn </span>create_region_and_get_cookie(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>C, rectangles: <span class="kw-2">&amp;</span>[xproto::Rectangle]) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, VoidCookie&lt;<span class="lifetime">'c</span>, C&gt;), ReplyOrIdError&gt;
     {
         <span class="kw">let </span>region = conn.generate_id()<span class="question-mark">?</span>;
         <span class="kw">let </span>cookie = create_region(conn, region, rectangles)<span class="question-mark">?</span>;
@@ -1730,7 +1731,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;c</span>, C: X11Connection&gt; RegionWrapper&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>C&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'c</span>, C: X11Connection&gt; RegionWrapper&lt;<span class="kw-2">&amp;</span><span class="lifetime">'c </span>C&gt;
 {
     <span class="doccomment">/// Create a new Region and return a Region wrapper and a cookie.
     ///
@@ -1740,7 +1741,7 @@
     /// [create_region_from_bitmap].
     ///
     /// Errors can come from the call to [X11Connection::generate_id] or [create_region_from_bitmap].
-    </span><span class="kw">pub fn </span>create_region_from_bitmap_and_get_cookie(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>C, bitmap: xproto::Pixmap) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, VoidCookie&lt;<span class="lifetime">&#39;c</span>, C&gt;), ReplyOrIdError&gt;
+    </span><span class="kw">pub fn </span>create_region_from_bitmap_and_get_cookie(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>C, bitmap: xproto::Pixmap) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, VoidCookie&lt;<span class="lifetime">'c</span>, C&gt;), ReplyOrIdError&gt;
     {
         <span class="kw">let </span>region = conn.generate_id()<span class="question-mark">?</span>;
         <span class="kw">let </span>cookie = create_region_from_bitmap(conn, region, bitmap)<span class="question-mark">?</span>;
@@ -1764,7 +1765,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;c</span>, C: X11Connection&gt; RegionWrapper&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>C&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'c</span>, C: X11Connection&gt; RegionWrapper&lt;<span class="kw-2">&amp;</span><span class="lifetime">'c </span>C&gt;
 {
     <span class="doccomment">/// Create a new Region and return a Region wrapper and a cookie.
     ///
@@ -1774,7 +1775,7 @@
     /// [create_region_from_window].
     ///
     /// Errors can come from the call to [X11Connection::generate_id] or [create_region_from_window].
-    </span><span class="kw">pub fn </span>create_region_from_window_and_get_cookie(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>C, window: xproto::Window, kind: shape::SK) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, VoidCookie&lt;<span class="lifetime">&#39;c</span>, C&gt;), ReplyOrIdError&gt;
+    </span><span class="kw">pub fn </span>create_region_from_window_and_get_cookie(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>C, window: xproto::Window, kind: shape::SK) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, VoidCookie&lt;<span class="lifetime">'c</span>, C&gt;), ReplyOrIdError&gt;
     {
         <span class="kw">let </span>region = conn.generate_id()<span class="question-mark">?</span>;
         <span class="kw">let </span>cookie = create_region_from_window(conn, region, window, kind)<span class="question-mark">?</span>;
@@ -1798,7 +1799,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;c</span>, C: X11Connection&gt; RegionWrapper&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>C&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'c</span>, C: X11Connection&gt; RegionWrapper&lt;<span class="kw-2">&amp;</span><span class="lifetime">'c </span>C&gt;
 {
     <span class="doccomment">/// Create a new Region and return a Region wrapper and a cookie.
     ///
@@ -1808,7 +1809,7 @@
     /// [create_region_from_gc].
     ///
     /// Errors can come from the call to [X11Connection::generate_id] or [create_region_from_gc].
-    </span><span class="kw">pub fn </span>create_region_from_gc_and_get_cookie(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>C, gc: xproto::Gcontext) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, VoidCookie&lt;<span class="lifetime">&#39;c</span>, C&gt;), ReplyOrIdError&gt;
+    </span><span class="kw">pub fn </span>create_region_from_gc_and_get_cookie(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>C, gc: xproto::Gcontext) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, VoidCookie&lt;<span class="lifetime">'c</span>, C&gt;), ReplyOrIdError&gt;
     {
         <span class="kw">let </span>region = conn.generate_id()<span class="question-mark">?</span>;
         <span class="kw">let </span>cookie = create_region_from_gc(conn, region, gc)<span class="question-mark">?</span>;
@@ -1832,7 +1833,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;c</span>, C: X11Connection&gt; RegionWrapper&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>C&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'c</span>, C: X11Connection&gt; RegionWrapper&lt;<span class="kw-2">&amp;</span><span class="lifetime">'c </span>C&gt;
 {
     <span class="doccomment">/// Create a new Region and return a Region wrapper and a cookie.
     ///
@@ -1842,7 +1843,7 @@
     /// [create_region_from_picture].
     ///
     /// Errors can come from the call to [X11Connection::generate_id] or [create_region_from_picture].
-    </span><span class="kw">pub fn </span>create_region_from_picture_and_get_cookie(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>C, picture: render::Picture) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, VoidCookie&lt;<span class="lifetime">&#39;c</span>, C&gt;), ReplyOrIdError&gt;
+    </span><span class="kw">pub fn </span>create_region_from_picture_and_get_cookie(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>C, picture: render::Picture) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, VoidCookie&lt;<span class="lifetime">'c</span>, C&gt;), ReplyOrIdError&gt;
     {
         <span class="kw">let </span>region = conn.generate_id()<span class="question-mark">?</span>;
         <span class="kw">let </span>cookie = create_region_from_picture(conn, region, picture)<span class="question-mark">?</span>;
@@ -1866,7 +1867,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;c</span>, C: X11Connection&gt; RegionWrapper&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>C&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'c</span>, C: X11Connection&gt; RegionWrapper&lt;<span class="kw-2">&amp;</span><span class="lifetime">'c </span>C&gt;
 {
     <span class="doccomment">/// Create a new Region and return a Region wrapper and a cookie.
     ///
@@ -1876,8 +1877,8 @@
     /// [super::composite::create_region_from_border_clip].
     ///
     /// Errors can come from the call to [X11Connection::generate_id] or [super::composite::create_region_from_border_clip].
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;composite&quot;</span>)]
-    </span><span class="kw">pub fn </span>composite_create_region_from_border_clip_and_get_cookie(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>C, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, VoidCookie&lt;<span class="lifetime">&#39;c</span>, C&gt;), ReplyOrIdError&gt;
+    </span><span class="attr">#[cfg(feature = <span class="string">"composite"</span>)]
+    </span><span class="kw">pub fn </span>composite_create_region_from_border_clip_and_get_cookie(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>C, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="self">Self</span>, VoidCookie&lt;<span class="lifetime">'c</span>, C&gt;), ReplyOrIdError&gt;
     {
         <span class="kw">let </span>region = conn.generate_id()<span class="question-mark">?</span>;
         <span class="kw">let </span>cookie = <span class="kw">super</span>::composite::create_region_from_border_clip(conn, region, window)<span class="question-mark">?</span>;
@@ -1893,7 +1894,7 @@
     /// it in `Drop`.
     ///
     /// Errors can come from the call to [X11Connection::generate_id] or [super::composite::create_region_from_border_clip].
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;composite&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"composite"</span>)]
     </span><span class="kw">pub fn </span>composite_create_region_from_border_clip(conn: C, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, ReplyOrIdError&gt;
     {
         <span class="kw">let </span>region = conn.generate_id()<span class="question-mark">?</span>;
@@ -1902,7 +1903,7 @@
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;composite&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"composite"</span>)]
 #[allow(unused_imports)]
 </span><span class="kw">use </span><span class="kw">super</span>::composite;
 <span class="kw">impl</span>&lt;C: RequestConnection&gt; From&lt;<span class="kw-2">&amp;</span>RegionWrapper&lt;C&gt;&gt; <span class="kw">for </span>Region {

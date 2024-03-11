@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/8987daa/src/platform_impl/linux/x11/event_processor.rs`."><title>event_processor.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/bdc6610/src/platform_impl/linux/x11/event_processor.rs`."><title>event_processor.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1512,10 +1513,10 @@
     platform_impl::platform::x11::ime::{ImeEvent, ImeEventReceiver, ImeRequest},
 };
 
-<span class="doccomment">/// The X11 documentation states: &quot;Keycodes lie in the inclusive range `[8, 255]`&quot;.
+<span class="doccomment">/// The X11 documentation states: "Keycodes lie in the inclusive range `[8, 255]`".
 </span><span class="kw">const </span>KEYCODE_OFFSET: u8 = <span class="number">8</span>;
 
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct </span>EventProcessor&lt;T: <span class="lifetime">&#39;static</span>&gt; {
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct </span>EventProcessor&lt;T: <span class="lifetime">'static</span>&gt; {
     <span class="kw">pub</span>(<span class="kw">super</span>) dnd: Dnd,
     <span class="kw">pub</span>(<span class="kw">super</span>) ime_receiver: ImeReceiver,
     <span class="kw">pub</span>(<span class="kw">super</span>) ime_event_receiver: ImeEventReceiver,
@@ -1527,7 +1528,7 @@
     <span class="kw">pub</span>(<span class="kw">super</span>) kb_state: KbdState,
     <span class="comment">// Number of touch events currently in progress
     </span><span class="kw">pub</span>(<span class="kw">super</span>) num_touch: u32,
-    <span class="comment">// This is the last pressed key that is repeatable (if it hasn&#39;t been
+    <span class="comment">// This is the last pressed key that is repeatable (if it hasn't been
     // released).
     //
     // Used to detect key repeats.
@@ -1535,12 +1536,12 @@
     <span class="kw">pub</span>(<span class="kw">super</span>) first_touch: <span class="prelude-ty">Option</span>&lt;u64&gt;,
     <span class="comment">// Currently focused window belonging to this process
     </span><span class="kw">pub</span>(<span class="kw">super</span>) active_window: <span class="prelude-ty">Option</span>&lt;xproto::Window&gt;,
-    <span class="doccomment">/// Latest modifiers we&#39;ve sent for the user to trigger change in event.
+    <span class="doccomment">/// Latest modifiers we've sent for the user to trigger change in event.
     </span><span class="kw">pub</span>(<span class="kw">super</span>) modifiers: Cell&lt;ModifiersState&gt;,
     <span class="kw">pub</span>(<span class="kw">super</span>) is_composing: bool,
 }
 
-<span class="kw">impl</span>&lt;T: <span class="lifetime">&#39;static</span>&gt; EventProcessor&lt;T&gt; {
+<span class="kw">impl</span>&lt;T: <span class="lifetime">'static</span>&gt; EventProcessor&lt;T&gt; {
     <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>init_device(<span class="kw-2">&amp;</span><span class="self">self</span>, device: xinput::DeviceId) {
         <span class="kw">let </span>wt = get_xtarget(<span class="kw-2">&amp;</span><span class="self">self</span>.target);
         <span class="kw">let </span><span class="kw-2">mut </span>devices = <span class="self">self</span>.devices.borrow_mut();
@@ -1591,15 +1592,15 @@
         <span class="comment">// This function is used to poll and remove a single event
         // from the Xlib event queue in a non-blocking, atomic way.
         // XCheckIfEvent is non-blocking and removes events from queue.
-        // XNextEvent can&#39;t be used because it blocks while holding the
+        // XNextEvent can't be used because it blocks while holding the
         // global Xlib mutex.
         // XPeekEvent does not remove events from the queue.
-        </span><span class="kw">unsafe extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn </span>predicate(
+        </span><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>predicate(
             _display: <span class="kw-2">*mut </span>ffi::Display,
             _event: <span class="kw-2">*mut </span>ffi::XEvent,
             _arg: <span class="kw-2">*mut </span>c_char,
         ) -&gt; c_int {
-            <span class="comment">// This predicate always returns &quot;true&quot; (1) to accept all events
+            <span class="comment">// This predicate always returns "true" (1) to accept all events
             </span><span class="number">1
         </span>}
 
@@ -1673,7 +1674,7 @@
                                 | xproto::EventMask::SUBSTRUCTURE_REDIRECT,
                             client_msg.serialize(),
                         )
-                        .expect_then_ignore_error(<span class="string">&quot;Failed to send `ClientMessage` event.&quot;</span>);
+                        .expect_then_ignore_error(<span class="string">"Failed to send `ClientMessage` event."</span>);
                 } <span class="kw">else if </span>client_msg.message_type == atoms[XdndEnter] <span class="kw">as </span>c_ulong {
                     <span class="kw">let </span>source_window = client_msg.data.get_long(<span class="number">0</span>) <span class="kw">as </span>xproto::Window;
                     <span class="kw">let </span>flags = client_msg.data.get_long(<span class="number">1</span>);
@@ -1692,11 +1693,11 @@
                         <span class="self">self</span>.dnd.type_list = <span class="prelude-val">Some</span>(more_types);
                     }
                 } <span class="kw">else if </span>client_msg.message_type == atoms[XdndPosition] <span class="kw">as </span>c_ulong {
-                    <span class="comment">// This event occurs every time the mouse moves while a file&#39;s being dragged
+                    <span class="comment">// This event occurs every time the mouse moves while a file's being dragged
                     // over our window. We emit HoveredFile in response; while the macOS backend
-                    // does that upon a drag entering, XDND doesn&#39;t have access to the actual drop
+                    // does that upon a drag entering, XDND doesn't have access to the actual drop
                     // data until this event. For parity with other platforms, we only emit
-                    // `HoveredFile` the first time, though if winit&#39;s API is later extended to
+                    // `HoveredFile` the first time, though if winit's API is later extended to
                     // supply position updates with `HoveredFile` or another event, implementing
                     // that here would be trivial.
 
@@ -1704,8 +1705,8 @@
 
                     <span class="comment">// Equivalent to `(x &lt;&lt; shift) | y`
                     // where `shift = mem::size_of::&lt;c_short&gt;() * 8`
-                    // Note that coordinates are in &quot;desktop space&quot;, not &quot;window space&quot;
-                    // (in X11 parlance, they&#39;re root window coordinates)
+                    // Note that coordinates are in "desktop space", not "window space"
+                    // (in X11 parlance, they're root window coordinates)
                     //let packed_coordinates = client_msg.data.get_long(2);
                     //let shift = mem::size_of::&lt;libc::c_short&gt;() * 8;
                     //let x = packed_coordinates &gt;&gt; shift;
@@ -1714,7 +1715,7 @@
                     // By our own state flow, `version` should never be `None` at this point.
                     </span><span class="kw">let </span>version = <span class="self">self</span>.dnd.version.unwrap_or(<span class="number">5</span>);
 
-                    <span class="comment">// Action is specified in versions 2 and up, though we don&#39;t need it anyway.
+                    <span class="comment">// Action is specified in versions 2 and up, though we don't need it anyway.
                     //let action = client_msg.data.get_long(4);
 
                     </span><span class="kw">let </span>accepted = <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">ref </span>type_list) = <span class="self">self</span>.dnd.type_list {
@@ -1730,7 +1731,7 @@
                                 <span class="kw">let </span>time = <span class="kw">if </span>version &gt;= <span class="number">1 </span>{
                                     client_msg.data.get_long(<span class="number">3</span>) <span class="kw">as </span>xproto::Timestamp
                                 } <span class="kw">else </span>{
-                                    <span class="comment">// In version 0, time isn&#39;t specified
+                                    <span class="comment">// In version 0, time isn't specified
                                     </span>x11rb::CURRENT_TIME
                                 };
 
@@ -1742,13 +1743,13 @@
                             }
                             <span class="self">self</span>.dnd
                                 .send_status(window, source_window, DndState::Accepted)
-                                .expect(<span class="string">&quot;Failed to send `XdndStatus` message.&quot;</span>);
+                                .expect(<span class="string">"Failed to send `XdndStatus` message."</span>);
                         }
                     } <span class="kw">else </span>{
                         <span class="kw">unsafe </span>{
                             <span class="self">self</span>.dnd
                                 .send_status(window, source_window, DndState::Rejected)
-                                .expect(<span class="string">&quot;Failed to send `XdndStatus` message.&quot;</span>);
+                                .expect(<span class="string">"Failed to send `XdndStatus` message."</span>);
                         }
                         <span class="self">self</span>.dnd.reset();
                     }
@@ -1765,7 +1766,7 @@
                         }
                         (source_window, DndState::Accepted)
                     } <span class="kw">else </span>{
-                        <span class="comment">// `source_window` won&#39;t be part of our DND state if we already rejected the drop in our
+                        <span class="comment">// `source_window` won't be part of our DND state if we already rejected the drop in our
                         // `XdndPosition` handler.
                         </span><span class="kw">let </span>source_window = client_msg.data.get_long(<span class="number">0</span>) <span class="kw">as </span>xproto::Window;
                         (source_window, DndState::Rejected)
@@ -1773,7 +1774,7 @@
                     <span class="kw">unsafe </span>{
                         <span class="self">self</span>.dnd
                             .send_finished(window, source_window, state)
-                            .expect(<span class="string">&quot;Failed to send `XdndFinished` message.&quot;</span>);
+                            .expect(<span class="string">"Failed to send `XdndFinished` message."</span>);
                     }
                     <span class="self">self</span>.dnd.reset();
                 } <span class="kw">else if </span>client_msg.message_type == atoms[XdndLeave] <span class="kw">as </span>c_ulong {
@@ -1825,7 +1826,7 @@
                     // `XSendEvent` (synthetic `ConfigureNotify`) -&gt; position relative to root
                     // `XConfigureNotify` (real `ConfigureNotify`) -&gt; position relative to parent
                     // https://tronche.com/gui/x/icccm/sec-4.html#s-4.1.5
-                    // We don&#39;t want to send `Moved` when this is false, since then every `Resized`
+                    // We don't want to send `Moved` when this is false, since then every `Resized`
                     // (whether the window moved or not) is accompanied by an extraneous `Moved` event
                     // that has a position relative to the parent window.
                     </span><span class="kw">let </span>is_synthetic = xev.send_event == ffi::True;
@@ -1846,7 +1847,7 @@
                             )
                         } <span class="kw">else </span>{
                             <span class="comment">// Detect when frame extents change.
-                            // Since this isn&#39;t synthetic, as per the notes above, this position is relative to the
+                            // Since this isn't synthetic, as per the notes above, this position is relative to the
                             // parent window.
                             </span><span class="kw">let </span>rel_parent = new_inner_position;
                             <span class="kw">if </span>util::maybe_change(
@@ -1899,7 +1900,7 @@
 
                     <span class="kw">if </span>is_synthetic {
                         <span class="kw">let </span><span class="kw-2">mut </span>shared_state_lock = window.shared_state_lock();
-                        <span class="comment">// If we don&#39;t use the existing adjusted value when available, then the user can screw up the
+                        <span class="comment">// If we don't use the existing adjusted value when available, then the user can screw up the
                         // resizing by dragging across monitors *without* dropping the window.
                         </span><span class="kw">let </span>(width, height) = shared_state_lock
                             .dpi_adjusted
@@ -1911,7 +1912,7 @@
                             <span class="kw">let </span>monitor = wt
                                 .xconn
                                 .get_monitor_for_window(<span class="prelude-val">Some</span>(window_rect))
-                                .expect(<span class="string">&quot;Failed to find monitor for window&quot;</span>);
+                                .expect(<span class="string">"Failed to find monitor for window"</span>);
 
                             <span class="kw">if </span>monitor.is_dummy() {
                                 <span class="comment">// Avoid updating monitor using a dummy monitor handle
@@ -1968,11 +1969,11 @@
                     <span class="kw">let </span>hittest = shared_state_lock.cursor_hittest;
 
                     <span class="comment">// This is a hack to ensure that the DPI adjusted resize is actually applied on all WMs. KWin
-                    // doesn&#39;t need this, but Xfwm does. The hack should not be run on other WMs, since tiling
+                    // doesn't need this, but Xfwm does. The hack should not be run on other WMs, since tiling
                     // WMs constrain the window size, making the resize fail. This would cause an endless stream of
                     // XResizeWindow requests, making Xorg, the winit client, and the WM consume 100% of CPU.
                     </span><span class="kw">if let </span><span class="prelude-val">Some</span>(adjusted_size) = shared_state_lock.dpi_adjusted {
-                        <span class="kw">if </span>new_inner_size == adjusted_size || !util::wm_name_is_one_of(<span class="kw-2">&amp;</span>[<span class="string">&quot;Xfwm4&quot;</span>]) {
+                        <span class="kw">if </span>new_inner_size == adjusted_size || !util::wm_name_is_one_of(<span class="kw-2">&amp;</span>[<span class="string">"Xfwm4"</span>]) {
                             <span class="comment">// When this finally happens, the event will not be synthetic.
                             </span>shared_state_lock.dpi_adjusted = <span class="prelude-val">None</span>;
                         } <span class="kw">else </span>{
@@ -2000,9 +2001,9 @@
             ffi::ReparentNotify =&gt; {
                 <span class="kw">let </span>xev: <span class="kw-2">&amp;</span>ffi::XReparentEvent = xev.as_ref();
 
-                <span class="comment">// This is generally a reliable way to detect when the window manager&#39;s been
+                <span class="comment">// This is generally a reliable way to detect when the window manager's been
                 // replaced, though this event is only fired by reparenting window managers
-                // (which is almost all of them). Failing to correctly update WM info doesn&#39;t
+                // (which is almost all of them). Failing to correctly update WM info doesn't
                 // really have much impact, since on the WMs affected (xmonad, dwm, etc.) the only
                 // effect is that we waste some time trying to query unsupported properties.
                 </span>wt.xconn.update_cached_wm_info(wt.root);
@@ -2019,7 +2020,7 @@
                 <span class="comment">// XXX re-issue the focus state when mapping the window.
                 //
                 // The purpose of it is to deliver initial focused state of the newly created
-                // window, given that we can&#39;t rely on `CreateNotify`, due to it being not
+                // window, given that we can't rely on `CreateNotify`, due to it being not
                 // sent.
                 </span><span class="kw">let </span>focus = <span class="self">self
                     </span>.with_window(window, |window| window.has_focus())
@@ -2035,7 +2036,7 @@
                 <span class="kw">let </span>window = xev.window <span class="kw">as </span>xproto::Window;
                 <span class="kw">let </span>window_id = mkwid(window);
 
-                <span class="comment">// In the event that the window&#39;s been destroyed without being dropped first, we
+                <span class="comment">// In the event that the window's been destroyed without being dropped first, we
                 // cleanup again here.
                 </span>wt.windows.borrow_mut().remove(<span class="kw-2">&amp;</span>WindowId(window <span class="kw">as _</span>));
 
@@ -2044,7 +2045,7 @@
                 </span>wt.ime
                     .borrow_mut()
                     .remove_context(window <span class="kw">as </span>ffi::Window)
-                    .expect(<span class="string">&quot;Failed to destroy input context&quot;</span>);
+                    .expect(<span class="string">"Failed to destroy input context"</span>);
 
                 callback(Event::WindowEvent {
                     window_id,
@@ -2088,7 +2089,7 @@
                 }
             }
 
-            <span class="comment">// Note that in compose/pre-edit sequences, we&#39;ll always receive KeyRelease events
+            <span class="comment">// Note that in compose/pre-edit sequences, we'll always receive KeyRelease events
             </span>ty @ ffi::KeyPress | ty @ ffi::KeyRelease =&gt; {
                 <span class="kw">let </span>xkev: <span class="kw-2">&amp;mut </span>ffi::XKeyEvent = xev.as_mut();
 
@@ -2239,7 +2240,7 @@
 
                             <span class="comment">// Suppress emulated scroll wheel clicks, since we handle the real motion events for those.
                             // In practice, even clicky scroll wheels appear to be reported by evdev (and XInput2 in
-                            // turn) as axis motion, so we don&#39;t otherwise special-case these button presses.
+                            // turn) as axis motion, so we don't otherwise special-case these button presses.
                             </span><span class="number">4</span>..=<span class="number">7 </span>=&gt; {
                                 <span class="kw">if </span>xev.flags &amp; ffi::XIPointerEmulated == <span class="number">0 </span>{
                                     callback(Event::WindowEvent {
@@ -2348,7 +2349,7 @@
                                             event: MouseWheel {
                                                 device_id,
                                                 delta: <span class="kw">match </span>info.orientation {
-                                                    <span class="comment">// X11 vertical scroll coordinates are opposite to winit&#39;s
+                                                    <span class="comment">// X11 vertical scroll coordinates are opposite to winit's
                                                     </span>ScrollOrientation::Horizontal =&gt; {
                                                         LineDelta(-delta <span class="kw">as </span>f32, <span class="number">0.0</span>)
                                                     }
@@ -2395,7 +2396,7 @@
                             <span class="kw">for </span>device_info <span class="kw">in </span>all_info.iter() {
                                 <span class="kw">if </span>device_info.deviceid == xev.sourceid
                                 <span class="comment">// This is needed for resetting to work correctly on i3, and
-                                // presumably some other WMs. On those, `XI_Enter` doesn&#39;t include
+                                // presumably some other WMs. On those, `XI_Enter` doesn't include
                                 // the physical device ID, so both `sourceid` and `deviceid` are
                                 // the virtual device.
                                 </span>|| device_info.attachment == xev.sourceid
@@ -2432,8 +2433,8 @@
                         <span class="comment">// Set the timestamp.
                         </span>wt.xconn.set_timestamp(xev.time <span class="kw">as </span>xproto::Timestamp);
 
-                        <span class="comment">// Leave, FocusIn, and FocusOut can be received by a window that&#39;s already
-                        // been destroyed, which the user presumably doesn&#39;t want to deal with.
+                        <span class="comment">// Leave, FocusIn, and FocusOut can be received by a window that's already
+                        // been destroyed, which the user presumably doesn't want to deal with.
                         </span><span class="kw">let </span>window_closed = !<span class="self">self</span>.window_exists(window);
                         <span class="kw">if </span>!window_closed {
                             callback(Event::WindowEvent {
@@ -2454,7 +2455,7 @@
                         wt.ime
                             .borrow_mut()
                             .focus(xev.event)
-                            .expect(<span class="string">&quot;Failed to focus input context&quot;</span>);
+                            .expect(<span class="string">"Failed to focus input context"</span>);
 
                         <span class="kw">if </span><span class="self">self</span>.active_window != <span class="prelude-val">Some</span>(window) {
                             <span class="self">self</span>.active_window = <span class="prelude-val">Some</span>(window);
@@ -2518,7 +2519,7 @@
                         wt.ime
                             .borrow_mut()
                             .unfocus(xev.event)
-                            .expect(<span class="string">&quot;Failed to unfocus input context&quot;</span>);
+                            .expect(<span class="string">"Failed to unfocus input context"</span>);
 
                         <span class="kw">if </span><span class="self">self</span>.active_window.take() == <span class="prelude-val">Some</span>(window) {
                             <span class="kw">let </span>window_id = mkwid(window);
@@ -2816,7 +2817,7 @@
                     <span class="self">self</span>.is_composing = <span class="bool-val">true</span>;
                     callback(Event::WindowEvent {
                         window_id,
-                        event: WindowEvent::Ime(Ime::Preedit(<span class="string">&quot;&quot;</span>.to_owned(), <span class="prelude-val">None</span>)),
+                        event: WindowEvent::Ime(Ime::Preedit(<span class="string">""</span>.to_owned(), <span class="prelude-val">None</span>)),
                     });
                 }
                 ImeEvent::Update(text, position) =&gt; {
@@ -2848,7 +2849,7 @@
 
     <span class="doccomment">/// Send modifiers for the active window.
     ///
-    /// The event won&#39;t be send when the `modifiers` match the previosly `sent` modifiers value.
+    /// The event won't be send when the `modifiers` match the previosly `sent` modifiers value.
     </span><span class="kw">fn </span>send_modifiers&lt;F: FnMut(Event&lt;T&gt;)&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, modifiers: ModifiersState, callback: <span class="kw-2">&amp;mut </span>F) {
         <span class="kw">let </span>window_id = <span class="kw">match </span><span class="self">self</span>.active_window {
             <span class="prelude-val">Some</span>(window) =&gt; mkwid(window),
@@ -2901,7 +2902,7 @@
         <span class="kw">let </span>wt = get_xtarget(<span class="kw-2">&amp;</span><span class="self">self</span>.target);
         wt.xconn
             .reload_database()
-            .expect(<span class="string">&quot;failed to reload Xft database&quot;</span>);
+            .expect(<span class="string">"failed to reload Xft database"</span>);
 
         <span class="comment">// In the future, it would be quite easy to emit monitor hotplug events.
         </span><span class="kw">let </span>prev_list = {
@@ -2915,7 +2916,7 @@
         <span class="kw">let </span>new_list = wt
             .xconn
             .available_monitors()
-            .expect(<span class="string">&quot;Failed to get monitor list&quot;</span>);
+            .expect(<span class="string">"Failed to get monitor list"</span>);
         <span class="kw">for </span>new_monitor <span class="kw">in </span>new_list {
             <span class="comment">// Previous list may be empty, in case of disconnecting and
             // reconnecting the only one monitor. We still need to emit events in

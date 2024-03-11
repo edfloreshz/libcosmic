@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/smol_str-0.2.1/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="smol_str" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/smol_str-0.2.1/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="smol_str" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -741,7 +742,7 @@
 ///     * Longer than 23 bytes, but substrings of `WS` (see below). Such strings consist
 ///     solely of consecutive newlines, followed by consecutive spaces
 /// * If a string does not satisfy the aforementioned conditions, it is heap-allocated
-/// * Additionally, a `SmolStr` can be explicitely created from a `&amp;&#39;static str` without allocation
+/// * Additionally, a `SmolStr` can be explicitely created from a `&amp;'static str` without allocation
 ///
 /// Unlike `String`, however, `SmolStr` is immutable. The primary use case for
 /// `SmolStr` is a good enough default storage for tokens of typical programming
@@ -754,7 +755,7 @@
 </span><span class="kw">pub struct </span>SmolStr(Repr);
 
 <span class="kw">impl </span>SmolStr {
-    <span class="attr">#[deprecated = <span class="string">&quot;Use `new_inline` instead&quot;</span>]
+    <span class="attr">#[deprecated = <span class="string">"Use `new_inline` instead"</span>]
     </span><span class="kw">pub const fn </span>new_inline_from_ascii(len: usize, bytes: <span class="kw-2">&amp;</span>[u8]) -&gt; SmolStr {
         <span class="macro">assert!</span>(len &lt;= INLINE_CAP);
 
@@ -800,7 +801,7 @@
     ///
     /// This never allocates.
     </span><span class="attr">#[inline(always)]
-    </span><span class="kw">pub const fn </span>new_static(text: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str) -&gt; SmolStr {
+    </span><span class="kw">pub const fn </span>new_static(text: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str) -&gt; SmolStr {
         <span class="comment">// NOTE: this never uses the inline storage; if a canonical
         // representation is needed, we could check for `len() &lt; INLINE_CAP`
         // and call `new_inline`, but this would mean an extra branch.
@@ -909,13 +910,13 @@
     </span>}
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; PartialEq&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt; <span class="kw">for </span>SmolStr {
-    <span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: &amp;&amp;<span class="lifetime">&#39;a </span>str) -&gt; bool {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; PartialEq&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt; <span class="kw">for </span>SmolStr {
+    <span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: &amp;&amp;<span class="lifetime">'a </span>str) -&gt; bool {
         <span class="self">self </span>== <span class="kw-2">*</span>other
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; PartialEq&lt;SmolStr&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; PartialEq&lt;SmolStr&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'a </span>str {
     <span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>SmolStr) -&gt; bool {
         <span class="kw-2">*</span><span class="self">self </span>== other
     }
@@ -933,13 +934,13 @@
     </span>}
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; PartialEq&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>String&gt; <span class="kw">for </span>SmolStr {
-    <span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: &amp;&amp;<span class="lifetime">&#39;a </span>String) -&gt; bool {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; PartialEq&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>String&gt; <span class="kw">for </span>SmolStr {
+    <span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: &amp;&amp;<span class="lifetime">'a </span>String) -&gt; bool {
         <span class="self">self </span>== <span class="kw-2">*</span>other
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; PartialEq&lt;SmolStr&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>String {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; PartialEq&lt;SmolStr&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'a </span>String {
     <span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>SmolStr) -&gt; bool {
         <span class="kw-2">*</span><span class="self">self </span>== other
     }
@@ -1014,14 +1015,14 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; iter::FromIterator&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>String&gt; <span class="kw">for </span>SmolStr {
-    <span class="kw">fn </span>from_iter&lt;I: iter::IntoIterator&lt;Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>String&gt;&gt;(iter: I) -&gt; SmolStr {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; iter::FromIterator&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>String&gt; <span class="kw">for </span>SmolStr {
+    <span class="kw">fn </span>from_iter&lt;I: iter::IntoIterator&lt;Item = <span class="kw-2">&amp;</span><span class="lifetime">'a </span>String&gt;&gt;(iter: I) -&gt; SmolStr {
         SmolStr::from_iter(iter.into_iter().map(|x| x.as_str()))
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; iter::FromIterator&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt; <span class="kw">for </span>SmolStr {
-    <span class="kw">fn </span>from_iter&lt;I: iter::IntoIterator&lt;Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str&gt;&gt;(iter: I) -&gt; SmolStr {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; iter::FromIterator&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt; <span class="kw">for </span>SmolStr {
+    <span class="kw">fn </span>from_iter&lt;I: iter::IntoIterator&lt;Item = <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str&gt;&gt;(iter: I) -&gt; SmolStr {
         build_from_str_iter(iter.into_iter())
     }
 }
@@ -1076,9 +1077,9 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; From&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt; <span class="kw">for </span>SmolStr {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; From&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt; <span class="kw">for </span>SmolStr {
     <span class="attr">#[inline]
-    </span><span class="kw">fn </span>from(s: Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;) -&gt; SmolStr {
+    </span><span class="kw">fn </span>from(s: Cow&lt;<span class="lifetime">'a</span>, str&gt;) -&gt; SmolStr {
         SmolStr::new(s)
     }
 }
@@ -1116,9 +1117,9 @@
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;arbitrary&quot;</span>)]
-</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; arbitrary::Arbitrary&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>SmolStr {
-    <span class="kw">fn </span>arbitrary(u: <span class="kw-2">&amp;mut </span>arbitrary::Unstructured&lt;<span class="lifetime">&#39;a</span>&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, arbitrary::Error&gt; {
+<span class="attr">#[cfg(feature = <span class="string">"arbitrary"</span>)]
+</span><span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; arbitrary::Arbitrary&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span>SmolStr {
+    <span class="kw">fn </span>arbitrary(u: <span class="kw-2">&amp;mut </span>arbitrary::Unstructured&lt;<span class="lifetime">'a</span>&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, arbitrary::Error&gt; {
         <span class="kw">let </span>s = &lt;<span class="kw-2">&amp;</span>str&gt;::arbitrary(u)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(SmolStr::new(s))
     }
@@ -1128,11 +1129,11 @@
 <span class="kw">const </span>N_NEWLINES: usize = <span class="number">32</span>;
 <span class="kw">const </span>N_SPACES: usize = <span class="number">128</span>;
 <span class="kw">const </span>WS: <span class="kw-2">&amp;</span>str =
-    <span class="string">&quot;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                                                                                                &quot;</span>;
+    <span class="string">"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n                                                                                                                                "</span>;
 <span class="kw">const _</span>: () = {
     <span class="macro">assert!</span>(WS.len() == N_NEWLINES + N_SPACES);
-    <span class="macro">assert!</span>(WS.as_bytes()[N_NEWLINES - <span class="number">1</span>] == <span class="string">b&#39;\n&#39;</span>);
-    <span class="macro">assert!</span>(WS.as_bytes()[N_NEWLINES] == <span class="string">b&#39; &#39;</span>);
+    <span class="macro">assert!</span>(WS.as_bytes()[N_NEWLINES - <span class="number">1</span>] == <span class="string">b'\n'</span>);
+    <span class="macro">assert!</span>(WS.as_bytes()[N_NEWLINES] == <span class="string">b' '</span>);
 };
 
 <span class="attr">#[derive(Clone, Copy, Debug)]
@@ -1167,7 +1168,7 @@
 <span class="attr">#[derive(Clone, Debug)]
 </span><span class="kw">enum </span>Repr {
     Heap(Arc&lt;str&gt;),
-    Static(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str),
+    Static(<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str),
     Inline {
         len: InlineSize,
         buf: [u8; INLINE_CAP],
@@ -1176,7 +1177,7 @@
 
 <span class="kw">impl </span>Repr {
     <span class="doccomment">/// This function tries to create a new Repr::Inline or Repr::Static
-    /// If it isn&#39;t possible, this function returns None
+    /// If it isn't possible, this function returns None
     </span><span class="kw">fn </span>new_on_stack&lt;T&gt;(text: T) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt;
     <span class="kw">where
         </span>T: AsRef&lt;str&gt;,
@@ -1198,10 +1199,10 @@
             <span class="kw">let </span>possible_newline_count = cmp::min(len, N_NEWLINES);
             <span class="kw">let </span>newlines = bytes[..possible_newline_count]
                 .iter()
-                .take_while(|&amp;&amp;b| b == <span class="string">b&#39;\n&#39;</span>)
+                .take_while(|&amp;&amp;b| b == <span class="string">b'\n'</span>)
                 .count();
             <span class="kw">let </span>possible_space_count = len - newlines;
-            <span class="kw">if </span>possible_space_count &lt;= N_SPACES &amp;&amp; bytes[newlines..].iter().all(|<span class="kw-2">&amp;</span>b| b == <span class="string">b&#39; &#39;</span>) {
+            <span class="kw">if </span>possible_space_count &lt;= N_SPACES &amp;&amp; bytes[newlines..].iter().all(|<span class="kw-2">&amp;</span>b| b == <span class="string">b' '</span>) {
                 <span class="kw">let </span>spaces = possible_space_count;
                 <span class="kw">let </span>substring = <span class="kw-2">&amp;</span>WS[N_NEWLINES - newlines..N_NEWLINES + spaces];
                 <span class="kw">return </span><span class="prelude-val">Some</span>(Repr::Static(substring));
@@ -1264,7 +1265,7 @@
     ($(<span class="macro-nonterminal">$tt</span>:tt)<span class="kw-2">*</span>) =&gt; {{
         <span class="kw">use </span>::core::fmt::Write;
         <span class="kw">let </span><span class="kw-2">mut </span>w = <span class="macro-nonterminal">$crate::Writer::new</span>();
-        w.write_fmt(<span class="macro">format_args!</span>($(<span class="macro-nonterminal">$tt</span>)<span class="kw-2">*</span>)).expect(<span class="string">&quot;a formatting trait implementation returned an error&quot;</span>);
+        w.write_fmt(<span class="macro">format_args!</span>($(<span class="macro-nonterminal">$tt</span>)<span class="kw-2">*</span>)).expect(<span class="string">"a formatting trait implementation returned an error"</span>);
         <span class="macro-nonterminal">$crate::SmolStr::from</span>(w)
     }};
 }
@@ -1335,11 +1336,11 @@
     </span>T: fmt::Display + <span class="question-mark">?</span>Sized,
 {
     <span class="kw">fn </span>to_smolstr(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; SmolStr {
-        <span class="macro">format_smolstr!</span>(<span class="string">&quot;{}&quot;</span>, <span class="self">self</span>)
+        <span class="macro">format_smolstr!</span>(<span class="string">"{}"</span>, <span class="self">self</span>)
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;serde&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"serde"</span>)]
 </span><span class="kw">mod </span>serde {
     <span class="kw">use </span>alloc::{string::String, vec::Vec};
     <span class="kw">use </span>core::fmt;
@@ -1349,17 +1350,17 @@
     <span class="kw">use </span><span class="kw">crate</span>::SmolStr;
 
     <span class="comment">// https://github.com/serde-rs/serde/blob/629802f2abfd1a54a6072992888fea7ca5bc209f/serde/src/private/de.rs#L56-L125
-    </span><span class="kw">fn </span>smol_str&lt;<span class="lifetime">&#39;de</span>: <span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;a</span>, D&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;SmolStr, D::Error&gt;
+    </span><span class="kw">fn </span>smol_str&lt;<span class="lifetime">'de</span>: <span class="lifetime">'a</span>, <span class="lifetime">'a</span>, D&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;SmolStr, D::Error&gt;
     <span class="kw">where
-        </span>D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;,
+        </span>D: Deserializer&lt;<span class="lifetime">'de</span>&gt;,
     {
         <span class="kw">struct </span>SmolStrVisitor;
 
-        <span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Visitor&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>SmolStrVisitor {
+        <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; Visitor&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span>SmolStrVisitor {
             <span class="kw">type </span>Value = SmolStr;
 
             <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-                formatter.write_str(<span class="string">&quot;a string&quot;</span>)
+                formatter.write_str(<span class="string">"a string"</span>)
             }
 
             <span class="kw">fn </span>visit_str&lt;E&gt;(<span class="self">self</span>, v: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, E&gt;
@@ -1369,7 +1370,7 @@
                 <span class="prelude-val">Ok</span>(SmolStr::from(v))
             }
 
-            <span class="kw">fn </span>visit_borrowed_str&lt;E&gt;(<span class="self">self</span>, v: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, E&gt;
+            <span class="kw">fn </span>visit_borrowed_str&lt;E&gt;(<span class="self">self</span>, v: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, E&gt;
             <span class="kw">where
                 </span>E: Error,
             {
@@ -1393,7 +1394,7 @@
                 }
             }
 
-            <span class="kw">fn </span>visit_borrowed_bytes&lt;E&gt;(<span class="self">self</span>, v: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, E&gt;
+            <span class="kw">fn </span>visit_borrowed_bytes&lt;E&gt;(<span class="self">self</span>, v: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, E&gt;
             <span class="kw">where
                 </span>E: Error,
             {
@@ -1429,10 +1430,10 @@
         }
     }
 
-    <span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>&gt; serde::Deserialize&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>SmolStr {
+    <span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; serde::Deserialize&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>SmolStr {
         <span class="kw">fn </span>deserialize&lt;D&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt;
         <span class="kw">where
-            </span>D: serde::Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;,
+            </span>D: serde::Deserializer&lt;<span class="lifetime">'de</span>&gt;,
         {
             smol_str(deserializer)
         }

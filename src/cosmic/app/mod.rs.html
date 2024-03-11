@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/app/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/app/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -776,6 +777,47 @@
 <a href="#776" id="776">776</a>
 <a href="#777" id="777">777</a>
 <a href="#778" id="778">778</a>
+<a href="#779" id="779">779</a>
+<a href="#780" id="780">780</a>
+<a href="#781" id="781">781</a>
+<a href="#782" id="782">782</a>
+<a href="#783" id="783">783</a>
+<a href="#784" id="784">784</a>
+<a href="#785" id="785">785</a>
+<a href="#786" id="786">786</a>
+<a href="#787" id="787">787</a>
+<a href="#788" id="788">788</a>
+<a href="#789" id="789">789</a>
+<a href="#790" id="790">790</a>
+<a href="#791" id="791">791</a>
+<a href="#792" id="792">792</a>
+<a href="#793" id="793">793</a>
+<a href="#794" id="794">794</a>
+<a href="#795" id="795">795</a>
+<a href="#796" id="796">796</a>
+<a href="#797" id="797">797</a>
+<a href="#798" id="798">798</a>
+<a href="#799" id="799">799</a>
+<a href="#800" id="800">800</a>
+<a href="#801" id="801">801</a>
+<a href="#802" id="802">802</a>
+<a href="#803" id="803">803</a>
+<a href="#804" id="804">804</a>
+<a href="#805" id="805">805</a>
+<a href="#806" id="806">806</a>
+<a href="#807" id="807">807</a>
+<a href="#808" id="808">808</a>
+<a href="#809" id="809">809</a>
+<a href="#810" id="810">810</a>
+<a href="#811" id="811">811</a>
+<a href="#812" id="812">812</a>
+<a href="#813" id="813">813</a>
+<a href="#814" id="814">814</a>
+<a href="#815" id="815">815</a>
+<a href="#816" id="816">816</a>
+<a href="#817" id="817">817</a>
+<a href="#818" id="818">818</a>
+<a href="#819" id="819">819</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2023 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
@@ -797,7 +839,7 @@
         </span>App(M),
         <span class="doccomment">/// Internal messages to be handled by libcosmic.
         </span>Cosmic(<span class="kw">super</span>::cosmic::Message),
-        <span class="attr">#[cfg(feature = <span class="string">&quot;single-instance&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"single-instance"</span>)]
         </span><span class="doccomment">/// Dbus activation messages
         </span>DbusActivation(<span class="kw">super</span>::DbusActivationMessage),
         <span class="doccomment">/// Do nothing
@@ -822,16 +864,16 @@
 <span class="kw">pub use </span><span class="self">self</span>::settings::Settings;
 <span class="kw">use </span><span class="kw">crate</span>::prelude::<span class="kw-2">*</span>;
 <span class="kw">use </span><span class="kw">crate</span>::theme::THEME;
-<span class="kw">use </span><span class="kw">crate</span>::widget::{context_drawer, nav_bar};
+<span class="kw">use </span><span class="kw">crate</span>::widget::{context_drawer, nav_bar, popover};
 <span class="kw">use </span>apply::Apply;
 <span class="kw">use </span>iced::Subscription;
-<span class="attr">#[cfg(all(feature = <span class="string">&quot;winit&quot;</span>, feature = <span class="string">&quot;multi-window&quot;</span>))]
+<span class="attr">#[cfg(all(feature = <span class="string">"winit"</span>, feature = <span class="string">"multi-window"</span>))]
 </span><span class="kw">use </span>iced::{multi_window::Application <span class="kw">as </span>IcedApplication, window};
-<span class="attr">#[cfg(any(not(feature = <span class="string">&quot;winit&quot;</span>), not(feature = <span class="string">&quot;multi-window&quot;</span>)))]
+<span class="attr">#[cfg(any(not(feature = <span class="string">"winit"</span>), not(feature = <span class="string">"multi-window"</span>)))]
 </span><span class="kw">use </span>iced::{window, Application <span class="kw">as </span>IcedApplication};
 <span class="kw">pub use </span>message::Message;
 <span class="kw">use </span>url::Url;
-<span class="attr">#[cfg(feature = <span class="string">&quot;single-instance&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"single-instance"</span>)]
 </span><span class="kw">use </span>{
     iced_futures::futures::channel::mpsc::{Receiver, Sender},
     iced_futures::futures::SinkExt,
@@ -866,12 +908,12 @@
     iced.default_text_size = iced::Pixels(settings.default_text_size);
     iced.exit_on_close_request = settings.exit_on_close;
     iced.id = <span class="prelude-val">Some</span>(App::APP_ID.to_owned());
-    <span class="attr">#[cfg(all(not(feature = <span class="string">&quot;wayland&quot;</span>), target_os = <span class="string">&quot;linux&quot;</span>))]
+    <span class="attr">#[cfg(all(not(feature = <span class="string">"wayland"</span>), target_os = <span class="string">"linux"</span>))]
     </span>{
         iced.window.platform_specific.application_id = App::APP_ID.to_string();
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
     </span>{
         <span class="kw">use </span>iced::wayland::actions::window::SctkWindowSettings;
         <span class="kw">use </span>iced_sctk::settings::InitialSurface;
@@ -887,17 +929,17 @@
                 size_limits: settings.size_limits,
                 title: <span class="prelude-val">None</span>,
                 transparent: settings.transparent,
-                xdg_activation_token: std::env::var(<span class="string">&quot;XDG_ACTIVATION_TOKEN&quot;</span>).ok(),
+                xdg_activation_token: std::env::var(<span class="string">"XDG_ACTIVATION_TOKEN"</span>).ok(),
                 ..SctkWindowSettings::default()
             })
         };
     }
 
-    <span class="attr">#[cfg(not(feature = <span class="string">&quot;wayland&quot;</span>))]
+    <span class="attr">#[cfg(not(feature = <span class="string">"wayland"</span>))]
     </span>{
-        <span class="kw">if let </span><span class="prelude-val">Some</span>(_border_size) = settings.resizable {
-            <span class="comment">// iced.window.border_size = border_size as u32;
-            </span>iced.window.resizable = <span class="bool-val">true</span>;
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(border_size) = settings.resizable {
+            iced.window.resize_border = border_size <span class="kw">as </span>u32;
+            iced.window.resizable = <span class="bool-val">true</span>;
         }
         iced.window.decorations = !settings.client_decorations;
         iced.window.size = settings.size;
@@ -921,7 +963,7 @@
 ///
 /// Returns error on application failure.
 </span><span class="kw">pub fn </span>run&lt;App: Application&gt;(settings: Settings, flags: App::Flags) -&gt; iced::Result {
-    <span class="attr">#[cfg(feature = <span class="string">&quot;wgpu&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"wgpu"</span>)]
     </span>wgpu_power_pref();
 
     <span class="kw">let </span>settings = iced_settings::&lt;App&gt;(settings, flags);
@@ -930,20 +972,20 @@
 }
 
 <span class="doccomment">/// Default to rendering the application with the low power GPU preference.
-</span><span class="attr">#[cfg(feature = <span class="string">&quot;wgpu&quot;</span>)]
+</span><span class="attr">#[cfg(feature = <span class="string">"wgpu"</span>)]
 </span><span class="kw">fn </span>wgpu_power_pref() {
     <span class="comment">// Ignore if requested to run on NVIDIA GPU
-    </span><span class="kw">if </span>std::env::var(<span class="string">&quot;__NV_PRIME_RENDER_OFFLOAD&quot;</span>).ok().as_deref() == <span class="prelude-val">Some</span>(<span class="string">&quot;1&quot;</span>) {
+    </span><span class="kw">if </span>std::env::var(<span class="string">"__NV_PRIME_RENDER_OFFLOAD"</span>).ok().as_deref() == <span class="prelude-val">Some</span>(<span class="string">"1"</span>) {
         <span class="kw">return</span>;
     }
 
-    <span class="kw">const </span>VAR: <span class="kw-2">&amp;</span>str = <span class="string">&quot;WGPU_POWER_PREF&quot;</span>;
+    <span class="kw">const </span>VAR: <span class="kw-2">&amp;</span>str = <span class="string">"WGPU_POWER_PREF"</span>;
     <span class="kw">if </span>std::env::var(VAR).is_err() {
-        std::env::set_var(VAR, <span class="string">&quot;low&quot;</span>);
+        std::env::set_var(VAR, <span class="string">"low"</span>);
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;single-instance&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"single-instance"</span>)]
 #[derive(Debug, Clone)]
 </span><span class="kw">pub struct </span>DbusActivationMessage&lt;Action = String, Args = Vec&lt;String&gt;&gt; {
     <span class="kw">pub </span>activation_token: <span class="prelude-ty">Option</span>&lt;String&gt;,
@@ -963,10 +1005,10 @@
         args: Args,
     },
 }
-<span class="attr">#[cfg(feature = <span class="string">&quot;single-instance&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"single-instance"</span>)]
 #[derive(Debug, Default)]
 </span><span class="kw">pub struct </span>DbusActivation(<span class="prelude-ty">Option</span>&lt;Sender&lt;DbusActivationMessage&gt;&gt;);
-<span class="attr">#[cfg(feature = <span class="string">&quot;single-instance&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"single-instance"</span>)]
 </span><span class="kw">impl </span>DbusActivation {
     <span class="attr">#[must_use]
     </span><span class="kw">pub fn </span>new() -&gt; <span class="self">Self </span>{
@@ -980,17 +1022,17 @@
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;single-instance&quot;</span>)]
-#[dbus_proxy(interface = <span class="string">&quot;org.freedesktop.DbusActivation&quot;</span>, assume_defaults = <span class="bool-val">true</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"single-instance"</span>)]
+#[dbus_proxy(interface = <span class="string">"org.freedesktop.DbusActivation"</span>, assume_defaults = <span class="bool-val">true</span>)]
 </span><span class="kw">pub trait </span>DbusActivationInterface {
     <span class="doccomment">/// Activate the application.
-    </span><span class="kw">fn </span>activate(<span class="kw-2">&amp;mut </span><span class="self">self</span>, platform_data: HashMap&lt;<span class="kw-2">&amp;</span>str, Value&lt;<span class="lifetime">&#39;_</span>&gt;&gt;) -&gt; zbus::Result&lt;()&gt;;
+    </span><span class="kw">fn </span>activate(<span class="kw-2">&amp;mut </span><span class="self">self</span>, platform_data: HashMap&lt;<span class="kw-2">&amp;</span>str, Value&lt;<span class="lifetime">'_</span>&gt;&gt;) -&gt; zbus::Result&lt;()&gt;;
 
     <span class="doccomment">/// Open the given URIs.
     </span><span class="kw">fn </span>open(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         uris: Vec&lt;<span class="kw-2">&amp;</span>str&gt;,
-        platform_data: HashMap&lt;<span class="kw-2">&amp;</span>str, Value&lt;<span class="lifetime">&#39;_</span>&gt;&gt;,
+        platform_data: HashMap&lt;<span class="kw-2">&amp;</span>str, Value&lt;<span class="lifetime">'_</span>&gt;&gt;,
     ) -&gt; zbus::Result&lt;()&gt;;
 
     <span class="doccomment">/// Activate the given action.
@@ -998,22 +1040,22 @@
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         action_name: <span class="kw-2">&amp;</span>str,
         parameter: Vec&lt;<span class="kw-2">&amp;</span>str&gt;,
-        platform_data: HashMap&lt;<span class="kw-2">&amp;</span>str, Value&lt;<span class="lifetime">&#39;_</span>&gt;&gt;,
+        platform_data: HashMap&lt;<span class="kw-2">&amp;</span>str, Value&lt;<span class="lifetime">'_</span>&gt;&gt;,
     ) -&gt; zbus::Result&lt;()&gt;;
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;single-instance&quot;</span>)]
-#[dbus_interface(name = <span class="string">&quot;org.freedesktop.DbusActivation&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"single-instance"</span>)]
+#[dbus_interface(name = <span class="string">"org.freedesktop.DbusActivation"</span>)]
 </span><span class="kw">impl </span>DbusActivation {
-    <span class="kw">async fn </span>activate(<span class="kw-2">&amp;mut </span><span class="self">self</span>, platform_data: HashMap&lt;<span class="kw-2">&amp;</span>str, Value&lt;<span class="lifetime">&#39;_</span>&gt;&gt;) {
+    <span class="kw">async fn </span>activate(<span class="kw-2">&amp;mut </span><span class="self">self</span>, platform_data: HashMap&lt;<span class="kw-2">&amp;</span>str, Value&lt;<span class="lifetime">'_</span>&gt;&gt;) {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(tx) = <span class="kw-2">&amp;mut </span><span class="self">self</span>.<span class="number">0 </span>{
             <span class="kw">let _ </span>= tx
                 .send(DbusActivationMessage {
-                    activation_token: platform_data.get(<span class="string">&quot;activation-token&quot;</span>).and_then(|t| <span class="kw">match </span>t {
+                    activation_token: platform_data.get(<span class="string">"activation-token"</span>).and_then(|t| <span class="kw">match </span>t {
                         Value::Str(t) =&gt; <span class="prelude-val">Some</span>(t.to_string()),
                         <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
                     }),
-                    desktop_startup_id: platform_data.get(<span class="string">&quot;desktop-startup-id&quot;</span>).and_then(
+                    desktop_startup_id: platform_data.get(<span class="string">"desktop-startup-id"</span>).and_then(
                         |t| <span class="kw">match </span>t {
                             Value::Str(t) =&gt; <span class="prelude-val">Some</span>(t.to_string()),
                             <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
@@ -1025,15 +1067,15 @@
         }
     }
 
-    <span class="kw">async fn </span>open(<span class="kw-2">&amp;mut </span><span class="self">self</span>, uris: Vec&lt;<span class="kw-2">&amp;</span>str&gt;, platform_data: HashMap&lt;<span class="kw-2">&amp;</span>str, Value&lt;<span class="lifetime">&#39;_</span>&gt;&gt;) {
+    <span class="kw">async fn </span>open(<span class="kw-2">&amp;mut </span><span class="self">self</span>, uris: Vec&lt;<span class="kw-2">&amp;</span>str&gt;, platform_data: HashMap&lt;<span class="kw-2">&amp;</span>str, Value&lt;<span class="lifetime">'_</span>&gt;&gt;) {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(tx) = <span class="kw-2">&amp;mut </span><span class="self">self</span>.<span class="number">0 </span>{
             <span class="kw">let _ </span>= tx
                 .send(DbusActivationMessage {
-                    activation_token: platform_data.get(<span class="string">&quot;activation-token&quot;</span>).and_then(|t| <span class="kw">match </span>t {
+                    activation_token: platform_data.get(<span class="string">"activation-token"</span>).and_then(|t| <span class="kw">match </span>t {
                         Value::Str(t) =&gt; <span class="prelude-val">Some</span>(t.to_string()),
                         <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
                     }),
-                    desktop_startup_id: platform_data.get(<span class="string">&quot;desktop-startup-id&quot;</span>).and_then(
+                    desktop_startup_id: platform_data.get(<span class="string">"desktop-startup-id"</span>).and_then(
                         |t| <span class="kw">match </span>t {
                             Value::Str(t) =&gt; <span class="prelude-val">Some</span>(t.to_string()),
                             <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
@@ -1051,16 +1093,16 @@
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         action_name: <span class="kw-2">&amp;</span>str,
         parameter: Vec&lt;<span class="kw-2">&amp;</span>str&gt;,
-        platform_data: HashMap&lt;<span class="kw-2">&amp;</span>str, Value&lt;<span class="lifetime">&#39;_</span>&gt;&gt;,
+        platform_data: HashMap&lt;<span class="kw-2">&amp;</span>str, Value&lt;<span class="lifetime">'_</span>&gt;&gt;,
     ) {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(tx) = <span class="kw-2">&amp;mut </span><span class="self">self</span>.<span class="number">0 </span>{
             <span class="kw">let _ </span>= tx
                 .send(DbusActivationMessage {
-                    activation_token: platform_data.get(<span class="string">&quot;activation-token&quot;</span>).and_then(|t| <span class="kw">match </span>t {
+                    activation_token: platform_data.get(<span class="string">"activation-token"</span>).and_then(|t| <span class="kw">match </span>t {
                         Value::Str(t) =&gt; <span class="prelude-val">Some</span>(t.to_string()),
                         <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
                     }),
-                    desktop_startup_id: platform_data.get(<span class="string">&quot;desktop-startup-id&quot;</span>).and_then(
+                    desktop_startup_id: platform_data.get(<span class="string">"desktop-startup-id"</span>).and_then(
                         |t| <span class="kw">match </span>t {
                             Value::Str(t) =&gt; <span class="prelude-val">Some</span>(t.to_string()),
                             <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
@@ -1079,7 +1121,7 @@
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;single-instance&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"single-instance"</span>)]
 </span><span class="doccomment">/// Launch a COSMIC application with the given [`Settings`].
 /// If the application is already running, the arguments will be passed to the
 /// running instance.
@@ -1088,21 +1130,21 @@
 </span><span class="kw">pub fn </span>run_single_instance&lt;App: Application&gt;(settings: Settings, flags: App::Flags) -&gt; iced::Result
 <span class="kw">where
     </span>App::Flags: CosmicFlags + Clone,
-    App::Message: Clone + std::fmt::Debug + Send + <span class="lifetime">&#39;static</span>,
+    App::Message: Clone + std::fmt::Debug + Send + <span class="lifetime">'static</span>,
 {
-    <span class="kw">let </span>activation_token = std::env::var(<span class="string">&quot;XDG_ACTIVATION_TOKEN&quot;</span>).ok();
+    <span class="kw">let </span>activation_token = std::env::var(<span class="string">"XDG_ACTIVATION_TOKEN"</span>).ok();
 
-    <span class="kw">let </span>override_single = std::env::var(<span class="string">&quot;COSMIC_SINGLE_INSTANCE&quot;</span>)
-        .map(|v| <span class="kw-2">&amp;</span>v.to_lowercase() == <span class="string">&quot;false&quot; </span>|| <span class="kw-2">&amp;</span>v == <span class="string">&quot;0&quot;</span>)
+    <span class="kw">let </span>override_single = std::env::var(<span class="string">"COSMIC_SINGLE_INSTANCE"</span>)
+        .map(|v| <span class="kw-2">&amp;</span>v.to_lowercase() == <span class="string">"false" </span>|| <span class="kw-2">&amp;</span>v == <span class="string">"0"</span>)
         .unwrap_or_default();
     <span class="kw">if </span>override_single {
         <span class="kw">return </span>run::&lt;App&gt;(settings, flags);
     }
 
-    <span class="kw">let </span>path: String = <span class="macro">format!</span>(<span class="string">&quot;/{}&quot;</span>, App::APP_ID.replace(<span class="string">&#39;.&#39;</span>, <span class="string">&quot;/&quot;</span>));
+    <span class="kw">let </span>path: String = <span class="macro">format!</span>(<span class="string">"/{}"</span>, App::APP_ID.replace(<span class="string">'.'</span>, <span class="string">"/"</span>));
 
     <span class="kw">let </span><span class="prelude-val">Ok</span>(conn) = zbus::blocking::Connection::session() <span class="kw">else </span>{
-        <span class="macro">tracing::warn!</span>(<span class="string">&quot;Failed to connect to dbus&quot;</span>);
+        <span class="macro">tracing::warn!</span>(<span class="string">"Failed to connect to dbus"</span>);
         <span class="kw">return </span>run::&lt;App&gt;(settings, flags);
     };
 
@@ -1116,10 +1158,10 @@
             <span class="kw">match </span>{
                 <span class="kw">let </span><span class="kw-2">mut </span>platform_data = HashMap::new();
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(activation_token) = activation_token {
-                    platform_data.insert(<span class="string">&quot;activation-token&quot;</span>, activation_token.into());
+                    platform_data.insert(<span class="string">"activation-token"</span>, activation_token.into());
                 }
-                <span class="kw">if let </span><span class="prelude-val">Ok</span>(startup_id) = std::env::var(<span class="string">&quot;DESKTOP_STARTUP_ID&quot;</span>) {
-                    platform_data.insert(<span class="string">&quot;desktop-startup-id&quot;</span>, startup_id.into());
+                <span class="kw">if let </span><span class="prelude-val">Ok</span>(startup_id) = std::env::var(<span class="string">"DESKTOP_STARTUP_ID"</span>) {
+                    platform_data.insert(<span class="string">"desktop-startup-id"</span>, startup_id.into());
                 }
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(action) = flags.action() {
                     <span class="kw">let </span>action = action.to_string();
@@ -1129,17 +1171,17 @@
                 }
             } {
                 <span class="prelude-val">Ok</span>(()) =&gt; {
-                    <span class="macro">tracing::info!</span>(<span class="string">&quot;Successfully activated another instance&quot;</span>);
+                    <span class="macro">tracing::info!</span>(<span class="string">"Successfully activated another instance"</span>);
                     <span class="bool-val">true
                 </span>}
                 <span class="prelude-val">Err</span>(err) =&gt; {
-                    <span class="macro">tracing::warn!</span>(<span class="question-mark">?</span>err, <span class="string">&quot;Failed to activate another instance&quot;</span>);
+                    <span class="macro">tracing::warn!</span>(<span class="question-mark">?</span>err, <span class="string">"Failed to activate another instance"</span>);
                     <span class="bool-val">false
                 </span>}
             }
         })
     {
-        <span class="macro">tracing::info!</span>(<span class="string">&quot;Another instance is running&quot;</span>);
+        <span class="macro">tracing::info!</span>(<span class="string">"Another instance is running"</span>);
         <span class="prelude-val">Ok</span>(())
     } <span class="kw">else </span>{
         <span class="kw">let </span><span class="kw-2">mut </span>settings = iced_settings::&lt;App&gt;(settings, flags);
@@ -1149,8 +1191,8 @@
 }
 
 <span class="kw">pub trait </span>CosmicFlags {
-    <span class="kw">type </span>SubCommand: ToString + std::fmt::Debug + Clone + Send + <span class="lifetime">&#39;static</span>;
-    <span class="kw">type </span>Args: Into&lt;Vec&lt;String&gt;&gt; + std::fmt::Debug + Clone + Send + <span class="lifetime">&#39;static</span>;
+    <span class="kw">type </span>SubCommand: ToString + std::fmt::Debug + Clone + Send + <span class="lifetime">'static</span>;
+    <span class="kw">type </span>Args: Into&lt;Vec&lt;String&gt;&gt; + std::fmt::Debug + Clone + Send + <span class="lifetime">'static</span>;
     <span class="attr">#[must_use]
     </span><span class="kw">fn </span>action(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="self">Self</span>::SubCommand&gt; {
         <span class="prelude-val">None
@@ -1166,7 +1208,7 @@
 </span><span class="attr">#[allow(unused_variables)]
 </span><span class="kw">pub trait </span>Application
 <span class="kw">where
-    </span><span class="self">Self</span>: Sized + <span class="lifetime">&#39;static</span>,
+    </span><span class="self">Self</span>: Sized + <span class="lifetime">'static</span>,
 {
     <span class="doccomment">/// Default async executor to use with the app.
     </span><span class="kw">type </span>Executor: iced_futures::Executor;
@@ -1175,12 +1217,12 @@
     </span><span class="kw">type </span>Flags;
 
     <span class="doccomment">/// Message type specific to our app.
-    </span><span class="kw">type </span>Message: Clone + std::fmt::Debug + Send + <span class="lifetime">&#39;static</span>;
+    </span><span class="kw">type </span>Message: Clone + std::fmt::Debug + Send + <span class="lifetime">'static</span>;
 
     <span class="doccomment">/// An ID that uniquely identifies the application.
     /// The standard is to pick an ID based on a reverse-domain name notation.
     /// IE: `com.system76.Settings`
-    </span><span class="kw">const </span>APP_ID: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str;
+    </span><span class="kw">const </span>APP_ID: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str;
 
     <span class="doccomment">/// Grants access to the COSMIC Core.
     </span><span class="kw">fn </span>core(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Core;
@@ -1193,6 +1235,11 @@
 
     <span class="doccomment">/// Displays a context drawer on the side of the application window when `Some`.
     </span><span class="kw">fn </span>context_drawer(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Element&lt;<span class="self">Self</span>::Message&gt;&gt; {
+        <span class="prelude-val">None
+    </span>}
+
+    <span class="doccomment">/// Displays a dialog in the center of the application window when `Some`.
+    </span><span class="kw">fn </span>dialog(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Element&lt;<span class="self">Self</span>::Message&gt;&gt; {
         <span class="prelude-val">None
     </span>}
 
@@ -1211,6 +1258,11 @@
         Vec::new()
     }
 
+    <span class="doccomment">/// Get the main [`window::Id`], which is [`window::Id::MAIN`] by default
+    </span><span class="kw">fn </span>main_window_id(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; window::Id {
+        window::Id::MAIN
+    }
+
     <span class="doccomment">/// Allows overriding the default nav bar widget
     </span><span class="kw">fn </span>nav_bar(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Element&lt;Message&lt;<span class="self">Self</span>::Message&gt;&gt;&gt; {
         <span class="kw">if </span>!<span class="self">self</span>.core().nav_bar_active() {
@@ -1224,7 +1276,7 @@
         });
 
         <span class="kw">if </span>!<span class="self">self</span>.core().is_condensed() {
-            nav = nav.max_width(<span class="number">300</span>);
+            nav = nav.max_width(<span class="number">280</span>);
         }
 
         <span class="prelude-val">Some</span>(Element::from(
@@ -1233,7 +1285,7 @@
         ))
     }
 
-    <span class="doccomment">/// Allows COSMIC to integrate with your application&#39;s [`nav_bar::Model`].
+    <span class="doccomment">/// Allows COSMIC to integrate with your application's [`nav_bar::Model`].
     </span><span class="kw">fn </span>nav_model(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>nav_bar::Model&gt; {
         <span class="prelude-val">None
     </span>}
@@ -1279,12 +1331,30 @@
         iced::Command::none()
     }
 
+    <span class="doccomment">/// Respond to a system theme change
+    </span><span class="kw">fn </span>system_theme_update(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        keys: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str],
+        new_theme: <span class="kw-2">&amp;</span>cosmic_theme::Theme,
+    ) -&gt; iced::Command&lt;Message&lt;<span class="self">Self</span>::Message&gt;&gt; {
+        iced::Command::none()
+    }
+
+    <span class="doccomment">/// Respond to a system theme mode change
+    </span><span class="kw">fn </span>system_theme_mode_update(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        keys: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str],
+        new_theme: <span class="kw-2">&amp;</span>cosmic_theme::ThemeMode,
+    ) -&gt; iced::Command&lt;Message&lt;<span class="self">Self</span>::Message&gt;&gt; {
+        iced::Command::none()
+    }
+
     <span class="doccomment">/// Constructs the view for the main window.
     </span><span class="kw">fn </span>view(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Element&lt;<span class="self">Self</span>::Message&gt;;
 
     <span class="doccomment">/// Constructs views for other windows.
     </span><span class="kw">fn </span>view_window(<span class="kw-2">&amp;</span><span class="self">self</span>, id: window::Id) -&gt; Element&lt;<span class="self">Self</span>::Message&gt; {
-        <span class="macro">panic!</span>(<span class="string">&quot;no view for window {id:?}&quot;</span>);
+        <span class="macro">panic!</span>(<span class="string">"no view for window {id:?}"</span>);
     }
 
     <span class="doccomment">/// Overrides the default style for applications
@@ -1293,7 +1363,7 @@
     </span>}
 
     <span class="doccomment">/// Handles dbus activation messages
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;single-instance&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"single-instance"</span>)]
     </span><span class="kw">fn </span>dbus_activation(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         msg: DbusActivationMessage,
@@ -1307,17 +1377,17 @@
     <span class="doccomment">/// Initiates a window drag.
     </span><span class="kw">fn </span>drag(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; iced::Command&lt;Message&lt;<span class="self">Self</span>::Message&gt;&gt;;
 
-    <span class="doccomment">/// Fullscreens the window.
-    </span><span class="kw">fn </span>fullscreen(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; iced::Command&lt;Message&lt;<span class="self">Self</span>::Message&gt;&gt;;
+    <span class="doccomment">/// Maximizes the window.
+    </span><span class="kw">fn </span>maximize(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; iced::Command&lt;Message&lt;<span class="self">Self</span>::Message&gt;&gt;;
 
     <span class="doccomment">/// Minimizes the window.
     </span><span class="kw">fn </span>minimize(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; iced::Command&lt;Message&lt;<span class="self">Self</span>::Message&gt;&gt;;
     <span class="doccomment">/// Get the title of the main window.
 
-    </span><span class="attr">#[cfg(not(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>)))]
+    </span><span class="attr">#[cfg(not(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>)))]
     </span><span class="kw">fn </span>title(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str;
 
-    <span class="attr">#[cfg(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>))]
+    <span class="attr">#[cfg(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>))]
     </span><span class="doccomment">/// Get the title of a window.
     </span><span class="kw">fn </span>title(<span class="kw-2">&amp;</span><span class="self">self</span>, id: window::Id) -&gt; <span class="kw-2">&amp;</span>str;
 
@@ -1331,11 +1401,11 @@
         <span class="self">self</span>.core_mut().set_header_title(title);
     }
 
-    <span class="attr">#[cfg(not(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>)))]
+    <span class="attr">#[cfg(not(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>)))]
     </span><span class="doccomment">/// Set the title of the main window.
     </span><span class="kw">fn </span>set_window_title(<span class="kw-2">&amp;mut </span><span class="self">self</span>, title: String) -&gt; iced::Command&lt;Message&lt;<span class="self">Self</span>::Message&gt;&gt;;
 
-    <span class="attr">#[cfg(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>))]
+    <span class="attr">#[cfg(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>))]
     </span><span class="doccomment">/// Set the title of a window.
     </span><span class="kw">fn </span>set_window_title(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
@@ -1349,28 +1419,28 @@
 
 <span class="kw">impl</span>&lt;App: Application&gt; ApplicationExt <span class="kw">for </span>App {
     <span class="kw">fn </span>drag(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; iced::Command&lt;Message&lt;<span class="self">Self</span>::Message&gt;&gt; {
-        command::drag(<span class="prelude-val">Some</span>(window::Id::MAIN))
+        command::drag(<span class="prelude-val">Some</span>(<span class="self">self</span>.main_window_id()))
     }
 
-    <span class="kw">fn </span>fullscreen(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; iced::Command&lt;Message&lt;<span class="self">Self</span>::Message&gt;&gt; {
-        command::fullscreen(<span class="prelude-val">Some</span>(window::Id::MAIN))
+    <span class="kw">fn </span>maximize(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; iced::Command&lt;Message&lt;<span class="self">Self</span>::Message&gt;&gt; {
+        command::maximize(<span class="prelude-val">Some</span>(<span class="self">self</span>.main_window_id()), <span class="bool-val">true</span>)
     }
 
     <span class="kw">fn </span>minimize(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; iced::Command&lt;Message&lt;<span class="self">Self</span>::Message&gt;&gt; {
-        command::minimize(<span class="prelude-val">Some</span>(window::Id::MAIN))
+        command::minimize(<span class="prelude-val">Some</span>(<span class="self">self</span>.main_window_id()))
     }
 
-    <span class="attr">#[cfg(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>))]
+    <span class="attr">#[cfg(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>))]
     </span><span class="kw">fn </span>title(<span class="kw-2">&amp;</span><span class="self">self</span>, id: window::Id) -&gt; <span class="kw-2">&amp;</span>str {
-        <span class="self">self</span>.core().title.get(<span class="kw-2">&amp;</span>id).map_or(<span class="string">&quot;&quot;</span>, |s| s.as_str())
+        <span class="self">self</span>.core().title.get(<span class="kw-2">&amp;</span>id).map_or(<span class="string">""</span>, |s| s.as_str())
     }
 
-    <span class="attr">#[cfg(not(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>)))]
+    <span class="attr">#[cfg(not(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>)))]
     </span><span class="kw">fn </span>title(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
         <span class="kw-2">&amp;</span><span class="self">self</span>.core().window.header_title
     }
 
-    <span class="attr">#[cfg(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>))]
+    <span class="attr">#[cfg(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>))]
     </span><span class="kw">fn </span>set_window_title(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         title: String,
@@ -1380,11 +1450,11 @@
         command::set_title(<span class="prelude-val">Some</span>(id), title)
     }
 
-    <span class="attr">#[cfg(not(any(feature = <span class="string">&quot;multi-window&quot;</span>, feature = <span class="string">&quot;wayland&quot;</span>)))]
+    <span class="attr">#[cfg(not(any(feature = <span class="string">"multi-window"</span>, feature = <span class="string">"wayland"</span>)))]
     </span><span class="kw">fn </span>set_window_title(<span class="kw-2">&amp;mut </span><span class="self">self</span>, title: String) -&gt; iced::Command&lt;Message&lt;<span class="self">Self</span>::Message&gt;&gt; {
-        <span class="self">self</span>.core_mut()
-            .title
-            .insert(window::Id::MAIN, title.clone());
+        <span class="kw">let </span>id = <span class="self">self</span>.main_window_id();
+
+        <span class="self">self</span>.core_mut().title.insert(id, title.clone());
         iced::Command::none()
     }
 
@@ -1392,6 +1462,10 @@
     </span><span class="kw">fn </span>view_main(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Element&lt;Message&lt;<span class="self">Self</span>::Message&gt;&gt; {
         <span class="kw">let </span>core = <span class="self">self</span>.core();
         <span class="kw">let </span>is_condensed = core.is_condensed();
+        <span class="kw">let </span>focused = core
+            .focused_window()
+            .map(|i| i == <span class="self">self</span>.main_window_id())
+            .unwrap_or_default();
 
         <span class="kw">let </span>content_row = <span class="kw">crate</span>::widget::row::with_children({
             <span class="kw">let </span><span class="kw-2">mut </span>widgets = Vec::with_capacity(<span class="number">2</span>);
@@ -1432,14 +1506,15 @@
             content_row.into()
         };
 
-        <span class="kw">let </span>view_element: Element&lt;<span class="kw">_</span>&gt; = <span class="kw">crate</span>::widget::column::with_capacity(<span class="number">2</span>)
+        <span class="kw">let </span>view_column = <span class="kw">crate</span>::widget::column::with_capacity(<span class="number">2</span>)
             .push_maybe(<span class="kw">if </span>core.window.show_headerbar {
                 <span class="prelude-val">Some</span>({
                     <span class="kw">let </span><span class="kw-2">mut </span>header = <span class="kw">crate</span>::widget::header_bar()
-                        .window_id(window::Id::MAIN)
+                        .focused(focused)
                         .title(<span class="kw-2">&amp;</span>core.window.header_title)
                         .on_drag(Message::Cosmic(cosmic::Message::Drag))
-                        .on_close(Message::Cosmic(cosmic::Message::Close));
+                        .on_close(Message::Cosmic(cosmic::Message::Close))
+                        .on_right_click(Message::Cosmic(cosmic::Message::ShowWindowMenu));
 
                     <span class="kw">if </span><span class="self">self</span>.nav_model().is_some() {
                         <span class="kw">let </span>toggle = <span class="kw">crate</span>::widget::nav_bar_toggle()
@@ -1453,11 +1528,11 @@
                         header = header.start(toggle);
                     }
 
-                    <span class="kw">if </span>core.window.show_maximize {
+                    <span class="kw">if </span>core.window.show_maximize &amp;&amp; core.toolkit_config.show_maximize {
                         header = header.on_maximize(Message::Cosmic(cosmic::Message::Maximize));
                     }
 
-                    <span class="kw">if </span>core.window.show_minimize {
+                    <span class="kw">if </span>core.window.show_minimize &amp;&amp; core.toolkit_config.show_minimize {
                         header = header.on_minimize(Message::Cosmic(cosmic::Message::Minimize));
                     }
 
@@ -1479,13 +1554,21 @@
                 <span class="prelude-val">None
             </span>})
             <span class="comment">// The content element contains every element beneath the header.
-            </span>.push(content)
-            .into();
+            </span>.push(content);
+
+        <span class="comment">// Show any current dialog on top and centered over the view content
+        // We have to use a popover even without a dialog to keep the tree from changing
+        </span><span class="kw">let </span><span class="kw-2">mut </span>popover = popover(view_column);
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(dialog) = <span class="self">self</span>.dialog() {
+            popover = popover.popup(dialog.map(Message::App));
+        }
+
+        <span class="kw">let </span>view_element: Element&lt;<span class="kw">_</span>&gt; = popover.into();
         view_element.debug(core.debug)
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;single-instance&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"single-instance"</span>)]
 </span><span class="kw">fn </span>single_instance_subscription&lt;App: ApplicationExt&gt;() -&gt; Subscription&lt;Message&lt;App::Message&gt;&gt; {
     <span class="kw">use </span>iced_futures::futures::StreamExt;
 
@@ -1496,29 +1579,29 @@
             <span class="kw">let </span><span class="kw-2">mut </span>single_instance: DbusActivation = DbusActivation::new();
             <span class="kw">let </span><span class="kw-2">mut </span>rx = single_instance.rx();
             <span class="kw">if let </span><span class="prelude-val">Ok</span>(builder) = zbus::ConnectionBuilder::session() {
-                <span class="kw">let </span>path: String = <span class="macro">format!</span>(<span class="string">&quot;/{}&quot;</span>, App::APP_ID.replace(<span class="string">&#39;.&#39;</span>, <span class="string">&quot;/&quot;</span>));
+                <span class="kw">let </span>path: String = <span class="macro">format!</span>(<span class="string">"/{}"</span>, App::APP_ID.replace(<span class="string">'.'</span>, <span class="string">"/"</span>));
                 <span class="kw">if let </span><span class="prelude-val">Ok</span>(conn) = builder.build().<span class="kw">await </span>{
                     <span class="comment">// XXX Setup done this way seems to be more reliable.
                     //
                     // the docs for serve_at seem to imply it will replace the
-                    // existing interface at the requested path, but it doesn&#39;t
+                    // existing interface at the requested path, but it doesn't
                     // seem to work that way all the time. The docs for
-                    // object_server().at() imply it won&#39;t replace the existing
+                    // object_server().at() imply it won't replace the existing
                     // interface.
                     //
                     // request_name is used either way, with the builder or
                     // with the connection, but it must be done after the
                     // object server is setup.
                     </span><span class="kw">if </span>conn.object_server().at(path, single_instance).<span class="kw">await </span>!= <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>) {
-                        <span class="macro">tracing::error!</span>(<span class="string">&quot;Failed to serve dbus&quot;</span>);
+                        <span class="macro">tracing::error!</span>(<span class="string">"Failed to serve dbus"</span>);
                         std::process::exit(<span class="number">1</span>);
                     }
                     <span class="kw">if </span>conn.request_name(App::APP_ID).<span class="kw">await</span>.is_err() {
-                        <span class="macro">tracing::error!</span>(<span class="string">&quot;Failed to serve dbus&quot;</span>);
+                        <span class="macro">tracing::error!</span>(<span class="string">"Failed to serve dbus"</span>);
                         std::process::exit(<span class="number">1</span>);
                     }
 
-                    <span class="attr">#[cfg(feature = <span class="string">&quot;smol&quot;</span>)]
+                    <span class="attr">#[cfg(feature = <span class="string">"smol"</span>)]
                     </span><span class="kw">let </span>handle = {
                         std::thread::spawn(<span class="kw">move </span>|| {
                             <span class="kw">let </span>conn_clone = _conn.clone();
@@ -1536,16 +1619,16 @@
                                 .send(Message::Cosmic(cosmic::Message::Activate(token)))
                                 .<span class="kw">await
                             </span>{
-                                <span class="macro">tracing::error!</span>(<span class="question-mark">?</span>err, <span class="string">&quot;Failed to send message&quot;</span>);
+                                <span class="macro">tracing::error!</span>(<span class="question-mark">?</span>err, <span class="string">"Failed to send message"</span>);
                             }
                         }
                         <span class="kw">if let </span><span class="prelude-val">Err</span>(err) = output.send(Message::DbusActivation(msg)).<span class="kw">await </span>{
-                            <span class="macro">tracing::error!</span>(<span class="question-mark">?</span>err, <span class="string">&quot;Failed to send message&quot;</span>);
+                            <span class="macro">tracing::error!</span>(<span class="question-mark">?</span>err, <span class="string">"Failed to send message"</span>);
                         }
                     }
                 }
             } <span class="kw">else </span>{
-                <span class="macro">tracing::warn!</span>(<span class="string">&quot;Failed to connect to dbus for single instance&quot;</span>);
+                <span class="macro">tracing::warn!</span>(<span class="string">"Failed to connect to dbus for single instance"</span>);
             }
 
             <span class="kw">loop </span>{

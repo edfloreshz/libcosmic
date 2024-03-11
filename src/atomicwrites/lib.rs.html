@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/rust-atomicwrites-4300991e648d8b48/043ab48/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="atomicwrites" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/rust-atomicwrites-4300991e648d8b48/043ab48/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="atomicwrites" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -369,8 +370,8 @@
     <span class="doccomment">/// Overwrite files silently.
     </span>AllowOverwrite,
 
-    <span class="doccomment">/// Don&#39;t overwrite files. `AtomicFile.write` will raise errors for such conditions only after
-    /// you&#39;ve already written your data.
+    <span class="doccomment">/// Don't overwrite files. `AtomicFile.write` will raise errors for such conditions only after
+    /// you've already written your data.
     </span>DisallowOverwrite,
 }
 
@@ -415,7 +416,7 @@
 <span class="kw">fn </span>safe_parent(p: <span class="kw-2">&amp;</span>path::Path) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>path::Path&gt; {
     <span class="kw">match </span>p.parent() {
         <span class="prelude-val">None </span>=&gt; <span class="prelude-val">None</span>,
-        <span class="prelude-val">Some</span>(x) <span class="kw">if </span>x.as_os_str().is_empty() =&gt; <span class="prelude-val">Some</span>(path::Path::new(<span class="string">&quot;.&quot;</span>)),
+        <span class="prelude-val">Some</span>(x) <span class="kw">if </span>x.as_os_str().is_empty() =&gt; <span class="prelude-val">Some</span>(path::Path::new(<span class="string">"."</span>)),
         x =&gt; x,
     }
 }
@@ -446,7 +447,7 @@
         AtomicFile::new_with_tmpdir(
             p,
             overwrite,
-            safe_parent(p).unwrap_or_else(|| path::Path::new(<span class="string">&quot;.&quot;</span>)),
+            safe_parent(p).unwrap_or_else(|| path::Path::new(<span class="string">"."</span>)),
         )
     }
 
@@ -504,11 +505,11 @@
         </span>F: FnOnce(<span class="kw-2">&amp;mut </span>fs::File) -&gt; <span class="prelude-ty">Result</span>&lt;T, E&gt;,
     {
         <span class="kw">let </span>tmpdir = tempfile::Builder::new()
-            .prefix(<span class="string">&quot;.atomicwrite&quot;</span>)
+            .prefix(<span class="string">".atomicwrite"</span>)
             .tempdir_in(<span class="kw-2">&amp;</span><span class="self">self</span>.tmpdir)
             .map_err(Error::Internal)<span class="question-mark">?</span>;
 
-        <span class="kw">let </span>tmppath = tmpdir.path().join(<span class="string">&quot;tmpfile.tmp&quot;</span>);
+        <span class="kw">let </span>tmppath = tmpdir.path().join(<span class="string">"tmpfile.tmp"</span>);
         <span class="kw">let </span>rv = {
             <span class="kw">let </span><span class="kw-2">mut </span>tmpfile = options.open(<span class="kw-2">&amp;</span>tmppath).map_err(Error::Internal)<span class="question-mark">?</span>;
             <span class="kw">let </span>r = f(<span class="kw-2">&amp;mut </span>tmpfile).map_err(Error::User)<span class="question-mark">?</span>;
@@ -520,7 +521,7 @@
     }
 }
 
-<span class="attr">#[cfg(all(unix, not(target_os = <span class="string">&quot;redox&quot;</span>)))]
+<span class="attr">#[cfg(all(unix, not(target_os = <span class="string">"redox"</span>)))]
 </span><span class="kw">mod </span>imp {
     <span class="kw">use </span><span class="kw">super</span>::safe_parent;
 
@@ -547,7 +548,7 @@
         <span class="comment">// Do the `renameat`.
         </span>rustix::fs::renameat(<span class="kw-2">&amp;</span>src_parent, src_child_path, dst_parent, dst_child_path)<span class="question-mark">?</span>;
 
-        <span class="comment">// Fsync the parent directory (or directories, if they&#39;re different).
+        <span class="comment">// Fsync the parent directory (or directories, if they're different).
         </span>src_parent.sync_all()<span class="question-mark">?</span>;
         <span class="kw">if </span>src_parent_path != dst_parent_path {
             dst_parent.sync_all()<span class="question-mark">?</span>;
@@ -575,7 +576,7 @@
 
         <span class="comment">// On Linux, use `renameat2` with `RENAME_NOREPLACE` if we have it, as
         // that does an atomic rename.
-        </span><span class="attr">#[cfg(any(target_os = <span class="string">&quot;android&quot;</span>, target_os = <span class="string">&quot;linux&quot;</span>))]
+        </span><span class="attr">#[cfg(any(target_os = <span class="string">"android"</span>, target_os = <span class="string">"linux"</span>))]
         </span>{
             <span class="kw">use </span>rustix::fs::RenameFlags;
             <span class="kw">use </span>std::sync::atomic::AtomicBool;
@@ -592,7 +593,7 @@
                 ) {
                     <span class="prelude-val">Ok</span>(()) =&gt; {
                         <span class="comment">// Fsync the parent directory (or directories, if
-                        // they&#39;re different).
+                        // they're different).
                         </span>src_parent.sync_all()<span class="question-mark">?</span>;
                         <span class="kw">if </span>src_parent_path != dst_parent_path {
                             dst_parent.sync_all()<span class="question-mark">?</span>;
@@ -600,8 +601,8 @@
                         <span class="kw">return </span><span class="prelude-val">Ok</span>(());
                     }
                     <span class="prelude-val">Err</span>(rustix::io::Errno::NOSYS) =&gt; {
-                        <span class="comment">// The OS doesn&#39;t support `renameat2`; remember this so
-                        // that we don&#39;t bother calling it again.
+                        <span class="comment">// The OS doesn't support `renameat2`; remember this so
+                        // that we don't bother calling it again.
                         </span>NO_RENAMEAT2.store(<span class="bool-val">true</span>, Relaxed);
                     }
                     <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e.into()),
@@ -619,7 +620,7 @@
         )<span class="question-mark">?</span>;
         rustix::fs::unlinkat(<span class="kw-2">&amp;</span>src_parent, src_child_path, AtFlags::empty())<span class="question-mark">?</span>;
 
-        <span class="comment">// Fsync the parent directory (or directories, if they&#39;re different).
+        <span class="comment">// Fsync the parent directory (or directories, if they're different).
         </span>src_parent.sync_all()<span class="question-mark">?</span>;
         <span class="kw">if </span>src_parent_path != dst_parent_path {
             dst_parent.sync_all()<span class="question-mark">?</span>;
@@ -629,7 +630,7 @@
     }
 }
 
-<span class="attr">#[cfg(target_os = <span class="string">&quot;redox&quot;</span>)]
+<span class="attr">#[cfg(target_os = <span class="string">"redox"</span>)]
 </span><span class="kw">mod </span>imp {
     <span class="kw">use </span>std::{fs, io, path};
 

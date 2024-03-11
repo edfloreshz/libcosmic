@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["container","style"],"mod":["column"]};
+window.SIDEBAR_ITEMS = {"fn":["container"],"mod":["column"]};

@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `cosmic-theme/src/model/derivation.rs`."><title>derivation.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="cosmic_theme" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `cosmic-theme/src/model/derivation.rs`."><title>derivation.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="cosmic_theme" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -193,29 +194,6 @@
 <a href="#193" id="193">193</a>
 <a href="#194" id="194">194</a>
 <a href="#195" id="195">195</a>
-<a href="#196" id="196">196</a>
-<a href="#197" id="197">197</a>
-<a href="#198" id="198">198</a>
-<a href="#199" id="199">199</a>
-<a href="#200" id="200">200</a>
-<a href="#201" id="201">201</a>
-<a href="#202" id="202">202</a>
-<a href="#203" id="203">203</a>
-<a href="#204" id="204">204</a>
-<a href="#205" id="205">205</a>
-<a href="#206" id="206">206</a>
-<a href="#207" id="207">207</a>
-<a href="#208" id="208">208</a>
-<a href="#209" id="209">209</a>
-<a href="#210" id="210">210</a>
-<a href="#211" id="211">211</a>
-<a href="#212" id="212">212</a>
-<a href="#213" id="213">213</a>
-<a href="#214" id="214">214</a>
-<a href="#215" id="215">215</a>
-<a href="#216" id="216">216</a>
-<a href="#217" id="217">217</a>
-<a href="#218" id="218">218</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>palette::Srgba;
 <span class="kw">use </span>serde::{Deserialize, Serialize};
 
@@ -223,6 +201,7 @@
 
 <span class="doccomment">/// Theme Container colors of a theme, can be a theme background container, primary container, or secondary container
 </span><span class="attr">#[derive(Clone, Debug, Default, Deserialize, Serialize, PartialEq)]
+#[must_use]
 </span><span class="kw">pub struct </span>Container {
     <span class="doccomment">/// the color of the container
     </span><span class="kw">pub </span>base: Srgba,
@@ -235,32 +214,22 @@
 }
 
 <span class="kw">impl </span>Container {
-    <span class="doccomment">/// convert to srgba
-    </span><span class="kw">pub fn </span>into_srgba(<span class="self">self</span>) -&gt; Container {
-        Container {
-            base: <span class="self">self</span>.base.into(),
-            component: <span class="self">self</span>.component.into_srgba(),
-            divider: <span class="self">self</span>.divider.into(),
-            on: <span class="self">self</span>.on.into(),
-        }
-    }
-
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new(component: Component, bg: Srgba, on_bg: Srgba) -&gt; <span class="self">Self </span>{
-        <span class="kw">let </span><span class="kw-2">mut </span>divider_c: Srgba = on_bg.clone().into();
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new(component: Component, base: Srgba, on: Srgba) -&gt; <span class="self">Self </span>{
+        <span class="kw">let </span><span class="kw-2">mut </span>divider_c = base;
         divider_c.alpha = <span class="number">0.2</span>;
 
-        <span class="kw">let </span>divider = over(divider_c.clone(), bg.clone());
         <span class="self">Self </span>{
-            base: bg,
+            base,
             component,
-            divider: divider.into(),
-            on: on_bg,
+            divider: over(divider_c, base),
+            on,
         }
     }
 }
 
 <span class="doccomment">/// The colors for a widget of the Cosmic theme
 </span><span class="attr">#[derive(Clone, PartialEq, Debug, Default, Deserialize, Serialize)]
+#[must_use]
 </span><span class="kw">pub struct </span>Component {
     <span class="doccomment">/// The base color of the widget
     </span><span class="kw">pub </span>base: Srgba,
@@ -290,43 +259,32 @@
     </span><span class="kw">pub </span>disabled_border: Srgba,
 }
 
-<span class="kw">impl </span>Component {
+<span class="attr">#[allow(clippy::must_use_candidate)]
+#[allow(clippy::doc_markdown)]
+</span><span class="kw">impl </span>Component {
     <span class="doccomment">/// get @hover_state_color
     </span><span class="kw">pub fn </span>hover_state_color(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Srgba {
-        <span class="self">self</span>.hover.clone().into()
+        <span class="self">self</span>.hover
     }
+
     <span class="doccomment">/// get @pressed_state_color
     </span><span class="kw">pub fn </span>pressed_state_color(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Srgba {
-        <span class="self">self</span>.pressed.clone().into()
+        <span class="self">self</span>.pressed
     }
+
     <span class="doccomment">/// get @selected_state_color
     </span><span class="kw">pub fn </span>selected_state_color(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Srgba {
-        <span class="self">self</span>.selected.clone().into()
+        <span class="self">self</span>.selected
     }
+
     <span class="doccomment">/// get @selected_state_text_color
     </span><span class="kw">pub fn </span>selected_state_text_color(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Srgba {
-        <span class="self">self</span>.selected_text.clone().into()
+        <span class="self">self</span>.selected_text
     }
+
     <span class="doccomment">/// get @focus_color
     </span><span class="kw">pub fn </span>focus_color(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Srgba {
-        <span class="self">self</span>.focus.clone().into()
-    }
-    <span class="doccomment">/// convert to srgba
-    </span><span class="kw">pub fn </span>into_srgba(<span class="self">self</span>) -&gt; Component {
-        Component {
-            base: <span class="self">self</span>.base.into(),
-            hover: <span class="self">self</span>.hover.into(),
-            pressed: <span class="self">self</span>.pressed.into(),
-            selected: <span class="self">self</span>.selected.into(),
-            selected_text: <span class="self">self</span>.selected_text.into(),
-            focus: <span class="self">self</span>.focus.into(),
-            divider: <span class="self">self</span>.divider.into(),
-            on: <span class="self">self</span>.on.into(),
-            disabled: <span class="self">self</span>.disabled.into(),
-            on_disabled: <span class="self">self</span>.on_disabled.into(),
-            border: <span class="self">self</span>.border.into(),
-            disabled_border: <span class="self">self</span>.disabled_border.into(),
-        }
+        <span class="self">self</span>.focus
     }
 
     <span class="doccomment">/// helper for producing a component from a base color a neutral and an accent
@@ -337,27 +295,27 @@
         hovered: Srgba,
         pressed: Srgba,
     ) -&gt; <span class="self">Self </span>{
-        <span class="kw">let </span>base: Srgba = base.into();
-        <span class="kw">let </span><span class="kw-2">mut </span>base_50 = base.clone();
+        <span class="kw">let </span>base: Srgba = base;
+        <span class="kw">let </span><span class="kw-2">mut </span>base_50 = base;
         base_50.alpha <span class="kw-2">*</span>= <span class="number">0.5</span>;
 
-        <span class="kw">let </span>on_20 = neutral.clone();
-        <span class="kw">let </span><span class="kw-2">mut </span>on_50: Srgba = on_20.clone().into();
+        <span class="kw">let </span>on_20 = neutral;
+        <span class="kw">let </span><span class="kw-2">mut </span>on_50: Srgba = on_20;
         on_50.alpha = <span class="number">0.5</span>;
 
         Component {
-            base: base.clone().into(),
-            hover: over(hovered.clone(), base).into(),
-            pressed: over(pressed, base).into(),
-            selected: over(hovered, base).into(),
-            selected_text: accent.clone(),
+            base,
+            hover: over(hovered, base),
+            pressed: over(pressed, base),
+            selected: over(hovered, base),
+            selected_text: accent,
             divider: on_20,
             on: neutral,
-            disabled: over(base_50, base).into(),
-            on_disabled: over(on_50, base).into(),
+            disabled: over(base_50, base),
+            on_disabled: over(on_50, base),
             focus: accent,
-            border: base.into(),
-            disabled_border: base_50.into(),
+            border: base,
+            disabled_border: base_50,
         }
     }
 
@@ -371,7 +329,7 @@
         pressed: Srgba,
     ) -&gt; <span class="self">Self </span>{
         <span class="kw">let </span><span class="kw-2">mut </span>component = Component::colored_component(base, overlay, accent, hovered, pressed);
-        component.on = on_button.clone();
+        component.on = on_button;
 
         <span class="kw">let </span><span class="kw-2">mut </span>on_disabled = on_button;
         on_disabled.alpha = <span class="number">0.5</span>;
@@ -381,6 +339,7 @@
     }
 
     <span class="doccomment">/// helper for producing a component color theme
+    </span><span class="attr">#[allow(clippy::self_named_constructors)]
     </span><span class="kw">pub fn </span>component(
         base: Srgba,
         accent: Srgba,
@@ -390,11 +349,11 @@
         is_high_contrast: bool,
         border: Srgba,
     ) -&gt; <span class="self">Self </span>{
-        <span class="kw">let </span><span class="kw-2">mut </span>base_50 = base.clone();
+        <span class="kw">let </span><span class="kw-2">mut </span>base_50 = base;
         base_50.alpha <span class="kw-2">*</span>= <span class="number">0.5</span>;
 
-        <span class="kw">let </span><span class="kw-2">mut </span>on_20 = on_component.clone();
-        <span class="kw">let </span><span class="kw-2">mut </span>on_50 = on_20.clone();
+        <span class="kw">let </span><span class="kw-2">mut </span>on_20 = on_component;
+        <span class="kw">let </span><span class="kw-2">mut </span>on_50 = on_20;
 
         on_20.alpha = <span class="number">0.2</span>;
         on_50.alpha = <span class="number">0.5</span>;
@@ -403,34 +362,30 @@
         disabled_border.alpha <span class="kw-2">*</span>= <span class="number">0.5</span>;
 
         Component {
-            base: base.clone().into(),
+            base,
             hover: <span class="kw">if </span>base.alpha &lt; <span class="number">0.001 </span>{
-                hovered.clone()
+                hovered
             } <span class="kw">else </span>{
-                over(hovered.clone(), base).into()
+                over(hovered, base)
             },
             pressed: <span class="kw">if </span>base.alpha &lt; <span class="number">0.001 </span>{
-                pressed.clone()
+                pressed
             } <span class="kw">else </span>{
-                over(pressed.clone(), base).into()
+                over(pressed, base)
             },
             selected: <span class="kw">if </span>base.alpha &lt; <span class="number">0.001 </span>{
-                hovered.clone()
+                hovered
             } <span class="kw">else </span>{
-                over(hovered.clone(), base).into()
+                over(hovered, base)
             },
-            selected_text: accent.clone(),
-            focus: accent.clone(),
-            divider: <span class="kw">if </span>is_high_contrast {
-                on_50.clone().into()
-            } <span class="kw">else </span>{
-                on_20.into()
-            },
-            on: on_component.clone(),
-            disabled: over(base_50, base).into(),
-            on_disabled: over(on_50, base).into(),
-            border: border.into(),
-            disabled_border: disabled_border.into(),
+            selected_text: accent,
+            focus: accent,
+            divider: <span class="kw">if </span>is_high_contrast { on_50 } <span class="kw">else </span>{ on_20 },
+            on: on_component,
+            disabled: over(base_50, base),
+            on_disabled: over(on_50, base),
+            border,
+            disabled_border,
         }
     }
 }

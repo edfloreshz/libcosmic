@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_geom-1.0.5/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_geom" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../lyon_geom/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_geom"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_geom-1.0.5/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_geom" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><a class="sub-logo-container" href="../../lyon_geom/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_geom"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -348,7 +349,7 @@
 <a href="#348" id="348">348</a>
 <a href="#349" id="349">349</a>
 <a href="#350" id="350">350</a>
-</pre></div><pre class="rust"><code><span class="attr">#![doc(html_logo_url = <span class="string">&quot;https://nical.github.io/lyon-doc/lyon-logo.svg&quot;</span>)]
+</pre></div><pre class="rust"><code><span class="attr">#![doc(html_logo_url = <span class="string">"https://nical.github.io/lyon-doc/lyon-logo.svg"</span>)]
 #![deny(bare_trait_objects)]
 #![deny(unconditional_recursion)]
 #![allow(clippy::excessive_precision)]
@@ -373,31 +374,31 @@
 //!
 //! Flattening is the action of approximating a curve with a succession of line segments.
 //!
-//! &lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 120 30&quot; height=&quot;30mm&quot; width=&quot;120mm&quot;&gt;
-//!   &lt;path d=&quot;M26.7 24.94l.82-11.15M44.46 5.1L33.8 7.34&quot; fill=&quot;none&quot; stroke=&quot;#55d400&quot; stroke-width=&quot;.5&quot;/&gt;
-//!   &lt;path d=&quot;M26.7 24.94c.97-11.13 7.17-17.6 17.76-19.84M75.27 24.94l1.13-5.5 2.67-5.48 4-4.42L88 6.7l5.02-1.6&quot; fill=&quot;none&quot; stroke=&quot;#000&quot;/&gt;
-//!   &lt;path d=&quot;M77.57 19.37a1.1 1.1 0 0 1-1.08 1.08 1.1 1.1 0 0 1-1.1-1.08 1.1 1.1 0 0 1 1.08-1.1 1.1 1.1 0 0 1 1.1 1.1&quot; color=&quot;#000&quot; fill=&quot;none&quot; stroke=&quot;#030303&quot; stroke-linecap=&quot;round&quot; stroke-opacity=&quot;.5&quot;/&gt;
-//!   &lt;path d=&quot;M77.57 19.37a1.1 1.1 0 0 1-1.08 1.08 1.1 1.1 0 0 1-1.1-1.08 1.1 1.1 0 0 1 1.08-1.1 1.1 1.1 0 0 1 1.1 1.1&quot; color=&quot;#000&quot; fill=&quot;#fff&quot;/&gt;
-//!   &lt;path d=&quot;M80.22 13.93a1.1 1.1 0 0 1-1.1 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.1-1.08 1.1 1.1 0 0 1 1.08 1.08&quot; color=&quot;#000&quot; fill=&quot;none&quot; stroke=&quot;#030303&quot; stroke-linecap=&quot;round&quot; stroke-opacity=&quot;.5&quot;/&gt;
-//!   &lt;path d=&quot;M80.22 13.93a1.1 1.1 0 0 1-1.1 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.1-1.08 1.1 1.1 0 0 1 1.08 1.08&quot; color=&quot;#000&quot; fill=&quot;#fff&quot;/&gt;
-//!   &lt;path d=&quot;M84.08 9.55a1.1 1.1 0 0 1-1.08 1.1 1.1 1.1 0 0 1-1.1-1.1 1.1 1.1 0 0 1 1.1-1.1 1.1 1.1 0 0 1 1.08 1.1&quot; color=&quot;#000&quot; fill=&quot;none&quot; stroke=&quot;#030303&quot; stroke-linecap=&quot;round&quot; stroke-opacity=&quot;.5&quot;/&gt;
-//!   &lt;path d=&quot;M84.08 9.55a1.1 1.1 0 0 1-1.08 1.1 1.1 1.1 0 0 1-1.1-1.1 1.1 1.1 0 0 1 1.1-1.1 1.1 1.1 0 0 1 1.08 1.1&quot; color=&quot;#000&quot; fill=&quot;#fff&quot;/&gt;
-//!   &lt;path d=&quot;M89.1 6.66a1.1 1.1 0 0 1-1.08 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.08-1.08 1.1 1.1 0 0 1 1.1 1.08&quot; color=&quot;#000&quot; fill=&quot;none&quot; stroke=&quot;#030303&quot; stroke-linecap=&quot;round&quot; stroke-opacity=&quot;.5&quot;/&gt;
-//!   &lt;path d=&quot;M89.1 6.66a1.1 1.1 0 0 1-1.08 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.08-1.08 1.1 1.1 0 0 1 1.1 1.08&quot; color=&quot;#000&quot; fill=&quot;#fff&quot;/&gt;
-//!   &lt;path d=&quot;M94.4 5a1.1 1.1 0 0 1-1.1 1.1A1.1 1.1 0 0 1 92.23 5a1.1 1.1 0 0 1 1.08-1.08A1.1 1.1 0 0 1 94.4 5&quot; color=&quot;#000&quot; fill=&quot;none&quot; stroke=&quot;#030303&quot; stroke-linecap=&quot;round&quot; stroke-opacity=&quot;.5&quot;/&gt;
-//!   &lt;path d=&quot;M94.4 5a1.1 1.1 0 0 1-1.1 1.1A1.1 1.1 0 0 1 92.23 5a1.1 1.1 0 0 1 1.08-1.08A1.1 1.1 0 0 1 94.4 5&quot; color=&quot;#000&quot; fill=&quot;#fff&quot;/&gt;
-//!   &lt;path d=&quot;M76.44 25.13a1.1 1.1 0 0 1-1.1 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.1-1.1 1.1 1.1 0 0 1 1.08 1.1&quot; color=&quot;#000&quot; fill=&quot;none&quot; stroke=&quot;#030303&quot; stroke-linecap=&quot;round&quot; stroke-opacity=&quot;.5&quot;/&gt;
-//!   &lt;path d=&quot;M76.44 25.13a1.1 1.1 0 0 1-1.1 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.1-1.1 1.1 1.1 0 0 1 1.08 1.1&quot; color=&quot;#000&quot; fill=&quot;#fff&quot;/&gt;
-//!   &lt;path d=&quot;M27.78 24.9a1.1 1.1 0 0 1-1.08 1.08 1.1 1.1 0 0 1-1.1-1.08 1.1 1.1 0 0 1 1.1-1.1 1.1 1.1 0 0 1 1.08 1.1&quot; color=&quot;#000&quot; fill=&quot;none&quot; stroke=&quot;#030303&quot; stroke-linecap=&quot;round&quot; stroke-opacity=&quot;.5&quot;/&gt;
-//!   &lt;path d=&quot;M27.78 24.9a1.1 1.1 0 0 1-1.08 1.08 1.1 1.1 0 0 1-1.1-1.08 1.1 1.1 0 0 1 1.1-1.1 1.1 1.1 0 0 1 1.08 1.1&quot; color=&quot;#000&quot; fill=&quot;#fff&quot;/&gt;
-//!   &lt;path d=&quot;M45.4 5.14a1.1 1.1 0 0 1-1.08 1.1 1.1 1.1 0 0 1-1.1-1.1 1.1 1.1 0 0 1 1.1-1.08 1.1 1.1 0 0 1 1.1 1.08&quot; color=&quot;#000&quot; fill=&quot;none&quot; stroke=&quot;#030303&quot; stroke-linecap=&quot;round&quot; stroke-opacity=&quot;.5&quot;/&gt;
-//!   &lt;path d=&quot;M45.4 5.14a1.1 1.1 0 0 1-1.08 1.1 1.1 1.1 0 0 1-1.1-1.1 1.1 1.1 0 0 1 1.1-1.08 1.1 1.1 0 0 1 1.1 1.08&quot; color=&quot;#000&quot; fill=&quot;#fff&quot;/&gt;
-//!   &lt;path d=&quot;M28.67 13.8a1.1 1.1 0 0 1-1.1 1.08 1.1 1.1 0 0 1-1.08-1.08 1.1 1.1 0 0 1 1.08-1.1 1.1 1.1 0 0 1 1.1 1.1&quot; color=&quot;#000&quot; fill=&quot;none&quot; stroke=&quot;#030303&quot; stroke-linecap=&quot;round&quot; stroke-opacity=&quot;.5&quot;/&gt;
-//!   &lt;path d=&quot;M28.67 13.8a1.1 1.1 0 0 1-1.1 1.08 1.1 1.1 0 0 1-1.08-1.08 1.1 1.1 0 0 1 1.08-1.1 1.1 1.1 0 0 1 1.1 1.1&quot; color=&quot;#000&quot; fill=&quot;#fff&quot;/&gt;
-//!   &lt;path d=&quot;M35 7.32a1.1 1.1 0 0 1-1.1 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.1-1.1A1.1 1.1 0 0 1 35 7.33&quot; color=&quot;#000&quot; fill=&quot;none&quot; stroke=&quot;#030303&quot; stroke-linecap=&quot;round&quot; stroke-opacity=&quot;.5&quot;/&gt;
-//!   &lt;path d=&quot;M35 7.32a1.1 1.1 0 0 1-1.1 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.1-1.1A1.1 1.1 0 0 1 35 7.33&quot; color=&quot;#000&quot; fill=&quot;#fff&quot;/&gt;
-//!   &lt;text style=&quot;line-height:6.61458302px&quot; x=&quot;35.74&quot; y=&quot;284.49&quot; font-size=&quot;5.29&quot; font-family=&quot;Sans&quot; letter-spacing=&quot;0&quot; word-spacing=&quot;0&quot; fill=&quot;#b3b3b3&quot; stroke-width=&quot;.26&quot; transform=&quot;translate(19.595 -267)&quot;&gt;
-//!     &lt;tspan x=&quot;35.74&quot; y=&quot;284.49&quot; font-size=&quot;10.58&quot;&gt;→&lt;/tspan&gt;
+//! &lt;svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 30" height="30mm" width="120mm"&gt;
+//!   &lt;path d="M26.7 24.94l.82-11.15M44.46 5.1L33.8 7.34" fill="none" stroke="#55d400" stroke-width=".5"/&gt;
+//!   &lt;path d="M26.7 24.94c.97-11.13 7.17-17.6 17.76-19.84M75.27 24.94l1.13-5.5 2.67-5.48 4-4.42L88 6.7l5.02-1.6" fill="none" stroke="#000"/&gt;
+//!   &lt;path d="M77.57 19.37a1.1 1.1 0 0 1-1.08 1.08 1.1 1.1 0 0 1-1.1-1.08 1.1 1.1 0 0 1 1.08-1.1 1.1 1.1 0 0 1 1.1 1.1" color="#000" fill="none" stroke="#030303" stroke-linecap="round" stroke-opacity=".5"/&gt;
+//!   &lt;path d="M77.57 19.37a1.1 1.1 0 0 1-1.08 1.08 1.1 1.1 0 0 1-1.1-1.08 1.1 1.1 0 0 1 1.08-1.1 1.1 1.1 0 0 1 1.1 1.1" color="#000" fill="#fff"/&gt;
+//!   &lt;path d="M80.22 13.93a1.1 1.1 0 0 1-1.1 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.1-1.08 1.1 1.1 0 0 1 1.08 1.08" color="#000" fill="none" stroke="#030303" stroke-linecap="round" stroke-opacity=".5"/&gt;
+//!   &lt;path d="M80.22 13.93a1.1 1.1 0 0 1-1.1 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.1-1.08 1.1 1.1 0 0 1 1.08 1.08" color="#000" fill="#fff"/&gt;
+//!   &lt;path d="M84.08 9.55a1.1 1.1 0 0 1-1.08 1.1 1.1 1.1 0 0 1-1.1-1.1 1.1 1.1 0 0 1 1.1-1.1 1.1 1.1 0 0 1 1.08 1.1" color="#000" fill="none" stroke="#030303" stroke-linecap="round" stroke-opacity=".5"/&gt;
+//!   &lt;path d="M84.08 9.55a1.1 1.1 0 0 1-1.08 1.1 1.1 1.1 0 0 1-1.1-1.1 1.1 1.1 0 0 1 1.1-1.1 1.1 1.1 0 0 1 1.08 1.1" color="#000" fill="#fff"/&gt;
+//!   &lt;path d="M89.1 6.66a1.1 1.1 0 0 1-1.08 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.08-1.08 1.1 1.1 0 0 1 1.1 1.08" color="#000" fill="none" stroke="#030303" stroke-linecap="round" stroke-opacity=".5"/&gt;
+//!   &lt;path d="M89.1 6.66a1.1 1.1 0 0 1-1.08 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.08-1.08 1.1 1.1 0 0 1 1.1 1.08" color="#000" fill="#fff"/&gt;
+//!   &lt;path d="M94.4 5a1.1 1.1 0 0 1-1.1 1.1A1.1 1.1 0 0 1 92.23 5a1.1 1.1 0 0 1 1.08-1.08A1.1 1.1 0 0 1 94.4 5" color="#000" fill="none" stroke="#030303" stroke-linecap="round" stroke-opacity=".5"/&gt;
+//!   &lt;path d="M94.4 5a1.1 1.1 0 0 1-1.1 1.1A1.1 1.1 0 0 1 92.23 5a1.1 1.1 0 0 1 1.08-1.08A1.1 1.1 0 0 1 94.4 5" color="#000" fill="#fff"/&gt;
+//!   &lt;path d="M76.44 25.13a1.1 1.1 0 0 1-1.1 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.1-1.1 1.1 1.1 0 0 1 1.08 1.1" color="#000" fill="none" stroke="#030303" stroke-linecap="round" stroke-opacity=".5"/&gt;
+//!   &lt;path d="M76.44 25.13a1.1 1.1 0 0 1-1.1 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.1-1.1 1.1 1.1 0 0 1 1.08 1.1" color="#000" fill="#fff"/&gt;
+//!   &lt;path d="M27.78 24.9a1.1 1.1 0 0 1-1.08 1.08 1.1 1.1 0 0 1-1.1-1.08 1.1 1.1 0 0 1 1.1-1.1 1.1 1.1 0 0 1 1.08 1.1" color="#000" fill="none" stroke="#030303" stroke-linecap="round" stroke-opacity=".5"/&gt;
+//!   &lt;path d="M27.78 24.9a1.1 1.1 0 0 1-1.08 1.08 1.1 1.1 0 0 1-1.1-1.08 1.1 1.1 0 0 1 1.1-1.1 1.1 1.1 0 0 1 1.08 1.1" color="#000" fill="#fff"/&gt;
+//!   &lt;path d="M45.4 5.14a1.1 1.1 0 0 1-1.08 1.1 1.1 1.1 0 0 1-1.1-1.1 1.1 1.1 0 0 1 1.1-1.08 1.1 1.1 0 0 1 1.1 1.08" color="#000" fill="none" stroke="#030303" stroke-linecap="round" stroke-opacity=".5"/&gt;
+//!   &lt;path d="M45.4 5.14a1.1 1.1 0 0 1-1.08 1.1 1.1 1.1 0 0 1-1.1-1.1 1.1 1.1 0 0 1 1.1-1.08 1.1 1.1 0 0 1 1.1 1.08" color="#000" fill="#fff"/&gt;
+//!   &lt;path d="M28.67 13.8a1.1 1.1 0 0 1-1.1 1.08 1.1 1.1 0 0 1-1.08-1.08 1.1 1.1 0 0 1 1.08-1.1 1.1 1.1 0 0 1 1.1 1.1" color="#000" fill="none" stroke="#030303" stroke-linecap="round" stroke-opacity=".5"/&gt;
+//!   &lt;path d="M28.67 13.8a1.1 1.1 0 0 1-1.1 1.08 1.1 1.1 0 0 1-1.08-1.08 1.1 1.1 0 0 1 1.08-1.1 1.1 1.1 0 0 1 1.1 1.1" color="#000" fill="#fff"/&gt;
+//!   &lt;path d="M35 7.32a1.1 1.1 0 0 1-1.1 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.1-1.1A1.1 1.1 0 0 1 35 7.33" color="#000" fill="none" stroke="#030303" stroke-linecap="round" stroke-opacity=".5"/&gt;
+//!   &lt;path d="M35 7.32a1.1 1.1 0 0 1-1.1 1.1 1.1 1.1 0 0 1-1.08-1.1 1.1 1.1 0 0 1 1.1-1.1A1.1 1.1 0 0 1 35 7.33" color="#000" fill="#fff"/&gt;
+//!   &lt;text style="line-height:6.61458302px" x="35.74" y="284.49" font-size="5.29" font-family="Sans" letter-spacing="0" word-spacing="0" fill="#b3b3b3" stroke-width=".26" transform="translate(19.595 -267)"&gt;
+//!     &lt;tspan x="35.74" y="284.49" font-size="10.58"&gt;→&lt;/tspan&gt;
 //!   &lt;/text&gt;
 //! &lt;/svg&gt;
 //!
@@ -406,14 +407,14 @@
 //! The smaller the tolerance is, the more precise the approximation and the more segments
 //! are generated. This value is typically chosen in function of the zoom level.
 //!
-//! &lt;svg viewBox=&quot;0 0 47.5 13.2&quot; height=&quot;100&quot; width=&quot;350&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;
-//!   &lt;path d=&quot;M-2.44 9.53c16.27-8.5 39.68-7.93 52.13 1.9&quot; fill=&quot;none&quot; stroke=&quot;#dde9af&quot; stroke-width=&quot;4.6&quot;/&gt;
-//!   &lt;path d=&quot;M-1.97 9.3C14.28 1.03 37.36 1.7 49.7 11.4&quot; fill=&quot;none&quot; stroke=&quot;#00d400&quot; stroke-width=&quot;.57&quot; stroke-linecap=&quot;round&quot; stroke-dasharray=&quot;4.6, 2.291434&quot;/&gt;
-//!   &lt;path d=&quot;M-1.94 10.46L6.2 6.08l28.32-1.4 15.17 6.74&quot; fill=&quot;none&quot; stroke=&quot;#000&quot; stroke-width=&quot;.6&quot;/&gt;
-//!   &lt;path d=&quot;M6.83 6.57a.9.9 0 0 1-1.25.15.9.9 0 0 1-.15-1.25.9.9 0 0 1 1.25-.15.9.9 0 0 1 .15 1.25&quot; color=&quot;#000&quot; stroke=&quot;#000&quot; stroke-width=&quot;.57&quot; stroke-linecap=&quot;round&quot; stroke-opacity=&quot;.5&quot;/&gt;
-//!   &lt;path d=&quot;M35.35 5.3a.9.9 0 0 1-1.25.15.9.9 0 0 1-.15-1.25.9.9 0 0 1 1.25-.15.9.9 0 0 1 .15 1.24&quot; color=&quot;#000&quot; stroke=&quot;#000&quot; stroke-width=&quot;.6&quot; stroke-opacity=&quot;.5&quot;/&gt;
-//!   &lt;g fill=&quot;none&quot; stroke=&quot;#ff7f2a&quot; stroke-width=&quot;.26&quot;&gt;
-//!     &lt;path d=&quot;M20.4 3.8l.1 1.83M19.9 4.28l.48-.56.57.52M21.02 5.18l-.5.56-.6-.53&quot; stroke-width=&quot;.2978872&quot;/&gt;
+//! &lt;svg viewBox="0 0 47.5 13.2" height="100" width="350" xmlns="http://www.w3.org/2000/svg"&gt;
+//!   &lt;path d="M-2.44 9.53c16.27-8.5 39.68-7.93 52.13 1.9" fill="none" stroke="#dde9af" stroke-width="4.6"/&gt;
+//!   &lt;path d="M-1.97 9.3C14.28 1.03 37.36 1.7 49.7 11.4" fill="none" stroke="#00d400" stroke-width=".57" stroke-linecap="round" stroke-dasharray="4.6, 2.291434"/&gt;
+//!   &lt;path d="M-1.94 10.46L6.2 6.08l28.32-1.4 15.17 6.74" fill="none" stroke="#000" stroke-width=".6"/&gt;
+//!   &lt;path d="M6.83 6.57a.9.9 0 0 1-1.25.15.9.9 0 0 1-.15-1.25.9.9 0 0 1 1.25-.15.9.9 0 0 1 .15 1.25" color="#000" stroke="#000" stroke-width=".57" stroke-linecap="round" stroke-opacity=".5"/&gt;
+//!   &lt;path d="M35.35 5.3a.9.9 0 0 1-1.25.15.9.9 0 0 1-.15-1.25.9.9 0 0 1 1.25-.15.9.9 0 0 1 .15 1.24" color="#000" stroke="#000" stroke-width=".6" stroke-opacity=".5"/&gt;
+//!   &lt;g fill="none" stroke="#ff7f2a" stroke-width=".26"&gt;
+//!     &lt;path d="M20.4 3.8l.1 1.83M19.9 4.28l.48-.56.57.52M21.02 5.18l-.5.56-.6-.53" stroke-width=".2978872"/&gt;
 //!   &lt;/g&gt;
 //! &lt;/svg&gt;
 //!
@@ -424,14 +425,14 @@
 
 </span><span class="comment">//#![allow(needless_return)] // clippy
 
-</span><span class="attr">#[cfg(any(test, feature = <span class="string">&quot;std&quot;</span>))]
+</span><span class="attr">#[cfg(any(test, feature = <span class="string">"std"</span>))]
 </span><span class="kw">extern crate </span>std;
 
 <span class="comment">// Reexport dependencies.
 </span><span class="kw">pub use </span>arrayvec;
 <span class="kw">pub use </span>euclid;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;serialization&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"serialization"</span>)]
 #[macro_use]
 </span><span class="kw">pub extern crate </span>serde;
 
@@ -686,7 +687,7 @@
     }
 
     <span class="comment">// Automatically implement Transformation for all &amp;Transformation.
-    </span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, S: Scalar, T: Transformation&lt;S&gt;&gt; Transformation&lt;S&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>T {
+    </span><span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, S: Scalar, T: Transformation&lt;S&gt;&gt; Transformation&lt;S&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'l </span>T {
         <span class="attr">#[inline]
         </span><span class="kw">fn </span>transform_point(<span class="kw-2">&amp;</span><span class="self">self</span>, p: Point&lt;S&gt;) -&gt; Point&lt;S&gt; {
             (<span class="kw-2">*</span><span class="self">self</span>).transform_point(p)

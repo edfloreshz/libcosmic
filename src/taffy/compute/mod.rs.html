@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/taffy-3438f0b42e7e0e0f/7781c70/src/compute/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="taffy" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/taffy-3438f0b42e7e0e0f/7781c70/src/compute/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="taffy" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -229,24 +230,24 @@
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>common;
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>leaf;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;block_layout&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"block_layout"</span>)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>block;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;flexbox&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"flexbox"</span>)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>flexbox;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;grid&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"grid"</span>)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>grid;
 
 <span class="kw">pub use </span>leaf::compute_leaf_layout;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;block_layout&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"block_layout"</span>)]
 </span><span class="kw">pub use </span><span class="self">self</span>::block::compute_block_layout;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;flexbox&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"flexbox"</span>)]
 </span><span class="kw">pub use </span><span class="self">self</span>::flexbox::compute_flexbox_layout;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;grid&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"grid"</span>)]
 </span><span class="kw">pub use </span><span class="self">self</span>::grid::compute_grid_layout;
 
 <span class="kw">use </span><span class="kw">crate</span>::geometry::{Line, Point, Size};
@@ -284,7 +285,7 @@
             order: <span class="number">0</span>,
             location: Point::ZERO,
             size: output.size,
-            <span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
             </span>content_size: output.content_size,
             scrollbar_size,
             padding,
@@ -310,7 +311,7 @@
     <span class="comment">// First we check if we have a cached result for the given input
     </span><span class="kw">let </span>cache_entry = tree.get_cache_mut(node).get(known_dimensions, available_space, run_mode);
     <span class="kw">if let </span><span class="prelude-val">Some</span>(cached_size_and_baselines) = cache_entry {
-        <span class="macro">debug_log!</span>(<span class="string">&quot;CACHE&quot;</span>, dbg:cached_size_and_baselines.size);
+        <span class="macro">debug_log!</span>(<span class="string">"CACHE"</span>, dbg:cached_size_and_baselines.size);
         <span class="macro">debug_log_node!</span>(known_dimensions, parent_size, available_space, run_mode, sizing_mode);
         <span class="macro">debug_pop_node!</span>();
         <span class="kw">return </span>cached_size_and_baselines;
@@ -321,7 +322,7 @@
     <span class="comment">// Cache result
     </span>tree.get_cache_mut(node).store(known_dimensions, available_space, run_mode, computed_size_and_baselines);
 
-    <span class="macro">debug_log!</span>(<span class="string">&quot;RESULT&quot;</span>, dbg:computed_size_and_baselines.size);
+    <span class="macro">debug_log!</span>(<span class="string">"RESULT"</span>, dbg:computed_size_and_baselines.size);
     <span class="macro">debug_pop_node!</span>();
 
     computed_size_and_baselines
@@ -368,7 +369,7 @@
         layout.padding.bottom = round(cumulative_y + unrounded_layout.size.height)
             - round(cumulative_y + unrounded_layout.size.height - unrounded_layout.padding.bottom);
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
         </span>round_content_size(<span class="kw-2">&amp;mut </span>layout, unrounded_layout.content_size, cumulative_x, cumulative_y);
 
         tree.set_final_layout(node_id, <span class="kw-2">&amp;</span>layout);
@@ -380,7 +381,7 @@
         }
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
     #[inline(always)]
     </span><span class="doccomment">/// Round content size variables.
     /// This is split into a separate function to make it easier to feature flag.
@@ -441,7 +442,7 @@
         compute_hidden_layout(<span class="kw-2">&amp;mut </span>taffy.as_layout_tree(), root.into());
 
         <span class="comment">// Whatever size and display-mode the nodes had previously,
-        // all layouts should resolve to ZERO due to the root&#39;s DISPLAY::NONE
+        // all layouts should resolve to ZERO due to the root's DISPLAY::NONE
         </span><span class="kw">for </span>(node, <span class="kw">_</span>) <span class="kw">in </span>taffy.nodes.iter().filter(|(node, <span class="kw">_</span>)| <span class="kw-2">*</span>node != root.into()) {
             <span class="kw">if let </span><span class="prelude-val">Ok</span>(layout) = taffy.layout(node.into()) {
                 <span class="macro">assert_eq!</span>(layout.size, Size::zero());

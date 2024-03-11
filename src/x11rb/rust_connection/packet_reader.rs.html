@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-0.13.0/src/rust_connection/packet_reader.rs`."><title>packet_reader.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-0.13.0/src/rust_connection/packet_reader.rs`."><title>packet_reader.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -224,13 +225,13 @@
 }
 
 <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>PacketReader {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
-        f.debug_struct(<span class="string">&quot;PacketReader&quot;</span>)
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
+        f.debug_struct(<span class="string">"PacketReader"</span>)
             .field(
-                <span class="string">&quot;read_buffer&quot;</span>,
-                <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;[buffer of size {}]&quot;</span>, <span class="self">self</span>.read_buffer.len()),
+                <span class="string">"read_buffer"</span>,
+                <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">"[buffer of size {}]"</span>, <span class="self">self</span>.read_buffer.len()),
             )
-            .field(<span class="string">&quot;inner&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.inner)
+            .field(<span class="string">"inner"</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.inner)
             .finish()
     }
 }
@@ -258,19 +259,19 @@
             // into the buffer
             </span><span class="kw">if </span><span class="self">self</span>.inner.remaining_capacity() &gt;= <span class="self">self</span>.read_buffer.len() {
                 <span class="macro">crate::trace!</span>(
-                    <span class="string">&quot;Trying to read large packet with {} bytes remaining&quot;</span>,
+                    <span class="string">"Trying to read large packet with {} bytes remaining"</span>,
                     <span class="self">self</span>.inner.remaining_capacity()
                 );
                 <span class="kw">match </span>stream.read(<span class="self">self</span>.inner.buffer(), fd_storage) {
                     <span class="prelude-val">Ok</span>(<span class="number">0</span>) =&gt; {
-                        <span class="macro">crate::error!</span>(<span class="string">&quot;Large read returned zero&quot;</span>);
+                        <span class="macro">crate::error!</span>(<span class="string">"Large read returned zero"</span>);
                         <span class="kw">return </span><span class="prelude-val">Err</span>(Error::new(
                             ErrorKind::UnexpectedEof,
-                            <span class="string">&quot;The X11 server closed the connection&quot;</span>,
+                            <span class="string">"The X11 server closed the connection"</span>,
                         ));
                     }
                     <span class="prelude-val">Ok</span>(n) =&gt; {
-                        <span class="macro">crate::trace!</span>(<span class="string">&quot;Read {} bytes directly into large packet&quot;</span>, n);
+                        <span class="macro">crate::trace!</span>(<span class="string">"Read {} bytes directly into large packet"</span>, n);
                         <span class="kw">if let </span><span class="prelude-val">Some</span>(packet) = <span class="self">self</span>.inner.advance(n) {
                             out_packets.push(packet);
                         }
@@ -282,17 +283,17 @@
                 <span class="comment">// read into our buffer
                 </span><span class="kw">let </span>nread = <span class="kw">match </span>stream.read(<span class="kw-2">&amp;mut </span><span class="self">self</span>.read_buffer, fd_storage) {
                     <span class="prelude-val">Ok</span>(<span class="number">0</span>) =&gt; {
-                        <span class="macro">crate::error!</span>(<span class="string">&quot;Buffered read returned zero&quot;</span>);
+                        <span class="macro">crate::error!</span>(<span class="string">"Buffered read returned zero"</span>);
                         <span class="kw">return </span><span class="prelude-val">Err</span>(Error::new(
                             ErrorKind::UnexpectedEof,
-                            <span class="string">&quot;The X11 server closed the connection&quot;</span>,
+                            <span class="string">"The X11 server closed the connection"</span>,
                         ));
                     }
                     <span class="prelude-val">Ok</span>(n) =&gt; n,
                     <span class="prelude-val">Err</span>(<span class="kw-2">ref </span>e) <span class="kw">if </span>e.kind() == io::ErrorKind::WouldBlock =&gt; <span class="kw">break</span>,
                     <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e),
                 };
-                <span class="macro">crate::trace!</span>(<span class="string">&quot;Read {} bytes into read buffer&quot;</span>, nread);
+                <span class="macro">crate::trace!</span>(<span class="string">"Read {} bytes into read buffer"</span>, nread);
 
                 <span class="comment">// begin reading that data into packets
                 </span><span class="kw">let </span><span class="kw-2">mut </span>src = <span class="kw-2">&amp;</span><span class="self">self</span>.read_buffer[..nread];
@@ -314,7 +315,7 @@
             }
         }
         <span class="macro">crate::trace!</span>(
-            <span class="string">&quot;Read {} complete packet(s)&quot;</span>,
+            <span class="string">"Read {} complete packet(s)"</span>,
             out_packets.len() - original_length
         );
 

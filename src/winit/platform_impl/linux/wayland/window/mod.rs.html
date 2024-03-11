@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/8987daa/src/platform_impl/linux/wayland/window/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../../" data-static-root-path="../../../../../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../../src-files.js"></script><script defer src="../../../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/bdc6610/src/platform_impl/linux/wayland/window/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../../../" data-static-root-path="../../../../../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../../src-files.js"></script><script defer src="../../../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -915,7 +916,7 @@
         <span class="comment">// Set startup mode.
         </span><span class="kw">match </span>attributes.fullscreen.<span class="number">0</span>.map(Into::into) {
             <span class="prelude-val">Some</span>(Fullscreen::Exclusive(<span class="kw">_</span>)) =&gt; {
-                <span class="macro">warn!</span>(<span class="string">&quot;`Fullscreen::Exclusive` is ignored on Wayland&quot;</span>);
+                <span class="macro">warn!</span>(<span class="string">"`Fullscreen::Exclusive` is ignored on Wayland"</span>);
             }
             <span class="prelude-val">Some</span>(Fullscreen::Borderless(monitor)) =&gt; {
                 <span class="kw">let </span>output = monitor.and_then(|monitor| <span class="kw">match </span>monitor {
@@ -981,7 +982,7 @@
             })<span class="question-mark">?</span>;
         }
 
-        <span class="comment">// Wake-up event loop, so it&#39;ll send initial redraw requested.
+        <span class="comment">// Wake-up event loop, so it'll send initial redraw requested.
         </span><span class="kw">let </span>event_loop_awakener = event_loop_window_target.event_loop_awakener.clone();
         event_loop_awakener.ping();
 
@@ -1050,7 +1051,7 @@
     </span><span class="kw">pub fn </span>request_redraw(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="comment">// NOTE: try to not wake up the loop when the event was already scheduled and not yet
         // processed by the loop, because if at this point the value was `true` it could only
-        // mean that the loop still haven&#39;t dispatched the value to the client and will do
+        // mean that the loop still haven't dispatched the value to the client and will do
         // eventually, resetting it to `false`.
         </span><span class="kw">if </span><span class="self">self
             </span>.window_requests
@@ -1111,7 +1112,7 @@
 
     <span class="attr">#[inline]
     </span><span class="kw">pub fn </span>set_resize_increments(<span class="kw-2">&amp;</span><span class="self">self</span>, _increments: <span class="prelude-ty">Option</span>&lt;Size&gt;) {
-        <span class="macro">warn!</span>(<span class="string">&quot;`set_resize_increments` is not implemented for Wayland&quot;</span>);
+        <span class="macro">warn!</span>(<span class="string">"`set_resize_increments` is not implemented for Wayland"</span>);
     }
 
     <span class="attr">#[inline]
@@ -1129,7 +1130,7 @@
 
     <span class="attr">#[inline]
     </span><span class="kw">pub fn </span>is_minimized(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;bool&gt; {
-        <span class="comment">// XXX clients don&#39;t know whether they are minimized or not.
+        <span class="comment">// XXX clients don't know whether they are minimized or not.
         </span><span class="prelude-val">None
     </span>}
 
@@ -1197,9 +1198,9 @@
 
     <span class="attr">#[inline]
     </span><span class="kw">pub fn </span>set_minimized(<span class="kw-2">&amp;</span><span class="self">self</span>, minimized: bool) {
-        <span class="comment">// You can&#39;t unminimize the window on Wayland.
+        <span class="comment">// You can't unminimize the window on Wayland.
         </span><span class="kw">if </span>!minimized {
-            <span class="macro">warn!</span>(<span class="string">&quot;Unminimizing is ignored on Wayland.&quot;</span>);
+            <span class="macro">warn!</span>(<span class="string">"Unminimizing is ignored on Wayland."</span>);
             <span class="kw">return</span>;
         }
 
@@ -1249,7 +1250,7 @@
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>set_fullscreen(<span class="kw-2">&amp;</span><span class="self">self</span>, fullscreen: <span class="prelude-ty">Option</span>&lt;Fullscreen&gt;) {
         <span class="kw">match </span>fullscreen {
             <span class="prelude-val">Some</span>(Fullscreen::Exclusive(<span class="kw">_</span>)) =&gt; {
-                <span class="macro">warn!</span>(<span class="string">&quot;`Fullscreen::Exclusive` is ignored on Wayland&quot;</span>);
+                <span class="macro">warn!</span>(<span class="string">"`Fullscreen::Exclusive` is ignored on Wayland"</span>);
             }
             <span class="prelude-val">Some</span>(Fullscreen::Borderless(monitor)) =&gt; {
                 <span class="kw">let </span>output = monitor.and_then(|monitor| <span class="kw">match </span>monitor {
@@ -1281,12 +1282,12 @@
         <span class="kw">let </span>xdg_activation = <span class="kw">match </span><span class="self">self</span>.xdg_activation.as_ref() {
             <span class="prelude-val">Some</span>(xdg_activation) =&gt; xdg_activation,
             <span class="prelude-val">None </span>=&gt; {
-                <span class="macro">warn!</span>(<span class="string">&quot;`request_user_attention` isn&#39;t supported&quot;</span>);
+                <span class="macro">warn!</span>(<span class="string">"`request_user_attention` isn't supported"</span>);
                 <span class="kw">return</span>;
             }
         };
 
-        <span class="comment">// Urgency is only removed by the compositor and there&#39;s no need to raise urgency when it
+        <span class="comment">// Urgency is only removed by the compositor and there's no need to raise urgency when it
         // was already raised.
         </span><span class="kw">if </span>request_type.is_none() || <span class="self">self</span>.attention_requested.load(Ordering::Relaxed) {
             <span class="kw">return</span>;
@@ -1350,7 +1351,7 @@
             <span class="prelude-val">Ok</span>(())
         } <span class="kw">else </span>{
             <span class="kw">let </span>region = Region::new(<span class="kw-2">&amp;*</span><span class="self">self</span>.compositor).map_err(|<span class="kw">_</span>| {
-                ExternalError::Os(<span class="macro">os_error!</span>(OsError::Misc(<span class="string">&quot;failed to set input region.&quot;</span>)))
+                ExternalError::Os(<span class="macro">os_error!</span>(OsError::Misc(<span class="string">"failed to set input region."</span>)))
             })<span class="question-mark">?</span>;
             region.add(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);
             surface.set_input_region(<span class="prelude-val">Some</span>(region.wl_region()));
@@ -1409,11 +1410,11 @@
 
     <span class="attr">#[inline]
     </span><span class="kw">pub fn </span>primary_monitor(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;MonitorHandle&gt; {
-        <span class="comment">// XXX there&#39;s no such concept on Wayland.
+        <span class="comment">// XXX there's no such concept on Wayland.
         </span><span class="prelude-val">None
     </span>}
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;rwh_04&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"rwh_04"</span>)]
     #[inline]
     </span><span class="kw">pub fn </span>raw_window_handle_rwh_04(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; rwh_04::RawWindowHandle {
         <span class="kw">let </span><span class="kw-2">mut </span>window_handle = rwh_04::WaylandHandle::empty();
@@ -1422,7 +1423,7 @@
         rwh_04::RawWindowHandle::Wayland(window_handle)
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;rwh_05&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"rwh_05"</span>)]
     #[inline]
     </span><span class="kw">pub fn </span>raw_window_handle_rwh_05(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; rwh_05::RawWindowHandle {
         <span class="kw">let </span><span class="kw-2">mut </span>window_handle = rwh_05::WaylandWindowHandle::empty();
@@ -1430,7 +1431,7 @@
         rwh_05::RawWindowHandle::Wayland(window_handle)
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;rwh_05&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"rwh_05"</span>)]
     #[inline]
     </span><span class="kw">pub fn </span>raw_display_handle_rwh_05(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; rwh_05::RawDisplayHandle {
         <span class="kw">let </span><span class="kw-2">mut </span>display_handle = rwh_05::WaylandDisplayHandle::empty();
@@ -1438,24 +1439,24 @@
         rwh_05::RawDisplayHandle::Wayland(display_handle)
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;rwh_06&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"rwh_06"</span>)]
     #[inline]
     </span><span class="kw">pub fn </span>raw_window_handle_rwh_06(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;rwh_06::RawWindowHandle, rwh_06::HandleError&gt; {
         <span class="prelude-val">Ok</span>(rwh_06::WaylandWindowHandle::new({
             <span class="kw">let </span>ptr = <span class="self">self</span>.window.wl_surface().id().as_ptr();
-            std::ptr::NonNull::new(ptr <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>).expect(<span class="string">&quot;wl_surface will never be null&quot;</span>)
+            std::ptr::NonNull::new(ptr <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>).expect(<span class="string">"wl_surface will never be null"</span>)
         })
         .into())
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;rwh_06&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"rwh_06"</span>)]
     #[inline]
     </span><span class="kw">pub fn </span>raw_display_handle_rwh_06(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;rwh_06::RawDisplayHandle, rwh_06::HandleError&gt; {
         <span class="prelude-val">Ok</span>(rwh_06::WaylandDisplayHandle::new({
             <span class="kw">let </span>ptr = <span class="self">self</span>.display.id().as_ptr();
-            std::ptr::NonNull::new(ptr <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>).expect(<span class="string">&quot;wl_proxy should never be null&quot;</span>)
+            std::ptr::NonNull::new(ptr <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>).expect(<span class="string">"wl_proxy should never be null"</span>)
         })
         .into())
     }
@@ -1511,13 +1512,13 @@
     <span class="doccomment">/// ```
     /// use winit::window::Theme;
     ///
-    /// assert_eq!(&quot;dark&quot;.try_into(), Ok(Theme::Dark));
-    /// assert_eq!(&quot;lIghT&quot;.try_into(), Ok(Theme::Light));
+    /// assert_eq!("dark".try_into(), Ok(Theme::Dark));
+    /// assert_eq!("lIghT".try_into(), Ok(Theme::Light));
     /// ```
     </span><span class="kw">fn </span>try_from(theme: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, <span class="self">Self</span>::Error&gt; {
-        <span class="kw">if </span>theme.eq_ignore_ascii_case(<span class="string">&quot;dark&quot;</span>) {
+        <span class="kw">if </span>theme.eq_ignore_ascii_case(<span class="string">"dark"</span>) {
             <span class="prelude-val">Ok</span>(<span class="self">Self</span>::Dark)
-        } <span class="kw">else if </span>theme.eq_ignore_ascii_case(<span class="string">&quot;light&quot;</span>) {
+        } <span class="kw">else if </span>theme.eq_ignore_ascii_case(<span class="string">"light"</span>) {
             <span class="prelude-val">Ok</span>(<span class="self">Self</span>::Light)
         } <span class="kw">else </span>{
             <span class="prelude-val">Err</span>(())

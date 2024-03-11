@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tiny-xlib-0.2.2/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tiny_xlib" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/tiny-xlib-0.2.2/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="tiny_xlib" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -575,7 +576,7 @@
 //     https://opensource.org/licenses/Zlib
 //
 // Unless required by applicable law or agreed to in writing, software
-// distributed under these licenses is distributed on an &quot;AS IS&quot; BASIS,
+// distributed under these licenses is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the licenses for the specific language governing permissions and
 // limitations under the licenses.
@@ -585,19 +586,19 @@
 //! The primary contemporary library for handling [Xlib] is the [`x11-dl`] crate. However, there are three
 //! primary issues.
 //!
-//! 1. **You should not be using Xlib in 2023.** [Xlib] is legacy code, and even that doesn&#39;t get across
-//!     how poor the API decisions that it&#39;s locked itself into are. It has a global error hook for
+//! 1. **You should not be using Xlib in 2023.** [Xlib] is legacy code, and even that doesn't get across
+//!     how poor the API decisions that it's locked itself into are. It has a global error hook for
 //!     some reason, thread-safety is a mess, and it has so many soundness holes it might as well be made
 //!     out of swiss cheese. You should not be using [Xlib]. If you *have* to use [Xlib], you should just
 //!     run all of your logic using the much more sound [XCB] library, or, even more ideally, something
-//!     like [`x11rb`]. Then, you take the `Display` pointer and use it for whatever legacy API you&#39;ve
+//!     like [`x11rb`]. Then, you take the `Display` pointer and use it for whatever legacy API you've
 //!     locked yourself into, and use [XCB] or [`x11rb`] for everything else. Yes, I just called [GLX]
-//!     a legacy API. It&#39;s the 2020&#39;s now. [Vulkan] and [`wgpu`] run everywhere aside from legacy machines.
+//!     a legacy API. It's the 2020's now. [Vulkan] and [`wgpu`] run everywhere aside from legacy machines.
 //!     Not to mention, they support [XCB].
 //!
 //! 2. Even if you manage to use [`x11-dl`] without tripping over the legacy API, it is a massive crate.
 //!     [Xlib] comes with quite a few functions, most of which are unnecessary in the 21st century.
-//!     Even if you don&#39;t use any of these and just stick to [XCB], you still pay the price for it.
+//!     Even if you don't use any of these and just stick to [XCB], you still pay the price for it.
 //!     Binaries that use [`x11-dl`] need to dedicate a significant amount of their binary and memory
 //!     space to the library. Even on Release builds, I have recorded [`x11-dl`] taking up to seven
 //!     percent of the binary.
@@ -605,7 +606,7 @@
 //! 3. Global error handling. [Xlib] has a single global error hook. This is reminiscent of the Unix
 //!     signal handling API, in that it makes it difficult to create well-modularized programs
 //!     since they will fight with each-other over the error handlers. However, unlike the signal
-//!     handling API, there is no way to tell if you&#39;re replacing an existing error hook.
+//!     handling API, there is no way to tell if you're replacing an existing error hook.
 //!
 //! `tiny-xlib` aims to solve all of these problems. It provides a safe API around [Xlib] that is
 //! conducive to being handed off to both [XCB] APIs and legacy [Xlib] APIs. The library only
@@ -621,8 +622,8 @@
 //!
 //! # Non-Features
 //!
-//! - Any API outside of opening [`Display`]s and handling errors. If this library doesn&#39;t support some
-//!   feature, it&#39;s probably intentional. You should use [XCB] or [`x11rb`] instead. This includes:
+//! - Any API outside of opening [`Display`]s and handling errors. If this library doesn't support some
+//!   feature, it's probably intentional. You should use [XCB] or [`x11rb`] instead. This includes:
 //!  - Window management.
 //!  - Any extensions outside of `Xlib-xcb`.
 //!  - IME handling.
@@ -651,13 +652,13 @@
 //!
 //! // Register a handler for X11 errors.
 //! tiny_xlib::register_error_handler(Box::new(|_, error| {
-//!     println!(&quot;X11 error: {:?}&quot;, error);
+//!     println!("X11 error: {:?}", error);
 //!     false
 //! }));
 //!
 //! // Do whatever you want with the XCB connection.
 //! loop {
-//!     println!(&quot;Event: {:?}&quot;, xcb_conn.wait_for_event()?);
+//!     println!("Event: {:?}", xcb_conn.wait_for_event()?);
 //! }
 //! # Ok(()) }
 //! ```
@@ -697,9 +698,9 @@
 
 <span class="macro">macro_rules! </span>lock {
     (<span class="macro-nonterminal">$e</span>:expr) =&gt; {{
-        <span class="comment">// Make sure this isn&#39;t flagged with coverage.
+        <span class="comment">// Make sure this isn't flagged with coverage.
         </span><span class="attr">#[cfg_attr(coverage, no_coverage)]
-        </span><span class="kw">fn </span>unwrapper&lt;T&gt;(guard: PoisonError&lt;MutexGuard&lt;<span class="lifetime">&#39;_</span>, T&gt;&gt;) -&gt; MutexGuard&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+        </span><span class="kw">fn </span>unwrapper&lt;T&gt;(guard: PoisonError&lt;MutexGuard&lt;<span class="lifetime">'_</span>, T&gt;&gt;) -&gt; MutexGuard&lt;<span class="lifetime">'_</span>, T&gt; {
             guard.into_inner()
         }
 
@@ -712,30 +713,30 @@
 </span><span class="kw">static </span>XLIB: io::Result&lt;ffi::Xlib&gt; = {
     <span class="attr">#[cfg_attr(coverage, no_coverage)]
     </span><span class="kw">unsafe fn </span>load_xlib_with_error_hook() -&gt; io::Result&lt;ffi::Xlib&gt; {
-        <span class="comment">// Here&#39;s a puzzle: how do you *safely* add an error hook to Xlib? Like signal handling, there
+        <span class="comment">// Here's a puzzle: how do you *safely* add an error hook to Xlib? Like signal handling, there
         // is a single global error hook. Therefore, we need to make sure that we economize on the
         // single slot that we have by offering a way to set it. However, unlike signal handling, there
-        // is no way to tell if we&#39;re replacing an existing error hook. If we replace another library&#39;s
+        // is no way to tell if we're replacing an existing error hook. If we replace another library's
         // error hook, we could cause unsound behavior if it assumes that it is the only error hook.
         //
-        // However, we don&#39;t want to call the default error hook, because it exits the program. So, in
+        // However, we don't want to call the default error hook, because it exits the program. So, in
         // order to tell if the error hook is the default one, we need to compare it to the default
-        // error hook. However, we can&#39;t just compare the function pointers, because the default error
-        // hook is a private function that we can&#39;t access.
+        // error hook. However, we can't just compare the function pointers, because the default error
+        // hook is a private function that we can't access.
         //
         // In order to access it, before anything else runs, this function is called. It loads Xlib,
         // sets the error hook to a dummy function, reads the resulting error hook into a static
         // variable, and then resets the error hook to the default function. This allows us to read
-        // the default error hook and compare it to the one that we&#39;re setting.
+        // the default error hook and compare it to the one that we're setting.
         </span><span class="attr">#[cfg_attr(coverage, no_coverage)]
         </span><span class="kw">fn </span>error(e: <span class="kw">impl </span>std::error::Error) -&gt; io::Error {
-            io::Error::new(io::ErrorKind::Other, <span class="macro">format!</span>(<span class="string">&quot;failed to load Xlib: {}&quot;</span>, e))
+            io::Error::new(io::ErrorKind::Other, <span class="macro">format!</span>(<span class="string">"failed to load Xlib: {}"</span>, e))
         }
         <span class="kw">let </span>xlib = ffi::Xlib::load().map_err(error)<span class="question-mark">?</span>;
 
         <span class="comment">// Dummy function we use to set the error hook.
         </span><span class="attr">#[cfg_attr(coverage, no_coverage)]
-        </span><span class="kw">unsafe extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn </span>dummy(
+        </span><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>dummy(
             _display: <span class="kw-2">*mut </span>ffi::Display,
             _error: <span class="kw-2">*mut </span>ffi::XErrorEvent,
         ) -&gt; std::os::raw::c_int {
@@ -774,13 +775,13 @@
 </span><span class="kw">static </span>DEFAULT_ERROR_HOOK: ErrorHookSlot = ErrorHookSlot::new();
 
 <span class="doccomment">/// An error handling hook.
-</span><span class="kw">type </span>ErrorHook = Box&lt;<span class="kw">dyn </span>FnMut(<span class="kw-2">&amp;</span>Display, <span class="kw-2">&amp;</span>ErrorEvent) -&gt; bool + Send + Sync + <span class="lifetime">&#39;static</span>&gt;;
+</span><span class="kw">type </span>ErrorHook = Box&lt;<span class="kw">dyn </span>FnMut(<span class="kw-2">&amp;</span>Display, <span class="kw-2">&amp;</span>ErrorEvent) -&gt; bool + Send + Sync + <span class="lifetime">'static</span>&gt;;
 
 <span class="doccomment">/// List of error hooks to invoke.
 </span><span class="kw">static </span>ERROR_HANDLERS: Mutex&lt;HandlerList&gt; = Mutex::new(HandlerList::new());
 
 <span class="doccomment">/// Global error handler for X11.
-</span><span class="kw">unsafe extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn </span>error_handler(
+</span><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>error_handler(
     display: <span class="kw-2">*mut </span>ffi::Display,
     error: <span class="kw-2">*mut </span>ffi::XErrorEvent,
 ) -&gt; c_int {
@@ -806,26 +807,26 @@
     </span><span class="kw">let </span>display_ptr = <span class="kw">unsafe </span>{ Display::from_ptr(display.cast()) };
     <span class="kw">let </span>event = ErrorEvent(ptr::read(error));
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;tracing&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"tracing"</span>)]
     </span><span class="macro">tracing::error!</span>(
         display = <span class="question-mark">?</span><span class="kw-2">&amp;*</span>display_ptr,
         error = <span class="question-mark">?</span>event,
-        <span class="string">&quot;got Xlib error&quot;</span>,
+        <span class="string">"got Xlib error"</span>,
     );
 
     <span class="comment">// Invoke the error hooks.
     </span>handlers.iter_mut().any(|(_i, handler)| {
-        <span class="attr">#[cfg(feature = <span class="string">&quot;tracing&quot;</span>)]
-        </span><span class="macro">tracing::trace!</span>(key = _i, <span class="string">&quot;invoking error handler&quot;</span>);
+        <span class="attr">#[cfg(feature = <span class="string">"tracing"</span>)]
+        </span><span class="macro">tracing::trace!</span>(key = _i, <span class="string">"invoking error handler"</span>);
 
         <span class="kw">let </span>stop_going = (handler)(<span class="kw-2">&amp;</span>display_ptr, <span class="kw-2">&amp;</span>event);
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;tracing&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"tracing"</span>)]
         </span>{
             <span class="kw">if </span>stop_going {
-                <span class="macro">tracing::trace!</span>(<span class="string">&quot;error handler returned true, stopping&quot;</span>);
+                <span class="macro">tracing::trace!</span>(<span class="string">"error handler returned true, stopping"</span>);
             } <span class="kw">else </span>{
-                <span class="macro">tracing::trace!</span>(<span class="string">&quot;error handler returned false, continuing&quot;</span>);
+                <span class="macro">tracing::trace!</span>(<span class="string">"error handler returned false, continuing"</span>);
             }
         }
 
@@ -851,7 +852,7 @@
         <span class="comment">// Get the previous error handler.
         </span><span class="kw">let </span>prev = <span class="kw">unsafe </span>{ xlib.set_error_handler(<span class="prelude-val">Some</span>(error_handler)) };
 
-        <span class="comment">// If it isn&#39;t the default error handler, then we need to store it.
+        <span class="comment">// If it isn't the default error handler, then we need to store it.
         // SAFETY: DEFAULT_ERROR_HOOK is not set after the program starts, so this is safe.
         </span><span class="kw">let </span>default_hook = <span class="kw">unsafe </span>{ DEFAULT_ERROR_HOOK.get() };
         <span class="kw">if </span>prev != default_hook.flatten() &amp;&amp; prev != <span class="prelude-val">Some</span>(error_handler) {
@@ -901,13 +902,13 @@
 }
 
 <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>ErrorEvent {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
-        f.debug_struct(<span class="string">&quot;ErrorEvent&quot;</span>)
-            .field(<span class="string">&quot;serial&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.serial())
-            .field(<span class="string">&quot;error_code&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.error_code())
-            .field(<span class="string">&quot;request_code&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.request_code())
-            .field(<span class="string">&quot;minor_code&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.minor_code())
-            .field(<span class="string">&quot;resource_id&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.resource_id())
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
+        f.debug_struct(<span class="string">"ErrorEvent"</span>)
+            .field(<span class="string">"serial"</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.serial())
+            .field(<span class="string">"error_code"</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.error_code())
+            .field(<span class="string">"request_code"</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.request_code())
+            .field(<span class="string">"minor_code"</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.minor_code())
+            .field(<span class="string">"resource_id"</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.resource_id())
             .finish_non_exhaustive()
     }
 }
@@ -926,8 +927,8 @@
 <span class="kw">unsafe impl </span>Sync <span class="kw">for </span>Display {}
 
 <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Display {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
-        f.debug_tuple(<span class="string">&quot;Display&quot;</span>).field(<span class="kw-2">&amp;</span><span class="self">self</span>.ptr.as_ptr()).finish()
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
+        f.debug_tuple(<span class="string">"Display"</span>).field(<span class="kw-2">&amp;</span><span class="self">self</span>.ptr.as_ptr()).finish()
     }
 }
 
@@ -947,7 +948,7 @@
                 ptr,
                 _marker: PhantomData,
             })
-            .ok_or_else(|| io::Error::new(io::ErrorKind::Other, <span class="string">&quot;failed to open display&quot;</span>))
+            .ok_or_else(|| io::Error::new(io::ErrorKind::Other, <span class="string">"failed to open display"</span>))
     }
 
     <span class="doccomment">/// Create a new `Display` from a pointer.
@@ -958,7 +959,7 @@
     /// user logically owns the display.
     </span><span class="kw">pub unsafe fn </span>from_ptr(ptr: <span class="kw-2">*mut </span>c_void) -&gt; ManuallyDrop&lt;<span class="self">Self</span>&gt; {
         ManuallyDrop::new(<span class="self">Self </span>{
-            <span class="comment">// SAFETY: &quot;valid&quot; implies non-null
+            <span class="comment">// SAFETY: "valid" implies non-null
             </span>ptr: NonNull::new_unchecked(ptr.cast()),
             _marker: PhantomData,
         })
@@ -972,7 +973,7 @@
 
 <span class="kw">unsafe impl </span>as_raw_xcb_connection::AsRawXcbConnection <span class="kw">for </span>Display {
     <span class="kw">fn </span>as_raw_xcb_connection(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut </span>as_raw_xcb_connection::xcb_connection_t {
-        <span class="kw">let </span>xlib = get_xlib(<span class="kw-2">&amp;</span>XLIB).expect(<span class="string">&quot;failed to load Xlib&quot;</span>);
+        <span class="kw">let </span>xlib = get_xlib(<span class="kw-2">&amp;</span>XLIB).expect(<span class="string">"failed to load Xlib"</span>);
         <span class="kw">unsafe </span>{ xlib.get_xcb_connection(<span class="self">self</span>.ptr.as_ptr()) }
     }
 }

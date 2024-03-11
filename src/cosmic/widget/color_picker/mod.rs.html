@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/color_picker/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/color_picker/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -880,6 +881,12 @@
 <a href="#880" id="880">880</a>
 <a href="#881" id="881">881</a>
 <a href="#882" id="882">882</a>
+<a href="#883" id="883">883</a>
+<a href="#884" id="884">884</a>
+<a href="#885" id="885">885</a>
+<a href="#886" id="886">886</a>
+<a href="#887" id="887">887</a>
+<a href="#888" id="888">888</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2023 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
@@ -912,7 +919,7 @@
 <span class="kw">use </span><span class="kw">super</span>::divider::horizontal;
 <span class="kw">use </span><span class="kw">super</span>::icon::{<span class="self">self</span>, from_name};
 <span class="kw">use </span><span class="kw">super</span>::segmented_button::{<span class="self">self</span>, Model, SingleSelect};
-<span class="kw">use super</span>::{button, segmented_selection, text, text_input, tooltip, Icon};
+<span class="kw">use super</span>::{button, segmented_control, text, text_input, tooltip, Icon};
 
 <span class="comment">// TODO is this going to look correct enough?
 </span><span class="macro">lazy_static! </span>{
@@ -971,8 +978,8 @@
 <span class="kw">impl </span>ColorPickerModel {
     <span class="attr">#[must_use]
     </span><span class="kw">pub fn </span>new(
-        hex: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">&#39;static</span>, str&gt;&gt; + Clone,
-        rgb: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">&#39;static</span>, str&gt;&gt; + Clone,
+        hex: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'static</span>, str&gt;&gt; + Clone,
+        rgb: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'static</span>, str&gt;&gt; + Clone,
         fallback_color: <span class="prelude-ty">Option</span>&lt;Color&gt;,
         initial_color: <span class="prelude-ty">Option</span>&lt;Color&gt;,
     ) -&gt; <span class="self">Self </span>{
@@ -1000,11 +1007,11 @@
 
     <span class="doccomment">/// Get a color picker button that displays the applied color
     ///
-    </span><span class="kw">pub fn </span>picker_button&lt;<span class="lifetime">&#39;a</span>, Message: <span class="lifetime">&#39;static</span>, T: Fn(ColorPickerUpdate) -&gt; Message&gt;(
+    </span><span class="kw">pub fn </span>picker_button&lt;<span class="lifetime">'a</span>, Message: <span class="lifetime">'static</span>, T: Fn(ColorPickerUpdate) -&gt; Message&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         f: T,
         icon_portion: <span class="prelude-ty">Option</span>&lt;u16&gt;,
-    ) -&gt; <span class="kw">crate</span>::widget::Button&lt;<span class="lifetime">&#39;a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt; {
+    ) -&gt; <span class="kw">crate</span>::widget::Button&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt; {
         color_button(
             <span class="prelude-val">Some</span>(f(ColorPickerUpdate::ToggleColorPicker)),
             <span class="self">self</span>.applied_color,
@@ -1070,7 +1077,11 @@
             }
             ColorPickerUpdate::ActionFinished =&gt; {
                 <span class="kw">let </span>srgb = palette::Srgb::from_color(<span class="self">self</span>.active_color);
-
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(applied_color) = <span class="self">self</span>.applied_color.take() {
+                    <span class="self">self</span>.recent_colors.push(applied_color);
+                }
+                <span class="self">self</span>.applied_color = <span class="prelude-val">Some</span>(Color::from(srgb));
+                <span class="self">self</span>.active = <span class="bool-val">false</span>;
                 <span class="self">self</span>.save_next = <span class="prelude-val">Some</span>(Color::from(srgb));
             }
             ColorPickerUpdate::ToggleColorPicker =&gt; {
@@ -1122,17 +1133,17 @@
 }
 
 <span class="attr">#[derive(Setters, Clone)]
-</span><span class="kw">pub struct </span>ColorPickerBuilder&lt;<span class="lifetime">&#39;a</span>, Message&gt; {
+</span><span class="kw">pub struct </span>ColorPickerBuilder&lt;<span class="lifetime">'a</span>, Message&gt; {
     <span class="attr">#[setters(skip)]
-    </span>model: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Model&lt;SingleSelect&gt;,
+    </span>model: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Model&lt;SingleSelect&gt;,
     <span class="attr">#[setters(skip)]
     </span>active_color: palette::Hsv,
     <span class="attr">#[setters(skip)]
-    </span>input_color: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+    </span>input_color: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
     <span class="attr">#[setters(skip)]
     </span>on_update: <span class="kw">fn</span>(ColorPickerUpdate) -&gt; Message,
     <span class="attr">#[setters(skip)]
-    </span>recent_colors: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Vec&lt;Color&gt;,
+    </span>recent_colors: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Vec&lt;Color&gt;,
     <span class="attr">#[setters(skip)]
     </span>must_clear_cache: Rc&lt;AtomicBool&gt;,
     <span class="attr">#[setters(skip)]
@@ -1141,32 +1152,33 @@
     </span>width: Length,
     height: Length,
     <span class="attr">#[setters(strip_option, into)]
-    </span>reset_label: <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;,
+    </span>reset_label: <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;,
     <span class="attr">#[setters(strip_option, into)]
-    </span>save_label: <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;,
+    </span>save_label: <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;,
     <span class="attr">#[setters(strip_option, into)]
-    </span>cancel_label: <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;,
+    </span>cancel_label: <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, Message&gt; ColorPickerBuilder&lt;<span class="lifetime">&#39;a</span>, Message&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message&gt; ColorPickerBuilder&lt;<span class="lifetime">'a</span>, Message&gt;
 <span class="kw">where
-    </span>Message: Clone + <span class="lifetime">&#39;static</span>,
+    </span>Message: Clone + <span class="lifetime">'static</span>,
 {
     <span class="attr">#[allow(clippy::too_many_lines)]
-    </span><span class="kw">pub fn </span>build&lt;T: Into&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt; + <span class="lifetime">&#39;a</span>&gt;(
+    </span><span class="kw">pub fn </span>build&lt;T: Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt; + <span class="lifetime">'a</span>&gt;(
         <span class="kw-2">mut </span><span class="self">self</span>,
         recent_colors_label: T,
         copy_to_clipboard_label: T,
         copied_to_clipboard_label: T,
-    ) -&gt; ColorPicker&lt;<span class="lifetime">&#39;a</span>, Message&gt; {
+    ) -&gt; ColorPicker&lt;<span class="lifetime">'a</span>, Message&gt; {
         <span class="kw">let </span>on_update = <span class="self">self</span>.on_update;
         <span class="kw">let </span>spacing = THEME.with(|t| t.borrow().cosmic().spacing);
         <span class="kw">let </span><span class="kw-2">mut </span>inner = <span class="macro">column!</span>[
             <span class="comment">// segmented buttons
-            </span>segmented_selection::horizontal(<span class="self">self</span>.model)
+            </span>segmented_control::horizontal(<span class="self">self</span>.model)
                 .on_activate(Box::new(<span class="kw">move </span>|e| on_update(
                     ColorPickerUpdate::ActivateSegmented(e)
                 )))
+                .minimum_button_width(<span class="number">0</span>)
                 .width(<span class="self">self</span>.width),
             <span class="comment">// canvas with gradient for the current color
             // still needs the canvas and the handle to be drawn on it
@@ -1185,7 +1197,7 @@
             .style(Slider::Custom {
                 active: Rc::new(|t| {
                     <span class="kw">let </span>cosmic = t.cosmic();
-                    <span class="kw">let </span><span class="kw-2">mut </span>a = iced_style::slider::StyleSheet::active(t, <span class="kw-2">&amp;</span>Slider::default());
+                    <span class="kw">let </span><span class="kw-2">mut </span>a = slider::StyleSheet::active(t, <span class="kw-2">&amp;</span>Slider::default());
                     a.rail.colors = RailBackground::Gradient {
                         gradient: Linear::new(Radians(<span class="number">0.0</span>)).add_stops(HSV_RAINBOW.clone()),
                         auto_angle: <span class="bool-val">true</span>,
@@ -1199,7 +1211,7 @@
                 }),
                 hovered: Rc::new(|t| {
                     <span class="kw">let </span>cosmic = t.cosmic();
-                    <span class="kw">let </span><span class="kw-2">mut </span>a = iced_style::slider::StyleSheet::active(t, <span class="kw-2">&amp;</span>Slider::default());
+                    <span class="kw">let </span><span class="kw-2">mut </span>a = slider::StyleSheet::active(t, <span class="kw-2">&amp;</span>Slider::default());
                     a.rail.colors = RailBackground::Gradient {
                         gradient: Linear::new(Radians(<span class="number">0.0</span>)).add_stops(HSV_RAINBOW.clone()),
                         auto_angle: <span class="bool-val">true</span>,
@@ -1213,7 +1225,7 @@
                 }),
                 dragging: Rc::new(|t| {
                     <span class="kw">let </span>cosmic = t.cosmic();
-                    <span class="kw">let </span><span class="kw-2">mut </span>a = iced_style::slider::StyleSheet::active(t, <span class="kw-2">&amp;</span>Slider::default());
+                    <span class="kw">let </span><span class="kw-2">mut </span>a = slider::StyleSheet::active(t, <span class="kw-2">&amp;</span>Slider::default());
                     a.rail.colors = RailBackground::Gradient {
                         gradient: Linear::new(Radians(<span class="number">0.0</span>)).add_stops(HSV_RAINBOW.clone()),
                         auto_angle: <span class="bool-val">true</span>,
@@ -1227,7 +1239,7 @@
                 }),
             })
             .width(<span class="self">self</span>.width),
-            text_input(<span class="string">&quot;&quot;</span>, <span class="self">self</span>.input_color)
+            text_input(<span class="string">""</span>, <span class="self">self</span>.input_color)
                 .on_input(<span class="kw">move </span>|s| on_update(ColorPickerUpdate::Input(s)))
                 .on_paste(<span class="kw">move </span>|s| on_update(ColorPickerUpdate::Input(s)))
                 .on_submit(on_update(ColorPickerUpdate::AppliedColor))
@@ -1242,7 +1254,7 @@
                 <span class="comment">// TODO copy paste input contents
                 </span>.trailing_icon({
                     <span class="kw">let </span>button = button(<span class="kw">crate</span>::widget::icon(
-                        from_name(<span class="string">&quot;edit-copy-symbolic&quot;</span>).size(spacing.space_s).into(),
+                        from_name(<span class="string">"edit-copy-symbolic"</span>).size(spacing.space_s).into(),
                     ))
                     .on_press(on_update(ColorPickerUpdate::Copied(Instant::now())))
                     .style(Button::Text);
@@ -1298,6 +1310,7 @@
                                 })
                                 .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;(),
                         )
+                        .padding([<span class="number">0.0</span>, <span class="number">0.0</span>, f32::from(spacing.space_m), <span class="number">0.0</span>])
                         .spacing(spacing.space_xxs),
                     )
                     .width(<span class="self">self</span>.width)
@@ -1361,17 +1374,17 @@
 }
 
 <span class="attr">#[must_use]
-</span><span class="kw">pub struct </span>ColorPicker&lt;<span class="lifetime">&#39;a</span>, Message&gt; {
+</span><span class="kw">pub struct </span>ColorPicker&lt;<span class="lifetime">'a</span>, Message&gt; {
     <span class="kw">pub</span>(<span class="kw">crate</span>) on_update: <span class="kw">fn</span>(ColorPickerUpdate) -&gt; Message,
     width: Length,
     active_color: palette::Hsv,
-    inner: Element&lt;<span class="lifetime">&#39;a</span>, Message&gt;,
+    inner: Element&lt;<span class="lifetime">'a</span>, Message&gt;,
     must_clear_cache: Rc&lt;AtomicBool&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, Message&gt; Widget&lt;Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt; <span class="kw">for </span>ColorPicker&lt;<span class="lifetime">&#39;a</span>, Message&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message&gt; Widget&lt;Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt; <span class="kw">for </span>ColorPicker&lt;<span class="lifetime">'a</span>, Message&gt;
 <span class="kw">where
-    </span>Message: Clone + <span class="lifetime">&#39;static</span>,
+    </span>Message: Clone + <span class="lifetime">'static</span>,
 {
     <span class="kw">fn </span>tag(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; tree::Tag {
         tree::Tag::of::&lt;State&gt;()
@@ -1407,7 +1420,7 @@
         renderer: <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::Renderer,
         theme: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Theme,
         style: <span class="kw-2">&amp;</span>renderer::Style,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         cursor: mouse::Cursor,
         viewport: <span class="kw-2">&amp;</span>Rectangle,
     ) {
@@ -1513,12 +1526,12 @@
         );
     }
 
-    <span class="kw">fn </span>overlay&lt;<span class="lifetime">&#39;b</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="kw-2">mut </span><span class="self">self</span>,
-        state: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="kw-2">mut </span>Tree,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+    <span class="kw">fn </span>overlay&lt;<span class="lifetime">'b</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'b </span><span class="kw-2">mut </span><span class="self">self</span>,
+        state: <span class="kw-2">&amp;</span><span class="lifetime">'b </span><span class="kw-2">mut </span>Tree,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;iced_core::overlay::Element&lt;<span class="lifetime">&#39;b</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;iced_core::overlay::Element&lt;<span class="lifetime">'b</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt; {
         <span class="self">self</span>.inner
             .as_widget_mut()
             .overlay(<span class="kw-2">&amp;mut </span>state.children[<span class="number">0</span>], layout, renderer)
@@ -1528,11 +1541,11 @@
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         tree: <span class="kw-2">&amp;mut </span>Tree,
         event: Event,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         cursor: mouse::Cursor,
         renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
         clipboard: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>Clipboard,
-        shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">&#39;_</span>, Message&gt;,
+        shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">'_</span>, Message&gt;,
         viewport: <span class="kw-2">&amp;</span>Rectangle,
     ) -&gt; event::Status {
         <span class="comment">// if the pointer is performing a drag, intercept pointer motion and button events
@@ -1621,23 +1634,23 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, Message&gt; ColorPicker&lt;<span class="lifetime">&#39;a</span>, Message&gt; <span class="kw">where </span>Message: Clone + <span class="lifetime">&#39;static </span>{}
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message&gt; ColorPicker&lt;<span class="lifetime">'a</span>, Message&gt; <span class="kw">where </span>Message: Clone + <span class="lifetime">'static </span>{}
 <span class="comment">// TODO convert active color to hex or rgba
 </span><span class="kw">fn </span>color_to_string(c: palette::Hsv, is_hex: bool) -&gt; String {
     <span class="kw">let </span>srgb = palette::Srgb::from_color(c);
     <span class="kw">let </span>hex = srgb.into_format::&lt;u8&gt;();
     <span class="kw">if </span>is_hex {
-        <span class="macro">format!</span>(<span class="string">&quot;#{:02X}{:02X}{:02X}&quot;</span>, hex.red, hex.green, hex.blue)
+        <span class="macro">format!</span>(<span class="string">"#{:02X}{:02X}{:02X}"</span>, hex.red, hex.green, hex.blue)
     } <span class="kw">else </span>{
-        <span class="macro">format!</span>(<span class="string">&quot;rgb({}, {}, {})&quot;</span>, hex.red, hex.green, hex.blue)
+        <span class="macro">format!</span>(<span class="string">"rgb({}, {}, {})"</span>, hex.red, hex.green, hex.blue)
     }
 }
 
-<span class="kw">pub fn </span>color_button&lt;<span class="lifetime">&#39;a</span>, Message: <span class="lifetime">&#39;static</span>&gt;(
+<span class="kw">pub fn </span>color_button&lt;<span class="lifetime">'a</span>, Message: <span class="lifetime">'static</span>&gt;(
     on_press: <span class="prelude-ty">Option</span>&lt;Message&gt;,
     color: <span class="prelude-ty">Option</span>&lt;Color&gt;,
     icon_portion: Length,
-) -&gt; <span class="kw">crate</span>::widget::Button&lt;<span class="lifetime">&#39;a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt; {
+) -&gt; <span class="kw">crate</span>::widget::Button&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt; {
     <span class="kw">let </span>spacing = THEME.with(|t| t.borrow().cosmic().spacing);
 
     button(<span class="kw">if </span>color.is_some() {
@@ -1648,7 +1661,7 @@
             <span class="macro">row!</span>[
                 horizontal_space(Length::FillPortion(<span class="number">6</span>)),
                 Icon::from(
-                    icon::from_name(<span class="string">&quot;list-add-symbolic&quot;</span>)
+                    icon::from_name(<span class="string">"list-add-symbolic"</span>)
                         .prefer_svg(<span class="bool-val">true</span>)
                         .symbolic(<span class="bool-val">true</span>)
                         .size(<span class="number">64</span>)
@@ -1675,7 +1688,7 @@
             } <span class="kw">else </span>{
                 (<span class="number">0.0</span>, Color::TRANSPARENT)
             };
-            <span class="kw">let </span>standard = theme.active(focused, <span class="kw-2">&amp;</span>Button::Standard);
+            <span class="kw">let </span>standard = theme.active(focused, <span class="bool-val">false</span>, <span class="kw-2">&amp;</span>Button::Standard);
             button::Appearance {
                 shadow_offset: Vector::default(),
                 background: color.map(Background::from).or(standard.background),
@@ -1713,7 +1726,7 @@
                 (<span class="number">0.0</span>, Color::TRANSPARENT)
             };
 
-            <span class="kw">let </span>standard = theme.hovered(focused, <span class="kw-2">&amp;</span>Button::Standard);
+            <span class="kw">let </span>standard = theme.hovered(focused, <span class="bool-val">false</span>, <span class="kw-2">&amp;</span>Button::Standard);
             button::Appearance {
                 shadow_offset: Vector::default(),
                 background: color.map(Background::from).or(standard.background),
@@ -1735,7 +1748,7 @@
                 (<span class="number">0.0</span>, Color::TRANSPARENT)
             };
 
-            <span class="kw">let </span>standard = theme.pressed(focused, <span class="kw-2">&amp;</span>Button::Standard);
+            <span class="kw">let </span>standard = theme.pressed(focused, <span class="bool-val">false</span>, <span class="kw-2">&amp;</span>Button::Standard);
             button::Appearance {
                 shadow_offset: Vector::default(),
                 background: color.map(Background::from).or(standard.background),
@@ -1751,14 +1764,14 @@
     })
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, Message&gt; From&lt;ColorPicker&lt;<span class="lifetime">&#39;a</span>, Message&gt;&gt;
-    <span class="kw">for </span>iced::Element&lt;<span class="lifetime">&#39;a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message&gt; From&lt;ColorPicker&lt;<span class="lifetime">'a</span>, Message&gt;&gt;
+    <span class="kw">for </span>iced::Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;
 <span class="kw">where
-    </span>Message: <span class="lifetime">&#39;static </span>+ Clone,
+    </span>Message: <span class="lifetime">'static </span>+ Clone,
 {
     <span class="kw">fn </span>from(
-        picker: ColorPicker&lt;<span class="lifetime">&#39;a</span>, Message&gt;,
-    ) -&gt; iced::Element&lt;<span class="lifetime">&#39;a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt; {
+        picker: ColorPicker&lt;<span class="lifetime">'a</span>, Message&gt;,
+    ) -&gt; iced::Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt; {
         Element::new(picker)
     }
 }

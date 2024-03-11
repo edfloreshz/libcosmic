@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wayland-backend-0.3.3/src/sys/client_impl/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="wayland_backend" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/wayland-backend-0.3.3/src/sys/client_impl/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="wayland_backend" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1094,7 +1095,7 @@
     id: u32,
     ptr: <span class="kw-2">*mut </span>wl_proxy,
     alive: <span class="prelude-ty">Option</span>&lt;Arc&lt;AtomicBool&gt;&gt;,
-    interface: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>Interface,
+    interface: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>Interface,
 }
 
 <span class="kw">unsafe impl </span>Send <span class="kw">for </span>InnerObjectId {}
@@ -1137,7 +1138,7 @@
         <span class="self">self</span>.ptr.is_null()
     }
 
-    <span class="kw">pub fn </span>interface(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>Interface {
+    <span class="kw">pub fn </span>interface(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'static </span>Interface {
         <span class="self">self</span>.interface
     }
 
@@ -1146,7 +1147,7 @@
     }
 
     <span class="kw">pub unsafe fn </span>from_ptr(
-        interface: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>Interface,
+        interface: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>Interface,
         ptr: <span class="kw-2">*mut </span>wl_proxy,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, InvalidId&gt; {
         <span class="comment">// Safety: the provided pointer must be a valid wayland object
@@ -1158,7 +1159,7 @@
             CStr::from_ptr(
                 interface
                     .c_ptr
-                    .expect(<span class="string">&quot;[wayland-backend-sys] Cannot use Interface without c_ptr!&quot;</span>)
+                    .expect(<span class="string">"[wayland-backend-sys] Cannot use Interface without c_ptr!"</span>)
                     .name,
             )
         };
@@ -1197,22 +1198,22 @@
 
 <span class="kw">impl </span>std::fmt::Display <span class="kw">for </span>InnerObjectId {
     <span class="attr">#[cfg_attr(coverage, coverage(off))]
-    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
-        <span class="macro">write!</span>(f, <span class="string">&quot;{}@{}&quot;</span>, <span class="self">self</span>.interface.name, <span class="self">self</span>.id)
+    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; std::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">"{}@{}"</span>, <span class="self">self</span>.interface.name, <span class="self">self</span>.id)
     }
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>InnerObjectId {
     <span class="attr">#[cfg_attr(coverage, coverage(off))]
-    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
-        <span class="macro">write!</span>(f, <span class="string">&quot;ObjectId({})&quot;</span>, <span class="self">self</span>)
+    </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; std::fmt::Result {
+        <span class="macro">write!</span>(f, <span class="string">"ObjectId({})"</span>, <span class="self">self</span>)
     }
 }
 
 <span class="kw">struct </span>ProxyUserData {
     alive: Arc&lt;AtomicBool&gt;,
     data: Arc&lt;<span class="kw">dyn </span>ObjectData&gt;,
-    interface: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>Interface,
+    interface: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>Interface,
 }
 
 <span class="attr">#[derive(Debug)]
@@ -1286,10 +1287,10 @@
             <span class="macro">ffi_dispatch!</span>(wayland_client_handle(), wl_display_connect_to_fd, stream.into_raw_fd())
         };
         <span class="kw">if </span>display.is_null() {
-            <span class="macro">panic!</span>(<span class="string">&quot;[wayland-backend-sys] libwayland reported an allocation failure.&quot;</span>);
+            <span class="macro">panic!</span>(<span class="string">"[wayland-backend-sys] libwayland reported an allocation failure."</span>);
         }
         <span class="comment">// set the log trampoline
-        </span><span class="attr">#[cfg(feature = <span class="string">&quot;log&quot;</span>)]
+        </span><span class="attr">#[cfg(feature = <span class="string">"log"</span>)]
         </span><span class="kw">unsafe </span>{
             <span class="macro">ffi_dispatch!</span>(
                 wayland_client_handle(),
@@ -1411,7 +1412,7 @@
         } <span class="kw">else </span>{
             WaylandError::Io(err)
         };
-        <span class="macro">crate::log_error!</span>(<span class="string">&quot;{}&quot;</span>, err);
+        <span class="macro">crate::log_error!</span>(<span class="string">"{}"</span>, err);
         <span class="self">self</span>.last_error = <span class="prelude-val">Some</span>(err.clone());
         err
     }
@@ -1435,7 +1436,7 @@
         <span class="kw">let </span>backend = Backend { backend: InnerBackend { inner } };
 
         <span class="comment">// We erase the lifetime of the Handle to be able to store it in the tls,
-        // it&#39;s safe as it&#39;ll only last until the end of this function call anyway
+        // it's safe as it'll only last until the end of this function call anyway
         </span><span class="kw">let </span>ret = BACKEND.set(<span class="kw-2">&amp;</span>backend, || <span class="kw">unsafe </span>{
             <span class="kw">if </span>evq.is_null() {
                 <span class="macro">ffi_dispatch!</span>(wayland_client_handle(), wl_display_dispatch_pending, display)
@@ -1569,14 +1570,14 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         Message { sender_id: ObjectId { id }, opcode, args }: Message&lt;ObjectId, RawFd&gt;,
         data: <span class="prelude-ty">Option</span>&lt;Arc&lt;<span class="kw">dyn </span>ObjectData&gt;&gt;,
-        child_spec: <span class="prelude-ty">Option</span>&lt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>Interface, u32)&gt;,
+        child_spec: <span class="prelude-ty">Option</span>&lt;(<span class="kw-2">&amp;</span><span class="lifetime">'static </span>Interface, u32)&gt;,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;ObjectId, InvalidId&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>guard = <span class="self">self</span>.lock_state();
         <span class="comment">// check that the argument list is valid
         </span><span class="kw">let </span>message_desc = <span class="kw">match </span>id.interface.requests.get(opcode <span class="kw">as </span>usize) {
             <span class="prelude-val">Some</span>(msg) =&gt; msg,
             <span class="prelude-val">None </span>=&gt; {
-                <span class="macro">panic!</span>(<span class="string">&quot;Unknown opcode {} for object {}@{}.&quot;</span>, opcode, id.interface.name, id.id);
+                <span class="macro">panic!</span>(<span class="string">"Unknown opcode {} for object {}@{}."</span>, opcode, id.interface.name, id.id);
             }
         };
 
@@ -1596,7 +1597,7 @@
 
         <span class="kw">if </span>!check_for_signature(message_desc.signature, <span class="kw-2">&amp;</span>args) {
             <span class="macro">panic!</span>(
-                <span class="string">&quot;Unexpected signature for request {}@{}.{}: expected {:?}, got {:?}.&quot;</span>,
+                <span class="string">"Unexpected signature for request {}@{}.{}: expected {:?}, got {:?}."</span>,
                 id.interface.name, id.id, message_desc.name, message_desc.signature, args
             );
         }
@@ -1611,7 +1612,7 @@
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(child_interface) = message_desc.child_interface {
                     <span class="kw">if </span>!same_interface(child_interface, iface) {
                         <span class="macro">panic!</span>(
-                            <span class="string">&quot;Wrong placeholder used when sending request {}@{}.{}: expected interface {} but got {}&quot;</span>,
+                            <span class="string">"Wrong placeholder used when sending request {}@{}.{}: expected interface {} but got {}"</span>,
                             id.interface.name,
                             id.id,
                             message_desc.name,
@@ -1621,7 +1622,7 @@
                     }
                     <span class="kw">if </span>version != parent_version {
                         <span class="macro">panic!</span>(
-                            <span class="string">&quot;Wrong placeholder used when sending request {}@{}.{}: expected version {} but got {}&quot;</span>,
+                            <span class="string">"Wrong placeholder used when sending request {}@{}.{}: expected version {} but got {}"</span>,
                             id.interface.name,
                             id.id,
                             message_desc.name,
@@ -1635,7 +1636,7 @@
                 <span class="prelude-val">Some</span>((child_interface, parent_version))
             } <span class="kw">else </span>{
                 <span class="macro">panic!</span>(
-                    <span class="string">&quot;Wrong placeholder used when sending request {}@{}.{}: target interface must be specified for a generic constructor.&quot;</span>,
+                    <span class="string">"Wrong placeholder used when sending request {}@{}.{}: target interface must be specified for a generic constructor."</span>,
                     id.interface.name,
                     id.id,
                     message_desc.name
@@ -1648,7 +1649,7 @@
         <span class="kw">let </span>child_interface_ptr = child_spec
             .as_ref()
             .map(|(i, <span class="kw">_</span>)| {
-                i.c_ptr.expect(<span class="string">&quot;[wayland-backend-sys] Cannot use Interface without c_ptr!&quot;</span>)
+                i.c_ptr.expect(<span class="string">"[wayland-backend-sys] Cannot use Interface without c_ptr!"</span>)
                     <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_
             </span>})
             .unwrap_or(std::ptr::null());
@@ -1681,14 +1682,14 @@
                             <span class="kw">return </span><span class="prelude-val">Err</span>(InvalidId);
                         }
                         <span class="kw">if </span>!same_interface(next_interface, o.id.interface) {
-                            <span class="macro">panic!</span>(<span class="string">&quot;Request {}@{}.{} expects an argument of interface {} but {} was provided instead.&quot;</span>, id.interface.name, id.id, message_desc.name, next_interface.name, o.id.interface.name);
+                            <span class="macro">panic!</span>(<span class="string">"Request {}@{}.{} expects an argument of interface {} but {} was provided instead."</span>, id.interface.name, id.id, message_desc.name, next_interface.name, o.id.interface.name);
                         }
                     } <span class="kw">else if </span>!<span class="macro">matches!</span>(
                         message_desc.signature[i],
                         ArgumentType::Object(AllowNull::Yes)
                     ) {
                         <span class="macro">panic!</span>(
-                            <span class="string">&quot;Request {}@{}.{} expects an non-null object argument.&quot;</span>,
+                            <span class="string">"Request {}@{}.{} expects an non-null object argument."</span>,
                             id.interface.name, id.id, message_desc.name
                         );
                     }
@@ -1735,7 +1736,7 @@
         }
 
         <span class="kw">if </span>ret.is_null() &amp;&amp; child_spec.is_some() {
-            <span class="macro">panic!</span>(<span class="string">&quot;[wayland-backend-sys] libwayland reported an allocation failure.&quot;</span>);
+            <span class="macro">panic!</span>(<span class="string">"[wayland-backend-sys] libwayland reported an allocation failure."</span>);
         }
 
         <span class="comment">// initialize the proxy
@@ -1760,7 +1761,7 @@
                         <span class="macro">ffi_dispatch!</span>(wayland_client_handle(), wl_proxy_destroy, ret);
                     }
                     <span class="macro">panic!</span>(
-                        <span class="string">&quot;Sending a request creating an object without providing an object data.&quot;
+                        <span class="string">"Sending a request creating an object without providing an object data."
                     </span>);
                 }
             };
@@ -1851,7 +1852,7 @@
     }
 }
 
-<span class="kw">unsafe extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn </span>dispatcher_func(
+<span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>dispatcher_func(
     <span class="kw">_</span>: <span class="kw-2">*const </span>c_void,
     proxy: <span class="kw-2">*mut </span>c_void,
     opcode: u32,
@@ -1870,7 +1871,7 @@
     <span class="kw">let </span>message_desc = <span class="kw">match </span>interface.events.get(opcode <span class="kw">as </span>usize) {
         <span class="prelude-val">Some</span>(desc) =&gt; desc,
         <span class="prelude-val">None </span>=&gt; {
-            <span class="macro">crate::log_error!</span>(<span class="string">&quot;Unknown event opcode {} for interface {}.&quot;</span>, opcode, interface.name);
+            <span class="macro">crate::log_error!</span>(<span class="string">"Unknown event opcode {} for interface {}."</span>, opcode, interface.name);
             <span class="kw">return </span>-<span class="number">1</span>;
         }
     };
@@ -1922,7 +1923,7 @@
                         };
                         <span class="kw">if </span>!same_interface(next_interface, obj_udata.interface) {
                             <span class="macro">crate::log_error!</span>(
-                                <span class="string">&quot;Received object {}@{} in {}.{} but expected interface {}.&quot;</span>,
+                                <span class="string">"Received object {}@{} in {}.{} but expected interface {}."</span>,
                                 obj_udata.interface.name,
                                 obj_id,
                                 interface.name,
@@ -1967,7 +1968,7 @@
                 </span><span class="kw">if </span>!obj.is_null() {
                     <span class="kw">let </span>child_interface = message_desc.child_interface.unwrap_or_else(|| {
                         <span class="macro">crate::log_warn!</span>(
-                            <span class="string">&quot;Event {}.{} creates an anonymous object.&quot;</span>,
+                            <span class="string">"Event {}.{} creates an anonymous object."</span>,
                             interface.name,
                             opcode
                         );
@@ -2051,10 +2052,10 @@
             }
         }
         (<span class="prelude-val">Some</span>((child_id, <span class="kw">_</span>)), <span class="prelude-val">None</span>) =&gt; {
-            <span class="macro">panic!</span>(<span class="string">&quot;Callback creating object {} did not provide any object data.&quot;</span>, child_id);
+            <span class="macro">panic!</span>(<span class="string">"Callback creating object {} did not provide any object data."</span>, child_id);
         }
         (<span class="prelude-val">None</span>, <span class="prelude-val">Some</span>(<span class="kw">_</span>)) =&gt; {
-            <span class="macro">panic!</span>(<span class="string">&quot;An object data was returned from a callback not creating any object&quot;</span>);
+            <span class="macro">panic!</span>(<span class="string">"An object data was returned from a callback not creating any object"</span>);
         }
         (<span class="prelude-val">None</span>, <span class="prelude-val">None</span>) =&gt; {}
     }
@@ -2062,8 +2063,8 @@
     <span class="number">0
 </span>}
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;log&quot;</span>)]
-</span><span class="kw">extern </span><span class="string">&quot;C&quot; </span>{
+<span class="attr">#[cfg(feature = <span class="string">"log"</span>)]
+</span><span class="kw">extern </span><span class="string">"C" </span>{
     <span class="kw">fn </span>wl_log_trampoline_to_rust_client(fmt: <span class="kw-2">*const </span>std::os::raw::c_char, list: <span class="kw-2">*const </span>c_void);
 }
 
@@ -2087,7 +2088,7 @@
             <span class="comment">// we own the connection, close it
             </span><span class="kw">unsafe </span>{ <span class="macro">ffi_dispatch!</span>(wayland_client_handle(), wl_display_disconnect, <span class="self">self</span>.display) }
         } <span class="kw">else </span>{
-            <span class="comment">// we don&#39;t own the connecton, just destroy the event queue
+            <span class="comment">// we don't own the connecton, just destroy the event queue
             </span><span class="kw">unsafe </span>{ <span class="macro">ffi_dispatch!</span>(wayland_client_handle(), wl_event_queue_destroy, <span class="self">self</span>.evq) }
         }
     }

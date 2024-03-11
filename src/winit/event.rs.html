@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/8987daa/src/event.rs`."><title>event.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/bdc6610/src/event.rs`."><title>event.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1361,7 +1362,7 @@
 //! These are sent to the closure given to [`EventLoop::run(...)`], where they get
 //! processed and used to modify the program state. For more details, see the root-level documentation.
 //!
-//! Some of these events represent different &quot;parts&quot; of a traditional event-handling loop. You could
+//! Some of these events represent different "parts" of a traditional event-handling loop. You could
 //! approximate the basic ordering loop of [`EventLoop::run(...)`] like this:
 //!
 //! ```rust,ignore
@@ -1414,7 +1415,7 @@
 ///
 /// See the module-level docs for more information on the event loop manages each event.
 </span><span class="attr">#[derive(Debug, Clone, PartialEq)]
-</span><span class="kw">pub enum </span>Event&lt;T: <span class="lifetime">&#39;static</span>&gt; {
+</span><span class="kw">pub enum </span>Event&lt;T: <span class="lifetime">'static</span>&gt; {
     <span class="doccomment">/// Emitted when new events arrive from the OS to be processed.
     ///
     /// This event type is useful as a place to put code that should be done before you start
@@ -1450,14 +1451,14 @@
     ///
     /// Considering that the implementation of `Suspended` and [`Resumed`] events may be internally
     /// driven by multiple platform-specific events, and that there may be subtle differences across
-    /// platforms with how these internal events are delivered, it&#39;s recommended that applications
+    /// platforms with how these internal events are delivered, it's recommended that applications
     /// be able to gracefully handle redundant (i.e. back-to-back) `Suspended` or [`Resumed`] events.
     ///
     /// Also see [`Resumed`] notes.
     ///
     /// ## Android
     ///
-    /// On Android, the `Suspended` event is only sent when the application&#39;s associated
+    /// On Android, the `Suspended` event is only sent when the application's associated
     /// [`SurfaceView`] is destroyed. This is expected to closely correlate with the [`onPause`]
     /// lifecycle event but there may technically be a discrepancy.
     ///
@@ -1502,21 +1503,21 @@
 
     <span class="doccomment">/// Emitted when the application has been resumed.
     ///
-    /// For consistency, all platforms emit a `Resumed` event even if they don&#39;t themselves have a
+    /// For consistency, all platforms emit a `Resumed` event even if they don't themselves have a
     /// formal suspend/resume lifecycle. For systems without a standard suspend/resume lifecycle
     /// the `Resumed` event is always emitted after the [`NewEvents(StartCause::Init)`][StartCause::Init]
     /// event.
     ///
     /// # Portability
     ///
-    /// It&#39;s recommended that applications should only initialize their graphics context and create
+    /// It's recommended that applications should only initialize their graphics context and create
     /// a window after they have received their first `Resumed` event. Some systems
-    /// (specifically Android) won&#39;t allow applications to create a render surface until they are
+    /// (specifically Android) won't allow applications to create a render surface until they are
     /// resumed.
     ///
     /// Considering that the implementation of [`Suspended`] and `Resumed` events may be internally
     /// driven by multiple platform-specific events, and that there may be subtle differences across
-    /// platforms with how these internal events are delivered, it&#39;s recommended that applications
+    /// platforms with how these internal events are delivered, it's recommended that applications
     /// be able to gracefully handle redundant (i.e. back-to-back) [`Suspended`] or `Resumed` events.
     ///
     /// Also see [`Suspended`] notes.
@@ -1545,7 +1546,7 @@
     /// ## iOS
     ///
     /// On iOS, the `Resumed` event is emitted in response to an [`applicationDidBecomeActive`]
-    /// callback which means the application is &quot;active&quot; (according to the
+    /// callback which means the application is "active" (according to the
     /// [iOS application lifecycle]).
     ///
     /// [`applicationDidBecomeActive`]: https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622956-applicationdidbecomeactive
@@ -1568,7 +1569,7 @@
 
     <span class="doccomment">/// Emitted when the event loop is about to block and wait for new events.
     ///
-    /// Most applications shouldn&#39;t need to hook into this event since there is no real relationship
+    /// Most applications shouldn't need to hook into this event since there is no real relationship
     /// between how often the event loop needs to wake up and the dispatching of any specific events.
     ///
     /// High frequency event sources, such as input devices could potentially lead to lots of wake
@@ -1581,7 +1582,7 @@
     <span class="doccomment">/// Emitted when the event loop is being shut down.
     ///
     /// This is irreversible - if this event is emitted, it is guaranteed to be the last event that
-    /// gets emitted. You generally want to treat this as a &quot;do on quit&quot; event.
+    /// gets emitted. You generally want to treat this as a "do on quit" event.
     </span>LoopExiting,
 
     <span class="doccomment">/// Emitted when the application has received a memory warning.
@@ -1665,7 +1666,7 @@
         requested_resume: <span class="prelude-ty">Option</span>&lt;Instant&gt;,
     },
 
-    <span class="doccomment">/// Sent if the event loop is being resumed after the loop&#39;s control flow was set to
+    <span class="doccomment">/// Sent if the event loop is being resumed after the loop's control flow was set to
     /// [`ControlFlow::Poll`].
     ///
     /// [`ControlFlow::Poll`]: crate::event_loop::ControlFlow::Poll
@@ -1692,10 +1693,10 @@
         token: ActivationToken,
     },
 
-    <span class="doccomment">/// The size of the window has changed. Contains the client area&#39;s new dimensions.
+    <span class="doccomment">/// The size of the window has changed. Contains the client area's new dimensions.
     </span>Resized(PhysicalSize&lt;u32&gt;),
 
-    <span class="doccomment">/// The position of the window has changed. Contains the window&#39;s new position.
+    <span class="doccomment">/// The position of the window has changed. Contains the window's new position.
     ///
     /// ## Platform-specific
     ///
@@ -1735,7 +1736,7 @@
     ///
     /// ## Platform-specific
     /// - **Windows:** The shift key overrides NumLock. In other words, while shift is held down,
-    ///   numpad keys act as if NumLock wasn&#39;t active. When this is used, the OS sends fake key
+    ///   numpad keys act as if NumLock wasn't active. When this is used, the OS sends fake key
     ///   events which are not marked as `is_synthetic`.
     </span>KeyboardInput {
         device_id: DeviceId,
@@ -1769,7 +1770,7 @@
     ///
     /// ## Platform-specific
     ///
-    /// - **Web:** Doesn&#39;t take into account CSS [`border`], [`padding`], or [`transform`].
+    /// - **Web:** Doesn't take into account CSS [`border`], [`padding`], or [`transform`].
     ///
     /// [`border`]: https://developer.mozilla.org/en-US/docs/Web/CSS/border
     /// [`padding`]: https://developer.mozilla.org/en-US/docs/Web/CSS/padding
@@ -1787,7 +1788,7 @@
     ///
     /// ## Platform-specific
     ///
-    /// - **Web:** Doesn&#39;t take into account CSS [`border`], [`padding`], or [`transform`].
+    /// - **Web:** Doesn't take into account CSS [`border`], [`padding`], or [`transform`].
     ///
     /// [`border`]: https://developer.mozilla.org/en-US/docs/Web/CSS/border
     /// [`padding`]: https://developer.mozilla.org/en-US/docs/Web/CSS/padding
@@ -1798,7 +1799,7 @@
     ///
     /// ## Platform-specific
     ///
-    /// - **Web:** Doesn&#39;t take into account CSS [`border`], [`padding`], or [`transform`].
+    /// - **Web:** Doesn't take into account CSS [`border`], [`padding`], or [`transform`].
     ///
     /// [`border`]: https://developer.mozilla.org/en-US/docs/Web/CSS/border
     /// [`padding`]: https://developer.mozilla.org/en-US/docs/Web/CSS/padding
@@ -1888,7 +1889,7 @@
     ///
     /// ## Platform-specific
     ///
-    /// - **Web:** Doesn&#39;t take into account CSS [`border`], [`padding`], or [`transform`].
+    /// - **Web:** Doesn't take into account CSS [`border`], [`padding`], or [`transform`].
     /// - **macOS:** Unsupported.
     ///
     /// [`border`]: https://developer.mozilla.org/en-US/docs/Web/CSS/border
@@ -1896,12 +1897,12 @@
     /// [`transform`]: https://developer.mozilla.org/en-US/docs/Web/CSS/transform
     </span>Touch(Touch),
 
-    <span class="doccomment">/// The window&#39;s scale factor has changed.
+    <span class="doccomment">/// The window's scale factor has changed.
     ///
     /// The following user actions can cause DPI changes:
     ///
-    /// * Changing the display&#39;s resolution.
-    /// * Changing the display&#39;s scale factor (e.g. in Control Panel on Windows).
+    /// * Changing the display's resolution.
+    /// * Changing the display's scale factor (e.g. in Control Panel on Windows).
     /// * Moving the window to a display with a different scale factor.
     ///
     /// After this event callback has been processed, the window will be resized to whatever value
@@ -1947,7 +1948,7 @@
     ///
     /// ### Others
     ///
-    /// - **Web:** Doesn&#39;t take into account CSS [`border`], [`padding`], or [`transform`].
+    /// - **Web:** Doesn't take into account CSS [`border`], [`padding`], or [`transform`].
     /// - **Android / Windows / Orbital:** Unsupported.
     ///
     /// [`border`]: https://developer.mozilla.org/en-US/docs/Web/CSS/border
@@ -1958,7 +1959,7 @@
     <span class="doccomment">/// Emitted when a window should be redrawn.
     ///
     /// This gets triggered in two scenarios:
-    /// - The OS has performed an operation that&#39;s invalidated the window&#39;s contents (such as
+    /// - The OS has performed an operation that's invalidated the window's contents (such as
     ///   resizing the window).
     /// - The application has explicitly requested a redraw via [`Window::request_redraw`].
     ///
@@ -2038,12 +2039,12 @@
 <span class="doccomment">/// Describes a keyboard input as a raw device event.
 ///
 /// Note that holding down a key may produce repeated `RawKeyEvent`s. The
-/// operating system doesn&#39;t provide information whether such an event is a
+/// operating system doesn't provide information whether such an event is a
 /// repeat or the initial keypress. An application may emulate this by, for
 /// example keeping a Map/Set of pressed keys and determining whether a keypress
 /// corresponds to an already pressed key.
 </span><span class="attr">#[derive(Debug, Clone, Eq, PartialEq, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub struct </span>RawKeyEvent {
     <span class="kw">pub </span>physical_key: keyboard::PhysicalKey,
     <span class="kw">pub </span>state: ElementState,
@@ -2054,10 +2055,10 @@
 </span><span class="kw">pub struct </span>KeyEvent {
     <span class="doccomment">/// Represents the position of a key independent of the currently active layout.
     ///
-    /// It also uniquely identifies the physical key (i.e. it&#39;s mostly synonymous with a scancode).
+    /// It also uniquely identifies the physical key (i.e. it's mostly synonymous with a scancode).
     /// The most prevalent use case for this is games. For example the default keys for the player
     /// to move around might be the W, A, S, and D keys on a US layout. The position of these keys
-    /// is more important than their label, so they should map to Z, Q, S, and D on an &quot;AZERTY&quot;
+    /// is more important than their label, so they should map to Z, Q, S, and D on an "AZERTY"
     /// layout. (This value is `KeyCode::KeyW` for the Z key on an AZERTY layout.)
     ///
     /// ## Caveats
@@ -2075,8 +2076,8 @@
     /// ## `Fn` and `FnLock`
     ///
     /// `Fn` and `FnLock` key events are *exceedingly unlikely* to be emitted by Winit. These keys
-    /// are usually handled at the hardware or OS level, and aren&#39;t surfaced to applications. If
-    /// you somehow see this in the wild, we&#39;d like to know :)
+    /// are usually handled at the hardware or OS level, and aren't surfaced to applications. If
+    /// you somehow see this in the wild, we'd like to know :)
     </span><span class="kw">pub </span>physical_key: keyboard::PhysicalKey,
 
     <span class="comment">// Allowing `broken_intra_doc_links` for `logical_key`, because
@@ -2089,12 +2090,12 @@
     ///
     /// This has two use cases:
     /// - Allows querying whether the current input is a Dead key.
-    /// - Allows handling key-bindings on platforms which don&#39;t
+    /// - Allows handling key-bindings on platforms which don't
     /// support [`key_without_modifiers`].
     ///
     /// If you use this field (or [`key_without_modifiers`] for that matter) for keyboard
     /// shortcuts, **it is important that you provide users with a way to configure your
-    /// application&#39;s shortcuts so you don&#39;t render your application unusable for users with an
+    /// application's shortcuts so you don't render your application unusable for users with an
     /// incompatible keyboard layout.**
     ///
     /// ## Platform-specific
@@ -2117,7 +2118,7 @@
     /// An additional difference from `logical_key` is that
     /// this field stores the text representation of any key
     /// that has such a representation. For example when
-    /// `logical_key` is `Key::Named(NamedKey::Enter)`, this field is `Some(&quot;\r&quot;)`.
+    /// `logical_key` is `Key::Named(NamedKey::Enter)`, this field is `Some("\r")`.
     ///
     /// This is `None` if the current keypress cannot
     /// be interpreted as text.
@@ -2127,10 +2128,10 @@
 
     <span class="doccomment">/// Contains the location of this key on the keyboard.
     ///
-    /// Certain keys on the keyboard may appear in more than once place. For example, the &quot;Shift&quot; key
+    /// Certain keys on the keyboard may appear in more than once place. For example, the "Shift" key
     /// appears on the left side of the QWERTY keyboard as well as the right side. However, both keys
-    /// have the same symbolic value. Another example of this phenomenon is the &quot;1&quot; key, which appears
-    /// both above the &quot;Q&quot; key and as the &quot;Keypad 1&quot; key.
+    /// have the same symbolic value. Another example of this phenomenon is the "1" key, which appears
+    /// both above the "Q" key and as the "Keypad 1" key.
     ///
     /// This field allows the user to differentiate between keys like this that have the same symbolic
     /// value but different locations on the keyboard.
@@ -2168,7 +2169,7 @@
 
     <span class="comment">// NOTE: Currently pressed modifiers keys.
     //
-    // The field providing a metadata, it shouldn&#39;t be used as a source of truth.
+    // The field providing a metadata, it shouldn't be used as a source of truth.
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) pressed_mods: ModifiersKeys,
 }
 
@@ -2238,20 +2239,20 @@
 
 <span class="doccomment">/// Describes [input method](https://en.wikipedia.org/wiki/Input_method) events.
 ///
-/// This is also called a &quot;composition event&quot;.
+/// This is also called a "composition event".
 ///
 /// Most keypresses using a latin-like keyboard layout simply generate a [`WindowEvent::KeyboardInput`].
-/// However, one couldn&#39;t possibly have a key for every single unicode character that the user might want to type
+/// However, one couldn't possibly have a key for every single unicode character that the user might want to type
 /// - so the solution operating systems employ is to allow the user to type these using _a sequence of keypresses_ instead.
 ///
-/// A prominent example of this is accents - many keyboard layouts allow you to first click the &quot;accent key&quot;, and then
+/// A prominent example of this is accents - many keyboard layouts allow you to first click the "accent key", and then
 /// the character you want to apply the accent to. In this case, some platforms will generate the following event sequence:
 /// ```ignore
-/// // Press &quot;`&quot; key
-/// Ime::Preedit(&quot;`&quot;, Some((0, 0)))
-/// // Press &quot;E&quot; key
-/// Ime::Preedit(&quot;&quot;, None) // Synthetic event generated by winit to clear preedit.
-/// Ime::Commit(&quot;é&quot;)
+/// // Press "`" key
+/// Ime::Preedit("`", Some((0, 0)))
+/// // Press "E" key
+/// Ime::Preedit("", None) // Synthetic event generated by winit to clear preedit.
+/// Ime::Commit("é")
 /// ```
 ///
 /// Additionally, certain input devices are configured to display a candidate box that allow the user to select the
@@ -2260,20 +2261,20 @@
 /// An example of a keyboard layout which uses candidate boxes is pinyin. On a latin keyboard the following event
 /// sequence could be obtained:
 /// ```ignore
-/// // Press &quot;A&quot; key
-/// Ime::Preedit(&quot;a&quot;, Some((1, 1)))
-/// // Press &quot;B&quot; key
-/// Ime::Preedit(&quot;a b&quot;, Some((3, 3)))
+/// // Press "A" key
+/// Ime::Preedit("a", Some((1, 1)))
+/// // Press "B" key
+/// Ime::Preedit("a b", Some((3, 3)))
 /// // Press left arrow key
-/// Ime::Preedit(&quot;a b&quot;, Some((1, 1)))
+/// Ime::Preedit("a b", Some((1, 1)))
 /// // Press space key
-/// Ime::Preedit(&quot;啊b&quot;, Some((3, 3)))
+/// Ime::Preedit("啊b", Some((3, 3)))
 /// // Press space key
-/// Ime::Preedit(&quot;&quot;, None) // Synthetic event generated by winit to clear preedit.
-/// Ime::Commit(&quot;啊不&quot;)
+/// Ime::Preedit("", None) // Synthetic event generated by winit to clear preedit.
+/// Ime::Commit("啊不")
 /// ```
 </span><span class="attr">#[derive(Debug, Clone, PartialEq, Eq, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>Ime {
     <span class="doccomment">/// Notifies when the IME was enabled.
     ///
@@ -2285,7 +2286,7 @@
     <span class="doccomment">/// Notifies when a new composing text should be set at the cursor position.
     ///
     /// The value represents a pair of the preedit string and the cursor begin position and end
-    /// position. When it&#39;s `None`, the cursor should be hidden. When `String` is an empty string
+    /// position. When it's `None`, the cursor should be hidden. When `String` is an empty string
     /// this indicates that preedit was cleared.
     ///
     /// The cursor position is byte-wise indexed.
@@ -2298,7 +2299,7 @@
 
     <span class="doccomment">/// Notifies when the IME was disabled.
     ///
-    /// After receiving this event you won&#39;t get any more [`Preedit`](Self::Preedit) or
+    /// After receiving this event you won't get any more [`Preedit`](Self::Preedit) or
     /// [`Commit`](Self::Commit) events until the next [`Enabled`](Self::Enabled) event. You should
     /// also stop issuing IME related requests like [`Window::set_ime_cursor_area`] and clear pending
     /// preedit text.
@@ -2307,7 +2308,7 @@
 
 <span class="doccomment">/// Describes touch-screen input state.
 </span><span class="attr">#[derive(Debug, Hash, PartialEq, Eq, Clone, Copy)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>TouchPhase {
     Started,
     Moved,
@@ -2334,7 +2335,7 @@
 ///
 /// ## Platform-specific
 ///
-/// - **Web:** Doesn&#39;t take into account CSS [`border`], [`padding`], or [`transform`].
+/// - **Web:** Doesn't take into account CSS [`border`], [`padding`], or [`transform`].
 /// - **macOS:** Unsupported.
 ///
 /// [`border`]: https://developer.mozilla.org/en-US/docs/Web/CSS/border
@@ -2351,7 +2352,7 @@
     /// ## Platform-specific
     ///
     /// - Only available on **iOS** 9.0+, **Windows** 8+, **Web**, and **Android**.
-    /// - **Android**: This will never be [None]. If the device doesn&#39;t support pressure
+    /// - **Android**: This will never be [None]. If the device doesn't support pressure
     /// sensitivity, force will either be 0.0 or 1.0. Also see the
     /// [android documentation](https://developer.android.com/reference/android/view/MotionEvent#AXIS_PRESSURE).
     </span><span class="kw">pub </span>force: <span class="prelude-ty">Option</span>&lt;Force&gt;,
@@ -2386,7 +2387,7 @@
         </span>altitude_angle: <span class="prelude-ty">Option</span>&lt;f64&gt;,
     },
     <span class="doccomment">/// If the platform reports the force as normalized, we have no way of
-    /// knowing how much pressure 1.0 corresponds to – we know it&#39;s the maximum
+    /// knowing how much pressure 1.0 corresponds to – we know it's the maximum
     /// amount of force, but as to how much force, you might either have to
     /// press really really hard, or not hard at all, depending on the device.
     </span>Normalized(f64),
@@ -2424,7 +2425,7 @@
 
 <span class="doccomment">/// Describes the input state of a key.
 </span><span class="attr">#[derive(Debug, Hash, PartialEq, Eq, Clone, Copy)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>ElementState {
     Pressed,
     Released,
@@ -2444,7 +2445,7 @@
 /// **macOS:** `Back` and `Forward` might not work with all hardware.
 /// **Orbital:** `Back` and `Forward` are unsupported due to orbital not supporting them.
 </span><span class="attr">#[derive(Debug, Hash, PartialEq, Eq, PartialOrd, Ord, Clone, Copy)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>MouseButton {
     Left,
     Right,
@@ -2456,7 +2457,7 @@
 
 <span class="doccomment">/// Describes a difference in the mouse scroll wheel state.
 </span><span class="attr">#[derive(Debug, Clone, Copy, PartialEq)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub enum </span>MouseScrollDelta {
     <span class="doccomment">/// Amount in lines or rows to scroll in the horizontal
     /// and vertical directions.
@@ -2475,7 +2476,7 @@
     /// Positive values indicate that the content being scrolled should
     /// move right/down.
     ///
-    /// For a &#39;natural scrolling&#39; touch pad (that acts like a touch screen)
+    /// For a 'natural scrolling' touch pad (that acts like a touch screen)
     /// this means moving your fingers right and down should give positive values,
     /// and move the content right and down (to reveal more things left and up).
     </span>PixelDelta(PhysicalPosition&lt;f64&gt;),
@@ -2552,8 +2553,8 @@
                 with_window_event(Focused(<span class="bool-val">true</span>));
                 with_window_event(Moved((<span class="number">0</span>, <span class="number">0</span>).into()));
                 with_window_event(Resized((<span class="number">0</span>, <span class="number">0</span>).into()));
-                with_window_event(DroppedFile(<span class="string">&quot;x.txt&quot;</span>.into()));
-                with_window_event(HoveredFile(<span class="string">&quot;x.txt&quot;</span>.into()));
+                with_window_event(DroppedFile(<span class="string">"x.txt"</span>.into()));
+                with_window_event(HoveredFile(<span class="string">"x.txt"</span>.into()));
                 with_window_event(HoveredFileCancelled);
                 with_window_event(Ime(Enabled));
                 with_window_event(CursorMoved {
@@ -2682,7 +2683,7 @@
     #[test]
     </span><span class="kw">fn </span>ensure_attrs_do_not_panic() {
         <span class="macro">foreach_event!</span>(|event: event::Event&lt;()&gt;| {
-            <span class="kw">let _ </span>= <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, event);
+            <span class="kw">let _ </span>= <span class="macro">format!</span>(<span class="string">"{:?}"</span>, event);
         });
         <span class="kw">let _ </span>= event::StartCause::Init.clone();
 

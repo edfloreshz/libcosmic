@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/softbuffer-b53d51e2579e9817/6e75b1a/src/kms.rs`."><title>kms.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="softbuffer" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/softbuffer-b53d51e2579e9817/6e75b1a/src/kms.rs`."><title>kms.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="softbuffer" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -442,14 +443,14 @@
 <span class="attr">#[derive(Debug)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>KmsDisplayImpl&lt;D: <span class="question-mark">?</span>Sized&gt; {
     <span class="doccomment">/// The underlying raw device file descriptor.
-    </span>fd: BorrowedFd&lt;<span class="lifetime">&#39;static</span>&gt;,
+    </span>fd: BorrowedFd&lt;<span class="lifetime">'static</span>&gt;,
 
     <span class="doccomment">/// Holds a reference to the display.
     </span>_display: D,
 }
 
 <span class="kw">impl</span>&lt;D: <span class="question-mark">?</span>Sized&gt; AsFd <span class="kw">for </span>KmsDisplayImpl&lt;D&gt; {
-    <span class="kw">fn </span>as_fd(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>as_fd(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; BorrowedFd&lt;<span class="lifetime">'_</span>&gt; {
         <span class="self">self</span>.fd
     }
 }
@@ -489,7 +490,7 @@
     <span class="doccomment">/// The CRTC to render to.
     </span>crtc: crtc::Info,
 
-    <span class="doccomment">/// The dumb buffer we&#39;re using as a buffer.
+    <span class="doccomment">/// The dumb buffer we're using as a buffer.
     </span>buffer: <span class="prelude-ty">Option</span>&lt;Buffers&gt;,
 
     <span class="doccomment">/// Window handle that we are keeping around.
@@ -509,9 +510,9 @@
 }
 
 <span class="doccomment">/// The buffer implementation.
-</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>BufferImpl&lt;<span class="lifetime">&#39;a</span>, D: <span class="question-mark">?</span>Sized, W: <span class="question-mark">?</span>Sized&gt; {
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>BufferImpl&lt;<span class="lifetime">'a</span>, D: <span class="question-mark">?</span>Sized, W: <span class="question-mark">?</span>Sized&gt; {
     <span class="doccomment">/// The mapping of the dump buffer.
-    </span>mapping: DumbMapping&lt;<span class="lifetime">&#39;a</span>&gt;,
+    </span>mapping: DumbMapping&lt;<span class="lifetime">'a</span>&gt;,
 
     <span class="doccomment">/// The framebuffer object of the current front buffer.
     </span>front_fb: framebuffer::Handle,
@@ -520,25 +521,25 @@
     </span>crtc_handle: crtc::Handle,
 
     <span class="doccomment">/// This is used to change the front buffer.
-    </span>first_is_front: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>bool,
+    </span>first_is_front: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>bool,
 
     <span class="doccomment">/// Buffer full of zeroes.
-    </span>zeroes: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u32],
+    </span>zeroes: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u32],
 
     <span class="doccomment">/// The current size.
     </span>size: (NonZeroU32, NonZeroU32),
 
     <span class="doccomment">/// The display implementation.
-    </span>display: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>KmsDisplayImpl&lt;D&gt;,
+    </span>display: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>KmsDisplayImpl&lt;D&gt;,
 
     <span class="doccomment">/// Age of the front buffer.
-    </span>front_age: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>u8,
+    </span>front_age: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>u8,
 
     <span class="doccomment">/// Age of the back buffer.
-    </span>back_age: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>u8,
+    </span>back_age: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>u8,
 
     <span class="doccomment">/// Window reference.
-    </span>_window: PhantomData&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>W&gt;,
+    </span>_window: PhantomData&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>W&gt;,
 }
 
 <span class="doccomment">/// The combined frame buffer and dumb buffer.
@@ -568,29 +569,29 @@
 
         <span class="kw">let </span>plane_info = display
             .get_plane(plane_handle)
-            .swbuf_err(<span class="string">&quot;failed to get plane info&quot;</span>)<span class="question-mark">?</span>;
+            .swbuf_err(<span class="string">"failed to get plane info"</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>handles = display
             .resource_handles()
-            .swbuf_err(<span class="string">&quot;failed to get resource handles&quot;</span>)<span class="question-mark">?</span>;
+            .swbuf_err(<span class="string">"failed to get resource handles"</span>)<span class="question-mark">?</span>;
 
         <span class="comment">// Use either the attached CRTC or the primary CRTC.
         </span><span class="kw">let </span>crtc = {
             <span class="kw">let </span>handle = <span class="kw">match </span>plane_info.crtc() {
                 <span class="prelude-val">Some</span>(crtc) =&gt; crtc,
                 <span class="prelude-val">None </span>=&gt; {
-                    <span class="macro">log::warn!</span>(<span class="string">&quot;no CRTC attached to plane, falling back to primary CRTC&quot;</span>);
+                    <span class="macro">log::warn!</span>(<span class="string">"no CRTC attached to plane, falling back to primary CRTC"</span>);
                     handles
                         .filter_crtcs(plane_info.possible_crtcs())
                         .first()
                         .copied()
-                        .swbuf_err(<span class="string">&quot;failed to find a primary CRTC&quot;</span>)<span class="question-mark">?
+                        .swbuf_err(<span class="string">"failed to find a primary CRTC"</span>)<span class="question-mark">?
                 </span>}
             };
 
             <span class="comment">// Get info about the CRTC.
             </span>display
                 .get_crtc(handle)
-                .swbuf_err(<span class="string">&quot;failed to get CRTC info&quot;</span>)<span class="question-mark">?
+                .swbuf_err(<span class="string">"failed to get CRTC info"</span>)<span class="question-mark">?
         </span>};
 
         <span class="comment">// Figure out all of the encoders that are attached to this CRTC.
@@ -636,7 +637,7 @@
         width: NonZeroU32,
         height: NonZeroU32,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;(), SoftBufferError&gt; {
-        <span class="comment">// Don&#39;t resize if we don&#39;t have to.
+        <span class="comment">// Don't resize if we don't have to.
         </span><span class="kw">if let </span><span class="prelude-val">Some</span>(buffer) = <span class="kw-2">&amp;</span><span class="self">self</span>.buffer {
             <span class="kw">let </span>(buffer_width, buffer_height) = buffer.size();
             <span class="kw">if </span>buffer_width == width &amp;&amp; buffer_height == height {
@@ -664,12 +665,12 @@
     }
 
     <span class="doccomment">/// Get a mutable reference to the buffer.
-    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>buffer_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;BufferImpl&lt;<span class="lifetime">&#39;_</span>, D, W&gt;, SoftBufferError&gt; {
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>buffer_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;BufferImpl&lt;<span class="lifetime">'_</span>, D, W&gt;, SoftBufferError&gt; {
         <span class="comment">// Map the dumb buffer.
         </span><span class="kw">let </span>set = <span class="self">self
             </span>.buffer
             .as_mut()
-            .expect(<span class="string">&quot;Must set size of surface before calling `buffer_mut()`&quot;</span>);
+            .expect(<span class="string">"Must set size of surface before calling `buffer_mut()`"</span>);
 
         <span class="kw">let </span>size = set.size();
 
@@ -687,7 +688,7 @@
         <span class="kw">let </span>mapping = <span class="self">self
             </span>.display
             .map_dumb_buffer(<span class="kw-2">&amp;mut </span>front_buffer.db)
-            .swbuf_err(<span class="string">&quot;failed to map dumb buffer&quot;</span>)<span class="question-mark">?</span>;
+            .swbuf_err(<span class="string">"failed to map dumb buffer"</span>)<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(BufferImpl {
             mapping,
@@ -719,10 +720,10 @@
     }
 }
 
-<span class="kw">impl</span>&lt;D: <span class="question-mark">?</span>Sized, W: <span class="question-mark">?</span>Sized&gt; BufferImpl&lt;<span class="lifetime">&#39;_</span>, D, W&gt; {
+<span class="kw">impl</span>&lt;D: <span class="question-mark">?</span>Sized, W: <span class="question-mark">?</span>Sized&gt; BufferImpl&lt;<span class="lifetime">'_</span>, D, W&gt; {
     <span class="attr">#[inline]
     </span><span class="kw">pub fn </span>pixels(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[u32] {
-        <span class="comment">// drm-rs doesn&#39;t let us have the immutable reference... so just use a bunch of zeroes.
+        <span class="comment">// drm-rs doesn't let us have the immutable reference... so just use a bunch of zeroes.
         // TODO: There has to be a better way of doing this!
         </span><span class="self">self</span>.zeroes
     }
@@ -760,16 +761,16 @@
 
         <span class="comment">// Dirty the framebuffer with out damage rectangles.
         //
-        // Some drivers don&#39;t support this, so we just ignore the `ENOSYS` error.
+        // Some drivers don't support this, so we just ignore the `ENOSYS` error.
         // TODO: It would be nice to not have to heap-allocate the above rectangles if we know that
-        // this is going to fail. Low hanging fruit PR: add a flag that&#39;s set to false if this
+        // this is going to fail. Low hanging fruit PR: add a flag that's set to false if this
         // returns `ENOSYS` and check that before allocating the above and running this.
         </span><span class="kw">match </span><span class="self">self</span>.display.dirty_framebuffer(<span class="self">self</span>.front_fb, <span class="kw-2">&amp;</span>rectangles) {
             <span class="prelude-val">Ok</span>(()) =&gt; {}
             <span class="prelude-val">Err</span>(e) <span class="kw">if </span>e.raw_os_error() == <span class="prelude-val">Some</span>(rustix::io::Errno::NOSYS.raw_os_error()) =&gt; {}
             <span class="prelude-val">Err</span>(e) =&gt; {
                 <span class="kw">return </span><span class="prelude-val">Err</span>(SoftBufferError::PlatformError(
-                    <span class="prelude-val">Some</span>(<span class="string">&quot;failed to dirty framebuffer&quot;</span>.into()),
+                    <span class="prelude-val">Some</span>(<span class="string">"failed to dirty framebuffer"</span>.into()),
                     <span class="prelude-val">Some</span>(e.into()),
                 ));
             }
@@ -779,7 +780,7 @@
         // TODO: Use atomic commits here!
         </span><span class="self">self</span>.display
             .page_flip(<span class="self">self</span>.crtc_handle, <span class="self">self</span>.front_fb, PageFlipFlags::EVENT, <span class="prelude-val">None</span>)
-            .swbuf_err(<span class="string">&quot;failed to page flip&quot;</span>)<span class="question-mark">?</span>;
+            .swbuf_err(<span class="string">"failed to page flip"</span>)<span class="question-mark">?</span>;
 
         <span class="comment">// Flip the front and back buffers.
         </span><span class="kw-2">*</span><span class="self">self</span>.first_is_front = !<span class="kw-2">*</span><span class="self">self</span>.first_is_front;
@@ -814,10 +815,10 @@
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, SoftBufferError&gt; {
         <span class="kw">let </span>db = display
             .create_dumb_buffer((width.get(), height.get()), DrmFourcc::Xrgb8888, <span class="number">32</span>)
-            .swbuf_err(<span class="string">&quot;failed to create dumb buffer&quot;</span>)<span class="question-mark">?</span>;
+            .swbuf_err(<span class="string">"failed to create dumb buffer"</span>)<span class="question-mark">?</span>;
         <span class="kw">let </span>fb = display
             .add_framebuffer(<span class="kw-2">&amp;</span>db, <span class="number">24</span>, <span class="number">32</span>)
-            .swbuf_err(<span class="string">&quot;failed to add framebuffer&quot;</span>)<span class="question-mark">?</span>;
+            .swbuf_err(<span class="string">"failed to add framebuffer"</span>)<span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(SharedBuffer { fb, db, age: <span class="number">0 </span>})
     }
@@ -828,7 +829,7 @@
 
         NonZeroU32::new(width)
             .and_then(|width| NonZeroU32::new(height).map(|height| (width, height)))
-            .expect(<span class="string">&quot;buffer size is zero&quot;</span>)
+            .expect(<span class="string">"buffer size is zero"</span>)
     }
 }
 

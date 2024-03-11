@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/8987daa/src/platform_impl/linux/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/bdc6610/src/platform_impl/linux/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -967,7 +968,7 @@
 </pre></div><pre class="rust"><code><span class="attr">#![cfg(free_unix)]
 
 #[cfg(all(not(x11_platform), not(wayland_platform)))]
-</span><span class="macro">compile_error!</span>(<span class="string">&quot;Please select a feature to build for unix: `x11`, `wayland`&quot;</span>);
+</span><span class="macro">compile_error!</span>(<span class="string">"Please select a feature to build for unix: `x11`, `wayland`"</span>);
 
 <span class="kw">use </span>std::os::unix::io::{AsFd, AsRawFd, BorrowedFd, RawFd};
 <span class="kw">use </span>std::sync::Arc;
@@ -1086,7 +1087,7 @@
 
 <span class="attr">#[derive(Debug, Clone)]
 </span><span class="kw">pub enum </span>OsError {
-    Misc(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str),
+    Misc(<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str),
     <span class="attr">#[cfg(x11_platform)]
     </span>XError(Arc&lt;X11Error&gt;),
     <span class="attr">#[cfg(wayland_platform)]
@@ -1094,7 +1095,7 @@
 }
 
 <span class="kw">impl </span>fmt::Display <span class="kw">for </span>OsError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, _f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;(), fmt::Error&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, _f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;(), fmt::Error&gt; {
         <span class="kw">match </span><span class="kw-2">*</span><span class="self">self </span>{
             OsError::Misc(e) =&gt; _f.pad(e),
             <span class="attr">#[cfg(x11_platform)]
@@ -1272,7 +1273,7 @@
         }
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>maybe_queue_on_main(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;</span><span class="self">Self</span>) + Send + <span class="lifetime">&#39;static</span>) {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>maybe_queue_on_main(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw">impl </span>FnOnce(<span class="kw-2">&amp;</span><span class="self">Self</span>) + Send + <span class="lifetime">'static</span>) {
         f(<span class="self">self</span>)
     }
 
@@ -1546,31 +1547,31 @@
         <span class="prelude-val">Some</span>(<span class="macro">x11_or_wayland!</span>(<span class="kw">match </span><span class="self">self</span>; Window(w) =&gt; w.primary_monitor()<span class="question-mark">?</span>; <span class="kw">as </span>MonitorHandle))
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;rwh_04&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"rwh_04"</span>)]
     #[inline]
     </span><span class="kw">pub fn </span>raw_window_handle_rwh_04(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; rwh_04::RawWindowHandle {
         <span class="macro">x11_or_wayland!</span>(<span class="kw">match </span><span class="self">self</span>; Window(window) =&gt; window.raw_window_handle_rwh_04())
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;rwh_05&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"rwh_05"</span>)]
     #[inline]
     </span><span class="kw">pub fn </span>raw_window_handle_rwh_05(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; rwh_05::RawWindowHandle {
         <span class="macro">x11_or_wayland!</span>(<span class="kw">match </span><span class="self">self</span>; Window(window) =&gt; window.raw_window_handle_rwh_05())
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;rwh_05&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"rwh_05"</span>)]
     #[inline]
     </span><span class="kw">pub fn </span>raw_display_handle_rwh_05(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; rwh_05::RawDisplayHandle {
         <span class="macro">x11_or_wayland!</span>(<span class="kw">match </span><span class="self">self</span>; Window(window) =&gt; window.raw_display_handle_rwh_05())
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;rwh_06&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"rwh_06"</span>)]
     #[inline]
     </span><span class="kw">pub fn </span>raw_window_handle_rwh_06(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;rwh_06::RawWindowHandle, rwh_06::HandleError&gt; {
         <span class="macro">x11_or_wayland!</span>(<span class="kw">match </span><span class="self">self</span>; Window(window) =&gt; window.raw_window_handle_rwh_06())
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;rwh_06&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"rwh_06"</span>)]
     #[inline]
     </span><span class="kw">pub fn </span>raw_display_handle_rwh_06(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -1639,7 +1640,7 @@
     Lazy::new(|| Mutex::new(Vec::new()));
 
 <span class="attr">#[cfg(x11_platform)]
-</span><span class="kw">unsafe extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn </span>x_error_callback(
+</span><span class="kw">unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>x_error_callback(
     display: <span class="kw-2">*mut </span>x11::ffi::Display,
     event: <span class="kw-2">*mut </span>x11::ffi::XErrorEvent,
 ) -&gt; c_int {
@@ -1674,10 +1675,10 @@
             }
         };
 
-        <span class="comment">// Don&#39;t log error.
+        <span class="comment">// Don't log error.
         </span><span class="kw">if </span>!error_handled {
-            <span class="macro">error!</span>(<span class="string">&quot;X11 error: {:#?}&quot;</span>, error);
-            <span class="comment">// XXX only update the error, if it wasn&#39;t handled by any of the hooks.
+            <span class="macro">error!</span>(<span class="string">"X11 error: {:#?}"</span>, error);
+            <span class="comment">// XXX only update the error, if it wasn't handled by any of the hooks.
             </span><span class="kw-2">*</span>xconn.latest_error.lock().unwrap() = <span class="prelude-val">Some</span>(error);
         }
     }
@@ -1685,36 +1686,36 @@
     </span><span class="number">0
 </span>}
 
-<span class="kw">pub enum </span>EventLoop&lt;T: <span class="lifetime">&#39;static</span>&gt; {
+<span class="kw">pub enum </span>EventLoop&lt;T: <span class="lifetime">'static</span>&gt; {
     <span class="attr">#[cfg(wayland_platform)]
     </span>Wayland(Box&lt;wayland::EventLoop&lt;T&gt;&gt;),
     <span class="attr">#[cfg(x11_platform)]
     </span>X(x11::EventLoop&lt;T&gt;),
 }
 
-<span class="kw">pub enum </span>EventLoopProxy&lt;T: <span class="lifetime">&#39;static</span>&gt; {
+<span class="kw">pub enum </span>EventLoopProxy&lt;T: <span class="lifetime">'static</span>&gt; {
     <span class="attr">#[cfg(x11_platform)]
     </span>X(x11::EventLoopProxy&lt;T&gt;),
     <span class="attr">#[cfg(wayland_platform)]
     </span>Wayland(wayland::EventLoopProxy&lt;T&gt;),
 }
 
-<span class="kw">impl</span>&lt;T: <span class="lifetime">&#39;static</span>&gt; Clone <span class="kw">for </span>EventLoopProxy&lt;T&gt; {
+<span class="kw">impl</span>&lt;T: <span class="lifetime">'static</span>&gt; Clone <span class="kw">for </span>EventLoopProxy&lt;T&gt; {
     <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
         <span class="macro">x11_or_wayland!</span>(<span class="kw">match </span><span class="self">self</span>; EventLoopProxy(proxy) =&gt; proxy.clone(); <span class="kw">as </span>EventLoopProxy)
     }
 }
 
-<span class="kw">impl</span>&lt;T: <span class="lifetime">&#39;static</span>&gt; EventLoop&lt;T&gt; {
+<span class="kw">impl</span>&lt;T: <span class="lifetime">'static</span>&gt; EventLoop&lt;T&gt; {
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>new(
         attributes: <span class="kw-2">&amp;</span>PlatformSpecificEventLoopAttributes,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, EventLoopError&gt; {
         <span class="kw">if </span>!attributes.any_thread &amp;&amp; !is_main_thread() {
             <span class="macro">panic!</span>(
-                <span class="string">&quot;Initializing the event loop outside of the main thread is a significant \
+                <span class="string">"Initializing the event loop outside of the main thread is a significant \
                  cross-platform compatibility hazard. If you absolutely need to create an \
                  EventLoop on a different thread, you can use the \
-                 `EventLoopBuilderExtUnix::any_thread` function.&quot;
+                 `EventLoopBuilderExtUnix::any_thread` function."
             </span>);
         }
 
@@ -1722,10 +1723,10 @@
         // variables are also treated as not set.
         </span><span class="kw">let </span>backend = <span class="kw">match </span>(
             attributes.forced_backend,
-            env::var(<span class="string">&quot;WAYLAND_DISPLAY&quot;</span>)
+            env::var(<span class="string">"WAYLAND_DISPLAY"</span>)
                 .map(|var| !var.is_empty())
                 .unwrap_or(<span class="bool-val">false</span>),
-            env::var(<span class="string">&quot;DISPLAY&quot;</span>)
+            env::var(<span class="string">"DISPLAY"</span>)
                 .map(|var| !var.is_empty())
                 .unwrap_or(<span class="bool-val">false</span>),
         ) {
@@ -1740,7 +1741,7 @@
             <span class="comment">// No backend is present.
             </span><span class="kw">_ </span>=&gt; {
                 <span class="kw">return </span><span class="prelude-val">Err</span>(EventLoopError::Os(<span class="macro">os_error!</span>(OsError::Misc(
-                    <span class="string">&quot;neither WAYLAND_DISPLAY nor DISPLAY is set.&quot;
+                    <span class="string">"neither WAYLAND_DISPLAY nor DISPLAY is set."
                 </span>))));
             }
         };
@@ -1800,7 +1801,7 @@
 }
 
 <span class="kw">impl</span>&lt;T&gt; AsFd <span class="kw">for </span>EventLoop&lt;T&gt; {
-    <span class="kw">fn </span>as_fd(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>as_fd(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; BorrowedFd&lt;<span class="lifetime">'_</span>&gt; {
         <span class="macro">x11_or_wayland!</span>(<span class="kw">match </span><span class="self">self</span>; EventLoop(evlp) =&gt; evlp.as_fd())
     }
 }
@@ -1811,7 +1812,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;T: <span class="lifetime">&#39;static</span>&gt; EventLoopProxy&lt;T&gt; {
+<span class="kw">impl</span>&lt;T: <span class="lifetime">'static</span>&gt; EventLoopProxy&lt;T&gt; {
     <span class="kw">pub fn </span>send_event(<span class="kw-2">&amp;</span><span class="self">self</span>, event: T) -&gt; <span class="prelude-ty">Result</span>&lt;(), EventLoopClosed&lt;T&gt;&gt; {
         <span class="macro">x11_or_wayland!</span>(<span class="kw">match </span><span class="self">self</span>; EventLoopProxy(proxy) =&gt; proxy.send_event(event))
     }
@@ -1862,13 +1863,13 @@
         <span class="macro">x11_or_wayland!</span>(<span class="kw">match </span><span class="self">self</span>; <span class="self">Self</span>(evlp) =&gt; evlp.listen_device_events(allowed))
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;rwh_05&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"rwh_05"</span>)]
     #[inline]
     </span><span class="kw">pub fn </span>raw_display_handle_rwh_05(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; rwh_05::RawDisplayHandle {
         <span class="macro">x11_or_wayland!</span>(<span class="kw">match </span><span class="self">self</span>; <span class="self">Self</span>(evlp) =&gt; evlp.raw_display_handle_rwh_05())
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;rwh_06&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"rwh_06"</span>)]
     #[inline]
     </span><span class="kw">pub fn </span>raw_display_handle_rwh_06(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
@@ -1906,7 +1907,7 @@
 }
 
 <span class="doccomment">/// Returns the minimum `Option&lt;Duration&gt;`, taking into account that `None`
-/// equates to an infinite timeout, not a zero timeout (so can&#39;t just use
+/// equates to an infinite timeout, not a zero timeout (so can't just use
 /// `Option::min`)
 </span><span class="kw">fn </span>min_timeout(a: <span class="prelude-ty">Option</span>&lt;Duration&gt;, b: <span class="prelude-ty">Option</span>&lt;Duration&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;Duration&gt; {
     a.map_or(b, |a_timeout| {
@@ -1914,20 +1915,20 @@
     })
 }
 
-<span class="attr">#[cfg(target_os = <span class="string">&quot;linux&quot;</span>)]
+<span class="attr">#[cfg(target_os = <span class="string">"linux"</span>)]
 </span><span class="kw">fn </span>is_main_thread() -&gt; bool {
     rustix::thread::gettid() == rustix::process::getpid()
 }
 
-<span class="attr">#[cfg(any(target_os = <span class="string">&quot;dragonfly&quot;</span>, target_os = <span class="string">&quot;freebsd&quot;</span>, target_os = <span class="string">&quot;openbsd&quot;</span>))]
+<span class="attr">#[cfg(any(target_os = <span class="string">"dragonfly"</span>, target_os = <span class="string">"freebsd"</span>, target_os = <span class="string">"openbsd"</span>))]
 </span><span class="kw">fn </span>is_main_thread() -&gt; bool {
     <span class="kw">use </span>libc::pthread_main_np;
 
     <span class="kw">unsafe </span>{ pthread_main_np() == <span class="number">1 </span>}
 }
 
-<span class="attr">#[cfg(target_os = <span class="string">&quot;netbsd&quot;</span>)]
+<span class="attr">#[cfg(target_os = <span class="string">"netbsd"</span>)]
 </span><span class="kw">fn </span>is_main_thread() -&gt; bool {
-    std::thread::current().name() == <span class="prelude-val">Some</span>(<span class="string">&quot;main&quot;</span>)
+    std::thread::current().name() == <span class="prelude-val">Some</span>(<span class="string">"main"</span>)
 }
 </code></pre></div></section></main></body></html>

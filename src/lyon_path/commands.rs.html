@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_path-1.0.4/src/commands.rs`."><title>commands.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_path" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../lyon_path/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_path"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_path-1.0.4/src/commands.rs`."><title>commands.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_path" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><a class="sub-logo-container" href="../../lyon_path/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_path"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1155,20 +1156,20 @@
 //!
 //! for event in &amp;cmds {
 //!     match event {
-//!         IdEvent::Begin { at } =&gt; { println!(&quot;move to {:?}&quot;, points[at.to_usize()]); }
-//!         IdEvent::Line { to, .. } =&gt; { println!(&quot;line to {:?}&quot;, points[to.to_usize()]); }
-//!         IdEvent::End { close: true, .. } =&gt; { println!(&quot;close&quot;); }
-//!         _ =&gt; { panic!(&quot;unexpected event!&quot;) }
+//!         IdEvent::Begin { at } =&gt; { println!("move to {:?}", points[at.to_usize()]); }
+//!         IdEvent::Line { to, .. } =&gt; { println!("line to {:?}", points[to.to_usize()]); }
+//!         IdEvent::End { close: true, .. } =&gt; { println!("close"); }
+//!         _ =&gt; { panic!("unexpected event!") }
 //!     }
 //! }
 //!
 //! // Iterate over the points directly using CommandsPathSlice
 //! for event in cmds.path_slice(points, points).events() {
 //!     match event {
-//!         Event::Begin { at } =&gt; { println!(&quot;move to {:?}&quot;, at); }
-//!         Event::Line { to, .. } =&gt; { println!(&quot;line to {:?}&quot;, to); }
-//!         Event::End { close: true, .. } =&gt; { println!(&quot;close&quot;); }
-//!         _ =&gt; { panic!(&quot;unexpected event!&quot;) }
+//!         Event::Begin { at } =&gt; { println!("move to {:?}", at); }
+//!         Event::Line { to, .. } =&gt; { println!("line to {:?}", to); }
+//!         Event::End { close: true, .. } =&gt; { println!("close"); }
+//!         _ =&gt; { panic!("unexpected event!") }
 //!     }
 //! }
 //!
@@ -1204,14 +1205,14 @@
 /// improve performance (simpler code and a bunch of unwraps removed),
 /// however a naive initial attempt led to worse performance.
 </span><span class="attr">#[derive(Copy, Clone)]
-</span><span class="kw">struct </span>CmdIter&lt;<span class="lifetime">&#39;l</span>&gt; {
+</span><span class="kw">struct </span>CmdIter&lt;<span class="lifetime">'l</span>&gt; {
     ptr: <span class="kw-2">*const </span>u32,
     end: <span class="kw-2">*const </span>u32,
-    _marker: core::marker::PhantomData&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>u32&gt;,
+    _marker: core::marker::PhantomData&lt;<span class="kw-2">&amp;</span><span class="lifetime">'l </span>u32&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; CmdIter&lt;<span class="lifetime">&#39;l</span>&gt; {
-    <span class="kw">fn </span>new(slice: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[u32]) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; CmdIter&lt;<span class="lifetime">'l</span>&gt; {
+    <span class="kw">fn </span>new(slice: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[u32]) -&gt; <span class="self">Self </span>{
         <span class="kw">let </span>ptr = slice.as_ptr();
         <span class="kw">let </span>end = <span class="kw">unsafe </span>{ ptr.add(slice.len()) };
         CmdIter {
@@ -1270,7 +1271,7 @@
 /// let cmds = cmds.build();
 ///
 </span><span class="attr">#[derive(Clone)]
-#[cfg_attr(feature = <span class="string">&quot;serialization&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serialization"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub struct </span>PathCommands {
     cmds: Box&lt;[u32]&gt;,
 }
@@ -1293,10 +1294,10 @@
 
     <span class="doccomment">/// Returns a view on a path made of these commands with endpoint and
     /// control point slices.
-    </span><span class="kw">pub fn </span>path_slice&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span><span class="self">self</span>,
-        endpoints: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[Endpoint],
-        control_points: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[ControlPoint],
+    </span><span class="kw">pub fn </span>path_slice&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'l </span><span class="self">self</span>,
+        endpoints: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[Endpoint],
+        control_points: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[ControlPoint],
     ) -&gt; CommandsPathSlice&lt;Endpoint, ControlPoint&gt; {
         CommandsPathSlice {
             endpoints,
@@ -1306,10 +1307,10 @@
     }
 
     <span class="doccomment">/// Returns an iterator over the path, with endpoints and control points.
-    </span><span class="kw">pub fn </span>events&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span><span class="self">self</span>,
-        endpoints: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[Endpoint],
-        control_points: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[ControlPoint],
+    </span><span class="kw">pub fn </span>events&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'l </span><span class="self">self</span>,
+        endpoints: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[Endpoint],
+        control_points: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[ControlPoint],
     ) -&gt; Events&lt;Endpoint, ControlPoint&gt; {
         Events {
             cmds: CmdIter::new(<span class="kw-2">&amp;</span><span class="self">self</span>.cmds),
@@ -1344,28 +1345,28 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>PathCommands {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'l </span>PathCommands {
     <span class="kw">type </span>Item = IdEvent;
-    <span class="kw">type </span>IntoIter = Iter&lt;<span class="lifetime">&#39;l</span>&gt;;
+    <span class="kw">type </span>IntoIter = Iter&lt;<span class="lifetime">'l</span>&gt;;
 
-    <span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">&#39;l</span>&gt; {
+    <span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">'l</span>&gt; {
         <span class="self">self</span>.iter()
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; From&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>PathCommands&gt; <span class="kw">for </span>PathCommandsSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
-    <span class="kw">fn </span>from(commands: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>PathCommands) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; From&lt;<span class="kw-2">&amp;</span><span class="lifetime">'l </span>PathCommands&gt; <span class="kw">for </span>PathCommandsSlice&lt;<span class="lifetime">'l</span>&gt; {
+    <span class="kw">fn </span>from(commands: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>PathCommands) -&gt; <span class="self">Self </span>{
         commands.as_slice()
     }
 }
 
 <span class="doccomment">/// A view over [`PathCommands`](struct.PathCommands.html).
 </span><span class="attr">#[derive(Copy, Clone)]
-</span><span class="kw">pub struct </span>PathCommandsSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
-    cmds: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[u32],
+</span><span class="kw">pub struct </span>PathCommandsSlice&lt;<span class="lifetime">'l</span>&gt; {
+    cmds: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[u32],
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; PathCommandsSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; PathCommandsSlice&lt;<span class="lifetime">'l</span>&gt; {
     <span class="doccomment">/// Returns an iterator over the path commands.
     </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Iter {
         Iter::new(<span class="self">self</span>.cmds)
@@ -1443,22 +1444,22 @@
     </span>}
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; fmt::Debug <span class="kw">for </span>PathCommandsSlice&lt;<span class="lifetime">&#39;l</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; fmt::Debug <span class="kw">for </span>PathCommandsSlice&lt;<span class="lifetime">'l</span>&gt; {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-        <span class="macro">write!</span>(f, <span class="string">&quot;\&quot;&quot;</span>)<span class="question-mark">?</span>;
+        <span class="macro">write!</span>(f, <span class="string">"\""</span>)<span class="question-mark">?</span>;
         <span class="kw">for </span>evt <span class="kw">in </span><span class="self">self</span>.iter() {
             <span class="kw">match </span>evt {
-                IdEvent::Line { to, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;L {to:?}&quot;</span>),
-                IdEvent::Quadratic { ctrl, to, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Q {ctrl:?} {to:?} &quot;</span>),
+                IdEvent::Line { to, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">"L {to:?}"</span>),
+                IdEvent::Quadratic { ctrl, to, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">"Q {ctrl:?} {to:?} "</span>),
                 IdEvent::Cubic {
                     ctrl1, ctrl2, to, ..
-                } =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;C {ctrl1:?} {ctrl2:?} {to:?} &quot;</span>),
-                IdEvent::Begin { at, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;M {at:?} &quot;</span>),
-                IdEvent::End { close: <span class="bool-val">true</span>, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Z &quot;</span>),
+                } =&gt; <span class="macro">write!</span>(f, <span class="string">"C {ctrl1:?} {ctrl2:?} {to:?} "</span>),
+                IdEvent::Begin { at, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">"M {at:?} "</span>),
+                IdEvent::End { close: <span class="bool-val">true</span>, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">"Z "</span>),
                 IdEvent::End { close: <span class="bool-val">false</span>, .. } =&gt; <span class="prelude-val">Ok</span>(()),
             }<span class="question-mark">?</span>;
         }
-        <span class="macro">write!</span>(f, <span class="string">&quot;\&quot;&quot;</span>)
+        <span class="macro">write!</span>(f, <span class="string">"\""</span>)
     }
 }
 
@@ -1466,13 +1467,13 @@
 /// two slices for endpoints and control points, providing similar
 /// functionalities as `PathSlice`.
 </span><span class="attr">#[derive(Copy, Clone)]
-</span><span class="kw">pub struct </span>CommandsPathSlice&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt; {
-    endpoints: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[Endpoint],
-    control_points: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[ControlPoint],
-    cmds: PathCommandsSlice&lt;<span class="lifetime">&#39;l</span>&gt;,
+</span><span class="kw">pub struct </span>CommandsPathSlice&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt; {
+    endpoints: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[Endpoint],
+    control_points: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[ControlPoint],
+    cmds: PathCommandsSlice&lt;<span class="lifetime">'l</span>&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt; CommandsPathSlice&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt; CommandsPathSlice&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt; {
     <span class="doccomment">/// Returns an iterator over the events of the path using IDs.
     </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Iter {
         <span class="self">self</span>.cmds.iter()
@@ -1491,8 +1492,8 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt; core::ops::Index&lt;EndpointId&gt;
-    <span class="kw">for </span>CommandsPathSlice&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt; core::ops::Index&lt;EndpointId&gt;
+    <span class="kw">for </span>CommandsPathSlice&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt;
 {
     <span class="kw">type </span>Output = Endpoint;
     <span class="kw">fn </span>index(<span class="kw-2">&amp;</span><span class="self">self</span>, id: EndpointId) -&gt; <span class="kw-2">&amp;</span>Endpoint {
@@ -1500,8 +1501,8 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt; core::ops::Index&lt;ControlPointId&gt;
-    <span class="kw">for </span>CommandsPathSlice&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt; core::ops::Index&lt;ControlPointId&gt;
+    <span class="kw">for </span>CommandsPathSlice&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt;
 {
     <span class="kw">type </span>Output = ControlPoint;
     <span class="kw">fn </span>index(<span class="kw-2">&amp;</span><span class="self">self</span>, id: ControlPointId) -&gt; <span class="kw-2">&amp;</span>ControlPoint {
@@ -1509,26 +1510,26 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt; fmt::Debug <span class="kw">for </span>CommandsPathSlice&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt; fmt::Debug <span class="kw">for </span>CommandsPathSlice&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt;
 <span class="kw">where
     </span>Endpoint: fmt::Debug,
     ControlPoint: fmt::Debug,
 {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-        <span class="macro">write!</span>(f, <span class="string">&quot;{{ &quot;</span>)<span class="question-mark">?</span>;
+        <span class="macro">write!</span>(f, <span class="string">"{{ "</span>)<span class="question-mark">?</span>;
         <span class="kw">for </span>evt <span class="kw">in </span><span class="self">self</span>.events() {
             <span class="kw">match </span>evt {
-                Event::Line { to, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;L {to:?}&quot;</span>),
-                Event::Quadratic { ctrl, to, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Q {ctrl:?} {to:?} &quot;</span>),
+                Event::Line { to, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">"L {to:?}"</span>),
+                Event::Quadratic { ctrl, to, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">"Q {ctrl:?} {to:?} "</span>),
                 Event::Cubic {
                     ctrl1, ctrl2, to, ..
-                } =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;C {ctrl1:?} {ctrl2:?} {to:?} &quot;</span>),
-                Event::Begin { at, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;M {at:?} &quot;</span>),
-                Event::End { close: <span class="bool-val">true</span>, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;Z &quot;</span>),
+                } =&gt; <span class="macro">write!</span>(f, <span class="string">"C {ctrl1:?} {ctrl2:?} {to:?} "</span>),
+                Event::Begin { at, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">"M {at:?} "</span>),
+                Event::End { close: <span class="bool-val">true</span>, .. } =&gt; <span class="macro">write!</span>(f, <span class="string">"Z "</span>),
                 Event::End { close: <span class="bool-val">false</span>, .. } =&gt; <span class="prelude-val">Ok</span>(()),
             }<span class="question-mark">?</span>;
         }
-        <span class="macro">write!</span>(f, <span class="string">&quot;}}&quot;</span>)
+        <span class="macro">write!</span>(f, <span class="string">"}}"</span>)
     }
 }
 
@@ -1628,19 +1629,19 @@
 
 <span class="doccomment">/// An iterator of `Event&lt;&amp;Endpoint, &amp;ControlPoint&gt;`.
 </span><span class="attr">#[derive(Clone)]
-</span><span class="kw">pub struct </span>Events&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt; {
-    cmds: CmdIter&lt;<span class="lifetime">&#39;l</span>&gt;,
+</span><span class="kw">pub struct </span>Events&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt; {
+    cmds: CmdIter&lt;<span class="lifetime">'l</span>&gt;,
     prev_endpoint: usize,
     first_endpoint: usize,
-    endpoints: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[Endpoint],
-    control_points: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[ControlPoint],
+    endpoints: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[Endpoint],
+    control_points: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[ControlPoint],
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt; Iterator <span class="kw">for </span>Events&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt; {
-    <span class="kw">type </span>Item = Event&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>Endpoint, <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>ControlPoint&gt;;
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt; Iterator <span class="kw">for </span>Events&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt; {
+    <span class="kw">type </span>Item = Event&lt;<span class="kw-2">&amp;</span><span class="lifetime">'l </span>Endpoint, <span class="kw-2">&amp;</span><span class="lifetime">'l </span>ControlPoint&gt;;
 
     <span class="attr">#[inline]
-    </span><span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Event&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>Endpoint, <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>ControlPoint&gt;&gt; {
+    </span><span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;Event&lt;<span class="kw-2">&amp;</span><span class="lifetime">'l </span>Endpoint, <span class="kw-2">&amp;</span><span class="lifetime">'l </span>ControlPoint&gt;&gt; {
         <span class="kw">match </span><span class="self">self</span>.cmds.next() {
             <span class="prelude-val">Some</span>(verb::BEGIN) =&gt; {
                 <span class="kw">let </span>to = <span class="self">self</span>.cmds.next().unwrap() <span class="kw">as </span>usize;
@@ -1711,12 +1712,12 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, Ep, Cp&gt; Events&lt;<span class="lifetime">&#39;l</span>, Ep, Cp&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, Ep, Cp&gt; Events&lt;<span class="lifetime">'l</span>, Ep, Cp&gt;
 <span class="kw">where
     </span>Ep: Position,
     Cp: Position,
 {
-    <span class="kw">pub fn </span>points(<span class="self">self</span>) -&gt; PointEvents&lt;<span class="lifetime">&#39;l</span>, Ep, Cp&gt; {
+    <span class="kw">pub fn </span>points(<span class="self">self</span>) -&gt; PointEvents&lt;<span class="lifetime">'l</span>, Ep, Cp&gt; {
         PointEvents {
             cmds: <span class="self">self</span>.cmds,
             prev_endpoint: <span class="self">self</span>.prev_endpoint,
@@ -1728,15 +1729,15 @@
 }
 <span class="doccomment">/// An iterator of `Event&lt;&amp;Endpoint, &amp;ControlPoint&gt;`.
 </span><span class="attr">#[derive(Clone)]
-</span><span class="kw">pub struct </span>Iter&lt;<span class="lifetime">&#39;l</span>&gt; {
-    cmds: CmdIter&lt;<span class="lifetime">&#39;l</span>&gt;,
+</span><span class="kw">pub struct </span>Iter&lt;<span class="lifetime">'l</span>&gt; {
+    cmds: CmdIter&lt;<span class="lifetime">'l</span>&gt;,
     idx: u32,
     prev_endpoint: EndpointId,
     first_endpoint: EndpointId,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; Iter&lt;<span class="lifetime">&#39;l</span>&gt; {
-    <span class="kw">fn </span>new(cmds: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[u32]) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; Iter&lt;<span class="lifetime">'l</span>&gt; {
+    <span class="kw">fn </span>new(cmds: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[u32]) -&gt; <span class="self">Self </span>{
         Iter {
             cmds: CmdIter::new(cmds),
             idx: <span class="number">0</span>,
@@ -1746,7 +1747,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>&gt; Iterator <span class="kw">for </span>Iter&lt;<span class="lifetime">&#39;l</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>&gt; Iterator <span class="kw">for </span>Iter&lt;<span class="lifetime">'l</span>&gt; {
     <span class="kw">type </span>Item = IdEvent;
 
     <span class="attr">#[inline]
@@ -1819,15 +1820,15 @@
 
 <span class="doccomment">/// An iterator of `PathEvent`.
 </span><span class="attr">#[derive(Clone)]
-</span><span class="kw">pub struct </span>PointEvents&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt; {
-    cmds: CmdIter&lt;<span class="lifetime">&#39;l</span>&gt;,
+</span><span class="kw">pub struct </span>PointEvents&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt; {
+    cmds: CmdIter&lt;<span class="lifetime">'l</span>&gt;,
     prev_endpoint: usize,
     first_endpoint: usize,
-    endpoints: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[Endpoint],
-    control_points: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l </span>[ControlPoint],
+    endpoints: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[Endpoint],
+    control_points: <span class="kw-2">&amp;</span><span class="lifetime">'l </span>[ControlPoint],
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt; Iterator <span class="kw">for </span>PointEvents&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt; Iterator <span class="kw">for </span>PointEvents&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt;
 <span class="kw">where
     </span>Endpoint: Position,
     ControlPoint: Position,
@@ -1905,7 +1906,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt; PositionStore <span class="kw">for </span>CommandsPathSlice&lt;<span class="lifetime">&#39;l</span>, Endpoint, ControlPoint&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt; PositionStore <span class="kw">for </span>CommandsPathSlice&lt;<span class="lifetime">'l</span>, Endpoint, ControlPoint&gt;
 <span class="kw">where
     </span>Endpoint: Position,
     ControlPoint: Position,

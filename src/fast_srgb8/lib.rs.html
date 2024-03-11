@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fast-srgb8-1.0.0/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="fast_srgb8" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/fast-srgb8-1.0.0/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="fast_srgb8" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -501,7 +502,7 @@
 //! - No dependencies.
 //! - SIMD support for conversion to sRGB (conversion from sRGB is already ~20x
 //!   faster than naive impl, and would probably be slower in SIMD, so for now
-//!   it&#39;s not implemented).
+//!   it's not implemented).
 //! - Consistent and correct (according to at least one relevant spec) handling
 //!   of edge cases, such as NaN/Inf/etc.
 //! - Exhaustive checking of all inputs for correctness (in tests).
@@ -513,8 +514,8 @@
 
 <span class="attr">#[cfg(all(
     not(miri),
-    any(target_arch = <span class="string">&quot;x86_64&quot;</span>, target_arch = <span class="string">&quot;x86&quot;</span>),
-    target_feature = <span class="string">&quot;sse2&quot;
+    any(target_arch = <span class="string">"x86_64"</span>, target_arch = <span class="string">"x86"</span>),
+    target_feature = <span class="string">"sse2"
 </span>))]
 </span><span class="kw">mod </span>sse2;
 
@@ -530,8 +531,8 @@
 /// # Details
 ///
 /// Conceptually, this is an optimized (and slightly approximated — see the
-/// &quot;Approximation&quot; section below) version of the following &quot;reference
-/// implementation&quot;, which more or less looks like:
+/// "Approximation" section below) version of the following "reference
+/// implementation", which more or less looks like:
 ///
 /// ```
 /// // Conceptually equivalent (but see below)
@@ -549,31 +550,31 @@
 /// }
 /// ```
 ///
-/// This crate&#39;s implementation uses a small lookup table (a `[u32; 104]` --
+/// This crate's implementation uses a small lookup table (a `[u32; 104]` --
 /// around 6.5 cache lines), and avoids needing to call `powf` (which, as an
 /// added bonus, means it works great in `no_std`), and in practice is many
 /// times faster than the alternative.
 ///
-/// Additional, it&#39;s fairly amenable to implementing in SIMD (— everything is
+/// Additional, it's fairly amenable to implementing in SIMD (— everything is
 /// easily parallelized aside from the table lookup), and so a 4-wide
 /// implementation is also provided as [`f32x4_to_srgb8`]
 ///
 /// ## Approximation
 /// Note that this is *not* bitwise identical to the results of the
-/// `to_srgb_reference` function above, it&#39;s just very close. The maximum error
+/// `to_srgb_reference` function above, it's just very close. The maximum error
 /// is 0.544403 for an input of 0.31152344, where error is computed as the
-/// absolute difference between the rounded integer and the &quot;exact&quot; value.
+/// absolute difference between the rounded integer and the "exact" value.
 ///
 /// This almost certainly meets requirements for graphics: [The DirectX
 /// spec](https://microsoft.github.io/DirectX-Specs/d3d/archive/D3D11_3_FunctionalSpec.htm#FLOATtoSRGB)
 /// mandates that compliant implementations of this function have a maximum
-/// error of less than &quot;0.6 ULP on the integer side&quot; — Ours is ~0.54, which is
+/// error of less than "0.6 ULP on the integer side" — Ours is ~0.54, which is
 /// within the requirement.
 ///
 /// This means function is probably at least as accurate as whatever your GPU
 /// driver and/or hardware does for sRGB framebuffers and such — very likely
-/// even if it isn&#39;t using DirectX (it&#39;s spec tends to be descriptive of what&#39;s
-/// available commonly, especially in cases like this (most cases) where it&#39;s
+/// even if it isn't using DirectX (it's spec tends to be descriptive of what's
+/// available commonly, especially in cases like this (most cases) where it's
 /// the only one that bothers to put a requirement).
 ///
 /// Additionally, because this function converts the result `u8` — for the vast
@@ -612,7 +613,7 @@
     // results are inbounds for the (104 item) table. This is all verified in
     // test code.
     //
-    // Note that the compiler can&#39;t figure this out on it&#39;s own, so the
+    // Note that the compiler can't figure this out on it's own, so the
     // get_unchecked does help some.
     </span><span class="kw">let </span>entry = <span class="kw">unsafe </span>{
         <span class="kw">let </span>i = ((fu - MINV_BITS) &gt;&gt; <span class="number">20</span>) <span class="kw">as </span>usize;
@@ -631,7 +632,7 @@
     <span class="kw">let </span>res = (bias + scale * t) &gt;&gt; <span class="number">16</span>;
     <span class="attr">#[cfg(all(not(unstable_bench), test))]
     </span>{
-        <span class="macro">debug_assert!</span>(res &lt; <span class="number">256</span>, <span class="string">&quot;{}&quot;</span>, res);
+        <span class="macro">debug_assert!</span>(res &lt; <span class="number">256</span>, <span class="string">"{}"</span>, res);
     }
     res <span class="kw">as </span>u8
 }
@@ -642,29 +643,29 @@
 /// currently this is just on x86_64 and x86 targets that suppost SSE2 (which in
 /// practice will be all x86_64 (aside from weird things like OS kernels), and
 /// all Rust targets beginning with `i686-`). On machines where it cannot use
-/// the CPU&#39;s vector instructions, this function simply performs 4 calls to
+/// the CPU's vector instructions, this function simply performs 4 calls to
 /// [`f32_to_srgb8`].
 ///
 /// The check for this support is performed at compile time, so it does no
 /// runtime SIMD feature checks. This seems like the right call for SSE2.
 ///
 /// Behavior is otherwise exactly (bitwise) identical to [`f32_to_srgb8`], so see
-/// it&#39;s documentation for more information.
+/// it's documentation for more information.
 </span><span class="attr">#[inline]
 </span><span class="kw">pub fn </span>f32x4_to_srgb8(input: [f32; <span class="number">4</span>]) -&gt; [u8; <span class="number">4</span>] {
     <span class="attr">#[cfg(all(
         not(miri),
-        any(target_arch = <span class="string">&quot;x86_64&quot;</span>, target_arch = <span class="string">&quot;x86&quot;</span>),
-        target_feature = <span class="string">&quot;sse2&quot;
+        any(target_arch = <span class="string">"x86_64"</span>, target_arch = <span class="string">"x86"</span>),
+        target_feature = <span class="string">"sse2"
     </span>))]
     </span><span class="kw">unsafe </span>{
-        <span class="comment">// Safety: we&#39;ve checked that we&#39;re on x86/x86_64 and have SSE2
+        <span class="comment">// Safety: we've checked that we're on x86/x86_64 and have SSE2
         </span><span class="kw">crate</span>::sse2::simd_to_srgb8(input)
     }
     <span class="attr">#[cfg(not(all(
         not(miri),
-        any(target_arch = <span class="string">&quot;x86_64&quot;</span>, target_arch = <span class="string">&quot;x86&quot;</span>),
-        target_feature = <span class="string">&quot;sse2&quot;
+        any(target_arch = <span class="string">"x86_64"</span>, target_arch = <span class="string">"x86"</span>),
+        target_feature = <span class="string">"sse2"
     </span>)))]
     </span>{
         [
@@ -704,14 +705,14 @@
 /// }
 /// ```
 ///
-/// The implementation of this function isn&#39;t particularly clever — it just uses
+/// The implementation of this function isn't particularly clever — it just uses
 /// a precomputed lookup table of all 256 results. That has a benefit in that it
 /// allows this function to be a const fn, which is somewhat nice: generally
 /// color constants hardcoded in source code are sRGB, and this means you can
 /// use them to produce linear constants.
 ///
-/// In practice this is way faster than the naive approach, and I&#39;m unaware of
-/// any faster ways of implementing it, but it&#39;s not really amenable to SIMD, so
+/// In practice this is way faster than the naive approach, and I'm unaware of
+/// any faster ways of implementing it, but it's not really amenable to SIMD, so
 /// no SIMD version is provided.
 </span><span class="attr">#[inline]
 </span><span class="kw">pub const fn </span>srgb8_to_f32(c: u8) -&gt; f32 {
@@ -771,7 +772,7 @@
         <span class="macro">assert_eq!</span>(<span class="kw-2">&amp;</span>FROM_SRGB8_TABLE[..], <span class="kw-2">&amp;</span>wanted[..]);
         <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..=<span class="number">255u8 </span>{
             <span class="macro">assert_eq!</span>(srgb8_to_f32(i), srgb8_to_f32_ref(i));
-            <span class="macro">assert_eq!</span>(f32_to_srgb8(srgb8_to_f32(i)), i, <span class="string">&quot;{}&quot;</span>, i);
+            <span class="macro">assert_eq!</span>(f32_to_srgb8(srgb8_to_f32(i)), i, <span class="string">"{}"</span>, i);
         }
     }
 
@@ -792,14 +793,14 @@
             <span class="kw">let </span>err = (c <span class="kw">as </span>f32 - reference).abs();
             <span class="macro">assert!</span>(
                 err &lt; <span class="number">0.6</span>,
-                <span class="string">&quot;Error exceeds limit, {} &gt;= 0.6 at {:?} (0x{:08x})&quot;</span>,
+                <span class="string">"Error exceeds limit, {} &gt;= 0.6 at {:?} (0x{:08x})"</span>,
                 err,
                 f,
                 f.to_bits(),
             );
             <span class="macro">assert!</span>(
                 c &gt;= prev,
-                <span class="string">&quot;Monotonicity not respected {} &lt; {} at  {:?} (0x{:08x})&quot;</span>,
+                <span class="string">"Monotonicity not respected {} &lt; {} at  {:?} (0x{:08x})"</span>,
                 c,
                 prev,
                 f,
@@ -809,7 +810,7 @@
             <span class="kw">let </span>v = f32x4_to_srgb8([f, f, f, f]);
             <span class="macro">assert_eq!</span>([c, c, c, c], v);
             <span class="kw">if </span>(i &amp; <span class="number">0xffffff</span>) == <span class="number">0 </span>{
-                <span class="macro">println!</span>(<span class="string">&quot;scalar: {}&quot;</span>, i &gt;&gt; <span class="number">24</span>);
+                <span class="macro">println!</span>(<span class="string">"scalar: {}"</span>, i &gt;&gt; <span class="number">24</span>);
             }
         }
     }
@@ -831,12 +832,12 @@
             <span class="macro">assert_eq!</span>(
                 v,
                 [c0, c1, c2, c3],
-                <span class="string">&quot;simd/scalar mismatch at {:?} (starting at 0x{:08x})&quot;</span>,
+                <span class="string">"simd/scalar mismatch at {:?} (starting at 0x{:08x})"</span>,
                 [f0, f1, f2, f3],
                 i,
             );
             <span class="kw">if </span>(i &amp; <span class="number">0xffffff</span>) == <span class="number">0 </span>{
-                <span class="macro">println!</span>(<span class="string">&quot;simd: {}&quot;</span>, i &gt;&gt; <span class="number">24</span>);
+                <span class="macro">println!</span>(<span class="string">"simd: {}"</span>, i &gt;&gt; <span class="number">24</span>);
             }
             i = i.wrapping_add(<span class="number">4</span>);
             <span class="kw">if </span>i == <span class="number">0 </span>{

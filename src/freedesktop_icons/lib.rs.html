@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/freedesktop-icons-0.2.5/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="freedesktop_icons" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/freedesktop-icons-0.2.6/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="freedesktop_icons" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -396,6 +397,11 @@
 <a href="#396" id="396">396</a>
 <a href="#397" id="397">397</a>
 <a href="#398" id="398">398</a>
+<a href="#399" id="399">399</a>
+<a href="#400" id="400">400</a>
+<a href="#401" id="401">401</a>
+<a href="#402" id="402">402</a>
+<a href="#403" id="403">403</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! # freedesktop-icons
 //!
 //! This crate provides a [freedesktop icon](https://specifications.freedesktop.org/icon-theme-spec/icon-theme-spec-latest.html#implementation_notes) lookup implementation.
@@ -406,14 +412,14 @@
 //!
 //! **Simple lookup:**
 //!
-//! The following snippet get an icon from the default &#39;hicolor&#39; theme
+//! The following snippet get an icon from the default 'hicolor' theme
 //! with the default scale (`1`) and the default size (`24`).
 //!
 //! ```rust
 //! # fn main() {
 //! use freedesktop_icons::lookup;
 //!
-//! let icon = lookup(&quot;firefox&quot;).find();
+//! let icon = lookup("firefox").find();
 //! # }
 //!```
 //!
@@ -425,10 +431,10 @@
 //! # fn main() {
 //! use freedesktop_icons::lookup;
 //!
-//! let icon = lookup(&quot;firefox&quot;)
+//! let icon = lookup("firefox")
 //!     .with_size(48)
 //!     .with_scale(2)
-//!     .with_theme(&quot;Arc&quot;)
+//!     .with_theme("Arc")
 //!     .find();
 //! # }
 //!```
@@ -441,10 +447,10 @@
 //! # fn main() {
 //! use freedesktop_icons::lookup;
 //!
-//! let icon = lookup(&quot;firefox&quot;)
+//! let icon = lookup("firefox")
 //!     .with_size(48)
 //!     .with_scale(2)
-//!     .with_theme(&quot;Arc&quot;)
+//!     .with_theme("Arc")
 //!     .with_cache()
 //!     .find();
 //! # }
@@ -468,19 +474,19 @@
 /// let themes: Vec&lt;&amp;str&gt; = list_themes();
 ///
 /// assert_eq!(themes, vec![
-///     &quot;Adwaita&quot;, &quot;Arc&quot;, &quot;Breeze Light&quot;, &quot;HighContrast&quot;, &quot;Papirus&quot;, &quot;Papirus-Dark&quot;,
-///     &quot;Papirus-Light&quot;, &quot;Breeze&quot;, &quot;Breeze Dark&quot;, &quot;Breeze&quot;, &quot;ePapirus&quot;, &quot;ePapirus-Dark&quot;, &quot;Hicolor&quot;
+///     "Adwaita", "Arc", "Breeze Light", "HighContrast", "Papirus", "Papirus-Dark",
+///     "Papirus-Light", "Breeze", "Breeze Dark", "Breeze", "ePapirus", "ePapirus-Dark", "Hicolor"
 /// ])
 /// # }
-</span><span class="kw">pub fn </span>list_themes() -&gt; Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; {
+</span><span class="kw">pub fn </span>list_themes() -&gt; Vec&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>themes = THEMES
         .values()
         .flatten()
         .map(|path| <span class="kw-2">&amp;</span>path.index)
         .filter_map(|index| {
             index
-                .section(<span class="prelude-val">Some</span>(<span class="string">&quot;Icon Theme&quot;</span>))
-                .and_then(|section| section.get(<span class="string">&quot;Name&quot;</span>))
+                .section(<span class="prelude-val">Some</span>(<span class="string">"Icon Theme"</span>))
+                .and_then(|section| section.get(<span class="string">"Name"</span>))
         })
         .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;();
     themes.dedup();
@@ -488,13 +494,13 @@
 }
 
 <span class="doccomment">/// The lookup builder struct, holding all the lookup query parameters.
-</span><span class="kw">pub struct </span>LookupBuilder&lt;<span class="lifetime">&#39;a</span>&gt; {
-    name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+</span><span class="kw">pub struct </span>LookupBuilder&lt;<span class="lifetime">'a</span>&gt; {
+    name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
     cache: bool,
     force_svg: bool,
     scale: u16,
     size: u16,
-    theme: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+    theme: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
 }
 
 <span class="doccomment">/// Build an icon lookup for the given icon name.
@@ -504,13 +510,13 @@
 /// # fn main() {
 /// use freedesktop_icons::lookup;
 ///
-/// let icon = lookup(&quot;firefox&quot;).find();
+/// let icon = lookup("firefox").find();
 /// # }
 </span><span class="kw">pub fn </span>lookup(name: <span class="kw-2">&amp;</span>str) -&gt; LookupBuilder {
     LookupBuilder::new(name)
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; LookupBuilder&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; LookupBuilder&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Restrict the lookup to the given icon size.
     ///
     /// ## Example
@@ -518,7 +524,7 @@
     /// # fn main() {
     /// use freedesktop_icons::lookup;
     ///
-    /// let icon = lookup(&quot;firefox&quot;)
+    /// let icon = lookup("firefox")
     ///     .with_size(48)
     ///     .find();
     /// # }
@@ -534,7 +540,7 @@
     /// # fn main() {
     /// use freedesktop_icons::lookup;
     ///
-    /// let icon = lookup(&quot;firefox&quot;)
+    /// let icon = lookup("firefox")
     ///     .with_scale(2)
     ///     .find();
     /// # }
@@ -549,11 +555,11 @@
     /// # fn main() {
     /// use freedesktop_icons::lookup;
     ///
-    /// let icon = lookup(&quot;firefox&quot;)
-    ///     .with_theme(&quot;Papirus&quot;)
+    /// let icon = lookup("firefox")
+    ///     .with_theme("Papirus")
     ///     .find();
     /// # }
-    </span><span class="kw">pub fn </span>with_theme&lt;<span class="lifetime">&#39;b</span>: <span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">mut </span><span class="self">self</span>, theme: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>str) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>with_theme&lt;<span class="lifetime">'b</span>: <span class="lifetime">'a</span>&gt;(<span class="kw-2">mut </span><span class="self">self</span>, theme: <span class="kw-2">&amp;</span><span class="lifetime">'b </span>str) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.theme = theme;
         <span class="self">self
     </span>}
@@ -568,7 +574,7 @@
     /// # fn main() {
     /// use freedesktop_icons::lookup;
     ///
-    /// let icon = lookup(&quot;firefox&quot;)
+    /// let icon = lookup("firefox")
     ///     .with_scale(2)
     ///     .with_cache()
     ///     .find();
@@ -587,7 +593,7 @@
     /// # fn main() {
     /// use freedesktop_icons::lookup;
     ///
-    /// let icon = lookup(&quot;firefox&quot;)
+    /// let icon = lookup("firefox")
     ///     .force_svg()
     ///     .find();
     /// # }
@@ -600,18 +606,18 @@
     /// if no icon is found in the current theme fallback to
     /// `/usr/share/icons/hicolor` theme and then to `/usr/share/pixmaps`.
     </span><span class="kw">pub fn </span>find(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;PathBuf&gt; {
-        <span class="comment">// Lookup for an icon in the given theme and fallback to &#39;hicolor&#39; default theme
+        <span class="comment">// Lookup for an icon in the given theme and fallback to 'hicolor' default theme
         </span><span class="self">self</span>.lookup_in_theme()
     }
 
-    <span class="kw">fn </span>new&lt;<span class="lifetime">&#39;b</span>: <span class="lifetime">&#39;a</span>&gt;(name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>str) -&gt; <span class="self">Self </span>{
+    <span class="kw">fn </span>new&lt;<span class="lifetime">'b</span>: <span class="lifetime">'a</span>&gt;(name: <span class="kw-2">&amp;</span><span class="lifetime">'b </span>str) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             name,
             cache: <span class="bool-val">false</span>,
             force_svg: <span class="bool-val">false</span>,
             scale: <span class="number">1</span>,
             size: <span class="number">24</span>,
-            theme: <span class="string">&quot;hicolor&quot;</span>,
+            theme: <span class="string">"hicolor"</span>,
         }
     }
 
@@ -633,60 +639,65 @@
         }
 
         <span class="comment">// Then lookup in the given theme
-        </span>THEMES.get(<span class="self">self</span>.theme).and_then(|icon_themes| {
-            <span class="kw">let </span>icon = icon_themes
-                .iter()
-                .find_map(|theme| {
-                    theme.try_get_icon(<span class="self">self</span>.name, <span class="self">self</span>.size, <span class="self">self</span>.scale, <span class="self">self</span>.force_svg)
-                })
-                .or_else(|| {
-                    <span class="comment">// Fallback to the parent themes recursively
-                    </span><span class="kw">let </span><span class="kw-2">mut </span>parents = icon_themes
-                        .iter()
-                        .flat_map(|t| t.inherits())
-                        .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;();
-                    parents.dedup();
-                    parents.into_iter().find_map(|parent| {
-                        THEMES.get(parent).and_then(|parent| {
-                            parent.iter().find_map(|t| {
-                                t.try_get_icon(<span class="self">self</span>.name, <span class="self">self</span>.size, <span class="self">self</span>.scale, <span class="self">self</span>.force_svg)
+        </span>THEMES
+            .get(<span class="self">self</span>.theme)
+            .or_else(|| THEMES.get(<span class="string">"hicolor"</span>))
+            .and_then(|icon_themes| {
+                <span class="kw">let </span>icon = icon_themes
+                    .iter()
+                    .find_map(|theme| {
+                        theme.try_get_icon(<span class="self">self</span>.name, <span class="self">self</span>.size, <span class="self">self</span>.scale, <span class="self">self</span>.force_svg)
+                    })
+                    .or_else(|| {
+                        <span class="comment">// Fallback to the parent themes recursively
+                        </span><span class="kw">let </span><span class="kw-2">mut </span>parents = icon_themes
+                            .iter()
+                            .flat_map(|t| t.inherits())
+                            .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;();
+                        parents.dedup();
+                        parents.into_iter().find_map(|parent| {
+                            THEMES.get(parent).and_then(|parent| {
+                                parent.iter().find_map(|t| {
+                                    t.try_get_icon(<span class="self">self</span>.name, <span class="self">self</span>.size, <span class="self">self</span>.scale, <span class="self">self</span>.force_svg)
+                                })
                             })
                         })
                     })
-                })
-                .or_else(|| {
-                    THEMES.get(<span class="string">&quot;hicolor&quot;</span>).and_then(|icon_themes| {
-                        icon_themes.iter().find_map(|theme| {
-                            theme.try_get_icon(<span class="self">self</span>.name, <span class="self">self</span>.size, <span class="self">self</span>.scale, <span class="self">self</span>.force_svg)
+                    .or_else(|| {
+                        THEMES.get(<span class="string">"hicolor"</span>).and_then(|icon_themes| {
+                            icon_themes.iter().find_map(|theme| {
+                                theme.try_get_icon(<span class="self">self</span>.name, <span class="self">self</span>.size, <span class="self">self</span>.scale, <span class="self">self</span>.force_svg)
+                            })
                         })
                     })
-                })
-                .or_else(|| {
-                    <span class="kw">for </span>theme_base_dir <span class="kw">in </span>BASE_PATHS.iter() {
-                        <span class="kw">if let </span><span class="prelude-val">Some</span>(icon) =
-                            try_build_icon_path(<span class="self">self</span>.name, theme_base_dir, <span class="self">self</span>.force_svg)
-                        {
-                            <span class="kw">return </span><span class="prelude-val">Some</span>(icon);
+                    .or_else(|| {
+                        <span class="kw">for </span>theme_base_dir <span class="kw">in </span>BASE_PATHS.iter() {
+                            <span class="kw">if let </span><span class="prelude-val">Some</span>(icon) =
+                                try_build_icon_path(<span class="self">self</span>.name, theme_base_dir, <span class="self">self</span>.force_svg)
+                            {
+                                <span class="kw">return </span><span class="prelude-val">Some</span>(icon);
+                            }
                         }
-                    }
-                    <span class="prelude-val">None
-                </span>})
-                .or_else(|| try_build_icon_path(<span class="self">self</span>.name, <span class="string">&quot;/usr/share/pixmaps&quot;</span>, <span class="self">self</span>.force_svg))
-                .or_else(|| {
-                    <span class="kw">let </span>p = PathBuf::from(<span class="kw-2">&amp;</span><span class="self">self</span>.name);
-                    <span class="kw">if let </span>(<span class="prelude-val">Some</span>(name), <span class="prelude-val">Some</span>(parent)) = (p.file_stem(), p.parent()) {
-                        try_build_icon_path(<span class="kw-2">&amp;</span>name.to_string_lossy(), parent, <span class="self">self</span>.force_svg)
-                    } <span class="kw">else </span>{
                         <span class="prelude-val">None
-                    </span>}
-                });
+                    </span>})
+                    .or_else(|| {
+                        try_build_icon_path(<span class="self">self</span>.name, <span class="string">"/usr/share/pixmaps"</span>, <span class="self">self</span>.force_svg)
+                    })
+                    .or_else(|| {
+                        <span class="kw">let </span>p = PathBuf::from(<span class="kw-2">&amp;</span><span class="self">self</span>.name);
+                        <span class="kw">if let </span>(<span class="prelude-val">Some</span>(name), <span class="prelude-val">Some</span>(parent)) = (p.file_stem(), p.parent()) {
+                            try_build_icon_path(<span class="kw-2">&amp;</span>name.to_string_lossy(), parent, <span class="self">self</span>.force_svg)
+                        } <span class="kw">else </span>{
+                            <span class="prelude-val">None
+                        </span>}
+                    });
 
-            <span class="kw">if </span><span class="self">self</span>.cache {
-                <span class="self">self</span>.store(<span class="self">self</span>.theme, icon)
-            } <span class="kw">else </span>{
-                icon
-            }
-        })
+                <span class="kw">if </span><span class="self">self</span>.cache {
+                    <span class="self">self</span>.store(<span class="self">self</span>.theme, icon)
+                } <span class="kw">else </span>{
+                    icon
+                }
+            })
     }
 
     <span class="attr">#[inline]
@@ -702,7 +713,7 @@
 }
 
 <span class="comment">// WARNING: these test are highly dependent on your installed icon-themes.
-// If you want to run them, make sure you have &#39;Papirus&#39; and &#39;Arc&#39; icon-themes installed.
+// If you want to run them, make sure you have 'Papirus' and 'Arc' icon-themes installed.
 </span><span class="attr">#[cfg(test)]
 </span><span class="kw">mod </span>test {
     <span class="kw">use crate</span>::{lookup, CacheEntry, CACHE};
@@ -711,71 +722,71 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>simple_lookup() {
-        <span class="kw">let </span>firefox = lookup(<span class="string">&quot;firefox&quot;</span>).find();
+        <span class="kw">let </span>firefox = lookup(<span class="string">"firefox"</span>).find();
 
-        <span class="macro">asserting!</span>(<span class="string">&quot;Lookup with no parameters should return an existing icon&quot;</span>)
+        <span class="macro">asserting!</span>(<span class="string">"Lookup with no parameters should return an existing icon"</span>)
             .that(<span class="kw-2">&amp;</span>firefox)
             .is_some()
             .is_equal_to(PathBuf::from(
-                <span class="string">&quot;/usr/share/icons/hicolor/22x22/apps/firefox.png&quot;</span>,
+                <span class="string">"/usr/share/icons/hicolor/22x22/apps/firefox.png"</span>,
             ));
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>theme_lookup() {
-        <span class="kw">let </span>firefox = lookup(<span class="string">&quot;firefox&quot;</span>).with_theme(<span class="string">&quot;Papirus&quot;</span>).find();
+        <span class="kw">let </span>firefox = lookup(<span class="string">"firefox"</span>).with_theme(<span class="string">"Papirus"</span>).find();
 
-        <span class="macro">asserting!</span>(<span class="string">&quot;Lookup with no parameters should return an existing icon&quot;</span>)
+        <span class="macro">asserting!</span>(<span class="string">"Lookup with no parameters should return an existing icon"</span>)
             .that(<span class="kw-2">&amp;</span>firefox)
             .is_some()
             .is_equal_to(PathBuf::from(
-                <span class="string">&quot;/usr/share/icons/Papirus/24x24/apps/firefox.svg&quot;</span>,
+                <span class="string">"/usr/share/icons/Papirus/24x24/apps/firefox.svg"</span>,
             ));
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>should_fallback_to_parent_theme() {
-        <span class="kw">let </span>icon = lookup(<span class="string">&quot;video-single-display-symbolic&quot;</span>)
-            .with_theme(<span class="string">&quot;Arc&quot;</span>)
+        <span class="kw">let </span>icon = lookup(<span class="string">"video-single-display-symbolic"</span>)
+            .with_theme(<span class="string">"Arc"</span>)
             .find();
 
-        <span class="macro">asserting!</span>(<span class="string">&quot;Lookup for an icon in the Arc theme should find the icon in its parent&quot;</span>)
+        <span class="macro">asserting!</span>(<span class="string">"Lookup for an icon in the Arc theme should find the icon in its parent"</span>)
             .that(<span class="kw-2">&amp;</span>icon)
             .is_some()
             .is_equal_to(PathBuf::from(
-                <span class="string">&quot;/usr/share/icons/Adwaita/scalable/devices/video-single-display-symbolic.svg&quot;</span>,
+                <span class="string">"/usr/share/icons/Adwaita/scalable/devices/video-single-display-symbolic.svg"</span>,
             ));
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>should_fallback_to_pixmaps_utlimately() {
-        <span class="kw">let </span>archlinux_logo = lookup(<span class="string">&quot;archlinux-logo&quot;</span>)
+        <span class="kw">let </span>archlinux_logo = lookup(<span class="string">"archlinux-logo"</span>)
             .with_size(<span class="number">16</span>)
             .with_scale(<span class="number">1</span>)
-            .with_theme(<span class="string">&quot;Papirus&quot;</span>)
+            .with_theme(<span class="string">"Papirus"</span>)
             .find();
 
-        <span class="macro">asserting!</span>(<span class="string">&quot;When lookup fail in theme, icon should be found in &#39;/usr/share/pixmaps&#39;&quot;</span>)
+        <span class="macro">asserting!</span>(<span class="string">"When lookup fail in theme, icon should be found in '/usr/share/pixmaps'"</span>)
             .that(<span class="kw-2">&amp;</span>archlinux_logo)
             .is_some()
-            .is_equal_to(PathBuf::from(<span class="string">&quot;/usr/share/pixmaps/archlinux-logo.png&quot;</span>));
+            .is_equal_to(PathBuf::from(<span class="string">"/usr/share/pixmaps/archlinux-logo.png"</span>));
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>compare_to_linincon_with_theme() {
-        <span class="kw">let </span>lin_wireshark = linicon::lookup_icon(<span class="string">&quot;wireshark&quot;</span>)
+        <span class="kw">let </span>lin_wireshark = linicon::lookup_icon(<span class="string">"wireshark"</span>)
             .next()
             .unwrap()
             .unwrap()
             .path;
 
-        <span class="kw">let </span>wireshark = lookup(<span class="string">&quot;wireshark&quot;</span>)
+        <span class="kw">let </span>wireshark = lookup(<span class="string">"wireshark"</span>)
             .with_size(<span class="number">16</span>)
             .with_scale(<span class="number">1</span>)
-            .with_theme(<span class="string">&quot;Papirus&quot;</span>)
+            .with_theme(<span class="string">"Papirus"</span>)
             .find();
 
-        <span class="macro">asserting!</span>(<span class="string">&quot;Given the same input parameter, lookup should output be the same as linincon&quot;</span>)
+        <span class="macro">asserting!</span>(<span class="string">"Given the same input parameter, lookup should output be the same as linincon"</span>)
             .that(<span class="kw-2">&amp;</span>wireshark)
             .is_some()
             .is_equal_to(lin_wireshark);
@@ -783,13 +794,13 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>should_not_attempt_to_lookup_a_not_found_cached_icon() {
-        <span class="kw">let </span>not_found = lookup(<span class="string">&quot;not-found&quot;</span>).with_cache().find();
+        <span class="kw">let </span>not_found = lookup(<span class="string">"not-found"</span>).with_cache().find();
 
         <span class="macro">assert_that!</span>(not_found).is_none();
 
-        <span class="kw">let </span>expected_cache_result = CACHE.get(<span class="string">&quot;hicolor&quot;</span>, <span class="number">24</span>, <span class="number">1</span>, <span class="string">&quot;not-found&quot;</span>);
+        <span class="kw">let </span>expected_cache_result = CACHE.get(<span class="string">"hicolor"</span>, <span class="number">24</span>, <span class="number">1</span>, <span class="string">"not-found"</span>);
 
-        <span class="macro">asserting!</span>(<span class="string">&quot;When lookup fails a first time, subsequent attempts should fail from cache&quot;</span>)
+        <span class="macro">asserting!</span>(<span class="string">"When lookup fails a first time, subsequent attempts should fail from cache"</span>)
             .that(<span class="kw-2">&amp;</span>expected_cache_result)
             .is_equal_to(CacheEntry::NotFound);
     }

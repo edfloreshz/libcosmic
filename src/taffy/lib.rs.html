@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/taffy-3438f0b42e7e0e0f/7781c70/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="taffy" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/taffy-3438f0b42e7e0e0f/7781c70/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="taffy" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -124,12 +125,12 @@
 //!
 //! ## Architecture
 //!
-//! Taffy is based on a tree of &quot;UI nodes&quot; similar to the tree of DOM nodes that one finds in web-based UI. Each node has:
+//! Taffy is based on a tree of "UI nodes" similar to the tree of DOM nodes that one finds in web-based UI. Each node has:
 //!   - A [`Style`] struct which holds a set of CSS styles which function as the primary input to the layout computations.
 //!   - A [`Layout`] struct containing a position (x/y) and a size (width/height) which function as the output of the layout computations.
 //!   - Optionally:
 //!       - A `Vec` set of child nodes
-//!       - &quot;Context&quot;: arbitary user-defined data (which you can access when using a &quot;measure function&quot; to integrate Taffy with other kinds of layout such as text layout)
+//!       - "Context": arbitary user-defined data (which you can access when using a "measure function" to integrate Taffy with other kinds of layout such as text layout)
 //!
 //! Usage of Taffy consists of constructing a tree of UI nodes (with associated styles, children and context), then calling function(s)
 //! from Taffy to translate those styles, parent-child relationships and measure functions into a size and position in 2d space for each node
@@ -140,12 +141,12 @@
 //! Taffy has two APIs: a high-level API that is simpler and easier to get started with, and a low-level API that is more flexible gives greater control.
 //!
 //! We would generally recommend the high-level API for users using Taffy standalone and the low-level API for users wanting to embed Taffy as part of
-//! a wider layout system or as part of a UI framework that already has it&#39;s own node/widget tree representation.
+//! a wider layout system or as part of a UI framework that already has it's own node/widget tree representation.
 //!
 //! ### High-level API
 //!
 //! The high-level API** consists of the [`TaffyTree`] struct which contains a tree implementation and provides methods that allow you to construct
-//! a tree of UI nodes. Once constructed, you can call the [`compute_layout_with_measure`](crate::TaffyTree::compute_layout_with_measure) method to compute the layout (passing in a &quot;measure function&quot; closure which is used to compute the size of leaf nodes), and then access
+//! a tree of UI nodes. Once constructed, you can call the [`compute_layout_with_measure`](crate::TaffyTree::compute_layout_with_measure) method to compute the layout (passing in a "measure function" closure which is used to compute the size of leaf nodes), and then access
 //! the layout of each node using the [`layout`](crate::TaffyTree::layout) method.
 //!
 //! When using the high-level API, Taffy will take care of node storage, caching and dispatching to the correct layout algorithm for a given node for you.
@@ -158,7 +159,7 @@
 //!   - [grid_holy_grail](https://github.com/DioxusLabs/taffy/blob/main/examples/basic.rs)
 //!   - [measure](https://github.com/DioxusLabs/taffy/blob/main/examples/measure.rs)
 //!
-//! In particular, the &quot;measure&quot; example shows how to integrate Taffy layout with other layout modalities such as text or image layout when using the high level API.
+//! In particular, the "measure" example shows how to integrate Taffy layout with other layout modalities such as text or image layout when using the high level API.
 //!
 //! ### Low-level API
 //!
@@ -171,10 +172,10 @@
 //!
 //! Examples which show usage of the high-level API are:
 //!
-//!   - [custom_layout_tree_vec](https://github.com/DioxusLabs/taffy/blob/main/examples/custom_layout_tree_vec.rs) which implements a custom Taffy tree using a `Vec` as an arena with NodeId&#39;s being index&#39;s into the Vec.
-//!   - [custom_layout_tree_owned](https://github.com/DioxusLabs/taffy/blob/main/examples/custom_layout_tree_owned.rs) which implements a custom Taffy tree using directly owned children with NodeId&#39;s being pointers.
+//!   - [custom_layout_tree_vec](https://github.com/DioxusLabs/taffy/blob/main/examples/custom_layout_tree_vec.rs) which implements a custom Taffy tree using a `Vec` as an arena with NodeId's being index's into the Vec.
+//!   - [custom_layout_tree_owned](https://github.com/DioxusLabs/taffy/blob/main/examples/custom_layout_tree_owned.rs) which implements a custom Taffy tree using directly owned children with NodeId's being pointers.
 
-</span><span class="attr">#![cfg_attr(not(feature = <span class="string">&quot;std&quot;</span>), no_std)]
+</span><span class="attr">#![cfg_attr(not(feature = <span class="string">"std"</span>), no_std)]
 #![deny(unsafe_code)]
 #![forbid(unsafe_code)]
 #![warn(missing_docs)]
@@ -182,15 +183,15 @@
 
 </span><span class="comment">// We always need std for the tests
 // See &lt;https://github.com/la10736/rstest/issues/149#issuecomment-1156402989&gt;
-</span><span class="attr">#[cfg(all(test, not(feature = <span class="string">&quot;std&quot;</span>)))]
+</span><span class="attr">#[cfg(all(test, not(feature = <span class="string">"std"</span>)))]
 #[macro_use]
 </span><span class="kw">extern crate </span>std;
 
-<span class="attr">#[cfg(all(not(feature = <span class="string">&quot;std&quot;</span>), feature = <span class="string">&quot;alloc&quot;</span>))]
+<span class="attr">#[cfg(all(not(feature = <span class="string">"std"</span>), feature = <span class="string">"alloc"</span>))]
 </span><span class="kw">extern crate </span>alloc;
 
-<span class="attr">#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, macro_use)]
-#[cfg(feature = <span class="string">&quot;serde&quot;</span>)]
+<span class="attr">#[cfg_attr(feature = <span class="string">"serde"</span>, macro_use)]
+#[cfg(feature = <span class="string">"serde"</span>)]
 </span><span class="kw">extern crate </span>serde;
 
 <span class="kw">pub mod </span>compute;
@@ -203,16 +204,16 @@
 </span><span class="kw">pub mod </span>util;
 
 <span class="kw">mod </span>readme_doctest {
-    <span class="attr">#![doc = <span class="macro">include_str!</span>(<span class="string">&quot;../README.md&quot;</span>)]
+    <span class="attr">#![doc = <span class="macro">include_str!</span>(<span class="string">"../README.md"</span>)]
 </span>}
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;block_layout&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"block_layout"</span>)]
 #[doc(inline)]
 </span><span class="kw">pub use </span><span class="kw">crate</span>::compute::compute_block_layout;
-<span class="attr">#[cfg(feature = <span class="string">&quot;flexbox&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"flexbox"</span>)]
 #[doc(inline)]
 </span><span class="kw">pub use </span><span class="kw">crate</span>::compute::compute_flexbox_layout;
-<span class="attr">#[cfg(feature = <span class="string">&quot;grid&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"grid"</span>)]
 #[doc(inline)]
 </span><span class="kw">pub use </span><span class="kw">crate</span>::compute::compute_grid_layout;
 <span class="attr">#[doc(inline)]
@@ -221,12 +222,12 @@
 };
 <span class="attr">#[doc(inline)]
 </span><span class="kw">pub use </span><span class="kw">crate</span>::style::Style;
-<span class="attr">#[cfg(feature = <span class="string">&quot;taffy_tree&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"taffy_tree"</span>)]
 #[doc(inline)]
 </span><span class="kw">pub use </span><span class="kw">crate</span>::tree::TaffyTree;
 <span class="attr">#[doc(inline)]
 </span><span class="kw">pub use </span><span class="kw">crate</span>::tree::{LayoutTree, PartialLayoutTree};
-<span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
 #[doc(inline)]
 </span><span class="kw">pub use </span><span class="kw">crate</span>::util::print_tree;
 

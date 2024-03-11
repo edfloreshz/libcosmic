@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/image-0.24.8/src/codecs/webp/encoder.rs`."><title>encoder.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="image" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/image-0.24.9/src/codecs/webp/encoder.rs`."><title>encoder.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="image" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -836,6 +837,12 @@
 <a href="#836" id="836">836</a>
 <a href="#837" id="837">837</a>
 <a href="#838" id="838">838</a>
+<a href="#839" id="839">839</a>
+<a href="#840" id="840">840</a>
+<a href="#841" id="841">841</a>
+<a href="#842" id="842">842</a>
+<a href="#843" id="843">843</a>
+<a href="#844" id="844">844</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Encoding of WebP images.
 </span><span class="kw">use </span>std::collections::BinaryHeap;
 <span class="doccomment">///
@@ -843,10 +850,9 @@
 ///
 /// [libwebp]: https://developers.google.com/speed/webp/docs/api#simple_encoding_api
 </span><span class="kw">use </span>std::io::{<span class="self">self</span>, Write};
-<span class="kw">use </span>std::iter::FromIterator;
 <span class="kw">use </span>std::slice::ChunksExact;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;webp-encoder&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"webp-encoder"</span>)]
 </span><span class="kw">use </span>libwebp::{Encoder, PixelLayout, WebPMemory};
 
 <span class="kw">use </span><span class="kw">crate</span>::error::{ParameterError, ParameterErrorKind, UnsupportedError, UnsupportedErrorKind};
@@ -870,7 +876,8 @@
 <span class="attr">#[derive(Debug, Copy, Clone)]
 </span><span class="kw">enum </span>Quality {
     Lossless,
-    <span class="attr">#[deprecated = <span class="string">&quot;Lossy encoding will be removed in a future version. See: https://github.com/image-rs/image/issues/1984&quot;</span>]
+    <span class="attr">#[allow(unused)]
+    #[deprecated = <span class="string">"Lossy encoding will be removed in a future version. See: https://github.com/image-rs/image/issues/1984"</span>]
     </span>Lossy(u8),
 }
 
@@ -890,7 +897,7 @@
     <span class="doccomment">/// Lossy encoding. 0 = low quality, small size; 100 = high quality, large size.
     ///
     /// Values are clamped from 0 to 100.
-    </span><span class="attr">#[deprecated = <span class="string">&quot;Lossy encoding will be removed in a future version. See: https://github.com/image-rs/image/issues/1984&quot;</span>]
+    </span><span class="attr">#[deprecated = <span class="string">"Lossy encoding will be removed in a future version. See: https://github.com/image-rs/image/issues/1984"</span>]
     </span><span class="kw">pub fn </span>lossy(quality: u8) -&gt; <span class="self">Self </span>{
         <span class="attr">#[allow(deprecated)]
         </span><span class="self">Self</span>(Quality::Lossy(quality.clamp(<span class="self">Self</span>::MIN, <span class="self">Self</span>::MAX)))
@@ -908,16 +915,16 @@
     <span class="doccomment">/// Create a new encoder that writes its output to `w`.
     ///
     /// Defaults to lossy encoding, see [`WebPQuality::DEFAULT`].
-    </span><span class="attr">#[deprecated = <span class="string">&quot;Use `new_lossless` instead. Lossy encoding will be removed in a future version. See: https://github.com/image-rs/image/issues/1984&quot;</span>]
-    #[cfg(feature = <span class="string">&quot;webp-encoder&quot;</span>)]
+    </span><span class="attr">#[deprecated = <span class="string">"Use `new_lossless` instead. Lossy encoding will be removed in a future version. See: https://github.com/image-rs/image/issues/1984"</span>]
+    #[cfg(feature = <span class="string">"webp-encoder"</span>)]
     </span><span class="kw">pub fn </span>new(w: W) -&gt; <span class="self">Self </span>{
         <span class="attr">#[allow(deprecated)]
         </span>WebPEncoder::new_with_quality(w, WebPQuality::default())
     }
 
     <span class="doccomment">/// Create a new encoder with the specified quality, that writes its output to `w`.
-    </span><span class="attr">#[deprecated = <span class="string">&quot;Use `new_lossless` instead. Lossy encoding will be removed in a future version. See: https://github.com/image-rs/image/issues/1984&quot;</span>]
-    #[cfg(feature = <span class="string">&quot;webp-encoder&quot;</span>)]
+    </span><span class="attr">#[deprecated = <span class="string">"Use `new_lossless` instead. Lossy encoding will be removed in a future version. See: https://github.com/image-rs/image/issues/1984"</span>]
+    #[cfg(feature = <span class="string">"webp-encoder"</span>)]
     </span><span class="kw">pub fn </span>new_with_quality(w: W, quality: WebPQuality) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             writer: w,
@@ -930,7 +937,7 @@
 
     <span class="doccomment">/// Create a new encoder that writes its output to `w`.
     ///
-    /// Uses &quot;VP8L&quot; lossless encoding.
+    /// Uses "VP8L" lossless encoding.
     </span><span class="kw">pub fn </span>new_lossless(w: W) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             writer: w,
@@ -1470,11 +1477,11 @@
         }
 
         <span class="comment">// write container
-        </span><span class="self">self</span>.writer.write_all(<span class="string">b&quot;RIFF&quot;</span>)<span class="question-mark">?</span>;
+        </span><span class="self">self</span>.writer.write_all(<span class="string">b"RIFF"</span>)<span class="question-mark">?</span>;
         <span class="self">self</span>.writer
             .write_all(<span class="kw-2">&amp;</span>(<span class="self">self</span>.chunk_buffer.len() <span class="kw">as </span>u32 + <span class="number">12</span>).to_le_bytes())<span class="question-mark">?</span>;
-        <span class="self">self</span>.writer.write_all(<span class="string">b&quot;WEBP&quot;</span>)<span class="question-mark">?</span>;
-        <span class="self">self</span>.writer.write_all(<span class="string">b&quot;VP8L&quot;</span>)<span class="question-mark">?</span>;
+        <span class="self">self</span>.writer.write_all(<span class="string">b"WEBP"</span>)<span class="question-mark">?</span>;
+        <span class="self">self</span>.writer.write_all(<span class="string">b"VP8L"</span>)<span class="question-mark">?</span>;
         <span class="self">self</span>.writer
             .write_all(<span class="kw-2">&amp;</span>(<span class="self">self</span>.chunk_buffer.len() <span class="kw">as </span>u32).to_le_bytes())<span class="question-mark">?</span>;
         <span class="self">self</span>.writer.write_all(<span class="kw-2">&amp;</span><span class="self">self</span>.chunk_buffer)<span class="question-mark">?</span>;
@@ -1482,7 +1489,7 @@
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;webp-encoder&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"webp-encoder"</span>)]
     </span><span class="kw">fn </span>encode_lossy(
         <span class="kw-2">mut </span><span class="self">self</span>,
         data: <span class="kw-2">&amp;</span>[u8],
@@ -1527,7 +1534,7 @@
         </span><span class="kw">if </span>encoded.is_empty() {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ImageError::Encoding(<span class="kw">crate</span>::error::EncodingError::new(
                 ImageFormat::WebP.into(),
-                <span class="string">&quot;encoding failed, output empty&quot;</span>,
+                <span class="string">"encoding failed, output empty"</span>,
             )));
         }
 
@@ -1542,25 +1549,31 @@
     /// # Panics
     ///
     /// Panics if `width * height * color.bytes_per_pixel() != data.len()`.
+    </span><span class="attr">#[track_caller]
     </span><span class="kw">pub fn </span>encode(<span class="self">self</span>, data: <span class="kw-2">&amp;</span>[u8], width: u32, height: u32, color: ColorType) -&gt; ImageResult&lt;()&gt; {
+        <span class="kw">let </span>expected_buffer_len =
+            (width <span class="kw">as </span>u64 * height <span class="kw">as </span>u64).saturating_mul(color.bytes_per_pixel() <span class="kw">as </span>u64);
         <span class="macro">assert_eq!</span>(
-            (width <span class="kw">as </span>u64 * height <span class="kw">as </span>u64).saturating_mul(color.bytes_per_pixel() <span class="kw">as </span>u64),
-            data.len() <span class="kw">as </span>u64
+            expected_buffer_len,
+            data.len() <span class="kw">as </span>u64,
+            <span class="string">"Invalid buffer length: expected {expected_buffer_len} got {} for {width}x{height} image"</span>,
+            data.len(),
         );
 
         <span class="kw">if let </span>WebPQuality(Quality::Lossless) = <span class="self">self</span>.quality {
             <span class="self">self</span>.encode_lossless(data, width, height, color)
         } <span class="kw">else </span>{
-            <span class="attr">#[cfg(feature = <span class="string">&quot;webp-encoder&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"webp-encoder"</span>)]
             </span><span class="kw">return </span><span class="self">self</span>.encode_lossy(data, width, height, color);
-            <span class="attr">#[cfg(not(feature = <span class="string">&quot;webp-encoder&quot;</span>))]
+            <span class="attr">#[cfg(not(feature = <span class="string">"webp-encoder"</span>))]
             </span><span class="macro">unreachable!</span>()
         }
     }
 }
 
 <span class="kw">impl</span>&lt;W: Write&gt; ImageEncoder <span class="kw">for </span>WebPEncoder&lt;W&gt; {
-    <span class="kw">fn </span>write_image(
+    <span class="attr">#[track_caller]
+    </span><span class="kw">fn </span>write_image(
         <span class="self">self</span>,
         buf: <span class="kw-2">&amp;</span>[u8],
         width: u32,
@@ -1598,7 +1611,7 @@
 }
 
 <span class="attr">#[cfg(test)]
-#[cfg(feature = <span class="string">&quot;webp-encoder&quot;</span>)]
+#[cfg(feature = <span class="string">"webp-encoder"</span>)]
 </span><span class="kw">mod </span>native_tests {
     <span class="kw">use </span><span class="kw">crate</span>::codecs::webp::{WebPEncoder, WebPQuality};
     <span class="kw">use crate</span>::{ColorType, ImageEncoder};

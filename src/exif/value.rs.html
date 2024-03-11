@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/kamadak-exif-0.5.5/src/value.rs`."><title>value.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="exif" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/kamadak-exif-0.5.5/src/value.rs`."><title>value.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="exif" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1002,7 +1003,7 @@
 <a href="#1002" id="1002">1002</a>
 <a href="#1003" id="1003">1003</a>
 </pre></div><pre class="rust"><code><span class="comment">//
-// Copyright (c) 2016 KAMADA Ken&#39;ichi.
+// Copyright (c) 2016 KAMADA Ken'ichi.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -1014,7 +1015,7 @@
 //    notice, this list of conditions and the following disclaimer in the
 //    documentation and/or other materials provided with the distribution.
 //
-// THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS&#39;&#39; AND
+// THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
 // ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
 // ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
@@ -1073,7 +1074,7 @@
     </span>Double(Vec&lt;f64&gt;),
     <span class="doccomment">/// The type is unknown to this implementation.
     /// The associated values are the type, the count, and the
-    /// offset of the &quot;Value Offset&quot; element.
+    /// offset of the "Value Offset" element.
     </span>Unknown(u16, u32, u32),
 }
 
@@ -1088,10 +1089,10 @@
     ///
     /// ```
     /// use exif::{Value, Tag};
-    /// let val = Value::Undefined(b&quot;0231&quot;.to_vec(), 0);
-    /// assert_eq!(val.display_as(Tag::ExifVersion).to_string(), &quot;2.31&quot;);
+    /// let val = Value::Undefined(b"0231".to_vec(), 0);
+    /// assert_eq!(val.display_as(Tag::ExifVersion).to_string(), "2.31");
     /// let val = Value::Short(vec![2]);
-    /// assert_eq!(val.display_as(Tag::ResolutionUnit).to_string(), &quot;inch&quot;);
+    /// assert_eq!(val.display_as(Tag::ResolutionUnit).to_string(), "inch");
     /// ```
     </span><span class="attr">#[inline]
     </span><span class="kw">pub fn </span>display_as(<span class="kw-2">&amp;</span><span class="self">self</span>, tag: <span class="kw">crate</span>::tag::Tag) -&gt; Display {
@@ -1189,10 +1190,10 @@
     }
 }
 
-<span class="kw">pub struct </span>AsciiValues&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Vec&lt;u8&gt;]);
+<span class="kw">pub struct </span>AsciiValues&lt;<span class="lifetime">'a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Vec&lt;u8&gt;]);
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; AsciiValues&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">pub fn </span>first(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; AsciiValues&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="kw">pub fn </span>first(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]&gt; {
         <span class="self">self</span>.<span class="number">0</span>.first().map(|x| <span class="kw-2">&amp;</span>x[..])
     }
 }
@@ -1207,7 +1208,7 @@
         <span class="kw">match </span><span class="kw-2">*</span>v {
             Value::Byte(<span class="kw">_</span>) | Value::Short(<span class="kw">_</span>) | Value::Long(<span class="kw">_</span>) =&gt;
                 <span class="prelude-val">Ok</span>(<span class="kw">unsafe </span>{ <span class="kw-2">&amp;*</span>(v <span class="kw">as </span><span class="kw-2">*const </span>Value <span class="kw">as </span><span class="kw-2">*const </span><span class="self">Self</span>) }),
-            <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(Error::UnexpectedValue(<span class="string">&quot;Not unsigned integer&quot;</span>)),
+            <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(Error::UnexpectedValue(<span class="string">"Not unsigned integer"</span>)),
         }
     }
 
@@ -1222,12 +1223,12 @@
     }
 }
 
-<span class="comment">// A struct that wraps std::slice::Iter&lt;&#39;a, u8/u16/u32&gt;.
-</span><span class="kw">pub struct </span>UIntIter&lt;<span class="lifetime">&#39;a</span>&gt; {
-    iter: Box&lt;<span class="kw">dyn </span>ExactSizeIterator&lt;Item=u32&gt; + <span class="lifetime">&#39;a</span>&gt;
+<span class="comment">// A struct that wraps std::slice::Iter&lt;'a, u8/u16/u32&gt;.
+</span><span class="kw">pub struct </span>UIntIter&lt;<span class="lifetime">'a</span>&gt; {
+    iter: Box&lt;<span class="kw">dyn </span>ExactSizeIterator&lt;Item=u32&gt; + <span class="lifetime">'a</span>&gt;
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Iterator <span class="kw">for </span>UIntIter&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; Iterator <span class="kw">for </span>UIntIter&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">type </span>Item = u32;
 
     <span class="attr">#[inline]
@@ -1241,16 +1242,16 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; ExactSizeIterator <span class="kw">for </span>UIntIter&lt;<span class="lifetime">&#39;a</span>&gt; {}
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; ExactSizeIterator <span class="kw">for </span>UIntIter&lt;<span class="lifetime">'a</span>&gt; {}
 
 <span class="doccomment">/// Helper struct for printing a value in a tag-specific format.
 </span><span class="attr">#[derive(Copy, Clone)]
-</span><span class="kw">pub struct </span>Display&lt;<span class="lifetime">&#39;a</span>&gt; {
+</span><span class="kw">pub struct </span>Display&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">pub </span>fmt: <span class="kw">fn</span>(<span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result,
-    <span class="kw">pub </span>value: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Value,
+    <span class="kw">pub </span>value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Value,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; fmt::Display <span class="kw">for </span>Display&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; fmt::Display <span class="kw">for </span>Display&lt;<span class="lifetime">'a</span>&gt; {
     <span class="attr">#[inline]
     </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
         (<span class="self">self</span>.fmt)(f, <span class="self">self</span>.value)
@@ -1260,26 +1261,26 @@
 <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Value {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
         <span class="kw">match </span><span class="self">self </span>{
-            <span class="self">Self</span>::Byte(v) =&gt; f.debug_tuple(<span class="string">&quot;Byte&quot;</span>).field(v).finish(),
-            <span class="self">Self</span>::Ascii(v) =&gt; f.debug_tuple(<span class="string">&quot;Ascii&quot;</span>)
+            <span class="self">Self</span>::Byte(v) =&gt; f.debug_tuple(<span class="string">"Byte"</span>).field(v).finish(),
+            <span class="self">Self</span>::Ascii(v) =&gt; f.debug_tuple(<span class="string">"Ascii"</span>)
                 .field(<span class="kw-2">&amp;</span>IterDebugAdapter(
                     || v.iter().map(|x| AsciiDebugAdapter(x)))).finish(),
-            <span class="self">Self</span>::Short(v) =&gt; f.debug_tuple(<span class="string">&quot;Short&quot;</span>).field(v).finish(),
-            <span class="self">Self</span>::Long(v) =&gt; f.debug_tuple(<span class="string">&quot;Long&quot;</span>).field(v).finish(),
-            <span class="self">Self</span>::Rational(v) =&gt; f.debug_tuple(<span class="string">&quot;Rational&quot;</span>).field(v).finish(),
-            <span class="self">Self</span>::SByte(v) =&gt; f.debug_tuple(<span class="string">&quot;SByte&quot;</span>).field(v).finish(),
-            <span class="self">Self</span>::Undefined(v, o) =&gt; f.debug_tuple(<span class="string">&quot;Undefined&quot;</span>)
+            <span class="self">Self</span>::Short(v) =&gt; f.debug_tuple(<span class="string">"Short"</span>).field(v).finish(),
+            <span class="self">Self</span>::Long(v) =&gt; f.debug_tuple(<span class="string">"Long"</span>).field(v).finish(),
+            <span class="self">Self</span>::Rational(v) =&gt; f.debug_tuple(<span class="string">"Rational"</span>).field(v).finish(),
+            <span class="self">Self</span>::SByte(v) =&gt; f.debug_tuple(<span class="string">"SByte"</span>).field(v).finish(),
+            <span class="self">Self</span>::Undefined(v, o) =&gt; f.debug_tuple(<span class="string">"Undefined"</span>)
                 .field(<span class="kw-2">&amp;</span>HexDebugAdapter(v))
-                .field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;ofs={:#x}&quot;</span>, o)).finish(),
-            <span class="self">Self</span>::SShort(v) =&gt; f.debug_tuple(<span class="string">&quot;SShort&quot;</span>).field(v).finish(),
-            <span class="self">Self</span>::SLong(v) =&gt; f.debug_tuple(<span class="string">&quot;SLong&quot;</span>).field(v).finish(),
-            <span class="self">Self</span>::SRational(v) =&gt; f.debug_tuple(<span class="string">&quot;SRational&quot;</span>).field(v).finish(),
-            <span class="self">Self</span>::Float(v) =&gt; f.debug_tuple(<span class="string">&quot;Float&quot;</span>).field(v).finish(),
-            <span class="self">Self</span>::Double(v) =&gt; f.debug_tuple(<span class="string">&quot;Double&quot;</span>).field(v).finish(),
-            <span class="self">Self</span>::Unknown(t, c, oo) =&gt; f.debug_tuple(<span class="string">&quot;Unknown&quot;</span>)
-                .field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;typ={}&quot;</span>, t))
-                .field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;cnt={}&quot;</span>, c))
-                .field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;ofs={:#x}&quot;</span>, oo)).finish(),
+                .field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">"ofs={:#x}"</span>, o)).finish(),
+            <span class="self">Self</span>::SShort(v) =&gt; f.debug_tuple(<span class="string">"SShort"</span>).field(v).finish(),
+            <span class="self">Self</span>::SLong(v) =&gt; f.debug_tuple(<span class="string">"SLong"</span>).field(v).finish(),
+            <span class="self">Self</span>::SRational(v) =&gt; f.debug_tuple(<span class="string">"SRational"</span>).field(v).finish(),
+            <span class="self">Self</span>::Float(v) =&gt; f.debug_tuple(<span class="string">"Float"</span>).field(v).finish(),
+            <span class="self">Self</span>::Double(v) =&gt; f.debug_tuple(<span class="string">"Double"</span>).field(v).finish(),
+            <span class="self">Self</span>::Unknown(t, c, oo) =&gt; f.debug_tuple(<span class="string">"Unknown"</span>)
+                .field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">"typ={}"</span>, t))
+                .field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">"cnt={}"</span>, c))
+                .field(<span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">"ofs={:#x}"</span>, oo)).finish(),
         }
     }
 }
@@ -1293,37 +1294,37 @@
     }
 }
 
-<span class="kw">struct </span>AsciiDebugAdapter&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]);
+<span class="kw">struct </span>AsciiDebugAdapter&lt;<span class="lifetime">'a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]);
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; fmt::Debug <span class="kw">for </span>AsciiDebugAdapter&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; fmt::Debug <span class="kw">for </span>AsciiDebugAdapter&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-        f.write_char(<span class="string">&#39;&quot;&#39;</span>)<span class="question-mark">?</span>;
+        f.write_char(<span class="string">'"'</span>)<span class="question-mark">?</span>;
         <span class="self">self</span>.<span class="number">0</span>.iter().try_for_each(|<span class="kw-2">&amp;</span>c| <span class="kw">match </span>c {
-            <span class="string">b&#39;\\&#39; </span>| <span class="string">b&#39;&quot;&#39; </span>=&gt; <span class="macro">write!</span>(f, <span class="string">&quot;\\{}&quot;</span>, c <span class="kw">as </span>char),
+            <span class="string">b'\\' </span>| <span class="string">b'"' </span>=&gt; <span class="macro">write!</span>(f, <span class="string">"\\{}"</span>, c <span class="kw">as </span>char),
             <span class="number">0x20</span>..=<span class="number">0x7e </span>=&gt; f.write_char(c <span class="kw">as </span>char),
-            <span class="kw">_ </span>=&gt; <span class="macro">write!</span>(f, <span class="string">&quot;\\x{:02x}&quot;</span>, c),
+            <span class="kw">_ </span>=&gt; <span class="macro">write!</span>(f, <span class="string">"\\x{:02x}"</span>, c),
         })<span class="question-mark">?</span>;
-        f.write_char(<span class="string">&#39;&quot;&#39;</span>)
+        f.write_char(<span class="string">'"'</span>)
     }
 }
 
-<span class="kw">struct </span>HexDebugAdapter&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]);
+<span class="kw">struct </span>HexDebugAdapter&lt;<span class="lifetime">'a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]);
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; fmt::Debug <span class="kw">for </span>HexDebugAdapter&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; fmt::Debug <span class="kw">for </span>HexDebugAdapter&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-        f.write_str(<span class="string">&quot;0x&quot;</span>)<span class="question-mark">?</span>;
-        <span class="self">self</span>.<span class="number">0</span>.iter().try_for_each(|x| <span class="macro">write!</span>(f, <span class="string">&quot;{:02x}&quot;</span>, x))
+        f.write_str(<span class="string">"0x"</span>)<span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="number">0</span>.iter().try_for_each(|x| <span class="macro">write!</span>(f, <span class="string">"{:02x}"</span>, x))
     }
 }
 
 <span class="comment">// Static default values.
 </span><span class="kw">pub enum </span>DefaultValue {
     <span class="prelude-val">None</span>,
-    Byte(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[u8]),
-    Ascii(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[u8]]),
-    Short(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[u16]),
-    Rational(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[(u32, u32)]),
-    Undefined(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[u8]),
+    Byte(<span class="kw-2">&amp;</span><span class="lifetime">'static </span>[u8]),
+    Ascii(<span class="kw-2">&amp;</span><span class="lifetime">'static </span>[<span class="kw-2">&amp;</span><span class="lifetime">'static </span>[u8]]),
+    Short(<span class="kw-2">&amp;</span><span class="lifetime">'static </span>[u16]),
+    Rational(<span class="kw-2">&amp;</span><span class="lifetime">'static </span>[(u32, u32)]),
+    Undefined(<span class="kw-2">&amp;</span><span class="lifetime">'static </span>[u8]),
     <span class="comment">// Depends on other tags, JPEG markers, etc.
     </span>ContextDependent,
     <span class="comment">// Unspecified in the Exif standard.
@@ -1374,7 +1375,7 @@
 
 <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Rational {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-        <span class="macro">write!</span>(f, <span class="string">&quot;Rational({}/{})&quot;</span>, <span class="self">self</span>.num, <span class="self">self</span>.denom)
+        <span class="macro">write!</span>(f, <span class="string">"Rational({}/{})"</span>, <span class="self">self</span>.num, <span class="self">self</span>.denom)
     }
 }
 
@@ -1382,7 +1383,7 @@
     <span class="doccomment">/// Formatting parameters other than width are not supported.
     </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
         <span class="kw">let </span>buf = fmt_rational_sub(f, <span class="self">self</span>.num, <span class="self">self</span>.denom);
-        f.pad_integral(<span class="bool-val">true</span>, <span class="string">&quot;&quot;</span>, <span class="kw-2">&amp;</span>buf)
+        f.pad_integral(<span class="bool-val">true</span>, <span class="string">""</span>, <span class="kw-2">&amp;</span>buf)
     }
 }
 
@@ -1424,7 +1425,7 @@
 
 <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>SRational {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-        <span class="macro">write!</span>(f, <span class="string">&quot;SRational({}/{})&quot;</span>, <span class="self">self</span>.num, <span class="self">self</span>.denom)
+        <span class="macro">write!</span>(f, <span class="string">"SRational({}/{})"</span>, <span class="self">self</span>.num, <span class="self">self</span>.denom)
     }
 }
 
@@ -1433,7 +1434,7 @@
     </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
         <span class="kw">let </span>buf = fmt_rational_sub(
             f, <span class="self">self</span>.num.wrapping_abs() <span class="kw">as </span>u32, <span class="self">self</span>.denom);
-        f.pad_integral(<span class="self">self</span>.num &gt;= <span class="number">0</span>, <span class="string">&quot;&quot;</span>, <span class="kw-2">&amp;</span>buf)
+        f.pad_integral(<span class="self">self</span>.num &gt;= <span class="number">0</span>, <span class="string">""</span>, <span class="kw-2">&amp;</span>buf)
     }
 }
 
@@ -1456,17 +1457,17 @@
     // so it is not fully supported.
     </span><span class="kw">match </span>(f.sign_plus(), f.precision(), f.sign_aware_zero_pad()) {
         (<span class="bool-val">true</span>, <span class="prelude-val">Some</span>(prec), <span class="bool-val">true</span>) =&gt;
-            <span class="macro">format!</span>(<span class="string">&quot;{}/{:+0w$}&quot;</span>, num, denom, w = prec),
+            <span class="macro">format!</span>(<span class="string">"{}/{:+0w$}"</span>, num, denom, w = prec),
         (<span class="bool-val">true</span>, <span class="prelude-val">Some</span>(prec), <span class="bool-val">false</span>) =&gt;
-            <span class="macro">format!</span>(<span class="string">&quot;{}/{:+w$}&quot;</span>, num, denom, w = prec),
+            <span class="macro">format!</span>(<span class="string">"{}/{:+w$}"</span>, num, denom, w = prec),
         (<span class="bool-val">true</span>, <span class="prelude-val">None</span>, <span class="kw">_</span>) =&gt;
-            <span class="macro">format!</span>(<span class="string">&quot;{}/{:+}&quot;</span>, num, denom),
+            <span class="macro">format!</span>(<span class="string">"{}/{:+}"</span>, num, denom),
         (<span class="bool-val">false</span>, <span class="prelude-val">Some</span>(prec), <span class="bool-val">true</span>) =&gt;
-            <span class="macro">format!</span>(<span class="string">&quot;{}/{:0w$}&quot;</span>, num, denom, w = prec),
+            <span class="macro">format!</span>(<span class="string">"{}/{:0w$}"</span>, num, denom, w = prec),
         (<span class="bool-val">false</span>, <span class="prelude-val">Some</span>(prec), <span class="bool-val">false</span>) =&gt;
-            <span class="macro">format!</span>(<span class="string">&quot;{}/{:w$}&quot;</span>, num, denom, w = prec),
+            <span class="macro">format!</span>(<span class="string">"{}/{:w$}"</span>, num, denom, w = prec),
         (<span class="bool-val">false</span>, <span class="prelude-val">None</span>, <span class="kw">_</span>) =&gt;
-            <span class="macro">format!</span>(<span class="string">&quot;{}/{}&quot;</span>, num, denom),
+            <span class="macro">format!</span>(<span class="string">"{}/{}"</span>, num, denom),
     }
 }
 
@@ -1498,7 +1499,7 @@
 <span class="kw">fn </span>parse_ascii(data: <span class="kw-2">&amp;</span>[u8], offset: usize, count: usize) -&gt; Value {
     <span class="comment">// Any ASCII field can contain multiple strings [TIFF6 Image File
     // Directory].
-    </span><span class="kw">let </span>iter = (<span class="kw-2">&amp;</span>data[offset .. offset + count]).split(|<span class="kw-2">&amp;</span>b| b == <span class="string">b&#39;\0&#39;</span>);
+    </span><span class="kw">let </span>iter = (<span class="kw-2">&amp;</span>data[offset .. offset + count]).split(|<span class="kw-2">&amp;</span>b| b == <span class="string">b'\0'</span>);
     <span class="kw">let </span><span class="kw-2">mut </span>v: Vec&lt;Vec&lt;u8&gt;&gt; = iter.map(|x| x.to_vec()).collect();
     <span class="kw">if </span>v.last().map_or(<span class="bool-val">false</span>, |x| x.len() == <span class="number">0</span>) {
         v.pop();
@@ -1610,15 +1611,15 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>byte() {
         <span class="kw">let </span>sets: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span>[u8], <span class="kw-2">&amp;</span>[u8])] = <span class="kw-2">&amp;</span>[
-            (<span class="string">b&quot;x&quot;</span>, <span class="string">b&quot;&quot;</span>),
-            (<span class="string">b&quot;x\xbe\xad&quot;</span>, <span class="string">b&quot;\xbe\xad&quot;</span>),
+            (<span class="string">b"x"</span>, <span class="string">b""</span>),
+            (<span class="string">b"x\xbe\xad"</span>, <span class="string">b"\xbe\xad"</span>),
         ];
         <span class="kw">let </span>(unitlen, parser) = get_type_info::&lt;BigEndian&gt;(<span class="number">1</span>);
         <span class="kw">for </span><span class="kw-2">&amp;</span>(data, ans) <span class="kw">in </span>sets {
             <span class="macro">assert!</span>((data.len() - <span class="number">1</span>) % unitlen == <span class="number">0</span>);
             <span class="kw">match </span>parser(data, <span class="number">1</span>, (data.len() - <span class="number">1</span>) / unitlen) {
                 Value::Byte(v) =&gt; <span class="macro">assert_eq!</span>(v, ans),
-                v =&gt; <span class="macro">panic!</span>(<span class="string">&quot;wrong variant {:?}&quot;</span>, v),
+                v =&gt; <span class="macro">panic!</span>(<span class="string">"wrong variant {:?}"</span>, v),
             }
         }
     }
@@ -1626,20 +1627,20 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>ascii() {
         <span class="kw">let </span>sets: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span>[u8], Vec&lt;<span class="kw-2">&amp;</span>[u8]&gt;)] = <span class="kw-2">&amp;</span>[
-            (<span class="string">b&quot;x&quot;</span>, <span class="macro">vec!</span>[]),				<span class="comment">// malformed
-            </span>(<span class="string">b&quot;x\0&quot;</span>, <span class="macro">vec!</span>[<span class="string">b&quot;&quot;</span>]),
-            (<span class="string">b&quot;x\0\0&quot;</span>, <span class="macro">vec!</span>[<span class="string">b&quot;&quot;</span>, <span class="string">b&quot;&quot;</span>]),
-            (<span class="string">b&quot;xA&quot;</span>, <span class="macro">vec!</span>[<span class="string">b&quot;A&quot;</span>]),			<span class="comment">// malformed
-            </span>(<span class="string">b&quot;xA\0&quot;</span>, <span class="macro">vec!</span>[<span class="string">b&quot;A&quot;</span>]),
-            (<span class="string">b&quot;xA\0B&quot;</span>, <span class="macro">vec!</span>[<span class="string">b&quot;A&quot;</span>, <span class="string">b&quot;B&quot;</span>]),		<span class="comment">// malformed
-            </span>(<span class="string">b&quot;xA\0B\0&quot;</span>, <span class="macro">vec!</span>[<span class="string">b&quot;A&quot;</span>, <span class="string">b&quot;B&quot;</span>]),
-            (<span class="string">b&quot;xA\0\xbe\0&quot;</span>, <span class="macro">vec!</span>[<span class="string">b&quot;A&quot;</span>, <span class="string">b&quot;\xbe&quot;</span>]),	<span class="comment">// not ASCII
+            (<span class="string">b"x"</span>, <span class="macro">vec!</span>[]),				<span class="comment">// malformed
+            </span>(<span class="string">b"x\0"</span>, <span class="macro">vec!</span>[<span class="string">b""</span>]),
+            (<span class="string">b"x\0\0"</span>, <span class="macro">vec!</span>[<span class="string">b""</span>, <span class="string">b""</span>]),
+            (<span class="string">b"xA"</span>, <span class="macro">vec!</span>[<span class="string">b"A"</span>]),			<span class="comment">// malformed
+            </span>(<span class="string">b"xA\0"</span>, <span class="macro">vec!</span>[<span class="string">b"A"</span>]),
+            (<span class="string">b"xA\0B"</span>, <span class="macro">vec!</span>[<span class="string">b"A"</span>, <span class="string">b"B"</span>]),		<span class="comment">// malformed
+            </span>(<span class="string">b"xA\0B\0"</span>, <span class="macro">vec!</span>[<span class="string">b"A"</span>, <span class="string">b"B"</span>]),
+            (<span class="string">b"xA\0\xbe\0"</span>, <span class="macro">vec!</span>[<span class="string">b"A"</span>, <span class="string">b"\xbe"</span>]),	<span class="comment">// not ASCII
         </span>];
         <span class="kw">let </span>(unitlen, parser) = get_type_info::&lt;BigEndian&gt;(<span class="number">2</span>);
         <span class="kw">for </span><span class="kw-2">&amp;</span>(data, <span class="kw-2">ref </span>ans) <span class="kw">in </span>sets {
             <span class="kw">match </span>parser(data, <span class="number">1</span>, (data.len() - <span class="number">1</span>) / unitlen) {
                 Value::Ascii(v) =&gt; <span class="macro">assert_eq!</span>(v, <span class="kw-2">*</span>ans),
-                v =&gt; <span class="macro">panic!</span>(<span class="string">&quot;wrong variant {:?}&quot;</span>, v),
+                v =&gt; <span class="macro">panic!</span>(<span class="string">"wrong variant {:?}"</span>, v),
             }
         }
     }
@@ -1647,15 +1648,15 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>short() {
         <span class="kw">let </span>sets: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span>[u8], Vec&lt;u16&gt;)] = <span class="kw-2">&amp;</span>[
-            (<span class="string">b&quot;x&quot;</span>, <span class="macro">vec!</span>[]),
-            (<span class="string">b&quot;x\x01\x02\x03\x04&quot;</span>, <span class="macro">vec!</span>[<span class="number">0x0102</span>, <span class="number">0x0304</span>]),
+            (<span class="string">b"x"</span>, <span class="macro">vec!</span>[]),
+            (<span class="string">b"x\x01\x02\x03\x04"</span>, <span class="macro">vec!</span>[<span class="number">0x0102</span>, <span class="number">0x0304</span>]),
         ];
         <span class="kw">let </span>(unitlen, parser) = get_type_info::&lt;BigEndian&gt;(<span class="number">3</span>);
         <span class="kw">for </span><span class="kw-2">&amp;</span>(data, <span class="kw-2">ref </span>ans) <span class="kw">in </span>sets {
             <span class="macro">assert!</span>((data.len() - <span class="number">1</span>) % unitlen == <span class="number">0</span>);
             <span class="kw">match </span>parser(data, <span class="number">1</span>, (data.len() - <span class="number">1</span>) / unitlen) {
                 Value::Short(v) =&gt; <span class="macro">assert_eq!</span>(v, <span class="kw-2">*</span>ans),
-                v =&gt; <span class="macro">panic!</span>(<span class="string">&quot;wrong variant {:?}&quot;</span>, v),
+                v =&gt; <span class="macro">panic!</span>(<span class="string">"wrong variant {:?}"</span>, v),
             }
         }
     }
@@ -1663,8 +1664,8 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>long() {
         <span class="kw">let </span>sets: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span>[u8], Vec&lt;u32&gt;)] = <span class="kw-2">&amp;</span>[
-            (<span class="string">b&quot;x&quot;</span>, <span class="macro">vec!</span>[]),
-            (<span class="string">b&quot;x\x01\x02\x03\x04\x05\x06\x07\x08&quot;</span>,
+            (<span class="string">b"x"</span>, <span class="macro">vec!</span>[]),
+            (<span class="string">b"x\x01\x02\x03\x04\x05\x06\x07\x08"</span>,
              <span class="macro">vec!</span>[<span class="number">0x01020304</span>, <span class="number">0x05060708</span>]),
         ];
         <span class="kw">let </span>(unitlen, parser) = get_type_info::&lt;BigEndian&gt;(<span class="number">4</span>);
@@ -1672,7 +1673,7 @@
             <span class="macro">assert!</span>((data.len() - <span class="number">1</span>) % unitlen == <span class="number">0</span>);
             <span class="kw">match </span>parser(data, <span class="number">1</span>, (data.len() - <span class="number">1</span>) / unitlen) {
                 Value::Long(v) =&gt; <span class="macro">assert_eq!</span>(v, <span class="kw-2">*</span>ans),
-                v =&gt; <span class="macro">panic!</span>(<span class="string">&quot;wrong variant {:?}&quot;</span>, v),
+                v =&gt; <span class="macro">panic!</span>(<span class="string">"wrong variant {:?}"</span>, v),
             }
         }
     }
@@ -1680,9 +1681,9 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>rational() {
         <span class="kw">let </span>sets: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span>[u8], Vec&lt;Rational&gt;)] = <span class="kw-2">&amp;</span>[
-            (<span class="string">b&quot;x&quot;</span>, <span class="macro">vec!</span>[]),
-            (<span class="string">b&quot;x\xa1\x02\x03\x04\x05\x06\x07\x08\
-               \x09\x0a\x0b\x0c\xbd\x0e\x0f\x10&quot;</span>,
+            (<span class="string">b"x"</span>, <span class="macro">vec!</span>[]),
+            (<span class="string">b"x\xa1\x02\x03\x04\x05\x06\x07\x08\
+               \x09\x0a\x0b\x0c\xbd\x0e\x0f\x10"</span>,
              <span class="macro">vec!</span>[(<span class="number">0xa1020304</span>, <span class="number">0x05060708</span>).into(),
                   (<span class="number">0x090a0b0c</span>, <span class="number">0xbd0e0f10</span>).into()]),
         ];
@@ -1696,7 +1697,7 @@
                         <span class="macro">assert!</span>(x.num == y.num &amp;&amp; x.denom == y.denom);
                     }
                 },
-                v =&gt; <span class="macro">panic!</span>(<span class="string">&quot;wrong variant {:?}&quot;</span>, v),
+                v =&gt; <span class="macro">panic!</span>(<span class="string">"wrong variant {:?}"</span>, v),
             }
         }
     }
@@ -1704,15 +1705,15 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>sbyte() {
         <span class="kw">let </span>sets: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span>[u8], <span class="kw-2">&amp;</span>[i8])] = <span class="kw-2">&amp;</span>[
-            (<span class="string">b&quot;x&quot;</span>, <span class="kw-2">&amp;</span>[]),
-            (<span class="string">b&quot;x\xbe\x7d&quot;</span>, <span class="kw-2">&amp;</span>[-<span class="number">0x42</span>, <span class="number">0x7d</span>]),
+            (<span class="string">b"x"</span>, <span class="kw-2">&amp;</span>[]),
+            (<span class="string">b"x\xbe\x7d"</span>, <span class="kw-2">&amp;</span>[-<span class="number">0x42</span>, <span class="number">0x7d</span>]),
         ];
         <span class="kw">let </span>(unitlen, parser) = get_type_info::&lt;BigEndian&gt;(<span class="number">6</span>);
         <span class="kw">for </span><span class="kw-2">&amp;</span>(data, ans) <span class="kw">in </span>sets {
             <span class="macro">assert!</span>((data.len() - <span class="number">1</span>) % unitlen == <span class="number">0</span>);
             <span class="kw">match </span>parser(data, <span class="number">1</span>, (data.len() - <span class="number">1</span>) / unitlen) {
                 Value::SByte(v) =&gt; <span class="macro">assert_eq!</span>(v, ans),
-                v =&gt; <span class="macro">panic!</span>(<span class="string">&quot;wrong variant {:?}&quot;</span>, v),
+                v =&gt; <span class="macro">panic!</span>(<span class="string">"wrong variant {:?}"</span>, v),
             }
         }
     }
@@ -1720,8 +1721,8 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>undefined() {
         <span class="kw">let </span>sets: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span>[u8], <span class="kw-2">&amp;</span>[u8])] = <span class="kw-2">&amp;</span>[
-            (<span class="string">b&quot;x&quot;</span>, <span class="string">b&quot;&quot;</span>),
-            (<span class="string">b&quot;x\xbe\xad&quot;</span>, <span class="string">b&quot;\xbe\xad&quot;</span>),
+            (<span class="string">b"x"</span>, <span class="string">b""</span>),
+            (<span class="string">b"x\xbe\xad"</span>, <span class="string">b"\xbe\xad"</span>),
         ];
         <span class="kw">let </span>(unitlen, parser) = get_type_info::&lt;BigEndian&gt;(<span class="number">7</span>);
         <span class="kw">for </span><span class="kw-2">&amp;</span>(data, ans) <span class="kw">in </span>sets {
@@ -1731,7 +1732,7 @@
                     <span class="macro">assert_eq!</span>(v, ans);
                     <span class="macro">assert_eq!</span>(o, <span class="number">1</span>);
                 },
-                v =&gt; <span class="macro">panic!</span>(<span class="string">&quot;wrong variant {:?}&quot;</span>, v),
+                v =&gt; <span class="macro">panic!</span>(<span class="string">"wrong variant {:?}"</span>, v),
             }
         }
     }
@@ -1739,15 +1740,15 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>sshort() {
         <span class="kw">let </span>sets: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span>[u8], Vec&lt;i16&gt;)] = <span class="kw-2">&amp;</span>[
-            (<span class="string">b&quot;x&quot;</span>, <span class="macro">vec!</span>[]),
-            (<span class="string">b&quot;x\x01\x02\xf3\x04&quot;</span>, <span class="macro">vec!</span>[<span class="number">0x0102</span>, -<span class="number">0x0cfc</span>]),
+            (<span class="string">b"x"</span>, <span class="macro">vec!</span>[]),
+            (<span class="string">b"x\x01\x02\xf3\x04"</span>, <span class="macro">vec!</span>[<span class="number">0x0102</span>, -<span class="number">0x0cfc</span>]),
         ];
         <span class="kw">let </span>(unitlen, parser) = get_type_info::&lt;BigEndian&gt;(<span class="number">8</span>);
         <span class="kw">for </span><span class="kw-2">&amp;</span>(data, <span class="kw-2">ref </span>ans) <span class="kw">in </span>sets {
             <span class="macro">assert!</span>((data.len() - <span class="number">1</span>) % unitlen == <span class="number">0</span>);
             <span class="kw">match </span>parser(data, <span class="number">1</span>, (data.len() - <span class="number">1</span>) / unitlen) {
                 Value::SShort(v) =&gt; <span class="macro">assert_eq!</span>(v, <span class="kw-2">*</span>ans),
-                v =&gt; <span class="macro">panic!</span>(<span class="string">&quot;wrong variant {:?}&quot;</span>, v),
+                v =&gt; <span class="macro">panic!</span>(<span class="string">"wrong variant {:?}"</span>, v),
             }
         }
     }
@@ -1755,8 +1756,8 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>slong() {
         <span class="kw">let </span>sets: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span>[u8], Vec&lt;i32&gt;)] = <span class="kw-2">&amp;</span>[
-            (<span class="string">b&quot;x&quot;</span>, <span class="macro">vec!</span>[]),
-            (<span class="string">b&quot;x\x01\x02\x03\x04\x85\x06\x07\x08&quot;</span>,
+            (<span class="string">b"x"</span>, <span class="macro">vec!</span>[]),
+            (<span class="string">b"x\x01\x02\x03\x04\x85\x06\x07\x08"</span>,
              <span class="macro">vec!</span>[<span class="number">0x01020304</span>, -<span class="number">0x7af9f8f8</span>]),
         ];
         <span class="kw">let </span>(unitlen, parser) = get_type_info::&lt;BigEndian&gt;(<span class="number">9</span>);
@@ -1764,7 +1765,7 @@
             <span class="macro">assert!</span>((data.len() - <span class="number">1</span>) % unitlen == <span class="number">0</span>);
             <span class="kw">match </span>parser(data, <span class="number">1</span>, (data.len() - <span class="number">1</span>) / unitlen) {
                 Value::SLong(v) =&gt; <span class="macro">assert_eq!</span>(v, <span class="kw-2">*</span>ans),
-                v =&gt; <span class="macro">panic!</span>(<span class="string">&quot;wrong variant {:?}&quot;</span>, v),
+                v =&gt; <span class="macro">panic!</span>(<span class="string">"wrong variant {:?}"</span>, v),
             }
         }
     }
@@ -1772,9 +1773,9 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>srational() {
         <span class="kw">let </span>sets: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span>[u8], Vec&lt;SRational&gt;)] = <span class="kw-2">&amp;</span>[
-            (<span class="string">b&quot;x&quot;</span>, <span class="macro">vec!</span>[]),
-            (<span class="string">b&quot;x\xa1\x02\x03\x04\x05\x06\x07\x08\
-               \x09\x0a\x0b\x0c\xbd\x0e\x0f\x10&quot;</span>,
+            (<span class="string">b"x"</span>, <span class="macro">vec!</span>[]),
+            (<span class="string">b"x\xa1\x02\x03\x04\x05\x06\x07\x08\
+               \x09\x0a\x0b\x0c\xbd\x0e\x0f\x10"</span>,
              <span class="macro">vec!</span>[(-<span class="number">0x5efdfcfc</span>, <span class="number">0x05060708</span>).into(),
                   (<span class="number">0x090a0b0c</span>, -<span class="number">0x42f1f0f0</span>).into()]),
         ];
@@ -1788,7 +1789,7 @@
                         <span class="macro">assert!</span>(x.num == y.num &amp;&amp; x.denom == y.denom);
                     }
                 },
-                v =&gt; <span class="macro">panic!</span>(<span class="string">&quot;wrong variant {:?}&quot;</span>, v),
+                v =&gt; <span class="macro">panic!</span>(<span class="string">"wrong variant {:?}"</span>, v),
             }
         }
     }
@@ -1796,8 +1797,8 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>float() {
         <span class="kw">let </span>sets: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span>[u8], Vec&lt;f32&gt;)] = <span class="kw-2">&amp;</span>[
-            (<span class="string">b&quot;x&quot;</span>, <span class="macro">vec!</span>[]),
-            (<span class="string">b&quot;x\x7f\x7f\xff\xff\x80\x80\x00\x00\x40\x00\x00\x00&quot;</span>,
+            (<span class="string">b"x"</span>, <span class="macro">vec!</span>[]),
+            (<span class="string">b"x\x7f\x7f\xff\xff\x80\x80\x00\x00\x40\x00\x00\x00"</span>,
              <span class="macro">vec!</span>[std::f32::MAX, -std::f32::MIN_POSITIVE, <span class="number">2.0</span>]),
         ];
         <span class="kw">let </span>(unitlen, parser) = get_type_info::&lt;BigEndian&gt;(<span class="number">11</span>);
@@ -1805,7 +1806,7 @@
             <span class="macro">assert!</span>((data.len() - <span class="number">1</span>) % unitlen == <span class="number">0</span>);
             <span class="kw">match </span>parser(data, <span class="number">1</span>, (data.len() - <span class="number">1</span>) / unitlen) {
                 Value::Float(v) =&gt; <span class="macro">assert_eq!</span>(v, <span class="kw-2">*</span>ans),
-                v =&gt; <span class="macro">panic!</span>(<span class="string">&quot;wrong variant {:?}&quot;</span>, v),
+                v =&gt; <span class="macro">panic!</span>(<span class="string">"wrong variant {:?}"</span>, v),
             }
         }
     }
@@ -1813,10 +1814,10 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>double() {
         <span class="kw">let </span>sets: <span class="kw-2">&amp;</span>[(<span class="kw-2">&amp;</span>[u8], Vec&lt;f64&gt;)] = <span class="kw-2">&amp;</span>[
-            (<span class="string">b&quot;x&quot;</span>, <span class="macro">vec!</span>[]),
-            (<span class="string">b&quot;x\x7f\xef\xff\xff\xff\xff\xff\xff\
+            (<span class="string">b"x"</span>, <span class="macro">vec!</span>[]),
+            (<span class="string">b"x\x7f\xef\xff\xff\xff\xff\xff\xff\
                \x80\x10\x00\x00\x00\x00\x00\x00\
-               \x40\x00\x00\x00\x00\x00\x00\x00&quot;</span>,
+               \x40\x00\x00\x00\x00\x00\x00\x00"</span>,
              <span class="macro">vec!</span>[std::f64::MAX, -std::f64::MIN_POSITIVE, <span class="number">2.0</span>]),
         ];
         <span class="kw">let </span>(unitlen, parser) = get_type_info::&lt;BigEndian&gt;(<span class="number">12</span>);
@@ -1824,7 +1825,7 @@
             <span class="macro">assert!</span>((data.len() - <span class="number">1</span>) % unitlen == <span class="number">0</span>);
             <span class="kw">match </span>parser(data, <span class="number">1</span>, (data.len() - <span class="number">1</span>) / unitlen) {
                 Value::Double(v) =&gt; <span class="macro">assert_eq!</span>(v, <span class="kw-2">*</span>ans),
-                v =&gt; <span class="macro">panic!</span>(<span class="string">&quot;wrong variant {:?}&quot;</span>, v),
+                v =&gt; <span class="macro">panic!</span>(<span class="string">"wrong variant {:?}"</span>, v),
             }
         }
     }
@@ -1832,9 +1833,9 @@
     <span class="comment">// These functions are never called in a way that an out-of-range access
     // could happen, so this test is hypothetical but just for safety.
     </span><span class="attr">#[test]
-    #[should_panic(expected = <span class="string">&quot;index 5 out of range for slice of length 4&quot;</span>)]
+    #[should_panic(expected = <span class="string">"index 5 out of range for slice of length 4"</span>)]
     </span><span class="kw">fn </span>short_oor() {
-        parse_short::&lt;BigEndian&gt;(<span class="string">b&quot;\x01\x02\x03\x04&quot;</span>, <span class="number">1</span>, <span class="number">2</span>);
+        parse_short::&lt;BigEndian&gt;(<span class="string">b"\x01\x02\x03\x04"</span>, <span class="number">1</span>, <span class="number">2</span>);
     }
 
     <span class="attr">#[test]
@@ -1910,68 +1911,68 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>value_fmt_debug() {
-        <span class="kw">let </span>v = Value::Byte(<span class="string">b&quot;b\0y&quot;</span>.to_vec());
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, v), <span class="string">&quot;Byte([98, 0, 121])&quot;</span>);
+        <span class="kw">let </span>v = Value::Byte(<span class="string">b"b\0y"</span>.to_vec());
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, v), <span class="string">"Byte([98, 0, 121])"</span>);
         <span class="kw">let </span>v = Value::Ascii(<span class="macro">vec!</span>[]);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, v), <span class="string">&quot;Ascii([])&quot;</span>);
-        <span class="kw">let </span>v = Value::Ascii(<span class="macro">vec!</span>[<span class="string">b&quot;abc\&quot;\\\n\x7f&quot;</span>.to_vec(), <span class="string">b&quot;&quot;</span>.to_vec()]);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, v), <span class="string">r#&quot;Ascii([&quot;abc\&quot;\\\x0a\x7f&quot;, &quot;&quot;])&quot;#</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, v), <span class="string">"Ascii([])"</span>);
+        <span class="kw">let </span>v = Value::Ascii(<span class="macro">vec!</span>[<span class="string">b"abc\"\\\n\x7f"</span>.to_vec(), <span class="string">b""</span>.to_vec()]);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, v), <span class="string">r#"Ascii(["abc\"\\\x0a\x7f", ""])"#</span>);
         <span class="kw">let </span>v = Value::Short(<span class="macro">vec!</span>[]);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, v), <span class="string">&quot;Short([])&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, v), <span class="string">"Short([])"</span>);
         <span class="kw">let </span>v = Value::Long(<span class="macro">vec!</span>[<span class="number">1</span>, <span class="number">2</span>]);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, v), <span class="string">&quot;Long([1, 2])&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, v), <span class="string">"Long([1, 2])"</span>);
         <span class="kw">let </span>v = Value::Rational(<span class="macro">vec!</span>[(<span class="number">0</span>, <span class="number">0</span>).into()]);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, v), <span class="string">&quot;Rational([Rational(0/0)])&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, v), <span class="string">"Rational([Rational(0/0)])"</span>);
         <span class="kw">let </span>v = Value::SByte(<span class="macro">vec!</span>[-<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, v), <span class="string">&quot;SByte([-3, 4, 5])&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, v), <span class="string">"SByte([-3, 4, 5])"</span>);
         <span class="kw">let </span>v = Value::Undefined(<span class="macro">vec!</span>[<span class="number">0</span>, <span class="number">0xff</span>], <span class="number">0</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, v), <span class="string">&quot;Undefined(0x00ff, ofs=0x0)&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, v), <span class="string">"Undefined(0x00ff, ofs=0x0)"</span>);
         <span class="kw">let </span>v = Value::SShort(<span class="macro">vec!</span>[<span class="number">6</span>, -<span class="number">7</span>]);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, v), <span class="string">&quot;SShort([6, -7])&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, v), <span class="string">"SShort([6, -7])"</span>);
         <span class="kw">let </span>v = Value::SLong(<span class="macro">vec!</span>[-<span class="number">9</span>]);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, v), <span class="string">&quot;SLong([-9])&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, v), <span class="string">"SLong([-9])"</span>);
         <span class="kw">let </span>v = Value::SRational(<span class="macro">vec!</span>[(-<span class="number">2</span>, -<span class="number">1</span>).into()]);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, v), <span class="string">&quot;SRational([SRational(-2/-1)])&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, v), <span class="string">"SRational([SRational(-2/-1)])"</span>);
         <span class="kw">let </span>v = Value::Float(<span class="macro">vec!</span>[<span class="number">1.5</span>, <span class="number">0.0</span>]);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, v), <span class="string">&quot;Float([1.5, 0.0])&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, v), <span class="string">"Float([1.5, 0.0])"</span>);
         <span class="kw">let </span>v = Value::Double(<span class="macro">vec!</span>[-<span class="number">0.5</span>, <span class="number">1.0</span>]);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, v), <span class="string">&quot;Double([-0.5, 1.0])&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, v), <span class="string">"Double([-0.5, 1.0])"</span>);
         <span class="kw">let </span>v = Value::Unknown(<span class="number">1</span>, <span class="number">2</span>, <span class="number">10</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, v), <span class="string">&quot;Unknown(typ=1, cnt=2, ofs=0xa)&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:?}"</span>, v), <span class="string">"Unknown(typ=1, cnt=2, ofs=0xa)"</span>);
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>rational_fmt_display() {
         <span class="kw">let </span>r = Rational::from((u32::max_value(), u32::max_value()));
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, r), <span class="string">&quot;4294967295/4294967295&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, r), <span class="string">"4294967295/4294967295"</span>);
 
         <span class="kw">let </span>r = Rational::from((<span class="number">10</span>, <span class="number">20</span>));
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, r),         <span class="string">&quot;10/20&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:11}&quot;</span>, r),      <span class="string">&quot;      10/20&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:3}&quot;</span>, r),       <span class="string">&quot;10/20&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, r),         <span class="string">"10/20"</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:11}"</span>, r),      <span class="string">"      10/20"</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:3}"</span>, r),       <span class="string">"10/20"</span>);
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>srational_fmt_display() {
         <span class="kw">let </span>r = SRational::from((i32::min_value(), i32::min_value()));
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, r), <span class="string">&quot;-2147483648/-2147483648&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, r), <span class="string">"-2147483648/-2147483648"</span>);
         <span class="kw">let </span>r = SRational::from((i32::max_value(), i32::max_value()));
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, r), <span class="string">&quot;2147483647/2147483647&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, r), <span class="string">"2147483647/2147483647"</span>);
 
         <span class="kw">let </span>r = SRational::from((-<span class="number">10</span>, <span class="number">20</span>));
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, r),         <span class="string">&quot;-10/20&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:11}&quot;</span>, r),      <span class="string">&quot;     -10/20&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:3}&quot;</span>, r),       <span class="string">&quot;-10/20&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, r),         <span class="string">"-10/20"</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:11}"</span>, r),      <span class="string">"     -10/20"</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:3}"</span>, r),       <span class="string">"-10/20"</span>);
 
         <span class="kw">let </span>r = SRational::from((<span class="number">10</span>, -<span class="number">20</span>));
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, r),         <span class="string">&quot;10/-20&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:11}&quot;</span>, r),      <span class="string">&quot;     10/-20&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:3}&quot;</span>, r),       <span class="string">&quot;10/-20&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, r),         <span class="string">"10/-20"</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:11}"</span>, r),      <span class="string">"     10/-20"</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:3}"</span>, r),       <span class="string">"10/-20"</span>);
 
         <span class="kw">let </span>r = SRational::from((-<span class="number">10</span>, -<span class="number">20</span>));
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, r),         <span class="string">&quot;-10/-20&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:11}&quot;</span>, r),      <span class="string">&quot;    -10/-20&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:3}&quot;</span>, r),       <span class="string">&quot;-10/-20&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{}"</span>, r),         <span class="string">"-10/-20"</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:11}"</span>, r),      <span class="string">"    -10/-20"</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:3}"</span>, r),       <span class="string">"-10/-20"</span>);
     }
 
     <span class="attr">#[test]

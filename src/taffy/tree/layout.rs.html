@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/taffy-3438f0b42e7e0e0f/7781c70/src/tree/layout.rs`."><title>layout.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="taffy" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/taffy-3438f0b42e7e0e0f/7781c70/src/tree/layout.rs`."><title>layout.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="taffy" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -308,7 +309,7 @@
     <span class="doccomment">/// A full layout for this node and all children should be computed
     </span>PerformLayout,
     <span class="doccomment">/// The layout algorithm should be executed such that an accurate container size for the node can be determined.
-    /// Layout steps that aren&#39;t necessary for determining the container size of the current node can be skipped.
+    /// Layout steps that aren't necessary for determining the container size of the current node can be skipped.
     </span>ComputeSize,
     <span class="doccomment">/// This node should have a null layout set as it has been hidden (i.e. using `Display::None`)
     </span>PerformHiddenLayout,
@@ -323,7 +324,7 @@
     </span>InherentSize,
 }
 
-<span class="doccomment">/// A set of margins that are available for collapsing with for block layout&#39;s margin collapsing
+<span class="doccomment">/// A set of margins that are available for collapsing with for block layout's margin collapsing
 </span><span class="attr">#[derive(Copy, Clone, Debug, PartialEq)]
 </span><span class="kw">pub struct </span>CollapsibleMarginSet {
     <span class="doccomment">/// The largest positive margin
@@ -402,9 +403,9 @@
 <span class="doccomment">/// A struct containing the inputs constraints/hints for laying out a node, which are passed in by the parent
 </span><span class="attr">#[derive(Debug, Copy, Clone)]
 </span><span class="kw">pub struct </span>LayoutInput {
-    <span class="doccomment">/// Whether we only need to know the Node&#39;s size, or whe
+    <span class="doccomment">/// Whether we only need to know the Node's size, or whe
     </span><span class="kw">pub </span>run_mode: RunMode,
-    <span class="doccomment">/// Whether a Node&#39;s style sizes should be taken into account or ignored
+    <span class="doccomment">/// Whether a Node's style sizes should be taken into account or ignored
     </span><span class="kw">pub </span>sizing_mode: SizingMode,
     <span class="doccomment">/// Which axis we need the size of
     </span><span class="kw">pub </span>axis: RequestedAxis,
@@ -412,11 +413,11 @@
     <span class="doccomment">/// Known dimensions represent dimensions (width/height) which should be taken as fixed when performing layout.
     /// For example, if known_dimensions.width is set to Some(WIDTH) then this means something like:
     ///
-    ///    &quot;What would the height of this node be, assuming the width is WIDTH&quot;
+    ///    "What would the height of this node be, assuming the width is WIDTH"
     ///
     /// Layout functions will be called with both known_dimensions set for final layout. Where the meaning is:
     ///
-    ///   &quot;The exact size of this node is WIDTHxHEIGHT. Please lay out your children&quot;
+    ///   "The exact size of this node is WIDTHxHEIGHT. Please lay out your children"
     ///
     </span><span class="kw">pub </span>known_dimensions: Size&lt;<span class="prelude-ty">Option</span>&lt;f32&gt;&gt;,
     <span class="doccomment">/// Parent size dimensions are intended to be used for percentage resolution.
@@ -453,19 +454,19 @@
 </span><span class="kw">pub struct </span>LayoutOutput {
     <span class="doccomment">/// The size of the node
     </span><span class="kw">pub </span>size: Size&lt;f32&gt;,
-    <span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
     </span><span class="doccomment">/// The size of the content within the node
     </span><span class="kw">pub </span>content_size: Size&lt;f32&gt;,
     <span class="doccomment">/// The first baseline of the node in each dimension, if any
     </span><span class="kw">pub </span>first_baselines: Point&lt;<span class="prelude-ty">Option</span>&lt;f32&gt;&gt;,
     <span class="doccomment">/// Top margin that can be collapsed with. This is used for CSS block layout and can be set to
-    /// `CollapsibleMarginSet::ZERO` for other layout modes that don&#39;t support margin collapsing
+    /// `CollapsibleMarginSet::ZERO` for other layout modes that don't support margin collapsing
     </span><span class="kw">pub </span>top_margin: CollapsibleMarginSet,
     <span class="doccomment">/// Bottom margin that can be collapsed with. This is used for CSS block layout and can be set to
-    /// `CollapsibleMarginSet::ZERO` for other layout modes that don&#39;t support margin collapsing
+    /// `CollapsibleMarginSet::ZERO` for other layout modes that don't support margin collapsing
     </span><span class="kw">pub </span>bottom_margin: CollapsibleMarginSet,
     <span class="doccomment">/// Whether margins can be collapsed through this node. This is used for CSS block layout and can
-    /// be set to `false` for other layout modes that don&#39;t support margin collapsing
+    /// be set to `false` for other layout modes that don't support margin collapsing
     </span><span class="kw">pub </span>margins_can_collapse_through: bool,
 }
 
@@ -473,7 +474,7 @@
     <span class="doccomment">/// An all-zero `LayoutOutput` for hidden nodes
     </span><span class="kw">pub const </span>HIDDEN: <span class="self">Self </span>= <span class="self">Self </span>{
         size: Size::ZERO,
-        <span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
         </span>content_size: Size::ZERO,
         first_baselines: Point::NONE,
         top_margin: CollapsibleMarginSet::ZERO,
@@ -484,12 +485,12 @@
     <span class="doccomment">/// Constructor to create a `LayoutOutput` from just the size and baselines
     </span><span class="kw">pub fn </span>from_sizes_and_baselines(
         size: Size&lt;f32&gt;,
-        <span class="attr">#[cfg_attr(not(feature = <span class="string">&quot;content_size&quot;</span>), allow(unused_variables))] </span>content_size: Size&lt;f32&gt;,
+        <span class="attr">#[cfg_attr(not(feature = <span class="string">"content_size"</span>), allow(unused_variables))] </span>content_size: Size&lt;f32&gt;,
         first_baselines: Point&lt;<span class="prelude-ty">Option</span>&lt;f32&gt;&gt;,
     ) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             size,
-            <span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
             </span>content_size,
             first_baselines,
             top_margin: CollapsibleMarginSet::ZERO,
@@ -503,7 +504,7 @@
         <span class="self">Self</span>::from_sizes_and_baselines(size, content_size, Point::NONE)
     }
 
-    <span class="doccomment">/// Construct a SizeBaselinesAndMargins from just the container&#39;s size.
+    <span class="doccomment">/// Construct a SizeBaselinesAndMargins from just the container's size.
     </span><span class="kw">pub fn </span>from_outer_size(size: Size&lt;f32&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>::from_sizes(size, Size::zero())
     }
@@ -521,9 +522,9 @@
     </span><span class="kw">pub </span>location: Point&lt;f32&gt;,
     <span class="doccomment">/// The width and height of the node
     </span><span class="kw">pub </span>size: Size&lt;f32&gt;,
-    <span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
     </span><span class="doccomment">/// The width and height of the content inside the node. This may be larger than the size of the node in the case of
-    /// overflowing content and is useful for computing a &quot;scroll width/height&quot; for scrollable nodes
+    /// overflowing content and is useful for computing a "scroll width/height" for scrollable nodes
     </span><span class="kw">pub </span>content_size: Size&lt;f32&gt;,
     <span class="doccomment">/// The size of the scrollbars in each dimension. If there is no scrollbar then the size will be zero.
     </span><span class="kw">pub </span>scrollbar_size: Size&lt;f32&gt;,
@@ -545,7 +546,7 @@
             order: <span class="number">0</span>,
             location: Point::ZERO,
             size: Size::zero(),
-            <span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
             </span>content_size: Size::zero(),
             scrollbar_size: Size::zero(),
             border: Rect::zero(),
@@ -563,7 +564,7 @@
             order,
             size: Size::zero(),
             location: Point::ZERO,
-            <span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
             </span>content_size: Size::zero(),
             scrollbar_size: Size::zero(),
             border: Rect::zero(),
@@ -572,7 +573,7 @@
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
 </span><span class="kw">impl </span>Layout {
     <span class="doccomment">/// Return the scroll width of the node.
     /// The scroll width is the difference between the width and the content width, floored at zero

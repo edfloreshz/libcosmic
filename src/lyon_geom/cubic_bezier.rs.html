@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_geom-1.0.5/src/cubic_bezier.rs`."><title>cubic_bezier.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_geom" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../lyon_geom/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_geom"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_geom-1.0.5/src/cubic_bezier.rs`."><title>cubic_bezier.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_geom" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><a class="sub-logo-container" href="../../lyon_geom/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_geom"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -2087,7 +2088,7 @@
 /// The curve is defined by equation:²
 /// ```∀ t ∈ [0..1],  P(t) = (1 - t)³ * from + 3 * (1 - t)² * t * ctrl1 + 3 * t² * (1 - t) * ctrl2 + t³ * to```
 </span><span class="attr">#[derive(Copy, Clone, Debug, PartialEq)]
-#[cfg_attr(feature = <span class="string">&quot;serialization&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serialization"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub struct </span>CubicBezierSegment&lt;S&gt; {
     <span class="kw">pub </span>from: Point&lt;S&gt;,
     <span class="kw">pub </span>ctrl1: Point&lt;S&gt;,
@@ -2194,7 +2195,7 @@
         )
     }
 
-    <span class="doccomment">/// Sample the curve&#39;s derivative at t (expecting t between 0 and 1).
+    <span class="doccomment">/// Sample the curve's derivative at t (expecting t between 0 and 1).
     </span><span class="kw">pub fn </span>derivative(<span class="kw-2">&amp;</span><span class="self">self</span>, t: S) -&gt; Vector&lt;S&gt; {
         <span class="kw">let </span>(c0, c1, c2, c3) = <span class="self">self</span>.derivative_coefficients(t);
         <span class="self">self</span>.from.to_vector() * c0
@@ -2203,13 +2204,13 @@
             + <span class="self">self</span>.to.to_vector() * c3
     }
 
-    <span class="doccomment">/// Sample the x coordinate of the curve&#39;s derivative at t (expecting t between 0 and 1).
+    <span class="doccomment">/// Sample the x coordinate of the curve's derivative at t (expecting t between 0 and 1).
     </span><span class="kw">pub fn </span>dx(<span class="kw-2">&amp;</span><span class="self">self</span>, t: S) -&gt; S {
         <span class="kw">let </span>(c0, c1, c2, c3) = <span class="self">self</span>.derivative_coefficients(t);
         <span class="self">self</span>.from.x * c0 + <span class="self">self</span>.ctrl1.x * c1 + <span class="self">self</span>.ctrl2.x * c2 + <span class="self">self</span>.to.x * c3
     }
 
-    <span class="doccomment">/// Sample the y coordinate of the curve&#39;s derivative at t (expecting t between 0 and 1).
+    <span class="doccomment">/// Sample the y coordinate of the curve's derivative at t (expecting t between 0 and 1).
     </span><span class="kw">pub fn </span>dy(<span class="kw-2">&amp;</span><span class="self">self</span>, t: S) -&gt; S {
         <span class="kw">let </span>(c0, c1, c2, c3) = <span class="self">self</span>.derivative_coefficients(t);
         <span class="self">self</span>.from.y * c0 + <span class="self">self</span>.ctrl1.y * c1 + <span class="self">self</span>.ctrl2.y * c2 + <span class="self">self</span>.to.y * c3
@@ -2217,7 +2218,7 @@
 
     <span class="doccomment">/// Return the sub-curve inside a given range of t.
     ///
-    /// This is equivalent to splitting at the range&#39;s end points.
+    /// This is equivalent to splitting at the range's end points.
     </span><span class="kw">pub fn </span>split_range(<span class="kw-2">&amp;</span><span class="self">self</span>, t_range: Range&lt;S&gt;) -&gt; <span class="self">Self </span>{
         <span class="kw">let </span>(t0, t1) = (t_range.start, t_range.end);
         <span class="kw">let </span>from = <span class="self">self</span>.sample(t0);
@@ -2349,7 +2350,7 @@
     }
 
     <span class="doccomment">/// Computes the signed distances (min &lt;= 0 and max &gt;= 0) from the baseline of this
-    /// curve to its two &quot;fat line&quot; boundary lines.
+    /// curve to its two "fat line" boundary lines.
     ///
     /// A fat line is two conservative lines between which the segment
     /// is fully contained.
@@ -2372,7 +2373,7 @@
         (d_min, d_max)
     }
 
-    <span class="doccomment">/// Computes a &quot;fat line&quot; of this segment.
+    <span class="doccomment">/// Computes a "fat line" of this segment.
     ///
     /// A fat line is two conservative lines between which the segment
     /// is fully contained.
@@ -2407,7 +2408,7 @@
     <span class="doccomment">/// Approximate the curve with a single quadratic bézier segment.
     ///
     /// This is terrible as a general approximation but works if the cubic
-    /// curve does not have inflection points and is &quot;flat&quot; enough. Typically
+    /// curve does not have inflection points and is "flat" enough. Typically
     /// usable after subdividing the curve a few times.
     </span><span class="kw">pub fn </span>to_quadratic(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; QuadraticBezierSegment&lt;S&gt; {
         <span class="kw">let </span>c1 = (<span class="self">self</span>.ctrl1 * S::THREE - <span class="self">self</span>.from) * S::HALF;
@@ -2442,7 +2443,7 @@
     <span class="doccomment">/// Computes the number of quadratic bézier segments required to approximate this cubic curve
     /// given a tolerance threshold.
     ///
-    /// Derived by Raph Levien from section 10.6 of Sedeberg&#39;s CAGD notes
+    /// Derived by Raph Levien from section 10.6 of Sedeberg's CAGD notes
     /// &lt;https://scholarsarchive.byu.edu/cgi/viewcontent.cgi?article=1000&amp;context=facpub#section.10.6&gt;
     /// and the error metric from the caffein owl blog post &lt;http://caffeineowl.com/graphics/2d/vectorial/cubic2quad01.html&gt;
     </span><span class="kw">pub fn </span>num_quadratics(<span class="kw-2">&amp;</span><span class="self">self</span>, tolerance: S) -&gt; u32 {
@@ -2692,7 +2693,7 @@
                 // acceleration change. This means the equation has no solution
                 // and there are no inflection points, unless the constant is 0.
                 // In that case the curve is a straight line, essentially that means
-                // the easiest way to deal with is is by saying there&#39;s an inflection
+                // the easiest way to deal with is is by saying there's an inflection
                 // point at t == 0. The inflection point approximation range found will
                 // automatically extend into infinity.
                 </span><span class="kw">if </span>S::abs(c) &lt; S::EPSILON {
@@ -3038,9 +3039,9 @@
             result_with_repeats.push(<span class="self">self</span>.sample(t));
         }
 
-        <span class="comment">// We can have up to nine &quot;repeated&quot; values here (for example: two lines, each of which
+        <span class="comment">// We can have up to nine "repeated" values here (for example: two lines, each of which
         // overlaps itself 3 times, intersecting in their 3-fold overlaps). We make an effort to
-        // dedupe the results, but that&#39;s hindered by not having predictable control over how far
+        // dedupe the results, but that's hindered by not having predictable control over how far
         // the repeated intersections can be from each other (and then by the fact that true
         // intersections can be arbitrarily close), so the results will never be perfect.
 
@@ -3195,7 +3196,7 @@
             };
             <span class="kw">if </span>intersection_xy &gt;= seg_long_axis_min &amp;&amp; intersection_xy &lt;= seg_long_axis_max {
                 <span class="kw">let </span>t2 = (<span class="self">self</span>.sample(t) - segment.from).length() / segment.length();
-                <span class="comment">// Don&#39;t take intersections that are on endpoints of both curves at the same time.
+                <span class="comment">// Don't take intersections that are on endpoints of both curves at the same time.
                 </span><span class="kw">if </span>(t != S::ZERO &amp;&amp; t != S::ONE) || (t2 != S::ZERO &amp;&amp; t2 != S::ONE) {
                     result.push((t, t2));
                 }
@@ -3246,10 +3247,10 @@
         ((t3 + one_t3 - S::ONE) / (t3 + one_t3)).abs()
     }
 
-    <span class="comment">// Returns a quadratic bézier curve built by dragging this curve&#39;s point at `t`
+    <span class="comment">// Returns a quadratic bézier curve built by dragging this curve's point at `t`
     // to a new position, without moving the endpoints.
     //
-    // The relative effect on control points is chosen to give a similar &quot;feel&quot; to
+    // The relative effect on control points is chosen to give a similar "feel" to
     // most vector graphics editors: dragging from near the first endpoint will affect
     // the first control point more than the second control point, etc.
     </span><span class="kw">pub fn </span>drag(<span class="kw-2">&amp;</span><span class="self">self</span>, t: S, new_position: Point&lt;S&gt;) -&gt; <span class="self">Self </span>{
@@ -3267,7 +3268,7 @@
         <span class="self">self</span>.drag_with_weight(t, new_position, weight)
     }
 
-    <span class="comment">// Returns a quadratic bézier curve built by dragging this curve&#39;s point at `t`
+    <span class="comment">// Returns a quadratic bézier curve built by dragging this curve's point at `t`
     // to a new position, without moving the endpoints.
     //
     // The provided weight specifies the relative effect on control points.
@@ -3292,7 +3293,7 @@
         // displacement (d1 and d2 do not change and both control points are moved by the
         // same amount).
         // The approach is to use the weight interpolate the most constrained control point
-        // between it&#39;s old position and the position it would have with uniform displacement.
+        // between it's old position and the position it would have with uniform displacement.
         // then we determine the position of the least constrained control point such that
         // the ratios mentioned earlier remain constant.
 
@@ -3460,15 +3461,15 @@
 
 <span class="attr">#[cfg(test)]
 </span><span class="kw">fn </span>print_arrays(a: <span class="kw-2">&amp;</span>[Point&lt;f32&gt;], b: <span class="kw-2">&amp;</span>[Point&lt;f32&gt;]) {
-    <span class="macro">std::println!</span>(<span class="string">&quot;left:  {a:?}&quot;</span>);
-    <span class="macro">std::println!</span>(<span class="string">&quot;right: {b:?}&quot;</span>);
+    <span class="macro">std::println!</span>(<span class="string">"left:  {a:?}"</span>);
+    <span class="macro">std::println!</span>(<span class="string">"right: {b:?}"</span>);
 }
 
 <span class="attr">#[cfg(test)]
 </span><span class="kw">fn </span>assert_approx_eq(a: <span class="kw-2">&amp;</span>[Point&lt;f32&gt;], b: <span class="kw-2">&amp;</span>[Point&lt;f32&gt;]) {
     <span class="kw">if </span>a.len() != b.len() {
         print_arrays(a, b);
-        <span class="macro">panic!</span>(<span class="string">&quot;Lengths differ ({} != {})&quot;</span>, a.len(), b.len());
+        <span class="macro">panic!</span>(<span class="string">"Lengths differ ({} != {})"</span>, a.len(), b.len());
     }
     <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..a.len() {
         <span class="kw">let </span>threshold = <span class="number">0.029</span>;
@@ -3476,8 +3477,8 @@
         <span class="kw">let </span>dy = f32::abs(a[i].y - b[i].y);
         <span class="kw">if </span>dx &gt; threshold || dy &gt; threshold {
             print_arrays(a, b);
-            <span class="macro">std::println!</span>(<span class="string">&quot;diff = {dx:?} {dy:?}&quot;</span>);
-            <span class="macro">panic!</span>(<span class="string">&quot;The arrays are not equal&quot;</span>);
+            <span class="macro">std::println!</span>(<span class="string">"diff = {dx:?} {dy:?}"</span>);
+            <span class="macro">panic!</span>(<span class="string">"The arrays are not equal"</span>);
         }
     }
 }
@@ -3918,7 +3919,7 @@
     <span class="kw">fn </span>assert_approx_eq(a: ArrayVec&lt;(f32, f32), <span class="number">3</span>&gt;, b: <span class="kw-2">&amp;</span>[(f32, f32)], epsilon: f32) {
         <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..a.len() {
             <span class="kw">if </span>f32::abs(a[i].<span class="number">0 </span>- b[i].<span class="number">0</span>) &gt; epsilon || f32::abs(a[i].<span class="number">1 </span>- b[i].<span class="number">1</span>) &gt; epsilon {
-                <span class="macro">std::println!</span>(<span class="string">&quot;{a:?} != {b:?}&quot;</span>);
+                <span class="macro">std::println!</span>(<span class="string">"{a:?} != {b:?}"</span>);
             }
             <span class="macro">assert!</span>((a[i].<span class="number">0 </span>- b[i].<span class="number">0</span>).abs() &lt;= epsilon &amp;&amp; (a[i].<span class="number">1 </span>- b[i].<span class="number">1</span>).abs() &lt;= epsilon);
         }
@@ -3968,7 +3969,7 @@
     <span class="kw">fn </span>assert_approx_eq(a: ArrayVec&lt;f32, <span class="number">3</span>&gt;, b: <span class="kw-2">&amp;</span>[f32], epsilon: f32) {
         <span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..a.len() {
             <span class="kw">if </span>f32::abs(a[i] - b[i]) &gt; epsilon {
-                <span class="macro">std::println!</span>(<span class="string">&quot;{a:?} != {b:?}&quot;</span>);
+                <span class="macro">std::println!</span>(<span class="string">"{a:?} != {b:?}"</span>);
             }
             <span class="macro">assert!</span>((a[i] - b[i]).abs() &lt;= epsilon);
         }
@@ -4005,7 +4006,7 @@
 
     <span class="kw">let </span>epsilon = <span class="number">0.0001</span>;
 
-    <span class="comment">// Two &quot;line segments&quot; with 3-fold overlaps, intersecting in their overlaps for a total of nine
+    <span class="comment">// Two "line segments" with 3-fold overlaps, intersecting in their overlaps for a total of nine
     // parameter intersections.
     </span><span class="kw">let </span>line1 = CubicBezierSegment {
         from: point(-<span class="number">1_000_000.0</span>, <span class="number">0.0</span>),

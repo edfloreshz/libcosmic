@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/image-0.24.8/src/codecs/gif.rs`."><title>gif.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="image" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/image-0.24.9/src/codecs/gif.rs`."><title>gif.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="image" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -652,6 +653,7 @@
 <a href="#652" id="652">652</a>
 <a href="#653" id="653">653</a>
 <a href="#654" id="654">654</a>
+<a href="#655" id="655">655</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//!  Decoding of GIF Images
 //!
 //!  GIF (Graphics Interchange Format) is an image format that supports lossless compression.
@@ -666,13 +668,13 @@
 //! use std::fs::File;
 //! # fn main() -&gt; std::io::Result&lt;()&gt; {
 //! // Decode a gif into frames
-//! let file_in = File::open(&quot;foo.gif&quot;)?;
+//! let file_in = File::open("foo.gif")?;
 //! let mut decoder = GifDecoder::new(file_in).unwrap();
 //! let frames = decoder.into_frames();
-//! let frames = frames.collect_frames().expect(&quot;error decoding gif&quot;);
+//! let frames = frames.collect_frames().expect("error decoding gif");
 //!
 //! // Encode frames into a gif and save to a file
-//! let mut file_out = File::open(&quot;out.gif&quot;)?;
+//! let mut file_out = File::open("out.gif")?;
 //! let mut encoder = GifEncoder::new(file_out);
 //! encoder.encode_frames(frames.into_iter());
 //! # Ok(())
@@ -680,9 +682,7 @@
 //! ```
 </span><span class="attr">#![allow(clippy::while_let_loop)]
 
-</span><span class="kw">use </span>std::convert::TryFrom;
-<span class="kw">use </span>std::convert::TryInto;
-<span class="kw">use </span>std::io::{<span class="self">self</span>, Cursor, Read, Write};
+</span><span class="kw">use </span>std::io::{<span class="self">self</span>, Cursor, Read, Write};
 <span class="kw">use </span>std::marker::PhantomData;
 <span class="kw">use </span>std::mem;
 
@@ -691,6 +691,8 @@
 
 <span class="kw">use </span><span class="kw">crate</span>::animation::{<span class="self">self</span>, Ratio};
 <span class="kw">use </span><span class="kw">crate</span>::color::{ColorType, Rgba};
+<span class="kw">use </span><span class="kw">crate</span>::error::LimitError;
+<span class="kw">use </span><span class="kw">crate</span>::error::LimitErrorKind;
 <span class="kw">use </span><span class="kw">crate</span>::error::{
     DecodingError, EncodingError, ImageError, ImageResult, ParameterError, ParameterErrorKind,
     UnsupportedError, UnsupportedErrorKind,
@@ -719,7 +721,7 @@
     }
 
     <span class="doccomment">/// Creates a new decoder that decodes the input steam `r`, using limits `limits`
-    </span><span class="attr">#[deprecated(since = <span class="string">&quot;0.24.8&quot;</span>, note = <span class="string">&quot;Use `new` followed by `set_limits` instead&quot;</span>)]
+    </span><span class="attr">#[deprecated(since = <span class="string">"0.24.8"</span>, note = <span class="string">"Use `new` followed by `set_limits` instead"</span>)]
     </span><span class="kw">pub fn </span>with_limits(r: R, limits: Limits) -&gt; ImageResult&lt;GifDecoder&lt;R&gt;&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>decoder = <span class="self">Self</span>::new(r)<span class="question-mark">?</span>;
         <span class="comment">// call `.set_limits()` instead of just setting the field directly
@@ -745,7 +747,7 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, R: <span class="lifetime">&#39;a </span>+ Read&gt; ImageDecoder&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>GifDecoder&lt;R&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, R: <span class="lifetime">'a </span>+ Read&gt; ImageDecoder&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span>GifDecoder&lt;R&gt; {
     <span class="kw">type </span>Reader = GifReader&lt;R&gt;;
 
     <span class="kw">fn </span>dimensions(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (u32, u32) {
@@ -830,13 +832,16 @@
             }
         } <span class="kw">else </span>{
             <span class="comment">// If the frame does not match the logical screen, read into an extra buffer
-            // and &#39;insert&#39; the frame from left/top to logical screen width/height.
-            </span><span class="kw">let </span>buffer_size = <span class="self">self</span>.reader.buffer_size();
+            // and 'insert' the frame from left/top to logical screen width/height.
+            </span><span class="kw">let </span>buffer_size = (frame.width <span class="kw">as </span>usize)
+                .checked_mul(frame.height <span class="kw">as </span>usize)
+                .and_then(|s| s.checked_mul(<span class="number">4</span>))
+                .ok_or(ImageError::Limits(LimitError::from_kind(
+                    LimitErrorKind::InsufficientMemory,
+                )))<span class="question-mark">?</span>;
 
             <span class="self">self</span>.limits.reserve_usize(buffer_size)<span class="question-mark">?</span>;
-
             <span class="kw">let </span><span class="kw-2">mut </span>frame_buffer = <span class="macro">vec!</span>[<span class="number">0</span>; buffer_size];
-
             <span class="self">self</span>.limits.free_usize(buffer_size);
 
             <span class="self">self</span>.reader
@@ -854,7 +859,7 @@
                     UnsupportedError::from_format_and_kind(
                         ImageFormat::Gif.into(),
                         UnsupportedErrorKind::GenericFeature(<span class="macro">format!</span>(
-                            <span class="string">&quot;Image dimensions ({}, {}) are too large&quot;</span>,
+                            <span class="string">"Image dimensions ({}, {}) are too large"</span>,
                             frame.width, frame.height
                         )),
                     ),
@@ -912,19 +917,17 @@
     <span class="kw">type </span>Item = ImageResult&lt;animation::Frame&gt;;
 
     <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;ImageResult&lt;animation::Frame&gt;&gt; {
-        <span class="kw">fn </span>limits_reserve_buffer(limits: <span class="kw-2">&amp;mut </span>Limits, width: u32, height: u32) -&gt; ImageResult&lt;()&gt; {
-            limits.check_dimensions(width, height)<span class="question-mark">?</span>;
-            <span class="comment">// cannot overflow because width/height are u16 in the actual GIF format,
-            // so this cannot exceed 64GB which easily fits into a u64
-            </span><span class="kw">let </span>in_memory_size = width <span class="kw">as </span>u64 * height <span class="kw">as </span>u64 * <span class="number">4</span>;
-            limits.reserve(in_memory_size)
-        }
+        <span class="comment">// The iterator always produces RGBA8 images
+        </span><span class="kw">const </span>COLOR_TYPE: ColorType = ColorType::Rgba8;
 
         <span class="comment">// Allocate the buffer for the previous frame.
         // This is done here and not in the constructor because
         // the constructor cannot return an error when the allocation limit is exceeded.
         </span><span class="kw">if </span><span class="self">self</span>.non_disposed_frame.is_none() {
-            <span class="kw">if let </span><span class="prelude-val">Err</span>(e) = limits_reserve_buffer(<span class="kw-2">&amp;mut </span><span class="self">self</span>.limits, <span class="self">self</span>.width, <span class="self">self</span>.height) {
+            <span class="kw">if let </span><span class="prelude-val">Err</span>(e) = <span class="self">self
+                </span>.limits
+                .reserve_buffer(<span class="self">self</span>.width, <span class="self">self</span>.height, COLOR_TYPE)
+            {
                 <span class="kw">return </span><span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(e));
             }
             <span class="self">self</span>.non_disposed_frame = <span class="prelude-val">Some</span>(ImageBuffer::from_pixel(
@@ -956,8 +959,8 @@
         // which will be dropped along with all the buffers when they go out of scope.
         </span><span class="kw">let </span><span class="kw-2">mut </span>local_limits = <span class="self">self</span>.limits.clone();
 
-        <span class="comment">// Check the allocation we&#39;re about to perform against the limits
-        </span><span class="kw">if let </span><span class="prelude-val">Err</span>(e) = limits_reserve_buffer(<span class="kw-2">&amp;mut </span>local_limits, frame.width, frame.height) {
+        <span class="comment">// Check the allocation we're about to perform against the limits
+        </span><span class="kw">if let </span><span class="prelude-val">Err</span>(e) = local_limits.reserve_buffer(frame.width, frame.height, COLOR_TYPE) {
             <span class="kw">return </span><span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(e));
         }
         <span class="comment">// Allocate the buffer now that the limits allowed it
@@ -978,7 +981,7 @@
                     UnsupportedError::from_format_and_kind(
                         ImageFormat::Gif.into(),
                         UnsupportedErrorKind::GenericFeature(<span class="macro">format!</span>(
-                            <span class="string">&quot;Image dimensions ({}, {}) are too large&quot;</span>,
+                            <span class="string">"Image dimensions ({}, {}) are too large"</span>,
                             frame.width, frame.height
                         )),
                     ),
@@ -1018,7 +1021,7 @@
             }
         }
 
-        <span class="comment">// if `frame_buffer`&#39;s frame exactly matches the entire image, then
+        <span class="comment">// if `frame_buffer`'s frame exactly matches the entire image, then
         // use it directly, else create a new buffer to hold the composited
         // image.
         </span><span class="kw">let </span>image_buffer = <span class="kw">if </span>(frame.left, frame.top) == (<span class="number">0</span>, <span class="number">0</span>)
@@ -1031,7 +1034,7 @@
             frame_buffer
         } <span class="kw">else </span>{
             <span class="comment">// Check limits before allocating the buffer
-            </span><span class="kw">if let </span><span class="prelude-val">Err</span>(e) = limits_reserve_buffer(<span class="kw-2">&amp;mut </span>local_limits, <span class="self">self</span>.width, <span class="self">self</span>.height) {
+            </span><span class="kw">if let </span><span class="prelude-val">Err</span>(e) = local_limits.reserve_buffer(<span class="self">self</span>.width, <span class="self">self</span>.height, COLOR_TYPE) {
                 <span class="kw">return </span><span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(e));
             }
             ImageBuffer::from_fn(<span class="self">self</span>.width, <span class="self">self</span>.height, |x, y| {
@@ -1059,8 +1062,8 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, R: Read + <span class="lifetime">&#39;a</span>&gt; AnimationDecoder&lt;<span class="lifetime">&#39;a</span>&gt; <span class="kw">for </span>GifDecoder&lt;R&gt; {
-    <span class="kw">fn </span>into_frames(<span class="self">self</span>) -&gt; animation::Frames&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, R: Read + <span class="lifetime">'a</span>&gt; AnimationDecoder&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span>GifDecoder&lt;R&gt; {
+    <span class="kw">fn </span>into_frames(<span class="self">self</span>) -&gt; animation::Frames&lt;<span class="lifetime">'a</span>&gt; {
         animation::Frames::new(Box::new(GifFrameIterator::new(<span class="self">self</span>)))
     }
 }
@@ -1126,7 +1129,7 @@
     </span><span class="kw">pub fn </span>new_with_speed(w: W, speed: i32) -&gt; GifEncoder&lt;W&gt; {
         <span class="macro">assert!</span>(
             (<span class="number">1</span>..=<span class="number">30</span>).contains(<span class="kw-2">&amp;</span>speed),
-            <span class="string">&quot;speed needs to be in the range [1, 30]&quot;
+            <span class="string">"speed needs to be in the range [1, 30]"
         </span>);
         GifEncoder {
             w: <span class="prelude-val">Some</span>(w),
@@ -1204,7 +1207,7 @@
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>convert_frame(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         img_frame: animation::Frame,
-    ) -&gt; ImageResult&lt;Frame&lt;<span class="lifetime">&#39;static</span>&gt;&gt; {
+    ) -&gt; ImageResult&lt;Frame&lt;<span class="lifetime">'static</span>&gt;&gt; {
         <span class="comment">// get the delay before converting img_frame
         </span><span class="kw">let </span>frame_delay = img_frame.delay().into_ratio().to_integer();
         <span class="comment">// convert img_frame into RgbaImage
@@ -1215,7 +1218,7 @@
         </span><span class="kw">let </span><span class="kw-2">mut </span>frame = Frame::from_rgba_speed(width, height, <span class="kw-2">&amp;mut </span>rbga_frame, <span class="self">self</span>.speed);
         <span class="comment">// Saturate the conversion to u16::MAX instead of returning an error as that
         // would require a new special cased variant in ParameterErrorKind which most
-        // likely couldn&#39;t be reused for other cases. This isn&#39;t a bad trade-off given
+        // likely couldn't be reused for other cases. This isn't a bad trade-off given
         // that the current algorithm is already lossy.
         </span>frame.delay = (frame_delay / <span class="number">10</span>).try_into().unwrap_or(std::u16::MAX);
 

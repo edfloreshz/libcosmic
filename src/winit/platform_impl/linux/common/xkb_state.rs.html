@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/8987daa/src/platform_impl/linux/common/xkb_state.rs`."><title>xkb_state.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/bdc6610/src/platform_impl/linux/common/xkb_state.rs`."><title>xkb_state.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -703,9 +704,9 @@
     <span class="self">self </span><span class="kw">as </span>ffi, xkb_state_component, xkbcommon_compose_handle, xkbcommon_handle, XkbCommon,
     XkbCommonCompose,
 };
-<span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
 </span><span class="kw">use </span>{memmap2::MmapOptions, std::os::unix::io::OwnedFd};
-<span class="attr">#[cfg(feature = <span class="string">&quot;x11&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"x11"</span>)]
 </span><span class="kw">use </span>{x11_dl::xlib_xcb::xcb_connection_t, xkbcommon_dl::x11::xkbcommon_x11_handle};
 
 <span class="kw">use </span><span class="kw">crate</span>::event::KeyEvent;
@@ -724,14 +725,14 @@
     RESET_DEAD_KEYS.store(<span class="bool-val">true</span>, Ordering::SeqCst);
 }
 
-<span class="kw">static </span>XKBH: Lazy&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>XkbCommon&gt; = Lazy::new(xkbcommon_handle);
-<span class="kw">static </span>XKBCH: Lazy&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>XkbCommonCompose&gt; = Lazy::new(xkbcommon_compose_handle);
-<span class="attr">#[cfg(feature = <span class="string">&quot;x11&quot;</span>)]
-</span><span class="kw">static </span>XKBXH: Lazy&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>ffi::x11::XkbCommonX11&gt; = Lazy::new(xkbcommon_x11_handle);
+<span class="kw">static </span>XKBH: Lazy&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>XkbCommon&gt; = Lazy::new(xkbcommon_handle);
+<span class="kw">static </span>XKBCH: Lazy&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>XkbCommonCompose&gt; = Lazy::new(xkbcommon_compose_handle);
+<span class="attr">#[cfg(feature = <span class="string">"x11"</span>)]
+</span><span class="kw">static </span>XKBXH: Lazy&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>ffi::x11::XkbCommonX11&gt; = Lazy::new(xkbcommon_x11_handle);
 
 <span class="attr">#[derive(Debug)]
 </span><span class="kw">pub struct </span>KbdState {
-    <span class="attr">#[cfg(feature = <span class="string">&quot;x11&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"x11"</span>)]
     </span>xcb_connection: <span class="kw-2">*mut </span>xcb_connection_t,
     xkb_context: <span class="kw-2">*mut </span>ffi::xkb_context,
     xkb_keymap: <span class="kw-2">*mut </span>ffi::xkb_keymap,
@@ -740,7 +741,7 @@
     xkb_compose_state: <span class="kw-2">*mut </span>ffi::xkb_compose_state,
     xkb_compose_state_2: <span class="kw-2">*mut </span>ffi::xkb_compose_state,
     mods_state: ModifiersState,
-    <span class="attr">#[cfg(feature = <span class="string">&quot;x11&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"x11"</span>)]
     </span><span class="kw">pub </span>core_keyboard_id: i32,
     scratch_buffer: Vec&lt;u8&gt;,
 }
@@ -888,7 +889,7 @@
         }
 
         <span class="kw">let </span><span class="kw-2">mut </span>me = <span class="self">Self </span>{
-            <span class="attr">#[cfg(feature = <span class="string">&quot;x11&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"x11"</span>)]
             </span>xcb_connection: ptr::null_mut(),
             xkb_context: context,
             xkb_keymap: ptr::null_mut(),
@@ -897,7 +898,7 @@
             xkb_compose_state: ptr::null_mut(),
             xkb_compose_state_2: ptr::null_mut(),
             mods_state: ModifiersState::new(),
-            <span class="attr">#[cfg(feature = <span class="string">&quot;x11&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"x11"</span>)]
             </span>core_keyboard_id: <span class="number">0</span>,
             scratch_buffer: Vec::new(),
         };
@@ -907,7 +908,7 @@
         <span class="prelude-val">Ok</span>(me)
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;x11&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"x11"</span>)]
     </span><span class="kw">pub fn </span>from_x11_xkb(connection: <span class="kw-2">*mut </span>xcb_connection_t) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, Error&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>me = <span class="self">Self</span>::new()<span class="question-mark">?</span>;
         me.xcb_connection = connection;
@@ -924,7 +925,7 @@
                 ptr::null_mut(),
             )
         };
-        <span class="macro">assert_eq!</span>(result, <span class="number">1</span>, <span class="string">&quot;Failed to initialize libxkbcommon&quot;</span>);
+        <span class="macro">assert_eq!</span>(result, <span class="number">1</span>, <span class="string">"Failed to initialize libxkbcommon"</span>);
 
         <span class="kw">unsafe </span>{ me.init_with_x11_keymap() };
 
@@ -932,13 +933,13 @@
     }
 
     <span class="kw">unsafe fn </span>init_compose(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
-        <span class="kw">let </span>locale = env::var_os(<span class="string">&quot;LC_ALL&quot;</span>)
+        <span class="kw">let </span>locale = env::var_os(<span class="string">"LC_ALL"</span>)
             .and_then(|v| <span class="kw">if </span>v.is_empty() { <span class="prelude-val">None </span>} <span class="kw">else </span>{ <span class="prelude-val">Some</span>(v) })
-            .or_else(|| env::var_os(<span class="string">&quot;LC_CTYPE&quot;</span>))
+            .or_else(|| env::var_os(<span class="string">"LC_CTYPE"</span>))
             .and_then(|v| <span class="kw">if </span>v.is_empty() { <span class="prelude-val">None </span>} <span class="kw">else </span>{ <span class="prelude-val">Some</span>(v) })
-            .or_else(|| env::var_os(<span class="string">&quot;LANG&quot;</span>))
+            .or_else(|| env::var_os(<span class="string">"LANG"</span>))
             .and_then(|v| <span class="kw">if </span>v.is_empty() { <span class="prelude-val">None </span>} <span class="kw">else </span>{ <span class="prelude-val">Some</span>(v) })
-            .unwrap_or_else(|| <span class="string">&quot;C&quot;</span>.into());
+            .unwrap_or_else(|| <span class="string">"C"</span>.into());
         <span class="kw">let </span>locale = CString::new(locale.into_vec()).unwrap();
 
         <span class="kw">let </span>compose_table = <span class="kw">unsafe </span>{
@@ -999,13 +1000,13 @@
         <span class="self">self</span>.xkb_keymap = ptr::null_mut();
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;x11&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"x11"</span>)]
     </span><span class="kw">pub unsafe fn </span>init_with_x11_keymap(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
         <span class="kw">if </span>!<span class="self">self</span>.xkb_keymap.is_null() {
             <span class="kw">unsafe </span>{ <span class="self">self</span>.de_init() };
         }
 
-        <span class="comment">// TODO: Support keyboards other than the &quot;virtual core keyboard device&quot;.
+        <span class="comment">// TODO: Support keyboards other than the "virtual core keyboard device".
         </span><span class="self">self</span>.core_keyboard_id =
             <span class="kw">unsafe </span>{ (XKBXH.xkb_x11_get_core_keyboard_device_id)(<span class="self">self</span>.xcb_connection) };
         <span class="kw">let </span>keymap = <span class="kw">unsafe </span>{
@@ -1017,7 +1018,7 @@
             )
         };
         <span class="kw">if </span>keymap.is_null() {
-            <span class="macro">panic!</span>(<span class="string">&quot;Failed to get keymap from X11 server.&quot;</span>);
+            <span class="macro">panic!</span>(<span class="string">"Failed to get keymap from X11 server."</span>);
         }
 
         <span class="kw">let </span>state = <span class="kw">unsafe </span>{
@@ -1030,7 +1031,7 @@
         <span class="kw">unsafe </span>{ <span class="self">self</span>.post_init(state, keymap) };
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;wayland&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"wayland"</span>)]
     </span><span class="kw">pub unsafe fn </span>init_with_fd(<span class="kw-2">&amp;mut </span><span class="self">self</span>, fd: OwnedFd, size: usize) {
         <span class="kw">if </span>!<span class="self">self</span>.xkb_keymap.is_null() {
             <span class="kw">unsafe </span>{ <span class="self">self</span>.de_init() };
@@ -1053,7 +1054,7 @@
         };
 
         <span class="kw">if </span>keymap.is_null() {
-            <span class="macro">panic!</span>(<span class="string">&quot;Received invalid keymap from compositor.&quot;</span>);
+            <span class="macro">panic!</span>(<span class="string">"Received invalid keymap from compositor."</span>);
         }
 
         <span class="kw">let </span>state = <span class="kw">unsafe </span>{ (XKBH.xkb_state_new)(keymap) };
@@ -1157,15 +1158,15 @@
     }
 }
 
-<span class="kw">struct </span>KeyEventResults&lt;<span class="lifetime">&#39;a</span>&gt; {
-    state: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>KbdState,
+<span class="kw">struct </span>KeyEventResults&lt;<span class="lifetime">'a</span>&gt; {
+    state: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>KbdState,
     keycode: u32,
     keysym: u32,
     compose: <span class="prelude-ty">Option</span>&lt;XkbCompose&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; KeyEventResults&lt;<span class="lifetime">&#39;a</span>&gt; {
-    <span class="kw">fn </span>new(state: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>KbdState, keycode: u32, compose: bool) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; KeyEventResults&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="kw">fn </span>new(state: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>KbdState, keycode: u32, compose: bool) -&gt; <span class="self">Self </span>{
         <span class="kw">let </span>keysym = state.get_one_sym_raw(keycode);
 
         <span class="kw">let </span>compose = <span class="kw">if </span>compose {
@@ -1204,7 +1205,7 @@
                     <span class="kw">match </span><span class="self">self</span>.state.compose_feed_2(<span class="self">self</span>.keysym) {
                         <span class="prelude-val">Some</span>(ffi::xkb_compose_feed_result::XKB_COMPOSE_FEED_ACCEPTED) =&gt; (
                             <span class="comment">// Extracting only a single `char` here *should* be fine, assuming that no dead
-                            // key&#39;s non-combining variant ever occupies more than one `char`.
+                            // key's non-combining variant ever occupies more than one `char`.
                             </span>Key::Dead(
                                 <span class="self">self</span>.state
                                     .compose_get_utf8_2()
@@ -1226,7 +1227,7 @@
     }
 
     <span class="kw">pub fn </span>key_without_modifiers(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; (Key, KeyLocation) {
-        <span class="comment">// This will become a pointer to an array which libxkbcommon owns, so we don&#39;t need to deallocate it.
+        <span class="comment">// This will become a pointer to an array which libxkbcommon owns, so we don't need to deallocate it.
         </span><span class="kw">let </span><span class="kw-2">mut </span>keysyms = ptr::null();
         <span class="kw">let </span>keysym_count = <span class="kw">unsafe </span>{
             <span class="kw">let </span>layout = (XKBH.xkb_state_key_get_layout)(<span class="self">self</span>.state.xkb_state, <span class="self">self</span>.keycode);
@@ -1305,19 +1306,19 @@
 /// (like caps lock).
 </span><span class="attr">#[derive(Copy, Clone, Debug, Default, PartialEq, Eq)]
 </span><span class="kw">pub struct </span>ModifiersState {
-    <span class="doccomment">/// The &quot;control&quot; key
+    <span class="doccomment">/// The "control" key
     </span><span class="kw">pub </span>ctrl: bool,
-    <span class="doccomment">/// The &quot;alt&quot; key
+    <span class="doccomment">/// The "alt" key
     </span><span class="kw">pub </span>alt: bool,
-    <span class="doccomment">/// The &quot;shift&quot; key
+    <span class="doccomment">/// The "shift" key
     </span><span class="kw">pub </span>shift: bool,
-    <span class="doccomment">/// The &quot;Caps lock&quot; key
+    <span class="doccomment">/// The "Caps lock" key
     </span><span class="kw">pub </span>caps_lock: bool,
-    <span class="doccomment">/// The &quot;logo&quot; key
+    <span class="doccomment">/// The "logo" key
     ///
-    /// Also known as the &quot;windows&quot; key on most keyboards
+    /// Also known as the "windows" key on most keyboards
     </span><span class="kw">pub </span>logo: bool,
-    <span class="doccomment">/// The &quot;Num lock&quot; key
+    <span class="doccomment">/// The "Num lock" key
     </span><span class="kw">pub </span>num_lock: bool,
 }
 
@@ -1374,7 +1375,7 @@
         .map(SmolStr::new)
         .map_err(|e| {
             <span class="macro">warn!</span>(
-                <span class="string">&quot;UTF-8 received from libxkbcommon ({:?}) was invalid: {e}&quot;</span>,
+                <span class="string">"UTF-8 received from libxkbcommon ({:?}) was invalid: {e}"</span>,
                 bytes
             )
         })

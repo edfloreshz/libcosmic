@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/menu/menu_inner.rs`."><title>menu_inner.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/menu/menu_inner.rs`."><title>menu_inner.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1286,7 +1287,7 @@
     <span class="doccomment">/// Use uniform width
     </span>Uniform(u16),
     <span class="doccomment">/// Static tries to use the width value of each menu(menu tree with children),
-    /// the widths of items(menu tree with empty children) will be the same as the menu they&#39;re in,
+    /// the widths of items(menu tree with empty children) will be the same as the menu they're in,
     /// if that value is None,
     /// the default value will be used instead,
     /// which is the value of the Static variant
@@ -1299,7 +1300,7 @@
     <span class="doccomment">/// Use uniform height.
     </span>Uniform(u16),
     <span class="doccomment">/// Static tries to use `MenuTree.height` as item height,
-    /// when it&#39;s `None` it&#39;ll fallback to the value of the `Static` variant.
+    /// when it's `None` it'll fallback to the value of the `Static` variant.
     </span>Static(u16),
     <span class="doccomment">/// Dynamic tries to automatically choose the proper item height for you,
     /// but it only works in certain cases:
@@ -1308,7 +1309,7 @@
     /// - Shrink height
     /// - Menu tree height
     ///
-    /// If none of these is the case, it&#39;ll fallback to the value of the `Dynamic` variant.
+    /// If none of these is the case, it'll fallback to the value of the `Dynamic` variant.
     </span>Dynamic(u16),
 }
 
@@ -1319,7 +1320,7 @@
     </span>Full,
     <span class="doccomment">/// Omit the active item(the last item in the path)
     </span>OmitActive,
-    <span class="doccomment">/// Omit the active item if it&#39;s not a menu
+    <span class="doccomment">/// Omit the active item if it's not a menu
     </span>MenuActive,
 }
 
@@ -1364,7 +1365,7 @@
         direction: Direction,
     ) -&gt; (f32, f32) {
         <span class="comment">/*
-        Imagine there&#39;re two sticks, parent and child
+        Imagine there're two sticks, parent and child
         parent: o-----o
         child:  o----------o
 
@@ -1387,7 +1388,7 @@
 
         The child goes to the default direction by default,
         if the space on the default direction runs out it goes to the the other,
-        whether to use overlap is the caller&#39;s decision
+        whether to use overlap is the caller's decision
 
         This can be applied to any direction
         */
@@ -1493,7 +1494,7 @@
 <span class="kw">impl </span>MenuBounds {
     <span class="attr">#[allow(clippy::too_many_arguments)]
     </span><span class="kw">fn </span>new&lt;Message, Renderer&gt;(
-        menu_tree: <span class="kw-2">&amp;</span>MenuTree&lt;<span class="lifetime">&#39;_</span>, Message, Renderer&gt;,
+        menu_tree: <span class="kw-2">&amp;</span>MenuTree&lt;<span class="lifetime">'_</span>, Message, Renderer&gt;,
         renderer: <span class="kw-2">&amp;</span>Renderer,
         item_width: ItemWidth,
         item_height: ItemHeight,
@@ -1553,7 +1554,7 @@
         overlay_offset: Vector,
         slice: MenuSlice,
         renderer: <span class="kw-2">&amp;</span>Renderer,
-        menu_tree: <span class="kw-2">&amp;</span>MenuTree&lt;<span class="lifetime">&#39;_</span>, Message, Renderer&gt;,
+        menu_tree: <span class="kw-2">&amp;</span>MenuTree&lt;<span class="lifetime">'_</span>, Message, Renderer&gt;,
         tree: <span class="kw-2">&amp;mut </span>[Tree],
     ) -&gt; Node
     <span class="kw">where
@@ -1607,7 +1608,7 @@
         overlay_offset: Vector,
         index: usize,
         renderer: <span class="kw-2">&amp;</span>Renderer,
-        menu_tree: <span class="kw-2">&amp;</span>MenuTree&lt;<span class="lifetime">&#39;_</span>, Message, Renderer&gt;,
+        menu_tree: <span class="kw-2">&amp;</span>MenuTree&lt;<span class="lifetime">'_</span>, Message, Renderer&gt;,
         tree: <span class="kw-2">&amp;mut </span>Tree,
     ) -&gt; Node
     <span class="kw">where
@@ -1680,12 +1681,12 @@
     }
 }
 
-<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct </span>Menu&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, Message, Renderer&gt;
+<span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct </span>Menu&lt;<span class="lifetime">'a</span>, <span class="lifetime">'b</span>, Message, Renderer&gt;
 <span class="kw">where
     </span>Renderer: renderer::Renderer,
 {
-    <span class="kw">pub</span>(<span class="kw">super</span>) tree: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="kw-2">mut </span>Tree,
-    <span class="kw">pub</span>(<span class="kw">super</span>) menu_roots: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="kw-2">mut </span>Vec&lt;MenuTree&lt;<span class="lifetime">&#39;a</span>, Message, Renderer&gt;&gt;,
+    <span class="kw">pub</span>(<span class="kw">super</span>) tree: <span class="kw-2">&amp;</span><span class="lifetime">'b </span><span class="kw-2">mut </span>Tree,
+    <span class="kw">pub</span>(<span class="kw">super</span>) menu_roots: <span class="kw-2">&amp;</span><span class="lifetime">'b </span><span class="kw-2">mut </span>Vec&lt;MenuTree&lt;<span class="lifetime">'a</span>, Message, Renderer&gt;&gt;,
     <span class="kw">pub</span>(<span class="kw">super</span>) bounds_expand: u16,
     <span class="kw">pub</span>(<span class="kw">super</span>) close_condition: CloseCondition,
     <span class="kw">pub</span>(<span class="kw">super</span>) item_width: ItemWidth,
@@ -1695,18 +1696,18 @@
     <span class="kw">pub</span>(<span class="kw">super</span>) cross_offset: i32,
     <span class="kw">pub</span>(<span class="kw">super</span>) root_bounds_list: Vec&lt;Rectangle&gt;,
     <span class="kw">pub</span>(<span class="kw">super</span>) path_highlight: <span class="prelude-ty">Option</span>&lt;PathHighlight&gt;,
-    <span class="kw">pub</span>(<span class="kw">super</span>) style: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>&lt;<span class="kw">crate</span>::Theme <span class="kw">as </span>StyleSheet&gt;::Style,
+    <span class="kw">pub</span>(<span class="kw">super</span>) style: <span class="kw-2">&amp;</span><span class="lifetime">'b </span>&lt;<span class="kw">crate</span>::Theme <span class="kw">as </span>StyleSheet&gt;::Style,
 }
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, Message, Renderer&gt; Menu&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, Message, Renderer&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, <span class="lifetime">'b</span>, Message, Renderer&gt; Menu&lt;<span class="lifetime">'a</span>, <span class="lifetime">'b</span>, Message, Renderer&gt;
 <span class="kw">where
     </span>Renderer: renderer::Renderer,
 {
-    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>overlay(<span class="self">self</span>) -&gt; overlay::Element&lt;<span class="lifetime">&#39;b</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt; {
+    <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>overlay(<span class="self">self</span>) -&gt; overlay::Element&lt;<span class="lifetime">'b</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt; {
         overlay::Element::new(Point::ORIGIN, Box::new(<span class="self">self</span>))
     }
 }
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, Message, Renderer&gt; overlay::Overlay&lt;Message, <span class="kw">crate</span>::Theme, Renderer&gt;
-    <span class="kw">for </span>Menu&lt;<span class="lifetime">&#39;a</span>, <span class="lifetime">&#39;b</span>, Message, Renderer&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, <span class="lifetime">'b</span>, Message, Renderer&gt; overlay::Overlay&lt;Message, <span class="kw">crate</span>::Theme, Renderer&gt;
+    <span class="kw">for </span>Menu&lt;<span class="lifetime">'a</span>, <span class="lifetime">'b</span>, Message, Renderer&gt;
 <span class="kw">where
     </span>Renderer: renderer::Renderer,
 {
@@ -1759,11 +1760,11 @@
     <span class="kw">fn </span>on_event(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         event: event::Event,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         view_cursor: Cursor,
         renderer: <span class="kw-2">&amp;</span>Renderer,
         clipboard: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>Clipboard,
-        shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">&#39;_</span>, Message&gt;,
+        shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">'_</span>, Message&gt;,
     ) -&gt; event::Status {
         <span class="kw">use </span>event::{
             Event::{Mouse, Touch},
@@ -1881,7 +1882,7 @@
         renderer: <span class="kw-2">&amp;mut </span>Renderer,
         theme: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Theme,
         style: <span class="kw-2">&amp;</span>renderer::Style,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         view_cursor: Cursor,
     ) {
         <span class="kw">let </span>state = <span class="self">self</span>.tree.state.downcast_ref::&lt;MenuBarState&gt;();
@@ -1930,9 +1931,9 @@
 
                     <span class="comment">// draw menu background
                     // let bounds = pad_rectangle(children_bounds, styling.background_expand.into());
-                    // println!(&quot;cursor: {:?}&quot;, view_cursor);
-                    // println!(&quot;bg_bounds: {:?}&quot;, bounds);
-                    // println!(&quot;color: {:?}\n&quot;, styling.background);
+                    // println!("cursor: {:?}", view_cursor);
+                    // println!("bg_bounds: {:?}", bounds);
+                    // println!("color: {:?}\n", styling.background);
                     </span><span class="kw">let </span>menu_quad = renderer::Quad {
                         bounds: pad_rectangle(children_bounds, styling.background_expand.into()),
                         border: Border {
@@ -1950,7 +1951,7 @@
                         <span class="kw">let </span>active_bounds = children_layout
                             .children()
                             .nth(active.saturating_sub(start_index))
-                            .expect(<span class="string">&quot;No active children were found in menu?&quot;</span>)
+                            .expect(<span class="string">"No active children were found in menu?"</span>)
                             .bounds();
                         <span class="kw">let </span>path_quad = renderer::Quad {
                             bounds: active_bounds,
@@ -2000,9 +2001,9 @@
 }
 
 <span class="kw">fn </span>init_root_menu&lt;Message, Renderer&gt;(
-    menu: <span class="kw-2">&amp;mut </span>Menu&lt;<span class="lifetime">&#39;_</span>, <span class="lifetime">&#39;_</span>, Message, Renderer&gt;,
+    menu: <span class="kw-2">&amp;mut </span>Menu&lt;<span class="lifetime">'_</span>, <span class="lifetime">'_</span>, Message, Renderer&gt;,
     renderer: <span class="kw-2">&amp;</span>Renderer,
-    shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">&#39;_</span>, Message&gt;,
+    shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">'_</span>, Message&gt;,
     overlay_cursor: Point,
     viewport_size: Size,
     overlay_offset: Vector,
@@ -2076,14 +2077,14 @@
 }
 
 <span class="attr">#[allow(clippy::too_many_arguments)]
-</span><span class="kw">fn </span>process_menu_events&lt;<span class="lifetime">&#39;b</span>, Message, Renderer&gt;(
-    tree: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="kw-2">mut </span>Tree,
-    menu_roots: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="kw-2">mut </span>[MenuTree&lt;<span class="lifetime">&#39;_</span>, Message, Renderer&gt;],
+</span><span class="kw">fn </span>process_menu_events&lt;<span class="lifetime">'b</span>, Message, Renderer&gt;(
+    tree: <span class="kw-2">&amp;</span><span class="lifetime">'b </span><span class="kw-2">mut </span>Tree,
+    menu_roots: <span class="kw-2">&amp;</span><span class="lifetime">'b </span><span class="kw-2">mut </span>[MenuTree&lt;<span class="lifetime">'_</span>, Message, Renderer&gt;],
     event: event::Event,
     view_cursor: Cursor,
     renderer: <span class="kw-2">&amp;</span>Renderer,
     clipboard: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>Clipboard,
-    shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">&#39;_</span>, Message&gt;,
+    shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">'_</span>, Message&gt;,
     overlay_offset: Vector,
 ) -&gt; event::Status
 <span class="kw">where
@@ -2114,7 +2115,7 @@
     </span><span class="kw">let </span>last_ms = <span class="kw-2">&amp;</span>state.menu_states[indices.len() - <span class="number">1</span>];
     <span class="kw">let </span>child_node = last_ms.layout_single(
         overlay_offset,
-        last_ms.index.expect(<span class="string">&quot;missing index within menu state.&quot;</span>),
+        last_ms.index.expect(<span class="string">"missing index within menu state."</span>),
         renderer,
         mt,
         tree,
@@ -2136,7 +2137,7 @@
 
 <span class="attr">#[allow(unused_results)]
 </span><span class="kw">fn </span>process_overlay_events&lt;Message, Renderer&gt;(
-    menu: <span class="kw-2">&amp;mut </span>Menu&lt;<span class="lifetime">&#39;_</span>, <span class="lifetime">&#39;_</span>, Message, Renderer&gt;,
+    menu: <span class="kw-2">&amp;mut </span>Menu&lt;<span class="lifetime">'_</span>, <span class="lifetime">'_</span>, Message, Renderer&gt;,
     renderer: <span class="kw-2">&amp;</span>Renderer,
     viewport_size: Size,
     overlay_offset: Vector,
@@ -2258,7 +2259,7 @@
     <span class="kw">let </span>active_menu = indices[<span class="number">0</span>..indices.len().saturating_sub(<span class="number">1</span>)]
         .iter()
         .fold(active_menu_root, |mt, i| {
-            <span class="kw-2">&amp;</span>mt.children[i.expect(<span class="string">&quot;missing active child index in menu&quot;</span>)]
+            <span class="kw-2">&amp;</span>mt.children[i.expect(<span class="string">"missing active child index in menu"</span>)]
         });
 
     <span class="kw">let </span>new_index = <span class="kw">match </span>menu.item_height {
@@ -2327,7 +2328,7 @@
 }
 
 <span class="kw">fn </span>process_scroll_events&lt;Message, Renderer&gt;(
-    menu: <span class="kw-2">&amp;mut </span>Menu&lt;<span class="lifetime">&#39;_</span>, <span class="lifetime">&#39;_</span>, Message, Renderer&gt;,
+    menu: <span class="kw-2">&amp;mut </span>Menu&lt;<span class="lifetime">'_</span>, <span class="lifetime">'_</span>, Message, Renderer&gt;,
     delta: mouse::ScrollDelta,
     overlay_cursor: Point,
     viewport_size: Size,
@@ -2405,7 +2406,7 @@
 <span class="attr">#[allow(clippy::pedantic)]
 </span><span class="doccomment">/// Returns (children_size, child_positions, child_sizes)
 </span><span class="kw">fn </span>get_children_layout&lt;Message, Renderer&gt;(
-    menu_tree: <span class="kw-2">&amp;</span>MenuTree&lt;<span class="lifetime">&#39;_</span>, Message, Renderer&gt;,
+    menu_tree: <span class="kw-2">&amp;</span>MenuTree&lt;<span class="lifetime">'_</span>, Message, Renderer&gt;,
     renderer: <span class="kw-2">&amp;</span>Renderer,
     item_width: ItemWidth,
     item_height: ItemHeight,

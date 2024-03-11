@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/xdg-2.5.2/src/base_directories.rs`."><title>base_directories.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="xdg" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/xdg-2.5.2/src/base_directories.rs`."><title>base_directories.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="xdg" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1292,7 +1293,7 @@
 <span class="kw">use </span>std::path::{Path, PathBuf};
 <span class="kw">use </span>std::{env, error, fmt, fs, io};
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;serde&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"serde"</span>)]
 </span><span class="kw">use </span>serde::{Deserialize, Serialize};
 
 <span class="kw">use </span><span class="self">self</span>::ErrorKind::<span class="kw-2">*</span>;
@@ -1305,7 +1306,7 @@
 ///
 /// The Base Directory specification defines five kinds of files:
 ///
-///   * **Configuration files** store the application&#39;s settings and
+///   * **Configuration files** store the application's settings and
 ///     are often modified during runtime;
 ///   * **Data files** store supplementary data, such as graphic assets,
 ///     precomputed tables, documentation, or architecture-independent
@@ -1323,7 +1324,7 @@
 /// To configure paths for application `myapp`:
 ///
 /// ```
-/// let xdg_dirs = xdg::BaseDirectories::with_prefix(&quot;myapp&quot;).unwrap();
+/// let xdg_dirs = xdg::BaseDirectories::with_prefix("myapp").unwrap();
 /// ```
 ///
 /// To store configuration:
@@ -1332,12 +1333,12 @@
 /// # use std::fs::File;
 /// # use std::io::{Error, Write};
 /// # fn main() -&gt; Result&lt;(), Error&gt; {
-/// # let xdg_dirs = xdg::BaseDirectories::with_prefix(&quot;myapp&quot;).unwrap();
+/// # let xdg_dirs = xdg::BaseDirectories::with_prefix("myapp").unwrap();
 /// let config_path = xdg_dirs
-///     .place_config_file(&quot;config.ini&quot;)
-///     .expect(&quot;cannot create configuration directory&quot;);
+///     .place_config_file("config.ini")
+///     .expect("cannot create configuration directory");
 /// let mut config_file = File::create(config_path)?;
-/// write!(&amp;mut config_file, &quot;configured = 1&quot;)?;
+/// write!(&amp;mut config_file, "configured = 1")?;
 /// #   Ok(())
 /// # }
 /// ```
@@ -1352,10 +1353,10 @@
 /// # use std::fs::File;
 /// # use std::io::{Error, Read, Write};
 /// # fn main() -&gt; Result&lt;(), Error&gt; {
-/// # let xdg_dirs = xdg::BaseDirectories::with_prefix(&quot;myapp&quot;).unwrap();
+/// # let xdg_dirs = xdg::BaseDirectories::with_prefix("myapp").unwrap();
 /// let logo_path = xdg_dirs
-///     .find_data_file(&quot;logo.png&quot;)
-///     .expect(&quot;application data not present&quot;);
+///     .find_data_file("logo.png")
+///     .expect("application data not present");
 /// let mut logo_file = File::open(logo_path)?;
 /// let mut logo = Vec::new();
 /// logo_file.read_to_end(&amp;mut logo)?;
@@ -1367,7 +1368,7 @@
 /// supplementary data files, most likely `~/.local/share/myapp/logo.png`,
 /// then `/usr/local/share/myapp/logo.png` and `/usr/share/myapp/logo.png`.
 </span><span class="attr">#[derive(Debug, Clone)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub struct </span>BaseDirectories {
     shared_prefix: PathBuf,
     user_prefix: PathBuf,
@@ -1391,7 +1392,7 @@
 }
 
 <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Error {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
         <span class="self">self</span>.kind.fmt(f)
     }
 }
@@ -1399,12 +1400,12 @@
 <span class="kw">impl </span>error::Error <span class="kw">for </span>Error {
     <span class="kw">fn </span>description(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
         <span class="kw">match </span><span class="self">self</span>.kind {
-            HomeMissing =&gt; <span class="string">&quot;$HOME must be set&quot;</span>,
+            HomeMissing =&gt; <span class="string">"$HOME must be set"</span>,
             XdgRuntimeDirInaccessible(<span class="kw">_</span>, <span class="kw">_</span>) =&gt; {
-                <span class="string">&quot;$XDG_RUNTIME_DIR must be accessible by the current user&quot;
+                <span class="string">"$XDG_RUNTIME_DIR must be accessible by the current user"
             </span>}
-            XdgRuntimeDirInsecure(<span class="kw">_</span>, <span class="kw">_</span>) =&gt; <span class="string">&quot;$XDG_RUNTIME_DIR must be secure: have permissions 0700&quot;</span>,
-            XdgRuntimeDirMissing =&gt; <span class="string">&quot;$XDG_RUNTIME_DIR is not set&quot;</span>,
+            XdgRuntimeDirInsecure(<span class="kw">_</span>, <span class="kw">_</span>) =&gt; <span class="string">"$XDG_RUNTIME_DIR must be secure: have permissions 0700"</span>,
+            XdgRuntimeDirMissing =&gt; <span class="string">"$XDG_RUNTIME_DIR is not set"</span>,
         }
     }
     <span class="kw">fn </span>cause(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="kw">dyn </span>error::Error&gt; {
@@ -1416,14 +1417,14 @@
 }
 
 <span class="kw">impl </span>fmt::Display <span class="kw">for </span>Error {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
         <span class="kw">match </span><span class="self">self</span>.kind {
-            HomeMissing =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;$HOME must be set&quot;</span>),
+            HomeMissing =&gt; <span class="macro">write!</span>(f, <span class="string">"$HOME must be set"</span>),
             XdgRuntimeDirInaccessible(<span class="kw-2">ref </span>dir, <span class="kw-2">ref </span>error) =&gt; {
                 <span class="macro">write!</span>(
                     f,
-                    <span class="string">&quot;$XDG_RUNTIME_DIR (`{}`) must be accessible \
-                           by the current user (error: {})&quot;</span>,
+                    <span class="string">"$XDG_RUNTIME_DIR (`{}`) must be accessible \
+                           by the current user (error: {})"</span>,
                     dir.display(),
                     error
                 )
@@ -1431,14 +1432,14 @@
             XdgRuntimeDirInsecure(<span class="kw-2">ref </span>dir, permissions) =&gt; {
                 <span class="macro">write!</span>(
                     f,
-                    <span class="string">&quot;$XDG_RUNTIME_DIR (`{}`) must be secure: must have \
-                           permissions 0o700, got {}&quot;</span>,
+                    <span class="string">"$XDG_RUNTIME_DIR (`{}`) must be secure: must have \
+                           permissions 0o700, got {}"</span>,
                     dir.display(),
                     permissions
                 )
             }
             XdgRuntimeDirMissing =&gt; {
-                <span class="macro">write!</span>(f, <span class="string">&quot;$XDG_RUNTIME_DIR must be set&quot;</span>)
+                <span class="macro">write!</span>(f, <span class="string">"$XDG_RUNTIME_DIR must be set"</span>)
             }
         }
     }
@@ -1457,14 +1458,14 @@
 </span><span class="kw">struct </span>Permissions(u32);
 
 <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Permissions {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
         <span class="kw">let </span>Permissions(p) = <span class="kw-2">*</span><span class="self">self</span>;
-        <span class="macro">write!</span>(f, <span class="string">&quot;{:#05o}&quot;</span>, p)
+        <span class="macro">write!</span>(f, <span class="string">"{:#05o}"</span>, p)
     }
 }
 
 <span class="kw">impl </span>fmt::Display <span class="kw">for </span>Permissions {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
         fmt::Debug::fmt(<span class="self">self</span>, f)
     }
 }
@@ -1497,29 +1498,29 @@
     /// As per specification, if an environment variable contains a relative path,
     /// the behavior is the same as if it was not set.
     </span><span class="kw">pub fn </span>new() -&gt; <span class="prelude-ty">Result</span>&lt;BaseDirectories, Error&gt; {
-        BaseDirectories::with_env(<span class="string">&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="kw-2">&amp;</span>|name| env::var_os(name))
+        BaseDirectories::with_env(<span class="string">""</span>, <span class="string">""</span>, <span class="kw-2">&amp;</span>|name| env::var_os(name))
     }
 
     <span class="doccomment">/// Same as [`new()`](#method.new), but `prefix` is implicitly prepended to
     /// every path that is looked up.
     </span><span class="kw">pub fn </span>with_prefix&lt;P: AsRef&lt;Path&gt;&gt;(prefix: P) -&gt; <span class="prelude-ty">Result</span>&lt;BaseDirectories, Error&gt; {
-        BaseDirectories::with_env(prefix, <span class="string">&quot;&quot;</span>, <span class="kw-2">&amp;</span>|name| env::var_os(name))
+        BaseDirectories::with_env(prefix, <span class="string">""</span>, <span class="kw-2">&amp;</span>|name| env::var_os(name))
     }
 
     <span class="doccomment">/// Same as [`with_prefix()`](#method.with_prefix),
     /// with `profile` also implicitly prepended to every path that is looked up,
     /// but only for user-specific directories.
     ///
-    /// This allows each user to have mutliple &quot;profiles&quot; with different user-specific data.
+    /// This allows each user to have mutliple "profiles" with different user-specific data.
     ///
     /// For example:
     ///
     /// ```
     /// # extern crate xdg;
     /// # use xdg::BaseDirectories;
-    /// let dirs = BaseDirectories::with_profile(&quot;program-name&quot;, &quot;profile-name&quot;).unwrap();
-    /// dirs.find_data_file(&quot;bar.jpg&quot;);
-    /// dirs.find_config_file(&quot;foo.conf&quot;);
+    /// let dirs = BaseDirectories::with_profile("program-name", "profile-name").unwrap();
+    /// dirs.find_data_file("bar.jpg");
+    /// dirs.find_config_file("foo.conf");
     /// ```
     ///
     /// will find `/usr/share/program-name/bar.jpg` (without `profile-name`)
@@ -1579,26 +1580,26 @@
         </span><span class="attr">#[allow(deprecated)]
         </span><span class="kw">let </span>home = std::env::home_dir().ok_or(Error::new(HomeMissing))<span class="question-mark">?</span>;
 
-        <span class="kw">let </span>data_home = env_var(<span class="string">&quot;XDG_DATA_HOME&quot;</span>)
+        <span class="kw">let </span>data_home = env_var(<span class="string">"XDG_DATA_HOME"</span>)
             .and_then(abspath)
-            .unwrap_or(home.join(<span class="string">&quot;.local/share&quot;</span>));
-        <span class="kw">let </span>config_home = env_var(<span class="string">&quot;XDG_CONFIG_HOME&quot;</span>)
+            .unwrap_or(home.join(<span class="string">".local/share"</span>));
+        <span class="kw">let </span>config_home = env_var(<span class="string">"XDG_CONFIG_HOME"</span>)
             .and_then(abspath)
-            .unwrap_or(home.join(<span class="string">&quot;.config&quot;</span>));
-        <span class="kw">let </span>cache_home = env_var(<span class="string">&quot;XDG_CACHE_HOME&quot;</span>)
+            .unwrap_or(home.join(<span class="string">".config"</span>));
+        <span class="kw">let </span>cache_home = env_var(<span class="string">"XDG_CACHE_HOME"</span>)
             .and_then(abspath)
-            .unwrap_or(home.join(<span class="string">&quot;.cache&quot;</span>));
-        <span class="kw">let </span>state_home = env_var(<span class="string">&quot;XDG_STATE_HOME&quot;</span>)
+            .unwrap_or(home.join(<span class="string">".cache"</span>));
+        <span class="kw">let </span>state_home = env_var(<span class="string">"XDG_STATE_HOME"</span>)
             .and_then(abspath)
-            .unwrap_or(home.join(<span class="string">&quot;.local/state&quot;</span>));
-        <span class="kw">let </span>data_dirs = env_var(<span class="string">&quot;XDG_DATA_DIRS&quot;</span>).and_then(abspaths).unwrap_or(<span class="macro">vec!</span>[
-            PathBuf::from(<span class="string">&quot;/usr/local/share&quot;</span>),
-            PathBuf::from(<span class="string">&quot;/usr/share&quot;</span>),
+            .unwrap_or(home.join(<span class="string">".local/state"</span>));
+        <span class="kw">let </span>data_dirs = env_var(<span class="string">"XDG_DATA_DIRS"</span>).and_then(abspaths).unwrap_or(<span class="macro">vec!</span>[
+            PathBuf::from(<span class="string">"/usr/local/share"</span>),
+            PathBuf::from(<span class="string">"/usr/share"</span>),
         ]);
-        <span class="kw">let </span>config_dirs = env_var(<span class="string">&quot;XDG_CONFIG_DIRS&quot;</span>)
+        <span class="kw">let </span>config_dirs = env_var(<span class="string">"XDG_CONFIG_DIRS"</span>)
             .and_then(abspaths)
-            .unwrap_or(<span class="macro">vec!</span>[PathBuf::from(<span class="string">&quot;/etc/xdg&quot;</span>)]);
-        <span class="kw">let </span>runtime_dir = env_var(<span class="string">&quot;XDG_RUNTIME_DIR&quot;</span>).and_then(abspath); <span class="comment">// optional
+            .unwrap_or(<span class="macro">vec!</span>[PathBuf::from(<span class="string">"/etc/xdg"</span>)]);
+        <span class="kw">let </span>runtime_dir = env_var(<span class="string">"XDG_RUNTIME_DIR"</span>).and_then(abspath); <span class="comment">// optional
 
         </span><span class="kw">let </span>prefix = PathBuf::from(prefix);
         <span class="prelude-val">Ok</span>(BaseDirectories {
@@ -2112,8 +2113,8 @@
 </span><span class="kw">mod </span>test {
     <span class="kw">use super</span>::<span class="kw-2">*</span>;
 
-    <span class="kw">const </span>TARGET_TMPDIR: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="macro">option_env!</span>(<span class="string">&quot;CARGO_TARGET_TMPDIR&quot;</span>);
-    <span class="kw">const </span>TARGET_DIR: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; = <span class="macro">option_env!</span>(<span class="string">&quot;CARGO_TARGET_DIR&quot;</span>);
+    <span class="kw">const </span>TARGET_TMPDIR: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="macro">option_env!</span>(<span class="string">"CARGO_TARGET_TMPDIR"</span>);
+    <span class="kw">const </span>TARGET_DIR: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; = <span class="macro">option_env!</span>(<span class="string">"CARGO_TARGET_DIR"</span>);
 
     <span class="kw">fn </span>get_test_dir() -&gt; PathBuf {
         <span class="kw">match </span>TARGET_TMPDIR {
@@ -2169,7 +2170,7 @@
             .to_owned()
     }
 
-    <span class="kw">fn </span>make_env(vars: Vec&lt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str, String)&gt;) -&gt; Box&lt;<span class="kw">dyn </span>Fn(<span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;OsString&gt;&gt; {
+    <span class="kw">fn </span>make_env(vars: Vec&lt;(<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str, String)&gt;) -&gt; Box&lt;<span class="kw">dyn </span>Fn(<span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;OsString&gt;&gt; {
         <span class="kw">return </span>Box::new(<span class="kw">move </span>|name| {
             <span class="kw">for </span><span class="kw-2">&amp;</span>(key, <span class="kw-2">ref </span>value) <span class="kw">in </span>vars.iter() {
                 <span class="kw">if </span>key == name {
@@ -2182,9 +2183,9 @@
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>test_files_exists() {
-        <span class="macro">assert!</span>(path_exists(<span class="string">&quot;test_files&quot;</span>));
+        <span class="macro">assert!</span>(path_exists(<span class="string">"test_files"</span>));
         <span class="macro">assert!</span>(
-            fs::metadata(<span class="string">&quot;test_files/runtime-bad&quot;</span>)
+            fs::metadata(<span class="string">"test_files/runtime-bad"</span>)
                 .unwrap()
                 .permissions()
                 .mode()
@@ -2196,83 +2197,83 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>test_bad_environment() {
         <span class="kw">let </span>xd = BaseDirectories::with_env(
-            <span class="string">&quot;&quot;</span>,
-            <span class="string">&quot;&quot;</span>,
+            <span class="string">""</span>,
+            <span class="string">""</span>,
             <span class="kw-2">&amp;*</span>make_env(<span class="macro">vec!</span>[
-                (<span class="string">&quot;HOME&quot;</span>, <span class="string">&quot;test_files/user&quot;</span>.to_string()),
-                (<span class="string">&quot;XDG_DATA_HOME&quot;</span>, <span class="string">&quot;test_files/user/data&quot;</span>.to_string()),
-                (<span class="string">&quot;XDG_CONFIG_HOME&quot;</span>, <span class="string">&quot;test_files/user/config&quot;</span>.to_string()),
-                (<span class="string">&quot;XDG_CACHE_HOME&quot;</span>, <span class="string">&quot;test_files/user/cache&quot;</span>.to_string()),
-                (<span class="string">&quot;XDG_DATA_DIRS&quot;</span>, <span class="string">&quot;test_files/user/data&quot;</span>.to_string()),
-                (<span class="string">&quot;XDG_CONFIG_DIRS&quot;</span>, <span class="string">&quot;test_files/user/config&quot;</span>.to_string()),
-                (<span class="string">&quot;XDG_RUNTIME_DIR&quot;</span>, <span class="string">&quot;test_files/runtime-bad&quot;</span>.to_string()),
+                (<span class="string">"HOME"</span>, <span class="string">"test_files/user"</span>.to_string()),
+                (<span class="string">"XDG_DATA_HOME"</span>, <span class="string">"test_files/user/data"</span>.to_string()),
+                (<span class="string">"XDG_CONFIG_HOME"</span>, <span class="string">"test_files/user/config"</span>.to_string()),
+                (<span class="string">"XDG_CACHE_HOME"</span>, <span class="string">"test_files/user/cache"</span>.to_string()),
+                (<span class="string">"XDG_DATA_DIRS"</span>, <span class="string">"test_files/user/data"</span>.to_string()),
+                (<span class="string">"XDG_CONFIG_DIRS"</span>, <span class="string">"test_files/user/config"</span>.to_string()),
+                (<span class="string">"XDG_RUNTIME_DIR"</span>, <span class="string">"test_files/runtime-bad"</span>.to_string()),
             ]),
         )
         .unwrap();
-        <span class="macro">assert_eq!</span>(xd.find_data_file(<span class="string">&quot;everywhere&quot;</span>), <span class="prelude-val">None</span>);
-        <span class="macro">assert_eq!</span>(xd.find_config_file(<span class="string">&quot;everywhere&quot;</span>), <span class="prelude-val">None</span>);
-        <span class="macro">assert_eq!</span>(xd.find_cache_file(<span class="string">&quot;everywhere&quot;</span>), <span class="prelude-val">None</span>);
+        <span class="macro">assert_eq!</span>(xd.find_data_file(<span class="string">"everywhere"</span>), <span class="prelude-val">None</span>);
+        <span class="macro">assert_eq!</span>(xd.find_config_file(<span class="string">"everywhere"</span>), <span class="prelude-val">None</span>);
+        <span class="macro">assert_eq!</span>(xd.find_cache_file(<span class="string">"everywhere"</span>), <span class="prelude-val">None</span>);
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>test_good_environment() {
         <span class="kw">let </span>cwd = env::current_dir().unwrap().to_string_lossy().into_owned();
-        <span class="kw">let </span>xd = BaseDirectories::with_env(<span class="string">&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="kw-2">&amp;*</span>make_env(<span class="macro">vec!</span>[
-                (<span class="string">&quot;HOME&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user&quot;</span>, cwd)),
-                (<span class="string">&quot;XDG_DATA_HOME&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/data&quot;</span>, cwd)),
-                (<span class="string">&quot;XDG_CONFIG_HOME&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/config&quot;</span>, cwd)),
-                (<span class="string">&quot;XDG_CACHE_HOME&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/cache&quot;</span>, cwd)),
-                (<span class="string">&quot;XDG_DATA_DIRS&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/system0/data:{}/test_files/system1/data:{}/test_files/system2/data:{}/test_files/system3/data&quot;</span>, cwd, cwd, cwd, cwd)),
-                (<span class="string">&quot;XDG_CONFIG_DIRS&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/system0/config:{}/test_files/system1/config:{}/test_files/system2/config:{}/test_files/system3/config&quot;</span>, cwd, cwd, cwd, cwd)),
-                <span class="comment">// (&quot;XDG_RUNTIME_DIR&quot;, format!(&quot;{}/test_files/runtime-bad&quot;, cwd)),
+        <span class="kw">let </span>xd = BaseDirectories::with_env(<span class="string">""</span>, <span class="string">""</span>, <span class="kw-2">&amp;*</span>make_env(<span class="macro">vec!</span>[
+                (<span class="string">"HOME"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/user"</span>, cwd)),
+                (<span class="string">"XDG_DATA_HOME"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/user/data"</span>, cwd)),
+                (<span class="string">"XDG_CONFIG_HOME"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/user/config"</span>, cwd)),
+                (<span class="string">"XDG_CACHE_HOME"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/user/cache"</span>, cwd)),
+                (<span class="string">"XDG_DATA_DIRS"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/system0/data:{}/test_files/system1/data:{}/test_files/system2/data:{}/test_files/system3/data"</span>, cwd, cwd, cwd, cwd)),
+                (<span class="string">"XDG_CONFIG_DIRS"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/system0/config:{}/test_files/system1/config:{}/test_files/system2/config:{}/test_files/system3/config"</span>, cwd, cwd, cwd, cwd)),
+                <span class="comment">// ("XDG_RUNTIME_DIR", format!("{}/test_files/runtime-bad", cwd)),
             </span>])).unwrap();
-        <span class="macro">assert!</span>(xd.find_data_file(<span class="string">&quot;everywhere&quot;</span>) != <span class="prelude-val">None</span>);
-        <span class="macro">assert!</span>(xd.find_config_file(<span class="string">&quot;everywhere&quot;</span>) != <span class="prelude-val">None</span>);
-        <span class="macro">assert!</span>(xd.find_cache_file(<span class="string">&quot;everywhere&quot;</span>) != <span class="prelude-val">None</span>);
+        <span class="macro">assert!</span>(xd.find_data_file(<span class="string">"everywhere"</span>) != <span class="prelude-val">None</span>);
+        <span class="macro">assert!</span>(xd.find_config_file(<span class="string">"everywhere"</span>) != <span class="prelude-val">None</span>);
+        <span class="macro">assert!</span>(xd.find_cache_file(<span class="string">"everywhere"</span>) != <span class="prelude-val">None</span>);
 
-        <span class="kw">let </span><span class="kw-2">mut </span>config_files = xd.find_config_files(<span class="string">&quot;everywhere&quot;</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>config_files = xd.find_config_files(<span class="string">"everywhere"</span>);
         <span class="macro">assert_eq!</span>(
             config_files.next(),
             <span class="prelude-val">Some</span>(PathBuf::from(<span class="macro">format!</span>(
-                <span class="string">&quot;{}/test_files/system2/config/everywhere&quot;</span>,
+                <span class="string">"{}/test_files/system2/config/everywhere"</span>,
                 cwd
             )))
         );
         <span class="macro">assert_eq!</span>(
             config_files.next(),
             <span class="prelude-val">Some</span>(PathBuf::from(<span class="macro">format!</span>(
-                <span class="string">&quot;{}/test_files/system1/config/everywhere&quot;</span>,
+                <span class="string">"{}/test_files/system1/config/everywhere"</span>,
                 cwd
             )))
         );
         <span class="macro">assert_eq!</span>(
             config_files.next(),
             <span class="prelude-val">Some</span>(PathBuf::from(<span class="macro">format!</span>(
-                <span class="string">&quot;{}/test_files/user/config/everywhere&quot;</span>,
+                <span class="string">"{}/test_files/user/config/everywhere"</span>,
                 cwd
             )))
         );
         <span class="macro">assert_eq!</span>(config_files.next(), <span class="prelude-val">None</span>);
 
-        <span class="kw">let </span><span class="kw-2">mut </span>data_files = xd.find_data_files(<span class="string">&quot;everywhere&quot;</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>data_files = xd.find_data_files(<span class="string">"everywhere"</span>);
         <span class="macro">assert_eq!</span>(
             data_files.next(),
             <span class="prelude-val">Some</span>(PathBuf::from(<span class="macro">format!</span>(
-                <span class="string">&quot;{}/test_files/system2/data/everywhere&quot;</span>,
+                <span class="string">"{}/test_files/system2/data/everywhere"</span>,
                 cwd
             )))
         );
         <span class="macro">assert_eq!</span>(
             data_files.next(),
             <span class="prelude-val">Some</span>(PathBuf::from(<span class="macro">format!</span>(
-                <span class="string">&quot;{}/test_files/system1/data/everywhere&quot;</span>,
+                <span class="string">"{}/test_files/system1/data/everywhere"</span>,
                 cwd
             )))
         );
         <span class="macro">assert_eq!</span>(
             data_files.next(),
             <span class="prelude-val">Some</span>(PathBuf::from(<span class="macro">format!</span>(
-                <span class="string">&quot;{}/test_files/user/data/everywhere&quot;</span>,
+                <span class="string">"{}/test_files/user/data/everywhere"</span>,
                 cwd
             )))
         );
@@ -2283,11 +2284,11 @@
     </span><span class="kw">fn </span>test_runtime_bad() {
         <span class="kw">let </span>cwd = env::current_dir().unwrap().to_string_lossy().into_owned();
         <span class="kw">let </span>xd = BaseDirectories::with_env(
-            <span class="string">&quot;&quot;</span>,
-            <span class="string">&quot;&quot;</span>,
+            <span class="string">""</span>,
+            <span class="string">""</span>,
             <span class="kw-2">&amp;*</span>make_env(<span class="macro">vec!</span>[
-                (<span class="string">&quot;HOME&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user&quot;</span>, cwd)),
-                (<span class="string">&quot;XDG_RUNTIME_DIR&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/runtime-bad&quot;</span>, cwd)),
+                (<span class="string">"HOME"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/user"</span>, cwd)),
+                (<span class="string">"XDG_RUNTIME_DIR"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/runtime-bad"</span>, cwd)),
             ]),
         )
         .unwrap();
@@ -2298,7 +2299,7 @@
     </span><span class="kw">fn </span>test_runtime_good() {
         <span class="kw">use </span>std::fs::File;
 
-        <span class="kw">let </span>test_runtime_dir = make_absolute(<span class="kw-2">&amp;</span><span class="string">&quot;test_files/runtime-good&quot;</span>);
+        <span class="kw">let </span>test_runtime_dir = make_absolute(<span class="kw-2">&amp;</span><span class="string">"test_files/runtime-good"</span>);
         fs::create_dir_all(<span class="kw-2">&amp;</span>test_runtime_dir).unwrap();
 
         <span class="kw">let </span><span class="kw-2">mut </span>perms = fs::metadata(<span class="kw-2">&amp;</span>test_runtime_dir).unwrap().permissions();
@@ -2307,41 +2308,41 @@
 
         <span class="kw">let </span>test_dir = get_test_dir().to_string_lossy().into_owned();
         <span class="kw">let </span>xd = BaseDirectories::with_env(
-            <span class="string">&quot;&quot;</span>,
-            <span class="string">&quot;&quot;</span>,
+            <span class="string">""</span>,
+            <span class="string">""</span>,
             <span class="kw-2">&amp;*</span>make_env(<span class="macro">vec!</span>[
-                (<span class="string">&quot;HOME&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user&quot;</span>, test_dir)),
+                (<span class="string">"HOME"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/user"</span>, test_dir)),
                 (
-                    <span class="string">&quot;XDG_RUNTIME_DIR&quot;</span>,
-                    <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/runtime-good&quot;</span>, test_dir),
+                    <span class="string">"XDG_RUNTIME_DIR"</span>,
+                    <span class="macro">format!</span>(<span class="string">"{}/test_files/runtime-good"</span>, test_dir),
                 ),
             ]),
         )
         .unwrap();
 
-        xd.create_runtime_directory(<span class="string">&quot;foo&quot;</span>).unwrap();
+        xd.create_runtime_directory(<span class="string">"foo"</span>).unwrap();
         <span class="macro">assert!</span>(path_is_dir(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
-            <span class="string">&quot;{}/test_files/runtime-good/foo&quot;</span>,
+            <span class="string">"{}/test_files/runtime-good/foo"</span>,
             test_dir
         )));
-        <span class="kw">let </span>w = xd.place_runtime_file(<span class="string">&quot;bar/baz&quot;</span>).unwrap();
+        <span class="kw">let </span>w = xd.place_runtime_file(<span class="string">"bar/baz"</span>).unwrap();
         <span class="macro">assert!</span>(path_is_dir(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
-            <span class="string">&quot;{}/test_files/runtime-good/bar&quot;</span>,
+            <span class="string">"{}/test_files/runtime-good/bar"</span>,
             test_dir
         )));
         <span class="macro">assert!</span>(!path_exists(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
-            <span class="string">&quot;{}/test_files/runtime-good/bar/baz&quot;</span>,
+            <span class="string">"{}/test_files/runtime-good/bar/baz"</span>,
             test_dir
         )));
         File::create(<span class="kw-2">&amp;</span>w).unwrap();
         <span class="macro">assert!</span>(path_exists(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
-            <span class="string">&quot;{}/test_files/runtime-good/bar/baz&quot;</span>,
+            <span class="string">"{}/test_files/runtime-good/bar/baz"</span>,
             test_dir
         )));
-        <span class="macro">assert!</span>(xd.find_runtime_file(<span class="string">&quot;bar/baz&quot;</span>) == <span class="prelude-val">Some</span>(w.clone()));
+        <span class="macro">assert!</span>(xd.find_runtime_file(<span class="string">"bar/baz"</span>) == <span class="prelude-val">Some</span>(w.clone()));
         File::open(<span class="kw-2">&amp;</span>w).unwrap();
         fs::remove_file(<span class="kw-2">&amp;</span>w).unwrap();
-        <span class="kw">let </span>root = xd.list_runtime_files(<span class="string">&quot;.&quot;</span>);
+        <span class="kw">let </span>root = xd.list_runtime_files(<span class="string">"."</span>);
         <span class="kw">let </span><span class="kw-2">mut </span>root = root
             .into_iter()
             .map(|p| make_relative(<span class="kw-2">&amp;</span>p, <span class="kw-2">&amp;</span>get_test_dir()))
@@ -2350,15 +2351,15 @@
         <span class="macro">assert_eq!</span>(
             root,
             <span class="macro">vec!</span>[
-                PathBuf::from(<span class="string">&quot;test_files/runtime-good/bar&quot;</span>),
-                PathBuf::from(<span class="string">&quot;test_files/runtime-good/foo&quot;</span>)
+                PathBuf::from(<span class="string">"test_files/runtime-good/bar"</span>),
+                PathBuf::from(<span class="string">"test_files/runtime-good/foo"</span>)
             ]
         );
-        <span class="macro">assert!</span>(xd.list_runtime_files(<span class="string">&quot;bar&quot;</span>).is_empty());
-        <span class="macro">assert!</span>(xd.find_runtime_file(<span class="string">&quot;foo/qux&quot;</span>).is_none());
-        <span class="macro">assert!</span>(xd.find_runtime_file(<span class="string">&quot;qux/foo&quot;</span>).is_none());
+        <span class="macro">assert!</span>(xd.list_runtime_files(<span class="string">"bar"</span>).is_empty());
+        <span class="macro">assert!</span>(xd.find_runtime_file(<span class="string">"foo/qux"</span>).is_none());
+        <span class="macro">assert!</span>(xd.find_runtime_file(<span class="string">"qux/foo"</span>).is_none());
         <span class="macro">assert!</span>(!path_exists(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
-            <span class="string">&quot;{}/test_files/runtime-good/qux&quot;</span>,
+            <span class="string">"{}/test_files/runtime-good/qux"</span>,
             test_dir
         )));
     }
@@ -2366,16 +2367,16 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>test_lists() {
         <span class="kw">let </span>cwd = env::current_dir().unwrap().to_string_lossy().into_owned();
-        <span class="kw">let </span>xd = BaseDirectories::with_env(<span class="string">&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="kw-2">&amp;*</span>make_env(<span class="macro">vec!</span>[
-                (<span class="string">&quot;HOME&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user&quot;</span>, cwd)),
-                (<span class="string">&quot;XDG_DATA_HOME&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/data&quot;</span>, cwd)),
-                (<span class="string">&quot;XDG_CONFIG_HOME&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/config&quot;</span>, cwd)),
-                (<span class="string">&quot;XDG_CACHE_HOME&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/cache&quot;</span>, cwd)),
-                (<span class="string">&quot;XDG_DATA_DIRS&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/system0/data:{}/test_files/system1/data:{}/test_files/system2/data:{}/test_files/system3/data&quot;</span>, cwd, cwd, cwd, cwd)),
-                (<span class="string">&quot;XDG_CONFIG_DIRS&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/system0/config:{}/test_files/system1/config:{}/test_files/system2/config:{}/test_files/system3/config&quot;</span>, cwd, cwd, cwd, cwd)),
+        <span class="kw">let </span>xd = BaseDirectories::with_env(<span class="string">""</span>, <span class="string">""</span>, <span class="kw-2">&amp;*</span>make_env(<span class="macro">vec!</span>[
+                (<span class="string">"HOME"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/user"</span>, cwd)),
+                (<span class="string">"XDG_DATA_HOME"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/user/data"</span>, cwd)),
+                (<span class="string">"XDG_CONFIG_HOME"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/user/config"</span>, cwd)),
+                (<span class="string">"XDG_CACHE_HOME"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/user/cache"</span>, cwd)),
+                (<span class="string">"XDG_DATA_DIRS"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/system0/data:{}/test_files/system1/data:{}/test_files/system2/data:{}/test_files/system3/data"</span>, cwd, cwd, cwd, cwd)),
+                (<span class="string">"XDG_CONFIG_DIRS"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/system0/config:{}/test_files/system1/config:{}/test_files/system2/config:{}/test_files/system3/config"</span>, cwd, cwd, cwd, cwd)),
             ])).unwrap();
 
-        <span class="kw">let </span>files = xd.list_config_files(<span class="string">&quot;.&quot;</span>);
+        <span class="kw">let </span>files = xd.list_config_files(<span class="string">"."</span>);
         <span class="kw">let </span><span class="kw-2">mut </span>files = files
             .into_iter()
             .map(|p| make_relative(<span class="kw-2">&amp;</span>p, <span class="kw-2">&amp;</span>env::current_dir().unwrap()))
@@ -2384,23 +2385,23 @@
         <span class="macro">assert_eq!</span>(
             files,
             [
-                <span class="string">&quot;test_files/system1/config/both_system_config.file&quot;</span>,
-                <span class="string">&quot;test_files/system1/config/everywhere&quot;</span>,
-                <span class="string">&quot;test_files/system1/config/myapp&quot;</span>,
-                <span class="string">&quot;test_files/system1/config/system1_config.file&quot;</span>,
-                <span class="string">&quot;test_files/system2/config/both_system_config.file&quot;</span>,
-                <span class="string">&quot;test_files/system2/config/everywhere&quot;</span>,
-                <span class="string">&quot;test_files/system2/config/system2_config.file&quot;</span>,
-                <span class="string">&quot;test_files/user/config/everywhere&quot;</span>,
-                <span class="string">&quot;test_files/user/config/myapp&quot;</span>,
-                <span class="string">&quot;test_files/user/config/user_config.file&quot;</span>,
+                <span class="string">"test_files/system1/config/both_system_config.file"</span>,
+                <span class="string">"test_files/system1/config/everywhere"</span>,
+                <span class="string">"test_files/system1/config/myapp"</span>,
+                <span class="string">"test_files/system1/config/system1_config.file"</span>,
+                <span class="string">"test_files/system2/config/both_system_config.file"</span>,
+                <span class="string">"test_files/system2/config/everywhere"</span>,
+                <span class="string">"test_files/system2/config/system2_config.file"</span>,
+                <span class="string">"test_files/user/config/everywhere"</span>,
+                <span class="string">"test_files/user/config/myapp"</span>,
+                <span class="string">"test_files/user/config/user_config.file"</span>,
             ]
             .iter()
             .map(PathBuf::from)
             .collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;()
         );
 
-        <span class="kw">let </span>files = xd.list_config_files_once(<span class="string">&quot;.&quot;</span>);
+        <span class="kw">let </span>files = xd.list_config_files_once(<span class="string">"."</span>);
         <span class="kw">let </span><span class="kw-2">mut </span>files = files
             .into_iter()
             .map(|p| make_relative(<span class="kw-2">&amp;</span>p, <span class="kw-2">&amp;</span>env::current_dir().unwrap()))
@@ -2409,12 +2410,12 @@
         <span class="macro">assert_eq!</span>(
             files,
             [
-                <span class="string">&quot;test_files/system1/config/both_system_config.file&quot;</span>,
-                <span class="string">&quot;test_files/system1/config/system1_config.file&quot;</span>,
-                <span class="string">&quot;test_files/system2/config/system2_config.file&quot;</span>,
-                <span class="string">&quot;test_files/user/config/everywhere&quot;</span>,
-                <span class="string">&quot;test_files/user/config/myapp&quot;</span>,
-                <span class="string">&quot;test_files/user/config/user_config.file&quot;</span>,
+                <span class="string">"test_files/system1/config/both_system_config.file"</span>,
+                <span class="string">"test_files/system1/config/system1_config.file"</span>,
+                <span class="string">"test_files/system2/config/system2_config.file"</span>,
+                <span class="string">"test_files/user/config/everywhere"</span>,
+                <span class="string">"test_files/user/config/myapp"</span>,
+                <span class="string">"test_files/user/config/user_config.file"</span>,
             ]
             .iter()
             .map(PathBuf::from)
@@ -2426,66 +2427,66 @@
     </span><span class="kw">fn </span>test_get_file() {
         <span class="kw">let </span>test_dir = get_test_dir().to_string_lossy().into_owned();
         <span class="kw">let </span>xd = BaseDirectories::with_env(
-            <span class="string">&quot;&quot;</span>,
-            <span class="string">&quot;&quot;</span>,
+            <span class="string">""</span>,
+            <span class="string">""</span>,
             <span class="kw-2">&amp;*</span>make_env(<span class="macro">vec!</span>[
-                (<span class="string">&quot;HOME&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user&quot;</span>, test_dir)),
+                (<span class="string">"HOME"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/user"</span>, test_dir)),
                 (
-                    <span class="string">&quot;XDG_DATA_HOME&quot;</span>,
-                    <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/data&quot;</span>, test_dir),
+                    <span class="string">"XDG_DATA_HOME"</span>,
+                    <span class="macro">format!</span>(<span class="string">"{}/test_files/user/data"</span>, test_dir),
                 ),
                 (
-                    <span class="string">&quot;XDG_CONFIG_HOME&quot;</span>,
-                    <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/config&quot;</span>, test_dir),
+                    <span class="string">"XDG_CONFIG_HOME"</span>,
+                    <span class="macro">format!</span>(<span class="string">"{}/test_files/user/config"</span>, test_dir),
                 ),
                 (
-                    <span class="string">&quot;XDG_CACHE_HOME&quot;</span>,
-                    <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/cache&quot;</span>, test_dir),
+                    <span class="string">"XDG_CACHE_HOME"</span>,
+                    <span class="macro">format!</span>(<span class="string">"{}/test_files/user/cache"</span>, test_dir),
                 ),
                 (
-                    <span class="string">&quot;XDG_RUNTIME_DIR&quot;</span>,
-                    <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/runtime&quot;</span>, test_dir),
+                    <span class="string">"XDG_RUNTIME_DIR"</span>,
+                    <span class="macro">format!</span>(<span class="string">"{}/test_files/user/runtime"</span>, test_dir),
                 ),
             ]),
         )
         .unwrap();
 
-        <span class="kw">let </span>path = <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/runtime/&quot;</span>, test_dir);
+        <span class="kw">let </span>path = <span class="macro">format!</span>(<span class="string">"{}/test_files/user/runtime/"</span>, test_dir);
         fs::create_dir_all(<span class="kw-2">&amp;</span>path).unwrap();
-        <span class="kw">let </span>metadata = fs::metadata(<span class="kw-2">&amp;</span>path).expect(<span class="string">&quot;Could not read metadata for runtime directory&quot;</span>);
+        <span class="kw">let </span>metadata = fs::metadata(<span class="kw-2">&amp;</span>path).expect(<span class="string">"Could not read metadata for runtime directory"</span>);
         <span class="kw">let </span><span class="kw-2">mut </span>perms = metadata.permissions();
         perms.set_mode(<span class="number">0o700</span>);
-        fs::set_permissions(<span class="kw-2">&amp;</span>path, perms).expect(<span class="string">&quot;Could not set permissions for runtime directory&quot;</span>);
+        fs::set_permissions(<span class="kw-2">&amp;</span>path, perms).expect(<span class="string">"Could not set permissions for runtime directory"</span>);
 
-        <span class="kw">let </span>file = xd.get_config_file(<span class="string">&quot;myapp/user_config.file&quot;</span>);
+        <span class="kw">let </span>file = xd.get_config_file(<span class="string">"myapp/user_config.file"</span>);
         <span class="macro">assert_eq!</span>(
             file,
             PathBuf::from(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
-                <span class="string">&quot;{}/test_files/user/config/myapp/user_config.file&quot;</span>,
+                <span class="string">"{}/test_files/user/config/myapp/user_config.file"</span>,
                 test_dir
             ))
         );
 
-        <span class="kw">let </span>file = xd.get_data_file(<span class="string">&quot;user_data.file&quot;</span>);
+        <span class="kw">let </span>file = xd.get_data_file(<span class="string">"user_data.file"</span>);
         <span class="macro">assert_eq!</span>(
             file,
-            PathBuf::from(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/data/user_data.file&quot;</span>, test_dir))
+            PathBuf::from(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"{}/test_files/user/data/user_data.file"</span>, test_dir))
         );
 
-        <span class="kw">let </span>file = xd.get_cache_file(<span class="string">&quot;user_cache.file&quot;</span>);
+        <span class="kw">let </span>file = xd.get_cache_file(<span class="string">"user_cache.file"</span>);
         <span class="macro">assert_eq!</span>(
             file,
             PathBuf::from(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
-                <span class="string">&quot;{}/test_files/user/cache/user_cache.file&quot;</span>,
+                <span class="string">"{}/test_files/user/cache/user_cache.file"</span>,
                 test_dir
             ))
         );
 
-        <span class="kw">let </span>file = xd.get_runtime_file(<span class="string">&quot;user_runtime.file&quot;</span>).unwrap();
+        <span class="kw">let </span>file = xd.get_runtime_file(<span class="string">"user_runtime.file"</span>).unwrap();
         <span class="macro">assert_eq!</span>(
             file,
             PathBuf::from(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
-                <span class="string">&quot;{}/test_files/user/runtime/user_runtime.file&quot;</span>,
+                <span class="string">"{}/test_files/user/runtime/user_runtime.file"</span>,
                 test_dir
             ))
         );
@@ -2495,21 +2496,21 @@
     </span><span class="kw">fn </span>test_prefix() {
         <span class="kw">let </span>cwd = env::current_dir().unwrap().to_string_lossy().into_owned();
         <span class="kw">let </span>xd = BaseDirectories::with_env(
-            <span class="string">&quot;myapp&quot;</span>,
-            <span class="string">&quot;&quot;</span>,
+            <span class="string">"myapp"</span>,
+            <span class="string">""</span>,
             <span class="kw-2">&amp;*</span>make_env(<span class="macro">vec!</span>[
-                (<span class="string">&quot;HOME&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user&quot;</span>, cwd)),
-                (<span class="string">&quot;XDG_CACHE_HOME&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/cache&quot;</span>, cwd)),
+                (<span class="string">"HOME"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/user"</span>, cwd)),
+                (<span class="string">"XDG_CACHE_HOME"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/user/cache"</span>, cwd)),
             ]),
         )
         .unwrap();
         <span class="macro">assert_eq!</span>(
-            xd.get_cache_file(<span class="string">&quot;cache.db&quot;</span>),
-            PathBuf::from(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/cache/myapp/cache.db&quot;</span>, cwd))
+            xd.get_cache_file(<span class="string">"cache.db"</span>),
+            PathBuf::from(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"{}/test_files/user/cache/myapp/cache.db"</span>, cwd))
         );
         <span class="macro">assert_eq!</span>(
-            xd.place_cache_file(<span class="string">&quot;cache.db&quot;</span>).unwrap(),
-            PathBuf::from(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/cache/myapp/cache.db&quot;</span>, cwd))
+            xd.place_cache_file(<span class="string">"cache.db"</span>).unwrap(),
+            PathBuf::from(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"{}/test_files/user/cache/myapp/cache.db"</span>, cwd))
         );
     }
 
@@ -2517,31 +2518,31 @@
     </span><span class="kw">fn </span>test_profile() {
         <span class="kw">let </span>cwd = env::current_dir().unwrap().to_string_lossy().into_owned();
         <span class="kw">let </span>xd = BaseDirectories::with_env(
-            <span class="string">&quot;myapp&quot;</span>,
-            <span class="string">&quot;default_profile&quot;</span>,
+            <span class="string">"myapp"</span>,
+            <span class="string">"default_profile"</span>,
             <span class="kw-2">&amp;*</span>make_env(<span class="macro">vec!</span>[
-                (<span class="string">&quot;HOME&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user&quot;</span>, cwd)),
-                (<span class="string">&quot;XDG_CONFIG_HOME&quot;</span>, <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/user/config&quot;</span>, cwd)),
+                (<span class="string">"HOME"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/user"</span>, cwd)),
+                (<span class="string">"XDG_CONFIG_HOME"</span>, <span class="macro">format!</span>(<span class="string">"{}/test_files/user/config"</span>, cwd)),
                 (
-                    <span class="string">&quot;XDG_CONFIG_DIRS&quot;</span>,
-                    <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/system1/config&quot;</span>, cwd),
+                    <span class="string">"XDG_CONFIG_DIRS"</span>,
+                    <span class="macro">format!</span>(<span class="string">"{}/test_files/system1/config"</span>, cwd),
                 ),
             ]),
         )
         .unwrap();
         <span class="macro">assert_eq!</span>(
-            xd.find_config_file(<span class="string">&quot;system1_config.file&quot;</span>).unwrap(),
+            xd.find_config_file(<span class="string">"system1_config.file"</span>).unwrap(),
             <span class="comment">// Does *not* include default_profile
             </span>PathBuf::from(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
-                <span class="string">&quot;{}/test_files/system1/config/myapp/system1_config.file&quot;</span>,
+                <span class="string">"{}/test_files/system1/config/myapp/system1_config.file"</span>,
                 cwd
             ))
         );
         <span class="macro">assert_eq!</span>(
-            xd.find_config_file(<span class="string">&quot;user_config.file&quot;</span>).unwrap(),
+            xd.find_config_file(<span class="string">"user_config.file"</span>).unwrap(),
             <span class="comment">// Includes default_profile
             </span>PathBuf::from(<span class="kw-2">&amp;</span><span class="macro">format!</span>(
-                <span class="string">&quot;{}/test_files/user/config/myapp/default_profile/user_config.file&quot;</span>,
+                <span class="string">"{}/test_files/user/config/myapp/default_profile/user_config.file"</span>,
                 cwd
             ))
         );
@@ -2551,26 +2552,26 @@
     </span><span class="attr">#[test]
     </span><span class="kw">fn </span>test_symlinks() {
         <span class="kw">let </span>cwd = env::current_dir().unwrap().to_string_lossy().into_owned();
-        <span class="kw">let </span>symlinks_dir = <span class="macro">format!</span>(<span class="string">&quot;{}/test_files/symlinks&quot;</span>, cwd);
-        <span class="kw">let </span>config_dir = <span class="macro">format!</span>(<span class="string">&quot;{}/config&quot;</span>, symlinks_dir);
-        <span class="kw">let </span>myapp_dir = <span class="macro">format!</span>(<span class="string">&quot;{}/myapp&quot;</span>, config_dir);
+        <span class="kw">let </span>symlinks_dir = <span class="macro">format!</span>(<span class="string">"{}/test_files/symlinks"</span>, cwd);
+        <span class="kw">let </span>config_dir = <span class="macro">format!</span>(<span class="string">"{}/config"</span>, symlinks_dir);
+        <span class="kw">let </span>myapp_dir = <span class="macro">format!</span>(<span class="string">"{}/myapp"</span>, config_dir);
 
         <span class="macro">assert!</span>(path_exists(<span class="kw-2">&amp;</span>myapp_dir));
         <span class="macro">assert!</span>(path_exists(<span class="kw-2">&amp;</span>config_dir));
         <span class="macro">assert!</span>(path_exists(<span class="kw-2">&amp;</span>symlinks_dir));
 
         <span class="kw">let </span>xd = BaseDirectories::with_env(
-            <span class="string">&quot;myapp&quot;</span>,
-            <span class="string">&quot;&quot;</span>,
+            <span class="string">"myapp"</span>,
+            <span class="string">""</span>,
             <span class="kw-2">&amp;*</span>make_env(<span class="macro">vec!</span>[
-                (<span class="string">&quot;HOME&quot;</span>, symlinks_dir),
-                (<span class="string">&quot;XDG_CONFIG_HOME&quot;</span>, config_dir),
+                (<span class="string">"HOME"</span>, symlinks_dir),
+                (<span class="string">"XDG_CONFIG_HOME"</span>, config_dir),
             ]),
         )
         .unwrap();
         <span class="macro">assert_eq!</span>(
-            xd.find_config_file(<span class="string">&quot;user_config.file&quot;</span>).unwrap(),
-            PathBuf::from(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{}/user_config.file&quot;</span>, myapp_dir))
+            xd.find_config_file(<span class="string">"user_config.file"</span>).unwrap(),
+            PathBuf::from(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"{}/user_config.file"</span>, myapp_dir))
         );
     }
 }

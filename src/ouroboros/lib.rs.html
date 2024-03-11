@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ouroboros-0.17.2/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="ouroboros" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ouroboros-0.17.2/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="ouroboros" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -418,11 +419,11 @@
 ///     int_data: i32,
 ///     float_data: f32,
 ///     #[borrows(int_data)]
-///     // the &#39;this lifetime is created by the #[self_referencing] macro
+///     // the 'this lifetime is created by the #[self_referencing] macro
 ///     // and should be used on all references marked by the #[borrows] macro
-///     int_reference: &amp;&#39;this i32,
+///     int_reference: &amp;'this i32,
 ///     #[borrows(mut float_data)]
-///     float_reference: &amp;&#39;this mut f32,
+///     float_reference: &amp;'this mut f32,
 /// }
 ///
 /// fn main() {
@@ -446,9 +447,9 @@
 ///     // The builder creates accessor methods which are called borrow_{field_name}()
 ///
 ///     // Prints 42
-///     println!(&quot;{:?}&quot;, my_value.borrow_int_data());
+///     println!("{:?}", my_value.borrow_int_data());
 ///     // Prints 3.14
-///     println!(&quot;{:?}&quot;, my_value.borrow_float_reference());
+///     println!("{:?}", my_value.borrow_float_reference());
 ///     // Sets the value of float_data to 84.0
 ///     my_value.with_mut(|fields| {
 ///         **fields.float_reference = (**fields.int_reference as f32) * 2.0;
@@ -456,11 +457,11 @@
 ///
 ///     // We can hold on to this reference...
 ///     let int_ref = *my_value.borrow_int_reference();
-///     println!(&quot;{:?}&quot;, *int_ref);
+///     println!("{:?}", *int_ref);
 ///     // As long as the struct is still alive.
 ///     drop(my_value);
 ///     // This will cause an error!
-///     // println!(&quot;{:?}&quot;, *int_ref);
+///     // println!("{:?}", *int_ref);
 /// }
 /// ```
 /// To explain the features and limitations of this crate, some definitions are necessary:
@@ -480,13 +481,13 @@
 /// `#[borrows(a, b, mut c)]` indicates that the first two fields need to be borrowed immutably and
 /// the third needs to be borrowed mutably. You can also use `#[borrows()]` without any arguments to
 /// indicate a field that will eventually borrow from the struct, but does not borrow anything when
-/// first created. For example, you could use this on a field like `error: Option&lt;&amp;&#39;this str&gt;`.
+/// first created. For example, you could use this on a field like `error: Option&lt;&amp;'this str&gt;`.
 ///
 /// # You must comply with these limitations
 /// - Fields must be declared before the first time they are borrowed.
 /// - Normal borrowing rules apply, E.G. a field cannot be borrowed mutably twice.
-/// - Fields that use the `&#39;this` lifetime must have a corresponding `#[borrows()]` annotation.
-///   The error for this needs some work, currently you will get an error saying that `&#39;this` is
+/// - Fields that use the `'this` lifetime must have a corresponding `#[borrows()]` annotation.
+///   The error for this needs some work, currently you will get an error saying that `'this` is
 ///   undefined at the location it was illegally used in.
 ///
 /// Violating them will result in an error message directly pointing out the violated rule.
@@ -498,14 +499,14 @@
 /// ```rust
 /// use ouroboros::self_referencing;
 ///
-/// pub struct ComplexData&lt;&#39;a, &#39;b&gt; {
-///     aref: &amp;&#39;a i32,
-///     bref: &amp;&#39;b mut i32,
+/// pub struct ComplexData&lt;'a, 'b&gt; {
+///     aref: &amp;'a i32,
+///     bref: &amp;'b mut i32,
 ///     number: i32,
 /// }
 ///
-/// impl&lt;&#39;a, &#39;b&gt; ComplexData&lt;&#39;a, &#39;b&gt; {
-///     fn new(aref: &amp;&#39;a i32, bref: &amp;&#39;b mut i32, number: i32) -&gt; Self {
+/// impl&lt;'a, 'b&gt; ComplexData&lt;'a, 'b&gt; {
+///     fn new(aref: &amp;'a i32, bref: &amp;'b mut i32, number: i32) -&gt; Self {
 ///         Self { aref, bref, number }
 ///     }
 ///
@@ -516,7 +517,7 @@
 ///
 ///     /// Prints the value bref points to.
 ///     fn print_bref(&amp;self) {
-///         println!(&quot;{}&quot;, *self.bref);
+///         println!("{}", *self.bref);
 ///     }
 /// }
 ///
@@ -527,7 +528,7 @@
 ///         mutable: i32,
 ///         #[borrows(immutable, mut mutable)]
 ///         #[not_covariant]
-///         complex_data: ComplexData&lt;&#39;this, &#39;this&gt;,
+///         complex_data: ComplexData&lt;'this, 'this&gt;,
 ///     }
 ///
 ///     let mut data_storage = DataStorageBuilder {
@@ -545,12 +546,12 @@
 /// ```
 ///
 /// # Covariance
-/// Many types in Rust have a property called &quot;covariance&quot;. In practical tearms, this means that a
-/// covariant type like `Box&lt;&amp;&#39;this i32&gt;` can be used as a `Box&lt;&amp;&#39;a i32&gt;` as long as `&#39;a` is
-/// smaller than `&#39;this`. Since the lifetime is smaller, it does not violate the lifetime specified
-/// by the original type. Contrast this to `Fn(&amp;&#39;this i32)`, which is not covariant. You cannot give
-/// this function a reference with a lifetime shorter than `&#39;this` as the function needs something
-/// that lives at *least* as long as `&#39;this`. Unfortunately, there is no easy way to determine
+/// Many types in Rust have a property called "covariance". In practical tearms, this means that a
+/// covariant type like `Box&lt;&amp;'this i32&gt;` can be used as a `Box&lt;&amp;'a i32&gt;` as long as `'a` is
+/// smaller than `'this`. Since the lifetime is smaller, it does not violate the lifetime specified
+/// by the original type. Contrast this to `Fn(&amp;'this i32)`, which is not covariant. You cannot give
+/// this function a reference with a lifetime shorter than `'this` as the function needs something
+/// that lives at *least* as long as `'this`. Unfortunately, there is no easy way to determine
 /// whether or not a type is covariant from inside the macro. As such, you may
 /// receive a compiler error letting you know that the macro is uncertain if a particular field
 /// uses a covariant type. Adding `#[covariant]` or `#[not_covariant]` will resolve this issue.
@@ -574,9 +575,9 @@
 ///     int_data: i32,
 ///     float_data: f32,
 ///     #[borrows(int_data)]
-///     int_reference: &amp;&#39;this i32,
+///     int_reference: &amp;'this i32,
 ///     #[borrows(mut float_data)]
-///     float_reference: &amp;&#39;this mut f32,
+///     float_reference: &amp;'this mut f32,
 /// }
 ///
 /// #[tokio::main]
@@ -589,9 +590,9 @@
 ///     }.build().await;
 ///
 ///     // Prints 42
-///     println!(&quot;{:?}&quot;, my_value.borrow_int_data());
+///     println!("{:?}", my_value.borrow_int_data());
 ///     // Prints 3.14
-///     println!(&quot;{:?}&quot;, my_value.borrow_float_reference());
+///     println!("{:?}", my_value.borrow_float_reference());
 ///     // Sets the value of float_data to 84.0
 ///     my_value.with_mut(|fields| {
 ///         **fields.float_reference = (**fields.int_reference as f32) * 2.0;
@@ -599,11 +600,11 @@
 ///
 ///     // We can hold on to this reference...
 ///     let int_ref = *my_value.borrow_int_reference();
-///     println!(&quot;{:?}&quot;, *int_ref);
+///     println!("{:?}", *int_ref);
 ///     // As long as the struct is still alive.
 ///     drop(my_value);
 ///     // This will cause an error!
-///     // println!(&quot;{:?}&quot;, *int_ref);
+///     // println!("{:?}", *int_ref);
 /// }
 /// ```
 ///
@@ -620,9 +621,9 @@
 ///     int_data: i32,
 ///     float_data: f32,
 ///     #[borrows(int_data)]
-///     int_reference: &amp;&#39;this i32,
+///     int_reference: &amp;'this i32,
 ///     #[borrows(mut float_data)]
-///     float_reference: &amp;&#39;this mut f32,
+///     float_reference: &amp;'this mut f32,
 /// }
 ///
 /// #[tokio::main]
@@ -635,9 +636,9 @@
 ///     }.build().await;
 ///
 ///     // Prints 42
-///     println!(&quot;{:?}&quot;, my_value.borrow_int_data());
+///     println!("{:?}", my_value.borrow_int_data());
 ///     // Prints 3.14
-///     println!(&quot;{:?}&quot;, my_value.borrow_float_reference());
+///     println!("{:?}", my_value.borrow_float_reference());
 ///     // Sets the value of float_data to 84.0
 ///     my_value.with_mut(|fields| {
 ///         **fields.float_reference = (**fields.int_reference as f32) * 2.0;
@@ -645,11 +646,11 @@
 ///
 ///     // We can hold on to this reference...
 ///     let int_ref = *my_value.borrow_int_reference();
-///     println!(&quot;{:?}&quot;, *int_ref);
+///     println!("{:?}", *int_ref);
 ///     // As long as the struct is still alive.
 ///     drop(my_value);
 ///     // This will cause an error!
-///     // println!(&quot;{:?}&quot;, *int_ref);
+///     // println!("{:?}", *int_ref);
 /// }
 /// ```
 ///
@@ -679,7 +680,7 @@
 /// `#[borrow(a, b, mut c)]` would require a function typed as
 /// `FnOnce(a: &amp;_, b: &amp;_, c: &amp;mut _) -&gt; _`. Fields which have an empty borrows annotation
 /// (`#[borrows()]`) should have their value directly passed in. A field using the earlier example
-/// of `Option&lt;&amp;&#39;this str&gt;` would require an input of `None`. Do not pass a function. Do not collect
+/// of `Option&lt;&amp;'this str&gt;` would require an input of `None`. Do not pass a function. Do not collect
 /// 200 dollars.
 /// ### `MyStruct::new_async(fields...) -&gt; MyStruct`
 /// A basic async constructor. It works identically to the sync constructor differing only in the
@@ -733,7 +734,7 @@
 /// is equivalent to calling `my_struct.with_FIELD(|field| field)`. It is only generated for types
 /// which are known to be covariant, either through the macro being able to detect it or through the
 /// programmer adding the `#[covariant]` annotation to the field.
-/// There is no `borrow_FIELD_mut`, unfortunately, as Rust&#39;s
+/// There is no `borrow_FIELD_mut`, unfortunately, as Rust's
 /// borrow checker is currently not capable of ensuring that such a method would be used safely.
 /// ### `MyStruct::with_FIELD_mut&lt;R&gt;(&amp;mut self, user: FnOnce(field: &amp;mut FieldType) -&gt; R) -&gt; R`
 /// This function is generated for every **tail field** in your struct. It is the mutable version
@@ -782,7 +783,7 @@
     <span class="doccomment">/// Converts a reference to an object to a static reference This is
     /// obviously unsafe because the compiler can no longer guarantee that the
     /// data outlives the reference.  It is up to the consumer to get rid of the
-    /// reference before the container is dropped. The + &#39;static ensures that
+    /// reference before the container is dropped. The + 'static ensures that
     /// whatever we are referring to will remain valid indefinitely, that there
     /// are no limitations on how long the pointer itself can live.
     ///
@@ -790,7 +791,7 @@
     ///
     /// The caller must ensure that the returned reference is not used after the originally passed
     /// reference would become invalid.
-    </span><span class="kw">pub unsafe fn </span>change_lifetime&lt;<span class="lifetime">&#39;old</span>, <span class="lifetime">&#39;new</span>: <span class="lifetime">&#39;old</span>, T: <span class="lifetime">&#39;new</span>&gt;(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;old </span>T) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;new </span>T {
+    </span><span class="kw">pub unsafe fn </span>change_lifetime&lt;<span class="lifetime">'old</span>, <span class="lifetime">'new</span>: <span class="lifetime">'old</span>, T: <span class="lifetime">'new</span>&gt;(data: <span class="kw-2">&amp;</span><span class="lifetime">'old </span>T) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'new </span>T {
         <span class="kw-2">&amp;*</span>(data <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>)
     }
 
@@ -800,7 +801,7 @@
     ///
     /// The caller must ensure that the returned reference is not used after the originally passed
     /// reference would become invalid.
-    </span><span class="kw">pub unsafe fn </span>change_lifetime_mut&lt;<span class="lifetime">&#39;old</span>, <span class="lifetime">&#39;new</span>: <span class="lifetime">&#39;old</span>, T: <span class="lifetime">&#39;new</span>&gt;(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;old </span><span class="kw-2">mut </span>T) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;new </span><span class="kw-2">mut </span>T {
+    </span><span class="kw">pub unsafe fn </span>change_lifetime_mut&lt;<span class="lifetime">'old</span>, <span class="lifetime">'new</span>: <span class="lifetime">'old</span>, T: <span class="lifetime">'new</span>&gt;(data: <span class="kw-2">&amp;</span><span class="lifetime">'old </span><span class="kw-2">mut </span>T) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'new </span><span class="kw-2">mut </span>T {
         <span class="kw-2">&amp;mut *</span>(data <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>)
     }
 }

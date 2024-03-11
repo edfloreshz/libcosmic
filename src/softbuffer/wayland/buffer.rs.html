@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/softbuffer-b53d51e2579e9817/6e75b1a/src/wayland/buffer.rs`."><title>buffer.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="softbuffer" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/softbuffer-b53d51e2579e9817/6e75b1a/src/wayland/buffer.rs`."><title>buffer.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="softbuffer" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -216,19 +217,19 @@
 
 <span class="kw">use </span><span class="kw">super</span>::State;
 
-<span class="attr">#[cfg(any(target_os = <span class="string">&quot;linux&quot;</span>, target_os = <span class="string">&quot;freebsd&quot;</span>))]
+<span class="attr">#[cfg(any(target_os = <span class="string">"linux"</span>, target_os = <span class="string">"freebsd"</span>))]
 </span><span class="kw">fn </span>create_memfile() -&gt; File {
     <span class="kw">use </span>rustix::fs::{MemfdFlags, SealFlags};
 
-    <span class="kw">let </span>name = <span class="kw">unsafe </span>{ CStr::from_bytes_with_nul_unchecked(<span class="string">&quot;softbuffer\0&quot;</span>.as_bytes()) };
+    <span class="kw">let </span>name = <span class="kw">unsafe </span>{ CStr::from_bytes_with_nul_unchecked(<span class="string">"softbuffer\0"</span>.as_bytes()) };
     <span class="kw">let </span>fd = rustix::fs::memfd_create(name, MemfdFlags::CLOEXEC | MemfdFlags::ALLOW_SEALING)
-        .expect(<span class="string">&quot;Failed to create memfd to store buffer.&quot;</span>);
+        .expect(<span class="string">"Failed to create memfd to store buffer."</span>);
     rustix::fs::fcntl_add_seals(<span class="kw-2">&amp;</span>fd, SealFlags::SHRINK | SealFlags::SEAL)
-        .expect(<span class="string">&quot;Failed to seal memfd.&quot;</span>);
+        .expect(<span class="string">"Failed to seal memfd."</span>);
     File::from(fd)
 }
 
-<span class="attr">#[cfg(not(any(target_os = <span class="string">&quot;linux&quot;</span>, target_os = <span class="string">&quot;freebsd&quot;</span>)))]
+<span class="attr">#[cfg(not(any(target_os = <span class="string">"linux"</span>, target_os = <span class="string">"freebsd"</span>)))]
 </span><span class="kw">fn </span>create_memfile() -&gt; File {
     <span class="kw">use </span>rustix::{fs::Mode, io::Errno, shm::ShmOFlags};
     <span class="kw">use </span>std::iter;
@@ -237,9 +238,9 @@
     </span><span class="kw">let </span><span class="kw-2">mut </span>rng = fastrand::Rng::new();
 
     <span class="kw">for _ in </span><span class="number">0</span>..=<span class="number">4 </span>{
-        <span class="kw">let </span><span class="kw-2">mut </span>name = String::from(<span class="string">&quot;softbuffer-&quot;</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>name = String::from(<span class="string">"softbuffer-"</span>);
         name.extend(iter::repeat_with(|| rng.alphanumeric()).take(<span class="number">7</span>));
-        name.push(<span class="string">&#39;\0&#39;</span>);
+        name.push(<span class="string">'\0'</span>);
 
         <span class="kw">let </span>name = <span class="kw">unsafe </span>{ CStr::from_bytes_with_nul_unchecked(name.as_bytes()) };
         <span class="comment">// `CLOEXEC` is implied with `shm_open`
@@ -249,13 +250,13 @@
             Mode::RWXU,
         );
         <span class="kw">if </span>!<span class="macro">matches!</span>(fd, <span class="prelude-val">Err</span>(Errno::EXIST)) {
-            <span class="kw">let </span>fd = fd.expect(<span class="string">&quot;Failed to create POSIX shm to store buffer.&quot;</span>);
+            <span class="kw">let </span>fd = fd.expect(<span class="string">"Failed to create POSIX shm to store buffer."</span>);
             <span class="kw">let _ </span>= rustix::shm::shm_unlink(name);
             <span class="kw">return </span>File::from(fd);
         }
     }
 
-    <span class="macro">panic!</span>(<span class="string">&quot;Failed to generate non-existant shm name&quot;</span>)
+    <span class="macro">panic!</span>(<span class="string">"Failed to generate non-existant shm name"</span>)
 }
 
 <span class="comment">// Round size to use for pool for given dimentions, rounding up to power of 2
@@ -264,7 +265,7 @@
 }
 
 <span class="kw">unsafe fn </span>map_file(file: <span class="kw-2">&amp;</span>File) -&gt; MmapMut {
-    <span class="kw">unsafe </span>{ MmapMut::map_mut(file.as_raw_fd()).expect(<span class="string">&quot;Failed to map shared memory&quot;</span>) }
+    <span class="kw">unsafe </span>{ MmapMut::map_mut(file.as_raw_fd()).expect(<span class="string">"Failed to map shared memory"</span>) }
 }
 
 <span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">struct </span>WaylandBuffer {
@@ -318,7 +319,7 @@
     }
 
     <span class="kw">pub fn </span>resize(<span class="kw-2">&amp;mut </span><span class="self">self</span>, width: i32, height: i32) {
-        <span class="comment">// If size is the same, there&#39;s nothing to do
+        <span class="comment">// If size is the same, there's nothing to do
         </span><span class="kw">if </span><span class="self">self</span>.width != width || <span class="self">self</span>.height != height {
             <span class="comment">// Destroy old buffer
             </span><span class="self">self</span>.buffer.destroy();

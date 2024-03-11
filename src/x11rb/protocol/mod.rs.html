@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-0.13.0/src/protocol/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-0.13.0/src/protocol/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -76,7 +77,7 @@
 <a href="#76" id="76">76</a>
 <a href="#77" id="77">77</a>
 </pre></div><pre class="rust"><code><span class="comment">// This file contains generated code. Do not edit directly.
-// To regenerate this, run &#39;make&#39;.
+// To regenerate this, run 'make'.
 
 </span><span class="doccomment">//! Bindings to the X11 protocol.
 //!
@@ -89,63 +90,63 @@
 </span><span class="attr">#![allow(clippy::needless_borrow, clippy::needless_lifetimes)]
 </span><span class="kw">pub mod </span>xproto;
 <span class="kw">pub mod </span>bigreq;
-<span class="attr">#[cfg(feature = <span class="string">&quot;composite&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"composite"</span>)]
 </span><span class="kw">pub mod </span>composite;
-<span class="attr">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"damage"</span>)]
 </span><span class="kw">pub mod </span>damage;
-<span class="attr">#[cfg(feature = <span class="string">&quot;dbe&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"dbe"</span>)]
 </span><span class="kw">pub mod </span>dbe;
-<span class="attr">#[cfg(feature = <span class="string">&quot;dpms&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"dpms"</span>)]
 </span><span class="kw">pub mod </span>dpms;
-<span class="attr">#[cfg(feature = <span class="string">&quot;dri2&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"dri2"</span>)]
 </span><span class="kw">pub mod </span>dri2;
-<span class="attr">#[cfg(feature = <span class="string">&quot;dri3&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"dri3"</span>)]
 </span><span class="kw">pub mod </span>dri3;
 <span class="kw">pub mod </span>ge;
-<span class="attr">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"glx"</span>)]
 </span><span class="kw">pub mod </span>glx;
-<span class="attr">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"present"</span>)]
 </span><span class="kw">pub mod </span>present;
-<span class="attr">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"randr"</span>)]
 </span><span class="kw">pub mod </span>randr;
-<span class="attr">#[cfg(feature = <span class="string">&quot;record&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"record"</span>)]
 </span><span class="kw">pub mod </span>record;
-<span class="attr">#[cfg(feature = <span class="string">&quot;render&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"render"</span>)]
 </span><span class="kw">pub mod </span>render;
-<span class="attr">#[cfg(feature = <span class="string">&quot;res&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"res"</span>)]
 </span><span class="kw">pub mod </span>res;
-<span class="attr">#[cfg(feature = <span class="string">&quot;screensaver&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"screensaver"</span>)]
 </span><span class="kw">pub mod </span>screensaver;
-<span class="attr">#[cfg(feature = <span class="string">&quot;shape&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"shape"</span>)]
 </span><span class="kw">pub mod </span>shape;
-<span class="attr">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"shm"</span>)]
 </span><span class="kw">pub mod </span>shm;
-<span class="attr">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"sync"</span>)]
 </span><span class="kw">pub mod </span>sync;
 <span class="kw">pub mod </span>xc_misc;
-<span class="attr">#[cfg(feature = <span class="string">&quot;xevie&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xevie"</span>)]
 </span><span class="kw">pub mod </span>xevie;
-<span class="attr">#[cfg(feature = <span class="string">&quot;xf86dri&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xf86dri"</span>)]
 </span><span class="kw">pub mod </span>xf86dri;
-<span class="attr">#[cfg(feature = <span class="string">&quot;xf86vidmode&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xf86vidmode"</span>)]
 </span><span class="kw">pub mod </span>xf86vidmode;
-<span class="attr">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xfixes"</span>)]
 </span><span class="kw">pub mod </span>xfixes;
-<span class="attr">#[cfg(feature = <span class="string">&quot;xinerama&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xinerama"</span>)]
 </span><span class="kw">pub mod </span>xinerama;
-<span class="attr">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xinput"</span>)]
 </span><span class="kw">pub mod </span>xinput;
-<span class="attr">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xkb"</span>)]
 </span><span class="kw">pub mod </span>xkb;
-<span class="attr">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xprint"</span>)]
 </span><span class="kw">pub mod </span>xprint;
-<span class="attr">#[cfg(feature = <span class="string">&quot;xselinux&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xselinux"</span>)]
 </span><span class="kw">pub mod </span>xselinux;
-<span class="attr">#[cfg(feature = <span class="string">&quot;xtest&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xtest"</span>)]
 </span><span class="kw">pub mod </span>xtest;
-<span class="attr">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xv"</span>)]
 </span><span class="kw">pub mod </span>xv;
-<span class="attr">#[cfg(feature = <span class="string">&quot;xvmc&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xvmc"</span>)]
 </span><span class="kw">pub mod </span>xvmc;
 
 <span class="kw">pub use </span>x11rb_protocol::protocol::Request;

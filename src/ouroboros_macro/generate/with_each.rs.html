@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ouroboros_macro-0.17.2/src/generate/with_each.rs`."><title>with_each.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="ouroboros_macro" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ouroboros_macro-0.17.2/src/generate/with_each.rs`."><title>with_each.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="ouroboros_macro" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -151,11 +152,11 @@
         <span class="comment">// If the field is not a tail, we need to serve up the same kind of reference that other
         // fields in the struct may have borrowed to ensure safety.
         </span><span class="kw">if </span>field.field_type == FieldType::Tail {
-            <span class="kw">let </span>user_name = <span class="macro">format_ident!</span>(<span class="string">&quot;with_{}&quot;</span>, <span class="kw-2">&amp;</span>field.name);
+            <span class="kw">let </span>user_name = <span class="macro">format_ident!</span>(<span class="string">"with_{}"</span>, <span class="kw-2">&amp;</span>field.name);
             <span class="kw">let </span>documentation = <span class="macro">format!</span>(
                 <span class="macro">concat!</span>(
-                    <span class="string">&quot;Provides an immutable reference to `{0}`. This method was generated because &quot;</span>,
-                    <span class="string">&quot;`{0}` is a [tail field](https://docs.rs/ouroboros/latest/ouroboros/attr.self_referencing.html#definitions).&quot;
+                    <span class="string">"Provides an immutable reference to `{0}`. This method was generated because "</span>,
+                    <span class="string">"`{0}` is a [tail field](https://docs.rs/ouroboros/latest/ouroboros/attr.self_referencing.html#definitions)."
                 </span>),
                 field.name.to_string()
             );
@@ -169,36 +170,36 @@
             users.push(<span class="macro">quote! </span>{
                 #documentation
                 <span class="attr">#[inline(always)]
-                </span>#visibility <span class="kw">fn </span>#user_name &lt;<span class="lifetime">&#39;outer_borrow</span>, ReturnType&gt;(
-                    <span class="kw-2">&amp;</span><span class="lifetime">&#39;outer_borrow </span><span class="self">self</span>,
-                    user: <span class="kw">impl for</span>&lt;<span class="lifetime">&#39;this</span>&gt; ::core::ops::FnOnce(<span class="kw-2">&amp;</span><span class="lifetime">&#39;outer_borrow </span>#field_type) -&gt; ReturnType,
+                </span>#visibility <span class="kw">fn </span>#user_name &lt;<span class="lifetime">'outer_borrow</span>, ReturnType&gt;(
+                    <span class="kw-2">&amp;</span><span class="lifetime">'outer_borrow </span><span class="self">self</span>,
+                    user: <span class="kw">impl for</span>&lt;<span class="lifetime">'this</span>&gt; ::core::ops::FnOnce(<span class="kw-2">&amp;</span><span class="lifetime">'outer_borrow </span>#field_type) -&gt; ReturnType,
                 ) -&gt; ReturnType {
                     <span class="kw">let </span>field = <span class="kw-2">&amp;</span><span class="kw">unsafe </span>{ <span class="self">self</span>.actual_data.assume_init_ref() }.#field_name;
                     user(field)
                 }
             });
             <span class="kw">if </span>field.covariant == <span class="prelude-val">Some</span>(<span class="bool-val">true</span>) {
-                <span class="kw">let </span>borrower_name = <span class="macro">format_ident!</span>(<span class="string">&quot;borrow_{}&quot;</span>, <span class="kw-2">&amp;</span>field.name);
+                <span class="kw">let </span>borrower_name = <span class="macro">format_ident!</span>(<span class="string">"borrow_{}"</span>, <span class="kw-2">&amp;</span>field.name);
                 users.push(<span class="macro">quote! </span>{
                     #documentation
                     <span class="attr">#[inline(always)]
-                    </span>#visibility <span class="kw">fn </span>#borrower_name&lt;<span class="lifetime">&#39;this</span>&gt;(
-                        <span class="kw-2">&amp;</span><span class="lifetime">&#39;this </span><span class="self">self</span>,
-                    ) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;this </span>#field_type {
+                    </span>#visibility <span class="kw">fn </span>#borrower_name&lt;<span class="lifetime">'this</span>&gt;(
+                        <span class="kw-2">&amp;</span><span class="lifetime">'this </span><span class="self">self</span>,
+                    ) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'this </span>#field_type {
                         <span class="kw-2">&amp;</span><span class="kw">unsafe </span>{ <span class="self">self</span>.actual_data.assume_init_ref() }.#field_name
                     }
                 });
             } <span class="kw">else if </span>field.covariant.is_none() {
                 field.covariance_error();
             }
-            <span class="comment">// If it is not borrowed at all it&#39;s safe to allow mutably borrowing it.
-            </span><span class="kw">let </span>user_name = <span class="macro">format_ident!</span>(<span class="string">&quot;with_{}_mut&quot;</span>, <span class="kw-2">&amp;</span>field.name);
+            <span class="comment">// If it is not borrowed at all it's safe to allow mutably borrowing it.
+            </span><span class="kw">let </span>user_name = <span class="macro">format_ident!</span>(<span class="string">"with_{}_mut"</span>, <span class="kw-2">&amp;</span>field.name);
             <span class="kw">let </span>documentation = <span class="macro">format!</span>(
                 <span class="macro">concat!</span>(
-                    <span class="string">&quot;Provides a mutable reference to `{0}`. This method was generated because &quot;</span>,
-                    <span class="string">&quot;`{0}` is a [tail field](https://docs.rs/ouroboros/latest/ouroboros/attr.self_referencing.html#definitions). &quot;</span>,
-                    <span class="string">&quot;No `borrow_{0}_mut` function was generated because Rust&#39;s borrow checker is &quot;</span>,
-                    <span class="string">&quot;currently unable to guarantee that such a method would be used safely.&quot;
+                    <span class="string">"Provides a mutable reference to `{0}`. This method was generated because "</span>,
+                    <span class="string">"`{0}` is a [tail field](https://docs.rs/ouroboros/latest/ouroboros/attr.self_referencing.html#definitions). "</span>,
+                    <span class="string">"No `borrow_{0}_mut` function was generated because Rust's borrow checker is "</span>,
+                    <span class="string">"currently unable to guarantee that such a method would be used safely."
                 </span>),
                 field.name.to_string()
             );
@@ -212,20 +213,20 @@
             users.push(<span class="macro">quote! </span>{
                 #documentation
                 <span class="attr">#[inline(always)]
-                </span>#visibility <span class="kw">fn </span>#user_name &lt;<span class="lifetime">&#39;outer_borrow</span>, ReturnType&gt;(
-                    <span class="kw-2">&amp;</span><span class="lifetime">&#39;outer_borrow </span><span class="kw-2">mut </span><span class="self">self</span>,
-                    user: <span class="kw">impl for</span>&lt;<span class="lifetime">&#39;this</span>&gt; ::core::ops::FnOnce(<span class="kw-2">&amp;</span><span class="lifetime">&#39;outer_borrow </span><span class="kw-2">mut </span>#field_type) -&gt; ReturnType,
+                </span>#visibility <span class="kw">fn </span>#user_name &lt;<span class="lifetime">'outer_borrow</span>, ReturnType&gt;(
+                    <span class="kw-2">&amp;</span><span class="lifetime">'outer_borrow </span><span class="kw-2">mut </span><span class="self">self</span>,
+                    user: <span class="kw">impl for</span>&lt;<span class="lifetime">'this</span>&gt; ::core::ops::FnOnce(<span class="kw-2">&amp;</span><span class="lifetime">'outer_borrow </span><span class="kw-2">mut </span>#field_type) -&gt; ReturnType,
                 ) -&gt; ReturnType {
                     <span class="kw">let </span>field = <span class="kw-2">&amp;mut </span><span class="kw">unsafe </span>{ <span class="self">self</span>.actual_data.assume_init_mut() }.#field_name;
                     user(field)
                 }
             });
         } <span class="kw">else if </span>field.field_type == FieldType::Borrowed {
-            <span class="kw">let </span>user_name = <span class="macro">format_ident!</span>(<span class="string">&quot;with_{}&quot;</span>, <span class="kw-2">&amp;</span>field.name);
+            <span class="kw">let </span>user_name = <span class="macro">format_ident!</span>(<span class="string">"with_{}"</span>, <span class="kw-2">&amp;</span>field.name);
             <span class="kw">let </span>documentation = <span class="macro">format!</span>(
                 <span class="macro">concat!</span>(
-                    <span class="string">&quot;Provides limited immutable access to `{0}`. This method was generated &quot;</span>,
-                    <span class="string">&quot;because the contents of `{0}` are immutably borrowed by other fields.&quot;
+                    <span class="string">"Provides limited immutable access to `{0}`. This method was generated "</span>,
+                    <span class="string">"because the contents of `{0}` are immutably borrowed by other fields."
                 </span>),
                 field.name.to_string()
             );
@@ -239,9 +240,9 @@
             users.push(<span class="macro">quote! </span>{
                 #documentation
                 <span class="attr">#[inline(always)]
-                </span>#visibility <span class="kw">fn </span>#user_name &lt;<span class="lifetime">&#39;outer_borrow</span>, ReturnType&gt;(
-                    <span class="kw-2">&amp;</span><span class="lifetime">&#39;outer_borrow </span><span class="self">self</span>,
-                    user: <span class="kw">impl for</span>&lt;<span class="lifetime">&#39;this</span>&gt; ::core::ops::FnOnce(<span class="kw-2">&amp;</span><span class="lifetime">&#39;outer_borrow </span>#field_type) -&gt; ReturnType,
+                </span>#visibility <span class="kw">fn </span>#user_name &lt;<span class="lifetime">'outer_borrow</span>, ReturnType&gt;(
+                    <span class="kw-2">&amp;</span><span class="lifetime">'outer_borrow </span><span class="self">self</span>,
+                    user: <span class="kw">impl for</span>&lt;<span class="lifetime">'this</span>&gt; ::core::ops::FnOnce(<span class="kw-2">&amp;</span><span class="lifetime">'outer_borrow </span>#field_type) -&gt; ReturnType,
                 ) -&gt; ReturnType {
                     <span class="kw">let </span>field = <span class="kw-2">&amp;</span><span class="kw">unsafe </span>{ <span class="self">self</span>.actual_data.assume_init_ref() }.#field_name;
                     user(field)
@@ -255,13 +256,13 @@
                     field.covariance_error();
                 }
             }
-            <span class="kw">let </span>borrower_name = <span class="macro">format_ident!</span>(<span class="string">&quot;borrow_{}&quot;</span>, <span class="kw-2">&amp;</span>field.name);
+            <span class="kw">let </span>borrower_name = <span class="macro">format_ident!</span>(<span class="string">"borrow_{}"</span>, <span class="kw-2">&amp;</span>field.name);
             users.push(<span class="macro">quote! </span>{
                 #documentation
                 <span class="attr">#[inline(always)]
-                </span>#visibility <span class="kw">fn </span>#borrower_name&lt;<span class="lifetime">&#39;this</span>&gt;(
-                    <span class="kw-2">&amp;</span><span class="lifetime">&#39;this </span><span class="self">self</span>,
-                ) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;this </span>#field_type {
+                </span>#visibility <span class="kw">fn </span>#borrower_name&lt;<span class="lifetime">'this</span>&gt;(
+                    <span class="kw-2">&amp;</span><span class="lifetime">'this </span><span class="self">self</span>,
+                ) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'this </span>#field_type {
                     <span class="kw-2">&amp;</span><span class="kw">unsafe </span>{ <span class="self">self</span>.actual_data.assume_init_ref() }.#field_name
                 }
             });

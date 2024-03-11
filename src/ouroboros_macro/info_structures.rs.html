@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ouroboros_macro-0.17.2/src/info_structures.rs`."><title>info_structures.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="ouroboros_macro" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ouroboros_macro-0.17.2/src/info_structures.rs`."><title>info_structures.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="ouroboros_macro" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -418,7 +419,7 @@
 }
 
 <span class="kw">impl </span>StructInfo {
-    <span class="comment">// The lifetime to use in place of &#39;this for internal implementations,
+    <span class="comment">// The lifetime to use in place of 'this for internal implementations,
     // should never be exposed to the user.
     </span><span class="kw">pub fn </span>fake_lifetime(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Ident {
         <span class="kw">return </span><span class="self">self</span>.first_lifetime.clone();
@@ -442,19 +443,19 @@
             .collect()
     }
 
-    <span class="doccomment">/// Same as generic_params but with &#39;this and &#39;outer_borrow prepended.
+    <span class="doccomment">/// Same as generic_params but with 'this and 'outer_borrow prepended.
     </span><span class="kw">pub fn </span>borrowed_generic_params(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; TokenStream {
         <span class="kw">if </span><span class="self">self</span>.generic_params().is_empty() {
-            <span class="macro">quote! </span>{ &lt;<span class="lifetime">&#39;outer_borrow</span>, <span class="lifetime">&#39;this</span>&gt; }
+            <span class="macro">quote! </span>{ &lt;<span class="lifetime">'outer_borrow</span>, <span class="lifetime">'this</span>&gt; }
         } <span class="kw">else </span>{
             <span class="kw">let </span><span class="kw-2">mut </span>new_generic_params = <span class="self">self</span>.generic_params().clone();
-            new_generic_params.insert(<span class="number">0</span>, <span class="macro">syn::parse_quote! </span>{ <span class="lifetime">&#39;this </span>});
-            new_generic_params.insert(<span class="number">0</span>, <span class="macro">syn::parse_quote! </span>{ <span class="lifetime">&#39;outer_borrow </span>});
+            new_generic_params.insert(<span class="number">0</span>, <span class="macro">syn::parse_quote! </span>{ <span class="lifetime">'this </span>});
+            new_generic_params.insert(<span class="number">0</span>, <span class="macro">syn::parse_quote! </span>{ <span class="lifetime">'outer_borrow </span>});
             <span class="macro">quote! </span>{ &lt;#new_generic_params&gt; }
         }
     }
 
-    <span class="doccomment">/// Same as generic_params but without bounds and with &#39;_ prepended twice.
+    <span class="doccomment">/// Same as generic_params but without bounds and with '_ prepended twice.
     </span><span class="kw">pub fn </span>borrowed_generic_params_inferred(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; TokenStream {
         <span class="kw">use </span>GenericParam::<span class="kw-2">*</span>;
         <span class="kw">let </span>params = <span class="self">self</span>.generic_params().iter().map(|p| <span class="kw">match </span>p {
@@ -463,7 +464,7 @@
             }
             Lifetime(LifetimeParam { lifetime, .. }) =&gt; lifetime.to_token_stream(),
         });
-        <span class="macro">quote! </span>{ &lt;<span class="lifetime">&#39;_</span>, <span class="lifetime">&#39;_</span>, #(#params,)<span class="kw-2">*</span>&gt; }
+        <span class="macro">quote! </span>{ &lt;<span class="lifetime">'_</span>, <span class="lifetime">'_</span>, #(#params,)<span class="kw-2">*</span>&gt; }
     }
 
     <span class="kw">pub fn </span>generic_arguments(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;TokenStream&gt; {
@@ -473,16 +474,16 @@
     <span class="kw">pub fn </span>generic_arguments_with_static_lifetimes(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;TokenStream&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>result = make_generic_arguments(<span class="self">self</span>.generic_params_without_lifetimes());
         <span class="kw">for _ in </span><span class="number">0</span>..<span class="self">self</span>.generics.lifetimes().count() {
-            result.insert(<span class="number">0</span>, <span class="macro">quote! </span>{ <span class="lifetime">&#39;static </span>});
+            result.insert(<span class="number">0</span>, <span class="macro">quote! </span>{ <span class="lifetime">'static </span>});
         }
         result
     }
 
-    <span class="doccomment">/// Same as generic_arguments but with &#39;outer_borrow and &#39;this prepended.
+    <span class="doccomment">/// Same as generic_arguments but with 'outer_borrow and 'this prepended.
     </span><span class="kw">pub fn </span>borrowed_generic_arguments(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;TokenStream&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>args = <span class="self">self</span>.generic_arguments();
-        args.insert(<span class="number">0</span>, <span class="macro">quote! </span>{ <span class="lifetime">&#39;this </span>});
-        args.insert(<span class="number">0</span>, <span class="macro">quote! </span>{ <span class="lifetime">&#39;outer_borrow </span>});
+        args.insert(<span class="number">0</span>, <span class="macro">quote! </span>{ <span class="lifetime">'this </span>});
+        args.insert(<span class="number">0</span>, <span class="macro">quote! </span>{ <span class="lifetime">'outer_borrow </span>});
         args
     }
 
@@ -519,11 +520,11 @@
 
 <span class="kw">impl </span>StructFieldInfo {
     <span class="kw">pub fn </span>builder_name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Ident {
-        <span class="macro">format_ident!</span>(<span class="string">&quot;{}_builder&quot;</span>, <span class="self">self</span>.name)
+        <span class="macro">format_ident!</span>(<span class="string">"{}_builder"</span>, <span class="self">self</span>.name)
     }
 
     <span class="kw">pub fn </span>illegal_ref_name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Ident {
-        <span class="macro">format_ident!</span>(<span class="string">&quot;{}_illegal_static_reference&quot;</span>, <span class="self">self</span>.name)
+        <span class="macro">format_ident!</span>(<span class="string">"{}_illegal_static_reference"</span>, <span class="self">self</span>.name)
     }
 
     <span class="kw">pub fn </span>is_borrowed(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
@@ -572,17 +573,17 @@
     }
 
     <span class="doccomment">/// Generates an error requesting that the user explicitly specify whether or not the
-    /// field&#39;s type is covariant.
+    /// field's type is covariant.
     </span><span class="kw">pub fn </span>covariance_error(<span class="kw-2">&amp;</span><span class="self">self</span>) {
         <span class="kw">let </span>error = <span class="macro">concat!</span>(
-            <span class="string">&quot;Ouroboros cannot automatically determine if this type is covariant.\n\n&quot;</span>,
-            <span class="string">&quot;As an example, a Box&lt;&amp;&#39;this ()&gt; is covariant because it can be used as a\n&quot;</span>,
-            <span class="string">&quot;Box&lt;&amp;&#39;smaller ()&gt; for any lifetime smaller than &#39;this. In contrast,\n&quot;</span>,
-            <span class="string">&quot;a Fn(&amp;&#39;this ()) is not covariant because it cannot be used as a\n&quot;</span>,
-            <span class="string">&quot;Fn(&amp;&#39;smaller ()). In general, values that are safe to use with smaller\n&quot;</span>,
-            <span class="string">&quot;lifetimes than they were defined with are covariant, breaking this \n&quot;</span>,
-            <span class="string">&quot;guarantee means the value is not covariant.\n\n&quot;</span>,
-            <span class="string">&quot;To resolve this error, add #[covariant] or #[not_covariant] to the field.\n&quot;</span>,
+            <span class="string">"Ouroboros cannot automatically determine if this type is covariant.\n\n"</span>,
+            <span class="string">"As an example, a Box&lt;&amp;'this ()&gt; is covariant because it can be used as a\n"</span>,
+            <span class="string">"Box&lt;&amp;'smaller ()&gt; for any lifetime smaller than 'this. In contrast,\n"</span>,
+            <span class="string">"a Fn(&amp;'this ()) is not covariant because it cannot be used as a\n"</span>,
+            <span class="string">"Fn(&amp;'smaller ()). In general, values that are safe to use with smaller\n"</span>,
+            <span class="string">"lifetimes than they were defined with are covariant, breaking this \n"</span>,
+            <span class="string">"guarantee means the value is not covariant.\n\n"</span>,
+            <span class="string">"To resolve this error, add #[covariant] or #[not_covariant] to the field.\n"</span>,
         );
         <span class="macro">proc_macro_error::emit_error!</span>(<span class="self">self</span>.typ, error);
     }
@@ -595,7 +596,7 @@
         <span class="kw">let </span>field_type = <span class="kw-2">&amp;</span><span class="self">self</span>.typ;
         <span class="kw">let </span>fake_lifetime = info.fake_lifetime();
         <span class="kw">if </span><span class="self">self</span>.borrows.is_empty() {
-            <span class="comment">// Even if self_referencing is true, as long as borrows is empty, we don&#39;t need to use a
+            <span class="comment">// Even if self_referencing is true, as long as borrows is empty, we don't need to use a
             // builder to construct it.
             </span><span class="kw">let </span>field_type =
                 replace_this_with_lifetime(field_type.into_token_stream(), fake_lifetime.clone());
@@ -607,18 +608,18 @@
                     <span class="kw">let </span>field = <span class="kw-2">&amp;</span>info.fields[borrow.index];
                     <span class="kw">let </span>field_type = <span class="kw-2">&amp;</span>field.typ;
                     field_builder_params.push(<span class="macro">quote! </span>{
-                        <span class="kw-2">&amp;</span><span class="lifetime">&#39;this </span><span class="kw-2">mut </span>#field_type
+                        <span class="kw-2">&amp;</span><span class="lifetime">'this </span><span class="kw-2">mut </span>#field_type
                     });
                 } <span class="kw">else </span>{
                     <span class="kw">let </span>field = <span class="kw-2">&amp;</span>info.fields[borrow.index];
                     <span class="kw">let </span>field_type = <span class="kw-2">&amp;</span>field.typ;
                     field_builder_params.push(<span class="macro">quote! </span>{
-                        <span class="kw-2">&amp;</span><span class="lifetime">&#39;this </span>#field_type
+                        <span class="kw-2">&amp;</span><span class="lifetime">'this </span>#field_type
                     });
                 }
             }
             <span class="kw">let </span>return_type = make_builder_return_type();
-            <span class="kw">let </span>bound = <span class="macro">quote! </span>{ <span class="kw">for</span>&lt;<span class="lifetime">&#39;this</span>&gt; ::core::ops::FnOnce(#(#field_builder_params),<span class="kw-2">*</span>) -&gt; #return_type };
+            <span class="kw">let </span>bound = <span class="macro">quote! </span>{ <span class="kw">for</span>&lt;<span class="lifetime">'this</span>&gt; ::core::ops::FnOnce(#(#field_builder_params),<span class="kw-2">*</span>) -&gt; #return_type };
             <span class="prelude-val">Ok</span>(ArgType::TraitBound(bound))
         }
     }
@@ -635,12 +636,12 @@
             BuilderType::AsyncSend =&gt; {
                 <span class="macro">quote! </span>{
                     ::core::pin::Pin&lt;::ouroboros::macro_help::alloc::boxed::Box&lt;
-                        <span class="kw">dyn </span>::core::future::Future&lt;Output=#field_type&gt; + ::core::marker::Send + <span class="lifetime">&#39;this</span>&gt;&gt;
+                        <span class="kw">dyn </span>::core::future::Future&lt;Output=#field_type&gt; + ::core::marker::Send + <span class="lifetime">'this</span>&gt;&gt;
                 }
             }
             BuilderType::Async =&gt; {
                 <span class="macro">quote! </span>{ ::core::pin::Pin&lt;::ouroboros::macro_help::alloc::boxed::Box&lt;
-                <span class="kw">dyn </span>::core::future::Future&lt;Output=#field_type&gt; + <span class="lifetime">&#39;this</span>&gt;&gt; }
+                <span class="kw">dyn </span>::core::future::Future&lt;Output=#field_type&gt; + <span class="lifetime">'this</span>&gt;&gt; }
             }
             BuilderType::Sync =&gt; <span class="macro">quote! </span>{ #field_type },
         };
@@ -659,14 +660,14 @@
                 <span class="macro">quote! </span>{
                     ::core::pin::Pin&lt;::ouroboros::macro_help::alloc::boxed::Box&lt;
                         <span class="kw">dyn </span>::core::future::Future&lt;Output=::core::result::Result&lt;#field_type, Error_&gt;&gt;
-                            + ::core::marker::Send + <span class="lifetime">&#39;this</span>&gt;&gt;
+                            + ::core::marker::Send + <span class="lifetime">'this</span>&gt;&gt;
                 }
             }
             BuilderType::Async =&gt; {
                 <span class="macro">quote! </span>{
                     ::core::pin::Pin&lt;::ouroboros::macro_help::alloc::boxed::Box&lt;
                         <span class="kw">dyn </span>::core::future::Future&lt;Output=::core::result::Result&lt;#field_type, Error_&gt;&gt;
-                            + <span class="lifetime">&#39;this</span>&gt;&gt;
+                            + <span class="lifetime">'this</span>&gt;&gt;
                 }
             }
             BuilderType::Sync =&gt; <span class="macro">quote! </span>{ ::core::result::Result&lt;#field_type, Error_&gt; },

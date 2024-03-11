@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_path-1.0.4/src/builder.rs`."><title>builder.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_path" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../lyon_path/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_path"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_path-1.0.4/src/builder.rs`."><title>builder.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_path" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><a class="sub-logo-container" href="../../lyon_path/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_path"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1811,7 +1812,7 @@
 //! - [PathBuilder](trait.PathBuilder.html) is a simple and efficient interface which
 //!   does not deal with any ambiguous cases.
 //! - [SvgPathBuilder](trait.SvgPathBuilder.html) is a higher-level interface that
-//!   follows SVG&#39;s specification, removing the the burden of dealing with special cases
+//!   follows SVG's specification, removing the the burden of dealing with special cases
 //!   from the user at a run-time cost.
 //!
 //! `SvgPathBuilder` may be a better choice when interactive with SVG, or dealing with arbitrary
@@ -1896,7 +1897,7 @@
 <span class="kw">use </span>alloc::vec;
 <span class="kw">use </span>alloc::vec::Vec;
 
-<span class="attr">#[cfg(not(feature = <span class="string">&quot;std&quot;</span>))]
+<span class="attr">#[cfg(not(feature = <span class="string">"std"</span>))]
 </span><span class="kw">use </span>num_traits::Float;
 
 <span class="doccomment">/// The radius of each corner of a rounded rectangle.
@@ -1921,11 +1922,11 @@
 }
 
 <span class="kw">impl </span>core::fmt::Display <span class="kw">for </span>BorderRadii {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; core::fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>core::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; core::fmt::Result {
         <span class="comment">// In the order of a well known convention (CSS) clockwise from top left
         </span><span class="macro">write!</span>(
             f,
-            <span class="string">&quot;BorderRadii({}, {}, {}, {})&quot;</span>,
+            <span class="string">"BorderRadii({}, {}, {}, {})"</span>,
             <span class="self">self</span>.top_left, <span class="self">self</span>.top_right, <span class="self">self</span>.bottom_left, <span class="self">self</span>.bottom_right
         )
     }
@@ -1938,7 +1939,7 @@
 /// This simply forwards to an underlying `PathBuilder` implementation,
 /// using no attributes.
 </span><span class="attr">#[derive(Clone, Debug, PartialEq, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serialization&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serialization"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub struct </span>NoAttributes&lt;B: PathBuilder&gt; {
     <span class="kw">pub</span>(<span class="kw">crate</span>) inner: B,
 }
@@ -2523,7 +2524,7 @@
     }
 }
 
-<span class="doccomment">/// A path building interface that tries to stay close to SVG&#39;s path specification.
+<span class="doccomment">/// A path building interface that tries to stay close to SVG's path specification.
 /// &lt;https://svgwg.org/specs/paths/&gt;
 ///
 /// Some of the wording in the documentation of this trait is borrowed from the SVG
@@ -2537,7 +2538,7 @@
     /// Corresponding SVG command: `M`.
     ///
     /// This command establishes a new initial point and a new current point. The effect
-    /// is as if the &quot;pen&quot; were lifted and moved to a new location.
+    /// is as if the "pen" were lifted and moved to a new location.
     /// If a sub-path is in progress, it is ended without being closed.
     </span><span class="kw">fn </span>move_to(<span class="kw-2">&amp;mut </span><span class="self">self</span>, to: Point);
 
@@ -2555,7 +2556,7 @@
     ///
     /// Corresponding SVG command: `L`.
     ///
-    /// The segment starts at the builder&#39;s current position.
+    /// The segment starts at the builder's current position.
     /// If this is the very first command of the path (the builder therefore does not
     /// have a current position), the `line_to` command is replaced with a `move_to(to)`.
     </span><span class="kw">fn </span>line_to(<span class="kw-2">&amp;mut </span><span class="self">self</span>, to: Point);
@@ -2564,7 +2565,7 @@
     ///
     /// Corresponding SVG command: `Q`.
     ///
-    /// The segment starts at the builder&#39;s current position.
+    /// The segment starts at the builder's current position.
     /// If this is the very first command of the path (the builder therefore does not
     /// have a current position), the `quadratic_bezier_to` command is replaced with
     /// a `move_to(to)`.
@@ -2574,7 +2575,7 @@
     ///
     /// Corresponding SVG command: `C`.
     ///
-    /// The segment starts at the builder&#39;s current position.
+    /// The segment starts at the builder's current position.
     /// If this is the very first command of the path (the builder therefore does not
     /// have a current position), the `cubic_bezier_to` command is replaced with
     /// a `move_to(to)`.
@@ -2731,7 +2732,7 @@
 <span class="doccomment">/// Builds a path.
 ///
 /// This trait is separate from `PathBuilder` and `SvgPathBuilder` to allow them to
-/// be used as trait object (which isn&#39;t possible when a method returns an associated
+/// be used as trait object (which isn't possible when a method returns an associated
 /// type).
 </span><span class="kw">pub trait </span>Build {
     <span class="doccomment">/// The type of object that is created by this builder.
@@ -3027,7 +3028,7 @@
         // which results in the last segment ending almost but not quite at the
         // start of the sub-path, causing a new edge to be inserted which often
         // intersects with the first or last edge. This can affect algorithms that
-        // Don&#39;t handle self-intersecting paths.
+        // Don't handle self-intersecting paths.
         // Deal with this by snapping the last point if it is very close to the
         // start of the sub path.
         //
@@ -3080,7 +3081,7 @@
 
         <span class="self">self</span>.last_ctrl = <span class="self">self</span>.current_position;
 
-        <span class="comment">// If the center is equal to the current position, the start and end angles aren&#39;t
+        <span class="comment">// If the center is equal to the current position, the start and end angles aren't
         // defined, so we just skip the arc to avoid generating NaNs that will cause issues
         // later.
         </span><span class="kw">use </span>lyon_geom::euclid::approxeq::ApproxEq;
@@ -3370,7 +3371,7 @@
     <span class="kw">let </span><span class="kw-2">mut </span>bl = radii.bottom_left.abs().min(min_wh);
     <span class="kw">let </span><span class="kw-2">mut </span>br = radii.bottom_right.abs().min(min_wh);
 
-    <span class="comment">// clamp border radii if they don&#39;t fit in the rectangle.
+    <span class="comment">// clamp border radii if they don't fit in the rectangle.
     </span><span class="kw">if </span>tl + tr &gt; w {
         <span class="kw">let </span>x = (tl + tr - w) * <span class="number">0.5</span>;
         tl -= x;
@@ -3598,7 +3599,7 @@
 
     <span class="kw">let </span><span class="kw-2">mut </span>p = Path::svg_builder();
     p.move_to(point(<span class="number">100.0</span>, <span class="number">0.0</span>));
-    <span class="comment">// Don&#39;t assert on a &quot;false&quot; arc that&#39;s a straight line
+    <span class="comment">// Don't assert on a "false" arc that's a straight line
     </span>p.arc_to(
         vector(<span class="number">100.</span>, <span class="number">100.</span>),
         Angle::degrees(<span class="number">0.</span>),

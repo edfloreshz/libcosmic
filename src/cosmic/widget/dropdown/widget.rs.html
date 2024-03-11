@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/dropdown/widget.rs`."><title>widget.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/dropdown/widget.rs`."><title>widget.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -561,11 +562,11 @@
 
 <span class="doccomment">/// A widget for selecting a single value from a list of selections.
 </span><span class="attr">#[derive(Setters)]
-</span><span class="kw">pub struct </span>Dropdown&lt;<span class="lifetime">&#39;a</span>, S: AsRef&lt;str&gt;, Message&gt; {
+</span><span class="kw">pub struct </span>Dropdown&lt;<span class="lifetime">'a</span>, S: AsRef&lt;str&gt;, Message&gt; {
     <span class="attr">#[setters(skip)]
-    </span>on_selected: Box&lt;<span class="kw">dyn </span>Fn(usize) -&gt; Message + <span class="lifetime">&#39;a</span>&gt;,
+    </span>on_selected: Box&lt;<span class="kw">dyn </span>Fn(usize) -&gt; Message + <span class="lifetime">'a</span>&gt;,
     <span class="attr">#[setters(skip)]
-    </span>selections: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[S],
+    </span>selections: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[S],
     <span class="attr">#[setters(skip)]
     </span>selected: <span class="prelude-ty">Option</span>&lt;usize&gt;,
     <span class="attr">#[setters(into)]
@@ -580,7 +581,7 @@
     </span>font: <span class="prelude-ty">Option</span>&lt;<span class="kw">crate</span>::font::Font&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, S: AsRef&lt;str&gt;, Message&gt; Dropdown&lt;<span class="lifetime">&#39;a</span>, S, Message&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, S: AsRef&lt;str&gt;, Message&gt; Dropdown&lt;<span class="lifetime">'a</span>, S, Message&gt; {
     <span class="doccomment">/// The default gap.
     </span><span class="kw">pub const </span>DEFAULT_GAP: f32 = <span class="number">4.0</span>;
 
@@ -590,9 +591,9 @@
     <span class="doccomment">/// Creates a new [`Dropdown`] with the given list of selections, the current
     /// selected value, and the message to produce when an option is selected.
     </span><span class="kw">pub fn </span>new(
-        selections: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[S],
+        selections: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[S],
         selected: <span class="prelude-ty">Option</span>&lt;usize&gt;,
-        on_selected: <span class="kw">impl </span>Fn(usize) -&gt; Message + <span class="lifetime">&#39;a</span>,
+        on_selected: <span class="kw">impl </span>Fn(usize) -&gt; Message + <span class="lifetime">'a</span>,
     ) -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             on_selected: Box::new(on_selected),
@@ -630,8 +631,8 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, S: AsRef&lt;str&gt;, Message: <span class="lifetime">&#39;a</span>&gt; Widget&lt;Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;
-    <span class="kw">for </span>Dropdown&lt;<span class="lifetime">&#39;a</span>, S, Message&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, S: AsRef&lt;str&gt;, Message: <span class="lifetime">'a</span>&gt; Widget&lt;Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;
+    <span class="kw">for </span>Dropdown&lt;<span class="lifetime">'a</span>, S, Message&gt;
 {
     <span class="kw">fn </span>tag(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; tree::Tag {
         tree::Tag::of::&lt;State&gt;()
@@ -697,11 +698,11 @@
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         tree: <span class="kw-2">&amp;mut </span>Tree,
         event: Event,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         cursor: mouse::Cursor,
         _renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
         _clipboard: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>Clipboard,
-        shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">&#39;_</span>, Message&gt;,
+        shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">'_</span>, Message&gt;,
         _viewport: <span class="kw-2">&amp;</span>Rectangle,
     ) -&gt; event::Status {
         update(
@@ -719,7 +720,7 @@
     <span class="kw">fn </span>mouse_interaction(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         _tree: <span class="kw-2">&amp;</span>Tree,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         cursor: mouse::Cursor,
         _viewport: <span class="kw-2">&amp;</span>Rectangle,
         _renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
@@ -733,7 +734,7 @@
         renderer: <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::Renderer,
         theme: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Theme,
         _style: <span class="kw-2">&amp;</span>iced_core::renderer::Style,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         cursor: mouse::Cursor,
         viewport: <span class="kw-2">&amp;</span>Rectangle,
     ) {
@@ -756,12 +757,12 @@
         );
     }
 
-    <span class="kw">fn </span>overlay&lt;<span class="lifetime">&#39;b</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="kw-2">mut </span><span class="self">self</span>,
-        tree: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="kw-2">mut </span>Tree,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+    <span class="kw">fn </span>overlay&lt;<span class="lifetime">'b</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'b </span><span class="kw-2">mut </span><span class="self">self</span>,
+        tree: <span class="kw-2">&amp;</span><span class="lifetime">'b </span><span class="kw-2">mut </span>Tree,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;overlay::Element&lt;<span class="lifetime">&#39;b</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;overlay::Element&lt;<span class="lifetime">'b</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt; {
         <span class="kw">let </span>state = tree.state.downcast_mut::&lt;State&gt;();
 
         overlay(
@@ -780,10 +781,10 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, S: AsRef&lt;str&gt;, Message: <span class="lifetime">&#39;a</span>&gt; From&lt;Dropdown&lt;<span class="lifetime">&#39;a</span>, S, Message&gt;&gt;
-    <span class="kw">for </span><span class="kw">crate</span>::Element&lt;<span class="lifetime">&#39;a</span>, Message&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, S: AsRef&lt;str&gt;, Message: <span class="lifetime">'a</span>&gt; From&lt;Dropdown&lt;<span class="lifetime">'a</span>, S, Message&gt;&gt;
+    <span class="kw">for </span><span class="kw">crate</span>::Element&lt;<span class="lifetime">'a</span>, Message&gt;
 {
-    <span class="kw">fn </span>from(pick_list: Dropdown&lt;<span class="lifetime">&#39;a</span>, S, Message&gt;) -&gt; <span class="self">Self </span>{
+    <span class="kw">fn </span>from(pick_list: Dropdown&lt;<span class="lifetime">'a</span>, S, Message&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>::new(pick_list)
     }
 }
@@ -803,10 +804,10 @@
     <span class="doccomment">/// Creates a new [`State`] for a [`Dropdown`].
     </span><span class="kw">pub fn </span>new() -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
-            icon: <span class="kw">match </span>icon::from_name(<span class="string">&quot;pan-down-symbolic&quot;</span>).size(<span class="number">16</span>).handle().data {
+            icon: <span class="kw">match </span>icon::from_name(<span class="string">"pan-down-symbolic"</span>).size(<span class="number">16</span>).handle().data {
                 icon::Data::Name(named) =&gt; named
                     .path()
-                    .filter(|path| path.extension().is_some_and(|ext| ext == OsStr::new(<span class="string">&quot;svg&quot;</span>)))
+                    .filter(|path| path.extension().is_some_and(|ext| ext == OsStr::new(<span class="string">"svg"</span>)))
                     .map(iced_core::svg::Handle::from_path),
                 icon::Data::Svg(handle) =&gt; <span class="prelude-val">Some</span>(handle),
                 icon::Data::Image(<span class="kw">_</span>) =&gt; <span class="prelude-val">None</span>,
@@ -881,15 +882,15 @@
 <span class="doccomment">/// Processes an [`Event`] and updates the [`State`] of a [`Dropdown`]
 /// accordingly.
 </span><span class="attr">#[allow(clippy::too_many_arguments)]
-</span><span class="kw">pub fn </span>update&lt;<span class="lifetime">&#39;a</span>, S: AsRef&lt;str&gt;, Message&gt;(
+</span><span class="kw">pub fn </span>update&lt;<span class="lifetime">'a</span>, S: AsRef&lt;str&gt;, Message&gt;(
     event: <span class="kw-2">&amp;</span>Event,
-    layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+    layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
     cursor: mouse::Cursor,
-    shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">&#39;_</span>, Message&gt;,
+    shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">'_</span>, Message&gt;,
     on_selected: <span class="kw-2">&amp;</span><span class="kw">dyn </span>Fn(usize) -&gt; Message,
     selected: <span class="prelude-ty">Option</span>&lt;usize&gt;,
     selections: <span class="kw-2">&amp;</span>[S],
-    state: <span class="kw">impl </span>FnOnce() -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>State,
+    state: <span class="kw">impl </span>FnOnce() -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>State,
 ) -&gt; event::Status {
     <span class="kw">match </span>event {
         Event::Mouse(mouse::Event::ButtonPressed(mouse::Button::Left))
@@ -897,7 +898,7 @@
             <span class="kw">let </span>state = state();
 
             <span class="kw">if </span>state.is_open {
-                <span class="comment">// Event wasn&#39;t processed by overlay, so cursor was clicked either outside it&#39;s
+                <span class="comment">// Event wasn't processed by overlay, so cursor was clicked either outside it's
                 // bounds or on the drop-down, either way we close the overlay.
                 </span>state.is_open = <span class="bool-val">false</span>;
 
@@ -944,7 +945,7 @@
 
 <span class="doccomment">/// Returns the current [`mouse::Interaction`] of a [`Dropdown`].
 </span><span class="attr">#[must_use]
-</span><span class="kw">pub fn </span>mouse_interaction(layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;, cursor: mouse::Cursor) -&gt; mouse::Interaction {
+</span><span class="kw">pub fn </span>mouse_interaction(layout: Layout&lt;<span class="lifetime">'_</span>&gt;, cursor: mouse::Cursor) -&gt; mouse::Interaction {
     <span class="kw">let </span>bounds = layout.bounds();
     <span class="kw">let </span>is_mouse_over = cursor.is_over(bounds);
 
@@ -957,19 +958,19 @@
 
 <span class="doccomment">/// Returns the current overlay of a [`Dropdown`].
 </span><span class="attr">#[allow(clippy::too_many_arguments)]
-</span><span class="kw">pub fn </span>overlay&lt;<span class="lifetime">&#39;a</span>, S: AsRef&lt;str&gt;, Message: <span class="lifetime">&#39;a</span>&gt;(
-    layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+</span><span class="kw">pub fn </span>overlay&lt;<span class="lifetime">'a</span>, S: AsRef&lt;str&gt;, Message: <span class="lifetime">'a</span>&gt;(
+    layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
     _renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
-    state: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>State,
+    state: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>State,
     gap: f32,
     padding: Padding,
     text_size: f32,
     _text_line_height: text::LineHeight,
     _font: <span class="prelude-ty">Option</span>&lt;<span class="kw">crate</span>::font::Font&gt;,
-    selections: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[S],
+    selections: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[S],
     selected_option: <span class="prelude-ty">Option</span>&lt;usize&gt;,
-    on_selected: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw">dyn </span>Fn(usize) -&gt; Message,
-) -&gt; <span class="prelude-ty">Option</span>&lt;overlay::Element&lt;<span class="lifetime">&#39;a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt; {
+    on_selected: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw">dyn </span>Fn(usize) -&gt; Message,
+) -&gt; <span class="prelude-ty">Option</span>&lt;overlay::Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt; {
     <span class="kw">if </span>state.is_open {
         <span class="kw">let </span>bounds = layout.bounds();
 
@@ -1013,21 +1014,21 @@
 
 <span class="doccomment">/// Draws a [`Dropdown`].
 </span><span class="attr">#[allow(clippy::too_many_arguments)]
-</span><span class="kw">pub fn </span>draw&lt;<span class="lifetime">&#39;a</span>, S&gt;(
+</span><span class="kw">pub fn </span>draw&lt;<span class="lifetime">'a</span>, S&gt;(
     renderer: <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::Renderer,
     theme: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Theme,
-    layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+    layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
     cursor: mouse::Cursor,
     gap: f32,
     padding: Padding,
     text_size: <span class="prelude-ty">Option</span>&lt;f32&gt;,
     text_line_height: text::LineHeight,
     font: <span class="kw">crate</span>::font::Font,
-    selected: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>S&gt;,
-    state: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>State,
+    selected: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>S&gt;,
+    state: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>State,
     viewport: <span class="kw-2">&amp;</span>Rectangle,
 ) <span class="kw">where
-    </span>S: AsRef&lt;str&gt; + <span class="lifetime">&#39;a</span>,
+    </span>S: AsRef&lt;str&gt; + <span class="lifetime">'a</span>,
 {
     <span class="kw">let </span>bounds = layout.bounds();
     <span class="kw">let </span>is_mouse_over = cursor.is_over(bounds);

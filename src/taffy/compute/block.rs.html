@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/taffy-3438f0b42e7e0e0f/7781c70/src/compute/block.rs`."><title>block.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="taffy" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/taffy-3438f0b42e7e0e0f/7781c70/src/compute/block.rs`."><title>block.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="taffy" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -692,7 +693,7 @@
 <span class="kw">use </span><span class="kw">crate</span>::util::MaybeMath;
 <span class="kw">use </span><span class="kw">crate</span>::util::{MaybeResolve, ResolveOrZero};
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
 </span><span class="kw">use </span><span class="kw">super</span>::common::content_size::compute_content_size_contribution;
 
 <span class="doccomment">/// Per-child data that is accumulated and modified over the course of the layout algorithm
@@ -700,7 +701,7 @@
     <span class="doccomment">/// The identifier for the associated node
     </span>node_id: NodeId,
 
-    <span class="doccomment">/// The &quot;source order&quot; of the item. This is the index of the item within the children iterator,
+    <span class="doccomment">/// The "source order" of the item. This is the index of the item within the children iterator,
     /// and controls the order in which the nodes are placed
     </span>order: u32,
 
@@ -713,7 +714,7 @@
 
     <span class="doccomment">/// The overflow style of the item
     </span>overflow: Point&lt;Overflow&gt;,
-    <span class="doccomment">/// The width of the item&#39;s scrollbars (if it has scrollbars)
+    <span class="doccomment">/// The width of the item's scrollbars (if it has scrollbars)
     </span>scrollbar_width: f32,
 
     <span class="doccomment">/// The position style of the item
@@ -731,7 +732,7 @@
 
     <span class="doccomment">/// The computed border box size of this item
     </span>computed_size: Size&lt;f32&gt;,
-    <span class="doccomment">/// The computed &quot;static position&quot; of this item. The static position is the position
+    <span class="doccomment">/// The computed "static position" of this item. The static position is the position
     /// taking into account padding, border, margins, and scrollbar_gutters but not inset
     </span>static_position: Point&lt;f32&gt;,
     <span class="doccomment">/// Whether margins can be collapsed through this item
@@ -773,15 +774,15 @@
         .or(available_space_based_size)
         .maybe_max(padding_border_size);
 
-    <span class="comment">// Short-circuit layout if the container&#39;s size is fully determined by the container&#39;s size and the run mode
-    // is ComputeSize (and thus the container&#39;s size is all that we&#39;re interested in)
+    <span class="comment">// Short-circuit layout if the container's size is fully determined by the container's size and the run mode
+    // is ComputeSize (and thus the container's size is all that we're interested in)
     </span><span class="kw">if </span>run_mode == RunMode::ComputeSize {
         <span class="kw">if let </span>Size { width: <span class="prelude-val">Some</span>(width), height: <span class="prelude-val">Some</span>(height) } = styled_based_known_dimensions {
             <span class="kw">return </span>LayoutOutput::from_outer_size(Size { width, height });
         }
     }
 
-    <span class="macro">debug_log!</span>(<span class="string">&quot;BLOCK&quot;</span>);
+    <span class="macro">debug_log!</span>(<span class="string">"BLOCK"</span>);
     compute_inner(tree, node_id, LayoutInput { known_dimensions: styled_based_known_dimensions, ..inputs })
 }
 
@@ -913,12 +914,12 @@
     <span class="kw">let </span>can_be_collapsed_through =
         !has_styles_preventing_being_collapsed_through &amp;&amp; all_in_flow_children_can_be_collapsed_through;
 
-    <span class="attr">#[cfg_attr(not(feature = <span class="string">&quot;content_size&quot;</span>), allow(unused_variables))]
+    <span class="attr">#[cfg_attr(not(feature = <span class="string">"content_size"</span>), allow(unused_variables))]
     </span><span class="kw">let </span>content_size = inflow_content_size.f32_max(absolute_content_size);
 
     LayoutOutput {
         size: final_outer_size,
-        <span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
         </span>content_size,
         first_baselines: Point::NONE,
         top_margin: <span class="kw">if </span>own_margins_collapse_with_children.start {
@@ -1012,7 +1013,7 @@
     max_child_width
 }
 
-<span class="doccomment">/// Compute each child&#39;s final size and position
+<span class="doccomment">/// Compute each child's final size and position
 </span><span class="attr">#[inline]
 </span><span class="kw">fn </span>perform_final_layout_on_in_flow_children(
     tree: <span class="kw-2">&amp;mut </span><span class="kw">impl </span>PartialLayoutTree,
@@ -1028,7 +1029,7 @@
     <span class="kw">let </span>available_space =
         Size { width: AvailableSpace::Definite(container_inner_width), height: AvailableSpace::MinContent };
 
-    <span class="attr">#[cfg_attr(not(feature = <span class="string">&quot;content_size&quot;</span>), allow(unused_mut))]
+    <span class="attr">#[cfg_attr(not(feature = <span class="string">"content_size"</span>), allow(unused_mut))]
     </span><span class="kw">let </span><span class="kw-2">mut </span>inflow_content_size = Size::ZERO;
     <span class="kw">let </span><span class="kw-2">mut </span>committed_y_offset = resolved_content_box_inset.top;
     <span class="kw">let </span><span class="kw-2">mut </span>first_child_top_margin_set = CollapsibleMarginSet::ZERO;
@@ -1115,7 +1116,7 @@
                 <span class="kw-2">&amp;</span>Layout {
                     order: item.order,
                     size: item_layout.size,
-                    <span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+                    <span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
                     </span>content_size: item_layout.content_size,
                     scrollbar_size,
                     location,
@@ -1124,7 +1125,7 @@
                 },
             );
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
             </span>{
                 inflow_content_size = inflow_content_size.f32_max(compute_content_size_contribution(
                     location,
@@ -1178,7 +1179,7 @@
     <span class="kw">let </span>area_width = area_size.width;
     <span class="kw">let </span>area_height = area_size.height;
 
-    <span class="attr">#[cfg_attr(not(feature = <span class="string">&quot;content_size&quot;</span>), allow(unused_mut))]
+    <span class="attr">#[cfg_attr(not(feature = <span class="string">"content_size"</span>), allow(unused_mut))]
     </span><span class="kw">let </span><span class="kw-2">mut </span>absolute_content_size = Size::ZERO;
 
     <span class="kw">for </span>item <span class="kw">in </span>items.iter().filter(|item| item.position == Position::Absolute) {
@@ -1266,15 +1267,15 @@
             };
 
             <span class="kw">let </span>auto_margin_size = Size {
-                <span class="comment">// If all three of &#39;left&#39;, &#39;width&#39;, and &#39;right&#39; are &#39;auto&#39;: First set any &#39;auto&#39; values for &#39;margin-left&#39; and &#39;margin-right&#39; to 0.
-                // Then, if the &#39;direction&#39; property of the element establishing the static-position containing block is &#39;ltr&#39; set &#39;left&#39; to the
-                // static position and apply rule number three below; otherwise, set &#39;right&#39; to the static position and apply rule number one below.
+                <span class="comment">// If all three of 'left', 'width', and 'right' are 'auto': First set any 'auto' values for 'margin-left' and 'margin-right' to 0.
+                // Then, if the 'direction' property of the element establishing the static-position containing block is 'ltr' set 'left' to the
+                // static position and apply rule number three below; otherwise, set 'right' to the static position and apply rule number one below.
                 //
-                // If none of the three is &#39;auto&#39;: If both &#39;margin-left&#39; and &#39;margin-right&#39; are &#39;auto&#39;, solve the equation under the extra constraint
+                // If none of the three is 'auto': If both 'margin-left' and 'margin-right' are 'auto', solve the equation under the extra constraint
                 // that the two margins get equal values, unless this would make them negative, in which case when direction of the containing block is
-                // &#39;ltr&#39; (&#39;rtl&#39;), set &#39;margin-left&#39; (&#39;margin-right&#39;) to zero and solve for &#39;margin-right&#39; (&#39;margin-left&#39;). If one of &#39;margin-left&#39; or
-                // &#39;margin-right&#39; is &#39;auto&#39;, solve the equation for that value. If the values are over-constrained, ignore the value for &#39;left&#39; (in case
-                // the &#39;direction&#39; property of the containing block is &#39;rtl&#39;) or &#39;right&#39; (in case &#39;direction&#39; is &#39;ltr&#39;) and solve for that value.
+                // 'ltr' ('rtl'), set 'margin-left' ('margin-right') to zero and solve for 'margin-right' ('margin-left'). If one of 'margin-left' or
+                // 'margin-right' is 'auto', solve the equation for that value. If the values are over-constrained, ignore the value for 'left' (in case
+                // the 'direction' property of the containing block is 'rtl') or 'right' (in case 'direction' is 'ltr') and solve for that value.
                 </span>width: {
                     <span class="kw">let </span>auto_margin_count = margin.left.is_none() <span class="kw">as </span>u8 + margin.right.is_none() <span class="kw">as </span>u8;
                     <span class="kw">if </span>auto_margin_count == <span class="number">2
@@ -1340,7 +1341,7 @@
             <span class="kw-2">&amp;</span>Layout {
                 order: item.order,
                 size: final_size,
-                <span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+                <span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
                 </span>content_size: layout_output.content_size,
                 scrollbar_size,
                 location,
@@ -1349,7 +1350,7 @@
             },
         );
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;content_size&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"content_size"</span>)]
         </span>{
             absolute_content_size = absolute_content_size.f32_max(compute_content_size_contribution(
                 location,

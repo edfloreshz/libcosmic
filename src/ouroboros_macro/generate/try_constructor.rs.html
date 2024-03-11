@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ouroboros_macro-0.17.2/src/generate/try_constructor.rs`."><title>try_constructor.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="ouroboros_macro" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/ouroboros_macro-0.17.2/src/generate/try_constructor.rs`."><title>try_constructor.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="ouroboros_macro" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -340,56 +341,56 @@
     <span class="kw">let </span><span class="kw-2">mut </span>current_head_index = <span class="number">0</span>;
 
     <span class="kw">let </span>builder_struct_name = <span class="kw">match </span>builder_type {
-        BuilderType::AsyncSend =&gt; <span class="macro">format_ident!</span>(<span class="string">&quot;{}AsyncSendTryBuilder&quot;</span>, info.ident),
-        BuilderType::Async =&gt; <span class="macro">format_ident!</span>(<span class="string">&quot;{}AsyncTryBuilder&quot;</span>, info.ident),
-        BuilderType::Sync =&gt; <span class="macro">format_ident!</span>(<span class="string">&quot;{}TryBuilder&quot;</span>, info.ident),
+        BuilderType::AsyncSend =&gt; <span class="macro">format_ident!</span>(<span class="string">"{}AsyncSendTryBuilder"</span>, info.ident),
+        BuilderType::Async =&gt; <span class="macro">format_ident!</span>(<span class="string">"{}AsyncTryBuilder"</span>, info.ident),
+        BuilderType::Sync =&gt; <span class="macro">format_ident!</span>(<span class="string">"{}TryBuilder"</span>, info.ident),
     };
     <span class="kw">let </span>documentation = <span class="macro">format!</span>(
         <span class="macro">concat!</span>(
-            <span class="string">&quot;(See also [`{0}::try_build()`]({0}::try_build).) Like [`new`](Self::new), but &quot;</span>,
-            <span class="string">&quot;builders for [self-referencing fields](https://docs.rs/ouroboros/latest/ouroboros/attr.self_referencing.html#definitions) &quot;</span>,
-            <span class="string">&quot;can return results. If any of them fail, `Err` is returned. If all of them &quot;</span>,
-            <span class="string">&quot;succeed, `Ok` is returned. The arguments are as follows:\n\n&quot;</span>,
-            <span class="string">&quot;| Argument | Suggested Use |\n| --- | --- |\n&quot;</span>,
+            <span class="string">"(See also [`{0}::try_build()`]({0}::try_build).) Like [`new`](Self::new), but "</span>,
+            <span class="string">"builders for [self-referencing fields](https://docs.rs/ouroboros/latest/ouroboros/attr.self_referencing.html#definitions) "</span>,
+            <span class="string">"can return results. If any of them fail, `Err` is returned. If all of them "</span>,
+            <span class="string">"succeed, `Ok` is returned. The arguments are as follows:\n\n"</span>,
+            <span class="string">"| Argument | Suggested Use |\n| --- | --- |\n"</span>,
         ),
         builder_struct_name.to_string()
     );
     <span class="kw">let </span>or_recover_documentation = <span class="macro">format!</span>(
         <span class="macro">concat!</span>(
-            <span class="string">&quot;(See also [`{0}::try_build_or_recover()`]({0}::try_build_or_recover).) Like &quot;</span>,
-            <span class="string">&quot;[`try_new`](Self::try_new), but all &quot;</span>,
-            <span class="string">&quot;[head fields](https://docs.rs/ouroboros/latest/ouroboros/attr.self_referencing.html#definitions) &quot;</span>,
-            <span class="string">&quot;are returned in the case of an error. The arguments are as follows:\n\n&quot;</span>,
-            <span class="string">&quot;| Argument | Suggested Use |\n| --- | --- |\n&quot;</span>,
+            <span class="string">"(See also [`{0}::try_build_or_recover()`]({0}::try_build_or_recover).) Like "</span>,
+            <span class="string">"[`try_new`](Self::try_new), but all "</span>,
+            <span class="string">"[head fields](https://docs.rs/ouroboros/latest/ouroboros/attr.self_referencing.html#definitions) "</span>,
+            <span class="string">"are returned in the case of an error. The arguments are as follows:\n\n"</span>,
+            <span class="string">"| Argument | Suggested Use |\n| --- | --- |\n"</span>,
         ),
         builder_struct_name.to_string()
     );
     <span class="kw">let </span>builder_documentation = <span class="macro">concat!</span>(
-        <span class="string">&quot;A more verbose but stable way to construct self-referencing structs. It is &quot;</span>,
-        <span class="string">&quot;comparable to using `StructName { field1: value1, field2: value2 }` rather than &quot;</span>,
-        <span class="string">&quot;`StructName::new(value1, value2)`. This has the dual benefit of making your code &quot;</span>,
-        <span class="string">&quot;both easier to refactor and more readable. Call [`try_build()`](Self::try_build) or &quot;</span>,
-        <span class="string">&quot;[`try_build_or_recover()`](Self::try_build_or_recover) to &quot;</span>,
-        <span class="string">&quot;construct the actual struct. The fields of this struct should be used as follows:\n\n&quot;</span>,
-        <span class="string">&quot;| Field | Suggested Use |\n| --- | --- |\n&quot;</span>,
+        <span class="string">"A more verbose but stable way to construct self-referencing structs. It is "</span>,
+        <span class="string">"comparable to using `StructName { field1: value1, field2: value2 }` rather than "</span>,
+        <span class="string">"`StructName::new(value1, value2)`. This has the dual benefit of making your code "</span>,
+        <span class="string">"both easier to refactor and more readable. Call [`try_build()`](Self::try_build) or "</span>,
+        <span class="string">"[`try_build_or_recover()`](Self::try_build_or_recover) to "</span>,
+        <span class="string">"construct the actual struct. The fields of this struct should be used as follows:\n\n"</span>,
+        <span class="string">"| Field | Suggested Use |\n| --- | --- |\n"</span>,
     )
     .to_owned();
     <span class="kw">let </span>build_fn_documentation = <span class="macro">format!</span>(
         <span class="macro">concat!</span>(
-            <span class="string">&quot;Calls [`{0}::try_new()`]({0}::try_new) using the provided values. This is &quot;</span>,
-            <span class="string">&quot;preferable over calling `try_new()` directly for the reasons listed above. &quot;
+            <span class="string">"Calls [`{0}::try_new()`]({0}::try_new) using the provided values. This is "</span>,
+            <span class="string">"preferable over calling `try_new()` directly for the reasons listed above. "
         </span>),
         info.ident.to_string()
     );
     <span class="kw">let </span>build_or_recover_fn_documentation = <span class="macro">format!</span>(
         <span class="macro">concat!</span>(
-            <span class="string">&quot;Calls [`{0}::try_new_or_recover()`]({0}::try_new_or_recover) using the provided &quot;</span>,
-            <span class="string">&quot;values. This is preferable over calling `try_new_or_recover()` directly for the &quot;</span>,
-            <span class="string">&quot;reasons listed above. &quot;
+            <span class="string">"Calls [`{0}::try_new_or_recover()`]({0}::try_new_or_recover) using the provided "</span>,
+            <span class="string">"values. This is preferable over calling `try_new_or_recover()` directly for the "</span>,
+            <span class="string">"reasons listed above. "
         </span>),
         info.ident.to_string()
     );
-    <span class="kw">let </span><span class="kw-2">mut </span>doc_table = <span class="string">&quot;&quot;</span>.to_owned();
+    <span class="kw">let </span><span class="kw-2">mut </span>doc_table = <span class="string">""</span>.to_owned();
     <span class="kw">let </span><span class="kw-2">mut </span>or_recover_code: Vec&lt;TokenStream&gt; = Vec::new();
     <span class="kw">let </span><span class="kw-2">mut </span>params: Vec&lt;TokenStream&gt; = Vec::new();
     <span class="kw">let </span><span class="kw-2">mut </span>builder_struct_generic_producers: Vec&lt;<span class="kw">_</span>&gt; = info
@@ -411,7 +412,7 @@
             builder_struct_fields.push(<span class="macro">quote! </span>{ #field_name: #plain_type });
             builder_struct_field_names.push(<span class="macro">quote! </span>{ #field_name });
             doc_table += <span class="kw-2">&amp;</span><span class="macro">format!</span>(
-                <span class="string">&quot;| `{}` | Directly pass in the value this field should contain |\n&quot;</span>,
+                <span class="string">"| `{}` | Directly pass in the value this field should contain |\n"</span>,
                 field_name.to_string()
             );
             <span class="kw">if </span>!field.self_referencing {
@@ -434,23 +435,23 @@
             // code is a string and it all turns green.
             </span>{}
             doc_table += <span class="kw-2">&amp;</span><span class="macro">format!</span>(
-                <span class="string">&quot;| `{}` | Use a function or closure: `(&quot;</span>,
+                <span class="string">"| `{}` | Use a function or closure: `("</span>,
                 builder_name.to_string()
             );
             <span class="kw">let </span><span class="kw-2">mut </span>builder_args = Vec::new();
             <span class="kw">for </span>(index, borrow) <span class="kw">in </span>field.borrows.iter().enumerate() {
                 <span class="kw">let </span>borrowed_name = <span class="kw-2">&amp;</span>info.fields[borrow.index].name;
-                builder_args.push(<span class="macro">format_ident!</span>(<span class="string">&quot;{}_illegal_static_reference&quot;</span>, borrowed_name));
+                builder_args.push(<span class="macro">format_ident!</span>(<span class="string">"{}_illegal_static_reference"</span>, borrowed_name));
                 doc_table += <span class="kw-2">&amp;</span><span class="macro">format!</span>(
-                    <span class="string">&quot;{}: &amp;{}_&quot;</span>,
+                    <span class="string">"{}: &amp;{}_"</span>,
                     borrowed_name.to_string(),
-                    <span class="kw">if </span>borrow.mutable { <span class="string">&quot;mut &quot; </span>} <span class="kw">else </span>{ <span class="string">&quot;&quot; </span>},
+                    <span class="kw">if </span>borrow.mutable { <span class="string">"mut " </span>} <span class="kw">else </span>{ <span class="string">"" </span>},
                 );
                 <span class="kw">if </span>index &lt; field.borrows.len() - <span class="number">1 </span>{
-                    doc_table += <span class="string">&quot;, &quot;</span>;
+                    doc_table += <span class="string">", "</span>;
                 }
             }
-            doc_table += <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;) -&gt; Result&lt;{}: _, Error_&gt;` | \n&quot;</span>, field_name.to_string());
+            doc_table += <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">") -&gt; Result&lt;{}: _, Error_&gt;` | \n"</span>, field_name.to_string());
             <span class="kw">let </span>builder_value = <span class="kw">if </span>builder_type.is_async() {
                 <span class="macro">quote! </span>{ #builder_name (#(#builder_args),<span class="kw-2">*</span>).<span class="kw">await </span>}
             } <span class="kw">else </span>{
@@ -464,7 +465,7 @@
                 };
             });
             <span class="kw">let </span>generic_type_name =
-                <span class="macro">format_ident!</span>(<span class="string">&quot;{}Builder_&quot;</span>, to_class_case(field_name.to_string().as_str()));
+                <span class="macro">format_ident!</span>(<span class="string">"{}Builder_"</span>, to_class_case(field_name.to_string().as_str()));
 
             builder_struct_generic_producers.push(<span class="macro">quote! </span>{ #generic_type_name: #bound_type });
             builder_struct_generic_consumers.push(<span class="macro">quote! </span>{ #generic_type_name });

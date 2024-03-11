@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/notify-6.1.1/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="notify" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/notify-6.1.1/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="notify" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -455,10 +456,10 @@
 //!
 //! ```toml
 //! [dependencies]
-//! notify = &quot;6.1.1&quot;
+//! notify = "6.1.1"
 //! ```
 //!
-//! If you want debounced events (or don&#39;t need them in-order), see [notify-debouncer-mini](https://docs.rs/notify-debouncer-mini/latest/notify_debouncer_mini/)
+//! If you want debounced events (or don't need them in-order), see [notify-debouncer-mini](https://docs.rs/notify-debouncer-mini/latest/notify_debouncer_mini/)
 //! or [notify-debouncer-full](https://docs.rs/notify-debouncer-full/latest/notify_debouncer_full/).
 //!
 //! ## Features
@@ -475,7 +476,7 @@
 //! Events are serializable via [serde](https://serde.rs) if the `serde` feature is enabled:
 //!
 //! ```toml
-//! notify = { version = &quot;6.1.1&quot;, features = [&quot;serde&quot;] }
+//! notify = { version = "6.1.1", features = ["serde"] }
 //! ```
 //!
 //! ### Crossbeam-Channel &amp; Tokio
@@ -486,7 +487,7 @@
 //! You can disable crossbeam-channel, letting notify fallback to std channels via
 //!
 //! ```toml
-//! notify = { version = &quot;6.1.1&quot;, default-features = false, features = [&quot;macos_kqueue&quot;] }
+//! notify = { version = "6.1.1", default-features = false, features = ["macos_kqueue"] }
 //! // Alternatively macos_fsevent instead of macos_kqueue
 //! ```
 //! Note the `macos_kqueue` requirement here, otherwise no native backend is available on macos.
@@ -503,7 +504,7 @@
 //! ### Docker with Linux on MacOS M1
 //!
 //! Docker on macos M1 [throws](https://github.com/notify-rs/notify/issues/423) `Function not implemented (os error 38)`.
-//! You have to manually use the [PollWatcher], as the native backend isn&#39;t available inside the emulation.
+//! You have to manually use the [PollWatcher], as the native backend isn't available inside the emulation.
 //!
 //! ### MacOS, FSEvents and unowned files
 //!
@@ -540,7 +541,7 @@
 //! sudo sysctl -p
 //! ```
 //!
-//! Note that the [PollWatcher] is not restricted by this limitation, so it may be an alternative if your users can&#39;t increase the limit.
+//! Note that the [PollWatcher] is not restricted by this limitation, so it may be an alternative if your users can't increase the limit.
 //!
 //! ### Watching large directories
 //! 
@@ -559,20 +560,20 @@
 //!     // Automatically select the best implementation for your platform.
 //!     let mut watcher = notify::recommended_watcher(|res| {
 //!         match res {
-//!            Ok(event) =&gt; println!(&quot;event: {:?}&quot;, event),
-//!            Err(e) =&gt; println!(&quot;watch error: {:?}&quot;, e),
+//!            Ok(event) =&gt; println!("event: {:?}", event),
+//!            Err(e) =&gt; println!("watch error: {:?}", e),
 //!         }
 //!     })?;
 //!
 //!     // Add a path to be watched. All files and directories at that path and
 //!     // below will be monitored for changes.
 //! #     #[cfg(not(any(
-//! #     target_os = &quot;freebsd&quot;,
-//! #     target_os = &quot;openbsd&quot;,
-//! #     target_os = &quot;dragonflybsd&quot;,
-//! #     target_os = &quot;netbsd&quot;)))]
-//! #     { // &quot;.&quot; doesn&#39;t exist on BSD for some reason in CI
-//!     watcher.watch(Path::new(&quot;.&quot;), RecursiveMode::Recursive)?;
+//! #     target_os = "freebsd",
+//! #     target_os = "openbsd",
+//! #     target_os = "dragonflybsd",
+//! #     target_os = "netbsd")))]
+//! #     { // "." doesn't exist on BSD for some reason in CI
+//!     watcher.watch(Path::new("."), RecursiveMode::Recursive)?;
 //! #     }
 //!
 //!     Ok(())
@@ -591,8 +592,8 @@
 //! # fn main() -&gt; Result&lt;()&gt; {
 //!       fn event_fn(res: Result&lt;notify::Event&gt;) {
 //!           match res {
-//!              Ok(event) =&gt; println!(&quot;event: {:?}&quot;, event),
-//!              Err(e) =&gt; println!(&quot;watch error: {:?}&quot;, e),
+//!              Ok(event) =&gt; println!("event: {:?}", event),
+//!              Err(e) =&gt; println!("watch error: {:?}", e),
 //!           }
 //!       }
 //!
@@ -600,13 +601,13 @@
 //!       // we will just use the same watcher kind again here
 //!       let mut watcher2 = notify::recommended_watcher(event_fn)?;
 //! #     #[cfg(not(any(
-//! #     target_os = &quot;freebsd&quot;,
-//! #     target_os = &quot;openbsd&quot;,
-//! #     target_os = &quot;dragonflybsd&quot;,
-//! #     target_os = &quot;netbsd&quot;)))]
-//! #     { // &quot;.&quot; doesn&#39;t exist on BSD for some reason in CI
-//! #     watcher1.watch(Path::new(&quot;.&quot;), RecursiveMode::Recursive)?;
-//! #     watcher2.watch(Path::new(&quot;.&quot;), RecursiveMode::Recursive)?;
+//! #     target_os = "freebsd",
+//! #     target_os = "openbsd",
+//! #     target_os = "dragonflybsd",
+//! #     target_os = "netbsd")))]
+//! #     { // "." doesn't exist on BSD for some reason in CI
+//! #     watcher1.watch(Path::new("."), RecursiveMode::Recursive)?;
+//! #     watcher2.watch(Path::new("."), RecursiveMode::Recursive)?;
 //! #     }
 //!       // dropping the watcher1/2 here (no loop etc) will end the program
 //! #
@@ -622,75 +623,75 @@
 <span class="kw">use </span>std::path::Path;
 
 <span class="attr">#[allow(dead_code)]
-#[cfg(feature = <span class="string">&quot;crossbeam-channel&quot;</span>)]
+#[cfg(feature = <span class="string">"crossbeam-channel"</span>)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">type </span>Receiver&lt;T&gt; = crossbeam_channel::Receiver&lt;T&gt;;
 <span class="attr">#[allow(dead_code)]
-#[cfg(not(feature = <span class="string">&quot;crossbeam-channel&quot;</span>))]
+#[cfg(not(feature = <span class="string">"crossbeam-channel"</span>))]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">type </span>Receiver&lt;T&gt; = std::sync::mpsc::Receiver&lt;T&gt;;
 
 <span class="attr">#[allow(dead_code)]
-#[cfg(feature = <span class="string">&quot;crossbeam-channel&quot;</span>)]
+#[cfg(feature = <span class="string">"crossbeam-channel"</span>)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">type </span>Sender&lt;T&gt; = crossbeam_channel::Sender&lt;T&gt;;
 <span class="attr">#[allow(dead_code)]
-#[cfg(not(feature = <span class="string">&quot;crossbeam-channel&quot;</span>))]
+#[cfg(not(feature = <span class="string">"crossbeam-channel"</span>))]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">type </span>Sender&lt;T&gt; = std::sync::mpsc::Sender&lt;T&gt;;
 
 <span class="comment">// std limitation
 </span><span class="attr">#[allow(dead_code)]
-#[cfg(feature = <span class="string">&quot;crossbeam-channel&quot;</span>)]
+#[cfg(feature = <span class="string">"crossbeam-channel"</span>)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">type </span>BoundSender&lt;T&gt; = crossbeam_channel::Sender&lt;T&gt;;
 <span class="attr">#[allow(dead_code)]
-#[cfg(not(feature = <span class="string">&quot;crossbeam-channel&quot;</span>))]
+#[cfg(not(feature = <span class="string">"crossbeam-channel"</span>))]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">type </span>BoundSender&lt;T&gt; = std::sync::mpsc::SyncSender&lt;T&gt;;
 
 <span class="attr">#[allow(dead_code)]
 #[inline]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>unbounded&lt;T&gt;() -&gt; (Sender&lt;T&gt;, Receiver&lt;T&gt;) {
-    <span class="attr">#[cfg(feature = <span class="string">&quot;crossbeam-channel&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"crossbeam-channel"</span>)]
     </span><span class="kw">return </span>crossbeam_channel::unbounded();
-    <span class="attr">#[cfg(not(feature = <span class="string">&quot;crossbeam-channel&quot;</span>))]
+    <span class="attr">#[cfg(not(feature = <span class="string">"crossbeam-channel"</span>))]
     </span><span class="kw">return </span>std::sync::mpsc::channel();
 }
 
 <span class="attr">#[allow(dead_code)]
 #[inline]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>bounded&lt;T&gt;(cap: usize) -&gt; (BoundSender&lt;T&gt;, Receiver&lt;T&gt;) {
-    <span class="attr">#[cfg(feature = <span class="string">&quot;crossbeam-channel&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"crossbeam-channel"</span>)]
     </span><span class="kw">return </span>crossbeam_channel::bounded(cap);
-    <span class="attr">#[cfg(not(feature = <span class="string">&quot;crossbeam-channel&quot;</span>))]
+    <span class="attr">#[cfg(not(feature = <span class="string">"crossbeam-channel"</span>))]
     </span><span class="kw">return </span>std::sync::mpsc::sync_channel(cap);
 }
 
-<span class="attr">#[cfg(all(target_os = <span class="string">&quot;macos&quot;</span>, not(feature = <span class="string">&quot;macos_kqueue&quot;</span>)))]
+<span class="attr">#[cfg(all(target_os = <span class="string">"macos"</span>, not(feature = <span class="string">"macos_kqueue"</span>)))]
 </span><span class="kw">pub use </span><span class="kw">crate</span>::fsevent::FsEventWatcher;
-<span class="attr">#[cfg(any(target_os = <span class="string">&quot;linux&quot;</span>, target_os = <span class="string">&quot;android&quot;</span>))]
+<span class="attr">#[cfg(any(target_os = <span class="string">"linux"</span>, target_os = <span class="string">"android"</span>))]
 </span><span class="kw">pub use </span><span class="kw">crate</span>::inotify::INotifyWatcher;
 <span class="attr">#[cfg(any(
-    target_os = <span class="string">&quot;freebsd&quot;</span>,
-    target_os = <span class="string">&quot;openbsd&quot;</span>,
-    target_os = <span class="string">&quot;netbsd&quot;</span>,
-    target_os = <span class="string">&quot;dragonflybsd&quot;</span>,
-    all(target_os = <span class="string">&quot;macos&quot;</span>, feature = <span class="string">&quot;macos_kqueue&quot;</span>)
+    target_os = <span class="string">"freebsd"</span>,
+    target_os = <span class="string">"openbsd"</span>,
+    target_os = <span class="string">"netbsd"</span>,
+    target_os = <span class="string">"dragonflybsd"</span>,
+    all(target_os = <span class="string">"macos"</span>, feature = <span class="string">"macos_kqueue"</span>)
 ))]
 </span><span class="kw">pub use </span><span class="kw">crate</span>::kqueue::KqueueWatcher;
 <span class="kw">pub use </span>null::NullWatcher;
 <span class="kw">pub use </span>poll::PollWatcher;
-<span class="attr">#[cfg(target_os = <span class="string">&quot;windows&quot;</span>)]
+<span class="attr">#[cfg(target_os = <span class="string">"windows"</span>)]
 </span><span class="kw">pub use </span>windows::ReadDirectoryChangesWatcher;
 
-<span class="attr">#[cfg(all(target_os = <span class="string">&quot;macos&quot;</span>, not(feature = <span class="string">&quot;macos_kqueue&quot;</span>)))]
+<span class="attr">#[cfg(all(target_os = <span class="string">"macos"</span>, not(feature = <span class="string">"macos_kqueue"</span>)))]
 </span><span class="kw">pub mod </span>fsevent;
-<span class="attr">#[cfg(any(target_os = <span class="string">&quot;linux&quot;</span>, target_os = <span class="string">&quot;android&quot;</span>))]
+<span class="attr">#[cfg(any(target_os = <span class="string">"linux"</span>, target_os = <span class="string">"android"</span>))]
 </span><span class="kw">pub mod </span>inotify;
 <span class="attr">#[cfg(any(
-    target_os = <span class="string">&quot;freebsd&quot;</span>,
-    target_os = <span class="string">&quot;openbsd&quot;</span>,
-    target_os = <span class="string">&quot;dragonflybsd&quot;</span>,
-    target_os = <span class="string">&quot;netbsd&quot;</span>,
-    all(target_os = <span class="string">&quot;macos&quot;</span>, feature = <span class="string">&quot;macos_kqueue&quot;</span>)
+    target_os = <span class="string">"freebsd"</span>,
+    target_os = <span class="string">"openbsd"</span>,
+    target_os = <span class="string">"dragonflybsd"</span>,
+    target_os = <span class="string">"netbsd"</span>,
+    all(target_os = <span class="string">"macos"</span>, feature = <span class="string">"macos_kqueue"</span>)
 ))]
 </span><span class="kw">pub mod </span>kqueue;
-<span class="attr">#[cfg(target_os = <span class="string">&quot;windows&quot;</span>)]
+<span class="attr">#[cfg(target_os = <span class="string">"windows"</span>)]
 </span><span class="kw">pub mod </span>windows;
 
 <span class="kw">pub mod </span>event;
@@ -713,26 +714,26 @@
 /// impl EventHandler for EventPrinter {
 ///     fn handle_event(&amp;mut self, event: Result&lt;Event&gt;) {
 ///         if let Ok(event) = event {
-///             println!(&quot;Event: {:?}&quot;, event);
+///             println!("Event: {:?}", event);
 ///         }
 ///     }
 /// }
 /// ```
-</span><span class="kw">pub trait </span>EventHandler: Send + <span class="lifetime">&#39;static </span>{
+</span><span class="kw">pub trait </span>EventHandler: Send + <span class="lifetime">'static </span>{
     <span class="doccomment">/// Handles an event.
     </span><span class="kw">fn </span>handle_event(<span class="kw-2">&amp;mut </span><span class="self">self</span>, event: <span class="prelude-ty">Result</span>&lt;Event&gt;);
 }
 
 <span class="kw">impl</span>&lt;F&gt; EventHandler <span class="kw">for </span>F
 <span class="kw">where
-    </span>F: FnMut(<span class="prelude-ty">Result</span>&lt;Event&gt;) + Send + <span class="lifetime">&#39;static</span>,
+    </span>F: FnMut(<span class="prelude-ty">Result</span>&lt;Event&gt;) + Send + <span class="lifetime">'static</span>,
 {
     <span class="kw">fn </span>handle_event(<span class="kw-2">&amp;mut </span><span class="self">self</span>, event: <span class="prelude-ty">Result</span>&lt;Event&gt;) {
         (<span class="self">self</span>)(event);
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;crossbeam-channel&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"crossbeam-channel"</span>)]
 </span><span class="kw">impl </span>EventHandler <span class="kw">for </span>crossbeam_channel::Sender&lt;<span class="prelude-ty">Result</span>&lt;Event&gt;&gt; {
     <span class="kw">fn </span>handle_event(<span class="kw-2">&amp;mut </span><span class="self">self</span>, event: <span class="prelude-ty">Result</span>&lt;Event&gt;) {
         <span class="kw">let _ </span>= <span class="self">self</span>.send(event);
@@ -818,33 +819,33 @@
 }
 
 <span class="doccomment">/// The recommended `Watcher` implementation for the current platform
-</span><span class="attr">#[cfg(any(target_os = <span class="string">&quot;linux&quot;</span>, target_os = <span class="string">&quot;android&quot;</span>))]
+</span><span class="attr">#[cfg(any(target_os = <span class="string">"linux"</span>, target_os = <span class="string">"android"</span>))]
 </span><span class="kw">pub type </span>RecommendedWatcher = INotifyWatcher;
 <span class="doccomment">/// The recommended `Watcher` implementation for the current platform
-</span><span class="attr">#[cfg(all(target_os = <span class="string">&quot;macos&quot;</span>, not(feature = <span class="string">&quot;macos_kqueue&quot;</span>)))]
+</span><span class="attr">#[cfg(all(target_os = <span class="string">"macos"</span>, not(feature = <span class="string">"macos_kqueue"</span>)))]
 </span><span class="kw">pub type </span>RecommendedWatcher = FsEventWatcher;
 <span class="doccomment">/// The recommended `Watcher` implementation for the current platform
-</span><span class="attr">#[cfg(target_os = <span class="string">&quot;windows&quot;</span>)]
+</span><span class="attr">#[cfg(target_os = <span class="string">"windows"</span>)]
 </span><span class="kw">pub type </span>RecommendedWatcher = ReadDirectoryChangesWatcher;
 <span class="doccomment">/// The recommended `Watcher` implementation for the current platform
 </span><span class="attr">#[cfg(any(
-    target_os = <span class="string">&quot;freebsd&quot;</span>,
-    target_os = <span class="string">&quot;openbsd&quot;</span>,
-    target_os = <span class="string">&quot;netbsd&quot;</span>,
-    target_os = <span class="string">&quot;dragonflybsd&quot;</span>,
-    all(target_os = <span class="string">&quot;macos&quot;</span>, feature = <span class="string">&quot;macos_kqueue&quot;</span>)
+    target_os = <span class="string">"freebsd"</span>,
+    target_os = <span class="string">"openbsd"</span>,
+    target_os = <span class="string">"netbsd"</span>,
+    target_os = <span class="string">"dragonflybsd"</span>,
+    all(target_os = <span class="string">"macos"</span>, feature = <span class="string">"macos_kqueue"</span>)
 ))]
 </span><span class="kw">pub type </span>RecommendedWatcher = KqueueWatcher;
 <span class="doccomment">/// The recommended `Watcher` implementation for the current platform
 </span><span class="attr">#[cfg(not(any(
-    target_os = <span class="string">&quot;linux&quot;</span>,
-    target_os = <span class="string">&quot;android&quot;</span>,
-    target_os = <span class="string">&quot;macos&quot;</span>,
-    target_os = <span class="string">&quot;windows&quot;</span>,
-    target_os = <span class="string">&quot;freebsd&quot;</span>,
-    target_os = <span class="string">&quot;openbsd&quot;</span>,
-    target_os = <span class="string">&quot;netbsd&quot;</span>,
-    target_os = <span class="string">&quot;dragonflybsd&quot;
+    target_os = <span class="string">"linux"</span>,
+    target_os = <span class="string">"android"</span>,
+    target_os = <span class="string">"macos"</span>,
+    target_os = <span class="string">"windows"</span>,
+    target_os = <span class="string">"freebsd"</span>,
+    target_os = <span class="string">"openbsd"</span>,
+    target_os = <span class="string">"netbsd"</span>,
+    target_os = <span class="string">"dragonflybsd"
 </span>)))]
 </span><span class="kw">pub type </span>RecommendedWatcher = PollWatcher;
 

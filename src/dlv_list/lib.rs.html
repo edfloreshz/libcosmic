@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/dlv-list-0.5.2/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="dlv_list" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/dlv-list-0.5.2/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="dlv_list" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -3555,7 +3556,7 @@
 
 </span><span class="attr">#![allow(unsafe_code)]
 #![cfg_attr(coverage_nightly, feature(coverage_attribute))]
-#![cfg_attr(not(any(feature = <span class="string">&quot;std&quot;</span>, test)), no_std)]
+#![cfg_attr(not(any(feature = <span class="string">"std"</span>, test)), no_std)]
 
 </span><span class="kw">extern crate </span>alloc;
 
@@ -3572,20 +3573,20 @@
   ops,
 };
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
 </span><span class="kw">use </span>std::collections::HashMap;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;serde&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"serde"</span>)]
 </span><span class="kw">mod </span>serde;
 
-<span class="doccomment">/// Number type that&#39;s capable of representing [0, usize::MAX - 1]
+<span class="doccomment">/// Number type that's capable of representing [0, usize::MAX - 1]
 </span><span class="attr">#[repr(transparent)]
 #[derive(Clone, Copy, Eq, Hash, Ord, PartialEq, PartialOrd)]
 </span><span class="kw">struct </span>NonMaxUsize(NonZeroUsize);
 
 <span class="kw">impl </span>Debug <span class="kw">for </span>NonMaxUsize {
-  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
-    <span class="macro">write!</span>(f, <span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.get())
+  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
+    <span class="macro">write!</span>(f, <span class="string">"{}"</span>, <span class="self">self</span>.get())
   }
 }
 
@@ -3611,21 +3612,21 @@
   /// # Safety
   ///
   /// `index` must not be `usize::MAX`
-  </span><span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  </span><span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[inline]
   </span><span class="kw">const unsafe fn </span>new_unchecked(index: usize) -&gt; <span class="self">Self </span>{
     <span class="self">Self</span>(<span class="kw">unsafe </span>{ NonZeroUsize::new_unchecked(index + <span class="number">1</span>) })
   }
 
   <span class="doccomment">/// Add an unsigned integer to a index. Check for bound violation and return `None` if the result will be larger than or equal to `usize::MAX`
-  </span><span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  </span><span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[inline]
   </span><span class="kw">fn </span>checked_add(<span class="kw-2">&amp;</span><span class="self">self</span>, rhs: usize) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
     <span class="self">self</span>.<span class="number">0</span>.checked_add(rhs).map(<span class="self">Self</span>)
   }
 
   <span class="doccomment">/// Subtract an unsigned integer from a index. Check for bound violation and return `None` if the result will be less than 0.
-  </span><span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  </span><span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[inline]
   </span><span class="kw">fn </span>checked_sub(<span class="kw-2">&amp;</span><span class="self">self</span>, rhs: usize) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>&gt; {
     <span class="comment">// Safety: `self` is less than `usize::MAX`, so `self - rhs` can only be less than `usize::MAX`
@@ -3635,7 +3636,7 @@
       .map(|i| <span class="kw">unsafe </span>{ <span class="self">Self</span>::new_unchecked(i) })
   }
 
-  <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  <span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[inline]
   </span><span class="kw">const fn </span>zero() -&gt; <span class="self">Self </span>{
     <span class="self">Self</span>(<span class="kw">unsafe </span>{ NonZeroUsize::new_unchecked(<span class="number">1</span>) })
@@ -3876,10 +3877,10 @@
   ///     assert_eq!(iter.next(), None);
   /// }
   ///
-  /// println!(&quot;{}&quot;, list.len());
+  /// println!("{}", list.len());
   /// assert!(list.is_empty());
   /// ```
-  </span><span class="kw">pub fn </span>drain(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; Drain&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+  </span><span class="kw">pub fn </span>drain(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; Drain&lt;<span class="lifetime">'_</span>, T&gt; {
     Drain {
       head: <span class="self">self</span>.head,
       remaining: <span class="self">self</span>.length,
@@ -4164,14 +4165,14 @@
       Entry::Occupied(entry) <span class="kw">if </span>entry.generation == index.generation =&gt; {
         (entry.previous, entry.next)
       }
-      <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;expected occupied entry with correct generation at `index`&quot;</span>),
+      <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">"expected occupied entry with correct generation at `index`"</span>),
     };
     <span class="kw">let </span>target_next_index = <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.entries[target.index()] {
       Entry::Occupied(entry) <span class="kw">if </span>entry.generation == target.generation =&gt; entry.next,
-      <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;expected occupied entry with correct generation at `target`&quot;</span>),
+      <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">"expected occupied entry with correct generation at `target`"</span>),
     };
     <span class="kw">if </span>target.index == index.index {
-      <span class="macro">panic!</span>(<span class="string">&quot;cannot move after `index` itself&quot;</span>);
+      <span class="macro">panic!</span>(<span class="string">"cannot move after `index` itself"</span>);
     }
     <span class="kw">if </span>previous_index == <span class="prelude-val">Some</span>(target.index) {
       <span class="comment">// Already in the right place
@@ -4208,14 +4209,14 @@
       Entry::Occupied(entry) <span class="kw">if </span>entry.generation == index.generation =&gt; {
         (entry.previous, entry.next)
       }
-      <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;expected occupied entry with correct generation at `index`&quot;</span>),
+      <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">"expected occupied entry with correct generation at `index`"</span>),
     };
     <span class="kw">let </span>target_previous_index = <span class="kw">match </span><span class="kw-2">&amp;</span><span class="self">self</span>.entries[target.index()] {
       Entry::Occupied(entry) <span class="kw">if </span>entry.generation == target.generation =&gt; entry.previous,
-      <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;expected occupied entry with correct generation at `target`&quot;</span>),
+      <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">"expected occupied entry with correct generation at `target`"</span>),
     };
     <span class="kw">if </span>target.index == index.index {
-      <span class="macro">panic!</span>(<span class="string">&quot;cannot move before `index` itself&quot;</span>);
+      <span class="macro">panic!</span>(<span class="string">"cannot move before `index` itself"</span>);
     }
     <span class="kw">if </span>next_index == <span class="prelude-val">Some</span>(target.index) {
       <span class="comment">// Already in the right place
@@ -4247,7 +4248,7 @@
   /// assert_eq!(indices.next(), None);
   /// ```
   </span><span class="attr">#[must_use]
-  </span><span class="kw">pub fn </span>indices(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Indices&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+  </span><span class="kw">pub fn </span>indices(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Indices&lt;<span class="lifetime">'_</span>, T&gt; {
     Indices {
       entries: <span class="kw-2">&amp;</span><span class="self">self</span>.entries,
       head: <span class="self">self</span>.head,
@@ -4286,7 +4287,7 @@
   </span><span class="kw">pub fn </span>insert_after(<span class="kw-2">&amp;mut </span><span class="self">self</span>, index: Index&lt;T&gt;, value: T) -&gt; Index&lt;T&gt; {
     <span class="kw">let </span>next_index = <span class="kw">match </span><span class="kw-2">&amp;mut </span><span class="self">self</span>.entries[index.index()] {
       Entry::Occupied(entry) <span class="kw">if </span>entry.generation == index.generation =&gt; entry.next,
-      <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;expected occupied entry with correct generation&quot;</span>),
+      <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">"expected occupied entry with correct generation"</span>),
     };
     <span class="kw">let </span>new_index = <span class="self">self</span>.insert_new(value, <span class="prelude-val">Some</span>(index.index), next_index);
     <span class="kw">let </span>entry = <span class="self">self</span>.entries[index.index()].occupied_mut();
@@ -4333,7 +4334,7 @@
   </span><span class="kw">pub fn </span>insert_before(<span class="kw-2">&amp;mut </span><span class="self">self</span>, index: Index&lt;T&gt;, value: T) -&gt; Index&lt;T&gt; {
     <span class="kw">let </span>previous_index = <span class="kw">match </span><span class="kw-2">&amp;mut </span><span class="self">self</span>.entries[index.index()] {
       Entry::Occupied(entry) <span class="kw">if </span>entry.generation == index.generation =&gt; entry.previous,
-      <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;expected occupied entry with correct generation&quot;</span>),
+      <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">"expected occupied entry with correct generation"</span>),
     };
     <span class="kw">let </span>new_index = <span class="self">self</span>.insert_new(value, previous_index, <span class="prelude-val">Some</span>(index.index));
     <span class="kw">let </span>entry = <span class="self">self</span>.entries[index.index()].occupied_mut();
@@ -4377,7 +4378,7 @@
     <span class="self">self</span>.length += <span class="number">1</span>;
 
     <span class="kw">if </span><span class="self">self</span>.length == usize::max_value() {
-      <span class="macro">panic!</span>(<span class="string">&quot;reached maximum possible length&quot;</span>);
+      <span class="macro">panic!</span>(<span class="string">"reached maximum possible length"</span>);
     }
 
     <span class="kw">match </span><span class="self">self</span>.vacant_head {
@@ -4438,7 +4439,7 @@
   /// assert_eq!(iter.next(), None);
   /// ```
   </span><span class="attr">#[must_use]
-  </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+  </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">'_</span>, T&gt; {
     Iter {
       entries: <span class="kw-2">&amp;</span><span class="self">self</span>.entries,
       head: <span class="self">self</span>.head,
@@ -4468,7 +4469,7 @@
   /// assert_eq!(iter.next(), None);
   /// ```
   </span><span class="attr">#[must_use]
-  </span><span class="kw">pub fn </span>iter_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; IterMut&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+  </span><span class="kw">pub fn </span>iter_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; IterMut&lt;<span class="lifetime">'_</span>, T&gt; {
     IterMut {
       entries: <span class="kw-2">&amp;mut </span><span class="self">self</span>.entries,
       head: <span class="self">self</span>.head,
@@ -4553,11 +4554,11 @@
   /// assert_eq!(iter.next(), Some(&amp;10));
   /// assert_eq!(iter.next(), None);
   /// ```
-  </span><span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  </span><span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   </span><span class="kw">pub fn </span>pack_to(<span class="kw-2">&amp;mut </span><span class="self">self</span>, minimum_capacity: usize) -&gt; HashMap&lt;Index&lt;T&gt;, Index&lt;T&gt;&gt; {
     <span class="macro">assert!</span>(
       minimum_capacity &gt;= <span class="self">self</span>.length,
-      <span class="string">&quot;cannot shrink to capacity lower than current length&quot;
+      <span class="string">"cannot shrink to capacity lower than current length"
     </span>);
 
     <span class="kw">let </span><span class="kw-2">mut </span>count = NonMaxUsize::zero();
@@ -4568,7 +4569,7 @@
     <span class="kw">let </span><span class="kw-2">mut </span>next_index = <span class="self">self</span>.head;
 
     <span class="kw">while let </span><span class="prelude-val">Some</span>(index) = next_index {
-      <span class="kw">let </span><span class="kw-2">mut </span>entry = <span class="self">self</span>.remove_entry(index).expect(<span class="string">&quot;expected occupied entry&quot;</span>);
+      <span class="kw">let </span><span class="kw-2">mut </span>entry = <span class="self">self</span>.remove_entry(index).expect(<span class="string">"expected occupied entry"</span>);
       next_index = entry.next;
 
       <span class="kw">let _ </span>= map.insert(
@@ -4583,13 +4584,13 @@
         <span class="prelude-val">None
       </span>};
       entry.next = <span class="kw">if </span>count &lt; length - <span class="number">1 </span>{
-        <span class="prelude-val">Some</span>(count.checked_add(<span class="number">1</span>).expect(<span class="string">&quot;overflow&quot;</span>))
+        <span class="prelude-val">Some</span>(count.checked_add(<span class="number">1</span>).expect(<span class="string">"overflow"</span>))
       } <span class="kw">else </span>{
         <span class="prelude-val">None
       </span>};
 
       entries.push(Entry::Occupied(entry));
-      count = count.checked_add(<span class="number">1</span>).expect(<span class="string">&quot;overflow&quot;</span>);
+      count = count.checked_add(<span class="number">1</span>).expect(<span class="string">"overflow"</span>);
     }
 
     <span class="self">self</span>.entries = entries;
@@ -4644,7 +4645,7 @@
   /// assert_eq!(iter.next(), Some(&amp;10));
   /// assert_eq!(iter.next(), None);
   /// ```
-  </span><span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  </span><span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   </span><span class="kw">pub fn </span>pack_to_fit(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; HashMap&lt;Index&lt;T&gt;, Index&lt;T&gt;&gt; {
     <span class="self">self</span>.pack_to(<span class="self">self</span>.length)
   }
@@ -4815,8 +4816,8 @@
     index: NonMaxUsize,
     next_index: <span class="prelude-ty">Option</span>&lt;NonMaxUsize&gt;,
   ) -&gt; OccupiedEntry&lt;T&gt; {
-    <span class="kw">let </span>head_index = <span class="self">self</span>.head.expect(<span class="string">&quot;expected head index&quot;</span>);
-    <span class="kw">let </span>tail_index = <span class="self">self</span>.tail.expect(<span class="string">&quot;expected tail index&quot;</span>);
+    <span class="kw">let </span>head_index = <span class="self">self</span>.head.expect(<span class="string">"expected head index"</span>);
+    <span class="kw">let </span>tail_index = <span class="self">self</span>.tail.expect(<span class="string">"expected tail index"</span>);
     <span class="kw">let </span>vacant_head = <span class="self">self</span>.vacant_head;
     <span class="kw">let </span>removed_entry = mem::replace(
       <span class="kw-2">&amp;mut </span><span class="self">self</span>.entries[index.get()],
@@ -4831,23 +4832,23 @@
       <span class="self">self</span>.head = <span class="prelude-val">None</span>;
       <span class="self">self</span>.tail = <span class="prelude-val">None</span>;
     } <span class="kw">else if </span>index == head_index {
-      <span class="self">self</span>.entries[next_index.expect(<span class="string">&quot;expected next entry to exist&quot;</span>).get()]
+      <span class="self">self</span>.entries[next_index.expect(<span class="string">"expected next entry to exist"</span>).get()]
         .occupied_mut()
         .previous = <span class="prelude-val">None</span>;
       <span class="self">self</span>.head = next_index;
     } <span class="kw">else if </span>index == tail_index {
       <span class="self">self</span>.entries[previous_index
-        .expect(<span class="string">&quot;expected previous entry to exist&quot;</span>)
+        .expect(<span class="string">"expected previous entry to exist"</span>)
         .get()]
       .occupied_mut()
       .next = <span class="prelude-val">None</span>;
       <span class="self">self</span>.tail = previous_index;
     } <span class="kw">else </span>{
-      <span class="self">self</span>.entries[next_index.expect(<span class="string">&quot;expected next entry to exist&quot;</span>).get()]
+      <span class="self">self</span>.entries[next_index.expect(<span class="string">"expected next entry to exist"</span>).get()]
         .occupied_mut()
         .previous = previous_index;
       <span class="self">self</span>.entries[previous_index
-        .expect(<span class="string">&quot;expected previous entry to exist&quot;</span>)
+        .expect(<span class="string">"expected previous entry to exist"</span>)
         .get()]
       .occupied_mut()
       .next = next_index;
@@ -4948,7 +4949,7 @@
 <span class="kw">where
   </span>T: Debug,
 {
-  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
     formatter.debug_list().entries(<span class="self">self</span>.iter()).finish()
   }
 }
@@ -4982,13 +4983,13 @@
   }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; Extend&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T&gt; <span class="kw">for </span>VecList&lt;T&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, T&gt; Extend&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>T&gt; <span class="kw">for </span>VecList&lt;T&gt;
 <span class="kw">where
-  </span>T: <span class="lifetime">&#39;a </span>+ Copy,
+  </span>T: <span class="lifetime">'a </span>+ Copy,
 {
   <span class="kw">fn </span>extend&lt;Iter&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, iter: Iter)
   <span class="kw">where
-    </span>Iter: IntoIterator&lt;Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T&gt;,
+    </span>Iter: IntoIterator&lt;Item = <span class="kw-2">&amp;</span><span class="lifetime">'a </span>T&gt;,
   {
     <span class="self">self</span>.extend(iter.into_iter().copied());
   }
@@ -5025,13 +5026,13 @@
   <span class="kw">type </span>Output = T;
 
   <span class="kw">fn </span>index(<span class="kw-2">&amp;</span><span class="self">self</span>, index: Index&lt;T&gt;) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span>::Output {
-    <span class="self">self</span>.get(index).expect(<span class="string">&quot;expected entry at index&quot;</span>)
+    <span class="self">self</span>.get(index).expect(<span class="string">"expected entry at index"</span>)
   }
 }
 
 <span class="kw">impl</span>&lt;T&gt; ops::IndexMut&lt;Index&lt;T&gt;&gt; <span class="kw">for </span>VecList&lt;T&gt; {
   <span class="kw">fn </span>index_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>, index: Index&lt;T&gt;) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self</span>::Output {
-    <span class="self">self</span>.get_mut(index).expect(<span class="string">&quot;expected entry at index&quot;</span>)
+    <span class="self">self</span>.get_mut(index).expect(<span class="string">"expected entry at index"</span>)
   }
 }
 
@@ -5049,9 +5050,9 @@
   }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>VecList&lt;T&gt; {
-  <span class="kw">type </span>IntoIter = Iter&lt;<span class="lifetime">&#39;a</span>, T&gt;;
-  <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, T&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'a </span>VecList&lt;T&gt; {
+  <span class="kw">type </span>IntoIter = Iter&lt;<span class="lifetime">'a</span>, T&gt;;
+  <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">'a </span>T;
 
   <span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
     Iter {
@@ -5063,9 +5064,9 @@
   }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>VecList&lt;T&gt; {
-  <span class="kw">type </span>IntoIter = IterMut&lt;<span class="lifetime">&#39;a</span>, T&gt;;
-  <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>T;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, T&gt; IntoIterator <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>VecList&lt;T&gt; {
+  <span class="kw">type </span>IntoIter = IterMut&lt;<span class="lifetime">'a</span>, T&gt;;
+  <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>T;
 
   <span class="kw">fn </span>into_iter(<span class="self">self</span>) -&gt; <span class="self">Self</span>::IntoIter {
     IterMut {
@@ -5150,16 +5151,16 @@
   </span>}
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; PartialEq&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[T]&gt; <span class="kw">for </span>VecList&lt;T&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, T&gt; PartialEq&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[T]&gt; <span class="kw">for </span>VecList&lt;T&gt;
 <span class="kw">where
   </span>T: PartialEq,
 {
-  <span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: &amp;&amp;<span class="lifetime">&#39;a </span>[T]) -&gt; bool {
+  <span class="kw">fn </span>eq(<span class="kw-2">&amp;</span><span class="self">self</span>, other: &amp;&amp;<span class="lifetime">'a </span>[T]) -&gt; bool {
     <span class="self">self</span>.len() == other.len() &amp;&amp; <span class="self">self</span>.iter().eq(other.iter())
   }
 }
 
-<span class="kw">impl</span>&lt;T&gt; PartialEq&lt;VecList&lt;T&gt;&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">&#39;_ </span>[T]
+<span class="kw">impl</span>&lt;T&gt; PartialEq&lt;VecList&lt;T&gt;&gt; <span class="kw">for </span><span class="kw-2">&amp;</span><span class="lifetime">'_ </span>[T]
 <span class="kw">where
   </span>T: PartialEq,
 {
@@ -5200,9 +5201,9 @@
 <span class="kw">impl</span>&lt;T&gt; Copy <span class="kw">for </span>Index&lt;T&gt; {}
 
 <span class="kw">impl</span>&lt;T&gt; Debug <span class="kw">for </span>Index&lt;T&gt; {
-  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
     formatter
-      .debug_tuple(<span class="string">&quot;Index&quot;</span>)
+      .debug_tuple(<span class="string">"Index"</span>)
       .field(<span class="kw-2">&amp;</span><span class="self">self</span>.index)
       .field(<span class="kw-2">&amp;</span><span class="self">self</span>.generation)
       .finish()
@@ -5265,7 +5266,7 @@
   </span><span class="kw">pub fn </span>occupied(<span class="self">self</span>) -&gt; OccupiedEntry&lt;T&gt; {
     <span class="kw">match </span><span class="self">self </span>{
       Entry::Occupied(entry) =&gt; entry,
-      Entry::Vacant(<span class="kw">_</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;expected occupied entry&quot;</span>),
+      Entry::Vacant(<span class="kw">_</span>) =&gt; <span class="macro">panic!</span>(<span class="string">"expected occupied entry"</span>),
     }
   }
 
@@ -5278,7 +5279,7 @@
   </span><span class="kw">pub fn </span>occupied_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>OccupiedEntry&lt;T&gt; {
     <span class="kw">match </span><span class="self">self </span>{
       Entry::Occupied(entry) =&gt; entry,
-      Entry::Vacant(<span class="kw">_</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;expected occupied entry&quot;</span>),
+      Entry::Vacant(<span class="kw">_</span>) =&gt; <span class="macro">panic!</span>(<span class="string">"expected occupied entry"</span>),
     }
   }
 
@@ -5291,7 +5292,7 @@
   </span><span class="kw">pub fn </span>occupied_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;mut </span>OccupiedEntry&lt;T&gt; {
     <span class="kw">match </span><span class="self">self </span>{
       Entry::Occupied(entry) =&gt; entry,
-      Entry::Vacant(<span class="kw">_</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;expected occupied entry&quot;</span>),
+      Entry::Vacant(<span class="kw">_</span>) =&gt; <span class="macro">panic!</span>(<span class="string">"expected occupied entry"</span>),
     }
   }
 
@@ -5304,7 +5305,7 @@
   </span><span class="kw">pub fn </span>vacant_ref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>VacantEntry {
     <span class="kw">match </span><span class="self">self </span>{
       Entry::Vacant(entry) =&gt; entry,
-      Entry::Occupied(<span class="kw">_</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;expected vacant entry&quot;</span>),
+      Entry::Occupied(<span class="kw">_</span>) =&gt; <span class="macro">panic!</span>(<span class="string">"expected vacant entry"</span>),
     }
   }
 }
@@ -5359,12 +5360,12 @@
 }
 
 <span class="doccomment">/// An iterator that yields and removes all entries from the list.
-</span><span class="kw">pub struct </span>Drain&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+</span><span class="kw">pub struct </span>Drain&lt;<span class="lifetime">'a</span>, T&gt; {
   <span class="doccomment">/// The index of the head of the unvisited portion of the list.
   </span>head: <span class="prelude-ty">Option</span>&lt;NonMaxUsize&gt;,
 
   <span class="doccomment">/// A reference to the entry list.
-  </span>list: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>VecList&lt;T&gt;,
+  </span>list: <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>VecList&lt;T&gt;,
 
   <span class="doccomment">/// The number of entries that have not been visited.
   </span>remaining: usize,
@@ -5373,10 +5374,10 @@
   </span>tail: <span class="prelude-ty">Option</span>&lt;NonMaxUsize&gt;,
 }
 
-<span class="kw">impl</span>&lt;T&gt; Drain&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+<span class="kw">impl</span>&lt;T&gt; Drain&lt;<span class="lifetime">'_</span>, T&gt; {
   <span class="doccomment">/// Creates an iterator that yields immutable references to entries in the list.
   </span><span class="attr">#[must_use]
-  </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+  </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">'_</span>, T&gt; {
     Iter {
       entries: <span class="kw-2">&amp;</span><span class="self">self</span>.list.entries,
       head: <span class="self">self</span>.head,
@@ -5386,18 +5387,18 @@
   }
 }
 
-<span class="kw">impl</span>&lt;T&gt; Debug <span class="kw">for </span>Drain&lt;<span class="lifetime">&#39;_</span>, T&gt;
+<span class="kw">impl</span>&lt;T&gt; Debug <span class="kw">for </span>Drain&lt;<span class="lifetime">'_</span>, T&gt;
 <span class="kw">where
   </span>T: Debug,
 {
-  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
-    formatter.write_str(<span class="string">&quot;Drain(&quot;</span>)<span class="question-mark">?</span>;
+  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
+    formatter.write_str(<span class="string">"Drain("</span>)<span class="question-mark">?</span>;
     formatter.debug_list().entries(<span class="self">self</span>.iter()).finish()<span class="question-mark">?</span>;
-    formatter.write_str(<span class="string">&quot;)&quot;</span>)
+    formatter.write_str(<span class="string">")"</span>)
   }
 }
 
-<span class="kw">impl</span>&lt;T&gt; DoubleEndedIterator <span class="kw">for </span>Drain&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+<span class="kw">impl</span>&lt;T&gt; DoubleEndedIterator <span class="kw">for </span>Drain&lt;<span class="lifetime">'_</span>, T&gt; {
   <span class="kw">fn </span>next_back(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
     <span class="kw">if </span><span class="self">self</span>.remaining == <span class="number">0 </span>{
       <span class="prelude-val">None
@@ -5406,7 +5407,7 @@
         <span class="kw">let </span>entry = <span class="self">self
           </span>.list
           .remove_entry(index)
-          .expect(<span class="string">&quot;expected occupied entry&quot;</span>);
+          .expect(<span class="string">"expected occupied entry"</span>);
         <span class="self">self</span>.tail = entry.previous;
         <span class="self">self</span>.remaining -= <span class="number">1</span>;
         entry.value
@@ -5415,17 +5416,17 @@
   }
 }
 
-<span class="kw">impl</span>&lt;T&gt; Drop <span class="kw">for </span>Drain&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+<span class="kw">impl</span>&lt;T&gt; Drop <span class="kw">for </span>Drain&lt;<span class="lifetime">'_</span>, T&gt; {
   <span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
     <span class="self">self</span>.list.clear();
   }
 }
 
-<span class="kw">impl</span>&lt;T&gt; ExactSizeIterator <span class="kw">for </span>Drain&lt;<span class="lifetime">&#39;_</span>, T&gt; {}
+<span class="kw">impl</span>&lt;T&gt; ExactSizeIterator <span class="kw">for </span>Drain&lt;<span class="lifetime">'_</span>, T&gt; {}
 
-<span class="kw">impl</span>&lt;T&gt; FusedIterator <span class="kw">for </span>Drain&lt;<span class="lifetime">&#39;_</span>, T&gt; {}
+<span class="kw">impl</span>&lt;T&gt; FusedIterator <span class="kw">for </span>Drain&lt;<span class="lifetime">'_</span>, T&gt; {}
 
-<span class="kw">impl</span>&lt;T&gt; Iterator <span class="kw">for </span>Drain&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+<span class="kw">impl</span>&lt;T&gt; Iterator <span class="kw">for </span>Drain&lt;<span class="lifetime">'_</span>, T&gt; {
   <span class="kw">type </span>Item = T;
 
   <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
@@ -5436,7 +5437,7 @@
         <span class="kw">let </span>entry = <span class="self">self
           </span>.list
           .remove_entry(index)
-          .expect(<span class="string">&quot;expected occupied entry&quot;</span>);
+          .expect(<span class="string">"expected occupied entry"</span>);
         <span class="self">self</span>.head = entry.next;
         <span class="self">self</span>.remaining -= <span class="number">1</span>;
         entry.value
@@ -5450,9 +5451,9 @@
 }
 
 <span class="doccomment">/// An iterator that yields all indices in the list.
-</span><span class="kw">pub struct </span>Indices&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+</span><span class="kw">pub struct </span>Indices&lt;<span class="lifetime">'a</span>, T&gt; {
   <span class="doccomment">/// A reference to the actual storage for the entry list.
-  </span>entries: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Vec&lt;Entry&lt;T&gt;&gt;,
+  </span>entries: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Vec&lt;Entry&lt;T&gt;&gt;,
 
   <span class="doccomment">/// The index of the head of the unvisited portion of the list.
   </span>head: <span class="prelude-ty">Option</span>&lt;NonMaxUsize&gt;,
@@ -5464,7 +5465,7 @@
   </span>tail: <span class="prelude-ty">Option</span>&lt;NonMaxUsize&gt;,
 }
 
-<span class="kw">impl</span>&lt;T&gt; Clone <span class="kw">for </span>Indices&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+<span class="kw">impl</span>&lt;T&gt; Clone <span class="kw">for </span>Indices&lt;<span class="lifetime">'_</span>, T&gt; {
   <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
     Indices {
       entries: <span class="self">self</span>.entries,
@@ -5475,18 +5476,18 @@
   }
 }
 
-<span class="kw">impl</span>&lt;T&gt; Debug <span class="kw">for </span>Indices&lt;<span class="lifetime">&#39;_</span>, T&gt;
+<span class="kw">impl</span>&lt;T&gt; Debug <span class="kw">for </span>Indices&lt;<span class="lifetime">'_</span>, T&gt;
 <span class="kw">where
   </span>T: Debug,
 {
-  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
-    formatter.write_str(<span class="string">&quot;Indices(&quot;</span>)<span class="question-mark">?</span>;
+  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
+    formatter.write_str(<span class="string">"Indices("</span>)<span class="question-mark">?</span>;
     formatter.debug_list().entries(<span class="self">self</span>.clone()).finish()<span class="question-mark">?</span>;
-    formatter.write_str(<span class="string">&quot;)&quot;</span>)
+    formatter.write_str(<span class="string">")"</span>)
   }
 }
 
-<span class="kw">impl</span>&lt;T&gt; DoubleEndedIterator <span class="kw">for </span>Indices&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+<span class="kw">impl</span>&lt;T&gt; DoubleEndedIterator <span class="kw">for </span>Indices&lt;<span class="lifetime">'_</span>, T&gt; {
   <span class="kw">fn </span>next_back(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
     <span class="kw">if </span><span class="self">self</span>.remaining == <span class="number">0 </span>{
       <span class="prelude-val">None
@@ -5502,11 +5503,11 @@
   }
 }
 
-<span class="kw">impl</span>&lt;T&gt; ExactSizeIterator <span class="kw">for </span>Indices&lt;<span class="lifetime">&#39;_</span>, T&gt; {}
+<span class="kw">impl</span>&lt;T&gt; ExactSizeIterator <span class="kw">for </span>Indices&lt;<span class="lifetime">'_</span>, T&gt; {}
 
-<span class="kw">impl</span>&lt;T&gt; FusedIterator <span class="kw">for </span>Indices&lt;<span class="lifetime">&#39;_</span>, T&gt; {}
+<span class="kw">impl</span>&lt;T&gt; FusedIterator <span class="kw">for </span>Indices&lt;<span class="lifetime">'_</span>, T&gt; {}
 
-<span class="kw">impl</span>&lt;T&gt; Iterator <span class="kw">for </span>Indices&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+<span class="kw">impl</span>&lt;T&gt; Iterator <span class="kw">for </span>Indices&lt;<span class="lifetime">'_</span>, T&gt; {
   <span class="kw">type </span>Item = Index&lt;T&gt;;
 
   <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
@@ -5547,7 +5548,7 @@
 <span class="kw">impl</span>&lt;T&gt; IntoIter&lt;T&gt; {
   <span class="doccomment">/// Creates an iterator that yields immutable references to entries in the list.
   </span><span class="attr">#[must_use]
-  </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+  </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">'_</span>, T&gt; {
     Iter {
       entries: <span class="kw-2">&amp;</span><span class="self">self</span>.list.entries,
       head: <span class="self">self</span>.head,
@@ -5561,10 +5562,10 @@
 <span class="kw">where
   </span>T: Debug,
 {
-  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
-    formatter.write_str(<span class="string">&quot;IntoIter(&quot;</span>)<span class="question-mark">?</span>;
+  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
+    formatter.write_str(<span class="string">"IntoIter("</span>)<span class="question-mark">?</span>;
     formatter.debug_list().entries(<span class="self">self</span>.iter()).finish()<span class="question-mark">?</span>;
-    formatter.write_str(<span class="string">&quot;)&quot;</span>)
+    formatter.write_str(<span class="string">")"</span>)
   }
 }
 
@@ -5577,7 +5578,7 @@
         <span class="kw">let </span>entry = <span class="self">self
           </span>.list
           .remove_entry(index)
-          .expect(<span class="string">&quot;expected occupied entry&quot;</span>);
+          .expect(<span class="string">"expected occupied entry"</span>);
         <span class="self">self</span>.tail = entry.previous;
         <span class="self">self</span>.remaining -= <span class="number">1</span>;
         entry.value
@@ -5601,7 +5602,7 @@
         <span class="kw">let </span>entry = <span class="self">self
           </span>.list
           .remove_entry(index)
-          .expect(<span class="string">&quot;expected occupied entry&quot;</span>);
+          .expect(<span class="string">"expected occupied entry"</span>);
         <span class="self">self</span>.head = entry.next;
         <span class="self">self</span>.remaining -= <span class="number">1</span>;
         entry.value
@@ -5615,9 +5616,9 @@
 }
 
 <span class="doccomment">/// An iterator that yields immutable references to entries in the list.
-</span><span class="kw">pub struct </span>Iter&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+</span><span class="kw">pub struct </span>Iter&lt;<span class="lifetime">'a</span>, T&gt; {
   <span class="doccomment">/// A reference to the actual storage for the entry list.
-  </span>entries: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Vec&lt;Entry&lt;T&gt;&gt;,
+  </span>entries: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Vec&lt;Entry&lt;T&gt;&gt;,
 
   <span class="doccomment">/// The index of the head of the unvisited portion of the list.
   </span>head: <span class="prelude-ty">Option</span>&lt;NonMaxUsize&gt;,
@@ -5629,8 +5630,8 @@
   </span>tail: <span class="prelude-ty">Option</span>&lt;NonMaxUsize&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; Clone <span class="kw">for </span>Iter&lt;<span class="lifetime">&#39;a</span>, T&gt; {
-  <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, T&gt; Clone <span class="kw">for </span>Iter&lt;<span class="lifetime">'a</span>, T&gt; {
+  <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">'a</span>, T&gt; {
     Iter {
       entries: <span class="self">self</span>.entries,
       head: <span class="self">self</span>.head,
@@ -5640,18 +5641,18 @@
   }
 }
 
-<span class="kw">impl</span>&lt;T&gt; Debug <span class="kw">for </span>Iter&lt;<span class="lifetime">&#39;_</span>, T&gt;
+<span class="kw">impl</span>&lt;T&gt; Debug <span class="kw">for </span>Iter&lt;<span class="lifetime">'_</span>, T&gt;
 <span class="kw">where
   </span>T: Debug,
 {
-  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
-    formatter.write_str(<span class="string">&quot;Iter(&quot;</span>)<span class="question-mark">?</span>;
+  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
+    formatter.write_str(<span class="string">"Iter("</span>)<span class="question-mark">?</span>;
     formatter.debug_list().entries(<span class="self">self</span>.clone()).finish()<span class="question-mark">?</span>;
-    formatter.write_str(<span class="string">&quot;)&quot;</span>)
+    formatter.write_str(<span class="string">")"</span>)
   }
 }
 
-<span class="kw">impl</span>&lt;T&gt; DoubleEndedIterator <span class="kw">for </span>Iter&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+<span class="kw">impl</span>&lt;T&gt; DoubleEndedIterator <span class="kw">for </span>Iter&lt;<span class="lifetime">'_</span>, T&gt; {
   <span class="kw">fn </span>next_back(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
     <span class="kw">if </span><span class="self">self</span>.remaining == <span class="number">0 </span>{
       <span class="prelude-val">None
@@ -5666,12 +5667,12 @@
   }
 }
 
-<span class="kw">impl</span>&lt;T&gt; ExactSizeIterator <span class="kw">for </span>Iter&lt;<span class="lifetime">&#39;_</span>, T&gt; {}
+<span class="kw">impl</span>&lt;T&gt; ExactSizeIterator <span class="kw">for </span>Iter&lt;<span class="lifetime">'_</span>, T&gt; {}
 
-<span class="kw">impl</span>&lt;T&gt; FusedIterator <span class="kw">for </span>Iter&lt;<span class="lifetime">&#39;_</span>, T&gt; {}
+<span class="kw">impl</span>&lt;T&gt; FusedIterator <span class="kw">for </span>Iter&lt;<span class="lifetime">'_</span>, T&gt; {}
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; Iterator <span class="kw">for </span>Iter&lt;<span class="lifetime">&#39;a</span>, T&gt; {
-  <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, T&gt; Iterator <span class="kw">for </span>Iter&lt;<span class="lifetime">'a</span>, T&gt; {
+  <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">'a </span>T;
 
   <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
     <span class="kw">if </span><span class="self">self</span>.remaining == <span class="number">0 </span>{
@@ -5692,14 +5693,14 @@
 }
 
 <span class="doccomment">/// An iterator that yields mutable references to entries in the list.
-</span><span class="kw">pub struct </span>IterMut&lt;<span class="lifetime">&#39;a</span>, T&gt; {
+</span><span class="kw">pub struct </span>IterMut&lt;<span class="lifetime">'a</span>, T&gt; {
   entries: <span class="kw-2">*mut </span>Vec&lt;Entry&lt;T&gt;&gt;,
 
   <span class="doccomment">/// The index of the head of the unvisited portion of the list.
   </span>head: <span class="prelude-ty">Option</span>&lt;NonMaxUsize&gt;,
 
   <span class="doccomment">/// Because [`IterMut::entries`] is a pointer, we need to have a phantom data here for the lifetime parameter.
-  </span>phantom: PhantomData&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>Vec&lt;Entry&lt;T&gt;&gt;&gt;,
+  </span>phantom: PhantomData&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>Vec&lt;Entry&lt;T&gt;&gt;&gt;,
 
   <span class="doccomment">/// The number of entries that have not been visited.
   </span>remaining: usize,
@@ -5708,10 +5709,10 @@
   </span>tail: <span class="prelude-ty">Option</span>&lt;NonMaxUsize&gt;,
 }
 
-<span class="kw">impl</span>&lt;T&gt; IterMut&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+<span class="kw">impl</span>&lt;T&gt; IterMut&lt;<span class="lifetime">'_</span>, T&gt; {
   <span class="doccomment">/// Creates an iterator that yields immutable references to entries in the list.
   </span><span class="attr">#[must_use]
-  </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+  </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Iter&lt;<span class="lifetime">'_</span>, T&gt; {
     Iter {
       entries: <span class="kw">unsafe </span>{ <span class="kw-2">&amp;*</span><span class="self">self</span>.entries },
       head: <span class="self">self</span>.head,
@@ -5721,18 +5722,18 @@
   }
 }
 
-<span class="kw">impl</span>&lt;T&gt; Debug <span class="kw">for </span>IterMut&lt;<span class="lifetime">&#39;_</span>, T&gt;
+<span class="kw">impl</span>&lt;T&gt; Debug <span class="kw">for </span>IterMut&lt;<span class="lifetime">'_</span>, T&gt;
 <span class="kw">where
   </span>T: Debug,
 {
-  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
-    formatter.write_str(<span class="string">&quot;IterMut(&quot;</span>)<span class="question-mark">?</span>;
+  <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
+    formatter.write_str(<span class="string">"IterMut("</span>)<span class="question-mark">?</span>;
     formatter.debug_list().entries(<span class="self">self</span>.iter()).finish()<span class="question-mark">?</span>;
-    formatter.write_str(<span class="string">&quot;)&quot;</span>)
+    formatter.write_str(<span class="string">")"</span>)
   }
 }
 
-<span class="kw">impl</span>&lt;T&gt; DoubleEndedIterator <span class="kw">for </span>IterMut&lt;<span class="lifetime">&#39;_</span>, T&gt; {
+<span class="kw">impl</span>&lt;T&gt; DoubleEndedIterator <span class="kw">for </span>IterMut&lt;<span class="lifetime">'_</span>, T&gt; {
   <span class="kw">fn </span>next_back(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
     <span class="kw">if </span><span class="self">self</span>.remaining == <span class="number">0 </span>{
       <span class="prelude-val">None
@@ -5747,12 +5748,12 @@
   }
 }
 
-<span class="kw">impl</span>&lt;T&gt; ExactSizeIterator <span class="kw">for </span>IterMut&lt;<span class="lifetime">&#39;_</span>, T&gt; {}
+<span class="kw">impl</span>&lt;T&gt; ExactSizeIterator <span class="kw">for </span>IterMut&lt;<span class="lifetime">'_</span>, T&gt; {}
 
-<span class="kw">impl</span>&lt;T&gt; FusedIterator <span class="kw">for </span>IterMut&lt;<span class="lifetime">&#39;_</span>, T&gt; {}
+<span class="kw">impl</span>&lt;T&gt; FusedIterator <span class="kw">for </span>IterMut&lt;<span class="lifetime">'_</span>, T&gt; {}
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T&gt; Iterator <span class="kw">for </span>IterMut&lt;<span class="lifetime">&#39;a</span>, T&gt; {
-  <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>T;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, T&gt; Iterator <span class="kw">for </span>IterMut&lt;<span class="lifetime">'a</span>, T&gt; {
+  <span class="kw">type </span>Item = <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>T;
 
   <span class="kw">fn </span>next(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="self">Self</span>::Item&gt; {
     <span class="kw">if </span><span class="self">self</span>.remaining == <span class="number">0 </span>{
@@ -5772,14 +5773,14 @@
   }
 }
 
-<span class="kw">unsafe impl</span>&lt;T&gt; Send <span class="kw">for </span>IterMut&lt;<span class="lifetime">&#39;_</span>, T&gt; <span class="kw">where </span>T: Send {}
+<span class="kw">unsafe impl</span>&lt;T&gt; Send <span class="kw">for </span>IterMut&lt;<span class="lifetime">'_</span>, T&gt; <span class="kw">where </span>T: Send {}
 
-<span class="kw">unsafe impl</span>&lt;T&gt; Sync <span class="kw">for </span>IterMut&lt;<span class="lifetime">&#39;_</span>, T&gt; <span class="kw">where </span>T: Sync {}
+<span class="kw">unsafe impl</span>&lt;T&gt; Sync <span class="kw">for </span>IterMut&lt;<span class="lifetime">'_</span>, T&gt; <span class="kw">where </span>T: Sync {}
 
 <span class="doccomment">/// Creates the initial generation seeded by the current time.
 </span><span class="attr">#[must_use]
 </span><span class="kw">fn </span>create_initial_generation() -&gt; u64 {
-  <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  <span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   </span>{
     <span class="kw">use </span>std::{collections::hash_map::RandomState, hash::BuildHasher};
 
@@ -5788,7 +5789,7 @@
     hasher.finish()
   }
 
-  <span class="attr">#[cfg(not(feature = <span class="string">&quot;std&quot;</span>))]
+  <span class="attr">#[cfg(not(feature = <span class="string">"std"</span>))]
   </span>{
     <span class="kw">use </span>core::sync::atomic::{AtomicU32, Ordering};
 
@@ -5800,7 +5801,7 @@
         </span><span class="macro">const_random::const_random!</span>(u32)
       });
 
-      <span class="comment">// Xorshift is &quot;good enough&quot; in most cases.
+      <span class="comment">// Xorshift is "good enough" in most cases.
       </span><span class="kw">let </span><span class="kw-2">mut </span>x = SEED.load(Ordering::Relaxed);
 
       <span class="kw">loop </span>{
@@ -5818,7 +5819,7 @@
       }
     }
 
-    <span class="comment">// Put two u32&#39;s together
+    <span class="comment">// Put two u32's together
     </span>gen_u32() <span class="kw">as </span>u64 | ((gen_u32() <span class="kw">as </span>u64) &lt;&lt; <span class="number">32</span>)
   }
 }
@@ -5831,7 +5832,7 @@
   <span class="kw">use super</span>::<span class="kw-2">*</span>;
   <span class="kw">use </span>alloc::{format, vec};
 
-  <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  <span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   </span><span class="kw">use </span>std::{collections::hash_map::RandomState, hash::BuildHasher};
 
   <span class="attr">#[test]
@@ -5840,14 +5841,14 @@
 
     check_bounds::&lt;VecList&lt;()&gt;&gt;();
     check_bounds::&lt;Index&lt;()&gt;&gt;();
-    check_bounds::&lt;Drain&lt;<span class="lifetime">&#39;_</span>, ()&gt;&gt;();
-    check_bounds::&lt;Indices&lt;<span class="lifetime">&#39;_</span>, ()&gt;&gt;();
+    check_bounds::&lt;Drain&lt;<span class="lifetime">'_</span>, ()&gt;&gt;();
+    check_bounds::&lt;Indices&lt;<span class="lifetime">'_</span>, ()&gt;&gt;();
     check_bounds::&lt;IntoIter&lt;()&gt;&gt;();
-    check_bounds::&lt;Iter&lt;<span class="lifetime">&#39;_</span>, ()&gt;&gt;();
-    check_bounds::&lt;IterMut&lt;<span class="lifetime">&#39;_</span>, ()&gt;&gt;();
+    check_bounds::&lt;Iter&lt;<span class="lifetime">'_</span>, ()&gt;&gt;();
+    check_bounds::&lt;IterMut&lt;<span class="lifetime">'_</span>, ()&gt;&gt;();
   }
 
-  <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  <span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[test]
   </span><span class="kw">fn </span>test_non_max_usize_eq() {
     <span class="kw">let </span>zero = NonMaxUsize::zero();
@@ -5865,7 +5866,7 @@
     list.push_back(-<span class="number">2</span>);
 
     <span class="kw">let </span>drain = list.drain();
-    <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{drain:?}&quot;</span>), <span class="string">&quot;Drain([0, 1, -1, 2, -2])&quot;</span>);
+    <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{drain:?}"</span>), <span class="string">"Drain([0, 1, -1, 2, -2])"</span>);
   }
 
   <span class="attr">#[test]
@@ -5934,8 +5935,8 @@
     <span class="kw">let </span>index = list.push_back(<span class="number">5</span>);
 
     <span class="macro">assert_eq!</span>(
-      <span class="macro">format!</span>(<span class="string">&quot;{index:?}&quot;</span>),
-      <span class="macro">format!</span>(<span class="string">&quot;Index(0, {})&quot;</span>, index.generation)
+      <span class="macro">format!</span>(<span class="string">"{index:?}"</span>),
+      <span class="macro">format!</span>(<span class="string">"Index(0, {})"</span>, index.generation)
     );
   }
 
@@ -5950,7 +5951,7 @@
     <span class="macro">assert_ne!</span>(index_1, index_3);
   }
 
-  <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  <span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[test]
   </span><span class="kw">fn </span>test_index_hash() {
     <span class="kw">let </span>state = RandomState::new();
@@ -5980,9 +5981,9 @@
 
     <span class="kw">let </span>indices = list.indices();
     <span class="macro">assert_eq!</span>(
-      <span class="macro">format!</span>(<span class="string">&quot;{indices:?}&quot;</span>),
+      <span class="macro">format!</span>(<span class="string">"{indices:?}"</span>),
       <span class="macro">format!</span>(
-        <span class="string">&quot;Indices([Index(0, {}), Index(1, {}), Index(2, {}), Index(3, {}), Index(4, {})])&quot;</span>,
+        <span class="string">"Indices([Index(0, {}), Index(1, {}), Index(2, {}), Index(3, {}), Index(4, {})])"</span>,
         list.generation, list.generation, list.generation, list.generation, list.generation
       )
     );
@@ -6058,7 +6059,7 @@
     list.push_back(-<span class="number">2</span>);
 
     <span class="kw">let </span>iter = list.into_iter();
-    <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{iter:?}&quot;</span>), <span class="string">&quot;IntoIter([0, 1, -1, 2, -2])&quot;</span>);
+    <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{iter:?}"</span>), <span class="string">"IntoIter([0, 1, -1, 2, -2])"</span>);
   }
 
   <span class="attr">#[test]
@@ -6131,7 +6132,7 @@
     list.push_back(-<span class="number">2</span>);
 
     <span class="kw">let </span>iter = list.iter();
-    <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{iter:?}&quot;</span>), <span class="string">&quot;Iter([0, 1, -1, 2, -2])&quot;</span>);
+    <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{iter:?}"</span>), <span class="string">"Iter([0, 1, -1, 2, -2])"</span>);
   }
 
   <span class="attr">#[test]
@@ -6204,7 +6205,7 @@
     list.push_back(-<span class="number">2</span>);
 
     <span class="kw">let </span>iter = list.iter_mut();
-    <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{iter:?}&quot;</span>), <span class="string">&quot;IterMut([0, 1, -1, 2, -2])&quot;</span>);
+    <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{iter:?}"</span>), <span class="string">"IterMut([0, 1, -1, 2, -2])"</span>);
   }
 
   <span class="attr">#[test]
@@ -6352,7 +6353,7 @@
     list.push_back(<span class="number">2</span>);
     list.push_back(-<span class="number">2</span>);
 
-    <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{list:?}&quot;</span>), <span class="string">&quot;[0, 1, -1, 2, -2]&quot;</span>);
+    <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{list:?}"</span>), <span class="string">"[0, 1, -1, 2, -2]"</span>);
   }
 
   <span class="attr">#[test]
@@ -6392,7 +6393,7 @@
     <span class="macro">assert_eq!</span>(list_1, list_2);
   }
 
-  <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  <span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[test]
   </span><span class="kw">fn </span>test_vec_list_hash() {
     <span class="kw">let </span>state = RandomState::new();
@@ -6463,7 +6464,7 @@
     <span class="macro">assert_eq!</span>(list.front_mut(), <span class="prelude-val">None</span>);
   }
 
-  <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  <span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[test]
   </span><span class="kw">fn </span>test_vec_list_get() {
     <span class="kw">let </span><span class="kw-2">mut </span>list = VecList::new();
@@ -6484,7 +6485,7 @@
     <span class="macro">assert_eq!</span>(list.get(index_3), <span class="prelude-val">None</span>);
   }
 
-  <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  <span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[test]
   </span><span class="kw">fn </span>test_vec_list_get_mut() {
     <span class="kw">let </span><span class="kw-2">mut </span>list = VecList::new();
@@ -6579,7 +6580,7 @@
     <span class="kw">let _ </span>= list[index];
   }
 
-  <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  <span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[test]
   </span><span class="kw">fn </span>test_vec_list_indices() {
     <span class="kw">let </span><span class="kw-2">mut </span>list = VecList::new();
@@ -6630,7 +6631,7 @@
     list.insert_after(index, <span class="number">1</span>);
   }
 
-  <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  <span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[should_panic]
   #[test]
   </span><span class="kw">fn </span>test_vec_list_insert_after_panic_index_out_of_bounds() {
@@ -6670,7 +6671,7 @@
     list.insert_before(index, <span class="number">1</span>);
   }
 
-  <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  <span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[should_panic]
   #[test]
   </span><span class="kw">fn </span>test_vec_list_insert_before_panic_index_out_of_bounds() {
@@ -6871,7 +6872,7 @@
     <span class="macro">assert_eq!</span>(list.into_iter().collect::&lt;Vec&lt;<span class="kw">_</span>&gt;&gt;(), [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]);
   }
 
-  <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  <span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[test]
   </span><span class="kw">fn </span>test_vec_list_pack_to() {
     <span class="kw">let </span><span class="kw-2">mut </span>list = VecList::new();
@@ -6903,7 +6904,7 @@
     <span class="macro">assert_eq!</span>(map.get(<span class="kw-2">&amp;</span>index_3).unwrap().index.get(), <span class="number">1</span>);
   }
 
-  <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  <span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[test]
   </span><span class="kw">fn </span>test_vec_list_pack_to_empty() {
     <span class="kw">let </span><span class="kw-2">mut </span>list: VecList&lt;i32&gt; = VecList::with_capacity(<span class="number">5</span>);
@@ -6911,7 +6912,7 @@
     <span class="macro">assert_eq!</span>(list.capacity(), <span class="number">0</span>);
   }
 
-  <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  <span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[should_panic]
   #[test]
   </span><span class="kw">fn </span>test_vec_list_pack_to_panic() {
@@ -6922,7 +6923,7 @@
     list.pack_to(<span class="number">2</span>);
   }
 
-  <span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+  <span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
   #[test]
   </span><span class="kw">fn </span>test_vec_list_pack_to_fit() {
     <span class="kw">let </span><span class="kw-2">mut </span>list = VecList::new();

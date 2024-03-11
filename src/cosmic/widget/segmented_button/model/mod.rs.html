@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/segmented_button/model/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/segmented_button/model/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -460,13 +461,13 @@
 </span><span class="kw">pub type </span>SingleSelectModel = Model&lt;SingleSelect&gt;;
 
 <span class="doccomment">/// Single-select variant of an [`EntityMut`].
-</span><span class="kw">pub type </span>SingleSelectEntityMut&lt;<span class="lifetime">&#39;a</span>&gt; = EntityMut&lt;<span class="lifetime">&#39;a</span>, SingleSelect&gt;;
+</span><span class="kw">pub type </span>SingleSelectEntityMut&lt;<span class="lifetime">'a</span>&gt; = EntityMut&lt;<span class="lifetime">'a</span>, SingleSelect&gt;;
 
 <span class="doccomment">/// A model for multi-select button selection.
 </span><span class="kw">pub type </span>MultiSelectModel = Model&lt;MultiSelect&gt;;
 
 <span class="doccomment">/// Multi-select variant of an [`EntityMut`].
-</span><span class="kw">pub type </span>MultiSelectEntityMut&lt;<span class="lifetime">&#39;a</span>&gt; = EntityMut&lt;<span class="lifetime">&#39;a</span>, MultiSelect&gt;;
+</span><span class="kw">pub type </span>MultiSelectEntityMut&lt;<span class="lifetime">'a</span>&gt; = EntityMut&lt;<span class="lifetime">'a</span>, MultiSelect&gt;;
 
 <span class="doccomment">/// The portion of the model used only by the application.
 </span><span class="attr">#[derive(Debug, Default)]
@@ -485,7 +486,7 @@
     </span><span class="kw">pub</span>(<span class="kw">super</span>) indents: SecondaryMap&lt;Entity, u16&gt;,
 
     <span class="doccomment">/// Text optionally-defined for each item.
-    </span><span class="kw">pub</span>(<span class="kw">super</span>) text: SecondaryMap&lt;Entity, Cow&lt;<span class="lifetime">&#39;static</span>, str&gt;&gt;,
+    </span><span class="kw">pub</span>(<span class="kw">super</span>) text: SecondaryMap&lt;Entity, Cow&lt;<span class="lifetime">'static</span>, str&gt;&gt;,
 
     <span class="doccomment">/// Order which the items will be displayed.
     </span><span class="kw">pub</span>(<span class="kw">super</span>) order: VecDeque&lt;Entity&gt;,
@@ -524,9 +525,9 @@
     ///
     /// ```ignore
     /// let model = segmented_button::Model::builder()
-    ///     .insert(|b| b.text(&quot;Item A&quot;).activate())
-    ///     .insert(|b| b.text(&quot;Item B&quot;))
-    ///     .insert(|b| b.text(&quot;Item C&quot;))
+    ///     .insert(|b| b.text("Item A").activate())
+    ///     .insert(|b| b.text("Item B"))
+    ///     .insert(|b| b.text("Item C"))
     ///     .build();
     /// ```
     </span><span class="attr">#[must_use]
@@ -549,7 +550,7 @@
         }
     }
 
-    <span class="doccomment">/// Shows or hides the item&#39;s close button.
+    <span class="doccomment">/// Shows or hides the item's close button.
     </span><span class="kw">pub fn </span>closable_set(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Entity, closable: bool) {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(settings) = <span class="self">self</span>.items.get_mut(id) {
             settings.closable = closable;
@@ -560,7 +561,7 @@
     ///
     /// ```ignore
     /// if model.contains_item(id) {
-    ///     println!(&quot;ID is still valid&quot;);
+    ///     println!("ID is still valid");
     /// }
     /// ```
     </span><span class="kw">pub fn </span>contains_item(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Entity) -&gt; bool {
@@ -571,10 +572,10 @@
     ///
     /// ```ignore
     /// if let Some(data) = model.data::&lt;String&gt;(id) {
-    ///     println!(&quot;found string on {:?}: {}&quot;, id, data);
+    ///     println!("found string on {:?}: {}", id, data);
     /// }
     /// ```
-    </span><span class="kw">pub fn </span>data&lt;Data: <span class="lifetime">&#39;static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Entity) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Data&gt; {
+    </span><span class="kw">pub fn </span>data&lt;Data: <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Entity) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Data&gt; {
         <span class="self">self</span>.storage
             .<span class="number">0
             </span>.get(<span class="kw-2">&amp;</span>TypeId::of::&lt;Data&gt;())
@@ -583,7 +584,7 @@
     }
 
     <span class="doccomment">/// Get a mutable reference to data associated with an item.
-    </span><span class="kw">pub fn </span>data_mut&lt;Data: <span class="lifetime">&#39;static</span>&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Entity) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>Data&gt; {
+    </span><span class="kw">pub fn </span>data_mut&lt;Data: <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Entity) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>Data&gt; {
         <span class="self">self</span>.storage
             .<span class="number">0
             </span>.get_mut(<span class="kw-2">&amp;</span>TypeId::of::&lt;Data&gt;())
@@ -596,9 +597,9 @@
     /// There may only be one data component per Rust type.
     ///
     /// ```ignore
-    /// model.data_set::&lt;String&gt;(id, String::from(&quot;custom string&quot;));
+    /// model.data_set::&lt;String&gt;(id, String::from("custom string"));
     /// ```
-    </span><span class="kw">pub fn </span>data_set&lt;Data: <span class="lifetime">&#39;static</span>&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Entity, data: Data) {
+    </span><span class="kw">pub fn </span>data_set&lt;Data: <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Entity, data: Data) {
         <span class="kw">if </span><span class="self">self</span>.contains_item(id) {
             <span class="self">self</span>.storage
                 .<span class="number">0
@@ -613,7 +614,7 @@
     /// ```ignore
     /// model.data.remove::&lt;String&gt;(id);
     /// ```
-    </span><span class="kw">pub fn </span>data_remove&lt;Data: <span class="lifetime">&#39;static</span>&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Entity) {
+    </span><span class="kw">pub fn </span>data_remove&lt;Data: <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Entity) {
         <span class="self">self</span>.storage
             .<span class="number">0
             </span>.get_mut(<span class="kw-2">&amp;</span>TypeId::of::&lt;Data&gt;())
@@ -641,7 +642,7 @@
     ///
     /// ```ignore
     /// if let Some(icon) = model.icon(id) {
-    ///     println!(&quot;has icon: {:?}&quot;, icon);
+    ///     println!("has icon: {:?}", icon);
     /// }
     /// ```
     </span><span class="kw">pub fn </span>icon(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Entity) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Icon&gt; {
@@ -651,8 +652,8 @@
     <span class="doccomment">/// Sets a new icon for an item.
     ///
     /// ```ignore
-    /// if let Some(old_icon) = model.icon_set(IconSource::from(&quot;new-icon&quot;)) {
-    ///     println!(&quot;previously had icon: {:?}&quot;, old_icon);
+    /// if let Some(old_icon) = model.icon_set(IconSource::from("new-icon")) {
+    ///     println!("previously had icon: {:?}", old_icon);
     /// }
     /// ```
     </span><span class="kw">pub fn </span>icon_set(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Entity, icon: Icon) -&gt; <span class="prelude-ty">Option</span>&lt;Icon&gt; {
@@ -667,7 +668,7 @@
     ///
     /// ```ignore
     /// if let Some(old_icon) = model.icon_remove(id) {
-    ///     println!(&quot;previously had icon: {:?}&quot;, old_icon);
+    ///     println!("previously had icon: {:?}", old_icon);
     /// }
     </span><span class="kw">pub fn </span>icon_remove(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Entity) -&gt; <span class="prelude-ty">Option</span>&lt;Icon&gt; {
         <span class="self">self</span>.icons.remove(id)
@@ -676,7 +677,7 @@
     <span class="doccomment">/// Inserts a new item in the model.
     ///
     /// ```ignore
-    /// let id = model.insert().text(&quot;Item A&quot;).icon(&quot;custom-icon&quot;).id();
+    /// let id = model.insert().text("Item A").icon("custom-icon").id();
     /// ```
     </span><span class="attr">#[must_use]
     </span><span class="kw">pub fn </span>insert(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; EntityMut&lt;SelectionMode&gt; {
@@ -702,7 +703,7 @@
     /// ```ignore
     /// if model.is_enabled(id) {
     ///     if let Some(text) = model.text(id) {
-    ///         println!(&quot;{text} is enabled&quot;);
+    ///         println!("{text} is enabled");
     ///     }
     /// }
     /// ```
@@ -712,7 +713,7 @@
     }
 
     <span class="doccomment">/// Iterates across items in the model in the order that they are displayed.
-    </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">impl </span>Iterator&lt;Item = Entity&gt; + <span class="lifetime">&#39;_ </span>{
+    </span><span class="kw">pub fn </span>iter(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">impl </span>Iterator&lt;Item = Entity&gt; + <span class="lifetime">'_ </span>{
         <span class="self">self</span>.order.iter().copied()
     }
 
@@ -736,7 +737,7 @@
     ///
     /// ```ignore
     /// if let Some(position) = model.position(id) {
-    ///     println!(&quot;found item at {}&quot;, position);
+    ///     println!("found item at {}", position);
     /// }
     </span><span class="attr">#[must_use]
     </span><span class="kw">pub fn </span>position(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Entity) -&gt; <span class="prelude-ty">Option</span>&lt;u16&gt; {
@@ -748,7 +749,7 @@
     ///
     /// ```ignore
     /// if let Some(new_position) = model.position_set(id, 0) {
-    ///     println!(&quot;placed item at {}&quot;, new_position);
+    ///     println!("placed item at {}", new_position);
     /// }
     /// ```
     </span><span class="kw">pub fn </span>position_set(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Entity, position: u16) -&gt; <span class="prelude-ty">Option</span>&lt;usize&gt; {
@@ -769,7 +770,7 @@
     ///
     /// ```ignore
     /// if model.position_swap(first_id, second_id) {
-    ///     println!(&quot;positions swapped&quot;);
+    ///     println!("positions swapped");
     /// }
     /// ```
     </span><span class="kw">pub fn </span>position_swap(<span class="kw-2">&amp;mut </span><span class="self">self</span>, first: Entity, second: Entity) -&gt; bool {
@@ -807,7 +808,7 @@
     ///
     /// ```ignore
     /// if let Some(text) = model.text(id) {
-    ///     println!(&quot;{:?} has text {text}&quot;, id);
+    ///     println!("{:?} has text {text}", id);
     /// }
     /// ```
     </span><span class="kw">pub fn </span>text(<span class="kw-2">&amp;</span><span class="self">self</span>, id: Entity) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt; {
@@ -817,11 +818,11 @@
     <span class="doccomment">/// Sets new text for an item.
     ///
     /// ```ignore
-    /// if let Some(old_text) = model.text_set(id, &quot;Item B&quot;) {
-    ///     println!(&quot;{:?} had text {}&quot;, id, old_text)
+    /// if let Some(old_text) = model.text_set(id, "Item B") {
+    ///     println!("{:?} had text {}", id, old_text)
     /// }
     /// ```
-    </span><span class="kw">pub fn </span>text_set(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Entity, text: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">&#39;static</span>, str&gt;&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;Cow&lt;str&gt;&gt; {
+    </span><span class="kw">pub fn </span>text_set(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Entity, text: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'static</span>, str&gt;&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;Cow&lt;str&gt;&gt; {
         <span class="kw">if </span>!<span class="self">self</span>.contains_item(id) {
             <span class="kw">return </span><span class="prelude-val">None</span>;
         }
@@ -832,9 +833,9 @@
     <span class="doccomment">/// Removes text from an item.
     /// ```ignore
     /// if let Some(old_text) = model.text_remove(id) {
-    ///     println!(&quot;{:?} had text {}&quot;, id, old_text);
+    ///     println!("{:?} had text {}", id, old_text);
     /// }
-    </span><span class="kw">pub fn </span>text_remove(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Entity) -&gt; <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">&#39;static</span>, str&gt;&gt; {
+    </span><span class="kw">pub fn </span>text_remove(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: Entity) -&gt; <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">'static</span>, str&gt;&gt; {
         <span class="self">self</span>.text.remove(id)
     }
 }

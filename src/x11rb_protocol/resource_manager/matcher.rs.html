@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-protocol-0.13.0/src/resource_manager/matcher.rs`."><title>matcher.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb_protocol" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-protocol-0.13.0/src/resource_manager/matcher.rs`."><title>matcher.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb_protocol" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -635,10 +636,10 @@
     /// this possible, the individual items are wrapped in `Option`.
     ///
     /// See tests below to make this clearer.
-    </span><span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>zip_longest&lt;<span class="lifetime">&#39;a</span>, T&gt;(
-        a: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[T],
-        b: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[T],
-    ) -&gt; <span class="kw">impl </span>Iterator&lt;Item = (<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T&gt;, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T&gt;)&gt; + <span class="lifetime">&#39;a </span>{
+    </span><span class="kw">pub</span>(<span class="kw">super</span>) <span class="kw">fn </span>zip_longest&lt;<span class="lifetime">'a</span>, T&gt;(
+        a: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[T],
+        b: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[T],
+    ) -&gt; <span class="kw">impl </span>Iterator&lt;Item = (<span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>T&gt;, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>T&gt;)&gt; + <span class="lifetime">'a </span>{
         ZipLongest {
             a: a.iter(),
             b: b.iter(),
@@ -723,7 +724,7 @@
 
 <span class="doccomment">/// Info how a specific component was matched.
 ///
-/// This information is used to decide which of two matches is &quot;better&quot; in `compare_matches()`.
+/// This information is used to decide which of two matches is "better" in `compare_matches()`.
 </span><span class="attr">#[derive(Debug, Copy, Clone)]
 </span><span class="kw">enum </span>HowMatched {
     <span class="doccomment">/// The component matched the instance of the query
@@ -736,7 +737,7 @@
 
 <span class="doccomment">/// Info on how an (unskipped) component of the query was matched
 ///
-/// This information is used to decide which of two matches is &quot;better&quot; in `compare_matches()`.
+/// This information is used to decide which of two matches is "better" in `compare_matches()`.
 </span><span class="attr">#[derive(Debug, Copy, Clone)]
 </span><span class="kw">struct </span>MatchComponent {
     preceding_binding: Binding,
@@ -745,10 +746,10 @@
 
 <span class="doccomment">/// Info how a (possibly skipped) component of the query was matched
 ///
-/// This information is used to decide which of two matches is &quot;better&quot; in `compare_matches()`.
+/// This information is used to decide which of two matches is "better" in `compare_matches()`.
 </span><span class="attr">#[derive(Debug, Copy, Clone)]
 </span><span class="kw">enum </span>MatchKind {
-    <span class="doccomment">/// The component was skipped via a loose binding (&quot;*&quot;)
+    <span class="doccomment">/// The component was skipped via a loose binding ("*")
     </span>SkippedViaLooseBinding,
     <span class="doccomment">/// The component was matched against the entry.
     </span>Matched(MatchComponent),
@@ -814,7 +815,7 @@
             <span class="kw">match </span>binding {
                 <span class="comment">// We have to match here, no way around that.
                 </span>Binding::Tight =&gt; {}
-                <span class="comment">// We could &quot;eat&quot; this with the loose binding by staying in the state
+                <span class="comment">// We could "eat" this with the loose binding by staying in the state
                 </span>Binding::Loose =&gt; next_states.push(state.skip_loose()),
             }
             <span class="comment">// Does the component match?
@@ -852,7 +853,7 @@
     <span class="kw">use </span>MatchKind::<span class="kw-2">*</span>;
 
     <span class="kw">fn </span>rule1(match1: <span class="kw-2">&amp;</span>MatchKind, match2: <span class="kw-2">&amp;</span>MatchKind) -&gt; Ordering {
-        <span class="comment">// Precedence rule #1: Matching components (including wildcard &#39;?&#39;) outweighs loose bindings (&#39;*&#39;)
+        <span class="comment">// Precedence rule #1: Matching components (including wildcard '?') outweighs loose bindings ('*')
         </span><span class="kw">if let </span>Matched(<span class="kw">_</span>) = match1 {
             <span class="kw">if let </span>SkippedViaLooseBinding = match2 {
                 <span class="kw">return </span>Ordering::Greater;
@@ -900,7 +901,7 @@
     }
 
     <span class="kw">fn </span>rule3(match1: <span class="kw-2">&amp;</span>MatchKind, match2: <span class="kw-2">&amp;</span>MatchKind) -&gt; Ordering {
-        <span class="comment">// Precedence rule #3: A preceding exact match outweights a preceding &#39;*&#39;
+        <span class="comment">// Precedence rule #3: A preceding exact match outweights a preceding '*'
         </span><span class="kw">if let </span>Matched(MatchComponent {
             preceding_binding: Tight,
             ..
@@ -920,8 +921,8 @@
     <span class="macro">assert_eq!</span>(
         match1.len(),
         match2.len(),
-        <span class="string">&quot;Both matches should have the same length (which is guaranteed by the current \
-         implementation of check_match())&quot;
+        <span class="string">"Both matches should have the same length (which is guaranteed by the current \
+         implementation of check_match())"
     </span>);
     <span class="kw">for </span>(m1, m2) <span class="kw">in </span>match1.iter().zip(match2.iter()) {
         <span class="kw">let </span>ordering = rule1(m1, m2)
@@ -938,11 +939,11 @@
 }
 
 <span class="doccomment">/// Find the best match for the given query in the database, returning `None` when nothing matches.
-</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>match_entry&lt;<span class="lifetime">&#39;a</span>&gt;(
-    database: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[Entry],
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>match_entry&lt;<span class="lifetime">'a</span>&gt;(
+    database: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[Entry],
     resource: <span class="kw-2">&amp;</span>str,
     class: <span class="kw-2">&amp;</span>str,
-) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]&gt; {
+) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]&gt; {
     <span class="kw">let </span>resource = parse_query(resource.as_bytes())<span class="question-mark">?</span>;
     <span class="kw">let </span>class = parse_query(class.as_bytes())<span class="question-mark">?</span>;
     database
@@ -976,236 +977,236 @@
     </span><span class="kw">fn </span>test_matches() {
         <span class="kw">let </span>tests = [
             <span class="comment">// Non-matches / Errors
-            </span>(<span class="kw-2">&amp;</span><span class="string">b&quot;&quot;</span>[..], <span class="string">&quot;&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>),
+            </span>(<span class="kw-2">&amp;</span><span class="string">b""</span>[..], <span class="string">""</span>, <span class="string">""</span>, <span class="prelude-val">None</span>),
             <span class="comment">// Xlib returns the match here, despite the query violating the specs (different number
             // of components in the query)
             </span>(
-                <span class="string">b&quot;First.second: 1&quot;</span>,
-                <span class="string">&quot;First.second&quot;</span>,
-                <span class="string">&quot;First.second.third&quot;</span>,
+                <span class="string">b"First.second: 1"</span>,
+                <span class="string">"First.second"</span>,
+                <span class="string">"First.second.third"</span>,
                 <span class="prelude-val">None</span>,
             ),
-            (<span class="string">b&quot;&quot;</span>, <span class="string">&quot;First.second&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">b&quot;First.second: 1&quot;</span>, <span class="string">&quot;First.third&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">b&quot;First.second: 1&quot;</span>, <span class="string">&quot;First&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">b&quot;First: 1&quot;</span>, <span class="string">&quot;First.second&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">b&quot;First.?.fourth: 1&quot;</span>, <span class="string">&quot;First.second.third.fourth&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">b&quot;First*?.third: 1&quot;</span>, <span class="string">&quot;First.third&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">b&quot;First: 1&quot;</span>, <span class="string">&quot;first&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">b&quot;First: 1&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;first&quot;</span>, <span class="prelude-val">None</span>),
+            (<span class="string">b""</span>, <span class="string">"First.second"</span>, <span class="string">""</span>, <span class="prelude-val">None</span>),
+            (<span class="string">b"First.second: 1"</span>, <span class="string">"First.third"</span>, <span class="string">""</span>, <span class="prelude-val">None</span>),
+            (<span class="string">b"First.second: 1"</span>, <span class="string">"First"</span>, <span class="string">""</span>, <span class="prelude-val">None</span>),
+            (<span class="string">b"First: 1"</span>, <span class="string">"First.second"</span>, <span class="string">""</span>, <span class="prelude-val">None</span>),
+            (<span class="string">b"First.?.fourth: 1"</span>, <span class="string">"First.second.third.fourth"</span>, <span class="string">""</span>, <span class="prelude-val">None</span>),
+            (<span class="string">b"First*?.third: 1"</span>, <span class="string">"First.third"</span>, <span class="string">""</span>, <span class="prelude-val">None</span>),
+            (<span class="string">b"First: 1"</span>, <span class="string">"first"</span>, <span class="string">""</span>, <span class="prelude-val">None</span>),
+            (<span class="string">b"First: 1"</span>, <span class="string">""</span>, <span class="string">"first"</span>, <span class="prelude-val">None</span>),
             <span class="comment">// Duplicate entries
             </span>(
-                <span class="string">b&quot;First: 1\nFirst: 2\nFirst: 3\n&quot;</span>,
-                <span class="string">&quot;First&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="string">b&quot;3&quot;</span>[..]),
+                <span class="string">b"First: 1\nFirst: 2\nFirst: 3\n"</span>,
+                <span class="string">"First"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="string">b"3"</span>[..]),
             ),
             (
-                <span class="string">b&quot;First: 1\nSecond: 2\nSecond: 3\nThird: 4\n&quot;</span>,
-                <span class="string">&quot;Second&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;3&quot;</span>),
+                <span class="string">b"First: 1\nSecond: 2\nSecond: 3\nThird: 4\n"</span>,
+                <span class="string">"Second"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"3"</span>),
             ),
             <span class="comment">// Basic matching
-            </span>(<span class="string">b&quot;First: 1&quot;</span>, <span class="string">&quot;First&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;First.second: 1&quot;</span>, <span class="string">&quot;First.second&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;?.second: 1&quot;</span>, <span class="string">&quot;First.second&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;First.?.third: 1&quot;</span>, <span class="string">&quot;First.second.third&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
+            </span>(<span class="string">b"First: 1"</span>, <span class="string">"First"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b"First.second: 1"</span>, <span class="string">"First.second"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b"?.second: 1"</span>, <span class="string">"First.second"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b"First.?.third: 1"</span>, <span class="string">"First.second.third"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
             (
-                <span class="string">b&quot;First.?.?.fourth: 1&quot;</span>,
-                <span class="string">&quot;First.second.third.fourth&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First.?.?.fourth: 1"</span>,
+                <span class="string">"First.second.third.fourth"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
-            (<span class="string">b&quot;*second: 1&quot;</span>, <span class="string">&quot;First.second&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;.second: 1&quot;</span>, <span class="string">&quot;First.second&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">b&quot;*third: 1&quot;</span>, <span class="string">&quot;First.second.third&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;First*second: 1&quot;</span>, <span class="string">&quot;First.second&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;First*third: 1&quot;</span>, <span class="string">&quot;First.second.third&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
+            (<span class="string">b"*second: 1"</span>, <span class="string">"First.second"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b".second: 1"</span>, <span class="string">"First.second"</span>, <span class="string">""</span>, <span class="prelude-val">None</span>),
+            (<span class="string">b"*third: 1"</span>, <span class="string">"First.second.third"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b"First*second: 1"</span>, <span class="string">"First.second"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b"First*third: 1"</span>, <span class="string">"First.second.third"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
             (
-                <span class="string">b&quot;First*fourth: 1&quot;</span>,
-                <span class="string">&quot;First.second.third.fourth&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First*fourth: 1"</span>,
+                <span class="string">"First.second.third.fourth"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
-            (<span class="string">b&quot;First*?.third: 1&quot;</span>, <span class="string">&quot;First.second.third&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;First: 1&quot;</span>, <span class="string">&quot;Second&quot;</span>, <span class="string">&quot;First&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
+            (<span class="string">b"First*?.third: 1"</span>, <span class="string">"First.second.third"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b"First: 1"</span>, <span class="string">"Second"</span>, <span class="string">"First"</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
             (
-                <span class="string">b&quot;First.second: 1&quot;</span>,
-                <span class="string">&quot;First.third&quot;</span>,
-                <span class="string">&quot;first.second&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
-            ),
-            (
-                <span class="string">b&quot;First.second.third: 1&quot;</span>,
-                <span class="string">&quot;First.third.third&quot;</span>,
-                <span class="string">&quot;first.second.fourth&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First.second: 1"</span>,
+                <span class="string">"First.third"</span>,
+                <span class="string">"first.second"</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
             (
-                <span class="string">b&quot;First*third*fifth: 1&quot;</span>,
-                <span class="string">&quot;First.second.third.fourth.third.fifth&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First.second.third: 1"</span>,
+                <span class="string">"First.third.third"</span>,
+                <span class="string">"first.second.fourth"</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
-            (<span class="string">b&quot;First: x\\\ny&quot;</span>, <span class="string">&quot;First&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;xy&quot;</span>)),
-            (<span class="string">b&quot;! First: x&quot;</span>, <span class="string">&quot;First&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">b&quot;# First: x&quot;</span>, <span class="string">&quot;First&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">b&quot;First:&quot;</span>, <span class="string">&quot;First&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;&quot;</span>)),
-            (<span class="string">b&quot;First: &quot;</span>, <span class="string">&quot;First&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;&quot;</span>)),
-            (<span class="string">b&quot;First: \t &quot;</span>, <span class="string">&quot;First&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;&quot;</span>)),
+            (
+                <span class="string">b"First*third*fifth: 1"</span>,
+                <span class="string">"First.second.third.fourth.third.fifth"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
+            ),
+            (<span class="string">b"First: x\\\ny"</span>, <span class="string">"First"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"xy"</span>)),
+            (<span class="string">b"! First: x"</span>, <span class="string">"First"</span>, <span class="string">""</span>, <span class="prelude-val">None</span>),
+            (<span class="string">b"# First: x"</span>, <span class="string">"First"</span>, <span class="string">""</span>, <span class="prelude-val">None</span>),
+            (<span class="string">b"First:"</span>, <span class="string">"First"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b""</span>)),
+            (<span class="string">b"First: "</span>, <span class="string">"First"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b""</span>)),
+            (<span class="string">b"First: \t "</span>, <span class="string">"First"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b""</span>)),
             <span class="comment">// Consecutive bindings
-            </span>(<span class="string">b&quot;*.bar: 1&quot;</span>, <span class="string">&quot;foo.foo.bar&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;...bar: 1&quot;</span>, <span class="string">&quot;foo.bar&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">b&quot;...bar: 1&quot;</span>, <span class="string">&quot;foo.foo.foo.bar&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">b&quot;***bar: 1&quot;</span>, <span class="string">&quot;foo.bar&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;.*.bar: 1&quot;</span>, <span class="string">&quot;foo.bar&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;.*.bar: 1&quot;</span>, <span class="string">&quot;foo.foo.bar&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;..*bar: 1&quot;</span>, <span class="string">&quot;foo.foo.foo.foo.bar&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;a.*.z: 1&quot;</span>, <span class="string">&quot;a.b.c.d.e.f.z&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;a...z: 1&quot;</span>, <span class="string">&quot;a.z&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;a...z: 1&quot;</span>, <span class="string">&quot;a.b.z&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>),
+            </span>(<span class="string">b"*.bar: 1"</span>, <span class="string">"foo.foo.bar"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b"...bar: 1"</span>, <span class="string">"foo.bar"</span>, <span class="string">""</span>, <span class="prelude-val">None</span>),
+            (<span class="string">b"...bar: 1"</span>, <span class="string">"foo.foo.foo.bar"</span>, <span class="string">""</span>, <span class="prelude-val">None</span>),
+            (<span class="string">b"***bar: 1"</span>, <span class="string">"foo.bar"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b".*.bar: 1"</span>, <span class="string">"foo.bar"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b".*.bar: 1"</span>, <span class="string">"foo.foo.bar"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b"..*bar: 1"</span>, <span class="string">"foo.foo.foo.foo.bar"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b"a.*.z: 1"</span>, <span class="string">"a.b.c.d.e.f.z"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b"a...z: 1"</span>, <span class="string">"a.z"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b"a...z: 1"</span>, <span class="string">"a.b.z"</span>, <span class="string">""</span>, <span class="prelude-val">None</span>),
             <span class="comment">// Matching among multiple entries
-            </span>(<span class="string">b&quot;First: 1\nSecond: 2\n&quot;</span>, <span class="string">&quot;First&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;First: 1\nSecond: 2\n&quot;</span>, <span class="string">&quot;Second&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;2&quot;</span>)),
+            </span>(<span class="string">b"First: 1\nSecond: 2\n"</span>, <span class="string">"First"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b"First: 1\nSecond: 2\n"</span>, <span class="string">"Second"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"2"</span>)),
             <span class="comment">// Greediness
-            </span>(<span class="string">b&quot;a*c.e: 1&quot;</span>, <span class="string">&quot;a.b.c.d.c.e&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;a*c.e: 1&quot;</span>, <span class="string">&quot;a.b.c.c.e&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;a*?.e: 1&quot;</span>, <span class="string">&quot;a.b.c.e&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
-            (<span class="string">b&quot;a*c*e: 1&quot;</span>, <span class="string">&quot;a.b.c.d.c.d.e.d.e&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>)),
+            </span>(<span class="string">b"a*c.e: 1"</span>, <span class="string">"a.b.c.d.c.e"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b"a*c.e: 1"</span>, <span class="string">"a.b.c.c.e"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b"a*?.e: 1"</span>, <span class="string">"a.b.c.e"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
+            (<span class="string">b"a*c*e: 1"</span>, <span class="string">"a.b.c.d.c.d.e.d.e"</span>, <span class="string">""</span>, <span class="prelude-val">Some</span>(<span class="string">b"1"</span>)),
             <span class="comment">// Precedence rules
             // Rule 1
             </span>(
-                <span class="string">b&quot;First.second.third: 1\nFirst*third: 2\n&quot;</span>,
-                <span class="string">&quot;First.second.third&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First.second.third: 1\nFirst*third: 2\n"</span>,
+                <span class="string">"First.second.third"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
             (
-                <span class="string">b&quot;First*third: 2\nFirst.second.third: 1\n&quot;</span>,
-                <span class="string">&quot;First.second.third&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First*third: 2\nFirst.second.third: 1\n"</span>,
+                <span class="string">"First.second.third"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
             (
-                <span class="string">b&quot;First.second.third: 1\nFirst*third: 2\n&quot;</span>,
-                <span class="string">&quot;x.x.x&quot;</span>,
-                <span class="string">&quot;First.second.third&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First.second.third: 1\nFirst*third: 2\n"</span>,
+                <span class="string">"x.x.x"</span>,
+                <span class="string">"First.second.third"</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
             (
-                <span class="string">b&quot;First*third: 2\nFirst.second.third: 1\n&quot;</span>,
-                <span class="string">&quot;x.x.x&quot;</span>,
-                <span class="string">&quot;First.second.third&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First*third: 2\nFirst.second.third: 1\n"</span>,
+                <span class="string">"x.x.x"</span>,
+                <span class="string">"First.second.third"</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
             <span class="comment">// Rule 2
             </span>(
-                <span class="string">b&quot;First.second: 1\nFirst.third: 2\n&quot;</span>,
-                <span class="string">&quot;First.second&quot;</span>,
-                <span class="string">&quot;First.third&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First.second: 1\nFirst.third: 2\n"</span>,
+                <span class="string">"First.second"</span>,
+                <span class="string">"First.third"</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
             (
-                <span class="string">b&quot;First.third: 2\nFirst.second: 1\n&quot;</span>,
-                <span class="string">&quot;First.second&quot;</span>,
-                <span class="string">&quot;First.third&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First.third: 2\nFirst.second: 1\n"</span>,
+                <span class="string">"First.second"</span>,
+                <span class="string">"First.third"</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
             (
-                <span class="string">b&quot;First.second.third: 1\nFirst.?.third: 2\n&quot;</span>,
-                <span class="string">&quot;First.second.third&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First.second.third: 1\nFirst.?.third: 2\n"</span>,
+                <span class="string">"First.second.third"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
             (
-                <span class="string">b&quot;First.?.third: 2\nFirst.second.third: 1\n&quot;</span>,
-                <span class="string">&quot;First.second.third&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First.?.third: 2\nFirst.second.third: 1\n"</span>,
+                <span class="string">"First.second.third"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
             (
-                <span class="string">b&quot;First.second.third: 1\nFirst.?.third: 2\n&quot;</span>,
-                <span class="string">&quot;x.x.x&quot;</span>,
-                <span class="string">&quot;First.second.third&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First.second.third: 1\nFirst.?.third: 2\n"</span>,
+                <span class="string">"x.x.x"</span>,
+                <span class="string">"First.second.third"</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
             (
-                <span class="string">b&quot;First.?.third: 2\nFirst.second.third: 1\n&quot;</span>,
-                <span class="string">&quot;x.x.x&quot;</span>,
-                <span class="string">&quot;First.second.third&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First.?.third: 2\nFirst.second.third: 1\n"</span>,
+                <span class="string">"x.x.x"</span>,
+                <span class="string">"First.second.third"</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
             <span class="comment">// Rule 3
             </span>(
-                <span class="string">b&quot;First.second: 1\nFirst*second: 2\n&quot;</span>,
-                <span class="string">&quot;First.second&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First.second: 1\nFirst*second: 2\n"</span>,
+                <span class="string">"First.second"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
             (
-                <span class="string">b&quot;First*second: 2\nFirst.second: 1\n&quot;</span>,
-                <span class="string">&quot;First.second&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First*second: 2\nFirst.second: 1\n"</span>,
+                <span class="string">"First.second"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
             <span class="comment">// Some real world examples. May contain duplicates to the above tests.
 
             // From the specification:
             // https://tronche.com/gui/x/xlib/resource-manager/matching-rules.html
             </span>(
-                <span class="string">b&quot;xmh*Paned*activeForeground: red\n\
+                <span class="string">b"xmh*Paned*activeForeground: red\n\
                   *incorporate.Foreground: blue\n\
                   xmh.toc*Command*activeForeground: green\n\
                   xmh.toc*?.Foreground: white\n\
-                  xmh.toc*Command.activeForeground: black&quot;</span>,
-                <span class="string">&quot;xmh.toc.messagefunctions.incorporate.activeForeground&quot;</span>,
-                <span class="string">&quot;Xmh.Paned.Box.Command.Foreground&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;black&quot;</span>),
+                  xmh.toc*Command.activeForeground: black"</span>,
+                <span class="string">"xmh.toc.messagefunctions.incorporate.activeForeground"</span>,
+                <span class="string">"Xmh.Paned.Box.Command.Foreground"</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"black"</span>),
             ),
             (
-                <span class="string">b&quot;urxvt*background: [95]#000&quot;</span>,
-                <span class="string">&quot;urxvt.background&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;[95]#000&quot;</span>),
+                <span class="string">b"urxvt*background: [95]#000"</span>,
+                <span class="string">"urxvt.background"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"[95]#000"</span>),
             ),
             (
-                <span class="string">b&quot;urxvt*scrollBar_right:true&quot;</span>,
-                <span class="string">&quot;urxvt.scrollBar_right&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;true&quot;</span>),
+                <span class="string">b"urxvt*scrollBar_right:true"</span>,
+                <span class="string">"urxvt.scrollBar_right"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"true"</span>),
             ),
             (
-                <span class="string">b&quot;urxvt*cutchars:    &#39;\&quot;&#39;()*&lt;&gt;[]{|}&quot;</span>,
-                <span class="string">&quot;urxvt.cutchars&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;&#39;\&quot;&#39;()*&lt;&gt;[]{|}&quot;</span>),
+                <span class="string">b"urxvt*cutchars:    '\"'()*&lt;&gt;[]{|}"</span>,
+                <span class="string">"urxvt.cutchars"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"'\"'()*&lt;&gt;[]{|}"</span>),
             ),
             (
-                <span class="string">b&quot;urxvt.keysym.Control-Shift-Up: perl:font:increment&quot;</span>,
-                <span class="string">&quot;urxvt.keysym.Control-Shift-Up&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;perl:font:increment&quot;</span>),
+                <span class="string">b"urxvt.keysym.Control-Shift-Up: perl:font:increment"</span>,
+                <span class="string">"urxvt.keysym.Control-Shift-Up"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"perl:font:increment"</span>),
             ),
             (
-                <span class="string">b&quot;rofi.normal: #000000, #000000, #000000, #000000&quot;</span>,
-                <span class="string">&quot;rofi.normal&quot;</span>,
-                <span class="string">&quot;&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;#000000, #000000, #000000, #000000&quot;</span>),
+                <span class="string">b"rofi.normal: #000000, #000000, #000000, #000000"</span>,
+                <span class="string">"rofi.normal"</span>,
+                <span class="string">""</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"#000000, #000000, #000000, #000000"</span>),
             ),
             <span class="comment">// Own tests
-            </span>(<span class="string">b&quot;*foo.bar: 1&quot;</span>, <span class="string">&quot;bar&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="prelude-val">None</span>),
+            </span>(<span class="string">b"*foo.bar: 1"</span>, <span class="string">"bar"</span>, <span class="string">""</span>, <span class="prelude-val">None</span>),
             (
-                <span class="string">b&quot;First.Second.Third: 1\nFirst.Second: 2&quot;</span>,
-                <span class="string">&quot;First.Second.Third&quot;</span>,
-                <span class="string">&quot;First.Second&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First.Second.Third: 1\nFirst.Second: 2"</span>,
+                <span class="string">"First.Second.Third"</span>,
+                <span class="string">"First.Second"</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
             (
-                <span class="string">b&quot;First.Second.Third: 1\nFirst.Second: 2&quot;</span>,
-                <span class="string">&quot;First.Second&quot;</span>,
-                <span class="string">&quot;First.Second.Third&quot;</span>,
-                <span class="prelude-val">Some</span>(<span class="string">b&quot;1&quot;</span>),
+                <span class="string">b"First.Second.Third: 1\nFirst.Second: 2"</span>,
+                <span class="string">"First.Second"</span>,
+                <span class="string">"First.Second.Third"</span>,
+                <span class="prelude-val">Some</span>(<span class="string">b"1"</span>),
             ),
         ];
         <span class="kw">let </span><span class="kw-2">mut </span>failures = <span class="number">0</span>;
@@ -1215,25 +1216,25 @@
             <span class="kw">let </span>result = match_entry(<span class="kw-2">&amp;</span>entries, resource, class);
             <span class="kw">if </span>result != expected {
                 <span class="macro">eprintln!</span>(
-                    <span class="string">&quot;While testing resource &#39;{}&#39; and class &#39;{}&#39; with the following input:&quot;</span>,
+                    <span class="string">"While testing resource '{}' and class '{}' with the following input:"</span>,
                     resource, class
                 );
-                <span class="macro">eprintln!</span>(<span class="string">&quot;{}&quot;</span>, print_string(data));
-                <span class="macro">eprintln!</span>(<span class="string">&quot;Expected: {:?}&quot;</span>, expected.map(print_string));
-                <span class="macro">eprintln!</span>(<span class="string">&quot;Got:      {:?}&quot;</span>, result.map(print_string));
+                <span class="macro">eprintln!</span>(<span class="string">"{}"</span>, print_string(data));
+                <span class="macro">eprintln!</span>(<span class="string">"Expected: {:?}"</span>, expected.map(print_string));
+                <span class="macro">eprintln!</span>(<span class="string">"Got:      {:?}"</span>, result.map(print_string));
                 <span class="macro">eprintln!</span>();
                 failures += <span class="number">1</span>;
             }
         }
         <span class="kw">if </span>failures != <span class="number">0 </span>{
-            <span class="macro">panic!</span>(<span class="string">&quot;Had {} failures&quot;</span>, failures)
+            <span class="macro">panic!</span>(<span class="string">"Had {} failures"</span>, failures)
         }
     }
 
     <span class="kw">fn </span>print_string(data: <span class="kw-2">&amp;</span>[u8]) -&gt; String {
         std::str::from_utf8(data)
             .map(|s| s.to_string())
-            .unwrap_or_else(|<span class="kw">_</span>| <span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, data))
+            .unwrap_or_else(|<span class="kw">_</span>| <span class="macro">format!</span>(<span class="string">"{:?}"</span>, data))
     }
 }
 </code></pre></div></section></main></body></html>

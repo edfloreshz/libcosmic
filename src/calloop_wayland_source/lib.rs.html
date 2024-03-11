@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/calloop-wayland-source-0.2.0/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="calloop_wayland_source" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/calloop-wayland-source-0.2.0/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="calloop_wayland_source" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -289,7 +290,7 @@
 //! let mut event_loop: EventLoop&lt;()&gt; = EventLoop::try_new().unwrap();
 //! let loop_handle = event_loop.handle();
 //!
-//! // Insert the wayland source into the calloop&#39;s event loop.
+//! // Insert the wayland source into the calloop's event loop.
 //! WaylandSource::new(connection, event_queue).insert(loop_handle).unwrap();
 //!
 //! // This will start dispatching the event loop and processing pending wayland requests.
@@ -310,9 +311,9 @@
 <span class="kw">use </span>wayland_backend::client::{ReadEventsGuard, WaylandError};
 <span class="kw">use </span>wayland_client::{Connection, DispatchError, EventQueue};
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;log&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"log"</span>)]
 </span><span class="kw">use </span>log::error <span class="kw">as </span>log_error;
-<span class="attr">#[cfg(not(feature = <span class="string">&quot;log&quot;</span>))]
+<span class="attr">#[cfg(not(feature = <span class="string">"log"</span>))]
 </span><span class="kw">use </span>std::eprintln <span class="kw">as </span>log_error;
 
 <span class="doccomment">/// An adapter to insert an [`EventQueue`] into a calloop
@@ -328,17 +329,17 @@
 </span><span class="attr">#[derive(Debug)]
 </span><span class="kw">pub struct </span>WaylandSource&lt;D&gt; {
     <span class="comment">// In theory, we could use the same event queue inside `connection_source`
-    // However, calloop&#39;s safety requirements mean that we cannot then give
+    // However, calloop's safety requirements mean that we cannot then give
     // mutable access to the queue, which is incompatible with our current interface
-    // Additionally, `Connection` is cheaply cloneable, so it&#39;s not a huge burden
+    // Additionally, `Connection` is cheaply cloneable, so it's not a huge burden
     </span>queue: EventQueue&lt;D&gt;,
     connection_source: Generic&lt;Connection&gt;,
     read_guard: <span class="prelude-ty">Option</span>&lt;ReadEventsGuard&gt;,
-    <span class="doccomment">/// Calloop&#39;s before_will_sleep method allows
+    <span class="doccomment">/// Calloop's before_will_sleep method allows
     /// skipping the sleeping by returning a `Token`.
     /// We cannot produce this on the fly, so store it here instead
     </span>fake_token: <span class="prelude-ty">Option</span>&lt;Token&gt;,
-    <span class="comment">// Some calloop event handlers don&#39;t support error handling, so we have to store the error
+    <span class="comment">// Some calloop event handlers don't support error handling, so we have to store the error
     // for a short time until we reach a method which allows it
     </span>stored_error: <span class="prelude-ty">Result</span>&lt;(), io::Error&gt;,
 }
@@ -376,11 +377,11 @@
 
     <span class="doccomment">/// Insert this source into the given event loop.
     ///
-    /// This adapter will pass the event loop&#39;s shared data as the `D` type for
+    /// This adapter will pass the event loop's shared data as the `D` type for
     /// the event loop.
     </span><span class="kw">pub fn </span>insert(<span class="self">self</span>, handle: LoopHandle&lt;D&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;RegistrationToken, InsertError&lt;<span class="self">Self</span>&gt;&gt;
     <span class="kw">where
-        </span>D: <span class="lifetime">&#39;static</span>,
+        </span>D: <span class="lifetime">'static</span>,
     {
         handle.insert_source(<span class="self">self</span>, |<span class="kw">_</span>, queue, data| queue.dispatch_pending(data))
     }
@@ -413,10 +414,10 @@
         </span>std::mem::replace(<span class="kw-2">&amp;mut </span><span class="self">self</span>.stored_error, <span class="prelude-val">Ok</span>(()))<span class="question-mark">?</span>;
 
         <span class="comment">// We know that the event will either be a fake event
-        // produced in `before_will_sleep`, or a &quot;real&quot; event from the underlying
+        // produced in `before_will_sleep`, or a "real" event from the underlying
         // source (self.queue_events). Our behaviour in both cases is the same.
         // In theory we might want to call the process_events handler on the underlying
-        // event source. However, we know that Generic&#39;s `process_events` call is a
+        // event source. However, we know that Generic's `process_events` call is a
         // no-op, so we just handle the event ourselves.
 
         </span><span class="kw">let </span>queue = <span class="kw-2">&amp;mut </span><span class="self">self</span>.queue;
@@ -467,8 +468,8 @@
         }
     }
 
-    <span class="kw">fn </span>before_handle_events(<span class="kw-2">&amp;mut </span><span class="self">self</span>, events: calloop::EventIterator&lt;<span class="lifetime">&#39;_</span>&gt;) {
-        <span class="comment">// It&#39;s important that the guard isn&#39;t held whilst process_events calls occur
+    <span class="kw">fn </span>before_handle_events(<span class="kw-2">&amp;mut </span><span class="self">self</span>, events: calloop::EventIterator&lt;<span class="lifetime">'_</span>&gt;) {
+        <span class="comment">// It's important that the guard isn't held whilst process_events calls occur
         // This can use arbitrary user-provided code, which may want to use the wayland
         // socket For example, creating a Vulkan surface needs access to the
         // connection
@@ -476,11 +477,11 @@
         <span class="kw">if </span>events.count() &gt; <span class="number">0 </span>{
             <span class="comment">// Read events from the socket if any are available
             </span><span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="prelude-val">Err</span>(WaylandError::Io(err))) = guard.map(ReadEventsGuard::read) {
-                <span class="comment">// If some other thread read events before us, concurrently, that&#39;s an expected
-                // case, so this error isn&#39;t an issue. Other error kinds do need to be returned,
+                <span class="comment">// If some other thread read events before us, concurrently, that's an expected
+                // case, so this error isn't an issue. Other error kinds do need to be returned,
                 // however
                 </span><span class="kw">if </span>err.kind() != io::ErrorKind::WouldBlock {
-                    <span class="comment">// before_handle_events doesn&#39;t allow returning errors
+                    <span class="comment">// before_handle_events doesn't allow returning errors
                     // For now, cache it in self until process_events is called
                     </span><span class="self">self</span>.stored_error = <span class="prelude-val">Err</span>(err);
                 }
@@ -497,7 +498,7 @@
         // happen, if it does we do nothing and will flush again later
         </span><span class="kw">if </span>err.kind() != io::ErrorKind::WouldBlock {
             <span class="comment">// in case of error, forward it and fast-exit
-            </span><span class="macro">log_error!</span>(<span class="string">&quot;Error trying to flush the wayland display: {}&quot;</span>, err);
+            </span><span class="macro">log_error!</span>(<span class="string">"Error trying to flush the wayland display: {}"</span>, err);
             <span class="kw">return </span><span class="prelude-val">Err</span>(err.into());
         }
     }
@@ -520,13 +521,13 @@
                     <span class="kw">return </span><span class="prelude-val">Err</span>(err);
                 },
                 <span class="prelude-val">Err</span>(DispatchError::Backend(WaylandError::Protocol(err))) =&gt; {
-                    <span class="macro">log_error!</span>(<span class="string">&quot;Protocol error received on display: {}&quot;</span>, err);
+                    <span class="macro">log_error!</span>(<span class="string">"Protocol error received on display: {}"</span>, err);
 
                     <span class="kw">break </span><span class="prelude-val">Err</span>(Errno::PROTO.into());
                 },
                 <span class="prelude-val">Err</span>(DispatchError::BadMessage { interface, sender_id, opcode }) =&gt; {
                     <span class="macro">log_error!</span>(
-                        <span class="string">&quot;Bad message on interface \&quot;{}\&quot;: (sender_id: {}, opcode: {})&quot;</span>,
+                        <span class="string">"Bad message on interface \"{}\": (sender_id: {}, opcode: {})"</span>,
                         interface,
                         sender_id,
                         opcode,

@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/segmented_button/vertical.rs`."><title>vertical.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/segmented_button/vertical.rs`."><title>vertical.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -96,14 +97,22 @@
 <a href="#96" id="96">96</a>
 <a href="#97" id="97">97</a>
 <a href="#98" id="98">98</a>
+<a href="#99" id="99">99</a>
+<a href="#100" id="100">100</a>
+<a href="#101" id="101">101</a>
+<a href="#102" id="102">102</a>
+<a href="#103" id="103">103</a>
+<a href="#104" id="104">104</a>
+<a href="#105" id="105">105</a>
+<a href="#106" id="106">106</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2022 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
 </span><span class="doccomment">//! Implementation details for the vertical layout of a segmented button.
 
-</span><span class="kw">use </span><span class="kw">super</span>::model::{Entity, Model, Selectable};
+</span><span class="kw">use </span><span class="kw">super</span>::model::{Model, Selectable};
 <span class="kw">use </span><span class="kw">super</span>::style::StyleSheet;
-<span class="kw">use </span><span class="kw">super</span>::widget::{LocalState, SegmentedButton, SegmentedVariant};
+<span class="kw">use </span><span class="kw">super</span>::widget::{ItemBounds, LocalState, SegmentedButton, SegmentedVariant};
 
 <span class="kw">use </span>iced::{Length, Rectangle, Size};
 <span class="kw">use </span>iced_core::layout;
@@ -112,13 +121,12 @@
 </span><span class="kw">pub struct </span>Vertical;
 
 <span class="doccomment">/// Vertical [`SegmentedButton`].
-</span><span class="kw">pub type </span>VerticalSegmentedButton&lt;<span class="lifetime">&#39;a</span>, SelectionMode, Message&gt; =
-    SegmentedButton&lt;<span class="lifetime">&#39;a</span>, Vertical, SelectionMode, Message&gt;;
+</span><span class="kw">pub type </span>VerticalSegmentedButton&lt;<span class="lifetime">'a</span>, SelectionMode, Message&gt; =
+    SegmentedButton&lt;<span class="lifetime">'a</span>, Vertical, SelectionMode, Message&gt;;
 
 <span class="doccomment">/// Vertical implementation of the [`SegmentedButton`].
 ///
 /// For details on the model, see the [`segmented_button`](super) module for more details.
-</span><span class="attr">#[must_use]
 </span><span class="kw">pub fn </span>vertical&lt;SelectionMode, Message&gt;(
     model: <span class="kw-2">&amp;</span>Model&lt;SelectionMode&gt;,
 ) -&gt; SegmentedButton&lt;Vertical, SelectionMode, Message&gt;
@@ -129,8 +137,8 @@
     SegmentedButton::new(model)
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, SelectionMode, Message&gt; SegmentedVariant
-    <span class="kw">for </span>SegmentedButton&lt;<span class="lifetime">&#39;a</span>, Vertical, SelectionMode, Message&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, SelectionMode, Message&gt; SegmentedVariant
+    <span class="kw">for </span>SegmentedButton&lt;<span class="lifetime">'a</span>, Vertical, SelectionMode, Message&gt;
 <span class="kw">where
     </span>Model&lt;SelectionMode&gt;: Selectable,
     SelectionMode: Default,
@@ -143,11 +151,11 @@
     }
 
     <span class="attr">#[allow(clippy::cast_precision_loss)]
-    </span><span class="kw">fn </span>variant_button_bounds&lt;<span class="lifetime">&#39;b</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="self">self</span>,
-        state: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span>LocalState,
+    </span><span class="kw">fn </span>variant_bounds&lt;<span class="lifetime">'b</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'b </span><span class="self">self</span>,
+        state: <span class="kw-2">&amp;</span><span class="lifetime">'b </span>LocalState,
         <span class="kw-2">mut </span>bounds: Rectangle,
-    ) -&gt; Box&lt;<span class="kw">dyn </span>Iterator&lt;Item = (Entity, Rectangle)&gt; + <span class="lifetime">&#39;b</span>&gt; {
+    ) -&gt; Box&lt;<span class="kw">dyn </span>Iterator&lt;Item = ItemBounds&gt; + <span class="lifetime">'b</span>&gt; {
         <span class="kw">let </span>spacing = f32::from(<span class="self">self</span>.spacing);
 
         Box::new(
@@ -156,11 +164,16 @@
                 .iter()
                 .copied()
                 .enumerate()
-                .map(<span class="kw">move </span>|(_nth, key)| {
-                    <span class="kw">let </span><span class="kw-2">mut </span>this_bounds = bounds;
-                    this_bounds.height = state.internal_layout[<span class="number">0</span>].height;
-                    bounds.y += this_bounds.height + spacing;
-                    (key, this_bounds)
+                .map(<span class="kw">move </span>|(nth, key)| {
+                    <span class="kw">let </span><span class="kw-2">mut </span>layout_bounds = bounds;
+
+                    <span class="kw">let </span>layout_size = state.internal_layout[nth].<span class="number">0</span>;
+
+                    layout_bounds.height = layout_size.height;
+
+                    bounds.y += layout_bounds.height + spacing;
+
+                    ItemBounds::Button(key, layout_bounds)
                 }),
         )
     }
@@ -173,11 +186,16 @@
         state: <span class="kw-2">&amp;mut </span>LocalState,
         renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
         limits: <span class="kw-2">&amp;</span>layout::Limits,
-    ) -&gt; layout::Node {
+    ) -&gt; Size {
         state.internal_layout.clear();
         <span class="kw">let </span>limits = limits.width(<span class="self">self</span>.width);
-        <span class="kw">let </span>(width, <span class="kw-2">mut </span>height) = <span class="self">self</span>.max_button_dimensions(state, renderer, limits.max());
-        state.internal_layout.push(Size::new(width, height));
+
+        <span class="kw">let </span>(width, <span class="kw-2">mut </span>height) = <span class="self">self</span>.max_button_dimensions(state, renderer);
+
+        <span class="kw">for </span>(size, actual) <span class="kw">in </span><span class="kw-2">&amp;mut </span>state.internal_layout {
+            size.width = width;
+            actual.width = height;
+        }
 
         <span class="kw">let </span>num = <span class="self">self</span>.model.items.len();
         <span class="kw">let </span>spacing = f32::from(<span class="self">self</span>.spacing);
@@ -185,13 +203,12 @@
         <span class="kw">if </span>num != <span class="number">0 </span>{
             height = (num <span class="kw">as </span>f32 * height) + (num <span class="kw">as </span>f32 * spacing) - spacing;
         }
-        <span class="kw">let </span>size = limits.height(Length::Fixed(height)).resolve(
+
+        limits.height(Length::Fixed(height)).resolve(
             <span class="self">self</span>.width,
             <span class="self">self</span>.height,
             Size::new(width, height),
-        );
-
-        layout::Node::new(size)
+        )
     }
 }
 </code></pre></div></section></main></body></html>

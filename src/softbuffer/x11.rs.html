@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/softbuffer-b53d51e2579e9817/6e75b1a/src/x11.rs`."><title>x11.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="softbuffer" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/softbuffer-b53d51e2579e9817/6e75b1a/src/x11.rs`."><title>x11.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="softbuffer" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1049,7 +1050,7 @@
     <span class="doccomment">/// SHM extension is available.
     </span>is_shm_available: bool,
 
-    <span class="doccomment">/// All visuals using softbuffer&#39;s pixel representation
+    <span class="doccomment">/// All visuals using softbuffer's pixel representation
     </span>supported_visuals: HashSet&lt;Visualid&gt;,
 
     <span class="doccomment">/// The generic display where the `connection` field comes from.
@@ -1091,24 +1092,24 @@
         </span><span class="kw">let </span>connection = <span class="kw">match </span>xcb_handle.connection {
             <span class="prelude-val">Some</span>(connection) =&gt; {
                 <span class="comment">// Wrap the display handle in an x11rb connection.
-                // SAFETY: We don&#39;t own the connection, so don&#39;t drop it. We also assert that the connection is valid.
+                // SAFETY: We don't own the connection, so don't drop it. We also assert that the connection is valid.
                 </span><span class="kw">let </span>result =
                     <span class="kw">unsafe </span>{ XCBConnection::from_raw_xcb_connection(connection.as_ptr(), <span class="bool-val">false</span>) };
 
-                result.swbuf_err(<span class="string">&quot;Failed to wrap XCB connection&quot;</span>)<span class="question-mark">?
+                result.swbuf_err(<span class="string">"Failed to wrap XCB connection"</span>)<span class="question-mark">?
             </span>}
             <span class="prelude-val">None </span>=&gt; {
-                <span class="comment">// The user didn&#39;t provide an XCB connection, so create our own.
-                </span><span class="macro">log::info!</span>(<span class="string">&quot;no XCB connection provided by the user, so spawning our own&quot;</span>);
+                <span class="comment">// The user didn't provide an XCB connection, so create our own.
+                </span><span class="macro">log::info!</span>(<span class="string">"no XCB connection provided by the user, so spawning our own"</span>);
                 XCBConnection::connect(<span class="prelude-val">None</span>)
-                    .swbuf_err(<span class="string">&quot;Failed to spawn XCB connection&quot;</span>)<span class="question-mark">?
+                    .swbuf_err(<span class="string">"Failed to spawn XCB connection"</span>)<span class="question-mark">?
                     </span>.<span class="number">0
             </span>}
         };
 
         <span class="kw">let </span>is_shm_available = is_shm_available(<span class="kw-2">&amp;</span>connection);
         <span class="kw">if </span>!is_shm_available {
-            <span class="macro">log::warn!</span>(<span class="string">&quot;SHM extension is not available. Performance may be poor.&quot;</span>);
+            <span class="macro">log::warn!</span>(<span class="string">"SHM extension is not available. Performance may be poor."</span>);
         }
 
         <span class="kw">let </span>supported_visuals = supported_visuals(<span class="kw-2">&amp;</span>connection);
@@ -1126,7 +1127,7 @@
     <span class="kw">fn </span>connection(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>XCBConnection {
         <span class="self">self</span>.connection
             .as_ref()
-            .expect(<span class="string">&quot;X11DisplayImpl::connection() called after X11DisplayImpl::drop()&quot;</span>)
+            .expect(<span class="string">"X11DisplayImpl::connection() called after X11DisplayImpl::drop()"</span>)
     }
 }
 
@@ -1175,7 +1176,7 @@
 
     <span class="doccomment">/// A cookie indicating that the shared memory segment is ready to be used.
     ///
-    /// We can&#39;t soundly read from or write to the SHM segment until the X server is done processing the
+    /// We can't soundly read from or write to the SHM segment until the X server is done processing the
     /// `shm::PutImage` request. However, the X server handles requests in order, which means that, if
     /// we send a very small request after the `shm::PutImage` request, then the X server will have to
     /// process that request before it can process the `shm::PutImage` request. Therefore, we can use
@@ -1209,7 +1210,7 @@
             }
         };
 
-        <span class="macro">log::trace!</span>(<span class="string">&quot;new: window_handle={:X}&quot;</span>, window_handle.window);
+        <span class="macro">log::trace!</span>(<span class="string">"new: window_handle={:X}"</span>, window_handle.window);
         <span class="kw">let </span>window = window_handle.window.get();
 
         <span class="comment">// Run in parallel: start getting the window depth and (if necessary) visual.
@@ -1218,13 +1219,13 @@
             <span class="kw">let </span>geometry_token = display2
                 .connection()
                 .get_geometry(window)
-                .swbuf_err(<span class="string">&quot;Failed to send geometry request&quot;</span>)<span class="question-mark">?</span>;
+                .swbuf_err(<span class="string">"Failed to send geometry request"</span>)<span class="question-mark">?</span>;
             <span class="kw">let </span>window_attrs_token = <span class="kw">if </span>window_handle.visual_id.is_none() {
                 <span class="prelude-val">Some</span>(
                     display2
                         .connection()
                         .get_window_attributes(window)
-                        .swbuf_err(<span class="string">&quot;Failed to send window attributes request&quot;</span>)<span class="question-mark">?</span>,
+                        .swbuf_err(<span class="string">"Failed to send window attributes request"</span>)<span class="question-mark">?</span>,
                 )
             } <span class="kw">else </span>{
                 <span class="prelude-val">None
@@ -1237,7 +1238,7 @@
         </span><span class="kw">let </span>gc = display
             .connection()
             .generate_id()
-            .swbuf_err(<span class="string">&quot;Failed to generate GC ID&quot;</span>)<span class="question-mark">?</span>;
+            .swbuf_err(<span class="string">"Failed to generate GC ID"</span>)<span class="question-mark">?</span>;
         display
             .connection()
             .create_gc(
@@ -1245,22 +1246,22 @@
                 window,
                 <span class="kw-2">&amp;</span>xproto::CreateGCAux::new().graphics_exposures(<span class="number">0</span>),
             )
-            .swbuf_err(<span class="string">&quot;Failed to send GC creation request&quot;</span>)<span class="question-mark">?
+            .swbuf_err(<span class="string">"Failed to send GC creation request"</span>)<span class="question-mark">?
             </span>.check()
-            .swbuf_err(<span class="string">&quot;Failed to create GC&quot;</span>)<span class="question-mark">?</span>;
+            .swbuf_err(<span class="string">"Failed to create GC"</span>)<span class="question-mark">?</span>;
 
         <span class="comment">// Finish getting the depth of the window.
         </span><span class="kw">let </span>(geometry_reply, visual_id) = {
             <span class="kw">let </span>(geometry_token, window_attrs_token) = tokens;
             <span class="kw">let </span>geometry_reply = geometry_token
                 .reply()
-                .swbuf_err(<span class="string">&quot;Failed to get geometry reply&quot;</span>)<span class="question-mark">?</span>;
+                .swbuf_err(<span class="string">"Failed to get geometry reply"</span>)<span class="question-mark">?</span>;
             <span class="kw">let </span>visual_id = <span class="kw">match </span>window_attrs_token {
                 <span class="prelude-val">None </span>=&gt; window_handle.visual_id.unwrap().get(),
                 <span class="prelude-val">Some</span>(window_attrs) =&gt; {
                     window_attrs
                         .reply()
-                        .swbuf_err(<span class="string">&quot;Failed to get window attributes reply&quot;</span>)<span class="question-mark">?
+                        .swbuf_err(<span class="string">"Failed to get window attributes reply"</span>)<span class="question-mark">?
                         </span>.visual
                 }
             };
@@ -1271,7 +1272,7 @@
         <span class="kw">if </span>!display.supported_visuals.contains(<span class="kw-2">&amp;</span>visual_id) {
             <span class="kw">return </span><span class="prelude-val">Err</span>(SoftBufferError::PlatformError(
                 <span class="prelude-val">Some</span>(<span class="macro">format!</span>(
-                    <span class="string">&quot;Visual 0x{visual_id:x} does not use softbuffer&#39;s pixel format and is unsupported&quot;
+                    <span class="string">"Visual 0x{visual_id:x} does not use softbuffer's pixel format and is unsupported"
                 </span>)),
                 <span class="prelude-val">None</span>,
             )
@@ -1316,7 +1317,7 @@
         height: NonZeroU32,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;(), SoftBufferError&gt; {
         <span class="macro">log::trace!</span>(
-            <span class="string">&quot;resize: window={:X}, size={}x{}&quot;</span>,
+            <span class="string">"resize: window={:X}, size={}x{}"</span>,
             <span class="self">self</span>.window,
             width,
             height
@@ -1335,7 +1336,7 @@
             <span class="self">self</span>.buffer_presented = <span class="bool-val">false</span>;
             <span class="self">self</span>.buffer
                 .resize(<span class="self">self</span>.display.connection(), width.get(), height.get())
-                .swbuf_err(<span class="string">&quot;Failed to resize X11 buffer&quot;</span>)<span class="question-mark">?</span>;
+                .swbuf_err(<span class="string">"Failed to resize X11 buffer"</span>)<span class="question-mark">?</span>;
 
             <span class="comment">// We successfully resized the buffer.
             </span><span class="self">self</span>.size = <span class="prelude-val">Some</span>((width, height));
@@ -1345,8 +1346,8 @@
     }
 
     <span class="doccomment">/// Get a mutable reference to the buffer.
-    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>buffer_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;BufferImpl&lt;<span class="lifetime">&#39;_</span>, D, W&gt;, SoftBufferError&gt; {
-        <span class="macro">log::trace!</span>(<span class="string">&quot;buffer_mut: window={:X}&quot;</span>, <span class="self">self</span>.window);
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>buffer_mut(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;BufferImpl&lt;<span class="lifetime">'_</span>, D, W&gt;, SoftBufferError&gt; {
+        <span class="macro">log::trace!</span>(<span class="string">"buffer_mut: window={:X}"</span>, <span class="self">self</span>.window);
 
         <span class="comment">// Finish waiting on the previous `shm::PutImage` request, if any.
         </span><span class="self">self</span>.buffer.finish_wait(<span class="self">self</span>.display.connection())<span class="question-mark">?</span>;
@@ -1357,11 +1358,11 @@
 
     <span class="doccomment">/// Fetch the buffer from the window.
     </span><span class="kw">pub fn </span>fetch(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;u32&gt;, SoftBufferError&gt; {
-        <span class="macro">log::trace!</span>(<span class="string">&quot;fetch: window={:X}&quot;</span>, <span class="self">self</span>.window);
+        <span class="macro">log::trace!</span>(<span class="string">"fetch: window={:X}"</span>, <span class="self">self</span>.window);
 
         <span class="kw">let </span>(width, height) = <span class="self">self
             </span>.size
-            .expect(<span class="string">&quot;Must set size of surface before calling `fetch()`&quot;</span>);
+            .expect(<span class="string">"Must set size of surface before calling `fetch()`"</span>);
 
         <span class="comment">// TODO: Is it worth it to do SHM here? Probably not.
         </span><span class="kw">let </span>reply = <span class="self">self
@@ -1376,9 +1377,9 @@
                 height.get(),
                 u32::MAX,
             )
-            .swbuf_err(<span class="string">&quot;Failed to send image fetching request&quot;</span>)<span class="question-mark">?
+            .swbuf_err(<span class="string">"Failed to send image fetching request"</span>)<span class="question-mark">?
             </span>.reply()
-            .swbuf_err(<span class="string">&quot;Failed to fetch image from window&quot;</span>)<span class="question-mark">?</span>;
+            .swbuf_err(<span class="string">"Failed to fetch image from window"</span>)<span class="question-mark">?</span>;
 
         <span class="kw">if </span>reply.depth == <span class="self">self</span>.depth &amp;&amp; reply.visual == <span class="self">self</span>.visual_id {
             <span class="kw">let </span><span class="kw-2">mut </span>out = <span class="macro">vec!</span>[<span class="number">0u32</span>; reply.data.len() / <span class="number">4</span>];
@@ -1386,16 +1387,16 @@
             <span class="prelude-val">Ok</span>(out)
         } <span class="kw">else </span>{
             <span class="prelude-val">Err</span>(SoftBufferError::PlatformError(
-                <span class="prelude-val">Some</span>(<span class="string">&quot;Mismatch between reply and window data&quot;</span>.into()),
+                <span class="prelude-val">Some</span>(<span class="string">"Mismatch between reply and window data"</span>.into()),
                 <span class="prelude-val">None</span>,
             ))
         }
     }
 }
 
-<span class="kw">pub struct </span>BufferImpl&lt;<span class="lifetime">&#39;a</span>, D: <span class="question-mark">?</span>Sized, W: <span class="question-mark">?</span>Sized&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="kw-2">mut </span>X11Impl&lt;D, W&gt;);
+<span class="kw">pub struct </span>BufferImpl&lt;<span class="lifetime">'a</span>, D: <span class="question-mark">?</span>Sized, W: <span class="question-mark">?</span>Sized&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="kw-2">mut </span>X11Impl&lt;D, W&gt;);
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, D: HasDisplayHandle + <span class="question-mark">?</span>Sized, W: HasWindowHandle + <span class="question-mark">?</span>Sized&gt; BufferImpl&lt;<span class="lifetime">&#39;a</span>, D, W&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, D: HasDisplayHandle + <span class="question-mark">?</span>Sized, W: HasWindowHandle + <span class="question-mark">?</span>Sized&gt; BufferImpl&lt;<span class="lifetime">'a</span>, D, W&gt; {
     <span class="attr">#[inline]
     </span><span class="kw">pub fn </span>pixels(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[u32] {
         <span class="comment">// SAFETY: We called `finish_wait` on the buffer, so it is safe to call `buffer()`.
@@ -1422,14 +1423,14 @@
 
         <span class="kw">let </span>(surface_width, surface_height) = imp
             .size
-            .expect(<span class="string">&quot;Must set size of surface before calling `present_with_damage()`&quot;</span>);
+            .expect(<span class="string">"Must set size of surface before calling `present_with_damage()`"</span>);
 
-        <span class="macro">log::trace!</span>(<span class="string">&quot;present: window={:X}&quot;</span>, imp.window);
+        <span class="macro">log::trace!</span>(<span class="string">"present: window={:X}"</span>, imp.window);
 
         <span class="kw">match </span>imp.buffer {
             Buffer::Wire(<span class="kw-2">ref </span>wire) =&gt; {
                 <span class="comment">// This is a suboptimal strategy, raise a stink in the debug logs.
-                </span><span class="macro">log::debug!</span>(<span class="string">&quot;Falling back to non-SHM method for window drawing.&quot;</span>);
+                </span><span class="macro">log::debug!</span>(<span class="string">"Falling back to non-SHM method for window drawing."</span>);
 
                 imp.display
                     .connection()
@@ -1447,7 +1448,7 @@
                     )
                     .map(|c| c.ignore_error())
                     .push_err()
-                    .swbuf_err(<span class="string">&quot;Failed to draw image to window&quot;</span>)<span class="question-mark">?</span>;
+                    .swbuf_err(<span class="string">"Failed to draw image to window"</span>)<span class="question-mark">?</span>;
             }
 
             Buffer::Shm(<span class="kw-2">ref mut </span>shm) =&gt; {
@@ -1491,12 +1492,12 @@
                                 )
                                 .push_err()
                                 .map(|c| c.ignore_error())
-                                .swbuf_err(<span class="string">&quot;Failed to draw image to window&quot;</span>)
+                                .swbuf_err(<span class="string">"Failed to draw image to window"</span>)
                         })
                         .and_then(|()| {
                             <span class="comment">// Send a short request to act as a notification for when the X server is done processing the image.
                             </span>shm.begin_wait(imp.display.connection())
-                                .swbuf_err(<span class="string">&quot;Failed to draw image to window&quot;</span>)
+                                .swbuf_err(<span class="string">"Failed to draw image to window"</span>)
                         })<span class="question-mark">?</span>;
                 }
             }
@@ -1511,7 +1512,7 @@
         <span class="kw">let </span>(width, height) = <span class="self">self
             </span>.<span class="number">0
             </span>.size
-            .expect(<span class="string">&quot;Must set size of surface before calling `present()`&quot;</span>);
+            .expect(<span class="string">"Must set size of surface before calling `present()`"</span>);
         <span class="self">self</span>.present_with_damage(<span class="kw-2">&amp;</span>[Rect {
             x: <span class="number">0</span>,
             y: <span class="number">0</span>,
@@ -1542,7 +1543,7 @@
     </span><span class="kw">fn </span>finish_wait(<span class="kw-2">&amp;mut </span><span class="self">self</span>, conn: <span class="kw-2">&amp;</span><span class="kw">impl </span>Connection) -&gt; <span class="prelude-ty">Result</span>&lt;(), SoftBufferError&gt; {
         <span class="kw">if let </span>Buffer::Shm(<span class="kw-2">ref mut </span>shm) = <span class="self">self </span>{
             shm.finish_wait(conn)
-                .swbuf_err(<span class="string">&quot;Failed to wait for X11 buffer&quot;</span>)<span class="question-mark">?</span>;
+                .swbuf_err(<span class="string">"Failed to wait for X11 buffer"</span>)<span class="question-mark">?</span>;
         }
 
         <span class="prelude-val">Ok</span>(())
@@ -1723,7 +1724,7 @@
                 <span class="prelude-val">None </span>=&gt; {
                     <span class="kw">return </span><span class="prelude-val">Err</span>(io::Error::new(
                         io::ErrorKind::Other,
-                        <span class="string">&quot;unexpected null when mapping SHM segment&quot;</span>,
+                        <span class="string">"unexpected null when mapping SHM segment"</span>,
                     ));
                 }
             }
@@ -1773,7 +1774,7 @@
 }
 
 <span class="kw">impl </span>AsFd <span class="kw">for </span>ShmSegment {
-    <span class="kw">fn </span>as_fd(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt; {
+    <span class="kw">fn </span>as_fd(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; BorrowedFd&lt;<span class="lifetime">'_</span>&gt; {
         <span class="self">self</span>.id.as_fd()
     }
 }
@@ -1796,7 +1797,7 @@
 
 <span class="kw">impl</span>&lt;D: <span class="question-mark">?</span>Sized, W: <span class="question-mark">?</span>Sized&gt; Drop <span class="kw">for </span>X11Impl&lt;D, W&gt; {
     <span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
-        <span class="comment">// If we used SHM, make sure it&#39;s detached from the server.
+        <span class="comment">// If we used SHM, make sure it's detached from the server.
         </span><span class="kw">if let </span>Buffer::Shm(<span class="kw-2">mut </span>shm) = mem::replace(<span class="kw-2">&amp;mut </span><span class="self">self</span>.buffer, Buffer::Wire(Vec::new())) {
             <span class="comment">// If we were in the middle of processing a buffer, wait for it to finish.
             </span>shm.finish_wait(<span class="self">self</span>.display.connection()).ok();
@@ -1826,10 +1827,10 @@
     <span class="kw">let </span><span class="kw-2">mut </span>name = String::with_capacity(<span class="number">23</span>);
 
     <span class="comment">// Only try four times; the chances of a collision on this space is astronomically low, so if
-    // we miss four times in a row we&#39;re probably under attack.
+    // we miss four times in a row we're probably under attack.
     </span><span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..<span class="number">4 </span>{
         name.clear();
-        name.push_str(<span class="string">&quot;softbuffer-x11-&quot;</span>);
+        name.push_str(<span class="string">"softbuffer-x11-"</span>);
         name.extend(std::iter::repeat_with(|| rng.alphanumeric()).take(<span class="number">7</span>));
 
         <span class="comment">// Try to create the shared memory segment.
@@ -1844,7 +1845,7 @@
             }
 
             <span class="prelude-val">Err</span>(rustix::io::Errno::EXIST) =&gt; {
-                <span class="macro">log::warn!</span>(<span class="string">&quot;x11: SHM ID collision at {} on try number {}&quot;</span>, name, i);
+                <span class="macro">log::warn!</span>(<span class="string">"x11: SHM ID collision at {} on try number {}"</span>, name, i);
             }
 
             <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e.into()),
@@ -1853,7 +1854,7 @@
 
     <span class="prelude-val">Err</span>(io::Error::new(
         io::ErrorKind::Other,
-        <span class="string">&quot;failed to generate a non-existent SHM name&quot;</span>,
+        <span class="string">"failed to generate a non-existent SHM name"</span>,
     ))
 }
 
@@ -1885,7 +1886,7 @@
     </span><span class="macro">matches!</span>((attach.check(), detach.check()), (<span class="prelude-val">Ok</span>(()), <span class="prelude-val">Ok</span>(())))
 }
 
-<span class="doccomment">/// Collect all visuals that use softbuffer&#39;s pixel format
+<span class="doccomment">/// Collect all visuals that use softbuffer's pixel format
 </span><span class="kw">fn </span>supported_visuals(c: <span class="kw-2">&amp;</span><span class="kw">impl </span>Connection) -&gt; HashSet&lt;Visualid&gt; {
     <span class="comment">// Check that depth 24 uses 32 bits per pixels
     </span><span class="kw">if </span>!c
@@ -1894,14 +1895,14 @@
         .iter()
         .any(|f| f.depth == <span class="number">24 </span>&amp;&amp; f.bits_per_pixel == <span class="number">32</span>)
     {
-        <span class="macro">log::warn!</span>(<span class="string">&quot;X11 server does not have a depth 24 format with 32 bits per pixel&quot;</span>);
+        <span class="macro">log::warn!</span>(<span class="string">"X11 server does not have a depth 24 format with 32 bits per pixel"</span>);
         <span class="kw">return </span>HashSet::new();
     }
 
     <span class="comment">// How does the server represent red, green, blue components of a pixel?
-    </span><span class="attr">#[cfg(target_endian = <span class="string">&quot;little&quot;</span>)]
+    </span><span class="attr">#[cfg(target_endian = <span class="string">"little"</span>)]
     </span><span class="kw">let </span>own_byte_order = ImageOrder::LSB_FIRST;
-    <span class="attr">#[cfg(target_endian = <span class="string">&quot;big&quot;</span>)]
+    <span class="attr">#[cfg(target_endian = <span class="string">"big"</span>)]
     </span><span class="kw">let </span>own_byte_order = ImageOrder::MSB_FIRST;
     <span class="kw">let </span>expected_masks = <span class="kw">if </span>c.setup().image_byte_order == own_byte_order {
         (<span class="number">0xff0000</span>, <span class="number">0xff00</span>, <span class="number">0xff</span>)
@@ -1951,11 +1952,11 @@
 }
 
 <span class="kw">impl </span>fmt::Display <span class="kw">for </span>PushBufferError {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
         <span class="kw">match </span><span class="self">self </span>{
-            <span class="self">Self</span>::X11(e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;X11 error: {}&quot;</span>, e),
-            <span class="self">Self</span>::XidExhausted =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;XID space exhausted&quot;</span>),
-            <span class="self">Self</span>::System(e) =&gt; <span class="macro">write!</span>(f, <span class="string">&quot;System error: {}&quot;</span>, e),
+            <span class="self">Self</span>::X11(e) =&gt; <span class="macro">write!</span>(f, <span class="string">"X11 error: {}"</span>, e),
+            <span class="self">Self</span>::XidExhausted =&gt; <span class="macro">write!</span>(f, <span class="string">"XID space exhausted"</span>),
+            <span class="self">Self</span>::System(e) =&gt; <span class="macro">write!</span>(f, <span class="string">"System error: {}"</span>, e),
         }
     }
 }
@@ -2010,6 +2011,6 @@
     width
         .checked_mul(height)
         .and_then(|len| len.checked_mul(<span class="number">4</span>))
-        .unwrap_or_else(|| <span class="macro">panic!</span>(<span class="string">&quot;Dimensions are too large: ({} x {})&quot;</span>, width, height))
+        .unwrap_or_else(|| <span class="macro">panic!</span>(<span class="string">"Dimensions are too large: ({} x {})"</span>, width, height))
 }
 </code></pre></div></section></main></body></html>

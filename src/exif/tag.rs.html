@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/kamadak-exif-0.5.5/src/tag.rs`."><title>tag.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="exif" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/kamadak-exif-0.5.5/src/tag.rs`."><title>tag.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="exif" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1578,7 +1579,7 @@
 <a href="#1578" id="1578">1578</a>
 <a href="#1579" id="1579">1579</a>
 </pre></div><pre class="rust"><code><span class="comment">//
-// Copyright (c) 2016 KAMADA Ken&#39;ichi.
+// Copyright (c) 2016 KAMADA Ken'ichi.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -1590,7 +1591,7 @@
 //    notice, this list of conditions and the following disclaimer in the
 //    documentation and/or other materials provided with the distribution.
 //
-// THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS&#39;&#39; AND
+// THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
 // ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
 // ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
@@ -1628,7 +1629,7 @@
 // Storing unknown values in a special variant such as Unknown(u16)
 // tends to break backward compatibility.  When Tag::VariantFoo is
 // defined in a new version of the library, the old codes using
-// Tag::Unknown(Foo&#39;s tag number) will break.
+// Tag::Unknown(Foo's tag number) will break.
 //
 // Use of constants is restricted in patterns.  As of Rust 1.12,
 // PartialEq and Eq need to be _automatically derived_ for Tag to
@@ -1677,7 +1678,7 @@
         get_tag_info(<span class="kw-2">*</span><span class="self">self</span>).and_then(|ti| (<span class="kw-2">&amp;</span>ti.default).into())
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>unit(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[UnitPiece]&gt; {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>unit(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>[UnitPiece]&gt; {
         get_tag_info(<span class="self">self</span>).and_then(|ti| ti.unit)
     }
 }
@@ -1686,7 +1687,7 @@
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
         <span class="kw">match </span>get_tag_info(<span class="kw-2">*</span><span class="self">self</span>) {
             <span class="prelude-val">Some</span>(ti) =&gt; f.pad(ti.name),
-            <span class="prelude-val">None </span>=&gt; f.pad(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="self">self</span>)),
+            <span class="prelude-val">None </span>=&gt; f.pad(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"{:?}"</span>, <span class="self">self</span>)),
         }
     }
 }
@@ -1708,14 +1709,14 @@
 <span class="attr">#[derive(Debug)]
 </span><span class="kw">pub enum </span>UnitPiece {
     Value,
-    Str(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str),
+    Str(<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str),
     Tag(Tag),
 }
 
 <span class="macro">macro_rules! </span>unit {
     () =&gt; ( <span class="prelude-val">None </span>);
-    ( <span class="macro-nonterminal">$str</span>:literal ) =&gt; ( <span class="macro">unit!</span>[V, <span class="macro">concat!</span>(<span class="string">&quot; &quot;</span>, <span class="macro-nonterminal">$str</span>)] );
-    ( Tag::<span class="macro-nonterminal">$tag</span>:ident ) =&gt; ( <span class="macro">unit!</span>[V, <span class="string">&quot; &quot;</span>, Tag::<span class="macro-nonterminal">$tag</span>] );
+    ( <span class="macro-nonterminal">$str</span>:literal ) =&gt; ( <span class="macro">unit!</span>[V, <span class="macro">concat!</span>(<span class="string">" "</span>, <span class="macro-nonterminal">$str</span>)] );
+    ( Tag::<span class="macro-nonterminal">$tag</span>:ident ) =&gt; ( <span class="macro">unit!</span>[V, <span class="string">" "</span>, Tag::<span class="macro-nonterminal">$tag</span>] );
     ( $(<span class="macro-nonterminal">$tokens</span>:tt)* ) =&gt; ( <span class="prelude-val">Some</span>(<span class="macro">unit_expand!</span>( ; $(<span class="macro-nonterminal">$tokens</span>)* , )) );
 }
 
@@ -1742,7 +1743,7 @@
         ),+, )+
     ) =&gt; (
         <span class="comment">// This is not relevant for associated constants, because
-        // they cannot be imported even with &quot;uniform paths&quot;.
+        // they cannot be imported even with "uniform paths".
         // /// It is not recommended to import the constants directly into
         // /// your namespace; import the module and use with the module name
         // /// like `tag::DateTime`.  The constant names follow the Exif
@@ -1766,11 +1767,11 @@
             <span class="kw">use super</span>::{Tag, UnitPiece};
 
             <span class="kw">pub struct </span>TagInfo {
-                <span class="kw">pub </span>name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str,
-                <span class="kw">pub </span>desc: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str,
+                <span class="kw">pub </span>name: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str,
+                <span class="kw">pub </span>desc: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str,
                 <span class="kw">pub </span>default: DefaultValue,
                 <span class="kw">pub </span>dispval: <span class="kw">fn</span>(<span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result,
-                <span class="kw">pub </span>unit: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>[UnitPiece]&gt;,
+                <span class="kw">pub </span>unit: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>[UnitPiece]&gt;,
             }
 
             $($(
@@ -1785,7 +1786,7 @@
             )+)+
         }
 
-        <span class="kw">fn </span>get_tag_info(tag: Tag) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>tag_info::TagInfo&gt; {
+        <span class="kw">fn </span>get_tag_info(tag: Tag) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>tag_info::TagInfo&gt; {
             <span class="kw">match </span>tag {
                 $($(
                     Tag::<span class="macro-nonterminal">$name </span>=&gt; <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>tag_info::<span class="macro-nonterminal">$name</span>),
@@ -1807,13 +1808,13 @@
     </span><span class="attr">#[doc(hidden)]
     </span>(ExifIFDPointer, <span class="number">0x8769</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Exif IFD pointer&quot;</span>),
+     <span class="string">"Exif IFD pointer"</span>),
     <span class="doccomment">/// A pointer to the GPS IFD.  This is used for the internal structure
     /// of Exif data and will not be returned to the user.
     </span><span class="attr">#[doc(hidden)]
     </span>(GPSInfoIFDPointer, <span class="number">0x8825</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;GPS Info IFD pointer&quot;</span>),
+     <span class="string">"GPS Info IFD pointer"</span>),
 
     |Context::Exif|
 
@@ -1822,134 +1823,134 @@
     </span><span class="attr">#[doc(hidden)]
     </span>(InteropIFDPointer, <span class="number">0xa005</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Interoperability IFD pointer&quot;</span>),
+     <span class="string">"Interoperability IFD pointer"</span>),
 
     <span class="comment">// TIFF primary and thumbnail attributes [EXIF23 4.6.4 Table 4,
     // 4.6.8 Table 17, and 4.6.8 Table 21].
     </span>|Context::Tiff|
 
     (ImageWidth, <span class="number">0x100</span>, DefaultValue::None, d_default,
-     <span class="macro">unit!</span>[<span class="string">&quot;pixels&quot;</span>],
-     <span class="string">&quot;Image width&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"pixels"</span>],
+     <span class="string">"Image width"</span>),
     (ImageLength, <span class="number">0x101</span>, DefaultValue::None, d_default,
-     <span class="macro">unit!</span>[<span class="string">&quot;pixels&quot;</span>],
-     <span class="string">&quot;Image height&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"pixels"</span>],
+     <span class="string">"Image height"</span>),
     (BitsPerSample, <span class="number">0x102</span>, DefaultValue::Short(<span class="kw-2">&amp;</span>[<span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>]), d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Number of bits per component&quot;</span>),
+     <span class="string">"Number of bits per component"</span>),
     (Compression, <span class="number">0x103</span>, DefaultValue::None, d_compression,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Compression scheme&quot;</span>),
+     <span class="string">"Compression scheme"</span>),
     (PhotometricInterpretation, <span class="number">0x106</span>, DefaultValue::None, d_photointp,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Pixel composition&quot;</span>),
+     <span class="string">"Pixel composition"</span>),
     (ImageDescription, <span class="number">0x10e</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Image title&quot;</span>),
+     <span class="string">"Image title"</span>),
     <span class="doccomment">/// Manufacturer of the image input equipment.
     </span>(Make, <span class="number">0x10f</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Manufacturer of image input equipment&quot;</span>),
+     <span class="string">"Manufacturer of image input equipment"</span>),
     <span class="doccomment">/// Model name or number of the image input equipment.
     </span>(Model, <span class="number">0x110</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Model of image input equipment&quot;</span>),
+     <span class="string">"Model of image input equipment"</span>),
     (StripOffsets, <span class="number">0x111</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Image data location&quot;</span>),
+     <span class="string">"Image data location"</span>),
     (Orientation, <span class="number">0x112</span>, DefaultValue::Short(<span class="kw-2">&amp;</span>[<span class="number">1</span>]), d_orientation,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Orientation of image&quot;</span>),
+     <span class="string">"Orientation of image"</span>),
     (SamplesPerPixel, <span class="number">0x115</span>, DefaultValue::Short(<span class="kw-2">&amp;</span>[<span class="number">3</span>]), d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Number of components&quot;</span>),
+     <span class="string">"Number of components"</span>),
     (RowsPerStrip, <span class="number">0x116</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Number of rows per strip&quot;</span>),
+     <span class="string">"Number of rows per strip"</span>),
     (StripByteCounts, <span class="number">0x117</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Bytes per compressed strip&quot;</span>),
+     <span class="string">"Bytes per compressed strip"</span>),
     (XResolution, <span class="number">0x11a</span>, DefaultValue::Rational(<span class="kw-2">&amp;</span>[(<span class="number">72</span>, <span class="number">1</span>)]), d_decimal,
-     <span class="macro">unit!</span>[V, <span class="string">&quot; pixels per &quot;</span>, Tag::ResolutionUnit],
-     <span class="string">&quot;Image resolution in width direction&quot;</span>),
+     <span class="macro">unit!</span>[V, <span class="string">" pixels per "</span>, Tag::ResolutionUnit],
+     <span class="string">"Image resolution in width direction"</span>),
     (YResolution, <span class="number">0x11b</span>, DefaultValue::Rational(<span class="kw-2">&amp;</span>[(<span class="number">72</span>, <span class="number">1</span>)]), d_decimal,
-     <span class="macro">unit!</span>[V, <span class="string">&quot; pixels per &quot;</span>, Tag::ResolutionUnit],
-     <span class="string">&quot;Image resolution in height direction&quot;</span>),
+     <span class="macro">unit!</span>[V, <span class="string">" pixels per "</span>, Tag::ResolutionUnit],
+     <span class="string">"Image resolution in height direction"</span>),
     (PlanarConfiguration, <span class="number">0x11c</span>, DefaultValue::Short(<span class="kw-2">&amp;</span>[<span class="number">1</span>]), d_planarcfg,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Image data arrangement&quot;</span>),
+     <span class="string">"Image data arrangement"</span>),
     <span class="doccomment">/// Unit of XResolution and YResolution fields.
     </span>(ResolutionUnit, <span class="number">0x128</span>, DefaultValue::Short(<span class="kw-2">&amp;</span>[<span class="number">2</span>]), d_resunit,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Unit of X and Y resolution&quot;</span>),
+     <span class="string">"Unit of X and Y resolution"</span>),
     (TransferFunction, <span class="number">0x12d</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Transfer function&quot;</span>),
+     <span class="string">"Transfer function"</span>),
     <span class="doccomment">/// Name and version of the software used to create the image.
     </span>(Software, <span class="number">0x131</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Software used&quot;</span>),
+     <span class="string">"Software used"</span>),
     <span class="doccomment">/// Date and time when the image file was created or last edited.
     /// For the time when the picture was taken, see DateTimeOriginal field.
     </span>(DateTime, <span class="number">0x132</span>, DefaultValue::None, d_datetime,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;File change date and time&quot;</span>),
+     <span class="string">"File change date and time"</span>),
     (Artist, <span class="number">0x13b</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Person who created the image&quot;</span>),
+     <span class="string">"Person who created the image"</span>),
     (WhitePoint, <span class="number">0x13e</span>, DefaultValue::None, d_decimal,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;White point chromaticity&quot;</span>),
+     <span class="string">"White point chromaticity"</span>),
     (PrimaryChromaticities, <span class="number">0x13f</span>, DefaultValue::None, d_decimal,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Chromaticities of primaries&quot;</span>),
+     <span class="string">"Chromaticities of primaries"</span>),
     <span class="comment">// Not referenced in Exif.
     </span>(TileOffsets, <span class="number">0x144</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Tiled image data location&quot;</span>),
+     <span class="string">"Tiled image data location"</span>),
     <span class="comment">// Not referenced in Exif.
     </span>(TileByteCounts, <span class="number">0x145</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Bytes per compressed tile&quot;</span>),
+     <span class="string">"Bytes per compressed tile"</span>),
     (JPEGInterchangeFormat, <span class="number">0x201</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Offset to JPEG SOI&quot;</span>),
+     <span class="string">"Offset to JPEG SOI"</span>),
     (JPEGInterchangeFormatLength, <span class="number">0x202</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Bytes of JPEG data&quot;</span>),
+     <span class="string">"Bytes of JPEG data"</span>),
     (YCbCrCoefficients, <span class="number">0x211</span>, DefaultValue::Unspecified, d_decimal,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Color space transformation matrix coefficients&quot;</span>),
+     <span class="string">"Color space transformation matrix coefficients"</span>),
     (YCbCrSubSampling, <span class="number">0x212</span>, DefaultValue::None, d_ycbcrsubsamp,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Subsampling ratio of Y to C&quot;</span>),
+     <span class="string">"Subsampling ratio of Y to C"</span>),
     (YCbCrPositioning, <span class="number">0x213</span>, DefaultValue::Short(<span class="kw-2">&amp;</span>[<span class="number">1</span>]), d_ycbcrpos,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Y and C positioning&quot;</span>),
+     <span class="string">"Y and C positioning"</span>),
     (ReferenceBlackWhite, <span class="number">0x214</span>, DefaultValue::ContextDependent, d_decimal,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Pair of black and white reference values&quot;</span>),
+     <span class="string">"Pair of black and white reference values"</span>),
     (Copyright, <span class="number">0x8298</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Copyright holder&quot;</span>),
+     <span class="string">"Copyright holder"</span>),
 
     <span class="comment">// Exif IFD attributes [EXIF23 4.6.5 Table 7 and 4.6.8 Table 18].
     </span>|Context::Exif|
 
     (ExposureTime, <span class="number">0x829a</span>, DefaultValue::None, d_exptime,
-     <span class="macro">unit!</span>[<span class="string">&quot;s&quot;</span>],
-     <span class="string">&quot;Exposure time&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"s"</span>],
+     <span class="string">"Exposure time"</span>),
     (FNumber, <span class="number">0x829d</span>, DefaultValue::None, d_decimal,
-     <span class="comment">// F-number is dimensionless, but usually prefixed with &quot;F&quot; in Japan,
-     // &quot;f/&quot; in the U.S., and so on.
-     </span><span class="macro">unit!</span>[<span class="string">&quot;f/&quot;</span>, V],
-     <span class="string">&quot;F number&quot;</span>),
+     <span class="comment">// F-number is dimensionless, but usually prefixed with "F" in Japan,
+     // "f/" in the U.S., and so on.
+     </span><span class="macro">unit!</span>[<span class="string">"f/"</span>, V],
+     <span class="string">"F number"</span>),
     (ExposureProgram, <span class="number">0x8822</span>, DefaultValue::None, d_expprog,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Exposure program&quot;</span>),
+     <span class="string">"Exposure program"</span>),
     (SpectralSensitivity, <span class="number">0x8824</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Spectral sensitivity&quot;</span>),
+     <span class="string">"Spectral sensitivity"</span>),
     <span class="doccomment">/// Sensitivity of the device.
     ///
     /// The value may be represented by standard output sensitivity (SOS),
@@ -1961,249 +1962,249 @@
     /// ISOSpeed, ISOSpeedLatitudeyyy, and ISOSpeedLatitudezzz fields.
     </span>(PhotographicSensitivity, <span class="number">0x8827</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Photographic sensitivity&quot;</span>),
+     <span class="string">"Photographic sensitivity"</span>),
     (OECF, <span class="number">0x8828</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Optoelectric conversion factor&quot;</span>),
+     <span class="string">"Optoelectric conversion factor"</span>),
     (SensitivityType, <span class="number">0x8830</span>, DefaultValue::None, d_sensitivitytype,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Sensitivity type&quot;</span>),
+     <span class="string">"Sensitivity type"</span>),
     (StandardOutputSensitivity, <span class="number">0x8831</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Standard output sensitivity&quot;</span>),
+     <span class="string">"Standard output sensitivity"</span>),
     (RecommendedExposureIndex, <span class="number">0x8832</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Recommended exposure index&quot;</span>),
+     <span class="string">"Recommended exposure index"</span>),
     (ISOSpeed, <span class="number">0x8833</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;ISO speed&quot;</span>),
+     <span class="string">"ISO speed"</span>),
     (ISOSpeedLatitudeyyy, <span class="number">0x8834</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;ISO speed latitude yyy&quot;</span>),
+     <span class="string">"ISO speed latitude yyy"</span>),
     (ISOSpeedLatitudezzz, <span class="number">0x8835</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;ISO speed latitude zzz&quot;</span>),
+     <span class="string">"ISO speed latitude zzz"</span>),
     <span class="comment">// The absence of this field means non-conformance to Exif, so the default
-    // value specified in the standard (e.g., &quot;0231&quot;) should not apply.
+    // value specified in the standard (e.g., "0231") should not apply.
     </span>(ExifVersion, <span class="number">0x9000</span>, DefaultValue::None, d_exifver,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Exif version&quot;</span>),
+     <span class="string">"Exif version"</span>),
     <span class="doccomment">/// Date and time when the original image was generated (e.g.,
     /// the picture was taken by a camera).
     </span>(DateTimeOriginal, <span class="number">0x9003</span>, DefaultValue::None, d_datetime,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Date and time of original data generation&quot;</span>),
+     <span class="string">"Date and time of original data generation"</span>),
     <span class="doccomment">/// Date and time when the image was stored as digital data.
     /// If a picture is taken by a film camera and then digitized later,
     /// this value will be different from DateTimeOriginal field.
     </span>(DateTimeDigitized, <span class="number">0x9004</span>, DefaultValue::None, d_datetime,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Date and time of digital data generation&quot;</span>),
+     <span class="string">"Date and time of digital data generation"</span>),
     <span class="doccomment">/// Timezone offset for DateTime field.
     </span>(OffsetTime, <span class="number">0x9010</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Offset data of DateTime&quot;</span>),
+     <span class="string">"Offset data of DateTime"</span>),
     <span class="doccomment">/// Timezone offset for DateTimeOriginal field.
     </span>(OffsetTimeOriginal, <span class="number">0x9011</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Offset data of DateTimeOriginal&quot;</span>),
+     <span class="string">"Offset data of DateTimeOriginal"</span>),
     <span class="doccomment">/// Timezone offset for DateTimeDigitized field.
     </span>(OffsetTimeDigitized, <span class="number">0x9012</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Offset data of DateTimeDigitized&quot;</span>),
+     <span class="string">"Offset data of DateTimeDigitized"</span>),
     (ComponentsConfiguration, <span class="number">0x9101</span>, DefaultValue::ContextDependent, d_cpntcfg,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Meaning of each component&quot;</span>),
+     <span class="string">"Meaning of each component"</span>),
     (CompressedBitsPerPixel, <span class="number">0x9102</span>, DefaultValue::None, d_decimal,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Image compression mode&quot;</span>),
+     <span class="string">"Image compression mode"</span>),
     (ShutterSpeedValue, <span class="number">0x9201</span>, DefaultValue::None, d_decimal,
-     <span class="macro">unit!</span>[<span class="string">&quot;EV&quot;</span>],
-     <span class="string">&quot;Shutter speed&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"EV"</span>],
+     <span class="string">"Shutter speed"</span>),
     (ApertureValue, <span class="number">0x9202</span>, DefaultValue::None, d_decimal,
-     <span class="macro">unit!</span>[<span class="string">&quot;EV&quot;</span>],
-     <span class="string">&quot;Aperture&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"EV"</span>],
+     <span class="string">"Aperture"</span>),
     (BrightnessValue, <span class="number">0x9203</span>, DefaultValue::None, d_optdecimal,
-     <span class="macro">unit!</span>[<span class="string">&quot;EV&quot;</span>],
-     <span class="string">&quot;Brightness&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"EV"</span>],
+     <span class="string">"Brightness"</span>),
     (ExposureBiasValue, <span class="number">0x9204</span>, DefaultValue::None, d_decimal,
-     <span class="macro">unit!</span>[<span class="string">&quot;EV&quot;</span>],
-     <span class="string">&quot;Exposure bias&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"EV"</span>],
+     <span class="string">"Exposure bias"</span>),
     (MaxApertureValue, <span class="number">0x9205</span>, DefaultValue::None, d_decimal,
-     <span class="macro">unit!</span>[<span class="string">&quot;EV&quot;</span>],
-     <span class="string">&quot;Maximum lens aperture&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"EV"</span>],
+     <span class="string">"Maximum lens aperture"</span>),
     (SubjectDistance, <span class="number">0x9206</span>, DefaultValue::None, d_subjdist,
-     <span class="macro">unit!</span>[<span class="string">&quot;m&quot;</span>],
-     <span class="string">&quot;Subject distance&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"m"</span>],
+     <span class="string">"Subject distance"</span>),
     (MeteringMode, <span class="number">0x9207</span>, DefaultValue::Short(<span class="kw-2">&amp;</span>[<span class="number">0</span>]), d_metering,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Metering mode&quot;</span>),
+     <span class="string">"Metering mode"</span>),
     (LightSource, <span class="number">0x9208</span>, DefaultValue::Short(<span class="kw-2">&amp;</span>[<span class="number">0</span>]), d_lightsrc,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Light source&quot;</span>),
+     <span class="string">"Light source"</span>),
     (Flash, <span class="number">0x9209</span>, DefaultValue::Unspecified, d_flash,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Flash&quot;</span>),
+     <span class="string">"Flash"</span>),
     (FocalLength, <span class="number">0x920a</span>, DefaultValue::None, d_decimal,
-     <span class="macro">unit!</span>[<span class="string">&quot;mm&quot;</span>],
-     <span class="string">&quot;Lens focal length&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"mm"</span>],
+     <span class="string">"Lens focal length"</span>),
     (SubjectArea, <span class="number">0x9214</span>, DefaultValue::None, d_subjarea,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Subject area&quot;</span>),
+     <span class="string">"Subject area"</span>),
     (MakerNote, <span class="number">0x927c</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Manufacturer notes&quot;</span>),
+     <span class="string">"Manufacturer notes"</span>),
     (UserComment, <span class="number">0x9286</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;User comments&quot;</span>),
+     <span class="string">"User comments"</span>),
     <span class="doccomment">/// Subseconds for DateTime field.
     </span>(SubSecTime, <span class="number">0x9290</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;DateTime subseconds&quot;</span>),
+     <span class="string">"DateTime subseconds"</span>),
     <span class="doccomment">/// Subseconds for DateTimeOriginal field.
     </span>(SubSecTimeOriginal, <span class="number">0x9291</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;DateTimeOriginal subseconds&quot;</span>),
+     <span class="string">"DateTimeOriginal subseconds"</span>),
     <span class="doccomment">/// Subseconds for DateTimeDigitized field.
     </span>(SubSecTimeDigitized, <span class="number">0x9292</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;DateTimeDigitized subseconds&quot;</span>),
+     <span class="string">"DateTimeDigitized subseconds"</span>),
     (Temperature, <span class="number">0x9400</span>, DefaultValue::None, d_optdecimal,
-     <span class="macro">unit!</span>[<span class="string">&quot;degC&quot;</span>],
-     <span class="string">&quot;Temperature&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"degC"</span>],
+     <span class="string">"Temperature"</span>),
     (Humidity, <span class="number">0x9401</span>, DefaultValue::None, d_optdecimal,
-     <span class="macro">unit!</span>[<span class="string">&quot;%&quot;</span>],
-     <span class="string">&quot;Humidity&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"%"</span>],
+     <span class="string">"Humidity"</span>),
     (Pressure, <span class="number">0x9402</span>, DefaultValue::None, d_optdecimal,
-     <span class="macro">unit!</span>[<span class="string">&quot;hPa&quot;</span>],
-     <span class="string">&quot;Pressure&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"hPa"</span>],
+     <span class="string">"Pressure"</span>),
     (WaterDepth, <span class="number">0x9403</span>, DefaultValue::None, d_optdecimal,
-     <span class="macro">unit!</span>[<span class="string">&quot;m&quot;</span>],
-     <span class="string">&quot;Water depth&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"m"</span>],
+     <span class="string">"Water depth"</span>),
     (Acceleration, <span class="number">0x9404</span>, DefaultValue::None, d_optdecimal,
-     <span class="macro">unit!</span>[<span class="string">&quot;mGal&quot;</span>],
-     <span class="string">&quot;Acceleration&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"mGal"</span>],
+     <span class="string">"Acceleration"</span>),
     (CameraElevationAngle, <span class="number">0x9405</span>, DefaultValue::None, d_optdecimal,
-     <span class="macro">unit!</span>[<span class="string">&quot;deg&quot;</span>],
-     <span class="string">&quot;Camera elevation angle&quot;</span>),
-    (FlashpixVersion, <span class="number">0xa000</span>, DefaultValue::Undefined(<span class="string">b&quot;0100&quot;</span>), d_exifver,
+     <span class="macro">unit!</span>[<span class="string">"deg"</span>],
+     <span class="string">"Camera elevation angle"</span>),
+    (FlashpixVersion, <span class="number">0xa000</span>, DefaultValue::Undefined(<span class="string">b"0100"</span>), d_exifver,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Supported Flashpix version&quot;</span>),
+     <span class="string">"Supported Flashpix version"</span>),
     (ColorSpace, <span class="number">0xa001</span>, DefaultValue::Unspecified, d_cspace,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Color space information&quot;</span>),
+     <span class="string">"Color space information"</span>),
     (PixelXDimension, <span class="number">0xa002</span>, DefaultValue::None, d_default,
-     <span class="macro">unit!</span>[<span class="string">&quot;pixels&quot;</span>],
-     <span class="string">&quot;Valid image width&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"pixels"</span>],
+     <span class="string">"Valid image width"</span>),
     (PixelYDimension, <span class="number">0xa003</span>, DefaultValue::Unspecified, d_default,
-     <span class="macro">unit!</span>[<span class="string">&quot;pixels&quot;</span>],
-     <span class="string">&quot;Valid image height&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"pixels"</span>],
+     <span class="string">"Valid image height"</span>),
     (RelatedSoundFile, <span class="number">0xa004</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Related audio file&quot;</span>),
+     <span class="string">"Related audio file"</span>),
     (FlashEnergy, <span class="number">0xa20b</span>, DefaultValue::None, d_decimal,
-     <span class="macro">unit!</span>[<span class="string">&quot;BCPS&quot;</span>],
-     <span class="string">&quot;Flash energy&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"BCPS"</span>],
+     <span class="string">"Flash energy"</span>),
     (SpatialFrequencyResponse, <span class="number">0xa20c</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Spatial frequency response&quot;</span>),
+     <span class="string">"Spatial frequency response"</span>),
     (FocalPlaneXResolution, <span class="number">0xa20e</span>, DefaultValue::None, d_decimal,
-     <span class="macro">unit!</span>[V, <span class="string">&quot; pixels per &quot;</span>, Tag::FocalPlaneResolutionUnit],
-     <span class="string">&quot;Focal plane X resolution&quot;</span>),
+     <span class="macro">unit!</span>[V, <span class="string">" pixels per "</span>, Tag::FocalPlaneResolutionUnit],
+     <span class="string">"Focal plane X resolution"</span>),
     (FocalPlaneYResolution, <span class="number">0xa20f</span>, DefaultValue::None, d_decimal,
-     <span class="macro">unit!</span>[V, <span class="string">&quot; pixels per &quot;</span>, Tag::FocalPlaneResolutionUnit],
-     <span class="string">&quot;Focal plane Y resolution&quot;</span>),
+     <span class="macro">unit!</span>[V, <span class="string">" pixels per "</span>, Tag::FocalPlaneResolutionUnit],
+     <span class="string">"Focal plane Y resolution"</span>),
     <span class="doccomment">/// Unit of FocalPlaneXResolution and FocalPlaneYResolution fields.
     </span>(FocalPlaneResolutionUnit, <span class="number">0xa210</span>, DefaultValue::Short(<span class="kw-2">&amp;</span>[<span class="number">2</span>]), d_resunit,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Focal plane resolution unit&quot;</span>),
+     <span class="string">"Focal plane resolution unit"</span>),
     (SubjectLocation, <span class="number">0xa214</span>, DefaultValue::None, d_subjarea,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Subject location&quot;</span>),
+     <span class="string">"Subject location"</span>),
     (ExposureIndex, <span class="number">0xa215</span>, DefaultValue::None, d_decimal,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Exposure index&quot;</span>),
+     <span class="string">"Exposure index"</span>),
     (SensingMethod, <span class="number">0xa217</span>, DefaultValue::None, d_sensingmethod,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Sensing method&quot;</span>),
+     <span class="string">"Sensing method"</span>),
     (FileSource, <span class="number">0xa300</span>, DefaultValue::Undefined(<span class="kw-2">&amp;</span>[<span class="number">3</span>]), d_filesrc,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;File source&quot;</span>),
+     <span class="string">"File source"</span>),
     (SceneType, <span class="number">0xa301</span>, DefaultValue::Undefined(<span class="kw-2">&amp;</span>[<span class="number">1</span>]), d_scenetype,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Scene type&quot;</span>),
+     <span class="string">"Scene type"</span>),
     (CFAPattern, <span class="number">0xa302</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;CFA pattern&quot;</span>),
+     <span class="string">"CFA pattern"</span>),
     (CustomRendered, <span class="number">0xa401</span>, DefaultValue::Short(<span class="kw-2">&amp;</span>[<span class="number">0</span>]), d_customrendered,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Custom image processing&quot;</span>),
+     <span class="string">"Custom image processing"</span>),
     (ExposureMode, <span class="number">0xa402</span>, DefaultValue::None, d_expmode,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Exposure mode&quot;</span>),
+     <span class="string">"Exposure mode"</span>),
     (WhiteBalance, <span class="number">0xa403</span>, DefaultValue::None, d_whitebalance,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;White balance&quot;</span>),
+     <span class="string">"White balance"</span>),
     (DigitalZoomRatio, <span class="number">0xa404</span>, DefaultValue::None, d_dzoomratio,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Digital zoom ratio&quot;</span>),
+     <span class="string">"Digital zoom ratio"</span>),
     (FocalLengthIn35mmFilm, <span class="number">0xa405</span>, DefaultValue::None, d_focallen35,
-     <span class="macro">unit!</span>[<span class="string">&quot;mm&quot;</span>],
-     <span class="string">&quot;Focal length in 35 mm film&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"mm"</span>],
+     <span class="string">"Focal length in 35 mm film"</span>),
     (SceneCaptureType, <span class="number">0xa406</span>, DefaultValue::Short(<span class="kw-2">&amp;</span>[<span class="number">0</span>]), d_scenecaptype,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Scene capture type&quot;</span>),
+     <span class="string">"Scene capture type"</span>),
     (GainControl, <span class="number">0xa407</span>, DefaultValue::None, d_gainctrl,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Gain control&quot;</span>),
+     <span class="string">"Gain control"</span>),
     (Contrast, <span class="number">0xa408</span>, DefaultValue::Short(<span class="kw-2">&amp;</span>[<span class="number">0</span>]), d_contrast,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Contrast&quot;</span>),
+     <span class="string">"Contrast"</span>),
     (Saturation, <span class="number">0xa409</span>, DefaultValue::Short(<span class="kw-2">&amp;</span>[<span class="number">0</span>]), d_saturation,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Saturation&quot;</span>),
+     <span class="string">"Saturation"</span>),
     (Sharpness, <span class="number">0xa40a</span>, DefaultValue::Short(<span class="kw-2">&amp;</span>[<span class="number">0</span>]), d_sharpness,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Sharpness&quot;</span>),
+     <span class="string">"Sharpness"</span>),
     (DeviceSettingDescription, <span class="number">0xa40b</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Device settings description&quot;</span>),
+     <span class="string">"Device settings description"</span>),
     (SubjectDistanceRange, <span class="number">0xa40c</span>, DefaultValue::None, d_subjdistrange,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Subject distance range&quot;</span>),
+     <span class="string">"Subject distance range"</span>),
     (ImageUniqueID, <span class="number">0xa420</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Unique image ID&quot;</span>),
+     <span class="string">"Unique image ID"</span>),
     (CameraOwnerName, <span class="number">0xa430</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Camera owner name&quot;</span>),
+     <span class="string">"Camera owner name"</span>),
     (BodySerialNumber, <span class="number">0xa431</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Body serial number&quot;</span>),
+     <span class="string">"Body serial number"</span>),
     (LensSpecification, <span class="number">0xa432</span>, DefaultValue::None, d_lensspec,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Lens specification&quot;</span>),
+     <span class="string">"Lens specification"</span>),
     (LensMake, <span class="number">0xa433</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Lens make&quot;</span>),
+     <span class="string">"Lens make"</span>),
     (LensModel, <span class="number">0xa434</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Lens model&quot;</span>),
+     <span class="string">"Lens model"</span>),
     (LensSerialNumber, <span class="number">0xa435</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Lens serial number&quot;</span>),
+     <span class="string">"Lens serial number"</span>),
     (CompositeImage, <span class="number">0xa460</span>, DefaultValue::Short(<span class="kw-2">&amp;</span>[<span class="number">0</span>]), d_cpstimg,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Composite image&quot;</span>),
+     <span class="string">"Composite image"</span>),
     (SourceImageNumberOfCompositeImage, <span class="number">0xa461</span>, DefaultValue::None, d_numcpstimg,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Source image number of composite image&quot;</span>),
+     <span class="string">"Source image number of composite image"</span>),
     (SourceExposureTimesOfCompositeImage, <span class="number">0xa462</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Source exposure times of composite image&quot;</span>),
+     <span class="string">"Source exposure times of composite image"</span>),
     (Gamma, <span class="number">0xa500</span>, DefaultValue::None, d_decimal,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Gamma&quot;</span>),
+     <span class="string">"Gamma"</span>),
 
     <span class="comment">// GPS attributes [EXIF23 4.6.6 Table 15 and 4.6.8 Table 19].
     </span>|Context::Gps|
@@ -2211,100 +2212,100 @@
     <span class="comment">// Depends on the Exif version.
     </span>(GPSVersionID, <span class="number">0x0</span>, DefaultValue::ContextDependent, d_gpsver,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;GPS tag version&quot;</span>),
+     <span class="string">"GPS tag version"</span>),
     (GPSLatitudeRef, <span class="number">0x1</span>, DefaultValue::None, d_gpslatlongref,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;North or south latitude&quot;</span>),
+     <span class="string">"North or south latitude"</span>),
     (GPSLatitude, <span class="number">0x2</span>, DefaultValue::None, d_gpsdms,
      <span class="macro">unit!</span>[Tag::GPSLatitudeRef],
-     <span class="string">&quot;Latitude&quot;</span>),
+     <span class="string">"Latitude"</span>),
     (GPSLongitudeRef, <span class="number">0x3</span>, DefaultValue::None, d_gpslatlongref,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;East or West Longitude&quot;</span>),
+     <span class="string">"East or West Longitude"</span>),
     (GPSLongitude, <span class="number">0x4</span>, DefaultValue::None, d_gpsdms,
      <span class="macro">unit!</span>[Tag::GPSLongitudeRef],
-     <span class="string">&quot;Longitude&quot;</span>),
+     <span class="string">"Longitude"</span>),
     (GPSAltitudeRef, <span class="number">0x5</span>, DefaultValue::Byte(<span class="kw-2">&amp;</span>[<span class="number">0</span>]), d_gpsaltref,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Altitude reference&quot;</span>),
+     <span class="string">"Altitude reference"</span>),
     (GPSAltitude, <span class="number">0x6</span>, DefaultValue::None, d_decimal,
-     <span class="macro">unit!</span>[V, <span class="string">&quot; meters &quot;</span>, Tag::GPSAltitudeRef],
-     <span class="string">&quot;Altitude&quot;</span>),
+     <span class="macro">unit!</span>[V, <span class="string">" meters "</span>, Tag::GPSAltitudeRef],
+     <span class="string">"Altitude"</span>),
     (GPSTimeStamp, <span class="number">0x7</span>, DefaultValue::None, d_gpstimestamp,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;GPS time (atomic clock)&quot;</span>),
+     <span class="string">"GPS time (atomic clock)"</span>),
     (GPSSatellites, <span class="number">0x8</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;GPS satellites used for measurement&quot;</span>),
+     <span class="string">"GPS satellites used for measurement"</span>),
     (GPSStatus, <span class="number">0x9</span>, DefaultValue::None, d_gpsstatus,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;GPS receiver status&quot;</span>),
+     <span class="string">"GPS receiver status"</span>),
     (GPSMeasureMode, <span class="number">0xa</span>, DefaultValue::None, d_gpsmeasuremode,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;GPS measurement mode&quot;</span>),
+     <span class="string">"GPS measurement mode"</span>),
     (GPSDOP, <span class="number">0xb</span>, DefaultValue::None, d_decimal,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Measurement precision&quot;</span>),
-    (GPSSpeedRef, <span class="number">0xc</span>, DefaultValue::Ascii(<span class="kw-2">&amp;</span>[<span class="string">b&quot;K&quot;</span>]), d_gpsspeedref,
+     <span class="string">"Measurement precision"</span>),
+    (GPSSpeedRef, <span class="number">0xc</span>, DefaultValue::Ascii(<span class="kw-2">&amp;</span>[<span class="string">b"K"</span>]), d_gpsspeedref,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Speed unit&quot;</span>),
+     <span class="string">"Speed unit"</span>),
     (GPSSpeed, <span class="number">0xd</span>, DefaultValue::None, d_decimal,
      <span class="macro">unit!</span>[Tag::GPSSpeedRef],
-     <span class="string">&quot;Speed of GPS receiver&quot;</span>),
-    (GPSTrackRef, <span class="number">0xe</span>, DefaultValue::Ascii(<span class="kw-2">&amp;</span>[<span class="string">b&quot;T&quot;</span>]), d_gpsdirref,
+     <span class="string">"Speed of GPS receiver"</span>),
+    (GPSTrackRef, <span class="number">0xe</span>, DefaultValue::Ascii(<span class="kw-2">&amp;</span>[<span class="string">b"T"</span>]), d_gpsdirref,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Reference for direction of movement&quot;</span>),
+     <span class="string">"Reference for direction of movement"</span>),
     (GPSTrack, <span class="number">0xf</span>, DefaultValue::None, d_decimal,
-     <span class="macro">unit!</span>[V, <span class="string">&quot; degrees in &quot;</span>, Tag::GPSTrackRef],
-     <span class="string">&quot;Direction of movement&quot;</span>),
-    (GPSImgDirectionRef, <span class="number">0x10</span>, DefaultValue::Ascii(<span class="kw-2">&amp;</span>[<span class="string">b&quot;T&quot;</span>]), d_gpsdirref,
+     <span class="macro">unit!</span>[V, <span class="string">" degrees in "</span>, Tag::GPSTrackRef],
+     <span class="string">"Direction of movement"</span>),
+    (GPSImgDirectionRef, <span class="number">0x10</span>, DefaultValue::Ascii(<span class="kw-2">&amp;</span>[<span class="string">b"T"</span>]), d_gpsdirref,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Reference for direction of image&quot;</span>),
+     <span class="string">"Reference for direction of image"</span>),
     (GPSImgDirection, <span class="number">0x11</span>, DefaultValue::None, d_decimal,
-     <span class="macro">unit!</span>[V, <span class="string">&quot; degrees in &quot;</span>, Tag::GPSImgDirectionRef],
-     <span class="string">&quot;Direction of image&quot;</span>),
+     <span class="macro">unit!</span>[V, <span class="string">" degrees in "</span>, Tag::GPSImgDirectionRef],
+     <span class="string">"Direction of image"</span>),
     (GPSMapDatum, <span class="number">0x12</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Geodetic survey data used&quot;</span>),
+     <span class="string">"Geodetic survey data used"</span>),
     (GPSDestLatitudeRef, <span class="number">0x13</span>, DefaultValue::None, d_gpslatlongref,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Reference for latitude of destination&quot;</span>),
+     <span class="string">"Reference for latitude of destination"</span>),
     (GPSDestLatitude, <span class="number">0x14</span>, DefaultValue::None, d_gpsdms,
      <span class="macro">unit!</span>[Tag::GPSDestLatitudeRef],
-     <span class="string">&quot;Latitude of destination&quot;</span>),
+     <span class="string">"Latitude of destination"</span>),
     (GPSDestLongitudeRef, <span class="number">0x15</span>, DefaultValue::None, d_gpslatlongref,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Reference for longitude of destination&quot;</span>),
+     <span class="string">"Reference for longitude of destination"</span>),
     (GPSDestLongitude, <span class="number">0x16</span>, DefaultValue::None, d_gpsdms,
      <span class="macro">unit!</span>[Tag::GPSDestLongitudeRef],
-     <span class="string">&quot;Longitude of destination&quot;</span>),
-    (GPSDestBearingRef, <span class="number">0x17</span>, DefaultValue::Ascii(<span class="kw-2">&amp;</span>[<span class="string">b&quot;T&quot;</span>]), d_gpsdirref,
+     <span class="string">"Longitude of destination"</span>),
+    (GPSDestBearingRef, <span class="number">0x17</span>, DefaultValue::Ascii(<span class="kw-2">&amp;</span>[<span class="string">b"T"</span>]), d_gpsdirref,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Reference for bearing of destination&quot;</span>),
+     <span class="string">"Reference for bearing of destination"</span>),
     (GPSDestBearing, <span class="number">0x18</span>, DefaultValue::None, d_decimal,
-     <span class="macro">unit!</span>[V, <span class="string">&quot; degrees in &quot;</span>, Tag::GPSDestBearingRef],
-     <span class="string">&quot;Bearing of destination&quot;</span>),
-    (GPSDestDistanceRef, <span class="number">0x19</span>, DefaultValue::Ascii(<span class="kw-2">&amp;</span>[<span class="string">b&quot;K&quot;</span>]), d_gpsdistref,
+     <span class="macro">unit!</span>[V, <span class="string">" degrees in "</span>, Tag::GPSDestBearingRef],
+     <span class="string">"Bearing of destination"</span>),
+    (GPSDestDistanceRef, <span class="number">0x19</span>, DefaultValue::Ascii(<span class="kw-2">&amp;</span>[<span class="string">b"K"</span>]), d_gpsdistref,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Reference for distance to destination&quot;</span>),
+     <span class="string">"Reference for distance to destination"</span>),
     (GPSDestDistance, <span class="number">0x1a</span>, DefaultValue::None, d_decimal,
      <span class="macro">unit!</span>[Tag::GPSDestDistanceRef],
-     <span class="string">&quot;Distance to destination&quot;</span>),
+     <span class="string">"Distance to destination"</span>),
     (GPSProcessingMethod, <span class="number">0x1b</span>, DefaultValue::None, d_ascii_in_undef,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Name of GPS processing method&quot;</span>),
+     <span class="string">"Name of GPS processing method"</span>),
     (GPSAreaInformation, <span class="number">0x1c</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Name of GPS area&quot;</span>),
+     <span class="string">"Name of GPS area"</span>),
     (GPSDateStamp, <span class="number">0x1d</span>, DefaultValue::None, d_gpsdatestamp,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;GPS date&quot;</span>),
+     <span class="string">"GPS date"</span>),
     (GPSDifferential, <span class="number">0x1e</span>, DefaultValue::None, d_gpsdifferential,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;GPS differential correction&quot;</span>),
+     <span class="string">"GPS differential correction"</span>),
     (GPSHPositioningError, <span class="number">0x1f</span>, DefaultValue::None, d_decimal,
-     <span class="macro">unit!</span>[<span class="string">&quot;m&quot;</span>],
-     <span class="string">&quot;Horizontal positioning error&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"m"</span>],
+     <span class="string">"Horizontal positioning error"</span>),
 
     <span class="comment">// Interoperability attributes [EXIF23 4.6.7 Table 16 and 4.6.8 Table 20]
     // [DCF20 4.4.5.3, 4.5.4.3, and 4.6.4.3].
@@ -2312,23 +2313,23 @@
 
     (InteroperabilityIndex, <span class="number">0x1</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Interoperability identification&quot;</span>),
+     <span class="string">"Interoperability identification"</span>),
     (InteroperabilityVersion, <span class="number">0x2</span>, DefaultValue::None, d_interopver,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Interoperability version&quot;</span>),
+     <span class="string">"Interoperability version"</span>),
     (RelatedImageFileFormat, <span class="number">0x1000</span>, DefaultValue::None, d_default,
      <span class="macro">unit!</span>[],
-     <span class="string">&quot;Related image file format&quot;</span>),
+     <span class="string">"Related image file format"</span>),
     (RelatedImageWidth, <span class="number">0x1001</span>, DefaultValue::None, d_default,
-     <span class="macro">unit!</span>[<span class="string">&quot;pixels&quot;</span>],
-     <span class="string">&quot;Related image width&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"pixels"</span>],
+     <span class="string">"Related image width"</span>),
     (RelatedImageLength, <span class="number">0x1002</span>, DefaultValue::None, d_default,
-     <span class="macro">unit!</span>[<span class="string">&quot;pixels&quot;</span>],
-     <span class="string">&quot;Related image height&quot;</span>),
+     <span class="macro">unit!</span>[<span class="string">"pixels"</span>],
+     <span class="string">"Related image height"</span>),
 );
 
 <span class="comment">// For Value::display_as().
-</span><span class="kw">pub fn </span>display_value_as&lt;<span class="lifetime">&#39;a</span>&gt;(value: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Value, tag: Tag) -&gt; value::Display&lt;<span class="lifetime">&#39;a</span>&gt; {
+</span><span class="kw">pub fn </span>display_value_as&lt;<span class="lifetime">'a</span>&gt;(value: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Value, tag: Tag) -&gt; value::Display&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">match </span>get_tag_info(tag) {
         <span class="prelude-val">Some</span>(ti) =&gt; value::Display { fmt: ti.dispval, value: value },
         <span class="prelude-val">None </span>=&gt; value::Display { fmt: d_default, value: value },
@@ -2338,11 +2339,11 @@
 <span class="comment">// Compression (TIFF 0x103)
 </span><span class="kw">fn </span>d_compression(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;uncompressed&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;Modified Huffman&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">6</span>) =&gt; <span class="string">&quot;JPEG&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">32773</span>) =&gt; <span class="string">&quot;PackBits&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;compression&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"uncompressed"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"Modified Huffman"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">6</span>) =&gt; <span class="string">"JPEG"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">32773</span>) =&gt; <span class="string">"PackBits"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"compression"</span>),
     };
     w.write_str(s)
 }
@@ -2350,13 +2351,13 @@
 <span class="comment">// PhotometricInterpretation (TIFF 0x106)
 </span><span class="kw">fn </span>d_photointp(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;white is zero&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;black is zero&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;RGB&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">&quot;palette color&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">&quot;transparency mask&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">6</span>) =&gt; <span class="string">&quot;YCbCr&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;photometric interpretation&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"white is zero"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"black is zero"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"RGB"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">"palette color"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">"transparency mask"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">6</span>) =&gt; <span class="string">"YCbCr"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"photometric interpretation"</span>),
     };
     w.write_str(s)
 }
@@ -2364,15 +2365,15 @@
 <span class="comment">// Orientation (TIFF 0x112)
 </span><span class="kw">fn </span>d_orientation(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;row 0 at top and column 0 at left&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;row 0 at top and column 0 at right&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">&quot;row 0 at bottom and column 0 at right&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">&quot;row 0 at bottom and column 0 at left&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">5</span>) =&gt; <span class="string">&quot;row 0 at left and column 0 at top&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">6</span>) =&gt; <span class="string">&quot;row 0 at right and column 0 at top&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">7</span>) =&gt; <span class="string">&quot;row 0 at right and column 0 at bottom&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">8</span>) =&gt; <span class="string">&quot;row 0 at left and column 0 at bottom&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;orientation&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"row 0 at top and column 0 at left"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"row 0 at top and column 0 at right"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">"row 0 at bottom and column 0 at right"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">"row 0 at bottom and column 0 at left"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">5</span>) =&gt; <span class="string">"row 0 at left and column 0 at top"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">6</span>) =&gt; <span class="string">"row 0 at right and column 0 at top"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">7</span>) =&gt; <span class="string">"row 0 at right and column 0 at bottom"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">8</span>) =&gt; <span class="string">"row 0 at left and column 0 at bottom"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"orientation"</span>),
     };
     w.write_str(s)
 }
@@ -2380,9 +2381,9 @@
 <span class="comment">// PlanarConfiguration (TIFF 0x11c)
 </span><span class="kw">fn </span>d_planarcfg(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;chunky&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;planar&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;planar configuration&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"chunky"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"planar"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"planar configuration"</span>),
     };
     w.write_str(s)
 }
@@ -2391,10 +2392,10 @@
 // FocalPlaneResolutionUnit (Exif 0xa210)
 </span><span class="kw">fn </span>d_resunit(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;no absolute unit&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;inch&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">&quot;cm&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;resolution unit&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"no absolute unit"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"inch"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">"cm"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"resolution unit"</span>),
     };
     w.write_str(s)
 }
@@ -2404,8 +2405,8 @@
 </span><span class="kw">fn </span>d_datetime(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">if let </span><span class="prelude-val">Some</span>(dt) = value.ascii().and_then(|x| x.first()) {
         <span class="kw">match </span><span class="kw">crate</span>::tiff::DateTime::from_ascii(dt) {
-            <span class="prelude-val">Ok</span>(dt) =&gt; <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">&quot;{}&quot;</span>, dt),
-            <span class="prelude-val">Err</span>(Error::BlankValue(<span class="kw">_</span>)) =&gt; <span class="kw">return </span>w.write_str(<span class="string">&quot;unknown&quot;</span>),
+            <span class="prelude-val">Ok</span>(dt) =&gt; <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">"{}"</span>, dt),
+            <span class="prelude-val">Err</span>(Error::BlankValue(<span class="kw">_</span>)) =&gt; <span class="kw">return </span>w.write_str(<span class="string">"unknown"</span>),
             <span class="kw">_ </span>=&gt; {},
         }
     }
@@ -2418,12 +2419,12 @@
     </span><span class="kw">let </span>horiz = value.get_uint(<span class="number">0</span>).unwrap_or(<span class="number">0</span>);
     <span class="kw">let </span>vert = value.get_uint(<span class="number">1</span>).unwrap_or(<span class="number">0</span>);
     <span class="kw">let </span>s = <span class="kw">match </span>(horiz, vert) {
-        (<span class="number">1</span>, <span class="number">1</span>) =&gt; <span class="string">&quot;full horizontally, full vertically (4:4:4)&quot;</span>,
-        (<span class="number">2</span>, <span class="number">1</span>) =&gt; <span class="string">&quot;half horizontally, full vertically (4:2:2)&quot;</span>,
-        (<span class="number">2</span>, <span class="number">2</span>) =&gt; <span class="string">&quot;half horizontally, half vertically (4:2:0)&quot;</span>,
-        (<span class="number">4</span>, <span class="number">1</span>) =&gt; <span class="string">&quot;quarter horizontally, full vertically (4:1:1)&quot;</span>,
-        (<span class="number">4</span>, <span class="number">2</span>) =&gt; <span class="string">&quot;quarter horizontally, half vertically&quot;</span>,
-        (<span class="number">4</span>, <span class="number">4</span>) =&gt; <span class="string">&quot;quarter horizontally, quarter vertically&quot;</span>,
+        (<span class="number">1</span>, <span class="number">1</span>) =&gt; <span class="string">"full horizontally, full vertically (4:4:4)"</span>,
+        (<span class="number">2</span>, <span class="number">1</span>) =&gt; <span class="string">"half horizontally, full vertically (4:2:2)"</span>,
+        (<span class="number">2</span>, <span class="number">2</span>) =&gt; <span class="string">"half horizontally, half vertically (4:2:0)"</span>,
+        (<span class="number">4</span>, <span class="number">1</span>) =&gt; <span class="string">"quarter horizontally, full vertically (4:1:1)"</span>,
+        (<span class="number">4</span>, <span class="number">2</span>) =&gt; <span class="string">"quarter horizontally, half vertically"</span>,
+        (<span class="number">4</span>, <span class="number">4</span>) =&gt; <span class="string">"quarter horizontally, quarter vertically"</span>,
         <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_default(w, value),
     };
     w.write_str(s)
@@ -2432,9 +2433,9 @@
 <span class="comment">// YCbCrPositioning (TIFF 0x213)
 </span><span class="kw">fn </span>d_ycbcrpos(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;centered&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;co-sited&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;YCbCr positioning&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"centered"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"co-sited"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"YCbCr positioning"</span>),
     };
     w.write_str(s)
 }
@@ -2443,9 +2444,9 @@
 </span><span class="kw">fn </span>d_exptime(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">if let </span><span class="prelude-val">Some</span>(et) = value.rational().and_then(|x| x.first()) {
         <span class="kw">if </span>et.num &gt;= et.denom {
-            <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">&quot;{}&quot;</span>, et.to_f64());
+            <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">"{}"</span>, et.to_f64());
         } <span class="kw">else if </span>et.num != <span class="number">0 </span>{
-            <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">&quot;1/{}&quot;</span>, et.denom <span class="kw">as </span>f64 / et.num <span class="kw">as </span>f64);
+            <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">"1/{}"</span>, et.denom <span class="kw">as </span>f64 / et.num <span class="kw">as </span>f64);
         }
     }
     d_default(w, value)
@@ -2454,16 +2455,16 @@
 <span class="comment">// ExposureProgram (Exif 0x8822)
 </span><span class="kw">fn </span>d_expprog(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;not defined&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;manual&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;normal program&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">&quot;aperture priority&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">&quot;shutter priority&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">5</span>) =&gt; <span class="string">&quot;creative program&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">6</span>) =&gt; <span class="string">&quot;action program&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">7</span>) =&gt; <span class="string">&quot;portrait mode&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">8</span>) =&gt; <span class="string">&quot;landscape mode&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;exposure program&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"not defined"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"manual"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"normal program"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">"aperture priority"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">"shutter priority"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">5</span>) =&gt; <span class="string">"creative program"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">6</span>) =&gt; <span class="string">"action program"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">7</span>) =&gt; <span class="string">"portrait mode"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">8</span>) =&gt; <span class="string">"landscape mode"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"exposure program"</span>),
     };
     w.write_str(s)
 }
@@ -2471,15 +2472,15 @@
 <span class="comment">// SensitivityType (Exif 0x8830)
 </span><span class="kw">fn </span>d_sensitivitytype(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;unknown&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;SOS&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;REI&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">&quot;ISO speed&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">&quot;SOS/REI&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">5</span>) =&gt; <span class="string">&quot;SOS/ISO speed&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">6</span>) =&gt; <span class="string">&quot;REI/ISO speed&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">7</span>) =&gt; <span class="string">&quot;SOS/REI/ISO speed&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;sensitivity type&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"unknown"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"SOS"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"REI"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">"ISO speed"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">"SOS/REI"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">5</span>) =&gt; <span class="string">"SOS/ISO speed"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">6</span>) =&gt; <span class="string">"REI/ISO speed"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">7</span>) =&gt; <span class="string">"SOS/REI/ISO speed"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"sensitivity type"</span>),
     };
     w.write_str(s)
 }
@@ -2490,9 +2491,9 @@
         <span class="kw">if let </span><span class="prelude-val">Ok</span>(major) = atou16(<span class="kw-2">&amp;</span>s[<span class="number">0</span>..<span class="number">2</span>]) {
             <span class="kw">if let </span><span class="prelude-val">Ok</span>(minor) = atou16(<span class="kw-2">&amp;</span>s[<span class="number">2</span>..<span class="number">4</span>]) {
                 <span class="kw">if </span>minor % <span class="number">10 </span>== <span class="number">0 </span>{
-                    <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">&quot;{}.{}&quot;</span>, major, minor / <span class="number">10</span>);
+                    <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">"{}.{}"</span>, major, minor / <span class="number">10</span>);
                 } <span class="kw">else </span>{
-                    <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">&quot;{}.{:02}&quot;</span>, major, minor);
+                    <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">"{}.{:02}"</span>, major, minor);
                 }
             }
         }
@@ -2504,14 +2505,14 @@
 </span><span class="kw">fn </span>d_cpntcfg(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">match </span>value.undefined() {
         <span class="prelude-val">Some</span>(s) =&gt; s.iter().try_for_each(|x| <span class="kw">match </span>x {
-            <span class="number">0 </span>=&gt; w.write_char(<span class="string">&#39;_&#39;</span>),
-            <span class="number">1 </span>=&gt; w.write_char(<span class="string">&#39;Y&#39;</span>),
-            <span class="number">2 </span>=&gt; w.write_str(<span class="string">&quot;Cb&quot;</span>),
-            <span class="number">3 </span>=&gt; w.write_str(<span class="string">&quot;Cr&quot;</span>),
-            <span class="number">4 </span>=&gt; w.write_char(<span class="string">&#39;R&#39;</span>),
-            <span class="number">5 </span>=&gt; w.write_char(<span class="string">&#39;G&#39;</span>),
-            <span class="number">6 </span>=&gt; w.write_char(<span class="string">&#39;B&#39;</span>),
-            <span class="kw">_ </span>=&gt; w.write_char(<span class="string">&#39;?&#39;</span>),
+            <span class="number">0 </span>=&gt; w.write_char(<span class="string">'_'</span>),
+            <span class="number">1 </span>=&gt; w.write_char(<span class="string">'Y'</span>),
+            <span class="number">2 </span>=&gt; w.write_str(<span class="string">"Cb"</span>),
+            <span class="number">3 </span>=&gt; w.write_str(<span class="string">"Cr"</span>),
+            <span class="number">4 </span>=&gt; w.write_char(<span class="string">'R'</span>),
+            <span class="number">5 </span>=&gt; w.write_char(<span class="string">'G'</span>),
+            <span class="number">6 </span>=&gt; w.write_char(<span class="string">'B'</span>),
+            <span class="kw">_ </span>=&gt; w.write_char(<span class="string">'?'</span>),
         }),
         <span class="prelude-val">None </span>=&gt; d_default(w, value),
     }
@@ -2521,9 +2522,9 @@
 </span><span class="kw">fn </span>d_subjdist(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">if let </span><span class="prelude-val">Some</span>(dist) = value.rational().and_then(|x| x.first()) {
         <span class="kw">if </span>dist.num == <span class="number">0 </span>{
-            <span class="kw">return </span>w.write_str(<span class="string">&quot;unknown&quot;</span>);
+            <span class="kw">return </span>w.write_str(<span class="string">"unknown"</span>);
         } <span class="kw">else if </span>dist.num == <span class="number">0xffffffff </span>{
-            <span class="kw">return </span>w.write_str(<span class="string">&quot;infinity&quot;</span>);
+            <span class="kw">return </span>w.write_str(<span class="string">"infinity"</span>);
         }
     }
     d_decimal(w, value)
@@ -2532,15 +2533,15 @@
 <span class="comment">// MeteringMode (Exif 0x9207)
 </span><span class="kw">fn </span>d_metering(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;unknown&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;average&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;center-weighted average&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">&quot;spot&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">&quot;multi-spot&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">5</span>) =&gt; <span class="string">&quot;pattern&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">6</span>) =&gt; <span class="string">&quot;partial&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">255</span>) =&gt; <span class="string">&quot;other&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;metering mode&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"unknown"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"average"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"center-weighted average"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">"spot"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">"multi-spot"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">5</span>) =&gt; <span class="string">"pattern"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">6</span>) =&gt; <span class="string">"partial"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">255</span>) =&gt; <span class="string">"other"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"metering mode"</span>),
     };
     w.write_str(s)
 }
@@ -2548,55 +2549,55 @@
 <span class="comment">// LightSource (Exif 0x9208)
 </span><span class="kw">fn </span>d_lightsrc(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;unknown&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;daylight&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;fluorescent&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">&quot;tungsten&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">&quot;flash&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">9</span>) =&gt; <span class="string">&quot;fine weather&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">10</span>) =&gt; <span class="string">&quot;cloudy weather&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">11</span>) =&gt; <span class="string">&quot;shade&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">12</span>) =&gt; <span class="string">&quot;daylight fluorescent (D 5700-7100K)&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">13</span>) =&gt; <span class="string">&quot;day white fluorescent (N 4600-5500K)&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">14</span>) =&gt; <span class="string">&quot;cool white fluorescent (W 3800-4500K)&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">15</span>) =&gt; <span class="string">&quot;white fluorescent (WW 3250-3800K)&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">16</span>) =&gt; <span class="string">&quot;warm white fluorescent (L 2600-3250K)&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">17</span>) =&gt; <span class="string">&quot;standard light A&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">18</span>) =&gt; <span class="string">&quot;standard light B&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">19</span>) =&gt; <span class="string">&quot;standard light C&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">20</span>) =&gt; <span class="string">&quot;D55&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">21</span>) =&gt; <span class="string">&quot;D65&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">22</span>) =&gt; <span class="string">&quot;D75&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">23</span>) =&gt; <span class="string">&quot;D50&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">24</span>) =&gt; <span class="string">&quot;ISO studio tungsten&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">255</span>) =&gt; <span class="string">&quot;other&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;light source&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"unknown"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"daylight"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"fluorescent"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">"tungsten"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">"flash"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">9</span>) =&gt; <span class="string">"fine weather"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">10</span>) =&gt; <span class="string">"cloudy weather"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">11</span>) =&gt; <span class="string">"shade"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">12</span>) =&gt; <span class="string">"daylight fluorescent (D 5700-7100K)"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">13</span>) =&gt; <span class="string">"day white fluorescent (N 4600-5500K)"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">14</span>) =&gt; <span class="string">"cool white fluorescent (W 3800-4500K)"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">15</span>) =&gt; <span class="string">"white fluorescent (WW 3250-3800K)"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">16</span>) =&gt; <span class="string">"warm white fluorescent (L 2600-3250K)"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">17</span>) =&gt; <span class="string">"standard light A"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">18</span>) =&gt; <span class="string">"standard light B"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">19</span>) =&gt; <span class="string">"standard light C"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">20</span>) =&gt; <span class="string">"D55"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">21</span>) =&gt; <span class="string">"D65"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">22</span>) =&gt; <span class="string">"D75"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">23</span>) =&gt; <span class="string">"D50"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">24</span>) =&gt; <span class="string">"ISO studio tungsten"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">255</span>) =&gt; <span class="string">"other"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"light source"</span>),
     };
     w.write_str(s)
 }
 
 <span class="comment">// Flash (Exif 0x9209)
 </span><span class="kw">fn </span>d_flash(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
-    <span class="kw">const </span>FIRED: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[<span class="string">&quot;not fired&quot;</span>, <span class="string">&quot;fired&quot;</span>];
+    <span class="kw">const </span>FIRED: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[<span class="string">"not fired"</span>, <span class="string">"fired"</span>];
     <span class="kw">const </span>RETURN: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[
-        <span class="string">&quot;, no return light detection function&quot;</span>,
-        <span class="string">&quot;, return light status 1 (reserved)&quot;</span>,
-        <span class="string">&quot;, return light not detected&quot;</span>,
-        <span class="string">&quot;, return light detected&quot;</span>,
+        <span class="string">", no return light detection function"</span>,
+        <span class="string">", return light status 1 (reserved)"</span>,
+        <span class="string">", return light not detected"</span>,
+        <span class="string">", return light detected"</span>,
     ];
     <span class="kw">const </span>AUTO: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[
-        <span class="string">&quot;, auto mode 0 (unknown)&quot;</span>, <span class="string">&quot;, forced&quot;</span>, <span class="string">&quot;, suppressed&quot;</span>, <span class="string">&quot;, auto&quot;</span>];
-    <span class="kw">const </span>FUNCTION: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[<span class="string">&quot;&quot;</span>, <span class="string">&quot;, no function present&quot;</span>];
-    <span class="kw">const </span>RED_EYE: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[<span class="string">&quot;&quot;</span>, <span class="string">&quot;, red-eye reduction&quot;</span>];
+        <span class="string">", auto mode 0 (unknown)"</span>, <span class="string">", forced"</span>, <span class="string">", suppressed"</span>, <span class="string">", auto"</span>];
+    <span class="kw">const </span>FUNCTION: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[<span class="string">""</span>, <span class="string">", no function present"</span>];
+    <span class="kw">const </span>RED_EYE: <span class="kw-2">&amp;</span>[<span class="kw-2">&amp;</span>str] = <span class="kw-2">&amp;</span>[<span class="string">""</span>, <span class="string">", red-eye reduction"</span>];
 
     <span class="kw">if let </span><span class="prelude-val">Some</span>(v) = value.get_uint(<span class="number">0</span>) {
-        <span class="macro">write!</span>(w, <span class="string">&quot;{}{}{}{}{}{}&quot;</span>,
+        <span class="macro">write!</span>(w, <span class="string">"{}{}{}{}{}{}"</span>,
                FIRED[v <span class="kw">as </span>usize &amp; <span class="number">1</span>],
                RETURN[v <span class="kw">as </span>usize &gt;&gt; <span class="number">1 </span>&amp; <span class="number">3</span>],
                AUTO[v <span class="kw">as </span>usize &gt;&gt; <span class="number">3 </span>&amp; <span class="number">3</span>],
                FUNCTION[v <span class="kw">as </span>usize &gt;&gt; <span class="number">5 </span>&amp; <span class="number">1</span>],
                RED_EYE[v <span class="kw">as </span>usize &gt;&gt; <span class="number">6 </span>&amp; <span class="number">1</span>],
-               <span class="kw">if </span>v &gt;&gt; <span class="number">7 </span>!= <span class="number">0 </span>{ <span class="string">&quot;, unknown MSB bits&quot; </span>} <span class="kw">else </span>{ <span class="string">&quot;&quot; </span>})
+               <span class="kw">if </span>v &gt;&gt; <span class="number">7 </span>!= <span class="number">0 </span>{ <span class="string">", unknown MSB bits" </span>} <span class="kw">else </span>{ <span class="string">"" </span>})
     } <span class="kw">else </span>{
         d_default(w, value)
     }
@@ -2609,12 +2610,12 @@
         <span class="kw">if let </span><span class="prelude-val">Some</span>(y) = value.get_uint(<span class="number">1</span>) {
             <span class="kw">if let </span><span class="prelude-val">Some</span>(d) = value.get_uint(<span class="number">2</span>) {
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(h) = value.get_uint(<span class="number">3</span>) {
-                    <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">&quot;rectangle (x={}, y={}, w={}, h={})&quot;</span>,
+                    <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">"rectangle (x={}, y={}, w={}, h={})"</span>,
                                   x, y, d, h);
                 }
-                <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">&quot;circle (x={}, y={}, d={})&quot;</span>, x, y, d);
+                <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">"circle (x={}, y={}, d={})"</span>, x, y, d);
             }
-            <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">&quot;point (x={}, y={})&quot;</span>, x, y);
+            <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">"point (x={}, y={})"</span>, x, y);
         }
     }
     d_default(w, value)
@@ -2629,15 +2630,15 @@
     <span class="kw">match </span><span class="kw-2">*</span>value {
         Value::Rational(<span class="kw-2">ref </span>v) <span class="kw">if </span>v.len() &gt; <span class="number">0 </span>=&gt;
             <span class="kw">if </span>v[<span class="number">0</span>].denom != <span class="number">0xffffffff </span>{
-                <span class="macro">write!</span>(w, <span class="string">&quot;{}&quot;</span>, v[<span class="number">0</span>].to_f64())
+                <span class="macro">write!</span>(w, <span class="string">"{}"</span>, v[<span class="number">0</span>].to_f64())
             } <span class="kw">else </span>{
-                w.write_str(<span class="string">&quot;unknown&quot;</span>)
+                w.write_str(<span class="string">"unknown"</span>)
             },
         Value::SRational(<span class="kw-2">ref </span>v) <span class="kw">if </span>v.len() &gt; <span class="number">0 </span>=&gt;
             <span class="kw">if </span>v[<span class="number">0</span>].denom != -<span class="number">1 </span>{
-                <span class="macro">write!</span>(w, <span class="string">&quot;{}&quot;</span>, v[<span class="number">0</span>].to_f64())
+                <span class="macro">write!</span>(w, <span class="string">"{}"</span>, v[<span class="number">0</span>].to_f64())
             } <span class="kw">else </span>{
-                w.write_str(<span class="string">&quot;unknown&quot;</span>)
+                w.write_str(<span class="string">"unknown"</span>)
             },
         <span class="kw">_ </span>=&gt; d_decimal(w, value),
     }
@@ -2646,9 +2647,9 @@
 <span class="comment">// ColorSpace (Exif 0xa001)
 </span><span class="kw">fn </span>d_cspace(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;sRGB&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">0xffff</span>) =&gt; <span class="string">&quot;uncalibrated&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;color space&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"sRGB"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">0xffff</span>) =&gt; <span class="string">"uncalibrated"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"color space"</span>),
     };
     w.write_str(s)
 }
@@ -2656,14 +2657,14 @@
 <span class="comment">// SensingMethod (Exif 0xa217)
 </span><span class="kw">fn </span>d_sensingmethod(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;not defined&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;one-chip color area sensor&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">&quot;two-chip color area sensor&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">&quot;three-chip color area sensor&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">5</span>) =&gt; <span class="string">&quot;color sequential area sensor&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">7</span>) =&gt; <span class="string">&quot;trilinear sensor&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">8</span>) =&gt; <span class="string">&quot;color sequential linear sensor&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;sensing method&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"not defined"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"one-chip color area sensor"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">"two-chip color area sensor"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">"three-chip color area sensor"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">5</span>) =&gt; <span class="string">"color sequential area sensor"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">7</span>) =&gt; <span class="string">"trilinear sensor"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">8</span>) =&gt; <span class="string">"color sequential linear sensor"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"sensing method"</span>),
     };
     w.write_str(s)
 }
@@ -2671,11 +2672,11 @@
 <span class="comment">// FileSource (Exif 0xa300)
 </span><span class="kw">fn </span>d_filesrc(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.undefined().and_then(|x| x.first().copied()) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;others&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;transparency scanner&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;reflective scanner&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">&quot;digital still camera&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;file source&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"others"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"transparency scanner"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"reflective scanner"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">"digital still camera"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"file source"</span>),
     };
     w.write_str(s)
 }
@@ -2683,8 +2684,8 @@
 <span class="comment">// SceneType (Exif 0xa301)
 </span><span class="kw">fn </span>d_scenetype(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.undefined().and_then(|x| x.first().copied()) {
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;directly photographed image&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;scene type&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"directly photographed image"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"scene type"</span>),
     };
     w.write_str(s)
 }
@@ -2692,9 +2693,9 @@
 <span class="comment">// CustomRendered (Exif 0xa401)
 </span><span class="kw">fn </span>d_customrendered(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;normal process&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;custom process&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;custom rendered&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"normal process"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"custom process"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"custom rendered"</span>),
     };
     w.write_str(s)
 }
@@ -2702,10 +2703,10 @@
 <span class="comment">// ExposureMode (Exif 0xa402)
 </span><span class="kw">fn </span>d_expmode(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;auto exposure&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;manual exposure&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;auto bracket&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;exposure mode&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"auto exposure"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"manual exposure"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"auto bracket"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"exposure mode"</span>),
     };
     w.write_str(s)
 }
@@ -2713,9 +2714,9 @@
 <span class="comment">// WhiteBalance (Exif 0xa403)
 </span><span class="kw">fn </span>d_whitebalance(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;auto white balance&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;manual white balance&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;white balance mode&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"auto white balance"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"manual white balance"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"white balance mode"</span>),
     };
     w.write_str(s)
 }
@@ -2723,7 +2724,7 @@
 <span class="comment">// DigitalZoomRatio (Exif 0xa404)
 </span><span class="kw">fn </span>d_dzoomratio(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">if </span>value.rational().and_then(|x| x.first()).map(|x| x.num) == <span class="prelude-val">Some</span>(<span class="number">0</span>) {
-        <span class="kw">return </span>w.write_str(<span class="string">&quot;unused&quot;</span>);
+        <span class="kw">return </span>w.write_str(<span class="string">"unused"</span>);
     }
     d_decimal(w, value)
 }
@@ -2731,7 +2732,7 @@
 <span class="comment">// FocalLengthIn35mmFilm (Exif 0xa405)
 </span><span class="kw">fn </span>d_focallen35(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; w.write_str(<span class="string">&quot;unknown&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; w.write_str(<span class="string">"unknown"</span>),
         <span class="kw">_ </span>=&gt; d_default(w, value),
     }
 }
@@ -2739,11 +2740,11 @@
 <span class="comment">// SceneCaptureType (Exif 0xa406)
 </span><span class="kw">fn </span>d_scenecaptype(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;standard&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;landscape&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;portrait&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">&quot;night scene&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;scene capture type&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"standard"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"landscape"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"portrait"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">"night scene"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"scene capture type"</span>),
     };
     w.write_str(s)
 }
@@ -2751,12 +2752,12 @@
 <span class="comment">// GainControl (Exif 0xa407)
 </span><span class="kw">fn </span>d_gainctrl(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;none&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;low gain up&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;high gain up&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">&quot;low gain down&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">&quot;high gain down&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;gain control&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"none"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"low gain up"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"high gain up"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">"low gain down"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">4</span>) =&gt; <span class="string">"high gain down"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"gain control"</span>),
     };
     w.write_str(s)
 }
@@ -2764,10 +2765,10 @@
 <span class="comment">// Contrast (Exif 0xa408)
 </span><span class="kw">fn </span>d_contrast(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;normal&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;soft&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;hard&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;contrast processing&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"normal"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"soft"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"hard"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"contrast processing"</span>),
     };
     w.write_str(s)
 }
@@ -2775,10 +2776,10 @@
 <span class="comment">// Saturation (Exif 0xa409)
 </span><span class="kw">fn </span>d_saturation(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;normal&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;low saturation&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;high saturation&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;saturation processing&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"normal"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"low saturation"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"high saturation"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"saturation processing"</span>),
     };
     w.write_str(s)
 }
@@ -2786,10 +2787,10 @@
 <span class="comment">// Sharpness (Exif 0xa40a)
 </span><span class="kw">fn </span>d_sharpness(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;normal&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;soft&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;hard&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;sharpness processing&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"normal"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"soft"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"hard"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"sharpness processing"</span>),
     };
     w.write_str(s)
 }
@@ -2797,11 +2798,11 @@
 <span class="comment">// SubjectDistanceRange (Exif 0xa40c)
 </span><span class="kw">fn </span>d_subjdistrange(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;unknown&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;macro&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;close view&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">&quot;distant view&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;subject distance range&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"unknown"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"macro"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"close view"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">"distant view"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"subject distance range"</span>),
     };
     w.write_str(s)
 }
@@ -2809,9 +2810,9 @@
 <span class="comment">// LensSpecification (Exif 0xa432)
 </span><span class="kw">fn </span>d_lensspec(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">match </span>value.rational().and_then(|x| x.get(..<span class="number">4</span>)) {
-        <span class="comment">// There are several notations: &quot;F1.4&quot; in Japan, &quot;f/1.4&quot;
+        <span class="comment">// There are several notations: "F1.4" in Japan, "f/1.4"
         // in the U.S., and so on.
-        </span><span class="prelude-val">Some</span>(s) =&gt; <span class="macro">write!</span>(w, <span class="string">&quot;{}-{} mm, f/{}-{}&quot;</span>,
+        </span><span class="prelude-val">Some</span>(s) =&gt; <span class="macro">write!</span>(w, <span class="string">"{}-{} mm, f/{}-{}"</span>,
                           s[<span class="number">0</span>].to_f64(), s[<span class="number">1</span>].to_f64(),
                           s[<span class="number">2</span>].to_f64(), s[<span class="number">3</span>].to_f64()),
         <span class="kw">_ </span>=&gt; d_default(w, value),
@@ -2821,11 +2822,11 @@
 <span class="comment">// CompositeImage (Exif 0xa460)
 </span><span class="kw">fn </span>d_cpstimg(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;unknown&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;non-composite&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">&quot;composite (general)&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">&quot;composite (at the moment of shooting)&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;composite image&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"unknown"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"non-composite"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">2</span>) =&gt; <span class="string">"composite (general)"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">3</span>) =&gt; <span class="string">"composite (at the moment of shooting)"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"composite image"</span>),
     };
     w.write_str(s)
 }
@@ -2833,7 +2834,7 @@
 <span class="comment">// SourceImageNumberOfCompositeImage (Exif 0xa461)
 </span><span class="kw">fn </span>d_numcpstimg(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">match </span>(value.get_uint(<span class="number">0</span>), value.get_uint(<span class="number">1</span>)) {
-        (<span class="prelude-val">Some</span>(t), <span class="prelude-val">Some</span>(u)) =&gt; <span class="macro">write!</span>(w, <span class="string">&quot;total {}, used {}&quot;</span>, t, u),
+        (<span class="prelude-val">Some</span>(t), <span class="prelude-val">Some</span>(u)) =&gt; <span class="macro">write!</span>(w, <span class="string">"total {}, used {}"</span>, t, u),
         <span class="kw">_ </span>=&gt; d_default(w, value),
     }
 }
@@ -2841,7 +2842,7 @@
 <span class="comment">// GPSVersionID (GPS 0x0)
 </span><span class="kw">fn </span>d_gpsver(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">match </span>value.byte().and_then(|x| x.get(..<span class="number">4</span>)) {
-        <span class="prelude-val">Some</span>(s) =&gt; <span class="macro">write!</span>(w, <span class="string">&quot;{}.{}.{}.{}&quot;</span>, s[<span class="number">0</span>], s[<span class="number">1</span>], s[<span class="number">2</span>], s[<span class="number">3</span>]),
+        <span class="prelude-val">Some</span>(s) =&gt; <span class="macro">write!</span>(w, <span class="string">"{}.{}.{}.{}"</span>, s[<span class="number">0</span>], s[<span class="number">1</span>], s[<span class="number">2</span>], s[<span class="number">3</span>]),
         <span class="kw">_ </span>=&gt; d_default(w, value),
     }
 }
@@ -2859,7 +2860,7 @@
 // GPSDestLatitude (GPS 0x14), GPSDestLongitude (GPS 0x16)
 </span><span class="kw">fn </span>d_gpsdms(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">match </span>value.rational().and_then(|x| x.get(..<span class="number">3</span>)) {
-        <span class="prelude-val">Some</span>(s) =&gt; <span class="macro">write!</span>(w, <span class="string">&quot;{} deg {} min {} sec&quot;</span>,
+        <span class="prelude-val">Some</span>(s) =&gt; <span class="macro">write!</span>(w, <span class="string">"{} deg {} min {} sec"</span>,
                           s[<span class="number">0</span>].to_f64(), s[<span class="number">1</span>].to_f64(), s[<span class="number">2</span>].to_f64()),
         <span class="kw">_ </span>=&gt; d_default(w, value),
     }
@@ -2868,9 +2869,9 @@
 <span class="comment">// GPSAltitudeRef (GPS 0x5)
 </span><span class="kw">fn </span>d_gpsaltref(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;above sea level&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;below sea level&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;GPS altitude ref&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"above sea level"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"below sea level"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"GPS altitude ref"</span>),
     };
     w.write_str(s)
 }
@@ -2880,10 +2881,10 @@
     <span class="kw">match </span>value.rational().and_then(|x| x.get(..<span class="number">3</span>)) {
         <span class="prelude-val">Some</span>(s) =&gt; {
             <span class="kw">let </span>(h, m, s) = (s[<span class="number">0</span>].to_f64(), s[<span class="number">1</span>].to_f64(), s[<span class="number">2</span>].to_f64());
-            <span class="macro">write!</span>(w, <span class="string">&quot;{}{}:{}{}:{}{}&quot;</span>,
-                   <span class="kw">if </span>h &lt; <span class="number">10.0 </span>{ <span class="string">&quot;0&quot; </span>} <span class="kw">else </span>{ <span class="string">&quot;&quot; </span>}, h,
-                   <span class="kw">if </span>m &lt; <span class="number">10.0 </span>{ <span class="string">&quot;0&quot; </span>} <span class="kw">else </span>{ <span class="string">&quot;&quot; </span>}, m,
-                   <span class="kw">if </span>s &lt; <span class="number">10.0 </span>{ <span class="string">&quot;0&quot; </span>} <span class="kw">else </span>{ <span class="string">&quot;&quot; </span>}, s)
+            <span class="macro">write!</span>(w, <span class="string">"{}{}:{}{}:{}{}"</span>,
+                   <span class="kw">if </span>h &lt; <span class="number">10.0 </span>{ <span class="string">"0" </span>} <span class="kw">else </span>{ <span class="string">"" </span>}, h,
+                   <span class="kw">if </span>m &lt; <span class="number">10.0 </span>{ <span class="string">"0" </span>} <span class="kw">else </span>{ <span class="string">"" </span>}, m,
+                   <span class="kw">if </span>s &lt; <span class="number">10.0 </span>{ <span class="string">"0" </span>} <span class="kw">else </span>{ <span class="string">"" </span>}, s)
         },
         <span class="kw">_ </span>=&gt; d_default(w, value),
     }
@@ -2892,9 +2893,9 @@
 <span class="comment">// GPSStatus (GPS 0x9)
 </span><span class="kw">fn </span>d_gpsstatus(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.ascii().and_then(|x| x.first()) {
-        <span class="prelude-val">Some</span>(<span class="string">b&quot;A&quot;</span>) =&gt; <span class="string">&quot;measurement in progress&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="string">b&quot;V&quot;</span>) =&gt; <span class="string">&quot;measurement interrupted&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;GPS status&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="string">b"A"</span>) =&gt; <span class="string">"measurement in progress"</span>,
+        <span class="prelude-val">Some</span>(<span class="string">b"V"</span>) =&gt; <span class="string">"measurement interrupted"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"GPS status"</span>),
     };
     w.write_str(s)
 }
@@ -2902,9 +2903,9 @@
 <span class="comment">// GPSMeasureMode (GPS 0xa)
 </span><span class="kw">fn </span>d_gpsmeasuremode(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.ascii().and_then(|x| x.first()) {
-        <span class="prelude-val">Some</span>(<span class="string">b&quot;2&quot;</span>) =&gt; <span class="string">&quot;2-dimensional measurement&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="string">b&quot;3&quot;</span>) =&gt; <span class="string">&quot;3-dimensional measurement&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;GPS measurement mode&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="string">b"2"</span>) =&gt; <span class="string">"2-dimensional measurement"</span>,
+        <span class="prelude-val">Some</span>(<span class="string">b"3"</span>) =&gt; <span class="string">"3-dimensional measurement"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"GPS measurement mode"</span>),
     };
     w.write_str(s)
 }
@@ -2912,10 +2913,10 @@
 <span class="comment">// GPSSpeedRef (GPS 0xc)
 </span><span class="kw">fn </span>d_gpsspeedref(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.ascii().and_then(|x| x.first()) {
-        <span class="prelude-val">Some</span>(<span class="string">b&quot;K&quot;</span>) =&gt; <span class="string">&quot;km/h&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="string">b&quot;M&quot;</span>) =&gt; <span class="string">&quot;mph&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="string">b&quot;N&quot;</span>) =&gt; <span class="string">&quot;knots&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;GPS speed ref&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="string">b"K"</span>) =&gt; <span class="string">"km/h"</span>,
+        <span class="prelude-val">Some</span>(<span class="string">b"M"</span>) =&gt; <span class="string">"mph"</span>,
+        <span class="prelude-val">Some</span>(<span class="string">b"N"</span>) =&gt; <span class="string">"knots"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"GPS speed ref"</span>),
     };
     w.write_str(s)
 }
@@ -2924,9 +2925,9 @@
 // GPSDestBearingRef (GPS 0x17)
 </span><span class="kw">fn </span>d_gpsdirref(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.ascii().and_then(|x| x.first()) {
-        <span class="prelude-val">Some</span>(<span class="string">b&quot;T&quot;</span>) =&gt; <span class="string">&quot;true direction&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="string">b&quot;M&quot;</span>) =&gt; <span class="string">&quot;magnetic direction&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;GPS direction ref&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="string">b"T"</span>) =&gt; <span class="string">"true direction"</span>,
+        <span class="prelude-val">Some</span>(<span class="string">b"M"</span>) =&gt; <span class="string">"magnetic direction"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"GPS direction ref"</span>),
     };
     w.write_str(s)
 }
@@ -2934,10 +2935,10 @@
 <span class="comment">// GPSDestDistanceRef (GPS 0x19)
 </span><span class="kw">fn </span>d_gpsdistref(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.ascii().and_then(|x| x.first()) {
-        <span class="prelude-val">Some</span>(<span class="string">b&quot;K&quot;</span>) =&gt; <span class="string">&quot;km&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="string">b&quot;M&quot;</span>) =&gt; <span class="string">&quot;miles&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="string">b&quot;N&quot;</span>) =&gt; <span class="string">&quot;nautical miles&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;GPS distance ref&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="string">b"K"</span>) =&gt; <span class="string">"km"</span>,
+        <span class="prelude-val">Some</span>(<span class="string">b"M"</span>) =&gt; <span class="string">"miles"</span>,
+        <span class="prelude-val">Some</span>(<span class="string">b"N"</span>) =&gt; <span class="string">"nautical miles"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"GPS distance ref"</span>),
     };
     w.write_str(s)
 }
@@ -2945,11 +2946,11 @@
 <span class="comment">// GPSDateStamp (GPS 0x1d)
 </span><span class="kw">fn </span>d_gpsdatestamp(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">if let </span><span class="prelude-val">Some</span>(data) = value.ascii().and_then(|x| x.first()) {
-        <span class="kw">if </span>data.len() &gt;= <span class="number">10 </span>&amp;&amp; data[<span class="number">4</span>] == <span class="string">b&#39;:&#39; </span>&amp;&amp; data[<span class="number">7</span>] == <span class="string">b&#39;:&#39; </span>{
+        <span class="kw">if </span>data.len() &gt;= <span class="number">10 </span>&amp;&amp; data[<span class="number">4</span>] == <span class="string">b':' </span>&amp;&amp; data[<span class="number">7</span>] == <span class="string">b':' </span>{
             <span class="kw">if let </span><span class="prelude-val">Ok</span>(year) = atou16(<span class="kw-2">&amp;</span>data[<span class="number">0</span>..<span class="number">4</span>]) {
                 <span class="kw">if let </span><span class="prelude-val">Ok</span>(month) = atou16(<span class="kw-2">&amp;</span>data[<span class="number">5</span>..<span class="number">7</span>]) {
                     <span class="kw">if let </span><span class="prelude-val">Ok</span>(day) = atou16(<span class="kw-2">&amp;</span>data[<span class="number">8</span>..<span class="number">10</span>]) {
-                        <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">&quot;{:04}-{:02}-{:02}&quot;</span>,
+                        <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">"{:04}-{:02}-{:02}"</span>,
                                       year, month, day);
                     }
                 }
@@ -2962,9 +2963,9 @@
 <span class="comment">// GPSDifferential (GPS 0x1e)
 </span><span class="kw">fn </span>d_gpsdifferential(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
     <span class="kw">let </span>s = <span class="kw">match </span>value.get_uint(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">&quot;no differential correction&quot;</span>,
-        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">&quot;differential correction applied&quot;</span>,
-        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">&quot;GPS differential correction&quot;</span>),
+        <span class="prelude-val">Some</span>(<span class="number">0</span>) =&gt; <span class="string">"no differential correction"</span>,
+        <span class="prelude-val">Some</span>(<span class="number">1</span>) =&gt; <span class="string">"differential correction applied"</span>,
+        <span class="kw">_ </span>=&gt; <span class="kw">return </span>d_reserved(w, value, <span class="string">"GPS differential correction"</span>),
     };
     w.write_str(s)
 }
@@ -2974,7 +2975,7 @@
     <span class="kw">if let </span><span class="prelude-val">Some</span>(s) = value.undefined().filter(|s| s.len() == <span class="number">4</span>) {
         <span class="kw">if let </span><span class="prelude-val">Ok</span>(major) = atou16(<span class="kw-2">&amp;</span>s[<span class="number">0</span>..<span class="number">2</span>]) {
             <span class="kw">if let </span><span class="prelude-val">Ok</span>(minor) = atou16(<span class="kw-2">&amp;</span>s[<span class="number">2</span>..<span class="number">4</span>]) {
-                <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">&quot;{}.{:02}&quot;</span>, major, minor);
+                <span class="kw">return </span><span class="macro">write!</span>(w, <span class="string">"{}.{:02}"</span>, major, minor);
             }
         }
     }
@@ -3001,9 +3002,9 @@
 <span class="attr">#[inline(never)]
 </span><span class="kw">fn </span>d_reserved(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value, name: <span class="kw-2">&amp;</span>str)
               -&gt; fmt::Result {
-    <span class="macro">write!</span>(w, <span class="string">&quot;[reserved {} &quot;</span>, name)<span class="question-mark">?</span>;
+    <span class="macro">write!</span>(w, <span class="string">"[reserved {} "</span>, name)<span class="question-mark">?</span>;
     d_default(w, value)<span class="question-mark">?</span>;
-    w.write_char(<span class="string">&#39;]&#39;</span>)
+    w.write_char(<span class="string">']'</span>)
 }
 
 <span class="kw">fn </span>d_default(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, value: <span class="kw-2">&amp;</span>Value) -&gt; fmt::Result {
@@ -3022,7 +3023,7 @@
         Value::Float(<span class="kw-2">ref </span>v) =&gt; d_sub_comma(w, v),
         Value::Double(<span class="kw-2">ref </span>v) =&gt; d_sub_comma(w, v),
         Value::Unknown(t, c, o) =&gt;
-            <span class="macro">write!</span>(w, <span class="string">&quot;unknown value (type={}, count={}, offset={:#x})&quot;</span>,
+            <span class="macro">write!</span>(w, <span class="string">"unknown value (type={}, count={}, offset={:#x})"</span>,
                    t, c, o),
     }
 }
@@ -3032,43 +3033,43 @@
     <span class="kw">let </span><span class="kw-2">mut </span>first = <span class="bool-val">true</span>;
     <span class="kw">for </span>x <span class="kw">in </span>itit {
         <span class="kw">match </span>first {
-            <span class="bool-val">true </span>=&gt; <span class="macro">write!</span>(w, <span class="string">&quot;{}&quot;</span>, x),
-            <span class="bool-val">false </span>=&gt; <span class="macro">write!</span>(w, <span class="string">&quot;, {}&quot;</span>, x),
+            <span class="bool-val">true </span>=&gt; <span class="macro">write!</span>(w, <span class="string">"{}"</span>, x),
+            <span class="bool-val">false </span>=&gt; <span class="macro">write!</span>(w, <span class="string">", {}"</span>, x),
         }<span class="question-mark">?</span>;
         first = <span class="bool-val">false</span>;
     }
     <span class="prelude-val">Ok</span>(())
 }
 
-<span class="kw">struct </span>AsciiDisplay&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]);
+<span class="kw">struct </span>AsciiDisplay&lt;<span class="lifetime">'a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]);
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; fmt::Display <span class="kw">for </span>AsciiDisplay&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; fmt::Display <span class="kw">for </span>AsciiDisplay&lt;<span class="lifetime">'a</span>&gt; {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
         d_sub_ascii(f, <span class="self">self</span>.<span class="number">0</span>)
     }
 }
 
 <span class="kw">fn </span>d_sub_hex(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, bytes: <span class="kw-2">&amp;</span>[u8]) -&gt; fmt::Result {
-    w.write_str(<span class="string">&quot;0x&quot;</span>)<span class="question-mark">?</span>;
+    w.write_str(<span class="string">"0x"</span>)<span class="question-mark">?</span>;
     <span class="kw">for </span>x <span class="kw">in </span>bytes {
-        <span class="macro">write!</span>(w, <span class="string">&quot;{:02x}&quot;</span>, x)<span class="question-mark">?</span>;
+        <span class="macro">write!</span>(w, <span class="string">"{:02x}"</span>, x)<span class="question-mark">?</span>;
     }
     <span class="prelude-val">Ok</span>(())
 }
 
 <span class="kw">fn </span>d_sub_ascii(w: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>fmt::Write, bytes: <span class="kw-2">&amp;</span>[u8]) -&gt; fmt::Result {
-    w.write_char(<span class="string">&#39;&quot;&#39;</span>)<span class="question-mark">?</span>;
+    w.write_char(<span class="string">'"'</span>)<span class="question-mark">?</span>;
     <span class="kw">for </span><span class="kw-2">&amp;</span>c <span class="kw">in </span>bytes {
         <span class="kw">match </span>c {
-            <span class="string">b&#39;\\&#39; </span>| <span class="string">b&#39;&quot;&#39; </span>=&gt; {
-                w.write_char(<span class="string">&#39;\\&#39;</span>)<span class="question-mark">?</span>;
+            <span class="string">b'\\' </span>| <span class="string">b'"' </span>=&gt; {
+                w.write_char(<span class="string">'\\'</span>)<span class="question-mark">?</span>;
                 w.write_char(c <span class="kw">as </span>char)<span class="question-mark">?</span>;
             },
             <span class="number">0x20</span>..=<span class="number">0x7e </span>=&gt; w.write_char(c <span class="kw">as </span>char)<span class="question-mark">?</span>,
-            <span class="kw">_ </span>=&gt; <span class="macro">write!</span>(w, <span class="string">&quot;\\x{:02x}&quot;</span>, c)<span class="question-mark">?</span>,
+            <span class="kw">_ </span>=&gt; <span class="macro">write!</span>(w, <span class="string">"\\x{:02x}"</span>, c)<span class="question-mark">?</span>,
         }
     }
-    w.write_char(<span class="string">&#39;&quot;&#39;</span>)
+    w.write_char(<span class="string">'"'</span>)
 }
 
 <span class="attr">#[cfg(test)]
@@ -3082,12 +3083,12 @@
         <span class="comment">// Destructuring, which will always work.
         </span><span class="kw">match </span>Tag(Context::Tiff, <span class="number">0x132</span>) {
             Tag(Context::Tiff, <span class="number">0x132</span>) =&gt; {},
-            <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;failed to match Tag&quot;</span>),
+            <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">"failed to match Tag"</span>),
         }
         <span class="comment">// Matching against a constant.  Test if this compiles.
         </span><span class="kw">match </span>Tag(Context::Tiff, <span class="number">0x132</span>) {
             Tag::DateTime =&gt; {},
-            <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;failed to match Tag&quot;</span>),
+            <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">"failed to match Tag"</span>),
         }
     }
 
@@ -3115,7 +3116,7 @@
             <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(),
         }
         <span class="kw">match </span>Tag::GPSSpeedRef.default_value() {
-            <span class="prelude-val">Some</span>(Value::Ascii(v)) =&gt; <span class="macro">assert_eq!</span>(v, <span class="kw-2">&amp;</span>[<span class="string">b&quot;K&quot;</span>]),
+            <span class="prelude-val">Some</span>(Value::Ascii(v)) =&gt; <span class="macro">assert_eq!</span>(v, <span class="kw-2">&amp;</span>[<span class="string">b"K"</span>]),
             <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(),
         }
     }
@@ -3123,37 +3124,37 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>tag_fmt_display() {
         <span class="kw">let </span>tag1 = Tag(Context::Tiff, <span class="number">0x132</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:15}&quot;</span>, tag1), <span class="string">&quot;DateTime       &quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:&gt;15}&quot;</span>, tag1), <span class="string">&quot;       DateTime&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:5.6}&quot;</span>, tag1), <span class="string">&quot;DateTi&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:15}"</span>, tag1), <span class="string">"DateTime       "</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:&gt;15}"</span>, tag1), <span class="string">"       DateTime"</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:5.6}"</span>, tag1), <span class="string">"DateTi"</span>);
         <span class="kw">let </span>tag2 = Tag(Context::Exif, <span class="number">0</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:15}&quot;</span>, tag2), <span class="string">&quot;Tag(Exif, 0)   &quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:&gt;15}&quot;</span>, tag2), <span class="string">&quot;   Tag(Exif, 0)&quot;</span>);
-        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">&quot;{:5.6}&quot;</span>, tag2), <span class="string">&quot;Tag(Ex&quot;</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:15}"</span>, tag2), <span class="string">"Tag(Exif, 0)   "</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:&gt;15}"</span>, tag2), <span class="string">"   Tag(Exif, 0)"</span>);
+        <span class="macro">assert_eq!</span>(<span class="macro">format!</span>(<span class="string">"{:5.6}"</span>, tag2), <span class="string">"Tag(Ex"</span>);
     }
 
     <span class="attr">#[test]
     </span><span class="kw">fn </span>disp_val_sub() {
         <span class="kw">let </span><span class="kw-2">mut </span>buf = String::new();
         d_sub_comma(<span class="kw-2">&amp;mut </span>buf, <span class="kw-2">&amp;</span>[<span class="number">0u16</span>, <span class="number">1</span>, <span class="number">2</span>]).unwrap();
-        <span class="macro">assert_eq!</span>(buf, <span class="string">&quot;0, 1, 2&quot;</span>);
+        <span class="macro">assert_eq!</span>(buf, <span class="string">"0, 1, 2"</span>);
 
         <span class="kw">let </span><span class="kw-2">mut </span>buf = String::new();
         d_sub_comma(<span class="kw-2">&amp;mut </span>buf, <span class="kw-2">&amp;</span>[Rational::from((<span class="number">3</span>, <span class="number">5</span>))]).unwrap();
-        <span class="macro">assert_eq!</span>(buf, <span class="string">&quot;3/5&quot;</span>);
+        <span class="macro">assert_eq!</span>(buf, <span class="string">"3/5"</span>);
 
         <span class="kw">let </span><span class="kw-2">mut </span>buf = String::new();
         <span class="kw">let </span>list = <span class="kw-2">&amp;</span>[Rational::from((<span class="number">1</span>, <span class="number">2</span>))];
         d_sub_comma(<span class="kw-2">&amp;mut </span>buf, list.iter().map(|x| x.to_f64())).unwrap();
-        <span class="macro">assert_eq!</span>(buf, <span class="string">&quot;0.5&quot;</span>);
+        <span class="macro">assert_eq!</span>(buf, <span class="string">"0.5"</span>);
 
         <span class="kw">let </span><span class="kw-2">mut </span>buf = String::new();
-        d_sub_hex(<span class="kw-2">&amp;mut </span>buf, <span class="string">b&quot;abc\x00\xff&quot;</span>).unwrap();
-        <span class="macro">assert_eq!</span>(buf, <span class="string">&quot;0x61626300ff&quot;</span>);
+        d_sub_hex(<span class="kw-2">&amp;mut </span>buf, <span class="string">b"abc\x00\xff"</span>).unwrap();
+        <span class="macro">assert_eq!</span>(buf, <span class="string">"0x61626300ff"</span>);
 
         <span class="kw">let </span><span class="kw-2">mut </span>buf = String::new();
-        d_sub_ascii(<span class="kw-2">&amp;mut </span>buf, <span class="string">b&quot;a \&quot;\\b\&quot;\n&quot;</span>).unwrap();
-        <span class="macro">assert_eq!</span>(buf, <span class="string">r#&quot;&quot;a \&quot;\\b\&quot;\x0a&quot;&quot;#</span>);
+        d_sub_ascii(<span class="kw-2">&amp;mut </span>buf, <span class="string">b"a \"\\b\"\n"</span>).unwrap();
+        <span class="macro">assert_eq!</span>(buf, <span class="string">r#""a \"\\b\"\x0a""#</span>);
     }
 }
 </code></pre></div></section></main></body></html>

@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zune-inflate-0.2.54/src/decoder.rs`."><title>decoder.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="zune_inflate" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/zune-inflate-0.2.54/src/decoder.rs`."><title>decoder.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="zune_inflate" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1807,7 +1808,7 @@
     PRECODE_DECODE_RESULTS, PRECODE_ENOUGH, PRECODE_TABLE_BITS
 };
 <span class="kw">use </span><span class="kw">crate</span>::errors::{DecodeErrorStatus, InflateDecodeErrors};
-<span class="attr">#[cfg(feature = <span class="string">&quot;gzip&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"gzip"</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::gzip_constants::{
     GZIP_CM_DEFLATE, GZIP_FCOMMENT, GZIP_FEXTRA, GZIP_FHCRC, GZIP_FNAME, GZIP_FOOTER_SIZE,
     GZIP_FRESERVED, GZIP_ID1, GZIP_ID2
@@ -1860,7 +1861,7 @@
 {
     <span class="doccomment">/// Get deflate/zlib limit option
     ///
-    /// The decoder won&#39;t extend the inbuilt limit and will
+    /// The decoder won't extend the inbuilt limit and will
     /// return an error if the limit is exceeded
     ///
     /// # Returns
@@ -1946,18 +1947,18 @@
 /// there are [options] that can prevent that
 ///
 /// [options]: DeflateOptions
-</span><span class="kw">pub struct </span>DeflateDecoder&lt;<span class="lifetime">&#39;a</span>&gt;
+</span><span class="kw">pub struct </span>DeflateDecoder&lt;<span class="lifetime">'a</span>&gt;
 {
-    data:                  <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+    data:                  <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8],
     position:              usize,
-    stream:                BitStreamReader&lt;<span class="lifetime">&#39;a</span>&gt;,
+    stream:                BitStreamReader&lt;<span class="lifetime">'a</span>&gt;,
     is_last_block:         bool,
     static_codes_loaded:   bool,
     deflate_header_tables: DeflateHeaderTables,
     options:               DeflateOptions
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; DeflateDecoder&lt;<span class="lifetime">&#39;a</span>&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; DeflateDecoder&lt;<span class="lifetime">'a</span>&gt;
 {
     <span class="doccomment">/// Create a new decompressor that will read compressed
     /// data from `data` and return a new vector containing new data
@@ -1972,14 +1973,14 @@
     ///  # Note
     ///
     /// The default output size limit is **1 GiB.**
-    /// this is to protect the end user against ddos attacks as deflate does not specify it&#39;s
+    /// this is to protect the end user against ddos attacks as deflate does not specify it's
     /// output size upfront
     ///
     /// The checksum will be verified depending on the called function.
     /// this only works for zlib and gzip since deflate does not have a checksum
     ///
     /// These defaults can be overridden via [new_with_options()](Self::new_with_options).
-    </span><span class="kw">pub fn </span>new(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8]) -&gt; DeflateDecoder&lt;<span class="lifetime">&#39;a</span>&gt;
+    </span><span class="kw">pub fn </span>new(data: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8]) -&gt; DeflateDecoder&lt;<span class="lifetime">'a</span>&gt;
     {
         <span class="kw">let </span>options = DeflateOptions::default();
 
@@ -1987,7 +1988,7 @@
     }
     <span class="doccomment">/// Create new decoder with specified options
     ///
-    /// This can be used to fine tune the decoder to the user&#39;s
+    /// This can be used to fine tune the decoder to the user's
     /// needs.
     ///
     ///
@@ -2011,7 +2012,7 @@
     /// let data = decoder.decode_zlib();
     ///
     /// ```
-    </span><span class="kw">pub fn </span>new_with_options(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], options: DeflateOptions) -&gt; DeflateDecoder&lt;<span class="lifetime">&#39;a</span>&gt;
+    </span><span class="kw">pub fn </span>new_with_options(data: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8], options: DeflateOptions) -&gt; DeflateDecoder&lt;<span class="lifetime">'a</span>&gt;
     {
         <span class="comment">// create stream
         </span>DeflateDecoder {
@@ -2038,17 +2039,17 @@
     /// - `Ok(Vec&lt;u8&gt;)`: Decoded vector containing the uncompressed bytes
     /// - `Err(InflateDecodeErrors)`: Error that occurred during decoding
     ///
-    /// It&#39;s possible to recover bytes even after an error occurred, bytes up
+    /// It's possible to recover bytes even after an error occurred, bytes up
     /// to when error was encountered are stored in [InflateDecodeErrors]
     ///
     ///
     /// # Note
-    /// This needs the `zlib` feature enabled to be available otherwise it&#39;s a
+    /// This needs the `zlib` feature enabled to be available otherwise it's a
     /// compile time error
     ///
     /// [InflateDecodeErrors]:crate::errors::InflateDecodeErrors
     ///
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;zlib&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"zlib"</span>)]
     </span><span class="kw">pub fn </span>decode_zlib(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;u8&gt;, InflateDecodeErrors&gt;
     {
         <span class="kw">use </span><span class="kw">crate</span>::utils::calc_adler_hash;
@@ -2082,18 +2083,18 @@
             <span class="kw">if </span>cm == <span class="number">15
             </span>{
                 <span class="kw">return </span><span class="prelude-val">Err</span>(InflateDecodeErrors::new_with_error(DecodeErrorStatus::Generic(
-                    <span class="string">&quot;CM of 15 is preserved by the standard,currently don&#39;t know how to handle it&quot;
+                    <span class="string">"CM of 15 is preserved by the standard,currently don't know how to handle it"
                 </span>)));
             }
             <span class="kw">return </span><span class="prelude-val">Err</span>(InflateDecodeErrors::new_with_error(
-                DecodeErrorStatus::GenericStr(<span class="macro">format!</span>(<span class="string">&quot;Unknown zlib compression method {cm}&quot;</span>))
+                DecodeErrorStatus::GenericStr(<span class="macro">format!</span>(<span class="string">"Unknown zlib compression method {cm}"</span>))
             ));
         }
         <span class="kw">if </span>cinfo &gt; <span class="number">7
         </span>{
             <span class="kw">return </span><span class="prelude-val">Err</span>(InflateDecodeErrors::new_with_error(
                 DecodeErrorStatus::GenericStr(<span class="macro">format!</span>(
-                    <span class="string">&quot;Unknown cinfo `{cinfo}` greater than 7, not allowed&quot;
+                    <span class="string">"Unknown cinfo `{cinfo}` greater than 7, not allowed"
                 </span>))
             ));
         }
@@ -2102,7 +2103,7 @@
         <span class="kw">if </span>flag_checks % <span class="number">31 </span>!= <span class="number">0
         </span>{
             <span class="kw">return </span><span class="prelude-val">Err</span>(InflateDecodeErrors::new_with_error(
-                DecodeErrorStatus::Generic(<span class="string">&quot;FCHECK integrity not preserved&quot;</span>)
+                DecodeErrorStatus::Generic(<span class="string">"FCHECK integrity not preserved"</span>)
             ));
         }
 
@@ -2158,16 +2159,16 @@
     /// - `Ok(Vec&lt;u8&gt;)`: Decoded vector containing the uncompressed bytes
     /// - `Err(InflateDecodeErrors)`: Error that occurred during decoding
     ///
-    /// It&#39;s possible to recover bytes even after an error occurred, bytes up
+    /// It's possible to recover bytes even after an error occurred, bytes up
     /// to when error was encountered are stored in [InflateDecodeErrors]
     ///
     /// # Note
-    /// This needs the `gzip` feature enabled to be available, otherwise it&#39;s a
+    /// This needs the `gzip` feature enabled to be available, otherwise it's a
     /// compile time error
     ///
     /// [InflateDecodeErrors]:crate::errors::InflateDecodeErrors
     ///
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;gzip&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"gzip"</span>)]
     </span><span class="kw">pub fn </span>decode_gzip(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;u8&gt;, InflateDecodeErrors&gt;
     {
         <span class="kw">if </span><span class="self">self</span>.data.len() &lt; <span class="number">18
@@ -2332,7 +2333,7 @@
 
             <span class="kw">if </span>data.len() != ac
             {
-                <span class="kw">let </span>err = DecodeErrorStatus::Generic(<span class="string">&quot;ISIZE does not match actual bytes&quot;</span>);
+                <span class="kw">let </span>err = DecodeErrorStatus::Generic(<span class="string">"ISIZE does not match actual bytes"</span>);
 
                 <span class="kw">let </span>err = InflateDecodeErrors::new(err, data);
 
@@ -2358,7 +2359,7 @@
     /// - `Ok(Vec&lt;u8&gt;)`: Decoded vector containing the uncompressed bytes
     /// - `Err(InflateDecodeErrors)`: Error that occurred during decoding
     ///
-    /// It&#39;s possible to recover bytes even after an error occurred, bytes up
+    /// It's possible to recover bytes even after an error occurred, bytes up
     /// to when error was encountered are stored in [InflateDecodeErrors]
     ///
     ///
@@ -2402,7 +2403,7 @@
             <span class="kw">if </span>block_type == DEFLATE_BLOCKTYPE_UNCOMPRESSED
             {
                 <span class="comment">/*
-                 * Uncompressed block: copy &#39;len&#39; bytes literally from the input
+                 * Uncompressed block: copy 'len' bytes literally from the input
                  * buffer to the output buffer.
                  */
                 /*
@@ -2417,7 +2418,7 @@
                 {
                     out_block.truncate(dest_offset);
 
-                    <span class="kw">let </span>err_msg = DecodeErrorStatus::Generic(<span class="string">&quot;over-read stream&quot;</span>);
+                    <span class="kw">let </span>err_msg = DecodeErrorStatus::Generic(<span class="string">"over-read stream"</span>);
                     <span class="kw">let </span>error = InflateDecodeErrors::new(err_msg, out_block);
 
                     <span class="kw">return </span><span class="prelude-val">Err</span>(error);
@@ -2434,7 +2435,7 @@
                 {
                     out_block.truncate(dest_offset);
 
-                    <span class="kw">let </span>err_msg = DecodeErrorStatus::Generic(<span class="string">&quot;Len and nlen do not match&quot;</span>);
+                    <span class="kw">let </span>err_msg = DecodeErrorStatus::Generic(<span class="string">"Len and nlen do not match"</span>);
                     <span class="kw">let </span>error = InflateDecodeErrors::new(err_msg, out_block);
 
                     <span class="kw">return </span><span class="prelude-val">Err</span>(error);
@@ -2494,7 +2495,7 @@
             {
                 out_block.truncate(dest_offset);
 
-                <span class="kw">let </span>err_msg = DecodeErrorStatus::Generic(<span class="string">&quot;Reserved block type 0b11 encountered&quot;</span>);
+                <span class="kw">let </span>err_msg = DecodeErrorStatus::Generic(<span class="string">"Reserved block type 0b11 encountered"</span>);
                 <span class="kw">let </span>error = InflateDecodeErrors::new(err_msg, out_block);
 
                 <span class="kw">return </span><span class="prelude-val">Err</span>(error);
@@ -2521,9 +2522,9 @@
             <span class="kw">let </span>offset_decode_table = <span class="kw-2">&amp;</span><span class="self">self</span>.deflate_header_tables.offset_decode_table;
 
             <span class="comment">/*
-             * This is the &quot;fast loop&quot; for decoding literals and matches.  It does
+             * This is the "fast loop" for decoding literals and matches.  It does
              * bounds checks on in_next and out_next in the loop conditions so that
-             * additional bounds checks aren&#39;t needed inside the loop body.
+             * additional bounds checks aren't needed inside the loop body.
              *
              * To reduce latency, the bit-buffer is refilled and the next litlen
              * decode table entry is preloaded before each loop iteration.
@@ -2532,7 +2533,7 @@
 
             <span class="kw">let </span><span class="kw-2">mut </span>saved_bitbuf;
 
-            <span class="lifetime">&#39;decode</span>: <span class="kw">loop
+            <span class="lifetime">'decode</span>: <span class="kw">loop
             </span>{
                 <span class="kw">let </span>close_src = <span class="number">3 </span>* FASTCOPY_BYTES &lt; <span class="self">self</span>.stream.remaining_bytes();
 
@@ -2544,7 +2545,7 @@
 
                     entry = litlen_decode_table[lit_mask];
 
-                    <span class="lifetime">&#39;sequence</span>: <span class="kw">loop
+                    <span class="lifetime">'sequence</span>: <span class="kw">loop
                     </span>{
                         <span class="comment">// Resize the output vector here to ensure we can always have
                         // enough space for sloppy copies
@@ -2564,7 +2565,7 @@
 
                         <span class="kw">if </span>new_check
                         {
-                            <span class="kw">break </span><span class="lifetime">&#39;sequence</span>;
+                            <span class="kw">break </span><span class="lifetime">'sequence</span>;
                         }
 
                         <span class="self">self</span>.stream.refill_inner_loop();
@@ -2578,8 +2579,8 @@
                         <span class="self">self</span>.stream.drop_bits((entry &amp; <span class="number">0xFF</span>) <span class="kw">as </span>u8);
 
                         <span class="comment">/*
-                         * Begin by checking for a &quot;fast&quot; literal, i.e. a literal that
-                         * doesn&#39;t need a subtable.
+                         * Begin by checking for a "fast" literal, i.e. a literal that
+                         * doesn't need a subtable.
                          */
                         </span><span class="kw">if </span>(entry &amp; HUFFDEC_LITERAL) != <span class="number">0
                         </span>{
@@ -2616,7 +2617,7 @@
                             </span>{
                                 <span class="comment">/*
                                  * Another fast literal, but this one is in lieu of the
-                                 * primary item, so it doesn&#39;t count as one of the extras.
+                                 * primary item, so it doesn't count as one of the extras.
                                  */
 
                                 // load in the next entry.
@@ -2633,7 +2634,7 @@
                             }
                         }
                         <span class="comment">/*
-                         * It&#39;s not a literal entry, so it can be a length entry, a
+                         * It's not a literal entry, so it can be a length entry, a
                          * subtable pointer entry, or an end-of-block entry.  Detect the
                          * two unlikely cases by testing the HUFFDEC_EXCEPTIONAL flag.
                          */
@@ -2643,7 +2644,7 @@
                             </span><span class="kw">if </span>(entry &amp; HUFFDEC_END_OF_BLOCK) != <span class="number">0
                             </span>{
                                 <span class="comment">// block done
-                                </span><span class="kw">break </span><span class="lifetime">&#39;decode</span>;
+                                </span><span class="kw">break </span><span class="lifetime">'decode</span>;
                             }
                             <span class="comment">/*
                              * A subtable is required.  Load and consume the
@@ -2678,7 +2679,7 @@
 
                             <span class="kw">if </span>(entry &amp; HUFFDEC_END_OF_BLOCK) != <span class="number">0
                             </span>{
-                                <span class="kw">break </span><span class="lifetime">&#39;decode</span>;
+                                <span class="kw">break </span><span class="lifetime">'decode</span>;
                             }
                         }
 
@@ -2688,11 +2689,11 @@
                         /*
                          * Decode the match length: the length base value associated
                          * with the litlen symbol (which we extract from the decode
-                         * table entry), plus the extra length bits.  We don&#39;t need to
+                         * table entry), plus the extra length bits.  We don't need to
                          * consume the extra length bits here, as they were included in
-                         * the bits consumed by the entry earlier.  We also don&#39;t need
+                         * the bits consumed by the entry earlier.  We also don't need
                          * to check for too-long matches here, as this is inside the
-                         * fast loop where it&#39;s already been verified that the output
+                         * fast loop where it's already been verified that the output
                          * buffer has enough space remaining to copy a max-length match.
                          */
                         </span><span class="kw">let </span>entry_dup = entry;
@@ -2739,8 +2740,8 @@
                             <span class="self">self</span>.stream.refill_inner_loop();
                         }
                         <span class="comment">// Copy some bytes unconditionally
-                        // This makes us copy smaller match lengths quicker because we don&#39;t need
-                        // a loop + don&#39;t send too much pressure to the Memory unit.
+                        // This makes us copy smaller match lengths quicker because we don't need
+                        // a loop + don't send too much pressure to the Memory unit.
                         </span>fixed_copy_within::&lt;FASTCOPY_BYTES&gt;(
                             <span class="kw-2">&amp;mut </span>out_block,
                             src_offset,
@@ -2763,12 +2764,12 @@
                             &amp;&amp; current_position + offset &lt; dest_offset
                         {
                             <span class="comment">// The second conditional ensures we only come
-                            // here if the first copy didn&#39;t succeed to copy just enough bytes for a rep
+                            // here if the first copy didn't succeed to copy just enough bytes for a rep
                             // match to be valid, i.e we want this path to be taken the least amount
                             // of times possible
 
                             // the unconditional copy above copied some bytes
-                            // don&#39;t let it go into waste
+                            // don't let it go into waste
                             // Increment the position we are in by the number of correct bytes
                             // currently copied
                             </span><span class="kw">let </span><span class="kw-2">mut </span>src_position = src_offset + offset;
@@ -2800,11 +2801,11 @@
                             <span class="comment">// fast non-overlapping copy
                             //
                             // We have enough space to write the ML+FAST_COPY bytes ahead
-                            // so we know this won&#39;t come to shoot us in the foot.
+                            // so we know this won't come to shoot us in the foot.
                             //
                             // An optimization is to copy FAST_COPY_BITS per invocation
                             // Currently FASTCOPY_BYTES is 16, this fits in nicely as we
-                            // it&#39;s a single SIMD instruction on a lot of things, i.e x86,Arm and even
+                            // it's a single SIMD instruction on a lot of things, i.e x86,Arm and even
                             // wasm.
 
                             // current position of the match
@@ -2812,7 +2813,7 @@
 
                             <span class="comment">// Number of bytes we are to copy
                             // copy in batches of FAST_BYTES
-                            </span><span class="lifetime">&#39;match_lengths</span>: <span class="kw">loop
+                            </span><span class="lifetime">'match_lengths</span>: <span class="kw">loop
                             </span>{
                                 <span class="comment">// Safety: We resized out_block hence we know it can handle
                                 // sloppy copies without it being out of bounds
@@ -2830,7 +2831,7 @@
 
                                 <span class="kw">if </span>current_position &gt; dest_offset
                                 {
-                                    <span class="kw">break </span><span class="lifetime">&#39;match_lengths</span>;
+                                    <span class="kw">break </span><span class="lifetime">'match_lengths</span>;
                                 }
                             }
                         }
@@ -2851,11 +2852,11 @@
                         <span class="kw">if </span><span class="self">self</span>.stream.src.len() &lt; <span class="self">self</span>.stream.position + <span class="number">8
                         </span>{
                             <span class="comment">// close to input end, move to the slower one
-                            </span><span class="kw">break </span><span class="lifetime">&#39;sequence</span>;
+                            </span><span class="kw">break </span><span class="lifetime">'sequence</span>;
                         }
                     }
                 }
-                <span class="comment">// generic loop that does things a bit slower but it&#39;s okay since it doesn&#39;t
+                <span class="comment">// generic loop that does things a bit slower but it's okay since it doesn't
                 // deal with a lot of things
                 // We can afford to be more careful here, checking that we do
                 // not drop non-existent bits etc etc as we do not have the
@@ -2905,7 +2906,7 @@
 
                     <span class="kw">if </span>(entry &amp; HUFFDEC_END_OF_BLOCK) != <span class="number">0
                     </span>{
-                        <span class="kw">break </span><span class="lifetime">&#39;decode</span>;
+                        <span class="kw">break </span><span class="lifetime">'decode</span>;
                     }
 
                     <span class="kw">let </span>mask = (<span class="number">1 </span>&lt;&lt; entry <span class="kw">as </span>u8) - <span class="number">1</span>;
@@ -3126,8 +3127,8 @@
                 <span class="comment">/* Run-length encoded codeword lengths */
 
                 /*
-                 * Note: we don&#39;t need verify that the repeat count
-                 * doesn&#39;t overflow the number of elements, since we&#39;ve
+                 * Note: we don't need verify that the repeat count
+                 * doesn't overflow the number of elements, since we've
                  * sized the lens array to have enough extra space to
                  * allow for the worst-case overrun (138 zeroes when
                  * only 1 length was remaining).
@@ -3138,8 +3139,8 @@
                  * would otherwise be required.
                  *
                  * It is not just because of the numerical order that
-                 * our checks go in the order &#39;presym &lt; 16&#39;, &#39;presym ==
-                 * 16&#39;, and &#39;presym == 17&#39;.  For typical data this is
+                 * our checks go in the order 'presym &lt; 16', 'presym ==
+                 * 16', and 'presym == 17'.  For typical data this is
                  * ordered from most frequent to least frequent case.
                  */
                 </span><span class="kw">if </span>presym == <span class="number">16
@@ -3268,8 +3269,8 @@
          * secondarily by increasing symbol value; or equivalently by their
          * codewords in lexicographic order, since a canonical code is assumed.
          *
-         * For efficiency, also compute &#39;codespace_used&#39; in the same pass over
-         * &#39;len_counts[]&#39; used to build &#39;offsets[]&#39; for sorting.
+         * For efficiency, also compute 'codespace_used' in the same pass over
+         * 'len_counts[]' used to build 'offsets[]' for sorting.
          */
         </span>offsets[<span class="number">0</span>] = <span class="number">0</span>;
         offsets[<span class="number">1</span>] = len_counts[<span class="number">0</span>];
@@ -3293,9 +3294,9 @@
 
         <span class="comment">/*
          * Check whether the lengths form a complete code (exactly fills the
-         * codespace), an incomplete code (doesn&#39;t fill the codespace), or an
-         * overfull code (overflows the codespace).  A codeword of length &#39;n&#39;
-         * uses proportion &#39;1/(2^n)&#39; of the codespace.  An overfull code is
+         * codespace), an incomplete code (doesn't fill the codespace), or an
+         * overfull code (overflows the codespace).  A codeword of length 'n'
+         * uses proportion '1/(2^n)' of the codespace.  An overfull code is
          * nonsensical, so is considered invalid.  An incomplete code is
          * considered valid only in two specific cases; see below.
          */
@@ -3303,7 +3304,7 @@
         // Overfull code
         </span><span class="kw">if </span>codespace_used &gt; <span class="number">1 </span>&lt;&lt; max_codeword_len
         {
-            <span class="kw">return </span><span class="prelude-val">Err</span>(DecodeErrorStatus::Generic(<span class="string">&quot;Overflown code&quot;</span>));
+            <span class="kw">return </span><span class="prelude-val">Err</span>(DecodeErrorStatus::Generic(<span class="string">"Overflown code"</span>));
         }
         <span class="comment">// incomplete code
         </span><span class="kw">if </span>codespace_used &lt; <span class="number">1 </span>&lt;&lt; max_codeword_len
@@ -3324,18 +3325,18 @@
                 <span class="comment">/*
                  * Allow codes with a single used symbol, with codeword
                  * length 1.  The DEFLATE RFC is unclear regarding this
-                 * case.  What zlib&#39;s decompressor does is permit this
+                 * case.  What zlib's decompressor does is permit this
                  * for the litlen and offset codes and assume the
-                 * codeword is &#39;0&#39; rather than &#39;1&#39;.  We do the same
-                 * except we allow this for precodes too, since there&#39;s
+                 * codeword is '0' rather than '1'.  We do the same
+                 * except we allow this for precodes too, since there's
                  * no convincing reason to treat the codes differently.
-                 * We also assign both codewords &#39;0&#39; and &#39;1&#39; to the
-                 * symbol to avoid having to handle &#39;1&#39; specially.
+                 * We also assign both codewords '0' and '1' to the
+                 * symbol to avoid having to handle '1' specially.
                  */
                 </span><span class="kw">if </span>codespace_used != <span class="number">1 </span>&lt;&lt; (max_codeword_len - <span class="number">1</span>) || len_counts[<span class="number">1</span>] != <span class="number">1
                 </span>{
                     <span class="kw">return </span><span class="prelude-val">Err</span>(DecodeErrorStatus::Generic(
-                        <span class="string">&quot;Cannot work with empty pre-code table&quot;
+                        <span class="string">"Cannot work with empty pre-code table"
                     </span>));
                 }
                 make_decode_table_entry(decode_results, usize::from(sorted_syms[i]), <span class="number">1</span>)
@@ -3343,7 +3344,7 @@
             <span class="comment">/*
              * Note: the decode table still must be fully initialized, in
              * case the stream is malformed and contains bits from the part
-             * of the codespace the incomplete code doesn&#39;t use.
+             * of the codespace the incomplete code doesn't use.
              */
             </span>decode_table.fill(entry);
             <span class="kw">return </span><span class="prelude-val">Ok</span>(());
@@ -3354,23 +3355,23 @@
          * lexicographic order and fill the decode table entries for each one.
          *
          * First, process all codewords with len &lt;= table_bits.  Each one gets
-         * &#39;2^(table_bits-len)&#39; direct entries in the table.
+         * '2^(table_bits-len)' direct entries in the table.
          *
-         * Since DEFLATE uses bit-reversed codewords, these entries aren&#39;t
-         * consecutive but rather are spaced &#39;2^len&#39; entries apart.  This makes
+         * Since DEFLATE uses bit-reversed codewords, these entries aren't
+         * consecutive but rather are spaced '2^len' entries apart.  This makes
          * filling them naively somewhat awkward and inefficient, since strided
          * stores are less cache-friendly and preclude the use of word or
          * vector-at-a-time stores to fill multiple entries per instruction.
          *
          * To optimize this, we incrementally double the table size.  When
-         * processing codewords with length &#39;len&#39;, the table is treated as
-         * having only &#39;2^len&#39; entries, so each codeword uses just one entry.
-         * Then, each time &#39;len&#39; is incremented, the table size is doubled and
+         * processing codewords with length 'len', the table is treated as
+         * having only '2^len' entries, so each codeword uses just one entry.
+         * Then, each time 'len' is incremented, the table size is doubled and
          * the first half is copied to the second half.  This significantly
          * improves performance over naively doing strided stores.
          *
          * Note that some entries copied for each table doubling may not have
-         * been initialized yet, but it doesn&#39;t matter since they&#39;re guaranteed
+         * been initialized yet, but it doesn't matter since they're guaranteed
          * to be initialized later (because the Huffman code is complete).
          */
         </span><span class="kw">let </span><span class="kw-2">mut </span>codeword = <span class="number">0</span>;
@@ -3406,7 +3407,7 @@
 
                 <span class="kw">if </span>codeword == curr_table_end - <span class="number">1
                 </span>{
-                    <span class="comment">// last codeword (all 1&#39;s)
+                    <span class="comment">// last codeword (all 1's)
                     </span><span class="kw">for _ in </span>len..table_bits
                     {
                         decode_table.copy_within(<span class="number">0</span>..curr_table_end, curr_table_end);
@@ -3418,16 +3419,16 @@
                 <span class="comment">/*
                  * To advance to the lexicographically next codeword in
                  * the canonical code, the codeword must be incremented,
-                 * then 0&#39;s must be appended to the codeword as needed
-                 * to match the next codeword&#39;s length.
+                 * then 0's must be appended to the codeword as needed
+                 * to match the next codeword's length.
                  *
-                 * Since the codeword is bit-reversed, appending 0&#39;s is
+                 * Since the codeword is bit-reversed, appending 0's is
                  * a no-op.  However, incrementing it is nontrivial.  To
-                 * do so efficiently, use the &#39;bsr&#39; instruction to find
+                 * do so efficiently, use the 'bsr' instruction to find
                  * the last (highest order) 0 bit in the codeword, set
                  * it, and clear any later (higher order) 1 bits.  But
-                 * &#39;bsr&#39; actually finds the highest order 1 bit, so to
-                 * use it first flip all bits in the codeword by XOR&#39; ing
+                 * 'bsr' actually finds the highest order 1 bit, so to
+                 * use it first flip all bits in the codeword by XOR' ing
                  * it with (1U &lt;&lt; len) - 1 == cur_table_end - 1.
                  */
 
@@ -3478,8 +3479,8 @@
         <span class="kw">loop
         </span>{
             <span class="comment">/*
-             * Start a new sub-table if the first &#39;table_bits&#39; bits of the
-             * codeword don&#39;t match the prefix of the current subtable.
+             * Start a new sub-table if the first 'table_bits' bits of the
+             * codeword don't match the prefix of the current subtable.
              */
             </span><span class="kw">if </span>codeword &amp; ((<span class="number">1_usize </span>&lt;&lt; table_bits) - <span class="number">1</span>) != subtable_prefix
             {
@@ -3488,9 +3489,9 @@
 
                 <span class="comment">/*
                  * Calculate the subtable length.  If the codeword has
-                 * length &#39;table_bits + n&#39;, then the subtable needs
-                 * &#39;2^n&#39; entries.  But it may need more; if fewer than
-                 * &#39;2^n&#39; codewords of length &#39;table_bits + n&#39; remain,
+                 * length 'table_bits + n', then the subtable needs
+                 * '2^n' entries.  But it may need more; if fewer than
+                 * '2^n' codewords of length 'table_bits + n' remain,
                  * then the length will need to be incremented to bring
                  * in longer codewords until the subtable can be
                  * completely filled.  Note that because the Huffman

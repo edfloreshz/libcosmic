@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-0.13.0/src/rust_connection/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-0.13.0/src/rust_connection/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -900,7 +901,7 @@
     write_buffer: WriteBuffer,
 }
 
-<span class="kw">type </span>MutexGuardInner&lt;<span class="lifetime">&#39;a</span>&gt; = MutexGuard&lt;<span class="lifetime">&#39;a</span>, ConnectionInner&gt;;
+<span class="kw">type </span>MutexGuardInner&lt;<span class="lifetime">'a</span>&gt; = MutexGuard&lt;<span class="lifetime">'a</span>, ConnectionInner&gt;;
 
 <span class="attr">#[derive(Debug, Copy, Clone, PartialEq, Eq)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum </span>BlockingMode {
@@ -977,7 +978,7 @@
             <span class="kw">match </span>DefaultStream::connect(<span class="kw-2">&amp;</span>addr) {
                 <span class="prelude-val">Ok</span>((stream, (family, address))) =&gt; {
                     <span class="macro">crate::trace!</span>(
-                        <span class="string">&quot;Connected to X11 server via {:?} in {:?}&quot;</span>,
+                        <span class="string">"Connected to X11 server via {:?} in {:?}"</span>,
                         addr,
                         start.elapsed()
                     );
@@ -987,7 +988,7 @@
                         <span class="comment">// Ignore all errors while determining auth; instead we just try without auth info.
                         </span>.unwrap_or(<span class="prelude-val">None</span>)
                         .unwrap_or_else(|| (Vec::new(), Vec::new()));
-                    <span class="macro">crate::trace!</span>(<span class="string">&quot;Picked authentication via auth mechanism {:?}&quot;</span>, auth_name);
+                    <span class="macro">crate::trace!</span>(<span class="string">"Picked authentication via auth mechanism {:?}"</span>, auth_name);
 
                     <span class="comment">// finish connecting to server
                     </span><span class="kw">return </span><span class="prelude-val">Ok</span>((
@@ -998,7 +999,7 @@
                     ));
                 }
                 <span class="prelude-val">Err</span>(e) =&gt; {
-                    <span class="macro">crate::debug!</span>(<span class="string">&quot;Failed to connect to X11 server via {:?}: {:?}&quot;</span>, addr, e);
+                    <span class="macro">crate::debug!</span>(<span class="string">"Failed to connect to X11 server via {:?}: {:?}"</span>, addr, e);
                     error = <span class="prelude-val">Some</span>(e);
                     <span class="kw">continue</span>;
                 }
@@ -1045,7 +1046,7 @@
         <span class="kw">let </span><span class="kw-2">mut </span>fds = <span class="macro">vec!</span>[];
 
         <span class="macro">crate::trace!</span>(
-            <span class="string">&quot;Writing connection setup with {} bytes&quot;</span>,
+            <span class="string">"Writing connection setup with {} bytes"</span>,
             setup_request.len()
         );
         <span class="kw">while </span>nwritten != setup_request.len() {
@@ -1055,7 +1056,7 @@
                 <span class="prelude-val">Ok</span>(<span class="number">0</span>) =&gt; {
                     <span class="kw">return </span><span class="prelude-val">Err</span>(std::io::Error::new(
                         std::io::ErrorKind::WriteZero,
-                        <span class="string">&quot;failed to write whole buffer&quot;</span>,
+                        <span class="string">"failed to write whole buffer"</span>,
                     )
                     .into())
                 }
@@ -1070,14 +1071,14 @@
         </span><span class="kw">loop </span>{
             stream.poll(PollMode::Readable)<span class="question-mark">?</span>;
             <span class="macro">crate::trace!</span>(
-                <span class="string">&quot;Reading connection setup with at least {} bytes remaining&quot;</span>,
+                <span class="string">"Reading connection setup with at least {} bytes remaining"</span>,
                 connect.buffer().len()
             );
             <span class="kw">let </span>adv = <span class="kw">match </span>stream.read(connect.buffer(), <span class="kw-2">&amp;mut </span>fds) {
                 <span class="prelude-val">Ok</span>(<span class="number">0</span>) =&gt; {
                     <span class="kw">return </span><span class="prelude-val">Err</span>(std::io::Error::new(
                         std::io::ErrorKind::UnexpectedEof,
-                        <span class="string">&quot;failed to read whole buffer&quot;</span>,
+                        <span class="string">"failed to read whole buffer"</span>,
                     )
                     .into())
                 }
@@ -1086,7 +1087,7 @@
                 </span><span class="prelude-val">Err</span>(<span class="kw-2">ref </span>e) <span class="kw">if </span>e.kind() == std::io::ErrorKind::WouldBlock =&gt; <span class="kw">continue</span>,
                 <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(e.into()),
             };
-            <span class="macro">crate::trace!</span>(<span class="string">&quot;Read {} bytes&quot;</span>, adv);
+            <span class="macro">crate::trace!</span>(<span class="string">"Read {} bytes"</span>, adv);
 
             <span class="comment">// advance the internal buffer
             </span><span class="kw">if </span>connect.advance(adv) {
@@ -1131,22 +1132,22 @@
 
     <span class="doccomment">/// Internal function for actually sending a request.
     ///
-    /// This function &quot;does the actual work&quot; for `send_request_with_reply()` and
+    /// This function "does the actual work" for `send_request_with_reply()` and
     /// `send_request_without_reply()`.
     </span><span class="kw">fn </span>send_request(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        bufs: <span class="kw-2">&amp;</span>[IoSlice&lt;<span class="lifetime">&#39;_</span>&gt;],
+        bufs: <span class="kw-2">&amp;</span>[IoSlice&lt;<span class="lifetime">'_</span>&gt;],
         fds: Vec&lt;RawFdContainer&gt;,
         kind: ReplyFdKind,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;SequenceNumber, ConnectionError&gt; {
-        <span class="kw">let </span>_guard = <span class="macro">crate::debug_span!</span>(<span class="string">&quot;send_request&quot;</span>).entered();
+        <span class="kw">let </span>_guard = <span class="macro">crate::debug_span!</span>(<span class="string">"send_request"</span>).entered();
 
         <span class="kw">let </span>request_info = RequestInfo {
             extension_manager: <span class="kw-2">&amp;</span><span class="self">self</span>.extension_manager,
             major_opcode: bufs[<span class="number">0</span>][<span class="number">0</span>],
             minor_opcode: bufs[<span class="number">0</span>][<span class="number">1</span>],
         };
-        <span class="macro">crate::debug!</span>(<span class="string">&quot;Sending {}&quot;</span>, request_info);
+        <span class="macro">crate::debug!</span>(<span class="string">"Sending {}"</span>, request_info);
 
         <span class="kw">let </span><span class="kw-2">mut </span>storage = Default::default();
         <span class="kw">let </span>bufs = compute_length_field(<span class="self">self</span>, bufs, <span class="kw-2">&amp;mut </span>storage)<span class="question-mark">?</span>;
@@ -1166,7 +1167,7 @@
                     <span class="kw">return </span><span class="prelude-val">Ok</span>(seqno);
                 }
                 <span class="prelude-val">None </span>=&gt; {
-                    <span class="macro">crate::trace!</span>(<span class="string">&quot;Syncing with the X11 server since there are too many outstanding void requests&quot;</span>);
+                    <span class="macro">crate::trace!</span>(<span class="string">"Syncing with the X11 server since there are too many outstanding void requests"</span>);
                     inner = <span class="self">self</span>.send_sync(inner)<span class="question-mark">?</span>;
                 }
             }
@@ -1178,10 +1179,10 @@
     /// This function sends a `GetInputFocus` request to the X11 server and arranges for its reply
     /// to be ignored. This ensures that a reply is expected (`ConnectionInner.next_reply_expected`
     /// increases).
-    </span><span class="kw">fn </span>send_sync&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
-        <span class="kw-2">mut </span>inner: MutexGuardInner&lt;<span class="lifetime">&#39;a</span>&gt;,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;MutexGuardInner&lt;<span class="lifetime">&#39;a</span>&gt;, std::io::Error&gt; {
+    </span><span class="kw">fn </span>send_sync&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
+        <span class="kw-2">mut </span>inner: MutexGuardInner&lt;<span class="lifetime">'a</span>&gt;,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;MutexGuardInner&lt;<span class="lifetime">'a</span>&gt;, std::io::Error&gt; {
         <span class="kw">let </span>length = <span class="number">1u16</span>.to_ne_bytes();
         <span class="kw">let </span>request = [
             GET_INPUT_FOCUS_REQUEST,
@@ -1193,7 +1194,7 @@
         <span class="kw">let </span>seqno = inner
             .inner
             .send_request(ReplyFdKind::ReplyWithoutFDs)
-            .expect(<span class="string">&quot;Sending a HasResponse request should not be blocked by syncs&quot;</span>);
+            .expect(<span class="string">"Sending a HasResponse request should not be blocked by syncs"</span>);
         inner
             .inner
             .discard_reply(seqno, DiscardMode::DiscardReplyAndError);
@@ -1204,17 +1205,17 @@
 
     <span class="doccomment">/// Write a set of buffers on a `writer`. May also read packets
     /// from the server.
-    </span><span class="kw">fn </span>write_all_vectored&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
-        <span class="kw-2">mut </span>inner: MutexGuardInner&lt;<span class="lifetime">&#39;a</span>&gt;,
-        <span class="kw-2">mut </span>bufs: <span class="kw-2">&amp;</span>[IoSlice&lt;<span class="lifetime">&#39;_</span>&gt;],
+    </span><span class="kw">fn </span>write_all_vectored&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
+        <span class="kw-2">mut </span>inner: MutexGuardInner&lt;<span class="lifetime">'a</span>&gt;,
+        <span class="kw-2">mut </span>bufs: <span class="kw-2">&amp;</span>[IoSlice&lt;<span class="lifetime">'_</span>&gt;],
         <span class="kw-2">mut </span>fds: Vec&lt;RawFdContainer&gt;,
-    ) -&gt; std::io::Result&lt;MutexGuardInner&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+    ) -&gt; std::io::Result&lt;MutexGuardInner&lt;<span class="lifetime">'a</span>&gt;&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>partial_buf: <span class="kw-2">&amp;</span>[u8] = <span class="kw-2">&amp;</span>[];
         <span class="kw">while </span>!partial_buf.is_empty() || !bufs.is_empty() {
             <span class="self">self</span>.stream.poll(PollMode::ReadAndWritable)<span class="question-mark">?</span>;
             <span class="kw">let </span>write_result = <span class="kw">if </span>!partial_buf.is_empty() {
-                <span class="comment">// &quot;inner&quot; is held, passed into this function, so this should never be held
+                <span class="comment">// "inner" is held, passed into this function, so this should never be held
                 </span>inner
                     .write_buffer
                     .write(<span class="kw-2">&amp;</span><span class="self">self</span>.stream, partial_buf, <span class="kw-2">&amp;mut </span>fds)
@@ -1228,7 +1229,7 @@
                 <span class="prelude-val">Ok</span>(<span class="number">0</span>) =&gt; {
                     <span class="kw">return </span><span class="prelude-val">Err</span>(std::io::Error::new(
                         std::io::ErrorKind::WriteZero,
-                        <span class="string">&quot;failed to write anything&quot;</span>,
+                        <span class="string">"failed to write anything"</span>,
                     ));
                 }
                 <span class="prelude-val">Ok</span>(<span class="kw-2">mut </span>count) =&gt; {
@@ -1255,7 +1256,7 @@
                     }
                 }
                 <span class="prelude-val">Err</span>(<span class="kw-2">ref </span>e) <span class="kw">if </span>e.kind() == std::io::ErrorKind::WouldBlock =&gt; {
-                    <span class="macro">crate::trace!</span>(<span class="string">&quot;Writing more data would block for now&quot;</span>);
+                    <span class="macro">crate::trace!</span>(<span class="string">"Writing more data would block for now"</span>);
                     <span class="comment">// Writing would block, try to read instead because the
                     // server might not accept new requests after its
                     // buffered replies have been read.
@@ -1267,16 +1268,16 @@
         <span class="kw">if </span>!fds.is_empty() {
             <span class="kw">return </span><span class="prelude-val">Err</span>(std::io::Error::new(
                 std::io::ErrorKind::Other,
-                <span class="string">&quot;Left over FDs after sending the request&quot;</span>,
+                <span class="string">"Left over FDs after sending the request"</span>,
             ));
         }
         <span class="prelude-val">Ok</span>(inner)
     }
 
-    <span class="kw">fn </span>flush_impl&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
-        <span class="kw-2">mut </span>inner: MutexGuardInner&lt;<span class="lifetime">&#39;a</span>&gt;,
-    ) -&gt; std::io::Result&lt;MutexGuardInner&lt;<span class="lifetime">&#39;a</span>&gt;&gt; {
+    <span class="kw">fn </span>flush_impl&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
+        <span class="kw-2">mut </span>inner: MutexGuardInner&lt;<span class="lifetime">'a</span>&gt;,
+    ) -&gt; std::io::Result&lt;MutexGuardInner&lt;<span class="lifetime">'a</span>&gt;&gt; {
         <span class="comment">// n.b. notgull: inner guard is held
         </span><span class="kw">while </span>inner.write_buffer.needs_flush() {
             <span class="self">self</span>.stream.poll(PollMode::ReadAndWritable)<span class="question-mark">?</span>;
@@ -1285,7 +1286,7 @@
                 <span class="comment">// Flush completed
                 </span><span class="prelude-val">Ok</span>(()) =&gt; <span class="kw">break</span>,
                 <span class="prelude-val">Err</span>(<span class="kw-2">ref </span>e) <span class="kw">if </span>e.kind() == std::io::ErrorKind::WouldBlock =&gt; {
-                    <span class="macro">crate::trace!</span>(<span class="string">&quot;Flushing more data would block for now&quot;</span>);
+                    <span class="macro">crate::trace!</span>(<span class="string">"Flushing more data would block for now"</span>);
                     <span class="comment">// Writing would block, try to read instead because the
                     // server might not accept new requests after its
                     // buffered replies have been read.
@@ -1308,22 +1309,22 @@
     /// released. While sending a request, `inner` must be kept locked to avoid sending the data
     /// of different requests interleaved. So, when `read_packet_and_enqueue` is called as part
     /// of a write, it must always be done with `mode` set to `BlockingMode::NonBlocking`.
-    </span><span class="kw">fn </span>read_packet_and_enqueue&lt;<span class="lifetime">&#39;a</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span><span class="self">self</span>,
-        <span class="kw-2">mut </span>inner: MutexGuardInner&lt;<span class="lifetime">&#39;a</span>&gt;,
+    </span><span class="kw">fn </span>read_packet_and_enqueue&lt;<span class="lifetime">'a</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'a </span><span class="self">self</span>,
+        <span class="kw-2">mut </span>inner: MutexGuardInner&lt;<span class="lifetime">'a</span>&gt;,
         mode: BlockingMode,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;MutexGuardInner&lt;<span class="lifetime">&#39;a</span>&gt;, std::io::Error&gt; {
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;MutexGuardInner&lt;<span class="lifetime">'a</span>&gt;, std::io::Error&gt; {
         <span class="comment">// 0.1. Try to lock the `packet_reader` mutex.
         </span><span class="kw">match </span><span class="self">self</span>.packet_reader.try_lock() {
             <span class="prelude-val">Err</span>(TryLockError::WouldBlock) =&gt; {
                 <span class="comment">// In non-blocking mode, we just return immediately
                 </span><span class="kw">match </span>mode {
                     BlockingMode::NonBlocking =&gt; {
-                        <span class="macro">crate::trace!</span>(<span class="string">&quot;read_packet_and_enqueue in NonBlocking mode doing nothing since reader is already locked&quot;</span>);
+                        <span class="macro">crate::trace!</span>(<span class="string">"read_packet_and_enqueue in NonBlocking mode doing nothing since reader is already locked"</span>);
                         <span class="kw">return </span><span class="prelude-val">Ok</span>(inner);
                     }
                     BlockingMode::Blocking =&gt; {
-                        <span class="macro">crate::trace!</span>(<span class="string">&quot;read_packet_and_enqueue in Blocking mode waiting for pre-existing reader&quot;</span>);
+                        <span class="macro">crate::trace!</span>(<span class="string">"read_packet_and_enqueue in Blocking mode waiting for pre-existing reader"</span>);
                     }
                 }
 
@@ -1337,7 +1338,7 @@
                 // will relock `inner` when it returns.
                 </span><span class="prelude-val">Ok</span>(<span class="self">self</span>.reader_condition.wait(inner).unwrap())
             }
-            <span class="prelude-val">Err</span>(TryLockError::Poisoned(e)) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;{}&quot;</span>, e),
+            <span class="prelude-val">Err</span>(TryLockError::Poisoned(e)) =&gt; <span class="macro">panic!</span>(<span class="string">"{}"</span>, e),
             <span class="prelude-val">Ok</span>(<span class="kw-2">mut </span>packet_reader) =&gt; {
                 <span class="comment">// Make sure sleeping readers are woken up when we return
                 // (Even in case of errors)
@@ -1386,9 +1387,9 @@
         }
     }
 
-    <span class="kw">fn </span>prefetch_maximum_request_bytes_impl(<span class="kw-2">&amp;</span><span class="self">self</span>, max_bytes: <span class="kw-2">&amp;mut </span>MutexGuard&lt;<span class="lifetime">&#39;_</span>, MaxRequestBytes&gt;) {
+    <span class="kw">fn </span>prefetch_maximum_request_bytes_impl(<span class="kw-2">&amp;</span><span class="self">self</span>, max_bytes: <span class="kw-2">&amp;mut </span>MutexGuard&lt;<span class="lifetime">'_</span>, MaxRequestBytes&gt;) {
         <span class="kw">if let </span>MaxRequestBytes::Unknown = <span class="kw-2">**</span>max_bytes {
-            <span class="macro">crate::info!</span>(<span class="string">&quot;Prefetching maximum request length&quot;</span>);
+            <span class="macro">crate::info!</span>(<span class="string">"Prefetching maximum request length"</span>);
             <span class="kw">let </span>request = <span class="self">self
                 </span>.bigreq_enable()
                 .map(|cookie| cookie.into_sequence_number())
@@ -1408,9 +1409,9 @@
 
     <span class="kw">fn </span>send_request_with_reply&lt;Reply&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        bufs: <span class="kw-2">&amp;</span>[IoSlice&lt;<span class="lifetime">&#39;_</span>&gt;],
+        bufs: <span class="kw-2">&amp;</span>[IoSlice&lt;<span class="lifetime">'_</span>&gt;],
         fds: Vec&lt;RawFdContainer&gt;,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, Reply&gt;, ConnectionError&gt;
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, Reply&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>Reply: TryParse,
     {
@@ -1422,9 +1423,9 @@
 
     <span class="kw">fn </span>send_request_with_reply_with_fds&lt;Reply&gt;(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        bufs: <span class="kw-2">&amp;</span>[IoSlice&lt;<span class="lifetime">&#39;_</span>&gt;],
+        bufs: <span class="kw-2">&amp;</span>[IoSlice&lt;<span class="lifetime">'_</span>&gt;],
         fds: Vec&lt;RawFdContainer&gt;,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;CookieWithFds&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, Reply&gt;, ConnectionError&gt;
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;CookieWithFds&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, Reply&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>Reply: TryParseFd,
     {
@@ -1436,9 +1437,9 @@
 
     <span class="kw">fn </span>send_request_without_reply(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        bufs: <span class="kw-2">&amp;</span>[IoSlice&lt;<span class="lifetime">&#39;_</span>&gt;],
+        bufs: <span class="kw-2">&amp;</span>[IoSlice&lt;<span class="lifetime">'_</span>&gt;],
         fds: Vec&lt;RawFdContainer&gt;,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt; {
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt; {
         <span class="prelude-val">Ok</span>(VoidCookie::new(
             <span class="self">self</span>,
             <span class="self">self</span>.send_request(bufs, fds, ReplyFdKind::NoReply)<span class="question-mark">?</span>,
@@ -1447,7 +1448,7 @@
 
     <span class="kw">fn </span>discard_reply(<span class="kw-2">&amp;</span><span class="self">self</span>, sequence: SequenceNumber, _kind: RequestKind, mode: DiscardMode) {
         <span class="macro">crate::debug!</span>(
-            <span class="string">&quot;Discarding reply to request {} in mode {:?}&quot;</span>,
+            <span class="string">"Discarding reply to request {} in mode {:?}"</span>,
             sequence,
             mode
         );
@@ -1460,7 +1461,7 @@
 
     <span class="kw">fn </span>prefetch_extension_information(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        extension_name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str,
+        extension_name: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;(), ConnectionError&gt; {
         <span class="self">self</span>.extension_manager
             .lock()
@@ -1470,7 +1471,7 @@
 
     <span class="kw">fn </span>extension_information(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        extension_name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str,
+        extension_name: <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;ExtensionInformation&gt;, ConnectionError&gt; {
         <span class="self">self</span>.extension_manager
             .lock()
@@ -1489,12 +1490,12 @@
     }
 
     <span class="kw">fn </span>wait_for_reply(<span class="kw-2">&amp;</span><span class="self">self</span>, sequence: SequenceNumber) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Vec&lt;u8&gt;&gt;, ConnectionError&gt; {
-        <span class="kw">let </span>_guard = <span class="macro">crate::debug_span!</span>(<span class="string">&quot;wait_for_reply&quot;</span>, sequence).entered();
+        <span class="kw">let </span>_guard = <span class="macro">crate::debug_span!</span>(<span class="string">"wait_for_reply"</span>, sequence).entered();
 
         <span class="kw">let </span><span class="kw-2">mut </span>inner = <span class="self">self</span>.inner.lock().unwrap();
         inner = <span class="self">self</span>.flush_impl(inner)<span class="question-mark">?</span>;
         <span class="kw">loop </span>{
-            <span class="macro">crate::trace!</span>({ sequence }, <span class="string">&quot;Polling for reply&quot;</span>);
+            <span class="macro">crate::trace!</span>({ sequence }, <span class="string">"Polling for reply"</span>);
             <span class="kw">let </span>poll_result = inner.inner.poll_for_reply(sequence);
             <span class="kw">match </span>poll_result {
                 PollReply::TryAgain =&gt; {}
@@ -1509,18 +1510,18 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         sequence: SequenceNumber,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Buffer&gt;, ConnectionError&gt; {
-        <span class="kw">let </span>_guard = <span class="macro">crate::debug_span!</span>(<span class="string">&quot;check_for_raw_error&quot;</span>, sequence).entered();
+        <span class="kw">let </span>_guard = <span class="macro">crate::debug_span!</span>(<span class="string">"check_for_raw_error"</span>, sequence).entered();
 
         <span class="kw">let </span><span class="kw-2">mut </span>inner = <span class="self">self</span>.inner.lock().unwrap();
         <span class="kw">if </span>inner.inner.prepare_check_for_reply_or_error(sequence) {
-            <span class="macro">crate::trace!</span>(<span class="string">&quot;Inserting sync with the X11 server&quot;</span>);
+            <span class="macro">crate::trace!</span>(<span class="string">"Inserting sync with the X11 server"</span>);
             inner = <span class="self">self</span>.send_sync(inner)<span class="question-mark">?</span>;
             <span class="macro">assert!</span>(!inner.inner.prepare_check_for_reply_or_error(sequence));
         }
         <span class="comment">// Ensure the request is sent
         </span>inner = <span class="self">self</span>.flush_impl(inner)<span class="question-mark">?</span>;
         <span class="kw">loop </span>{
-            <span class="macro">crate::trace!</span>({ sequence }, <span class="string">&quot;Polling for reply or error&quot;</span>);
+            <span class="macro">crate::trace!</span>({ sequence }, <span class="string">"Polling for reply or error"</span>);
             <span class="kw">let </span>poll_result = inner.inner.poll_check_for_reply_or_error(sequence);
             <span class="kw">match </span>poll_result {
                 PollReply::TryAgain =&gt; {}
@@ -1535,19 +1536,19 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         sequence: SequenceNumber,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;ReplyOrError&lt;BufWithFds, Buffer&gt;, ConnectionError&gt; {
-        <span class="kw">let </span>_guard = <span class="macro">crate::debug_span!</span>(<span class="string">&quot;wait_for_reply_with_fds_raw&quot;</span>, sequence).entered();
+        <span class="kw">let </span>_guard = <span class="macro">crate::debug_span!</span>(<span class="string">"wait_for_reply_with_fds_raw"</span>, sequence).entered();
 
         <span class="kw">let </span><span class="kw-2">mut </span>inner = <span class="self">self</span>.inner.lock().unwrap();
         <span class="comment">// Ensure the request is sent
         </span>inner = <span class="self">self</span>.flush_impl(inner)<span class="question-mark">?</span>;
         <span class="kw">loop </span>{
-            <span class="macro">crate::trace!</span>({ sequence }, <span class="string">&quot;Polling for reply or error&quot;</span>);
+            <span class="macro">crate::trace!</span>({ sequence }, <span class="string">"Polling for reply or error"</span>);
             <span class="kw">if let </span><span class="prelude-val">Some</span>(reply) = inner.inner.poll_for_reply_or_error(sequence) {
                 <span class="kw">if </span>reply.<span class="number">0</span>[<span class="number">0</span>] == <span class="number">0 </span>{
-                    <span class="macro">crate::trace!</span>(<span class="string">&quot;Got error&quot;</span>);
+                    <span class="macro">crate::trace!</span>(<span class="string">"Got error"</span>);
                     <span class="kw">return </span><span class="prelude-val">Ok</span>(ReplyOrError::Error(reply.<span class="number">0</span>));
                 } <span class="kw">else </span>{
-                    <span class="macro">crate::trace!</span>(<span class="string">&quot;Got reply&quot;</span>);
+                    <span class="macro">crate::trace!</span>(<span class="string">"Got reply"</span>);
                     <span class="kw">return </span><span class="prelude-val">Ok</span>(ReplyOrError::Reply(reply));
                 }
             }
@@ -1561,9 +1562,9 @@
         <span class="kw">use </span>MaxRequestBytes::<span class="kw-2">*</span>;
         <span class="kw">let </span>max_bytes = <span class="kw-2">&amp;mut *</span>max_bytes;
         <span class="kw">match </span>max_bytes {
-            Unknown =&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;We just prefetched this&quot;</span>),
+            Unknown =&gt; <span class="macro">unreachable!</span>(<span class="string">"We just prefetched this"</span>),
             Requested(seqno) =&gt; {
-                <span class="kw">let </span>_guard = <span class="macro">crate::info_span!</span>(<span class="string">&quot;maximum_request_bytes&quot;</span>).entered();
+                <span class="kw">let </span>_guard = <span class="macro">crate::info_span!</span>(<span class="string">"maximum_request_bytes"</span>).entered();
 
                 <span class="kw">let </span>length = seqno
                     <span class="comment">// If prefetching the request succeeded, get a cookie
@@ -1581,7 +1582,7 @@
                     .unwrap_or(usize::max_value());
                 <span class="kw">let </span>length = length * <span class="number">4</span>;
                 <span class="kw-2">*</span>max_bytes = Known(length);
-                <span class="macro">crate::info!</span>(<span class="string">&quot;Maximum request length is {} bytes&quot;</span>, length);
+                <span class="macro">crate::info!</span>(<span class="string">"Maximum request length is {} bytes"</span>, length);
                 length
             }
             Known(length) =&gt; <span class="kw-2">*</span>length,
@@ -1608,7 +1609,7 @@
     <span class="kw">fn </span>wait_for_raw_event_with_sequence(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;RawEventAndSeqNumber&lt;Vec&lt;u8&gt;&gt;, ConnectionError&gt; {
-        <span class="kw">let </span>_guard = <span class="macro">crate::trace_span!</span>(<span class="string">&quot;wait_for_raw_event_with_sequence&quot;</span>).entered();
+        <span class="kw">let </span>_guard = <span class="macro">crate::trace_span!</span>(<span class="string">"wait_for_raw_event_with_sequence"</span>).entered();
 
         <span class="kw">let </span><span class="kw-2">mut </span>inner = <span class="self">self</span>.inner.lock().unwrap();
         <span class="kw">loop </span>{
@@ -1622,7 +1623,7 @@
     <span class="kw">fn </span>poll_for_raw_event_with_sequence(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;RawEventAndSeqNumber&lt;Vec&lt;u8&gt;&gt;&gt;, ConnectionError&gt; {
-        <span class="kw">let </span>_guard = <span class="macro">crate::trace_span!</span>(<span class="string">&quot;poll_for_raw_event_with_sequence&quot;</span>).entered();
+        <span class="kw">let </span>_guard = <span class="macro">crate::trace_span!</span>(<span class="string">"poll_for_raw_event_with_sequence"</span>).entered();
 
         <span class="kw">let </span><span class="kw-2">mut </span>inner = <span class="self">self</span>.inner.lock().unwrap();
         <span class="kw">if let </span><span class="prelude-val">Some</span>(event) = inner.inner.poll_for_event_with_sequence() {
@@ -1654,10 +1655,10 @@
                 </span>.extension_information(xc_misc::X11_EXTENSION_NAME)<span class="question-mark">?
                 </span>.is_none()
             {
-                <span class="macro">crate::error!</span>(<span class="string">&quot;XIDs are exhausted and XC-MISC extension is not available&quot;</span>);
+                <span class="macro">crate::error!</span>(<span class="string">"XIDs are exhausted and XC-MISC extension is not available"</span>);
                 <span class="prelude-val">Err</span>(ReplyOrIdError::IdsExhausted)
             } <span class="kw">else </span>{
-                <span class="macro">crate::info!</span>(<span class="string">&quot;XIDs are exhausted; fetching free range via XC-MISC&quot;</span>);
+                <span class="macro">crate::info!</span>(<span class="string">"XIDs are exhausted; fetching free range via XC-MISC"</span>);
                 id_allocator.update_xid_range(<span class="kw-2">&amp;</span><span class="self">self</span>.xc_misc_get_xid_range()<span class="question-mark">?</span>.reply()<span class="question-mark">?</span>)<span class="question-mark">?</span>;
                 id_allocator
                     .generate_id()
@@ -1669,32 +1670,32 @@
 
 <span class="doccomment">/// Call `notify_all` on a condition variable when dropped.
 </span><span class="attr">#[derive(Debug)]
-</span><span class="kw">struct </span>NotifyOnDrop&lt;<span class="lifetime">&#39;a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Condvar);
+</span><span class="kw">struct </span>NotifyOnDrop&lt;<span class="lifetime">'a</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'a </span>Condvar);
 
-<span class="kw">impl </span>Drop <span class="kw">for </span>NotifyOnDrop&lt;<span class="lifetime">&#39;_</span>&gt; {
+<span class="kw">impl </span>Drop <span class="kw">for </span>NotifyOnDrop&lt;<span class="lifetime">'_</span>&gt; {
     <span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
         <span class="self">self</span>.<span class="number">0</span>.notify_all();
     }
 }
 
 <span class="doccomment">/// Format information about a request in a Display impl
-</span><span class="kw">struct </span>RequestInfo&lt;<span class="lifetime">&#39;a</span>&gt; {
-    extension_manager: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>Mutex&lt;ExtensionManager&gt;,
+</span><span class="kw">struct </span>RequestInfo&lt;<span class="lifetime">'a</span>&gt; {
+    extension_manager: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>Mutex&lt;ExtensionManager&gt;,
     major_opcode: u8,
     minor_opcode: u8,
 }
 
-<span class="kw">impl </span>std::fmt::Display <span class="kw">for </span>RequestInfo&lt;<span class="lifetime">&#39;_</span>&gt; {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+<span class="kw">impl </span>std::fmt::Display <span class="kw">for </span>RequestInfo&lt;<span class="lifetime">'_</span>&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; std::fmt::Result {
         <span class="comment">// QueryExtension is used by the extension manager. We would deadlock if we
         // tried to lock it again. Hence, this case is hardcoded here.
         </span><span class="kw">if </span><span class="self">self</span>.major_opcode == QUERY_EXTENSION_REQUEST {
-            <span class="macro">write!</span>(f, <span class="string">&quot;QueryExtension request&quot;</span>)
+            <span class="macro">write!</span>(f, <span class="string">"QueryExtension request"</span>)
         } <span class="kw">else </span>{
             <span class="kw">let </span>guard = <span class="self">self</span>.extension_manager.lock().unwrap();
             <span class="macro">write!</span>(
                 f,
-                <span class="string">&quot;{} request&quot;</span>,
+                <span class="string">"{} request"</span>,
                 x11rb_protocol::protocol::get_request_name(
                     <span class="kw-2">&amp;*</span>guard,
                     <span class="self">self</span>.major_opcode,

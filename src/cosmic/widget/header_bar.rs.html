@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/header_bar.rs`."><title>header_bar.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/header_bar.rs`."><title>header_bar.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -367,73 +368,6 @@
 <a href="#367" id="367">367</a>
 <a href="#368" id="368">368</a>
 <a href="#369" id="369">369</a>
-<a href="#370" id="370">370</a>
-<a href="#371" id="371">371</a>
-<a href="#372" id="372">372</a>
-<a href="#373" id="373">373</a>
-<a href="#374" id="374">374</a>
-<a href="#375" id="375">375</a>
-<a href="#376" id="376">376</a>
-<a href="#377" id="377">377</a>
-<a href="#378" id="378">378</a>
-<a href="#379" id="379">379</a>
-<a href="#380" id="380">380</a>
-<a href="#381" id="381">381</a>
-<a href="#382" id="382">382</a>
-<a href="#383" id="383">383</a>
-<a href="#384" id="384">384</a>
-<a href="#385" id="385">385</a>
-<a href="#386" id="386">386</a>
-<a href="#387" id="387">387</a>
-<a href="#388" id="388">388</a>
-<a href="#389" id="389">389</a>
-<a href="#390" id="390">390</a>
-<a href="#391" id="391">391</a>
-<a href="#392" id="392">392</a>
-<a href="#393" id="393">393</a>
-<a href="#394" id="394">394</a>
-<a href="#395" id="395">395</a>
-<a href="#396" id="396">396</a>
-<a href="#397" id="397">397</a>
-<a href="#398" id="398">398</a>
-<a href="#399" id="399">399</a>
-<a href="#400" id="400">400</a>
-<a href="#401" id="401">401</a>
-<a href="#402" id="402">402</a>
-<a href="#403" id="403">403</a>
-<a href="#404" id="404">404</a>
-<a href="#405" id="405">405</a>
-<a href="#406" id="406">406</a>
-<a href="#407" id="407">407</a>
-<a href="#408" id="408">408</a>
-<a href="#409" id="409">409</a>
-<a href="#410" id="410">410</a>
-<a href="#411" id="411">411</a>
-<a href="#412" id="412">412</a>
-<a href="#413" id="413">413</a>
-<a href="#414" id="414">414</a>
-<a href="#415" id="415">415</a>
-<a href="#416" id="416">416</a>
-<a href="#417" id="417">417</a>
-<a href="#418" id="418">418</a>
-<a href="#419" id="419">419</a>
-<a href="#420" id="420">420</a>
-<a href="#421" id="421">421</a>
-<a href="#422" id="422">422</a>
-<a href="#423" id="423">423</a>
-<a href="#424" id="424">424</a>
-<a href="#425" id="425">425</a>
-<a href="#426" id="426">426</a>
-<a href="#427" id="427">427</a>
-<a href="#428" id="428">428</a>
-<a href="#429" id="429">429</a>
-<a href="#430" id="430">430</a>
-<a href="#431" id="431">431</a>
-<a href="#432" id="432">432</a>
-<a href="#433" id="433">433</a>
-<a href="#434" id="434">434</a>
-<a href="#435" id="435">435</a>
-<a href="#436" id="436">436</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2022 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
@@ -441,29 +375,30 @@
 <span class="kw">use </span>apply::Apply;
 <span class="kw">use </span>derive_setters::Setters;
 <span class="kw">use </span>iced::{window, Length};
-<span class="kw">use </span>iced_core::{renderer::Quad, widget::tree, Background, Renderer, Widget};
+<span class="kw">use </span>iced_core::{widget::tree, Widget};
 <span class="kw">use </span>std::borrow::Cow;
 
 <span class="attr">#[must_use]
-</span><span class="kw">pub fn </span>header_bar&lt;<span class="lifetime">&#39;a</span>, Message&gt;() -&gt; HeaderBar&lt;<span class="lifetime">&#39;a</span>, Message&gt; {
+</span><span class="kw">pub fn </span>header_bar&lt;<span class="lifetime">'a</span>, Message&gt;() -&gt; HeaderBar&lt;<span class="lifetime">'a</span>, Message&gt; {
     HeaderBar {
-        title: Cow::Borrowed(<span class="string">&quot;&quot;</span>),
+        title: Cow::Borrowed(<span class="string">""</span>),
         on_close: <span class="prelude-val">None</span>,
         on_drag: <span class="prelude-val">None</span>,
         on_maximize: <span class="prelude-val">None</span>,
         on_minimize: <span class="prelude-val">None</span>,
+        on_right_click: <span class="prelude-val">None</span>,
         start: Vec::new(),
         center: Vec::new(),
         end: Vec::new(),
-        window_id: <span class="prelude-val">None</span>,
+        focused: <span class="bool-val">false</span>,
     }
 }
 
 <span class="attr">#[derive(Setters)]
-</span><span class="kw">pub struct </span>HeaderBar&lt;<span class="lifetime">&#39;a</span>, Message&gt; {
+</span><span class="kw">pub struct </span>HeaderBar&lt;<span class="lifetime">'a</span>, Message&gt; {
     <span class="doccomment">/// Defines the title of the window
     </span><span class="attr">#[setters(skip)]
-    </span>title: Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;,
+    </span>title: Cow&lt;<span class="lifetime">'a</span>, str&gt;,
 
     <span class="doccomment">/// A message emitted when the close button is pressed.
     </span><span class="attr">#[setters(strip_option)]
@@ -481,69 +416,70 @@
     </span><span class="attr">#[setters(strip_option)]
     </span>on_minimize: <span class="prelude-ty">Option</span>&lt;Message&gt;,
 
-    <span class="doccomment">/// The window id for the headerbar.
+    <span class="doccomment">/// A message emitted when the header is right clicked.
     </span><span class="attr">#[setters(strip_option)]
-    </span>window_id: <span class="prelude-ty">Option</span>&lt;iced::window::Id&gt;,
+    </span>on_right_click: <span class="prelude-ty">Option</span>&lt;Message&gt;,
+
+    <span class="doccomment">/// Focused state of the window
+    </span>focused: bool,
 
     <span class="doccomment">/// Elements packed at the start of the headerbar.
     </span><span class="attr">#[setters(skip)]
-    </span>start: Vec&lt;Element&lt;<span class="lifetime">&#39;a</span>, Message&gt;&gt;,
+    </span>start: Vec&lt;Element&lt;<span class="lifetime">'a</span>, Message&gt;&gt;,
 
     <span class="doccomment">/// Elements packed in the center of the headerbar.
     </span><span class="attr">#[setters(skip)]
-    </span>center: Vec&lt;Element&lt;<span class="lifetime">&#39;a</span>, Message&gt;&gt;,
+    </span>center: Vec&lt;Element&lt;<span class="lifetime">'a</span>, Message&gt;&gt;,
 
     <span class="doccomment">/// Elements packed at the end of the headerbar.
     </span><span class="attr">#[setters(skip)]
-    </span>end: Vec&lt;Element&lt;<span class="lifetime">&#39;a</span>, Message&gt;&gt;,
+    </span>end: Vec&lt;Element&lt;<span class="lifetime">'a</span>, Message&gt;&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, Message: Clone + <span class="lifetime">&#39;static</span>&gt; HeaderBar&lt;<span class="lifetime">&#39;a</span>, Message&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message: Clone + <span class="lifetime">'static</span>&gt; HeaderBar&lt;<span class="lifetime">'a</span>, Message&gt; {
     <span class="doccomment">/// Defines the title of the window
     </span><span class="attr">#[must_use]
-    </span><span class="kw">pub fn </span>title(<span class="kw-2">mut </span><span class="self">self</span>, title: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt; + <span class="lifetime">&#39;a</span>) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>title(<span class="kw-2">mut </span><span class="self">self</span>, title: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt; + <span class="lifetime">'a</span>) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.title = title.into();
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Pushes an element to the start region.
     </span><span class="attr">#[must_use]
-    </span><span class="kw">pub fn </span>start(<span class="kw-2">mut </span><span class="self">self</span>, widget: <span class="kw">impl </span>Into&lt;Element&lt;<span class="lifetime">&#39;a</span>, Message&gt;&gt; + <span class="lifetime">&#39;a</span>) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>start(<span class="kw-2">mut </span><span class="self">self</span>, widget: <span class="kw">impl </span>Into&lt;Element&lt;<span class="lifetime">'a</span>, Message&gt;&gt; + <span class="lifetime">'a</span>) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.start.push(widget.into());
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Pushes an element to the center region.
     </span><span class="attr">#[must_use]
-    </span><span class="kw">pub fn </span>center(<span class="kw-2">mut </span><span class="self">self</span>, widget: <span class="kw">impl </span>Into&lt;Element&lt;<span class="lifetime">&#39;a</span>, Message&gt;&gt; + <span class="lifetime">&#39;a</span>) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>center(<span class="kw-2">mut </span><span class="self">self</span>, widget: <span class="kw">impl </span>Into&lt;Element&lt;<span class="lifetime">'a</span>, Message&gt;&gt; + <span class="lifetime">'a</span>) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.center.push(widget.into());
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Pushes an element to the end region.
     </span><span class="attr">#[must_use]
-    </span><span class="kw">pub fn </span>end(<span class="kw-2">mut </span><span class="self">self</span>, widget: <span class="kw">impl </span>Into&lt;Element&lt;<span class="lifetime">&#39;a</span>, Message&gt;&gt; + <span class="lifetime">&#39;a</span>) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>end(<span class="kw-2">mut </span><span class="self">self</span>, widget: <span class="kw">impl </span>Into&lt;Element&lt;<span class="lifetime">'a</span>, Message&gt;&gt; + <span class="lifetime">'a</span>) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.end.push(widget.into());
         <span class="self">self
     </span>}
 
     <span class="doccomment">/// Build the widget
     </span><span class="attr">#[must_use]
-    </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; HeaderBarWidget&lt;<span class="lifetime">&#39;a</span>, Message&gt; {
+    </span><span class="kw">pub fn </span>build(<span class="self">self</span>) -&gt; HeaderBarWidget&lt;<span class="lifetime">'a</span>, Message&gt; {
         HeaderBarWidget {
-            window_id: <span class="self">self</span>.window_id,
             header_bar_inner: <span class="self">self</span>.into_element(),
         }
     }
 }
 
-<span class="kw">pub struct </span>HeaderBarWidget&lt;<span class="lifetime">&#39;a</span>, Message&gt; {
-    header_bar_inner: Element&lt;<span class="lifetime">&#39;a</span>, Message&gt;,
-    window_id: <span class="prelude-ty">Option</span>&lt;iced::window::Id&gt;,
+<span class="kw">pub struct </span>HeaderBarWidget&lt;<span class="lifetime">'a</span>, Message&gt; {
+    header_bar_inner: Element&lt;<span class="lifetime">'a</span>, Message&gt;,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, Message: Clone + <span class="lifetime">&#39;static</span>&gt; Widget&lt;Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;
-    <span class="kw">for </span>HeaderBarWidget&lt;<span class="lifetime">&#39;a</span>, Message&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message: Clone + <span class="lifetime">'static</span>&gt; Widget&lt;Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;
+    <span class="kw">for </span>HeaderBarWidget&lt;<span class="lifetime">'a</span>, Message&gt;
 {
     <span class="kw">fn </span>children(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;tree::Tree&gt; {
         <span class="macro">vec!</span>[tree::Tree::new(<span class="kw-2">&amp;</span><span class="self">self</span>.header_bar_inner)]
@@ -551,23 +487,6 @@
 
     <span class="kw">fn </span>size(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; iced_core::Size&lt;Length&gt; {
         <span class="self">self</span>.header_bar_inner.as_widget().size()
-    }
-
-    <span class="kw">fn </span>tag(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; tree::Tag {
-        tree::Tag::of::&lt;MyState&gt;()
-    }
-
-    <span class="kw">fn </span>diff(<span class="kw-2">&amp;mut </span><span class="self">self</span>, tree: <span class="kw-2">&amp;mut </span>tree::Tree) {
-        tree.diff_children(<span class="kw-2">&amp;mut </span>[<span class="kw-2">&amp;mut </span><span class="self">self</span>.header_bar_inner]);
-        <span class="kw">let </span>prev = tree.state.downcast_mut::&lt;MyState&gt;();
-        <span class="kw">if </span>prev.window_id != <span class="self">self</span>.window_id {
-            <span class="kw-2">*</span>prev = MyState::new(<span class="self">self</span>.window_id);
-        }
-    }
-
-    <span class="kw">fn </span>state(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; tree::State {
-        <span class="kw">let </span>state = MyState::new(<span class="self">self</span>.window_id);
-        tree::State::new(state)
     }
 
     <span class="kw">fn </span>layout(
@@ -590,7 +509,7 @@
         renderer: <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::Renderer,
         theme: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Theme,
         style: <span class="kw-2">&amp;</span>iced_core::renderer::Style,
-        layout: iced_core::Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: iced_core::Layout&lt;<span class="lifetime">'_</span>&gt;,
         cursor: iced_core::mouse::Cursor,
         viewport: <span class="kw-2">&amp;</span>iced_core::Rectangle,
     ) {
@@ -605,49 +524,19 @@
             cursor,
             viewport,
         );
-
-        <span class="kw">let </span>state = tree.state.downcast_ref::&lt;MyState&gt;();
-        <span class="kw">if </span>!state.window_has_focus {
-            <span class="kw">let </span>header_bar_appearance =
-                &lt;<span class="kw">crate</span>::Theme <span class="kw">as </span><span class="kw">crate</span>::iced_style::container::StyleSheet&gt;::appearance(
-                    theme,
-                    <span class="kw-2">&amp;</span><span class="kw">crate</span>::theme::Container::HeaderBar,
-                );
-            <span class="kw">let </span>cosmic = theme.cosmic();
-            <span class="kw">let </span><span class="kw-2">mut </span>neutral_0 = cosmic.palette.neutral_0;
-            neutral_0.alpha = <span class="number">0.3</span>;
-
-            <span class="comment">// draw overlay rectangle
-            </span>renderer.fill_quad(
-                Quad {
-                    bounds: layout.bounds(),
-                    border: header_bar_appearance.border,
-                    shadow: header_bar_appearance.shadow,
-                },
-                Background::Color(neutral_0.into()),
-            );
-        }
     }
 
     <span class="kw">fn </span>on_event(
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         state: <span class="kw-2">&amp;mut </span>tree::Tree,
         event: iced_core::Event,
-        layout: iced_core::Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: iced_core::Layout&lt;<span class="lifetime">'_</span>&gt;,
         cursor: iced_core::mouse::Cursor,
         renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
         clipboard: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>iced_core::Clipboard,
-        shell: <span class="kw-2">&amp;mut </span>iced_core::Shell&lt;<span class="lifetime">&#39;_</span>, Message&gt;,
+        shell: <span class="kw-2">&amp;mut </span>iced_core::Shell&lt;<span class="lifetime">'_</span>, Message&gt;,
         viewport: <span class="kw-2">&amp;</span>iced_core::Rectangle,
     ) -&gt; iced_core::event::Status {
-        <span class="kw">if let </span>iced_core::Event::Window(id, iced_core::window::Event::Focused) = event {
-            <span class="kw">let </span>state = state.state.downcast_mut::&lt;MyState&gt;();
-            state.focus_window(id);
-        } <span class="kw">else if let </span>iced_core::Event::Window(id, iced_core::window::Event::Unfocused) = event {
-            <span class="kw">let </span>state = state.state.downcast_mut::&lt;MyState&gt;();
-            state.unfocus_window(id);
-        }
-
         <span class="kw">let </span>child_state = <span class="kw-2">&amp;mut </span>state.children[<span class="number">0</span>];
         <span class="kw">let </span>child_layout = layout.children().next().unwrap();
         <span class="self">self</span>.header_bar_inner.as_widget_mut().on_event(
@@ -665,7 +554,7 @@
     <span class="kw">fn </span>mouse_interaction(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         state: <span class="kw-2">&amp;</span>tree::Tree,
-        layout: iced_core::Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: iced_core::Layout&lt;<span class="lifetime">'_</span>&gt;,
         cursor: iced_core::mouse::Cursor,
         viewport: <span class="kw-2">&amp;</span>iced_core::Rectangle,
         renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
@@ -684,7 +573,7 @@
     <span class="kw">fn </span>operate(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         state: <span class="kw-2">&amp;mut </span>tree::Tree,
-        layout: iced_core::Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: iced_core::Layout&lt;<span class="lifetime">'_</span>&gt;,
         renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
         operation: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>iced_core::widget::Operation&lt;
             iced_core::widget::OperationOutputWrapper&lt;Message&gt;,
@@ -697,12 +586,12 @@
             .operate(child_tree, child_layout, renderer, operation);
     }
 
-    <span class="kw">fn </span>overlay&lt;<span class="lifetime">&#39;b</span>&gt;(
-        <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="kw-2">mut </span><span class="self">self</span>,
-        state: <span class="kw-2">&amp;</span><span class="lifetime">&#39;b </span><span class="kw-2">mut </span>tree::Tree,
-        layout: iced_core::Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+    <span class="kw">fn </span>overlay&lt;<span class="lifetime">'b</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="lifetime">'b </span><span class="kw-2">mut </span><span class="self">self</span>,
+        state: <span class="kw-2">&amp;</span><span class="lifetime">'b </span><span class="kw-2">mut </span>tree::Tree,
+        layout: iced_core::Layout&lt;<span class="lifetime">'_</span>&gt;,
         renderer: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Renderer,
-    ) -&gt; <span class="prelude-ty">Option</span>&lt;iced_core::overlay::Element&lt;<span class="lifetime">&#39;b</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt; {
+    ) -&gt; <span class="prelude-ty">Option</span>&lt;iced_core::overlay::Element&lt;<span class="lifetime">'b</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;&gt; {
         <span class="kw">let </span>child_tree = <span class="kw-2">&amp;mut </span>state.children[<span class="number">0</span>];
         <span class="kw">let </span>child_layout = layout.children().next().unwrap();
         <span class="self">self</span>.header_bar_inner
@@ -711,9 +600,9 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, Message: Clone + <span class="lifetime">&#39;static</span>&gt; HeaderBar&lt;<span class="lifetime">&#39;a</span>, Message&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message: Clone + <span class="lifetime">'static</span>&gt; HeaderBar&lt;<span class="lifetime">'a</span>, Message&gt; {
     <span class="doccomment">/// Converts the headerbar builder into an Iced element.
-    </span><span class="kw">pub fn </span>into_element(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; Element&lt;<span class="lifetime">&#39;a</span>, Message&gt; {
+    </span><span class="kw">pub fn </span>into_element(<span class="kw-2">mut </span><span class="self">self</span>) -&gt; Element&lt;<span class="lifetime">'a</span>, Message&gt; {
         <span class="comment">// Take ownership of the regions to be packed.
         </span><span class="kw">let </span>start = std::mem::take(<span class="kw-2">&amp;mut </span><span class="self">self</span>.start);
         <span class="kw">let </span>center = std::mem::take(<span class="kw-2">&amp;mut </span><span class="self">self</span>.center);
@@ -773,10 +662,14 @@
             widget = widget.on_release(message);
         }
 
+        <span class="kw">if let </span><span class="prelude-val">Some</span>(message) = <span class="self">self</span>.on_right_click.clone() {
+            widget = widget.on_right_press(message);
+        }
+
         widget.into()
     }
 
-    <span class="kw">fn </span>title_widget(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; Element&lt;<span class="lifetime">&#39;a</span>, Message&gt; {
+    <span class="kw">fn </span>title_widget(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; Element&lt;<span class="lifetime">'a</span>, Message&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>title = Cow::default();
         std::mem::swap(<span class="kw-2">&amp;mut </span>title, <span class="kw-2">&amp;mut </span><span class="self">self</span>.title);
 
@@ -792,11 +685,13 @@
     }
 
     <span class="doccomment">/// Creates the widget for window controls.
-    </span><span class="kw">fn </span>window_controls(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; Element&lt;<span class="lifetime">&#39;a</span>, Message&gt; {
+    </span><span class="kw">fn </span>window_controls(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; Element&lt;<span class="lifetime">'a</span>, Message&gt; {
         <span class="kw">let </span>icon = |icon_bytes, size, on_press| {
             widget::icon::from_svg_bytes(icon_bytes)
                 .symbolic(<span class="bool-val">true</span>)
                 .apply(widget::button::icon)
+                .style(<span class="kw">crate</span>::theme::Button::HeaderBar)
+                .selected(<span class="self">self</span>.focused)
                 .icon_size(size)
                 .on_press(on_press)
         };
@@ -804,21 +699,21 @@
         widget::row::with_capacity(<span class="number">3</span>)
             .push_maybe(<span class="self">self</span>.on_minimize.take().map(|m| {
                 icon(
-                    <span class="kw-2">&amp;</span><span class="macro">include_bytes!</span>(<span class="string">&quot;../../res/icons/window-minimize-symbolic.svg&quot;</span>)[..],
+                    <span class="kw-2">&amp;</span><span class="macro">include_bytes!</span>(<span class="string">"../../res/icons/window-minimize-symbolic.svg"</span>)[..],
                     <span class="number">16</span>,
                     m,
                 )
             }))
             .push_maybe(<span class="self">self</span>.on_maximize.take().map(|m| {
                 icon(
-                    <span class="kw-2">&amp;</span><span class="macro">include_bytes!</span>(<span class="string">&quot;../../res/icons/window-maximize-symbolic.svg&quot;</span>)[..],
+                    <span class="kw-2">&amp;</span><span class="macro">include_bytes!</span>(<span class="string">"../../res/icons/window-maximize-symbolic.svg"</span>)[..],
                     <span class="number">16</span>,
                     m,
                 )
             }))
             .push_maybe(<span class="self">self</span>.on_close.take().map(|m| {
                 icon(
-                    <span class="kw-2">&amp;</span><span class="macro">include_bytes!</span>(<span class="string">&quot;../../res/icons/window-close-symbolic.svg&quot;</span>)[..],
+                    <span class="kw-2">&amp;</span><span class="macro">include_bytes!</span>(<span class="string">"../../res/icons/window-close-symbolic.svg"</span>)[..],
                     <span class="number">16</span>,
                     m,
                 )
@@ -831,43 +726,15 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, Message: Clone + <span class="lifetime">&#39;static</span>&gt; From&lt;HeaderBar&lt;<span class="lifetime">&#39;a</span>, Message&gt;&gt; <span class="kw">for </span>Element&lt;<span class="lifetime">&#39;a</span>, Message&gt; {
-    <span class="kw">fn </span>from(headerbar: HeaderBar&lt;<span class="lifetime">&#39;a</span>, Message&gt;) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message: Clone + <span class="lifetime">'static</span>&gt; From&lt;HeaderBar&lt;<span class="lifetime">'a</span>, Message&gt;&gt; <span class="kw">for </span>Element&lt;<span class="lifetime">'a</span>, Message&gt; {
+    <span class="kw">fn </span>from(headerbar: HeaderBar&lt;<span class="lifetime">'a</span>, Message&gt;) -&gt; <span class="self">Self </span>{
         Element::new(headerbar.build())
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, Message: Clone + <span class="lifetime">&#39;static</span>&gt; From&lt;HeaderBarWidget&lt;<span class="lifetime">&#39;a</span>, Message&gt;&gt; <span class="kw">for </span>Element&lt;<span class="lifetime">&#39;a</span>, Message&gt; {
-    <span class="kw">fn </span>from(headerbar: HeaderBarWidget&lt;<span class="lifetime">&#39;a</span>, Message&gt;) -&gt; <span class="self">Self </span>{
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message: Clone + <span class="lifetime">'static</span>&gt; From&lt;HeaderBarWidget&lt;<span class="lifetime">'a</span>, Message&gt;&gt; <span class="kw">for </span>Element&lt;<span class="lifetime">'a</span>, Message&gt; {
+    <span class="kw">fn </span>from(headerbar: HeaderBarWidget&lt;<span class="lifetime">'a</span>, Message&gt;) -&gt; <span class="self">Self </span>{
         Element::new(headerbar)
-    }
-}
-
-<span class="kw">pub struct </span>MyState {
-    <span class="kw">pub </span>window_id: <span class="prelude-ty">Option</span>&lt;window::Id&gt;,
-    <span class="kw">pub </span>window_has_focus: bool,
-}
-
-<span class="kw">impl </span>MyState {
-    <span class="kw">pub fn </span>new(id: <span class="prelude-ty">Option</span>&lt;window::Id&gt;) -&gt; <span class="self">Self </span>{
-        <span class="self">Self </span>{
-            window_id: id,
-            window_has_focus: id.is_none(),
-        }
-    }
-
-    <span class="kw">pub fn </span>focus_window(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: window::Id) {
-        <span class="kw">if </span><span class="self">self</span>.window_id != <span class="prelude-val">Some</span>(id) {
-            <span class="kw">return</span>;
-        }
-        <span class="self">self</span>.window_has_focus = <span class="bool-val">true</span>;
-    }
-
-    <span class="kw">pub fn </span>unfocus_window(<span class="kw-2">&amp;mut </span><span class="self">self</span>, id: window::Id) {
-        <span class="kw">if </span><span class="self">self</span>.window_id != <span class="prelude-val">Some</span>(id) {
-            <span class="kw">return</span>;
-        }
-        <span class="self">self</span>.window_has_focus = <span class="bool-val">false</span>;
     }
 }
 </code></pre></div></section></main></body></html>

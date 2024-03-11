@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/qoi-0.4.1/src/encode.rs`."><title>encode.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="qoi" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/qoi-0.4.1/src/encode.rs`."><title>encode.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="qoi" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -208,10 +209,10 @@
 <a href="#208" id="208">208</a>
 <a href="#209" id="209">209</a>
 <a href="#210" id="210">210</a>
-</pre></div><pre class="rust"><code><span class="attr">#[cfg(any(feature = <span class="string">&quot;std&quot;</span>, feature = <span class="string">&quot;alloc&quot;</span>))]
+</pre></div><pre class="rust"><code><span class="attr">#[cfg(any(feature = <span class="string">"std"</span>, feature = <span class="string">"alloc"</span>))]
 </span><span class="kw">use </span>alloc::{vec, vec::Vec};
 <span class="kw">use </span>core::convert::TryFrom;
-<span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
 </span><span class="kw">use </span>std::io::Write;
 
 <span class="kw">use </span>bytemuck::Pod;
@@ -221,7 +222,7 @@
 <span class="kw">use </span><span class="kw">crate</span>::header::Header;
 <span class="kw">use </span><span class="kw">crate</span>::pixel::{Pixel, SupportedChannels};
 <span class="kw">use </span><span class="kw">crate</span>::types::{Channels, ColorSpace};
-<span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::utils::GenericWriter;
 <span class="kw">use </span><span class="kw">crate</span>::utils::{unlikely, BytesMut, Writer};
 
@@ -252,7 +253,7 @@
             }
         } <span class="kw">else </span>{
             <span class="kw">if </span>run != <span class="number">0 </span>{
-                <span class="attr">#[cfg(not(feature = <span class="string">&quot;reference&quot;</span>))]
+                <span class="attr">#[cfg(not(feature = <span class="string">"reference"</span>))]
                 </span>{
                     <span class="comment">// credits for the original idea: @zakarumych (had to be fixed though)
                     </span>buf = buf.write_one(<span class="kw">if </span>run == <span class="number">1 </span>&amp;&amp; index_allowed {
@@ -261,7 +262,7 @@
                         QOI_OP_RUN | (run - <span class="number">1</span>)
                     })<span class="question-mark">?</span>;
                 }
-                <span class="attr">#[cfg(feature = <span class="string">&quot;reference&quot;</span>)]
+                <span class="attr">#[cfg(feature = <span class="string">"reference"</span>)]
                 </span>{
                     buf = buf.write_one(QOI_OP_RUN | (run - <span class="number">1</span>))<span class="question-mark">?</span>;
                 }
@@ -317,26 +318,26 @@
 }
 
 <span class="doccomment">/// Encode the image into a newly allocated vector.
-</span><span class="attr">#[cfg(any(feature = <span class="string">&quot;alloc&quot;</span>, feature = <span class="string">&quot;std&quot;</span>))]
+</span><span class="attr">#[cfg(any(feature = <span class="string">"alloc"</span>, feature = <span class="string">"std"</span>))]
 #[inline]
 </span><span class="kw">pub fn </span>encode_to_vec(data: <span class="kw">impl </span>AsRef&lt;[u8]&gt;, width: u32, height: u32) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;u8&gt;&gt; {
     Encoder::new(<span class="kw-2">&amp;</span>data, width, height)<span class="question-mark">?</span>.encode_to_vec()
 }
 
 <span class="doccomment">/// Encode QOI images into buffers or into streams.
-</span><span class="kw">pub struct </span>Encoder&lt;<span class="lifetime">&#39;a</span>&gt; {
-    data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8],
+</span><span class="kw">pub struct </span>Encoder&lt;<span class="lifetime">'a</span>&gt; {
+    data: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8],
     header: Header,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>&gt; Encoder&lt;<span class="lifetime">&#39;a</span>&gt; {
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; Encoder&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// Creates a new encoder from a given array of pixel data and image dimensions.
     ///
     /// The number of channels will be inferred automatically (the valid values
     /// are 3 or 4). The color space will be set to sRGB by default.
     </span><span class="attr">#[inline]
     #[allow(clippy::cast_possible_truncation)]
-    </span><span class="kw">pub fn </span>new(data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>(<span class="kw">impl </span>AsRef&lt;[u8]&gt; + <span class="question-mark">?</span>Sized), width: u32, height: u32) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
+    </span><span class="kw">pub fn </span>new(data: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>(<span class="kw">impl </span>AsRef&lt;[u8]&gt; + <span class="question-mark">?</span>Sized), width: u32, height: u32) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
         <span class="kw">let </span>data = data.as_ref();
         <span class="kw">let </span><span class="kw-2">mut </span>header =
             Header::try_new(width, height, Channels::default(), ColorSpace::default())<span class="question-mark">?</span>;
@@ -351,8 +352,8 @@
 
     <span class="doccomment">/// Returns a new encoder with modified color space.
     ///
-    /// Note: the color space doesn&#39;t affect encoding or decoding in any way, it&#39;s
-    /// a purely informative field that&#39;s stored in the image header.
+    /// Note: the color space doesn't affect encoding or decoding in any way, it's
+    /// a purely informative field that's stored in the image header.
     </span><span class="attr">#[inline]
     </span><span class="kw">pub const fn </span>with_colorspace(<span class="kw-2">mut </span><span class="self">self</span>, colorspace: ColorSpace) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.header = <span class="self">self</span>.header.with_colorspace(colorspace);
@@ -389,14 +390,14 @@
         <span class="kw">if </span>unlikely(buf.len() &lt; size_required) {
             <span class="kw">return </span><span class="prelude-val">Err</span>(Error::OutputBufferTooSmall { size: buf.len(), required: size_required });
         }
-        <span class="kw">let </span>(head, tail) = buf.split_at_mut(QOI_HEADER_SIZE); <span class="comment">// can&#39;t panic
+        <span class="kw">let </span>(head, tail) = buf.split_at_mut(QOI_HEADER_SIZE); <span class="comment">// can't panic
         </span>head.copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.header.encode());
         <span class="kw">let </span>n_written = encode_impl_all(BytesMut::new(tail), <span class="self">self</span>.data, <span class="self">self</span>.header.channels)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(QOI_HEADER_SIZE + n_written)
     }
 
     <span class="doccomment">/// Encodes the image into a newly allocated vector of bytes and returns it.
-    </span><span class="attr">#[cfg(any(feature = <span class="string">&quot;alloc&quot;</span>, feature = <span class="string">&quot;std&quot;</span>))]
+    </span><span class="attr">#[cfg(any(feature = <span class="string">"alloc"</span>, feature = <span class="string">"std"</span>))]
     #[inline]
     </span><span class="kw">pub fn </span>encode_to_vec(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;u8&gt;&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>out = <span class="macro">vec!</span>[<span class="number">0_u8</span>; <span class="self">self</span>.required_buf_len()];
@@ -407,9 +408,9 @@
 
     <span class="doccomment">/// Encodes the image directly to a generic writer that implements [`Write`](std::io::Write).
     ///
-    /// Note: while it&#39;s possible to pass a `&amp;mut [u8]` slice here since it implements `Write`,
+    /// Note: while it's possible to pass a `&amp;mut [u8]` slice here since it implements `Write`,
     /// it would more effficient to use a specialized method instead: [`Encoder::encode_to_buf`].
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
     #[inline]
     </span><span class="kw">pub fn </span>encode_to_stream&lt;W: Write&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, writer: <span class="kw-2">&amp;mut </span>W) -&gt; <span class="prelude-ty">Result</span>&lt;usize&gt; {
         writer.write_all(<span class="kw-2">&amp;</span><span class="self">self</span>.header.encode())<span class="question-mark">?</span>;

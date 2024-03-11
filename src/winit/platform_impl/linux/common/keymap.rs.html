@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/8987daa/src/platform_impl/linux/common/keymap.rs`."><title>keymap.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/bdc6610/src/platform_impl/linux/common/keymap.rs`."><title>keymap.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../../" data-static-root-path="../../../../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../src-files.js"></script><script defer src="../../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -910,12 +911,12 @@
 /// Both X11 and Wayland use keys with `+ 8` offset to linux scancode.
 </span><span class="kw">pub fn </span>scancode_to_keycode(scancode: u32) -&gt; PhysicalKey {
     <span class="comment">// The keycode values are taken from linux/include/uapi/linux/input-event-codes.h, as
-    // libxkbcommon&#39;s documentation seems to suggest that the keycode values we&#39;re interested in
+    // libxkbcommon's documentation seems to suggest that the keycode values we're interested in
     // are defined by the Linux kernel. If Winit programs end up being run on other Unix-likes,
     // I can only hope they agree on what the keycodes mean.
     //
     // Some of the keycodes are likely superfluous for our purposes, and some are ones which are
-    // difficult to test the correctness of, or discover the purpose of. Because of this, they&#39;ve
+    // difficult to test the correctness of, or discover the purpose of. Because of this, they've
     // either been commented out here, or not included at all.
     </span>PhysicalKey::Code(<span class="kw">match </span>scancode {
         <span class="number">0 </span>=&gt; <span class="kw">return </span>PhysicalKey::Unidentified(NativeKeyCode::Xkb(<span class="number">0</span>)),
@@ -1356,7 +1357,7 @@
         keysyms::Kana_Shift =&gt; NamedKey::KanaMode,
         keysyms::Eisu_Shift =&gt; NamedKey::Alphanumeric,
         keysyms::Eisu_toggle =&gt; NamedKey::Alphanumeric,
-        <span class="comment">// NOTE: The next three items are aliases for values we&#39;ve already mapped.
+        <span class="comment">// NOTE: The next three items are aliases for values we've already mapped.
         // keysyms::Kanji_Bangou =&gt; NamedKey::CodeInput,
         // keysyms::Zen_Koho =&gt; NamedKey::AllCandidates,
         // keysyms::Mae_Koho =&gt; NamedKey::PreviousCandidate,
@@ -1391,7 +1392,7 @@
         </span>keysyms::Num_Lock =&gt; NamedKey::NumLock,
 
         <span class="comment">// Keypad keys
-        // keysyms::KP_Space =&gt; return Key::Character(&quot; &quot;),
+        // keysyms::KP_Space =&gt; return Key::Character(" "),
         </span>keysyms::KP_Tab =&gt; NamedKey::Tab,
         keysyms::KP_Enter =&gt; NamedKey::Enter,
         keysyms::KP_F1 =&gt; NamedKey::F1,
@@ -1408,7 +1409,7 @@
         <span class="comment">// keysyms::KP_Next =&gt; NamedKey::PageDown,
         </span>keysyms::KP_Page_Down =&gt; NamedKey::PageDown,
         keysyms::KP_End =&gt; NamedKey::End,
-        <span class="comment">// This is the key labeled &quot;5&quot; on the numpad when NumLock is off.
+        <span class="comment">// This is the key labeled "5" on the numpad when NumLock is off.
         // keysyms::KP_Begin =&gt; NamedKey::Begin,
         </span>keysyms::KP_Insert =&gt; NamedKey::Insert,
         keysyms::KP_Delete =&gt; NamedKey::Delete,
@@ -1420,16 +1421,16 @@
         // keysyms::KP_Decimal =&gt; NamedKey::Decimal,
         // keysyms::KP_Divide =&gt; NamedKey::Divide,
 
-        // keysyms::KP_0 =&gt; return Key::Character(&quot;0&quot;),
-        // keysyms::KP_1 =&gt; return Key::Character(&quot;1&quot;),
-        // keysyms::KP_2 =&gt; return Key::Character(&quot;2&quot;),
-        // keysyms::KP_3 =&gt; return Key::Character(&quot;3&quot;),
-        // keysyms::KP_4 =&gt; return Key::Character(&quot;4&quot;),
-        // keysyms::KP_5 =&gt; return Key::Character(&quot;5&quot;),
-        // keysyms::KP_6 =&gt; return Key::Character(&quot;6&quot;),
-        // keysyms::KP_7 =&gt; return Key::Character(&quot;7&quot;),
-        // keysyms::KP_8 =&gt; return Key::Character(&quot;8&quot;),
-        // keysyms::KP_9 =&gt; return Key::Character(&quot;9&quot;),
+        // keysyms::KP_0 =&gt; return Key::Character("0"),
+        // keysyms::KP_1 =&gt; return Key::Character("1"),
+        // keysyms::KP_2 =&gt; return Key::Character("2"),
+        // keysyms::KP_3 =&gt; return Key::Character("3"),
+        // keysyms::KP_4 =&gt; return Key::Character("4"),
+        // keysyms::KP_5 =&gt; return Key::Character("5"),
+        // keysyms::KP_6 =&gt; return Key::Character("6"),
+        // keysyms::KP_7 =&gt; return Key::Character("7"),
+        // keysyms::KP_8 =&gt; return Key::Character("8"),
+        // keysyms::KP_9 =&gt; return Key::Character("9"),
 
         // Function keys
         </span>keysyms::F1 =&gt; NamedKey::F1,
@@ -1591,7 +1592,7 @@
         // keysyms::XF86_KbdBrightnessUp =&gt; NamedKey::KeyboardBrightnessUp,
         // keysyms::XF86_KbdBrightnessDown =&gt; NamedKey::KeyboardBrightnessDown,
 
-        // XFree86 - &quot;Internet&quot;
+        // XFree86 - "Internet"
         </span>keysyms::XF86_Standby =&gt; NamedKey::Standby,
         keysyms::XF86_AudioLowerVolume =&gt; NamedKey::AudioVolumeDown,
         keysyms::XF86_AudioRaiseVolume =&gt; NamedKey::AudioVolumeUp,
@@ -1616,7 +1617,7 @@
         // keysyms::XF86_RockerDown =&gt; NamedKey::RockerDown,
         // keysyms::XF86_RockerEnter =&gt; NamedKey::RockerEnter,
 
-        // XFree86 - More &quot;Internet&quot;
+        // XFree86 - More "Internet"
         </span>keysyms::XF86_Back =&gt; NamedKey::BrowserBack,
         keysyms::XF86_Forward =&gt; NamedKey::BrowserForward,
         <span class="comment">// keysyms::XF86_Stop =&gt; NamedKey::Stop,

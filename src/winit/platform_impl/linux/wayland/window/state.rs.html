@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/8987daa/src/platform_impl/linux/wayland/window/state.rs`."><title>state.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../../../" data-static-root-path="../../../../../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../../../src-files.js"></script><script defer src="../../../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/winit-40d7deb2b0c08730/bdc6610/src/platform_impl/linux/wayland/window/state.rs`."><title>state.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../../../" data-static-root-path="../../../../../../static.files/" data-current-crate="winit" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../../../src-files.js"></script><script defer src="../../../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1156,9 +1157,9 @@
 };
 <span class="kw">use </span><span class="kw">crate</span>::platform_impl::wayland::state::{WindowCompositorUpdate, WinitState};
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;sctk-adwaita&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"sctk-adwaita"</span>)]
 </span><span class="kw">pub type </span>WinitFrame = sctk_adwaita::AdwaitaFrame&lt;WinitState&gt;;
-<span class="attr">#[cfg(not(feature = <span class="string">&quot;sctk-adwaita&quot;</span>))]
+<span class="attr">#[cfg(not(feature = <span class="string">"sctk-adwaita"</span>))]
 </span><span class="kw">pub type </span>WinitFrame = sctk::shell::xdg::fallback_frame::FallbackFrame&lt;WinitState&gt;;
 
 <span class="comment">// Minimum window inner size.
@@ -1229,7 +1230,7 @@
     <span class="doccomment">/// The inner size of the window, as in without client side decorations.
     </span>size: LogicalSize&lt;u32&gt;,
 
-    <span class="doccomment">/// Whether the CSD fail to create, so we don&#39;t try to create them on each iteration.
+    <span class="doccomment">/// Whether the CSD fail to create, so we don't try to create them on each iteration.
     </span>csd_fails: bool,
 
     <span class="doccomment">/// Whether we should decorate the frame.
@@ -1353,7 +1354,7 @@
         <span class="self">self</span>.frame_callback_state = FrameCallbackState::None;
     }
 
-    <span class="doccomment">/// Request a frame callback if we don&#39;t have one for this window in flight.
+    <span class="doccomment">/// Request a frame callback if we don't have one for this window in flight.
     </span><span class="kw">pub fn </span>request_frame_callback(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
         <span class="kw">let </span>surface = <span class="self">self</span>.window.wl_surface();
         <span class="kw">match </span><span class="self">self</span>.frame_callback_state {
@@ -1388,11 +1389,11 @@
             <span class="kw">match </span>WinitFrame::new(
                 <span class="kw-2">&amp;</span><span class="self">self</span>.window,
                 shm,
-                <span class="attr">#[cfg(feature = <span class="string">&quot;sctk-adwaita&quot;</span>)]
+                <span class="attr">#[cfg(feature = <span class="string">"sctk-adwaita"</span>)]
                 </span><span class="self">self</span>.compositor.clone(),
                 subcompositor.clone(),
                 <span class="self">self</span>.queue_handle.clone(),
-                <span class="attr">#[cfg(feature = <span class="string">&quot;sctk-adwaita&quot;</span>)]
+                <span class="attr">#[cfg(feature = <span class="string">"sctk-adwaita"</span>)]
                 </span>into_sctk_adwaita_config(<span class="self">self</span>.theme),
             ) {
                 <span class="prelude-val">Ok</span>(<span class="kw-2">mut </span>frame) =&gt; {
@@ -1403,7 +1404,7 @@
                     <span class="self">self</span>.frame = <span class="prelude-val">Some</span>(frame);
                 }
                 <span class="prelude-val">Err</span>(err) =&gt; {
-                    <span class="macro">warn!</span>(<span class="string">&quot;Failed to create client side decorations frame: {err}&quot;</span>);
+                    <span class="macro">warn!</span>(<span class="string">"Failed to create client side decorations frame: {err}"</span>);
                     <span class="self">self</span>.csd_fails = <span class="bool-val">true</span>;
                 }
             }
@@ -1600,7 +1601,7 @@
         x: f64,
         y: f64,
     ) -&gt; <span class="prelude-ty">Option</span>&lt;CursorIcon&gt; {
-        <span class="comment">// Take the serial if we had any, so it doesn&#39;t stick around.
+        <span class="comment">// Take the serial if we had any, so it doesn't stick around.
         </span><span class="kw">let </span>serial = <span class="self">self</span>.has_pending_move.take();
 
         <span class="kw">if let </span><span class="prelude-val">Some</span>(frame) = <span class="self">self</span>.frame.as_mut() {
@@ -1717,7 +1718,7 @@
         <span class="self">self</span>.pointers = new_pointers;
     }
 
-    <span class="doccomment">/// Refresh the decorations frame if it&#39;s present returning whether the client should redraw.
+    <span class="doccomment">/// Refresh the decorations frame if it's present returning whether the client should redraw.
     </span><span class="kw">pub fn </span>refresh_frame(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; bool {
         <span class="kw">if let </span><span class="prelude-val">Some</span>(frame) = <span class="self">self</span>.frame.as_mut() {
             <span class="kw">if </span>!frame.is_hidden() &amp;&amp; frame.is_dirty() {
@@ -1747,7 +1748,7 @@
             region.add(<span class="number">0</span>, <span class="number">0</span>, i32::MAX, i32::MAX);
             surface.set_opaque_region(<span class="prelude-val">Some</span>(region.wl_region()));
         } <span class="kw">else </span>{
-            <span class="macro">warn!</span>(<span class="string">&quot;Failed to mark window opaque.&quot;</span>);
+            <span class="macro">warn!</span>(<span class="string">"Failed to mark window opaque."</span>);
         }
     }
 
@@ -1828,7 +1829,7 @@
 
         <span class="self">self</span>.apply_on_poiner(|pointer, <span class="kw">_</span>| {
             <span class="kw">if </span>pointer.set_cursor(<span class="kw-2">&amp;</span><span class="self">self</span>.connection, cursor_icon).is_err() {
-                <span class="macro">warn!</span>(<span class="string">&quot;Failed to set cursor to {:?}&quot;</span>, cursor_icon);
+                <span class="macro">warn!</span>(<span class="string">"Failed to set cursor to {:?}"</span>, cursor_icon);
             }
         })
     }
@@ -1867,7 +1868,7 @@
     <span class="doccomment">/// Set the CSD theme.
     </span><span class="kw">pub fn </span>set_theme(<span class="kw-2">&amp;mut </span><span class="self">self</span>, theme: <span class="prelude-ty">Option</span>&lt;Theme&gt;) {
         <span class="self">self</span>.theme = theme;
-        <span class="attr">#[cfg(feature = <span class="string">&quot;sctk-adwaita&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"sctk-adwaita"</span>)]
         </span><span class="kw">if let </span><span class="prelude-val">Some</span>(frame) = <span class="self">self</span>.frame.as_mut() {
             frame.set_config(into_sctk_adwaita_config(theme))
         }
@@ -1950,7 +1951,7 @@
         </span><span class="kw">if </span><span class="self">self</span>.cursor_grab_mode.current_grab_mode != CursorGrabMode::Locked {
             <span class="kw">return </span><span class="prelude-val">Err</span>(ExternalError::Os(<span class="macro">os_error!</span>(
                 <span class="kw">crate</span>::platform_impl::OsError::Misc(
-                    <span class="string">&quot;cursor position can be set only for locked cursor.&quot;
+                    <span class="string">"cursor position can be set only for locked cursor."
                 </span>)
             )));
         }
@@ -2040,9 +2041,9 @@
 
     <span class="doccomment">/// Set the IME position.
     </span><span class="kw">pub fn </span>set_ime_cursor_area(<span class="kw-2">&amp;</span><span class="self">self</span>, position: LogicalPosition&lt;u32&gt;, size: LogicalSize&lt;u32&gt;) {
-        <span class="comment">// FIXME: This won&#39;t fly unless user will have a way to request IME window per seat, since
-        // the ime windows will be overlapping, but winit doesn&#39;t expose API to specify for
-        // which seat we&#39;re setting IME position.
+        <span class="comment">// FIXME: This won't fly unless user will have a way to request IME window per seat, since
+        // the ime windows will be overlapping, but winit doesn't expose API to specify for
+        // which seat we're setting IME position.
         </span><span class="kw">let </span>(x, y) = (position.x <span class="kw">as </span>i32, position.y <span class="kw">as </span>i32);
         <span class="kw">let </span>(width, height) = (size.width <span class="kw">as </span>i32, size.height <span class="kw">as </span>i32);
         <span class="kw">for </span>text_input <span class="kw">in </span><span class="self">self</span>.text_inputs.iter() {
@@ -2090,7 +2091,7 @@
                 blur.commit();
                 <span class="self">self</span>.blur = <span class="prelude-val">Some</span>(blur);
             } <span class="kw">else </span>{
-                <span class="macro">info!</span>(<span class="string">&quot;Blur manager unavailable, unable to change blur&quot;</span>)
+                <span class="macro">info!</span>(<span class="string">"Blur manager unavailable, unable to change blur"</span>)
             }
         } <span class="kw">else if </span>!blurred &amp;&amp; <span class="self">self</span>.blur.is_some() {
             <span class="self">self</span>.blur_manager
@@ -2219,8 +2220,8 @@
     }
 }
 
-<span class="comment">// NOTE: Rust doesn&#39;t allow `From&lt;Option&lt;Theme&gt;&gt;`.
-</span><span class="attr">#[cfg(feature = <span class="string">&quot;sctk-adwaita&quot;</span>)]
+<span class="comment">// NOTE: Rust doesn't allow `From&lt;Option&lt;Theme&gt;&gt;`.
+</span><span class="attr">#[cfg(feature = <span class="string">"sctk-adwaita"</span>)]
 </span><span class="kw">fn </span>into_sctk_adwaita_config(theme: <span class="prelude-ty">Option</span>&lt;Theme&gt;) -&gt; sctk_adwaita::FrameConfig {
     <span class="kw">match </span>theme {
         <span class="prelude-val">Some</span>(Theme::Light) =&gt; sctk_adwaita::FrameConfig::light(),

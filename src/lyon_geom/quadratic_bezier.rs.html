@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_geom-1.0.5/src/quadratic_bezier.rs`."><title>quadratic_bezier.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_geom" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../lyon_geom/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_geom"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_geom-1.0.5/src/quadratic_bezier.rs`."><title>quadratic_bezier.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_geom" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><a class="sub-logo-container" href="../../lyon_geom/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_geom"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1556,7 +1557,7 @@
 /// The curve is defined by equation:
 /// ```∀ t ∈ [0..1],  P(t) = (1 - t)² * from + 2 * (1 - t) * t * ctrl + t² * to```
 </span><span class="attr">#[derive(Copy, Clone, Debug, PartialEq)]
-#[cfg_attr(feature = <span class="string">&quot;serialization&quot;</span>, derive(Serialize, Deserialize))]
+#[cfg_attr(feature = <span class="string">"serialization"</span>, derive(Serialize, Deserialize))]
 </span><span class="kw">pub struct </span>QuadraticBezierSegment&lt;S&gt; {
     <span class="kw">pub </span>from: Point&lt;S&gt;,
     <span class="kw">pub </span>ctrl: Point&lt;S&gt;,
@@ -1596,19 +1597,19 @@
         (S::TWO * t - S::TWO, -S::FOUR * t + S::TWO, S::TWO * t)
     }
 
-    <span class="doccomment">/// Sample the curve&#39;s derivative at t (expecting t between 0 and 1).
+    <span class="doccomment">/// Sample the curve's derivative at t (expecting t between 0 and 1).
     </span><span class="kw">pub fn </span>derivative(<span class="kw-2">&amp;</span><span class="self">self</span>, t: S) -&gt; Vector&lt;S&gt; {
         <span class="kw">let </span>(c0, c1, c2) = <span class="self">self</span>.derivative_coefficients(t);
         <span class="self">self</span>.from.to_vector() * c0 + <span class="self">self</span>.ctrl.to_vector() * c1 + <span class="self">self</span>.to.to_vector() * c2
     }
 
-    <span class="doccomment">/// Sample the x coordinate of the curve&#39;s derivative at t (expecting t between 0 and 1).
+    <span class="doccomment">/// Sample the x coordinate of the curve's derivative at t (expecting t between 0 and 1).
     </span><span class="kw">pub fn </span>dx(<span class="kw-2">&amp;</span><span class="self">self</span>, t: S) -&gt; S {
         <span class="kw">let </span>(c0, c1, c2) = <span class="self">self</span>.derivative_coefficients(t);
         <span class="self">self</span>.from.x * c0 + <span class="self">self</span>.ctrl.x * c1 + <span class="self">self</span>.to.x * c2
     }
 
-    <span class="doccomment">/// Sample the y coordinate of the curve&#39;s derivative at t (expecting t between 0 and 1).
+    <span class="doccomment">/// Sample the y coordinate of the curve's derivative at t (expecting t between 0 and 1).
     </span><span class="kw">pub fn </span>dy(<span class="kw-2">&amp;</span><span class="self">self</span>, t: S) -&gt; S {
         <span class="kw">let </span>(c0, c1, c2) = <span class="self">self</span>.derivative_coefficients(t);
         <span class="self">self</span>.from.y * c0 + <span class="self">self</span>.ctrl.y * c1 + <span class="self">self</span>.to.y * c2
@@ -1725,7 +1726,7 @@
 
     <span class="doccomment">/// Return the sub-curve inside a given range of t.
     ///
-    /// This is equivalent splitting at the range&#39;s end points.
+    /// This is equivalent splitting at the range's end points.
     </span><span class="kw">pub fn </span>split_range(<span class="kw-2">&amp;</span><span class="self">self</span>, t_range: Range&lt;S&gt;) -&gt; <span class="self">Self </span>{
         <span class="kw">let </span>t0 = t_range.start;
         <span class="kw">let </span>t1 = t_range.end;
@@ -1814,7 +1815,7 @@
         d &lt;= (tolerance * tolerance * S::FOUR)
     }
 
-    <span class="doccomment">/// Computes a &quot;fat line&quot; of this segment.
+    <span class="doccomment">/// Computes a "fat line" of this segment.
     ///
     /// A fat line is two conservative lines between which the segment
     /// is fully contained.
@@ -2143,7 +2144,7 @@
         <span class="kw">let </span>i = eqn.a() * <span class="self">self</span>.from.x + eqn.b() * <span class="self">self</span>.from.y;
         <span class="kw">let </span>j = eqn.a() * <span class="self">self</span>.ctrl.x + eqn.b() * <span class="self">self</span>.ctrl.y;
         <span class="kw">let </span>k = eqn.a() * <span class="self">self</span>.to.x + eqn.b() * <span class="self">self</span>.to.y;
-        <span class="comment">// Solve &quot;(i - 2j + k)t² + (2j - 2i)t + (i + c) = 0&quot;
+        <span class="comment">// Solve "(i - 2j + k)t² + (2j - 2i)t + (i + c) = 0"
         </span><span class="kw">let </span>a = i - j - j + k;
         <span class="kw">let </span>b = j + j - i - i;
         <span class="kw">let </span>c = i + eqn.c();
@@ -2234,7 +2235,7 @@
             };
             <span class="kw">if </span>intersection_xy &gt;= seg_long_axis_min &amp;&amp; intersection_xy &lt;= seg_long_axis_max {
                 <span class="kw">let </span>t2 = (<span class="self">self</span>.sample(t) - segment.from).length() / segment.length();
-                <span class="comment">// Don&#39;t take intersections that are on endpoints of both curves at the same time.
+                <span class="comment">// Don't take intersections that are on endpoints of both curves at the same time.
                 </span><span class="kw">if </span>(t != S::ZERO &amp;&amp; t != S::ONE) || (t2 != S::ZERO &amp;&amp; t2 != S::ONE) {
                     result.push((t, t2));
                 }
@@ -2316,7 +2317,7 @@
         (<span class="self">self</span>.sample(<span class="self">self</span>.closest_point(pos)) - pos).square_length()
     }
 
-    <span class="comment">// Returns a quadratic bézier curve built by dragging this curve&#39;s point at `t`
+    <span class="comment">// Returns a quadratic bézier curve built by dragging this curve's point at `t`
     // to a new position without moving the endpoints.
     </span><span class="kw">pub fn </span>drag(<span class="kw-2">&amp;</span><span class="self">self</span>, t: S, new_position: Point&lt;S&gt;) -&gt; <span class="self">Self </span>{
         <span class="kw">let </span>t2 = t * t;
@@ -2337,10 +2338,10 @@
 
     <span class="doccomment">/// Computes the length of this segment.
     ///
-    /// Implements Raph Levien&#39;s analytical approach described in
+    /// Implements Raph Levien's analytical approach described in
     /// https://raphlinus.github.io/curves/2018/12/28/bezier-arclength.html
     </span><span class="kw">pub fn </span>length(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; S {
-        <span class="comment">// This is ported from kurbo&#39;s implementation.
+        <span class="comment">// This is ported from kurbo's implementation.
         // https://github.com/linebender/kurbo/blob/d0b956b47f219ba2303b4e2f2d904ea7b946e783/src/quadbez.rs#L239
         </span><span class="kw">let </span>d2 = <span class="self">self</span>.from - <span class="self">self</span>.ctrl * S::TWO + <span class="self">self</span>.to.to_vector();
         <span class="kw">let </span>d1 = <span class="self">self</span>.ctrl - <span class="self">self</span>.from;
@@ -2454,8 +2455,8 @@
         <span class="kw">let </span>inv_integral_to = approx_parabola_inv_integral(integral_to);
         <span class="kw">let </span>div_inv_integral_diff = S::ONE / (inv_integral_to - inv_integral_from);
 
-        <span class="comment">// We could store this as an integer but the generic code makes that awkward and we&#39;ll
-        // use it as a scalar again while iterating, so it&#39;s kept as a scalar.
+        <span class="comment">// We could store this as an integer but the generic code makes that awkward and we'll
+        // use it as a scalar again while iterating, so it's kept as a scalar.
         </span><span class="kw">let </span><span class="kw-2">mut </span>count = (S::HALF * integral_diff.abs() * (scale / tolerance).sqrt()).ceil();
         <span class="comment">// If count is NaN the curve can be approximated by a single straight line or a point.
         </span><span class="kw">if </span>!count.is_finite() {
@@ -2970,7 +2971,7 @@
     };
 
     <span class="kw">let </span>intersections = quadratic.line_intersections(<span class="kw-2">&amp;</span>line);
-    <span class="macro">std::println!</span>(<span class="string">&quot;{intersections:?}&quot;</span>);
+    <span class="macro">std::println!</span>(<span class="string">"{intersections:?}"</span>);
 
     <span class="macro">assert_eq!</span>(intersections.len(), <span class="number">1</span>);
 }
@@ -3016,7 +3017,7 @@
         <span class="kw">use </span>euclid::approxeq::ApproxEq;
         <span class="kw">let </span>p1 = curve.sample(<span class="kw-2">*</span>t1);
         <span class="kw">let </span>p2 = cubic.sample(<span class="kw-2">*</span>t2);
-        <span class="macro">assert!</span>(p1.approx_eq(<span class="kw-2">&amp;</span>p2), <span class="string">&quot;{:?} == {:?}&quot;</span>, p1, p2);
+        <span class="macro">assert!</span>(p1.approx_eq(<span class="kw-2">&amp;</span>p2), <span class="string">"{:?} == {:?}"</span>, p1, p2);
     }
     <span class="macro">assert_eq!</span>(i2.len(), <span class="number">2</span>);
     <span class="macro">assert_eq!</span>(i1.len(), <span class="number">2</span>);
@@ -3039,7 +3040,7 @@
         <span class="kw">let </span>p1 = dragged.sample(t);
         <span class="macro">assert!</span>(
             p1.approx_eq_eps(<span class="kw-2">&amp;</span>target, <span class="kw-2">&amp;</span>point(<span class="number">0.001</span>, <span class="number">0.001</span>)),
-            <span class="string">&quot;{:?} == {:?}&quot;</span>,
+            <span class="string">"{:?} == {:?}"</span>,
             p1,
             target
         );
@@ -3075,7 +3076,7 @@
 
         <span class="macro">assert!</span>(
             (length - accum).abs() &lt; <span class="number">0.00001</span>,
-            <span class="string">&quot;curve {:?}, {:?} == {:?}&quot;</span>,
+            <span class="string">"curve {:?}, {:?} == {:?}"</span>,
             idx,
             length,
             accum

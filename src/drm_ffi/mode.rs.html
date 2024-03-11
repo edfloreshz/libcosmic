@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/drm-ffi-0.7.1/src/mode.rs`."><title>mode.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="drm_ffi" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/drm-ffi-0.7.1/src/mode.rs`."><title>mode.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="drm_ffi" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -937,7 +938,7 @@
 <a href="#937" id="937">937</a>
 <a href="#938" id="938">938</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//!
-//! Bindings to the DRM&#39;s modesetting capabilities.
+//! Bindings to the DRM's modesetting capabilities.
 //!
 
 </span><span class="attr">#![allow(clippy::too_many_arguments)]
@@ -949,7 +950,7 @@
 
 <span class="doccomment">/// Enumerate most card resources.
 </span><span class="kw">pub fn </span>get_resources(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     <span class="kw-2">mut </span>fbs: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>Vec&lt;u32&gt;&gt;,
     <span class="kw-2">mut </span>crtcs: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>Vec&lt;u32&gt;&gt;,
     <span class="kw-2">mut </span>connectors: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>Vec&lt;u32&gt;&gt;,
@@ -991,7 +992,7 @@
 
 <span class="doccomment">/// Enumerate plane resources.
 </span><span class="kw">pub fn </span>get_plane_resources(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     <span class="kw-2">mut </span>planes: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>Vec&lt;u32&gt;&gt;,
 ) -&gt; io::Result&lt;drm_mode_get_plane_res&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>sizes = drm_mode_get_plane_res::default();
@@ -1020,7 +1021,7 @@
 }
 
 <span class="doccomment">/// Get info about a framebuffer.
-</span><span class="kw">pub fn </span>get_framebuffer(fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;, fb_id: u32) -&gt; io::Result&lt;drm_mode_fb_cmd&gt; {
+</span><span class="kw">pub fn </span>get_framebuffer(fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;, fb_id: u32) -&gt; io::Result&lt;drm_mode_fb_cmd&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>info = drm_mode_fb_cmd {
         fb_id,
         ..Default::default()
@@ -1035,7 +1036,7 @@
 
 <span class="doccomment">/// Add a new framebuffer.
 </span><span class="kw">pub fn </span>add_fb(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     width: u32,
     height: u32,
     pitch: u32,
@@ -1061,7 +1062,7 @@
 }
 
 <span class="doccomment">/// Get info about a framebuffer (with modifiers).
-</span><span class="kw">pub fn </span>get_framebuffer2(fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;, fb_id: u32) -&gt; io::Result&lt;drm_mode_fb_cmd2&gt; {
+</span><span class="kw">pub fn </span>get_framebuffer2(fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;, fb_id: u32) -&gt; io::Result&lt;drm_mode_fb_cmd2&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>info = drm_mode_fb_cmd2 {
         fb_id,
         ..Default::default()
@@ -1076,7 +1077,7 @@
 
 <span class="doccomment">/// Add a new framebuffer (with modifiers)
 </span><span class="kw">pub fn </span>add_fb2(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     width: u32,
     height: u32,
     fmt: u32,
@@ -1106,7 +1107,7 @@
 }
 
 <span class="doccomment">/// Remove a framebuffer.
-</span><span class="kw">pub fn </span>rm_fb(fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;, <span class="kw-2">mut </span>id: u32) -&gt; io::Result&lt;()&gt; {
+</span><span class="kw">pub fn </span>rm_fb(fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;, <span class="kw-2">mut </span>id: u32) -&gt; io::Result&lt;()&gt; {
     <span class="kw">unsafe </span>{
         ioctl::mode::rm_fb(fd, <span class="kw-2">&amp;mut </span>id)<span class="question-mark">?</span>;
     }
@@ -1116,7 +1117,7 @@
 
 <span class="doccomment">/// Mark a framebuffer as dirty.
 </span><span class="kw">pub fn </span>dirty_fb(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     fb_id: u32,
     clips: <span class="kw-2">&amp;</span>[drm_clip_rect],
 ) -&gt; io::Result&lt;drm_mode_fb_dirty_cmd&gt; {
@@ -1135,7 +1136,7 @@
 }
 
 <span class="doccomment">/// Get info about a CRTC
-</span><span class="kw">pub fn </span>get_crtc(fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;, crtc_id: u32) -&gt; io::Result&lt;drm_mode_crtc&gt; {
+</span><span class="kw">pub fn </span>get_crtc(fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;, crtc_id: u32) -&gt; io::Result&lt;drm_mode_crtc&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>info = drm_mode_crtc {
         crtc_id,
         ..Default::default()
@@ -1150,7 +1151,7 @@
 
 <span class="doccomment">/// Set CRTC state
 </span><span class="kw">pub fn </span>set_crtc(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     crtc_id: u32,
     fb_id: u32,
     x: u32,
@@ -1182,7 +1183,7 @@
 
 <span class="doccomment">/// Get CRTC gamma ramp
 </span><span class="kw">pub fn </span>get_gamma(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     crtc_id: u32,
     size: usize,
     red: <span class="kw-2">&amp;mut </span>[u16],
@@ -1206,7 +1207,7 @@
 
 <span class="doccomment">/// Set CRTC gamma ramp
 </span><span class="kw">pub fn </span>set_gamma(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     crtc_id: u32,
     size: usize,
     red: <span class="kw-2">&amp;</span>[u16],
@@ -1232,9 +1233,9 @@
 ///
 /// The buffer must be allocated using the buffer manager of the driver (GEM or TTM). It is not
 /// allowed to be a dumb buffer.
-</span><span class="attr">#[deprecated = <span class="string">&quot;use a cursor plane instead&quot;</span>]
+</span><span class="attr">#[deprecated = <span class="string">"use a cursor plane instead"</span>]
 </span><span class="kw">pub fn </span>set_cursor(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     crtc_id: u32,
     buf_id: u32,
     width: u32,
@@ -1263,9 +1264,9 @@
 ///
 /// The hotspot position is used to coordinate the guest and host cursor location in case of
 /// virtualization.
-</span><span class="attr">#[deprecated = <span class="string">&quot;use a cursor plane instead&quot;</span>]
+</span><span class="attr">#[deprecated = <span class="string">"use a cursor plane instead"</span>]
 </span><span class="kw">pub fn </span>set_cursor2(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     crtc_id: u32,
     buf_id: u32,
     width: u32,
@@ -1292,9 +1293,9 @@
 }
 
 <span class="doccomment">/// Move cursor
-</span><span class="attr">#[deprecated = <span class="string">&quot;use a cursor plane instead&quot;</span>]
+</span><span class="attr">#[deprecated = <span class="string">"use a cursor plane instead"</span>]
 </span><span class="kw">pub fn </span>move_cursor(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     crtc_id: u32,
     x: i32,
     y: i32,
@@ -1316,7 +1317,7 @@
 
 <span class="doccomment">/// Get info about a connector
 </span><span class="kw">pub fn </span>get_connector(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     connector_id: u32,
     <span class="kw-2">mut </span>props: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>Vec&lt;u32&gt;&gt;,
     <span class="kw-2">mut </span>prop_values: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>Vec&lt;u64&gt;&gt;,
@@ -1401,7 +1402,7 @@
 }
 
 <span class="doccomment">/// Get info about an encoder
-</span><span class="kw">pub fn </span>get_encoder(fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;, encoder_id: u32) -&gt; io::Result&lt;drm_mode_get_encoder&gt; {
+</span><span class="kw">pub fn </span>get_encoder(fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;, encoder_id: u32) -&gt; io::Result&lt;drm_mode_get_encoder&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>info = drm_mode_get_encoder {
         encoder_id,
         ..Default::default()
@@ -1416,7 +1417,7 @@
 
 <span class="doccomment">/// Get info about a plane.
 </span><span class="kw">pub fn </span>get_plane(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     plane_id: u32,
     <span class="kw-2">mut </span>formats: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>Vec&lt;u32&gt;&gt;,
 ) -&gt; io::Result&lt;drm_mode_get_plane&gt; {
@@ -1453,7 +1454,7 @@
 
 <span class="doccomment">/// Set plane state.
 </span><span class="kw">pub fn </span>set_plane(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     plane_id: u32,
     crtc_id: u32,
     fb_id: u32,
@@ -1491,7 +1492,7 @@
 
 <span class="doccomment">/// Get property
 </span><span class="kw">pub fn </span>get_property(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     prop_id: u32,
     <span class="kw-2">mut </span>values: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>Vec&lt;u64&gt;&gt;,
     <span class="kw-2">mut </span>enums: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>Vec&lt;drm_mode_property_enum&gt;&gt;,
@@ -1528,7 +1529,7 @@
 
 <span class="doccomment">/// Set property
 </span><span class="kw">pub fn </span>set_connector_property(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     connector_id: u32,
     prop_id: u32,
     value: u64,
@@ -1548,7 +1549,7 @@
 
 <span class="doccomment">/// Get the value of a property blob
 </span><span class="kw">pub fn </span>get_property_blob(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     blob_id: u32,
     <span class="kw-2">mut </span>data: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>Vec&lt;u8&gt;&gt;,
 ) -&gt; io::Result&lt;drm_mode_get_blob&gt; {
@@ -1584,7 +1585,7 @@
 
 <span class="doccomment">/// Create a property blob
 </span><span class="kw">pub fn </span>create_property_blob(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     data: <span class="kw-2">&amp;mut </span>[u8],
 ) -&gt; io::Result&lt;drm_mode_create_blob&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>blob = drm_mode_create_blob {
@@ -1601,7 +1602,7 @@
 }
 
 <span class="doccomment">/// Destroy a property blob
-</span><span class="kw">pub fn </span>destroy_property_blob(fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;, id: u32) -&gt; io::Result&lt;drm_mode_destroy_blob&gt; {
+</span><span class="kw">pub fn </span>destroy_property_blob(fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;, id: u32) -&gt; io::Result&lt;drm_mode_destroy_blob&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>blob = drm_mode_destroy_blob { blob_id: id };
 
     <span class="kw">unsafe </span>{
@@ -1613,7 +1614,7 @@
 
 <span class="doccomment">/// Get properties from an object
 </span><span class="kw">pub fn </span>get_properties(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     obj_id: u32,
     obj_type: u32,
     <span class="kw-2">mut </span>props: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>Vec&lt;u32&gt;&gt;,
@@ -1654,7 +1655,7 @@
 
 <span class="doccomment">/// Set the properties of an object
 </span><span class="kw">pub fn </span>set_property(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     prop_id: u32,
     obj_id: u32,
     obj_type: u32,
@@ -1676,7 +1677,7 @@
 
 <span class="doccomment">/// Schedule a page flip
 </span><span class="kw">pub fn </span>page_flip(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     crtc_id: u32,
     fb_id: u32,
     flags: u32,
@@ -1700,7 +1701,7 @@
 
 <span class="doccomment">/// Atomically set properties
 </span><span class="kw">pub fn </span>atomic_commit(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     flags: u32,
     objs: <span class="kw-2">&amp;mut </span>[u32],
     prop_counts: <span class="kw-2">&amp;mut </span>[u32],
@@ -1726,7 +1727,7 @@
 
 <span class="doccomment">/// Create a drm lease
 </span><span class="kw">pub fn </span>create_lease(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     objects: <span class="kw-2">&amp;</span>[u32],
     flags: u32,
 ) -&gt; io::Result&lt;drm_mode_create_lease&gt; {
@@ -1746,7 +1747,7 @@
 
 <span class="doccomment">/// List all active drm leases
 </span><span class="kw">pub fn </span>list_lessees(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     <span class="kw-2">mut </span>lessees: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>Vec&lt;u32&gt;&gt;,
 ) -&gt; io::Result&lt;drm_mode_list_lessees&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>sizes = drm_mode_list_lessees::default();
@@ -1774,7 +1775,7 @@
 
 <span class="doccomment">/// Get leased objects for a lease file descriptor
 </span><span class="kw">pub fn </span>get_lease(
-    fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+    fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
     <span class="kw-2">mut </span>objects: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;mut </span>Vec&lt;u32&gt;&gt;,
 ) -&gt; io::Result&lt;drm_mode_get_lease&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>sizes = drm_mode_get_lease::default();
@@ -1801,7 +1802,7 @@
 }
 
 <span class="doccomment">/// Revoke previously issued lease
-</span><span class="kw">pub fn </span>revoke_lease(fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;, lessee_id: u32) -&gt; io::Result&lt;()&gt; {
+</span><span class="kw">pub fn </span>revoke_lease(fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;, lessee_id: u32) -&gt; io::Result&lt;()&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>data = drm_mode_revoke_lease { lessee_id };
 
     <span class="kw">unsafe </span>{
@@ -1822,7 +1823,7 @@
 
     <span class="doccomment">/// Create a dumb buffer
     </span><span class="kw">pub fn </span>create(
-        fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+        fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
         width: u32,
         height: u32,
         bpp: u32,
@@ -1844,7 +1845,7 @@
     }
 
     <span class="doccomment">/// Destroy a dumb buffer
-    </span><span class="kw">pub fn </span>destroy(fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;, handle: u32) -&gt; io::Result&lt;drm_mode_destroy_dumb&gt; {
+    </span><span class="kw">pub fn </span>destroy(fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;, handle: u32) -&gt; io::Result&lt;drm_mode_destroy_dumb&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>db = drm_mode_destroy_dumb { handle };
 
         <span class="kw">unsafe </span>{
@@ -1856,7 +1857,7 @@
 
     <span class="doccomment">/// Map a dump buffer and prep it for an mmap
     </span><span class="kw">pub fn </span>map(
-        fd: BorrowedFd&lt;<span class="lifetime">&#39;_</span>&gt;,
+        fd: BorrowedFd&lt;<span class="lifetime">'_</span>&gt;,
         handle: u32,
         pad: u32,
         offset: u64,

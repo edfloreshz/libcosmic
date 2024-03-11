@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `iced/core/src/keyboard/key.rs`."><title>key.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="iced_core" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../../iced_core/index.html"><img src="https://raw.githubusercontent.com/iced-rs/iced/9ab6923e943f784985e9ef9ca28b10278297225d/docs/logo.svg" alt="iced_core"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `iced/core/src/keyboard/key.rs`."><title>key.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="iced_core" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><a class="sub-logo-container" href="../../../iced_core/index.html"><img src="https://raw.githubusercontent.com/iced-rs/iced/9ab6923e943f784985e9ef9ca28b10278297225d/docs/logo.svg" alt="iced_core"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -753,7 +754,7 @@
 ///
 /// [`winit`]: https://docs.rs/winit/0.29.10/winit/keyboard/enum.Key.html
 </span><span class="attr">#[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub enum </span>Key&lt;C = SmolStr&gt; {
     <span class="doccomment">/// A key with an established name.
     </span>Named(Named),
@@ -785,7 +786,7 @@
 ///
 /// [`winit`]: https://docs.rs/winit/0.29.10/winit/keyboard/enum.Key.html
 </span><span class="attr">#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 #[allow(missing_docs)]
 </span><span class="kw">pub enum </span>Named {
     <span class="doccomment">/// The `Alt` (Alternative) key.
@@ -812,7 +813,7 @@
     /// in the keyboard hardware and does not usually generate key events.
     </span>Fn,
     <span class="doccomment">/// The Function-Lock (`FnLock` or `F-Lock`) key. Activating this key switches the mode of the
-    /// keyboard to changes some keys&#39; values to an alternate character or function. This key is
+    /// keyboard to changes some keys' values to an alternate character or function. This key is
     /// often handled directly in the keyboard hardware and does not usually generate key events.
     </span>FnLock,
     <span class="doccomment">/// The `NumLock` or Number Lock key. Used to toggle numpad mode function for interpreting
@@ -826,14 +827,14 @@
     <span class="doccomment">/// The Symbol modifier key (used on some virtual keyboards).
     </span>Symbol,
     SymbolLock,
-    <span class="comment">// Legacy modifier key. Also called &quot;Super&quot; in certain places.
+    <span class="comment">// Legacy modifier key. Also called "Super" in certain places.
     </span>Meta,
     <span class="comment">// Legacy modifier key.
     </span>Hyper,
-    <span class="doccomment">/// Used to enable &quot;super&quot; modifier function for interpreting concurrent or subsequent keyboard
-    /// input. This key value is used for the &quot;Windows Logo&quot; key and the Apple `Command` or `⌘` key.
+    <span class="doccomment">/// Used to enable "super" modifier function for interpreting concurrent or subsequent keyboard
+    /// input. This key value is used for the "Windows Logo" key and the Apple `Command` or `⌘` key.
     ///
-    /// Note: In some contexts (e.g. the Web) this is referred to as the &quot;Meta&quot; key.
+    /// Note: In some contexts (e.g. the Web) this is referred to as the "Meta" key.
     </span>Super,
     <span class="doccomment">/// The `Enter` or `↵` key. Used to activate current selection or accept current input. This key
     /// value is also used for the `Return` (Macintosh numpad) key. This key value is also used for
@@ -901,7 +902,7 @@
     /// This key is commonly found between the right `Super` key and the right `Control` key.
     </span>ContextMenu,
     <span class="doccomment">/// The `Esc` key. This key was originally used to initiate an escape sequence, but is
-    /// now more generally used to exit or &quot;escape&quot; the current context, such as closing a dialog
+    /// now more generally used to exit or "escape" the current context, such as closing a dialog
     /// or exiting full screen mode.
     </span>Escape,
     Execute,
@@ -912,12 +913,12 @@
     </span>Help,
     <span class="doccomment">/// Pause the current state or application (as appropriate).
     ///
-    /// Note: Do not use this value for the `Pause` button on media controllers. Use `&quot;MediaPause&quot;`
+    /// Note: Do not use this value for the `Pause` button on media controllers. Use `"MediaPause"`
     /// instead.
     </span>Pause,
     <span class="doccomment">/// Play or resume the current state or application (as appropriate).
     ///
-    /// Note: Do not use this value for the `Play` button on media controllers. Use `&quot;MediaPlay&quot;`
+    /// Note: Do not use this value for the `Play` button on media controllers. Use `"MediaPlay"`
     /// instead.
     </span>Play,
     <span class="doccomment">/// The properties (Props) key.
@@ -957,7 +958,7 @@
     <span class="doccomment">/// Initiate the Code Input mode to allow characters to be entered by
     /// their code points.
     </span>CodeInput,
-    <span class="doccomment">/// The Compose key, also known as &quot;Multi_key&quot; on the X Window System. This key acts in a
+    <span class="doccomment">/// The Compose key, also known as "Multi_key" on the X Window System. This key acts in a
     /// manner similar to a dead key, triggering a mode where subsequent key presses are combined to
     /// produce a different character.
     </span>Compose,
@@ -1040,7 +1041,7 @@
     </span>MediaFastForward,
     <span class="doccomment">/// Pause the currently playing media. (`APPCOMMAND_MEDIA_PAUSE`, `KEYCODE_MEDIA_PAUSE`)
     ///
-    /// Note: Media controller devices should use this value rather than `&quot;Pause&quot;` for their pause
+    /// Note: Media controller devices should use this value rather than `"Pause"` for their pause
     /// keys.
     </span>MediaPause,
     <span class="doccomment">/// Initiate or continue media playback at normal speed, if not currently playing at normal
@@ -1121,20 +1122,20 @@
     <span class="doccomment">/// Toggle between dictation mode and command/control mode.
     /// (`APPCOMMAND_DICTATE_OR_COMMAND_CONTROL_TOGGLE`)
     </span>SpeechInputToggle,
-    <span class="doccomment">/// The first generic &quot;LaunchApplication&quot; key. This is commonly associated with launching &quot;My
-    /// Computer&quot;, and may have a computer symbol on the key. (`APPCOMMAND_LAUNCH_APP1`)
+    <span class="doccomment">/// The first generic "LaunchApplication" key. This is commonly associated with launching "My
+    /// Computer", and may have a computer symbol on the key. (`APPCOMMAND_LAUNCH_APP1`)
     </span>LaunchApplication1,
-    <span class="doccomment">/// The second generic &quot;LaunchApplication&quot; key. This is commonly associated with launching
-    /// &quot;Calculator&quot;, and may have a calculator symbol on the key. (`APPCOMMAND_LAUNCH_APP2`,
+    <span class="doccomment">/// The second generic "LaunchApplication" key. This is commonly associated with launching
+    /// "Calculator", and may have a calculator symbol on the key. (`APPCOMMAND_LAUNCH_APP2`,
     /// `KEYCODE_CALCULATOR`)
     </span>LaunchApplication2,
-    <span class="doccomment">/// The &quot;Calendar&quot; key. (`KEYCODE_CALENDAR`)
+    <span class="doccomment">/// The "Calendar" key. (`KEYCODE_CALENDAR`)
     </span>LaunchCalendar,
-    <span class="doccomment">/// The &quot;Contacts&quot; key. (`KEYCODE_CONTACTS`)
+    <span class="doccomment">/// The "Contacts" key. (`KEYCODE_CONTACTS`)
     </span>LaunchContacts,
-    <span class="doccomment">/// The &quot;Mail&quot; key. (`APPCOMMAND_LAUNCH_MAIL`)
+    <span class="doccomment">/// The "Mail" key. (`APPCOMMAND_LAUNCH_MAIL`)
     </span>LaunchMail,
-    <span class="doccomment">/// The &quot;Media Player&quot; key. (`APPCOMMAND_LAUNCH_MEDIA_SELECT`)
+    <span class="doccomment">/// The "Media Player" key. (`APPCOMMAND_LAUNCH_MEDIA_SELECT`)
     </span>LaunchMediaPlayer,
     LaunchMusicPlayer,
     LaunchPhone,
@@ -1315,8 +1316,8 @@
     </span>Lock,
     <span class="doccomment">/// Show a list of media applications: audio/video players and image viewers. (`VK_APPS`)
     ///
-    /// Note: Do not confuse this key value with the Windows&#39; `VK_APPS` / `VK_CONTEXT_MENU` key,
-    /// which is encoded as `&quot;ContextMenu&quot;`.
+    /// Note: Do not confuse this key value with the Windows' `VK_APPS` / `VK_CONTEXT_MENU` key,
+    /// which is encoded as `"ContextMenu"`.
     </span>MediaApps,
     <span class="doccomment">/// Audio track key. (`KEYCODE_MEDIA_AUDIO_TRACK`)
     </span>MediaAudioTrack,

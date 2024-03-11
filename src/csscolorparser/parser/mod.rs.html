@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/csscolorparser-0.6.2/src/parser/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="csscolorparser" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/csscolorparser-0.6.2/src/parser/mod.rs`."><title>mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="csscolorparser" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -435,10 +436,10 @@
 
 <span class="kw">use </span><span class="kw">crate</span>::Color;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;named-colors&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"named-colors"</span>)]
 </span><span class="kw">mod </span>named_colors;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;named-colors&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"named-colors"</span>)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">use </span>named_colors::NAMED_COLORS;
 
 <span class="attr">#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -448,9 +449,9 @@
     InvalidHsl,
     InvalidHwb,
     InvalidHsv,
-    <span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
     </span>InvalidLab,
-    <span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
     </span>InvalidLch,
     InvalidFunction,
     InvalidUnknown,
@@ -459,17 +460,17 @@
 <span class="kw">impl </span>fmt::Display <span class="kw">for </span>ParseColorError {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
         <span class="kw">match </span><span class="kw-2">*</span><span class="self">self </span>{
-            <span class="self">Self</span>::InvalidHex =&gt; f.write_str(<span class="string">&quot;invalid hex format&quot;</span>),
-            <span class="self">Self</span>::InvalidRgb =&gt; f.write_str(<span class="string">&quot;invalid rgb format&quot;</span>),
-            <span class="self">Self</span>::InvalidHsl =&gt; f.write_str(<span class="string">&quot;invalid hsl format&quot;</span>),
-            <span class="self">Self</span>::InvalidHwb =&gt; f.write_str(<span class="string">&quot;invalid hwb format&quot;</span>),
-            <span class="self">Self</span>::InvalidHsv =&gt; f.write_str(<span class="string">&quot;invalid hsv format&quot;</span>),
-            <span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
-            </span><span class="self">Self</span>::InvalidLab =&gt; f.write_str(<span class="string">&quot;invalid lab format&quot;</span>),
-            <span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
-            </span><span class="self">Self</span>::InvalidLch =&gt; f.write_str(<span class="string">&quot;invalid lch format&quot;</span>),
-            <span class="self">Self</span>::InvalidFunction =&gt; f.write_str(<span class="string">&quot;invalid color function&quot;</span>),
-            <span class="self">Self</span>::InvalidUnknown =&gt; f.write_str(<span class="string">&quot;invalid unknown format&quot;</span>),
+            <span class="self">Self</span>::InvalidHex =&gt; f.write_str(<span class="string">"invalid hex format"</span>),
+            <span class="self">Self</span>::InvalidRgb =&gt; f.write_str(<span class="string">"invalid rgb format"</span>),
+            <span class="self">Self</span>::InvalidHsl =&gt; f.write_str(<span class="string">"invalid hsl format"</span>),
+            <span class="self">Self</span>::InvalidHwb =&gt; f.write_str(<span class="string">"invalid hwb format"</span>),
+            <span class="self">Self</span>::InvalidHsv =&gt; f.write_str(<span class="string">"invalid hsv format"</span>),
+            <span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
+            </span><span class="self">Self</span>::InvalidLab =&gt; f.write_str(<span class="string">"invalid lab format"</span>),
+            <span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
+            </span><span class="self">Self</span>::InvalidLch =&gt; f.write_str(<span class="string">"invalid lch format"</span>),
+            <span class="self">Self</span>::InvalidFunction =&gt; f.write_str(<span class="string">"invalid color function"</span>),
+            <span class="self">Self</span>::InvalidUnknown =&gt; f.write_str(<span class="string">"invalid unknown format"</span>),
         }
     }
 }
@@ -483,12 +484,12 @@
 /// ```
 /// # use std::error::Error;
 /// # fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
-/// let c = csscolorparser::parse(&quot;#ff0&quot;)?;
+/// let c = csscolorparser::parse("#ff0")?;
 ///
 /// assert_eq!(c.to_array(), [1.0, 1.0, 0.0, 1.0]);
 /// assert_eq!(c.to_rgba8(), [255, 255, 0, 255]);
-/// assert_eq!(c.to_hex_string(), &quot;#ffff00&quot;);
-/// assert_eq!(c.to_rgb_string(), &quot;rgb(255,255,0)&quot;);
+/// assert_eq!(c.to_hex_string(), "#ffff00");
+/// assert_eq!(c.to_rgb_string(), "rgb(255,255,0)");
 /// # Ok(())
 /// # }
 /// ```
@@ -496,41 +497,41 @@
 /// ```
 /// # use std::error::Error;
 /// # fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
-/// let c = csscolorparser::parse(&quot;hsl(360deg,100%,50%)&quot;)?;
+/// let c = csscolorparser::parse("hsl(360deg,100%,50%)")?;
 ///
 /// assert_eq!(c.to_array(), [1.0, 0.0, 0.0, 1.0]);
 /// assert_eq!(c.to_rgba8(), [255, 0, 0, 255]);
-/// assert_eq!(c.to_hex_string(), &quot;#ff0000&quot;);
-/// assert_eq!(c.to_rgb_string(), &quot;rgb(255,0,0)&quot;);
+/// assert_eq!(c.to_hex_string(), "#ff0000");
+/// assert_eq!(c.to_rgb_string(), "rgb(255,0,0)");
 /// # Ok(())
 /// # }
 /// ```
 </span><span class="kw">pub fn </span>parse(s: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;Color, ParseColorError&gt; {
     <span class="kw">let </span>s = s.trim().to_lowercase();
 
-    <span class="kw">if </span>s == <span class="string">&quot;transparent&quot; </span>{
+    <span class="kw">if </span>s == <span class="string">"transparent" </span>{
         <span class="kw">return </span><span class="prelude-val">Ok</span>(Color::new(<span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>));
     }
 
     <span class="comment">// Named colors
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;named-colors&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"named-colors"</span>)]
     </span><span class="kw">if let </span><span class="prelude-val">Some</span>([r, g, b]) = NAMED_COLORS.get(<span class="kw-2">&amp;*</span>s) {
         <span class="kw">return </span><span class="prelude-val">Ok</span>(Color::from_rgba8(<span class="kw-2">*</span>r, <span class="kw-2">*</span>g, <span class="kw-2">*</span>b, <span class="number">255</span>));
     }
 
     <span class="comment">// Hex format
-    </span><span class="kw">if let </span><span class="prelude-val">Some</span>(s) = s.strip_prefix(<span class="string">&#39;#&#39;</span>) {
+    </span><span class="kw">if let </span><span class="prelude-val">Some</span>(s) = s.strip_prefix(<span class="string">'#'</span>) {
         <span class="kw">return </span>parse_hex(s);
     }
 
-    <span class="kw">if let </span>(<span class="prelude-val">Some</span>(i), <span class="prelude-val">Some</span>(s)) = (s.find(<span class="string">&#39;(&#39;</span>), s.strip_suffix(<span class="string">&#39;)&#39;</span>)) {
+    <span class="kw">if let </span>(<span class="prelude-val">Some</span>(i), <span class="prelude-val">Some</span>(s)) = (s.find(<span class="string">'('</span>), s.strip_suffix(<span class="string">')'</span>)) {
         <span class="kw">let </span>fname = <span class="kw-2">&amp;</span>s[..i].trim_end();
-        <span class="kw">let </span>s = <span class="kw-2">&amp;</span>s[i + <span class="number">1</span>..].replace(<span class="string">&#39;,&#39;</span>, <span class="string">&quot; &quot;</span>).replace(<span class="string">&#39;/&#39;</span>, <span class="string">&quot; &quot;</span>);
+        <span class="kw">let </span>s = <span class="kw-2">&amp;</span>s[i + <span class="number">1</span>..].replace(<span class="string">','</span>, <span class="string">" "</span>).replace(<span class="string">'/'</span>, <span class="string">" "</span>);
         <span class="kw">let </span>params = s.split_whitespace().collect::&lt;Vec&lt;<span class="kw-2">&amp;</span>str&gt;&gt;();
         <span class="kw">let </span>p_len = params.len();
 
         <span class="kw">match </span><span class="kw-2">*</span>fname {
-            <span class="string">&quot;rgb&quot; </span>| <span class="string">&quot;rgba&quot; </span>=&gt; {
+            <span class="string">"rgb" </span>| <span class="string">"rgba" </span>=&gt; {
                 <span class="kw">if </span>p_len != <span class="number">3 </span>&amp;&amp; p_len != <span class="number">4 </span>{
                     <span class="kw">return </span><span class="prelude-val">Err</span>(ParseColorError::InvalidRgb);
                 }
@@ -560,7 +561,7 @@
 
                 <span class="kw">return </span><span class="prelude-val">Err</span>(ParseColorError::InvalidRgb);
             }
-            <span class="string">&quot;hsl&quot; </span>| <span class="string">&quot;hsla&quot; </span>=&gt; {
+            <span class="string">"hsl" </span>| <span class="string">"hsla" </span>=&gt; {
                 <span class="kw">if </span>p_len != <span class="number">3 </span>&amp;&amp; p_len != <span class="number">4 </span>{
                     <span class="kw">return </span><span class="prelude-val">Err</span>(ParseColorError::InvalidHsl);
                 }
@@ -583,7 +584,7 @@
 
                 <span class="kw">return </span><span class="prelude-val">Err</span>(ParseColorError::InvalidHsl);
             }
-            <span class="string">&quot;hwb&quot; </span>| <span class="string">&quot;hwba&quot; </span>=&gt; {
+            <span class="string">"hwb" </span>| <span class="string">"hwba" </span>=&gt; {
                 <span class="kw">if </span>p_len != <span class="number">3 </span>&amp;&amp; p_len != <span class="number">4 </span>{
                     <span class="kw">return </span><span class="prelude-val">Err</span>(ParseColorError::InvalidHwb);
                 }
@@ -606,7 +607,7 @@
 
                 <span class="kw">return </span><span class="prelude-val">Err</span>(ParseColorError::InvalidHwb);
             }
-            <span class="string">&quot;hsv&quot; </span>| <span class="string">&quot;hsva&quot; </span>=&gt; {
+            <span class="string">"hsv" </span>| <span class="string">"hsva" </span>=&gt; {
                 <span class="kw">if </span>p_len != <span class="number">3 </span>&amp;&amp; p_len != <span class="number">4 </span>{
                     <span class="kw">return </span><span class="prelude-val">Err</span>(ParseColorError::InvalidHsv);
                 }
@@ -629,8 +630,8 @@
 
                 <span class="kw">return </span><span class="prelude-val">Err</span>(ParseColorError::InvalidHsv);
             }
-            <span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
-            </span><span class="string">&quot;lab&quot; </span>=&gt; {
+            <span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
+            </span><span class="string">"lab" </span>=&gt; {
                 <span class="kw">if </span>p_len != <span class="number">3 </span>&amp;&amp; p_len != <span class="number">4 </span>{
                     <span class="kw">return </span><span class="prelude-val">Err</span>(ParseColorError::InvalidLab);
                 }
@@ -663,8 +664,8 @@
 
                 <span class="kw">return </span><span class="prelude-val">Err</span>(ParseColorError::InvalidLab);
             }
-            <span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
-            </span><span class="string">&quot;lch&quot; </span>=&gt; {
+            <span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
+            </span><span class="string">"lch" </span>=&gt; {
                 <span class="kw">if </span>p_len != <span class="number">3 </span>&amp;&amp; p_len != <span class="number">4 </span>{
                     <span class="kw">return </span><span class="prelude-val">Err</span>(ParseColorError::InvalidLch);
                 }
@@ -699,7 +700,7 @@
         }
     }
 
-    <span class="comment">// Hex format without prefix &#39;#&#39;
+    <span class="comment">// Hex format without prefix '#'
     </span><span class="kw">if let </span><span class="prelude-val">Ok</span>(c) = parse_hex(<span class="kw-2">&amp;</span>s) {
         <span class="kw">return </span><span class="prelude-val">Ok</span>(c);
     }
@@ -747,39 +748,39 @@
 }
 
 <span class="kw">fn </span>parse_percent_or_float(s: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;(f64, bool)&gt; {
-    s.strip_suffix(<span class="string">&#39;%&#39;</span>)
+    s.strip_suffix(<span class="string">'%'</span>)
         .and_then(|s| s.parse().ok().map(|t: f64| (t / <span class="number">100.0</span>, <span class="bool-val">true</span>)))
         .or_else(|| s.parse().ok().map(|t| (t, <span class="bool-val">false</span>)))
 }
 
 <span class="kw">fn </span>parse_percent_or_255(s: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;(f64, bool)&gt; {
-    s.strip_suffix(<span class="string">&#39;%&#39;</span>)
+    s.strip_suffix(<span class="string">'%'</span>)
         .and_then(|s| s.parse().ok().map(|t: f64| (t / <span class="number">100.0</span>, <span class="bool-val">true</span>)))
         .or_else(|| s.parse().ok().map(|t: f64| (t / <span class="number">255.0</span>, <span class="bool-val">false</span>)))
 }
 
 <span class="kw">fn </span>parse_angle(s: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;f64&gt; {
-    s.strip_suffix(<span class="string">&quot;deg&quot;</span>)
+    s.strip_suffix(<span class="string">"deg"</span>)
         .and_then(|s| s.parse().ok())
         .or_else(|| {
-            s.strip_suffix(<span class="string">&quot;grad&quot;</span>)
+            s.strip_suffix(<span class="string">"grad"</span>)
                 .and_then(|s| s.parse().ok())
                 .map(|t: f64| t * <span class="number">360.0 </span>/ <span class="number">400.0</span>)
         })
         .or_else(|| {
-            s.strip_suffix(<span class="string">&quot;rad&quot;</span>)
+            s.strip_suffix(<span class="string">"rad"</span>)
                 .and_then(|s| s.parse().ok())
                 .map(|t: f64| t.to_degrees())
         })
         .or_else(|| {
-            s.strip_suffix(<span class="string">&quot;turn&quot;</span>)
+            s.strip_suffix(<span class="string">"turn"</span>)
                 .and_then(|s| s.parse().ok())
                 .map(|t: f64| t * <span class="number">360.0</span>)
         })
         .or_else(|| s.parse().ok())
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
 </span><span class="comment">// Map t from range [a, b] to range [c, d]
 </span><span class="kw">fn </span>remap(t: f64, a: f64, b: f64, c: f64, d: f64) -&gt; f64 {
     (t - a) * ((d - c) / (b - a)) + c
@@ -792,16 +793,16 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>test_parse_percent_or_float() {
         <span class="kw">let </span>test_data = [
-            (<span class="string">&quot;0%&quot;</span>, <span class="prelude-val">Some</span>((<span class="number">0.0</span>, <span class="bool-val">true</span>))),
-            (<span class="string">&quot;100%&quot;</span>, <span class="prelude-val">Some</span>((<span class="number">1.0</span>, <span class="bool-val">true</span>))),
-            (<span class="string">&quot;50%&quot;</span>, <span class="prelude-val">Some</span>((<span class="number">0.5</span>, <span class="bool-val">true</span>))),
-            (<span class="string">&quot;0&quot;</span>, <span class="prelude-val">Some</span>((<span class="number">0.0</span>, <span class="bool-val">false</span>))),
-            (<span class="string">&quot;1&quot;</span>, <span class="prelude-val">Some</span>((<span class="number">1.0</span>, <span class="bool-val">false</span>))),
-            (<span class="string">&quot;0.5&quot;</span>, <span class="prelude-val">Some</span>((<span class="number">0.5</span>, <span class="bool-val">false</span>))),
-            (<span class="string">&quot;100.0&quot;</span>, <span class="prelude-val">Some</span>((<span class="number">100.0</span>, <span class="bool-val">false</span>))),
-            (<span class="string">&quot;-23.7&quot;</span>, <span class="prelude-val">Some</span>((-<span class="number">23.7</span>, <span class="bool-val">false</span>))),
-            (<span class="string">&quot;%&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">&quot;1x&quot;</span>, <span class="prelude-val">None</span>),
+            (<span class="string">"0%"</span>, <span class="prelude-val">Some</span>((<span class="number">0.0</span>, <span class="bool-val">true</span>))),
+            (<span class="string">"100%"</span>, <span class="prelude-val">Some</span>((<span class="number">1.0</span>, <span class="bool-val">true</span>))),
+            (<span class="string">"50%"</span>, <span class="prelude-val">Some</span>((<span class="number">0.5</span>, <span class="bool-val">true</span>))),
+            (<span class="string">"0"</span>, <span class="prelude-val">Some</span>((<span class="number">0.0</span>, <span class="bool-val">false</span>))),
+            (<span class="string">"1"</span>, <span class="prelude-val">Some</span>((<span class="number">1.0</span>, <span class="bool-val">false</span>))),
+            (<span class="string">"0.5"</span>, <span class="prelude-val">Some</span>((<span class="number">0.5</span>, <span class="bool-val">false</span>))),
+            (<span class="string">"100.0"</span>, <span class="prelude-val">Some</span>((<span class="number">100.0</span>, <span class="bool-val">false</span>))),
+            (<span class="string">"-23.7"</span>, <span class="prelude-val">Some</span>((-<span class="number">23.7</span>, <span class="bool-val">false</span>))),
+            (<span class="string">"%"</span>, <span class="prelude-val">None</span>),
+            (<span class="string">"1x"</span>, <span class="prelude-val">None</span>),
         ];
         <span class="kw">for </span>(s, expected) <span class="kw">in </span>test_data {
             <span class="macro">assert_eq!</span>(parse_percent_or_float(s), expected);
@@ -811,15 +812,15 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>test_parse_percent_or_255() {
         <span class="kw">let </span>test_data = [
-            (<span class="string">&quot;0%&quot;</span>, <span class="prelude-val">Some</span>((<span class="number">0.0</span>, <span class="bool-val">true</span>))),
-            (<span class="string">&quot;100%&quot;</span>, <span class="prelude-val">Some</span>((<span class="number">1.0</span>, <span class="bool-val">true</span>))),
-            (<span class="string">&quot;50%&quot;</span>, <span class="prelude-val">Some</span>((<span class="number">0.5</span>, <span class="bool-val">true</span>))),
-            (<span class="string">&quot;-100%&quot;</span>, <span class="prelude-val">Some</span>((-<span class="number">1.0</span>, <span class="bool-val">true</span>))),
-            (<span class="string">&quot;0&quot;</span>, <span class="prelude-val">Some</span>((<span class="number">0.0</span>, <span class="bool-val">false</span>))),
-            (<span class="string">&quot;255&quot;</span>, <span class="prelude-val">Some</span>((<span class="number">1.0</span>, <span class="bool-val">false</span>))),
-            (<span class="string">&quot;127.5&quot;</span>, <span class="prelude-val">Some</span>((<span class="number">0.5</span>, <span class="bool-val">false</span>))),
-            (<span class="string">&quot;%&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">&quot;255x&quot;</span>, <span class="prelude-val">None</span>),
+            (<span class="string">"0%"</span>, <span class="prelude-val">Some</span>((<span class="number">0.0</span>, <span class="bool-val">true</span>))),
+            (<span class="string">"100%"</span>, <span class="prelude-val">Some</span>((<span class="number">1.0</span>, <span class="bool-val">true</span>))),
+            (<span class="string">"50%"</span>, <span class="prelude-val">Some</span>((<span class="number">0.5</span>, <span class="bool-val">true</span>))),
+            (<span class="string">"-100%"</span>, <span class="prelude-val">Some</span>((-<span class="number">1.0</span>, <span class="bool-val">true</span>))),
+            (<span class="string">"0"</span>, <span class="prelude-val">Some</span>((<span class="number">0.0</span>, <span class="bool-val">false</span>))),
+            (<span class="string">"255"</span>, <span class="prelude-val">Some</span>((<span class="number">1.0</span>, <span class="bool-val">false</span>))),
+            (<span class="string">"127.5"</span>, <span class="prelude-val">Some</span>((<span class="number">0.5</span>, <span class="bool-val">false</span>))),
+            (<span class="string">"%"</span>, <span class="prelude-val">None</span>),
+            (<span class="string">"255x"</span>, <span class="prelude-val">None</span>),
         ];
         <span class="kw">for </span>(s, expected) <span class="kw">in </span>test_data {
             <span class="macro">assert_eq!</span>(parse_percent_or_255(s), expected);
@@ -829,35 +830,35 @@
     <span class="attr">#[test]
     </span><span class="kw">fn </span>test_parse_angle() {
         <span class="kw">let </span>test_data = [
-            (<span class="string">&quot;360&quot;</span>, <span class="prelude-val">Some</span>(<span class="number">360.0</span>)),
-            (<span class="string">&quot;127.356&quot;</span>, <span class="prelude-val">Some</span>(<span class="number">127.356</span>)),
-            (<span class="string">&quot;+120deg&quot;</span>, <span class="prelude-val">Some</span>(<span class="number">120.0</span>)),
-            (<span class="string">&quot;90deg&quot;</span>, <span class="prelude-val">Some</span>(<span class="number">90.0</span>)),
-            (<span class="string">&quot;-127deg&quot;</span>, <span class="prelude-val">Some</span>(-<span class="number">127.0</span>)),
-            (<span class="string">&quot;100grad&quot;</span>, <span class="prelude-val">Some</span>(<span class="number">90.0</span>)),
-            (<span class="string">&quot;1.5707963267948966rad&quot;</span>, <span class="prelude-val">Some</span>(<span class="number">90.0</span>)),
-            (<span class="string">&quot;0.25turn&quot;</span>, <span class="prelude-val">Some</span>(<span class="number">90.0</span>)),
-            (<span class="string">&quot;-0.25turn&quot;</span>, <span class="prelude-val">Some</span>(-<span class="number">90.0</span>)),
-            (<span class="string">&quot;O&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">&quot;Odeg&quot;</span>, <span class="prelude-val">None</span>),
-            (<span class="string">&quot;rad&quot;</span>, <span class="prelude-val">None</span>),
+            (<span class="string">"360"</span>, <span class="prelude-val">Some</span>(<span class="number">360.0</span>)),
+            (<span class="string">"127.356"</span>, <span class="prelude-val">Some</span>(<span class="number">127.356</span>)),
+            (<span class="string">"+120deg"</span>, <span class="prelude-val">Some</span>(<span class="number">120.0</span>)),
+            (<span class="string">"90deg"</span>, <span class="prelude-val">Some</span>(<span class="number">90.0</span>)),
+            (<span class="string">"-127deg"</span>, <span class="prelude-val">Some</span>(-<span class="number">127.0</span>)),
+            (<span class="string">"100grad"</span>, <span class="prelude-val">Some</span>(<span class="number">90.0</span>)),
+            (<span class="string">"1.5707963267948966rad"</span>, <span class="prelude-val">Some</span>(<span class="number">90.0</span>)),
+            (<span class="string">"0.25turn"</span>, <span class="prelude-val">Some</span>(<span class="number">90.0</span>)),
+            (<span class="string">"-0.25turn"</span>, <span class="prelude-val">Some</span>(-<span class="number">90.0</span>)),
+            (<span class="string">"O"</span>, <span class="prelude-val">None</span>),
+            (<span class="string">"Odeg"</span>, <span class="prelude-val">None</span>),
+            (<span class="string">"rad"</span>, <span class="prelude-val">None</span>),
         ];
         <span class="kw">for </span>(s, expected) <span class="kw">in </span>test_data {
             <span class="macro">assert_eq!</span>(parse_angle(s), expected);
         }
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;named-colors&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"named-colors"</span>)]
     #[test]
     </span><span class="kw">fn </span>test_named_colors() {
         <span class="kw">for </span>(<span class="kw-2">&amp;</span>name, <span class="kw-2">&amp;</span>rgb) <span class="kw">in </span>NAMED_COLORS.entries() {
             <span class="macro">assert_eq!</span>(parse(name).unwrap().to_rgba8()[<span class="number">0</span>..<span class="number">3</span>], rgb);
         }
 
-        <span class="kw">let </span>skip_list = [<span class="string">&quot;aqua&quot;</span>, <span class="string">&quot;cyan&quot;</span>, <span class="string">&quot;fuchsia&quot;</span>, <span class="string">&quot;magenta&quot;</span>];
+        <span class="kw">let </span>skip_list = [<span class="string">"aqua"</span>, <span class="string">"cyan"</span>, <span class="string">"fuchsia"</span>, <span class="string">"magenta"</span>];
 
         <span class="kw">for </span><span class="kw-2">&amp;</span>name <span class="kw">in </span>NAMED_COLORS.keys() {
-            <span class="kw">if </span>skip_list.contains(<span class="kw-2">&amp;</span>name) || name.contains(<span class="string">&quot;gray&quot;</span>) || name.contains(<span class="string">&quot;grey&quot;</span>) {
+            <span class="kw">if </span>skip_list.contains(<span class="kw-2">&amp;</span>name) || name.contains(<span class="string">"gray"</span>) || name.contains(<span class="string">"grey"</span>) {
                 <span class="kw">continue</span>;
             }
             <span class="macro">assert_eq!</span>(parse(name).unwrap().name(), <span class="prelude-val">Some</span>(name));

@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["app","command","executor","font","icon_theme","keyboard_nav","prelude","theme","widget"],"struct":["Command"],"trait":["Also","Apply"],"type":["Element","Renderer"]};
+window.SIDEBAR_ITEMS = {"mod":["app","command","config","executor","font","icon_theme","keyboard_nav","prelude","theme","widget"],"struct":["Command"],"trait":["Also","Apply"],"type":["Element","Renderer"]};

@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/drm-fourcc-2.2.0/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="drm_fourcc" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/drm-fourcc-2.2.0/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="drm_fourcc" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -438,7 +439,7 @@
 <a href="#438" id="438">438</a>
 </pre></div><pre class="rust"><code><span class="attr">#![allow(non_camel_case_types)]
 #![warn(clippy::cargo)]
-#![cfg_attr(not(feature = <span class="string">&quot;std&quot;</span>), no_std)]
+#![cfg_attr(not(feature = <span class="string">"std"</span>), no_std)]
 
 </span><span class="doccomment">//! [`DrmFourcc`] is an enum representing every pixel format supported by DRM
 //! (as of kernel version 5.10.0).
@@ -460,7 +461,7 @@
 //!
 //! ```
 //! # use drm_fourcc::DrmFourcc;
-//! assert_eq!(DrmFourcc::Xrgb8888.to_string(), &quot;XR24&quot;);
+//! assert_eq!(DrmFourcc::Xrgb8888.to_string(), "XR24");
 //! ```
 //!
 //!
@@ -490,10 +491,10 @@
 <span class="kw">use </span>core::fmt::{Debug, Display, Formatter};
 <span class="kw">use </span>core::hash::{Hash, Hasher};
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
 </span><span class="kw">use </span>std::string::{String, ToString};
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
 </span><span class="kw">use </span>std::error::Error;
 
 <span class="kw">pub use </span>as_enum::{DrmFourcc, DrmModifier, DrmVendor};
@@ -502,36 +503,36 @@
 <span class="kw">mod </span>consts;
 
 <span class="attr">#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>DrmFormat {
     <span class="kw">pub </span>code: DrmFourcc,
     <span class="kw">pub </span>modifier: DrmModifier,
 }
 
 <span class="kw">impl </span>DrmFourcc {
-    <span class="doccomment">/// Get the string representation of the format&#39;s fourcc.
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
-    #[deprecated(since = <span class="string">&quot;2.2.0&quot;</span>, note = <span class="string">&quot;Use `ToString::to_string` instead&quot;</span>)]
+    <span class="doccomment">/// Get the string representation of the format's fourcc.
+    </span><span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
+    #[deprecated(since = <span class="string">"2.2.0"</span>, note = <span class="string">"Use `ToString::to_string` instead"</span>)]
     </span><span class="kw">pub fn </span>string_form(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
         <span class="self">self</span>.display_form().to_string()
     }
 
     <span class="comment">// Internal helper to clarify it always has Display.
     </span><span class="kw">fn </span>display_form(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">impl </span>Display + Debug {
-        fourcc_display_form(<span class="kw-2">*</span><span class="self">self </span><span class="kw">as </span>u32).expect(<span class="string">&quot;Must be valid fourcc&quot;</span>)
+        fourcc_display_form(<span class="kw-2">*</span><span class="self">self </span><span class="kw">as </span>u32).expect(<span class="string">"Must be valid fourcc"</span>)
     }
 }
 
 <span class="kw">impl </span>Debug <span class="kw">for </span>DrmFourcc {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
-        f.debug_tuple(<span class="string">&quot;DrmFourcc&quot;</span>)
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
+        f.debug_tuple(<span class="string">"DrmFourcc"</span>)
             .field(<span class="kw-2">&amp;</span><span class="self">self</span>.display_form())
             .finish()
     }
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>DrmFourcc {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
         Display::fmt(<span class="kw-2">&amp;</span><span class="self">self</span>.display_form(), f)
     }
 }
@@ -541,8 +542,8 @@
 
     <span class="doccomment">/// Convert from an u32
     ///
-    </span><span class="attr">#[cfg_attr(feature = <span class="string">&quot;std&quot;</span>, doc = <span class="string">&quot;```&quot;</span>)]
-    #[cfg_attr(not(feature = <span class="string">&quot;std&quot;</span>), doc = <span class="string">&quot;```ignore&quot;</span>)]
+    </span><span class="attr">#[cfg_attr(feature = <span class="string">"std"</span>, doc = <span class="string">"```"</span>)]
+    #[cfg_attr(not(feature = <span class="string">"std"</span>), doc = <span class="string">"```ignore"</span>)]
     </span><span class="doccomment">/// # use drm_fourcc::DrmFourcc;
     /// # use std::convert::TryFrom;
     /// assert_eq!(DrmFourcc::try_from(875710274).unwrap(), DrmFourcc::Bgr888);
@@ -550,28 +551,28 @@
     /// assert!(DrmFourcc::try_from(0).is_err());
     ///
     /// // If the u32 is in the valid format to be a fourcc, you can see its string form
-    /// assert_eq!(DrmFourcc::try_from(828601953).unwrap_err().string_form(), Some(&quot;avc1&quot;.to_string()));
+    /// assert_eq!(DrmFourcc::try_from(828601953).unwrap_err().string_form(), Some("avc1".to_string()));
     /// ```
     </span><span class="kw">fn </span>try_from(value: u32) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, <span class="self">Self</span>::Error&gt; {
         <span class="self">Self</span>::from_u32(value).ok_or(UnrecognizedFourcc(value))
     }
 }
 
-<span class="doccomment">/// Wraps some u32 that isn&#39;t a DRM fourcc we recognize
+<span class="doccomment">/// Wraps some u32 that isn't a DRM fourcc we recognize
 ///
-</span><span class="attr">#[cfg_attr(feature = <span class="string">&quot;std&quot;</span>, doc = <span class="string">&quot;```&quot;</span>)]
-#[cfg_attr(not(feature = <span class="string">&quot;std&quot;</span>), doc = <span class="string">&quot;```ignore&quot;</span>)]
+</span><span class="attr">#[cfg_attr(feature = <span class="string">"std"</span>, doc = <span class="string">"```"</span>)]
+#[cfg_attr(not(feature = <span class="string">"std"</span>), doc = <span class="string">"```ignore"</span>)]
 </span><span class="doccomment">/// # use drm_fourcc::{DrmFourcc, UnrecognizedFourcc};
 /// # use std::convert::TryFrom;
 /// // Get the u32
 /// assert_eq!(UnrecognizedFourcc(42).0, 42);
 ///
 /// // Get the string form
-/// assert_eq!(UnrecognizedFourcc(828601953).string_form(), Some(&quot;avc1&quot;.to_string()));
+/// assert_eq!(UnrecognizedFourcc(828601953).string_form(), Some("avc1".to_string()));
 /// assert_eq!(UnrecognizedFourcc(0).string_form(), None);
 /// ```
 </span><span class="attr">#[derive(Copy, Clone, Eq, PartialEq)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>UnrecognizedFourcc(<span class="kw">pub </span>u32);
 
 <span class="kw">impl </span>UnrecognizedFourcc {
@@ -579,7 +580,7 @@
     ///
     /// Note that this requires the `std` feature to be enabled. The [`display`] method is an
     /// alternative that does not require this dependency.
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
     </span><span class="kw">pub fn </span>string_form(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;String&gt; {
         fourcc_string_form(<span class="self">self</span>.<span class="number">0</span>)
     }
@@ -600,8 +601,8 @@
 }
 
 <span class="kw">impl </span>Debug <span class="kw">for </span>UnrecognizedFourcc {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
-        <span class="kw">let </span><span class="kw-2">mut </span>debug = <span class="kw-2">&amp;mut </span>f.debug_tuple(<span class="string">&quot;UnrecognizedFourcc&quot;</span>);
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
+        <span class="kw">let </span><span class="kw-2">mut </span>debug = <span class="kw-2">&amp;mut </span>f.debug_tuple(<span class="string">"UnrecognizedFourcc"</span>);
 
         <span class="kw">if let </span><span class="prelude-val">Some</span>(string_form) = fourcc_display_form(<span class="self">self</span>.<span class="number">0</span>) {
             debug = debug.field(<span class="kw-2">&amp;</span>string_form);
@@ -612,15 +613,15 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>UnrecognizedFourcc {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
         Debug::fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f)
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
 </span><span class="kw">impl </span>Error <span class="kw">for </span>UnrecognizedFourcc {}
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
 </span><span class="kw">fn </span>fourcc_string_form(fourcc: u32) -&gt; <span class="prelude-ty">Option</span>&lt;String&gt; {
     fourcc_display_form(fourcc).map(|val| val.to_string())
 }
@@ -642,8 +643,8 @@
     <span class="kw">let </span><span class="kw-2">mut </span>bytes = raw_bytes;
     <span class="comment">// Bytes in tail are allowed to be NUL
     </span><span class="kw">for </span>byte <span class="kw">in </span><span class="kw-2">&amp;mut </span>bytes[<span class="number">4 </span>- chars.as_str().len()..] {
-        <span class="kw">if </span><span class="kw-2">*</span>byte == <span class="string">b&#39;\0&#39; </span>{
-            <span class="kw-2">*</span>byte = <span class="string">b&#39; &#39;</span>;
+        <span class="kw">if </span><span class="kw-2">*</span>byte == <span class="string">b'\0' </span>{
+            <span class="kw-2">*</span>byte = <span class="string">b' '</span>;
         }
     }
 
@@ -657,7 +658,7 @@
 
     <span class="kw">impl </span>Display <span class="kw">for </span>FormatFourccRaw {
         <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-            <span class="kw">let </span>chars = ::core::str::from_utf8(<span class="kw-2">&amp;</span><span class="self">self</span>.bytes[..]).expect(<span class="string">&quot;validated previously&quot;</span>);
+            <span class="kw">let </span>chars = ::core::str::from_utf8(<span class="kw-2">&amp;</span><span class="self">self</span>.bytes[..]).expect(<span class="string">"validated previously"</span>);
             f.write_str(chars)
         }
     }
@@ -688,7 +689,7 @@
     }
 }
 
-<span class="doccomment">/// Wraps some u8 that isn&#39;t a DRM vendor we recognize
+<span class="doccomment">/// Wraps some u8 that isn't a DRM vendor we recognize
 ///
 /// ```
 /// # use drm_fourcc::{DrmVendor, UnrecognizedVendor};
@@ -697,16 +698,16 @@
 /// assert_eq!(UnrecognizedVendor(42).0, 42);
 /// ```
 </span><span class="attr">#[derive(Debug, Copy, Clone, Eq, PartialEq)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>UnrecognizedVendor(<span class="kw">pub </span>u8);
 
 <span class="kw">impl </span>Display <span class="kw">for </span>UnrecognizedVendor {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
         Debug::fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f)
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
 </span><span class="kw">impl </span>Error <span class="kw">for </span>UnrecognizedVendor {}
 
 <span class="kw">impl </span>From&lt;u64&gt; <span class="kw">for </span>DrmModifier {
@@ -721,7 +722,7 @@
     }
 }
 
-<span class="doccomment">/// Wraps some u64 that isn&#39;t a DRM modifier we recognize
+<span class="doccomment">/// Wraps some u64 that isn't a DRM modifier we recognize
 ///
 /// ```
 /// # use drm_fourcc::{DrmModifier, UnrecognizedModifier};
@@ -730,16 +731,16 @@
 /// assert_eq!(UnrecognizedModifier(42).0, 42);
 /// ```
 </span><span class="attr">#[derive(Debug, Copy, Clone, Eq, PartialEq)]
-#[cfg_attr(feature = <span class="string">&quot;serde&quot;</span>, derive(serde::Serialize, serde::Deserialize))]
+#[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
 </span><span class="kw">pub struct </span>UnrecognizedModifier(<span class="kw">pub </span>u64);
 
 <span class="kw">impl </span>Display <span class="kw">for </span>UnrecognizedModifier {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
         Debug::fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f)
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"std"</span>)]
 </span><span class="kw">impl </span>Error <span class="kw">for </span>UnrecognizedModifier {}
 
 <span class="kw">impl </span>UnrecognizedModifier {
@@ -839,32 +840,32 @@
     }
 
     <span class="attr">#[test]
-    #[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+    #[cfg(feature = <span class="string">"std"</span>)]
     </span><span class="kw">fn </span>enum_member_has_correct_string_format() {
-        <span class="macro">assert_eq!</span>(DrmFourcc::Xrgb8888.to_string(), <span class="string">&quot;XR24&quot;</span>);
+        <span class="macro">assert_eq!</span>(DrmFourcc::Xrgb8888.to_string(), <span class="string">"XR24"</span>);
     }
 
     <span class="attr">#[test]
-    #[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+    #[cfg(feature = <span class="string">"std"</span>)]
     </span><span class="kw">fn </span>fourcc_string_form_handles_valid() {
-        <span class="macro">assert_eq!</span>(fourcc_string_form(<span class="number">875713112</span>).unwrap(), <span class="string">&quot;XR24&quot;</span>);
-        <span class="macro">assert_eq!</span>(fourcc_string_form(<span class="number">828601953</span>).unwrap(), <span class="string">&quot;avc1&quot;</span>);
-        <span class="macro">assert_eq!</span>(fourcc_string_form(<span class="number">0x316376</span>).unwrap(), <span class="string">&quot;vc1 &quot;</span>);
+        <span class="macro">assert_eq!</span>(fourcc_string_form(<span class="number">875713112</span>).unwrap(), <span class="string">"XR24"</span>);
+        <span class="macro">assert_eq!</span>(fourcc_string_form(<span class="number">828601953</span>).unwrap(), <span class="string">"avc1"</span>);
+        <span class="macro">assert_eq!</span>(fourcc_string_form(<span class="number">0x316376</span>).unwrap(), <span class="string">"vc1 "</span>);
     }
 
     <span class="attr">#[test]
-    #[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+    #[cfg(feature = <span class="string">"std"</span>)]
     </span><span class="kw">fn </span>unrecognized_handles_valid_fourcc() {
         <span class="macro">assert_eq!</span>(
             UnrecognizedFourcc(<span class="number">828601953</span>).to_string(),
-            <span class="string">&quot;UnrecognizedFourcc(avc1, 828601953)&quot;
+            <span class="string">"UnrecognizedFourcc(avc1, 828601953)"
         </span>);
     }
 
     <span class="attr">#[test]
-    #[cfg(feature = <span class="string">&quot;std&quot;</span>)]
+    #[cfg(feature = <span class="string">"std"</span>)]
     </span><span class="kw">fn </span>unrecognized_handles_invalid_fourcc() {
-        <span class="macro">assert_eq!</span>(UnrecognizedFourcc(<span class="number">0</span>).to_string(), <span class="string">&quot;UnrecognizedFourcc(0)&quot;</span>);
+        <span class="macro">assert_eq!</span>(UnrecognizedFourcc(<span class="number">0</span>).to_string(), <span class="string">"UnrecognizedFourcc(0)"</span>);
     }
 
     <span class="attr">#[test]

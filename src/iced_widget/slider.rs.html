@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `iced/widget/src/slider.rs`."><title>slider.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="iced_widget" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../iced_widget/index.html"><img src="https://raw.githubusercontent.com/iced-rs/iced/9ab6923e943f784985e9ef9ca28b10278297225d/docs/logo.svg" alt="iced_widget"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `iced/widget/src/slider.rs`."><title>slider.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="iced_widget" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><a class="sub-logo-container" href="../../iced_widget/index.html"><img src="https://raw.githubusercontent.com/iced-rs/iced/9ab6923e943f784985e9ef9ca28b10278297225d/docs/logo.svg" alt="iced_widget"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -644,6 +645,50 @@
 <a href="#644" id="644">644</a>
 <a href="#645" id="645">645</a>
 <a href="#646" id="646">646</a>
+<a href="#647" id="647">647</a>
+<a href="#648" id="648">648</a>
+<a href="#649" id="649">649</a>
+<a href="#650" id="650">650</a>
+<a href="#651" id="651">651</a>
+<a href="#652" id="652">652</a>
+<a href="#653" id="653">653</a>
+<a href="#654" id="654">654</a>
+<a href="#655" id="655">655</a>
+<a href="#656" id="656">656</a>
+<a href="#657" id="657">657</a>
+<a href="#658" id="658">658</a>
+<a href="#659" id="659">659</a>
+<a href="#660" id="660">660</a>
+<a href="#661" id="661">661</a>
+<a href="#662" id="662">662</a>
+<a href="#663" id="663">663</a>
+<a href="#664" id="664">664</a>
+<a href="#665" id="665">665</a>
+<a href="#666" id="666">666</a>
+<a href="#667" id="667">667</a>
+<a href="#668" id="668">668</a>
+<a href="#669" id="669">669</a>
+<a href="#670" id="670">670</a>
+<a href="#671" id="671">671</a>
+<a href="#672" id="672">672</a>
+<a href="#673" id="673">673</a>
+<a href="#674" id="674">674</a>
+<a href="#675" id="675">675</a>
+<a href="#676" id="676">676</a>
+<a href="#677" id="677">677</a>
+<a href="#678" id="678">678</a>
+<a href="#679" id="679">679</a>
+<a href="#680" id="680">680</a>
+<a href="#681" id="681">681</a>
+<a href="#682" id="682">682</a>
+<a href="#683" id="683">683</a>
+<a href="#684" id="684">684</a>
+<a href="#685" id="685">685</a>
+<a href="#686" id="686">686</a>
+<a href="#687" id="687">687</a>
+<a href="#688" id="688">688</a>
+<a href="#689" id="689">689</a>
+<a href="#690" id="690">690</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Display an interactive selector of a single value from a range of values.
 //!
 //! A [`Slider`] has some local [`State`].
@@ -655,18 +700,18 @@
 <span class="kw">use </span><span class="kw">crate</span>::core::widget::tree::{<span class="self">self</span>, Tree};
 <span class="kw">use </span><span class="kw">crate</span>::core::widget::Id;
 <span class="kw">use </span><span class="kw">crate</span>::core::{
-    Border, Clipboard, Element, Layout, Length, Pixels, Point, Rectangle,
-    Shell, Size, Widget,
+    Border, Clipboard, Color, Element, Layout, Length, Pixels, Point,
+    Rectangle, Shell, Size, Widget,
 };
 
 <span class="kw">use </span>std::ops::RangeInclusive;
 
 <span class="kw">use </span>iced_renderer::core::{border::Radius, Degrees, Radians};
 <span class="kw">pub use </span>iced_style::slider::{
-    Appearance, Handle, HandleShape, Rail, StyleSheet,
+    Appearance, Handle, HandleShape, Rail, RailBackground, StyleSheet,
 };
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;a11y&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"a11y"</span>)]
 </span><span class="kw">use </span>std::borrow::Cow;
 
 <span class="doccomment">/// An horizontal bar and a handle that selects a single value from a range of
@@ -679,8 +724,8 @@
 ///
 /// # Example
 /// ```no_run
-/// # type Slider&lt;&#39;a, T, Message&gt; =
-/// #     iced_widget::Slider&lt;&#39;a, Message, T, iced_widget::style::Theme&gt;;
+/// # type Slider&lt;'a, T, Message&gt; =
+/// #     iced_widget::Slider&lt;'a, Message, T, iced_widget::style::Theme&gt;;
 /// #
 /// #[derive(Clone)]
 /// pub enum Message {
@@ -692,30 +737,32 @@
 /// Slider::new(0.0..=100.0, value, Message::SliderChanged);
 /// ```
 ///
-/// ![Slider drawn by Coffee&#39;s renderer](https://github.com/hecrj/coffee/blob/bda9818f823dfcb8a7ad0ff4940b4d4b387b5208/images/ui/slider.png?raw=true)
+/// ![Slider drawn by Coffee's renderer](https://github.com/hecrj/coffee/blob/bda9818f823dfcb8a7ad0ff4940b4d4b387b5208/images/ui/slider.png?raw=true)
 </span><span class="attr">#[allow(missing_debug_implementations)]
-</span><span class="kw">pub struct </span>Slider&lt;<span class="lifetime">&#39;a</span>, T, Message, Theme = <span class="kw">crate</span>::Theme&gt;
+#[must_use]
+</span><span class="kw">pub struct </span>Slider&lt;<span class="lifetime">'a</span>, T, Message, Theme = <span class="kw">crate</span>::Theme&gt;
 <span class="kw">where
     </span>Theme: StyleSheet,
 {
     id: Id,
-    <span class="attr">#[cfg(feature = <span class="string">&quot;a11y&quot;</span>)]
-    </span>name: <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;,
-    <span class="attr">#[cfg(feature = <span class="string">&quot;a11y&quot;</span>)]
-    </span>description: <span class="prelude-ty">Option</span>&lt;iced_accessibility::Description&lt;<span class="lifetime">&#39;a</span>&gt;&gt;,
-    <span class="attr">#[cfg(feature = <span class="string">&quot;a11y&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"a11y"</span>)]
+    </span>name: <span class="prelude-ty">Option</span>&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;,
+    <span class="attr">#[cfg(feature = <span class="string">"a11y"</span>)]
+    </span>description: <span class="prelude-ty">Option</span>&lt;iced_accessibility::Description&lt;<span class="lifetime">'a</span>&gt;&gt;,
+    <span class="attr">#[cfg(feature = <span class="string">"a11y"</span>)]
     </span>label: <span class="prelude-ty">Option</span>&lt;Vec&lt;iced_accessibility::accesskit::NodeId&gt;&gt;,
     range: RangeInclusive&lt;T&gt;,
     step: T,
     value: T,
-    on_change: Box&lt;<span class="kw">dyn </span>Fn(T) -&gt; Message + <span class="lifetime">&#39;a</span>&gt;,
+    breakpoints: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[T],
+    on_change: Box&lt;<span class="kw">dyn </span>Fn(T) -&gt; Message + <span class="lifetime">'a</span>&gt;,
     on_release: <span class="prelude-ty">Option</span>&lt;Message&gt;,
     width: Length,
     height: f32,
     style: Theme::Style,
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T, Message, Theme&gt; Slider&lt;<span class="lifetime">&#39;a</span>, T, Message, Theme&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, T, Message, Theme&gt; Slider&lt;<span class="lifetime">'a</span>, T, Message, Theme&gt;
 <span class="kw">where
     </span>T: Copy + From&lt;u8&gt; + std::cmp::PartialOrd,
     Message: Clone,
@@ -734,7 +781,7 @@
     ///   `Message`.
     </span><span class="kw">pub fn </span>new&lt;F&gt;(range: RangeInclusive&lt;T&gt;, value: T, on_change: F) -&gt; <span class="self">Self
     </span><span class="kw">where
-        </span>F: <span class="lifetime">&#39;a </span>+ Fn(T) -&gt; Message,
+        </span>F: <span class="lifetime">'a </span>+ Fn(T) -&gt; Message,
     {
         <span class="kw">let </span>value = <span class="kw">if </span>value &gt;= <span class="kw-2">*</span>range.start() {
             value
@@ -750,15 +797,16 @@
 
         Slider {
             id: Id::unique(),
-            <span class="attr">#[cfg(feature = <span class="string">&quot;a11y&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"a11y"</span>)]
             </span>name: <span class="prelude-val">None</span>,
-            <span class="attr">#[cfg(feature = <span class="string">&quot;a11y&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"a11y"</span>)]
             </span>description: <span class="prelude-val">None</span>,
-            <span class="attr">#[cfg(feature = <span class="string">&quot;a11y&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"a11y"</span>)]
             </span>label: <span class="prelude-val">None</span>,
             value,
             range,
             step: T::from(<span class="number">1</span>),
+            breakpoints: <span class="kw-2">&amp;</span>[],
             on_change: Box::new(on_change),
             on_release: <span class="prelude-val">None</span>,
             width: Length::Fill,
@@ -767,12 +815,20 @@
         }
     }
 
+    <span class="doccomment">/// Defines breakpoints to visibly mark on the slider.
+    ///
+    /// The slider will gravitate towards a breakpoint when near it.
+    </span><span class="kw">pub fn </span>breakpoints(<span class="kw-2">mut </span><span class="self">self</span>, breakpoints: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[T]) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.breakpoints = breakpoints;
+        <span class="self">self
+    </span>}
+
     <span class="doccomment">/// Sets the release message of the [`Slider`].
     /// This is called when the mouse is released from the slider.
     ///
-    /// Typically, the user&#39;s interaction with the slider is finished when this message is produced.
-    /// This is useful if you need to spawn a long-running task from the slider&#39;s result, where
-    /// the default on_change message could create too many events.
+    /// Typically, the user's interaction with the slider is finished when this message is produced.
+    /// This is useful if you need to spawn a long-running task from the slider's result, where
+    /// the default `on_change` message could create too many events.
     </span><span class="kw">pub fn </span>on_release(<span class="kw-2">mut </span><span class="self">self</span>, on_release: Message) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.on_release = <span class="prelude-val">Some</span>(on_release);
         <span class="self">self
@@ -802,14 +858,14 @@
         <span class="self">self
     </span>}
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;a11y&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"a11y"</span>)]
     </span><span class="doccomment">/// Sets the name of the [`Button`].
-    </span><span class="kw">pub fn </span>name(<span class="kw-2">mut </span><span class="self">self</span>, name: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>name(<span class="kw-2">mut </span><span class="self">self</span>, name: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.name = <span class="prelude-val">Some</span>(name.into());
         <span class="self">self
     </span>}
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;a11y&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"a11y"</span>)]
     </span><span class="doccomment">/// Sets the description of the [`Button`].
     </span><span class="kw">pub fn </span>description_widget(
         <span class="kw-2">mut </span><span class="self">self</span>,
@@ -821,15 +877,15 @@
         <span class="self">self
     </span>}
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;a11y&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"a11y"</span>)]
     </span><span class="doccomment">/// Sets the description of the [`Button`].
-    </span><span class="kw">pub fn </span>description(<span class="kw-2">mut </span><span class="self">self</span>, description: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">&#39;a</span>, str&gt;&gt;) -&gt; <span class="self">Self </span>{
+    </span><span class="kw">pub fn </span>description(<span class="kw-2">mut </span><span class="self">self</span>, description: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.description =
             <span class="prelude-val">Some</span>(iced_accessibility::Description::Text(description.into()));
         <span class="self">self
     </span>}
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;a11y&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"a11y"</span>)]
     </span><span class="doccomment">/// Sets the label of the [`Button`].
     </span><span class="kw">pub fn </span>label(<span class="kw-2">mut </span><span class="self">self</span>, label: <span class="kw-2">&amp;</span><span class="kw">dyn </span>iced_accessibility::Labels) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.label =
@@ -838,8 +894,8 @@
     </span>}
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T, Message, Theme, Renderer&gt; Widget&lt;Message, Theme, Renderer&gt;
-    <span class="kw">for </span>Slider&lt;<span class="lifetime">&#39;a</span>, T, Message, Theme&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, T, Message, Theme, Renderer&gt; Widget&lt;Message, Theme, Renderer&gt;
+    <span class="kw">for </span>Slider&lt;<span class="lifetime">'a</span>, T, Message, Theme&gt;
 <span class="kw">where
     </span>T: Copy + Into&lt;f64&gt; + num_traits::FromPrimitive,
     Message: Clone,
@@ -874,11 +930,11 @@
         <span class="kw-2">&amp;mut </span><span class="self">self</span>,
         tree: <span class="kw-2">&amp;mut </span>Tree,
         event: Event,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         cursor: mouse::Cursor,
         _renderer: <span class="kw-2">&amp;</span>Renderer,
         _clipboard: <span class="kw-2">&amp;mut </span><span class="kw">dyn </span>Clipboard,
-        shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">&#39;_</span>, Message&gt;,
+        shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">'_</span>, Message&gt;,
         _viewport: <span class="kw-2">&amp;</span>Rectangle,
     ) -&gt; event::Status {
         update(
@@ -901,7 +957,7 @@
         renderer: <span class="kw-2">&amp;mut </span>Renderer,
         theme: <span class="kw-2">&amp;</span>Theme,
         _style: <span class="kw-2">&amp;</span>renderer::Style,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         cursor: mouse::Cursor,
         _viewport: <span class="kw-2">&amp;</span>Rectangle,
     ) {
@@ -912,6 +968,7 @@
             tree.state.downcast_ref::&lt;State&gt;(),
             <span class="self">self</span>.value,
             <span class="kw-2">&amp;</span><span class="self">self</span>.range,
+            <span class="self">self</span>.breakpoints,
             theme,
             <span class="kw-2">&amp;</span><span class="self">self</span>.style,
         );
@@ -920,7 +977,7 @@
     <span class="kw">fn </span>mouse_interaction(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         tree: <span class="kw-2">&amp;</span>Tree,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         cursor: mouse::Cursor,
         _viewport: <span class="kw-2">&amp;</span>Rectangle,
         _renderer: <span class="kw-2">&amp;</span>Renderer,
@@ -928,10 +985,10 @@
         mouse_interaction(layout, cursor, tree.state.downcast_ref::&lt;State&gt;())
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;a11y&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"a11y"</span>)]
     </span><span class="kw">fn </span>a11y_nodes(
         <span class="kw-2">&amp;</span><span class="self">self</span>,
-        layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+        layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         _state: <span class="kw-2">&amp;</span>Tree,
         cursor: mouse::Cursor,
     ) -&gt; iced_accessibility::A11yTree {
@@ -1010,17 +1067,17 @@
     }
 }
 
-<span class="kw">impl</span>&lt;<span class="lifetime">&#39;a</span>, T, Message, Theme, Renderer&gt; From&lt;Slider&lt;<span class="lifetime">&#39;a</span>, T, Message, Theme&gt;&gt;
-    <span class="kw">for </span>Element&lt;<span class="lifetime">&#39;a</span>, Message, Theme, Renderer&gt;
+<span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, T, Message, Theme, Renderer&gt; From&lt;Slider&lt;<span class="lifetime">'a</span>, T, Message, Theme&gt;&gt;
+    <span class="kw">for </span>Element&lt;<span class="lifetime">'a</span>, Message, Theme, Renderer&gt;
 <span class="kw">where
-    </span>T: Copy + Into&lt;f64&gt; + num_traits::FromPrimitive + <span class="lifetime">&#39;a</span>,
-    Message: Clone + <span class="lifetime">&#39;a</span>,
-    Theme: StyleSheet + <span class="lifetime">&#39;a</span>,
-    Renderer: <span class="kw">crate</span>::core::Renderer + <span class="lifetime">&#39;a</span>,
+    </span>T: Copy + Into&lt;f64&gt; + num_traits::FromPrimitive + <span class="lifetime">'a</span>,
+    Message: Clone + <span class="lifetime">'a</span>,
+    Theme: StyleSheet + <span class="lifetime">'a</span>,
+    Renderer: <span class="kw">crate</span>::core::Renderer + <span class="lifetime">'a</span>,
 {
     <span class="kw">fn </span>from(
-        slider: Slider&lt;<span class="lifetime">&#39;a</span>, T, Message, Theme&gt;,
-    ) -&gt; Element&lt;<span class="lifetime">&#39;a</span>, Message, Theme, Renderer&gt; {
+        slider: Slider&lt;<span class="lifetime">'a</span>, T, Message, Theme&gt;,
+    ) -&gt; Element&lt;<span class="lifetime">'a</span>, Message, Theme, Renderer&gt; {
         Element::new(slider)
     }
 }
@@ -1029,9 +1086,9 @@
 /// accordingly.
 </span><span class="kw">pub fn </span>update&lt;Message, T&gt;(
     event: Event,
-    layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+    layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
     cursor: mouse::Cursor,
-    shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">&#39;_</span>, Message&gt;,
+    shell: <span class="kw-2">&amp;mut </span>Shell&lt;<span class="lifetime">'_</span>, Message&gt;,
     state: <span class="kw-2">&amp;mut </span>State,
     value: <span class="kw-2">&amp;mut </span>T,
     range: <span class="kw-2">&amp;</span>RangeInclusive&lt;T&gt;,
@@ -1116,11 +1173,12 @@
 <span class="doccomment">/// Draws a [`Slider`].
 </span><span class="kw">pub fn </span>draw&lt;T, Theme, Renderer&gt;(
     renderer: <span class="kw-2">&amp;mut </span>Renderer,
-    layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+    layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
     cursor: mouse::Cursor,
     state: <span class="kw-2">&amp;</span>State,
     value: T,
     range: <span class="kw-2">&amp;</span>RangeInclusive&lt;T&gt;,
+    breakpoints: <span class="kw-2">&amp;</span>[T],
     theme: <span class="kw-2">&amp;</span>Theme,
     style: <span class="kw-2">&amp;</span>Theme::Style,
 ) <span class="kw">where
@@ -1138,6 +1196,7 @@
     } <span class="kw">else </span>{
         theme.active(style)
     };
+
     <span class="kw">let </span>border_width = style
         .handle
         .border_width
@@ -1185,8 +1244,38 @@
 
     <span class="kw">let </span>rail_y = bounds.y + bounds.height / <span class="number">2.0</span>;
 
+    <span class="comment">// Draw the breakpoint indicators beneath the slider.
+    </span><span class="kw">const </span>BREAKPOINT_WIDTH: f32 = <span class="number">2.0</span>;
+    <span class="kw">for </span><span class="kw-2">&amp;</span>value <span class="kw">in </span>breakpoints {
+        <span class="kw">let </span>value: f64 = value.into();
+        <span class="kw">let </span>offset = <span class="kw">if </span>range_start &gt;= range_end {
+            <span class="number">0.0
+        </span>} <span class="kw">else </span>{
+            (bounds.width - BREAKPOINT_WIDTH) * (value <span class="kw">as </span>f32 - range_start)
+                / (range_end - range_start)
+        };
+
+        renderer.fill_quad(
+            renderer::Quad {
+                bounds: Rectangle {
+                    x: bounds.x + offset,
+                    y: rail_y + <span class="number">6.0</span>,
+                    width: BREAKPOINT_WIDTH,
+                    height: <span class="number">8.0</span>,
+                },
+                border: Border {
+                    radius: <span class="number">0.0</span>.into(),
+                    width: <span class="number">0.0</span>,
+                    color: Color::TRANSPARENT,
+                },
+                ..renderer::Quad::default()
+            },
+            <span class="kw">crate</span>::core::Background::Color(style.breakpoint.color),
+        );
+    }
+
     <span class="kw">match </span>style.rail.colors {
-        iced_style::slider::RailBackground::Pair(l, r) =&gt; {
+        RailBackground::Pair(l, r) =&gt; {
             <span class="comment">// rail
             </span>renderer.fill_quad(
                 renderer::Quad {
@@ -1217,7 +1306,7 @@
                 r,
             );
         }
-        iced_style::slider::RailBackground::Gradient {
+        RailBackground::Gradient {
             <span class="kw-2">mut </span>gradient,
             auto_angle,
         } =&gt; renderer.fill_quad(
@@ -1262,7 +1351,7 @@
 
 <span class="doccomment">/// Computes the current [`mouse::Interaction`] of a [`Slider`].
 </span><span class="kw">pub fn </span>mouse_interaction(
-    layout: Layout&lt;<span class="lifetime">&#39;_</span>&gt;,
+    layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
     cursor: mouse::Cursor,
     state: <span class="kw-2">&amp;</span>State,
 ) -&gt; mouse::Interaction {

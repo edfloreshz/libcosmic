@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_geom-1.0.5/src/cubic_bezier_intersections.rs`."><title>cubic_bezier_intersections.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_geom" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../lyon_geom/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_geom"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/lyon_geom-1.0.5/src/cubic_bezier_intersections.rs`."><title>cubic_bezier_intersections.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="lyon_geom" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><a class="sub-logo-container" href="../../lyon_geom/index.html"><img src="https://nical.github.io/lyon-doc/lyon-logo.svg" alt="lyon_geom"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1345,7 +1346,7 @@
 ///!
 ///! The implementation here was originally ported from that of paper.js:
 ///! https://github.com/paperjs/paper.js/blob/0deddebb2c83ea2a0c848f7c8ba5e22fa7562a4e/src/path/Curve.js#L2008
-///! See &quot;bézier Clipping method&quot; in
+///! See "bézier Clipping method" in
 ///! https://scholarsarchive.byu.edu/facpub/1/
 ///! for motivation and details of how the process works.
 </span><span class="kw">use crate</span>::{point, Box2D, Point};
@@ -1457,8 +1458,8 @@
     <span class="kw">let </span>curve_x_t_params = curve.solve_t_for_x(pt.x);
     <span class="kw">let </span>curve_y_t_params = curve.solve_t_for_y(pt.y);
     <span class="comment">// We want to coalesce parameters representing the same intersection from the x and y
-    // directions, but the parameter calculations aren&#39;t very accurate, so give a little more
-    // leeway there (TODO: this isn&#39;t perfect, as you might expect - the dupes that pass here are
+    // directions, but the parameter calculations aren't very accurate, so give a little more
+    // leeway there (TODO: this isn't perfect, as you might expect - the dupes that pass here are
     // currently being detected in add_intersection).
     </span><span class="kw">let </span>param_eps = S::TEN * epsilon;
     <span class="kw">for </span>params <span class="kw">in </span>[curve_x_t_params, curve_y_t_params].iter() {
@@ -1582,7 +1583,7 @@
     <span class="kw">for </span>t1 <span class="kw">in </span><span class="kw-2">&amp;</span>line1_params {
         <span class="kw">for </span>t2 <span class="kw">in </span><span class="kw-2">&amp;</span>line2_params {
             <span class="comment">// It could be argued that an endpoint intersection located in the interior of one
-            // or both curves should be returned here; we currently don&#39;t.
+            // or both curves should be returned here; we currently don't.
             </span>add_intersection(<span class="kw-2">*</span>t1, curve1, <span class="kw-2">*</span>t2, curve2, <span class="comment">/* flip */ </span><span class="bool-val">false</span>, <span class="kw-2">&amp;mut </span>result);
         }
     }
@@ -1636,7 +1637,7 @@
         );
         <span class="kw">return </span>call_count;
     } <span class="kw">else if </span>curve2.from == curve2.to {
-        <span class="comment">// There&#39;s no curve2 baseline to fat-line against (and we&#39;ll (debug) crash if we try with
+        <span class="comment">// There's no curve2 baseline to fat-line against (and we'll (debug) crash if we try with
         // the current implementation), so split curve2 and try again.
         </span><span class="kw">let </span>new_2_curves = orig_curve2.split_range(domain2.clone()).split(S::HALF);
         <span class="kw">let </span>domain2_mid = (domain2.start + domain2.end) * S::HALF;
@@ -1667,7 +1668,7 @@
         <span class="kw">return </span>call_count;
     }
 
-    <span class="comment">// (Don&#39;t call this before checking for point curves: points are inexact and can lead to false
+    <span class="comment">// (Don't call this before checking for point curves: points are inexact and can lead to false
     // negatives here.)
     </span><span class="kw">if </span>!rectangles_overlap(<span class="kw-2">&amp;</span>curve1.fast_bounding_box(), <span class="kw-2">&amp;</span>curve2.fast_bounding_box()) {
         <span class="kw">return </span>call_count;
@@ -1691,7 +1692,7 @@
         <span class="kw">let </span>t1 = (new_domain1.start + new_domain1.end) * S::HALF;
         <span class="kw">let </span>t2 = (domain2.start + domain2.end) * S::HALF;
         <span class="kw">if </span>inputs_are_f32::&lt;S&gt;() {
-            <span class="comment">// There&#39;s an unfortunate tendency for curve2 endpoints that end near (but not all
+            <span class="comment">// There's an unfortunate tendency for curve2 endpoints that end near (but not all
             // that near) to the interior of curve1 to register as intersections, so try to avoid
             // that. (We could be discarding a legitimate intersection here.)
             </span><span class="kw">let </span>end_eps = S::value(<span class="number">1e-3</span>);
@@ -1708,8 +1709,8 @@
     <span class="comment">// Reduce curve1 to the part that might intersect curve2.
     </span><span class="kw">let </span>curve1 = <span class="kw-2">&amp;</span>orig_curve1.split_range(new_domain1.clone());
 
-    <span class="comment">// (Note: it&#39;s possible for new_domain1 to have become a point, even if
-    // t_min_clip &lt; t_max_clip. It&#39;s also possible for curve1 to not be a point even if new_domain1
+    <span class="comment">// (Note: it's possible for new_domain1 to have become a point, even if
+    // t_min_clip &lt; t_max_clip. It's also possible for curve1 to not be a point even if new_domain1
     // is a point (but then curve1 will be very small).)
     </span><span class="kw">if </span>new_domain1.start == new_domain1.end || curve1.is_a_point(S::ZERO) {
         add_point_curve_intersection(
@@ -1862,7 +1863,7 @@
         <span class="kw">return</span>;
     }
 
-    <span class="comment">// If sampling didn&#39;t work, try a different approach.
+    <span class="comment">// If sampling didn't work, try a different approach.
     </span><span class="kw">let </span>results = point_curve_intersections(<span class="kw-2">&amp;</span>pt, curve, epsilon);
     <span class="kw">for </span>t <span class="kw">in </span>results {
         <span class="kw">let </span>curve_t = domain_value_at_t(curve_domain, t);
@@ -1871,8 +1872,8 @@
 }
 
 <span class="comment">// TODO: replace with Scalar::epsilon_for?
-// If we&#39;re comparing distances between samples of curves, our epsilon should depend on how big the
-// points we&#39;re comparing are. This function returns an epsilon appropriate for the size of pt.
+// If we're comparing distances between samples of curves, our epsilon should depend on how big the
+// points we're comparing are. This function returns an epsilon appropriate for the size of pt.
 </span><span class="kw">fn </span>epsilon_for_point&lt;S: Scalar&gt;(pt: <span class="kw-2">&amp;</span>Point&lt;S&gt;) -&gt; S {
     <span class="kw">let </span>max = S::max(S::abs(pt.x), S::abs(pt.y));
     <span class="kw">let </span>epsilon = <span class="kw">if </span>inputs_are_f32::&lt;S&gt;() {
@@ -1923,7 +1924,7 @@
     // line process breaks down.
     </span><span class="kw">for </span>i <span class="kw">in </span><span class="number">0</span>..intersections.len() {
         <span class="kw">let </span>(old_t1, old_t2) = intersections[i];
-        <span class="comment">// f32 errors can be particularly bad (over a hundred) if we wind up keeping the &quot;wrong&quot;
+        <span class="comment">// f32 errors can be particularly bad (over a hundred) if we wind up keeping the "wrong"
         // duplicate intersection, so always keep the one that minimizes sample distance.
         </span><span class="kw">if </span>S::abs(t1 - old_t1) &lt; epsilon &amp;&amp; S::abs(t2 - old_t2) &lt; epsilon {
             <span class="kw">let </span>cur_dist =
@@ -1943,14 +1944,14 @@
 
 <span class="comment">// Returns an interval (t_min, t_max) with the property that for parameter values outside that
 // interval, curve1 is guaranteed to not intersect curve2; uses the fat line of curve2 as its basis
-// for the guarantee. (See the Sederberg document for what&#39;s going on here.)
+// for the guarantee. (See the Sederberg document for what's going on here.)
 </span><span class="kw">fn </span>restrict_curve_to_fat_line&lt;S: Scalar&gt;(
     curve1: <span class="kw-2">&amp;</span>CubicBezierSegment&lt;S&gt;,
     curve2: <span class="kw-2">&amp;</span>CubicBezierSegment&lt;S&gt;,
 ) -&gt; <span class="prelude-ty">Option</span>&lt;(S, S)&gt; {
     <span class="comment">// TODO: Consider clipping against the perpendicular fat line as well (recommended by
     // Sederberg).
-    // TODO: The current algorithm doesn&#39;t handle the (rare) case where curve1 and curve2 are
+    // TODO: The current algorithm doesn't handle the (rare) case where curve1 and curve2 are
     // overlapping lines.
 
     </span><span class="kw">let </span>baseline2 = curve2.baseline().to_line().equation();
@@ -1968,7 +1969,7 @@
     clip_convex_hull_to_fat_line(<span class="kw-2">&amp;mut </span>top, <span class="kw-2">&amp;mut </span>bottom, d_min, d_max)
 }
 
-<span class="comment">// Returns the convex hull of the curve that&#39;s the graph of the function
+<span class="comment">// Returns the convex hull of the curve that's the graph of the function
 // t -&gt; d(curve1(t), baseline(curve2)). The convex hull is described as a top and a bottom, where
 // each of top and bottom is described by the list of its vertices from left to right (the number of
 // vertices for each is variable).
@@ -1991,7 +1992,7 @@
     </span><span class="kw">let </span>dist1 = d1 - (S::TWO * d0 + d3) / S::THREE;
     <span class="kw">let </span>dist2 = d2 - (d0 + S::TWO * d3) / S::THREE;
 
-    <span class="comment">// Compute the hull assuming p1 is on top - we&#39;ll switch later if needed.
+    <span class="comment">// Compute the hull assuming p1 is on top - we'll switch later if needed.
     </span><span class="kw">if </span>dist1 * dist2 &lt; S::ZERO {
         <span class="comment">// p1 and p2 lie on opposite sides of [p0, p3], so the hull is a quadrilateral:
         </span><span class="kw">let _ </span>= top.try_extend_from_slice(<span class="kw-2">&amp;</span>[p0, p1, p3]);
@@ -2094,7 +2095,7 @@
 }
 
 <span class="attr">#[inline]
-</span><span class="comment">// Box2D::intersects doesn&#39;t count edge/corner intersections, this version does.
+</span><span class="comment">// Box2D::intersects doesn't count edge/corner intersections, this version does.
 </span><span class="kw">fn </span>rectangles_overlap&lt;S: Scalar&gt;(r1: <span class="kw-2">&amp;</span>Box2D&lt;S&gt;, r2: <span class="kw-2">&amp;</span>Box2D&lt;S&gt;) -&gt; bool {
     r1.min.x &lt;= r2.max.x &amp;&amp; r2.min.x &lt;= r1.max.x &amp;&amp; r1.min.y &lt;= r2.max.y &amp;&amp; r2.min.y &lt;= r1.max.y
 }
@@ -2129,7 +2130,7 @@
 </span><span class="kw">fn </span>check_dist&lt;S: Scalar&gt;(p1: <span class="kw-2">&amp;</span>Point&lt;S&gt;, p2: <span class="kw-2">&amp;</span>Point&lt;S&gt;) {
     <span class="kw">let </span>dist = S::sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
     <span class="kw">if </span>dist &gt; S::HALF {
-        <span class="macro">assert!</span>(<span class="bool-val">false</span>, <span class="string">&quot;Intersection points too far apart.&quot;</span>);
+        <span class="macro">assert!</span>(<span class="bool-val">false</span>, <span class="string">"Intersection points too far apart."</span>);
     }
 }
 
@@ -2217,7 +2218,7 @@
     <span class="comment">// On these curves the algorithm runs to a state at which the new clipped domain1 becomes a
     // point even though t_min_clip &lt; t_max_clip (because domain1 was small enough to begin with
     // relative to the small distance between t_min_clip and t_max_clip), and the new curve1 is not
-    // a point (it&#39;s split off the old curve1 using t_min_clip &lt; t_max_clip).
+    // a point (it's split off the old curve1 using t_min_clip &lt; t_max_clip).
     </span>do_test(
         <span class="kw-2">&amp;</span>CubicBezierSegment {
             from: point(<span class="number">423394.5967598548</span>, -<span class="number">91342.7434613118</span>),
@@ -2238,8 +2239,8 @@
 <span class="attr">#[test]
 </span><span class="kw">fn </span>test_cubic_control_point_touching() {
     <span class="comment">// After splitting the curve2 loop in half, curve1.ctrl1 (and only that
-    // point) touches the curve2 fat line - make sure we don&#39;t accept that as an
-    // intersection. [We&#39;re really only interested in the right half of the loop - the rest of the
+    // point) touches the curve2 fat line - make sure we don't accept that as an
+    // intersection. [We're really only interested in the right half of the loop - the rest of the
     // loop is there just to get past an initial fast_bounding_box check.]
     </span>do_test(
         <span class="kw-2">&amp;</span>CubicBezierSegment {
@@ -2281,7 +2282,7 @@
 <span class="attr">#[test]
 </span><span class="kw">fn </span>test_cubic_loops() {
     <span class="comment">// This gets up to a recursion count of 53 trying to find (0.0, 0.0) and (1.0, 1.0) (which
-    // aren&#39;t actually needed) - with the curves in the opposite order it gets up to 81!
+    // aren't actually needed) - with the curves in the opposite order it gets up to 81!
     </span>do_test(
         <span class="kw-2">&amp;</span>CubicBezierSegment {
             from: point(<span class="number">0.0</span>, <span class="number">0.0</span>),
@@ -2521,7 +2522,7 @@
 </span><span class="kw">fn </span>test_cubic_endpoint_not_an_intersection() {
     <span class="comment">// f32 curves seem to be somewhat prone to picking up not-an-intersections where an endpoint of
     // one curve is close to and points into the interior of the other curve, and both curves are
-    // &quot;mostly linear&quot; on some level.
+    // "mostly linear" on some level.
     </span><span class="kw">use </span>std::panic;
     <span class="kw">let </span>result = panic::catch_unwind(|| {
         do_test(
@@ -2650,7 +2651,7 @@
         to: point(<span class="number">1.0</span>, <span class="number">1.0</span>),
     };
     <span class="kw">let </span>curve2 = curve1.split_range(<span class="number">0.25</span>..<span class="number">0.75</span>);
-    <span class="comment">// The algorithm will find as many intersections as you let it, basically - make sure we&#39;re
+    <span class="comment">// The algorithm will find as many intersections as you let it, basically - make sure we're
     // not allowing too many intersections to be added, and not crashing on out of resources.
     </span>do_test(<span class="kw-2">&amp;</span>curve1, <span class="kw-2">&amp;</span>curve2, <span class="number">9</span>);
 }
@@ -2660,8 +2661,8 @@
     <span class="comment">// In a previous version this used to return an intersection pair (0.17933762, 0.23783168),
     // close to an actual intersection, where the sampled intersection points on respective curves
     // were at distance 160.08488. The point here is that the old extra intersection was the result
-    // of an anomalous fat line calculation, in other words an actual error, not just a &quot;not quite
-    // computationally close enough&quot; error.
+    // of an anomalous fat line calculation, in other words an actual error, not just a "not quite
+    // computationally close enough" error.
     </span>do_test(
         <span class="kw-2">&amp;</span>CubicBezierSegment {
             from: point(<span class="number">5893.133f32</span>, -<span class="number">51377.152</span>),

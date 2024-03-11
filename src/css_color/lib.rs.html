@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/css-color-0.2.5/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="css_color" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/css-color-0.2.8/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="css_color" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -774,30 +775,10 @@
 <a href="#774" id="774">774</a>
 <a href="#775" id="775">775</a>
 <a href="#776" id="776">776</a>
-<a href="#777" id="777">777</a>
-<a href="#778" id="778">778</a>
-<a href="#779" id="779">779</a>
-<a href="#780" id="780">780</a>
-<a href="#781" id="781">781</a>
-<a href="#782" id="782">782</a>
-<a href="#783" id="783">783</a>
-<a href="#784" id="784">784</a>
-<a href="#785" id="785">785</a>
-<a href="#786" id="786">786</a>
-<a href="#787" id="787">787</a>
-<a href="#788" id="788">788</a>
-<a href="#789" id="789">789</a>
-<a href="#790" id="790">790</a>
-<a href="#791" id="791">791</a>
-<a href="#792" id="792">792</a>
-<a href="#793" id="793">793</a>
-<a href="#794" id="794">794</a>
-<a href="#795" id="795">795</a>
-<a href="#796" id="796">796</a>
 </pre></div><pre class="rust"><code><span class="attr">#![allow(clippy::get_first)]
 #![allow(clippy::int_plus_one)]
 #![allow(clippy::len_zero)]
-#![cfg_attr(feature = <span class="string">&quot;bench&quot;</span>, feature(test))]
+#![cfg_attr(feature = <span class="string">"bench"</span>, feature(test))]
 
 </span><span class="kw">use </span>std::f32;
 <span class="kw">use </span>std::str::{<span class="self">self</span>, FromStr};
@@ -857,17 +838,17 @@
 
 <span class="comment">// https://www.w3.org/TR/css-color-4/
 </span><span class="kw">fn </span>parse_css_color(input: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Srgb, ()&gt; {
-    <span class="kw">if let </span><span class="prelude-val">Ok</span>(input) = consume_byte(input, <span class="string">b&#39;#&#39;</span>) {
+    <span class="kw">if let </span><span class="prelude-val">Ok</span>(input) = consume_byte(input, <span class="string">b'#'</span>) {
         parse_hex(input)
-    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_function(input, <span class="string">b&quot;rgb&quot;</span>) {
+    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_function(input, <span class="string">b"rgb"</span>) {
         parse_rgb(input)
-    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_function(input, <span class="string">b&quot;rgba&quot;</span>) {
+    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_function(input, <span class="string">b"rgba"</span>) {
         parse_rgb(input)
-    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_function(input, <span class="string">b&quot;hsl&quot;</span>) {
+    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_function(input, <span class="string">b"hsl"</span>) {
         parse_hsl(input)
-    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_function(input, <span class="string">b&quot;hsla&quot;</span>) {
+    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_function(input, <span class="string">b"hsla"</span>) {
         parse_hsl(input)
-    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_function(input, <span class="string">b&quot;hwb&quot;</span>) {
+    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_function(input, <span class="string">b"hwb"</span>) {
         parse_hwb(input)
     } <span class="kw">else </span>{
         parse_named(input)
@@ -970,8 +951,8 @@
 
 <span class="kw">fn </span>is_ident_start(input: <span class="kw-2">&amp;</span>[u8]) -&gt; bool {
     <span class="kw">match </span>input.get(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="string">b&#39;-&#39;</span>) =&gt; <span class="kw">match </span>input.get(<span class="number">1</span>) {
-            <span class="prelude-val">Some</span>(<span class="string">b&#39;-&#39;</span>) =&gt; <span class="bool-val">true</span>,
+        <span class="prelude-val">Some</span>(<span class="string">b'-'</span>) =&gt; <span class="kw">match </span>input.get(<span class="number">1</span>) {
+            <span class="prelude-val">Some</span>(<span class="string">b'-'</span>) =&gt; <span class="bool-val">true</span>,
             <span class="prelude-val">Some</span>(c) =&gt; is_name_start(<span class="kw-2">*</span>c),
             <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
         },
@@ -982,34 +963,34 @@
 
 <span class="kw">fn </span>is_name_start(c: u8) -&gt; bool {
     <span class="kw">match </span>c {
-        <span class="string">b&#39;a&#39;</span>..=<span class="string">b&#39;z&#39; </span>| <span class="string">b&#39;A&#39;</span>..=<span class="string">b&#39;Z&#39; </span>| <span class="string">b&#39;_&#39; </span>=&gt; <span class="bool-val">true</span>,
+        <span class="string">b'a'</span>..=<span class="string">b'z' </span>| <span class="string">b'A'</span>..=<span class="string">b'Z' </span>| <span class="string">b'_' </span>=&gt; <span class="bool-val">true</span>,
         c =&gt; !c.is_ascii(),
     }
 }
 
 <span class="kw">fn </span>is_name(c: u8) -&gt; bool {
     <span class="kw">match </span>c {
-        <span class="string">b&#39;a&#39;</span>..=<span class="string">b&#39;z&#39; </span>| <span class="string">b&#39;A&#39;</span>..=<span class="string">b&#39;Z&#39; </span>| <span class="string">b&#39;0&#39;</span>..=<span class="string">b&#39;9&#39; </span>| <span class="string">b&#39;_&#39; </span>| <span class="string">b&#39;-&#39; </span>=&gt; <span class="bool-val">true</span>,
+        <span class="string">b'a'</span>..=<span class="string">b'z' </span>| <span class="string">b'A'</span>..=<span class="string">b'Z' </span>| <span class="string">b'0'</span>..=<span class="string">b'9' </span>| <span class="string">b'_' </span>| <span class="string">b'-' </span>=&gt; <span class="bool-val">true</span>,
         c =&gt; !c.is_ascii(),
     }
 }
 
 <span class="kw">fn </span>is_whitespace(c: u8) -&gt; bool {
-    c &lt;= <span class="string">b&#39; &#39; </span>&amp;&amp; (c == <span class="string">b&#39; &#39; </span>|| c == <span class="string">b&#39;\n&#39; </span>|| c == <span class="string">b&#39;\t&#39; </span>|| c == <span class="string">b&#39;\r&#39; </span>|| c == <span class="string">b&#39;\x0C&#39;</span>)
+    c &lt;= <span class="string">b' ' </span>&amp;&amp; (c == <span class="string">b' ' </span>|| c == <span class="string">b'\n' </span>|| c == <span class="string">b'\t' </span>|| c == <span class="string">b'\r' </span>|| c == <span class="string">b'\x0C'</span>)
 }
 
 <span class="kw">fn </span>digit(c: u8) -&gt; <span class="prelude-ty">Result</span>&lt;u8, ()&gt; {
     <span class="kw">match </span>c {
-        <span class="string">b&#39;0&#39;</span>..=<span class="string">b&#39;9&#39; </span>=&gt; <span class="prelude-val">Ok</span>(c - <span class="string">b&#39;0&#39;</span>),
+        <span class="string">b'0'</span>..=<span class="string">b'9' </span>=&gt; <span class="prelude-val">Ok</span>(c - <span class="string">b'0'</span>),
         <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(()),
     }
 }
 
 <span class="kw">fn </span>hex_digit(c: u8) -&gt; <span class="prelude-ty">Result</span>&lt;u8, ()&gt; {
     <span class="kw">match </span>c {
-        <span class="string">b&#39;0&#39;</span>..=<span class="string">b&#39;9&#39; </span>=&gt; <span class="prelude-val">Ok</span>(c - <span class="string">b&#39;0&#39;</span>),
-        <span class="string">b&#39;A&#39;</span>..=<span class="string">b&#39;F&#39; </span>=&gt; <span class="prelude-val">Ok</span>(c - <span class="string">b&#39;A&#39; </span>+ <span class="number">10</span>),
-        <span class="string">b&#39;a&#39;</span>..=<span class="string">b&#39;f&#39; </span>=&gt; <span class="prelude-val">Ok</span>(c - <span class="string">b&#39;a&#39; </span>+ <span class="number">10</span>),
+        <span class="string">b'0'</span>..=<span class="string">b'9' </span>=&gt; <span class="prelude-val">Ok</span>(c - <span class="string">b'0'</span>),
+        <span class="string">b'A'</span>..=<span class="string">b'F' </span>=&gt; <span class="prelude-val">Ok</span>(c - <span class="string">b'A' </span>+ <span class="number">10</span>),
+        <span class="string">b'a'</span>..=<span class="string">b'f' </span>=&gt; <span class="prelude-val">Ok</span>(c - <span class="string">b'a' </span>+ <span class="number">10</span>),
         <span class="kw">_ </span>=&gt; <span class="prelude-val">Err</span>(()),
     }
 }
@@ -1028,19 +1009,22 @@
     }
 }
 
-<span class="kw">fn </span>consume_function&lt;<span class="lifetime">&#39;a</span>&gt;(input: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], name: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], ()&gt; {
+<span class="doccomment">/// Consumes a function-token matching the given identifier.
+///
+/// Any whitespace following the function-token is also consumed.
+</span><span class="kw">fn </span>consume_function&lt;<span class="lifetime">'a</span>&gt;(input: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8], name: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8], ()&gt; {
     <span class="macro">debug_assert!</span>(is_ident_start(name));
 
     <span class="kw">let </span>n = name.len();
-    <span class="kw">if </span>input.len() &gt;= n + <span class="number">1 </span>&amp;&amp; input[..n].eq_ignore_ascii_case(name) &amp;&amp; input[n] == <span class="string">b&#39;(&#39; </span>{
-        <span class="prelude-val">Ok</span>(<span class="kw-2">&amp;</span>input[n + <span class="number">1</span>..])
+    <span class="kw">if </span>input.len() &gt;= n + <span class="number">1 </span>&amp;&amp; input[..n].eq_ignore_ascii_case(name) &amp;&amp; input[n] == <span class="string">b'(' </span>{
+        <span class="prelude-val">Ok</span>(skip_ws(<span class="kw-2">&amp;</span>input[n + <span class="number">1</span>..]))
     } <span class="kw">else </span>{
         <span class="prelude-val">Err</span>(())
     }
 }
 
 <span class="attr">#[inline]
-</span><span class="kw">fn </span>consume_name&lt;<span class="lifetime">&#39;a</span>&gt;(input: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], name: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>[u8], ()&gt; {
+</span><span class="kw">fn </span>consume_name&lt;<span class="lifetime">'a</span>&gt;(input: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8], name: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[u8], ()&gt; {
     <span class="macro">debug_assert!</span>(is_ident_start(name));
 
     <span class="kw">let </span>n = name.len();
@@ -1055,13 +1039,13 @@
 }
 
 <span class="kw">fn </span>consume_none(input: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span>[u8], ()&gt; {
-    consume_name(input, <span class="string">b&quot;none&quot;</span>)
+    consume_name(input, <span class="string">b"none"</span>)
 }
 
 <span class="kw">fn </span>consume_number(<span class="kw-2">mut </span>input: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span>[u8], ()&gt; {
     <span class="kw">fn </span>skip_sign(input: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="kw-2">&amp;</span>[u8] {
         <span class="kw">match </span>input.get(<span class="number">0</span>) {
-            <span class="prelude-val">Some</span>(<span class="string">b&#39;+&#39;</span>) | <span class="prelude-val">Some</span>(<span class="string">b&#39;-&#39;</span>) =&gt; <span class="kw-2">&amp;</span>input[<span class="number">1</span>..],
+            <span class="prelude-val">Some</span>(<span class="string">b'+'</span>) | <span class="prelude-val">Some</span>(<span class="string">b'-'</span>) =&gt; <span class="kw-2">&amp;</span>input[<span class="number">1</span>..],
             <span class="kw">_ </span>=&gt; input,
         }
     }
@@ -1079,16 +1063,16 @@
 
     input = skip_sign(input);
     <span class="kw">match </span>input.get(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="string">b&#39;.&#39;</span>) =&gt; {}
+        <span class="prelude-val">Some</span>(<span class="string">b'.'</span>) =&gt; {}
         <span class="kw">_ </span>=&gt; {
             input = consume_digits(input)<span class="question-mark">?</span>;
         }
     }
-    <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="string">b&#39;.&#39;</span>) = input.get(<span class="number">0</span>) {
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="string">b'.'</span>) = input.get(<span class="number">0</span>) {
         input = consume_digits(<span class="kw-2">&amp;</span>input[<span class="number">1</span>..])<span class="question-mark">?</span>;
     }
     <span class="kw">match </span>input.get(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="string">b&#39;E&#39;</span>) | <span class="prelude-val">Some</span>(<span class="string">b&#39;e&#39;</span>) =&gt; {
+        <span class="prelude-val">Some</span>(<span class="string">b'E'</span>) | <span class="prelude-val">Some</span>(<span class="string">b'e'</span>) =&gt; {
             input = skip_sign(<span class="kw-2">&amp;</span>input[<span class="number">1</span>..]);
             input = consume_digits(input)<span class="question-mark">?</span>;
         }
@@ -1111,37 +1095,43 @@
 <span class="comment">// &lt;percentage&gt; = &lt;number&gt; %
 </span><span class="kw">fn </span>parse_percentage(input: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="kw-2">&amp;</span>[u8], f32), ()&gt; {
     <span class="kw">let </span>(input, value) = parse_number(input)<span class="question-mark">?</span>;
-    <span class="kw">let </span>input = consume_byte(input, <span class="string">b&#39;%&#39;</span>)<span class="question-mark">?</span>;
-
+    <span class="kw">let </span>input = consume_byte(input, <span class="string">b'%'</span>)<span class="question-mark">?</span>;
     <span class="prelude-val">Ok</span>((input, value / <span class="number">100.</span>))
 }
 
 <span class="kw">enum </span>NumberOrPercentage {
-    Number(f32),
-    Percentage(f32),
+    Number,
+    Percentage,
 }
-<span class="kw">use </span><span class="self">self</span>::NumberOrPercentage::<span class="kw-2">*</span>;
+<span class="kw">use </span>NumberOrPercentage::<span class="kw-2">*</span>;
 
-<span class="kw">fn </span>parse_number_or_percentage(input: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="kw-2">&amp;</span>[u8], NumberOrPercentage), ()&gt; {
+<span class="kw">trait </span>Frac {
+    <span class="kw">fn </span>frac(<span class="kw-2">&amp;</span><span class="self">self</span>, denom: f32) -&gt; f32;
+}
+
+<span class="kw">impl </span>Frac <span class="kw">for </span>(NumberOrPercentage, f32) {
+    <span class="kw">fn </span>frac(<span class="kw-2">&amp;</span><span class="self">self</span>, denom: f32) -&gt; f32 {
+        <span class="kw">match </span><span class="self">self</span>.<span class="number">0 </span>{
+            Number =&gt; <span class="self">self</span>.<span class="number">1 </span>/ denom,
+            Percentage =&gt; <span class="self">self</span>.<span class="number">1</span>,
+        }
+    }
+}
+
+<span class="kw">fn </span>parse_number_or_percentage(input: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="kw-2">&amp;</span>[u8], (NumberOrPercentage, f32)), ()&gt; {
     <span class="kw">let </span>(input, value) = parse_number(input)<span class="question-mark">?</span>;
 
-    <span class="kw">if let </span><span class="prelude-val">Ok</span>(input) = consume_byte(input, <span class="string">b&#39;%&#39;</span>) {
-        <span class="prelude-val">Ok</span>((input, Percentage(value / <span class="number">100.</span>)))
+    <span class="kw">if let </span><span class="prelude-val">Ok</span>(input) = consume_byte(input, <span class="string">b'%'</span>) {
+        <span class="prelude-val">Ok</span>((input, (Percentage, value / <span class="number">100.</span>)))
     } <span class="kw">else </span>{
-        <span class="prelude-val">Ok</span>((input, Number(value)))
+        <span class="prelude-val">Ok</span>((input, (Number, value)))
     }
 }
 
 <span class="comment">// &lt;alpha-value&gt; = &lt;number&gt; | &lt;percentage&gt;
 </span><span class="kw">fn </span>parse_alpha_value(input: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="kw-2">&amp;</span>[u8], f32), ()&gt; {
-    <span class="kw">let </span>(input, alpha) = parse_number_or_percentage(input)<span class="question-mark">?</span>;
-    <span class="kw">let </span>alpha = <span class="kw">match </span>alpha {
-        Number(value) =&gt; value,
-        Percentage(value) =&gt; value,
-    };
-    <span class="kw">let </span>alpha = clamp_unit_f32(alpha);
-
-    <span class="prelude-val">Ok</span>((input, alpha))
+    <span class="kw">let </span>(input, (<span class="kw">_</span>, alpha)) = parse_number_or_percentage(input)<span class="question-mark">?</span>;
+    <span class="prelude-val">Ok</span>((input, clamp_unit_f32(alpha)))
 }
 
 <span class="comment">// &lt;hue&gt; = &lt;number&gt; | &lt;angle&gt;
@@ -1150,13 +1140,13 @@
 
     <span class="kw">if </span>!is_ident_start(input) {
         <span class="prelude-val">Ok</span>((input, value / <span class="number">360.</span>))
-    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_name(input, <span class="string">b&quot;deg&quot;</span>) {
+    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_name(input, <span class="string">b"deg"</span>) {
         <span class="prelude-val">Ok</span>((input, value / <span class="number">360.</span>))
-    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_name(input, <span class="string">b&quot;grad&quot;</span>) {
+    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_name(input, <span class="string">b"grad"</span>) {
         <span class="prelude-val">Ok</span>((input, value / <span class="number">400.</span>))
-    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_name(input, <span class="string">b&quot;rad&quot;</span>) {
+    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_name(input, <span class="string">b"rad"</span>) {
         <span class="prelude-val">Ok</span>((input, value / (<span class="number">2. </span>* f32::consts::PI)))
-    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_name(input, <span class="string">b&quot;turn&quot;</span>) {
+    } <span class="kw">else if let </span><span class="prelude-val">Ok</span>(input) = consume_name(input, <span class="string">b"turn"</span>) {
         <span class="prelude-val">Ok</span>((input, value))
     } <span class="kw">else </span>{
         <span class="prelude-val">Err</span>(())
@@ -1192,43 +1182,53 @@
     }
 }
 
-<span class="comment">// hsl() = hsl( [&lt;hue&gt; | none] [&lt;percentage&gt; | none] [&lt;percentage&gt; | none] [ / [&lt;alpha-value&gt; | none] ]? ) |
-//         hsl( &lt;hue&gt;, &lt;percentage&gt;, &lt;percentage&gt; [ , &lt;alpha-value&gt; ]? )
+<span class="comment">// hsl()  = [ &lt;legacy-hsl-syntax&gt;  | &lt;modern-hsl-syntax&gt;  ]
+// hsla() = [ &lt;legacy-hsla-syntax&gt; | &lt;modern-hsla-syntax&gt; ]
+// &lt;legacy-hsl-syntax&gt;  = hsl(  &lt;hue&gt;, &lt;percentage&gt;, &lt;percentage&gt;, &lt;alpha-value&gt;? )
+// &lt;legacy-hsla-syntax&gt; = hsla( &lt;hue&gt;, &lt;percentage&gt;, &lt;percentage&gt;, &lt;alpha-value&gt;? )
+// &lt;modern-hsl-syntax&gt;  = hsl(  [&lt;hue&gt; | none]
+//                              [&lt;percentage&gt; | &lt;number&gt; | none]
+//                              [&lt;percentage&gt; | &lt;number&gt; | none]
+//                              [ / [&lt;alpha-value&gt; | none] ]? )
+// &lt;modern-hsla-syntax&gt; = hsla( [&lt;hue&gt; | none]
+//                              [&lt;percentage&gt; | &lt;number&gt; | none]
+//                              [&lt;percentage&gt; | &lt;number&gt; | none]
+//                              [ / [&lt;alpha-value&gt; | none] ]? )
 </span><span class="kw">fn </span>parse_hsl(input: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Srgb, ()&gt; {
-    <span class="kw">let </span>input = skip_ws(input);
-
     <span class="kw">let </span>(input, hue, legacy_syntax) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, hue)) = parse_hue(input) {
         <span class="kw">let </span>input = skip_ws(input);
         <span class="kw">match </span>input.get(<span class="number">0</span>) {
-            <span class="prelude-val">Some</span>(<span class="string">b&#39;,&#39;</span>) =&gt; (skip_ws(<span class="kw-2">&amp;</span>input[<span class="number">1</span>..]), hue, <span class="bool-val">true</span>),
+            <span class="prelude-val">Some</span>(<span class="string">b','</span>) =&gt; (skip_ws(<span class="kw-2">&amp;</span>input[<span class="number">1</span>..]), hue, <span class="bool-val">true</span>),
             <span class="kw">_ </span>=&gt; (input, hue, <span class="bool-val">false</span>),
         }
     } <span class="kw">else </span>{
         (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE, <span class="bool-val">false</span>)
     };
 
-    <span class="kw">let </span>(<span class="kw-2">mut </span>input, saturation) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, saturation)) = parse_percentage(input) {
-        (skip_ws(input), saturation)
-    } <span class="kw">else if </span>!legacy_syntax {
-        (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE)
+    <span class="kw">let </span>(input, saturation, lightness) = <span class="kw">if </span>legacy_syntax {
+        <span class="kw">let </span>(<span class="kw-2">mut </span>input, saturation) = parse_percentage(input)<span class="question-mark">?</span>;
+        input = skip_ws(input);
+        input = skip_ws(consume_byte(input, <span class="string">b','</span>)<span class="question-mark">?</span>);
+        <span class="kw">let </span>(<span class="kw-2">mut </span>input, lightness) = parse_percentage(input)<span class="question-mark">?</span>;
+        input = skip_ws(input);
+        (input, saturation, lightness)
     } <span class="kw">else </span>{
-        <span class="kw">return </span><span class="prelude-val">Err</span>(());
-    };
-
-    <span class="kw">if </span>legacy_syntax {
-        input = skip_ws(consume_byte(input, <span class="string">b&#39;,&#39;</span>)<span class="question-mark">?</span>);
-    }
-
-    <span class="kw">let </span>(input, lightness) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, lightness)) = parse_percentage(input) {
-        (skip_ws(input), lightness)
-    } <span class="kw">else if </span>!legacy_syntax {
-        (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE)
-    } <span class="kw">else </span>{
-        <span class="kw">return </span><span class="prelude-val">Err</span>(());
+        <span class="kw">let </span>(input, saturation) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, saturation)) = parse_number_or_percentage(input)
+        {
+            (skip_ws(input), saturation.frac(<span class="number">100.</span>))
+        } <span class="kw">else </span>{
+            (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE)
+        };
+        <span class="kw">let </span>(input, lightness) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, lightness)) = parse_number_or_percentage(input) {
+            (skip_ws(input), lightness.frac(<span class="number">100.</span>))
+        } <span class="kw">else </span>{
+            (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE)
+        };
+        (input, saturation, lightness)
     };
 
     <span class="kw">let </span>(input, alpha) = <span class="kw">match </span>(input.get(<span class="number">0</span>), legacy_syntax) {
-        (<span class="prelude-val">Some</span>(<span class="string">b&#39;/&#39;</span>), <span class="bool-val">false</span>) | (<span class="prelude-val">Some</span>(<span class="string">b&#39;,&#39;</span>), <span class="bool-val">true</span>) =&gt; {
+        (<span class="prelude-val">Some</span>(<span class="string">b'/'</span>), <span class="bool-val">false</span>) | (<span class="prelude-val">Some</span>(<span class="string">b','</span>), <span class="bool-val">true</span>) =&gt; {
             <span class="kw">let </span>input = skip_ws(<span class="kw-2">&amp;</span>input[<span class="number">1</span>..]);
             <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, alpha)) = parse_alpha_value(input) {
                 (skip_ws(input), alpha)
@@ -1241,7 +1241,7 @@
         <span class="kw">_ </span>=&gt; (input, <span class="number">1.</span>),
     };
 
-    <span class="kw">if </span>input != <span class="string">b&quot;)&quot; </span>{
+    <span class="kw">if </span>input != <span class="string">b")" </span>{
         <span class="kw">return </span><span class="prelude-val">Err</span>(());
     }
 
@@ -1253,30 +1253,31 @@
     }))
 }
 
-<span class="comment">// hwb() = hwb( [&lt;hue&gt; | none] [&lt;percentage&gt; | none] [&lt;percentage&gt; | none] [ / [&lt;alpha-value&gt; | none] ]? )
+<span class="comment">// hwb() = hwb( [&lt;hue&gt; | none]
+//              [&lt;percentage&gt; | &lt;number&gt; | none]
+//              [&lt;percentage&gt; | &lt;number&gt; | none]
+//              [ / [&lt;alpha-value&gt; | none] ]? )
 </span><span class="kw">fn </span>parse_hwb(input: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Srgb, ()&gt; {
-    <span class="kw">let </span>input = skip_ws(input);
-
     <span class="kw">let </span>(input, hue) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, hue)) = parse_hue(input) {
         (skip_ws(input), hue)
     } <span class="kw">else </span>{
         (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE)
     };
 
-    <span class="kw">let </span>(input, whiteness) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, whiteness)) = parse_percentage(input) {
-        (skip_ws(input), whiteness)
+    <span class="kw">let </span>(input, whiteness) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, whiteness)) = parse_number_or_percentage(input) {
+        (skip_ws(input), whiteness.frac(<span class="number">100.</span>))
     } <span class="kw">else </span>{
         (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE)
     };
 
-    <span class="kw">let </span>(input, blackness) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, blackness)) = parse_percentage(input) {
-        (skip_ws(input), blackness)
+    <span class="kw">let </span>(input, blackness) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, blackness)) = parse_number_or_percentage(input) {
+        (skip_ws(input), blackness.frac(<span class="number">100.</span>))
     } <span class="kw">else </span>{
         (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE)
     };
 
     <span class="kw">let </span>(input, alpha) = <span class="kw">match </span>input.get(<span class="number">0</span>) {
-        <span class="prelude-val">Some</span>(<span class="string">b&#39;/&#39;</span>) =&gt; {
+        <span class="prelude-val">Some</span>(<span class="string">b'/'</span>) =&gt; {
             <span class="kw">let </span>input = skip_ws(<span class="kw-2">&amp;</span>input[<span class="number">1</span>..]);
             <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, alpha)) = parse_alpha_value(input) {
                 (skip_ws(input), alpha)
@@ -1287,7 +1288,7 @@
         <span class="kw">_ </span>=&gt; (input, <span class="number">1.</span>),
     };
 
-    <span class="kw">if </span>input != <span class="string">b&quot;)&quot; </span>{
+    <span class="kw">if </span>input != <span class="string">b")" </span>{
         <span class="kw">return </span><span class="prelude-val">Err</span>(());
     }
 
@@ -1299,101 +1300,61 @@
     }))
 }
 
-<span class="comment">// rgb() = rgb( [&lt;percentage&gt; | none]{3} [ / [&lt;alpha-value&gt; | none] ]? ) |
-//         rgb( [&lt;number&gt;     | none]{3} [ / [&lt;alpha-value&gt; | none] ]? ) |
-//         rgb( &lt;percentage&gt;#{3} [ , &lt;alpha-value&gt; ]? )                  |
-//         rgb( &lt;number&gt;#{3}     [ , &lt;alpha-value&gt; ]? )
+<span class="comment">// rgb()  = [ &lt;legacy-rgb-syntax&gt;  | &lt;modern-rgb-syntax&gt;  ]
+// rgba() = [ &lt;legacy-rgba-syntax&gt; | &lt;modern-rgba-syntax&gt; ]
+// &lt;legacy-rgb-syntax&gt;  = rgb(  &lt;percentage&gt;#{3} , &lt;alpha-value&gt;? ) |
+//                        rgb(  &lt;number&gt;#{3}     , &lt;alpha-value&gt;? )
+// &lt;legacy-rgba-syntax&gt; = rgba( &lt;percentage&gt;#{3} , &lt;alpha-value&gt;? ) |
+//                        rgba( &lt;number&gt;#{3}     , &lt;alpha-value&gt;? )
+// &lt;modern-rgb-syntax&gt;  = rgb(  [ &lt;number&gt; | &lt;percentage&gt; | none]{3} [ / [&lt;alpha-value&gt; | none] ]? )
+// &lt;modern-rgba-syntax&gt; = rgba( [ &lt;number&gt; | &lt;percentage&gt; | none]{3} [ / [&lt;alpha-value&gt; | none] ]? )
 </span><span class="kw">fn </span>parse_rgb(input: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Srgb, ()&gt; {
-    <span class="kw">let </span>input = skip_ws(input);
-
     <span class="kw">let </span>(input, red, legacy_syntax) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, red)) = parse_number_or_percentage(input) {
         <span class="kw">let </span>input = skip_ws(input);
         <span class="kw">match </span>input.get(<span class="number">0</span>) {
-            <span class="prelude-val">Some</span>(<span class="string">b&#39;,&#39;</span>) =&gt; (skip_ws(<span class="kw-2">&amp;</span>input[<span class="number">1</span>..]), <span class="prelude-val">Some</span>(red), <span class="bool-val">true</span>),
+            <span class="prelude-val">Some</span>(<span class="string">b','</span>) =&gt; (skip_ws(<span class="kw-2">&amp;</span>input[<span class="number">1</span>..]), <span class="prelude-val">Some</span>(red), <span class="bool-val">true</span>),
             <span class="kw">_ </span>=&gt; (input, <span class="prelude-val">Some</span>(red), <span class="bool-val">false</span>),
         }
     } <span class="kw">else </span>{
         (skip_ws(consume_none(input)<span class="question-mark">?</span>), <span class="prelude-val">None</span>, <span class="bool-val">false</span>)
     };
 
-    <span class="kw">let </span>(input, red, green, blue) = <span class="kw">match </span>red {
-        <span class="prelude-val">Some</span>(Number(red)) =&gt; {
-            <span class="kw">let </span>red = red / <span class="number">255.</span>;
-            <span class="kw">let </span>(<span class="kw-2">mut </span>input, green) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, green)) = parse_number(input) {
-                (skip_ws(input), green / <span class="number">255.</span>)
-            } <span class="kw">else if </span>!legacy_syntax {
-                (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE)
-            } <span class="kw">else </span>{
-                <span class="kw">return </span><span class="prelude-val">Err</span>(());
-            };
-            <span class="kw">if </span>legacy_syntax {
-                input = skip_ws(consume_byte(input, <span class="string">b&#39;,&#39;</span>)<span class="question-mark">?</span>);
+    <span class="kw">let </span>(input, red, green, blue) = <span class="kw">if </span>legacy_syntax {
+        <span class="kw">match </span>red.unwrap() {
+            (Number, red) =&gt; {
+                <span class="kw">let </span>(<span class="kw-2">mut </span>input, green) = parse_number(input)<span class="question-mark">?</span>;
+                input = skip_ws(input);
+                input = skip_ws(consume_byte(input, <span class="string">b','</span>)<span class="question-mark">?</span>);
+                <span class="kw">let </span>(<span class="kw-2">mut </span>input, blue) = parse_number(input)<span class="question-mark">?</span>;
+                input = skip_ws(input);
+                (input, red / <span class="number">255.</span>, green / <span class="number">255.</span>, blue / <span class="number">255.</span>)
             }
-            <span class="kw">let </span>(input, blue) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, blue)) = parse_number(input) {
-                (skip_ws(input), blue / <span class="number">255.</span>)
-            } <span class="kw">else if </span>!legacy_syntax {
-                (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE)
-            } <span class="kw">else </span>{
-                <span class="kw">return </span><span class="prelude-val">Err</span>(());
-            };
-            (input, red, green, blue)
-        }
-        <span class="prelude-val">Some</span>(Percentage(red)) =&gt; {
-            <span class="kw">let </span>(<span class="kw-2">mut </span>input, green) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, green)) = parse_percentage(input) {
-                (skip_ws(input), green)
-            } <span class="kw">else if </span>!legacy_syntax {
-                (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE)
-            } <span class="kw">else </span>{
-                <span class="kw">return </span><span class="prelude-val">Err</span>(());
-            };
-            <span class="kw">if </span>legacy_syntax {
-                input = skip_ws(consume_byte(input, <span class="string">b&#39;,&#39;</span>)<span class="question-mark">?</span>);
-            }
-            <span class="kw">let </span>(input, blue) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, blue)) = parse_percentage(input) {
-                (skip_ws(input), blue)
-            } <span class="kw">else if </span>!legacy_syntax {
-                (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE)
-            } <span class="kw">else </span>{
-                <span class="kw">return </span><span class="prelude-val">Err</span>(());
-            };
-            (input, red, green, blue)
-        }
-        <span class="prelude-val">None </span>=&gt; {
-            <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, green)) = parse_number_or_percentage(input) {
-                <span class="kw">let </span>input = skip_ws(input);
-                <span class="kw">match </span>green {
-                    Number(green) =&gt; {
-                        <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, blue)) = parse_number(input) {
-                            (skip_ws(input), NONE, green / <span class="number">255.</span>, blue / <span class="number">255.</span>)
-                        } <span class="kw">else </span>{
-                            (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE, green / <span class="number">255.</span>, NONE)
-                        }
-                    }
-                    Percentage(green) =&gt; {
-                        <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, blue)) = parse_percentage(input) {
-                            (skip_ws(input), NONE, green, blue)
-                        } <span class="kw">else </span>{
-                            (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE, green, NONE)
-                        }
-                    }
-                }
-            } <span class="kw">else </span>{
-                <span class="kw">let </span>input = skip_ws(consume_none(input)<span class="question-mark">?</span>);
-                <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, blue)) = parse_number_or_percentage(input) {
-                    <span class="kw">let </span>blue = <span class="kw">match </span>blue {
-                        Number(blue) =&gt; blue / <span class="number">255.</span>,
-                        Percentage(blue) =&gt; blue,
-                    };
-                    (skip_ws(input), NONE, NONE, blue)
-                } <span class="kw">else </span>{
-                    (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE, NONE, NONE)
-                }
+            (Percentage, red) =&gt; {
+                <span class="kw">let </span>(<span class="kw-2">mut </span>input, green) = parse_percentage(input)<span class="question-mark">?</span>;
+                input = skip_ws(input);
+                input = skip_ws(consume_byte(input, <span class="string">b','</span>)<span class="question-mark">?</span>);
+                <span class="kw">let </span>(<span class="kw-2">mut </span>input, blue) = parse_percentage(input)<span class="question-mark">?</span>;
+                input = skip_ws(input);
+                (input, red, green, blue)
             }
         }
+    } <span class="kw">else </span>{
+        <span class="kw">let </span>red = red.map_or(NONE, |red| red.frac(<span class="number">255.</span>));
+        <span class="kw">let </span>(input, green) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, green)) = parse_number_or_percentage(input) {
+            (skip_ws(input), green.frac(<span class="number">255.</span>))
+        } <span class="kw">else </span>{
+            (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE)
+        };
+        <span class="kw">let </span>(input, blue) = <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, blue)) = parse_number_or_percentage(input) {
+            (skip_ws(input), blue.frac(<span class="number">255.</span>))
+        } <span class="kw">else </span>{
+            (skip_ws(consume_none(input)<span class="question-mark">?</span>), NONE)
+        };
+        (input, red, green, blue)
     };
 
     <span class="kw">let </span>(input, alpha) = <span class="kw">match </span>(input.get(<span class="number">0</span>), legacy_syntax) {
-        (<span class="prelude-val">Some</span>(<span class="string">b&#39;/&#39;</span>), <span class="bool-val">false</span>) | (<span class="prelude-val">Some</span>(<span class="string">b&#39;,&#39;</span>), <span class="bool-val">true</span>) =&gt; {
+        (<span class="prelude-val">Some</span>(<span class="string">b'/'</span>), <span class="bool-val">false</span>) | (<span class="prelude-val">Some</span>(<span class="string">b','</span>), <span class="bool-val">true</span>) =&gt; {
             <span class="kw">let </span>input = skip_ws(<span class="kw-2">&amp;</span>input[<span class="number">1</span>..]);
             <span class="kw">if let </span><span class="prelude-val">Ok</span>((input, alpha)) = parse_alpha_value(input) {
                 (skip_ws(input), alpha)
@@ -1406,7 +1367,7 @@
         <span class="kw">_ </span>=&gt; (input, <span class="number">1.</span>),
     };
 
-    <span class="kw">if </span>input != <span class="string">b&quot;)&quot; </span>{
+    <span class="kw">if </span>input != <span class="string">b")" </span>{
         <span class="kw">return </span><span class="prelude-val">Err</span>(());
     }
 
@@ -1429,161 +1390,161 @@
     <span class="kw">if </span>input.len() &gt; NAMED_MAX_LEN {
         <span class="kw">return </span><span class="prelude-val">Err</span>(());
     }
-    <span class="kw">let </span><span class="kw-2">mut </span>name = [<span class="string">b&#39;\0&#39;</span>; NAMED_MAX_LEN];
+    <span class="kw">let </span><span class="kw-2">mut </span>name = [<span class="string">b'\0'</span>; NAMED_MAX_LEN];
     <span class="kw">let </span>name = <span class="kw-2">&amp;mut </span>name[..input.len()];
     <span class="kw">for </span>(i, c) <span class="kw">in </span>input.iter().enumerate() {
         name[i] = c.to_ascii_lowercase();
     }
     <span class="prelude-val">Ok</span>(<span class="kw">match </span><span class="kw-2">&amp;*</span>name {
-        <span class="string">b&quot;aliceblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">240</span>, <span class="number">248</span>, <span class="number">255</span>),
-        <span class="string">b&quot;antiquewhite&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">250</span>, <span class="number">235</span>, <span class="number">215</span>),
-        <span class="string">b&quot;aqua&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">255</span>, <span class="number">255</span>),
-        <span class="string">b&quot;aquamarine&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">127</span>, <span class="number">255</span>, <span class="number">212</span>),
-        <span class="string">b&quot;azure&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">240</span>, <span class="number">255</span>, <span class="number">255</span>),
-        <span class="string">b&quot;beige&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">245</span>, <span class="number">245</span>, <span class="number">220</span>),
-        <span class="string">b&quot;bisque&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">228</span>, <span class="number">196</span>),
-        <span class="string">b&quot;black&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>),
-        <span class="string">b&quot;blanchedalmond&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">235</span>, <span class="number">205</span>),
-        <span class="string">b&quot;blue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>),
-        <span class="string">b&quot;blueviolet&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">138</span>, <span class="number">43</span>, <span class="number">226</span>),
-        <span class="string">b&quot;brown&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">165</span>, <span class="number">42</span>, <span class="number">42</span>),
-        <span class="string">b&quot;burlywood&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">222</span>, <span class="number">184</span>, <span class="number">135</span>),
-        <span class="string">b&quot;cadetblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">95</span>, <span class="number">158</span>, <span class="number">160</span>),
-        <span class="string">b&quot;chartreuse&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">127</span>, <span class="number">255</span>, <span class="number">0</span>),
-        <span class="string">b&quot;chocolate&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">210</span>, <span class="number">105</span>, <span class="number">30</span>),
-        <span class="string">b&quot;coral&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">127</span>, <span class="number">80</span>),
-        <span class="string">b&quot;cornflowerblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">100</span>, <span class="number">149</span>, <span class="number">237</span>),
-        <span class="string">b&quot;cornsilk&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">248</span>, <span class="number">220</span>),
-        <span class="string">b&quot;crimson&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">220</span>, <span class="number">20</span>, <span class="number">60</span>),
-        <span class="string">b&quot;cyan&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">255</span>, <span class="number">255</span>),
-        <span class="string">b&quot;darkblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">139</span>),
-        <span class="string">b&quot;darkcyan&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">139</span>, <span class="number">139</span>),
-        <span class="string">b&quot;darkgoldenrod&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">184</span>, <span class="number">134</span>, <span class="number">11</span>),
-        <span class="string">b&quot;darkgray&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">169</span>, <span class="number">169</span>, <span class="number">169</span>),
-        <span class="string">b&quot;darkgreen&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">100</span>, <span class="number">0</span>),
-        <span class="string">b&quot;darkgrey&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">169</span>, <span class="number">169</span>, <span class="number">169</span>),
-        <span class="string">b&quot;darkkhaki&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">189</span>, <span class="number">183</span>, <span class="number">107</span>),
-        <span class="string">b&quot;darkmagenta&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">139</span>, <span class="number">0</span>, <span class="number">139</span>),
-        <span class="string">b&quot;darkolivegreen&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">85</span>, <span class="number">107</span>, <span class="number">47</span>),
-        <span class="string">b&quot;darkorange&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">140</span>, <span class="number">0</span>),
-        <span class="string">b&quot;darkorchid&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">153</span>, <span class="number">50</span>, <span class="number">204</span>),
-        <span class="string">b&quot;darkred&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">139</span>, <span class="number">0</span>, <span class="number">0</span>),
-        <span class="string">b&quot;darksalmon&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">233</span>, <span class="number">150</span>, <span class="number">122</span>),
-        <span class="string">b&quot;darkseagreen&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">143</span>, <span class="number">188</span>, <span class="number">143</span>),
-        <span class="string">b&quot;darkslateblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">72</span>, <span class="number">61</span>, <span class="number">139</span>),
-        <span class="string">b&quot;darkslategray&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">47</span>, <span class="number">79</span>, <span class="number">79</span>),
-        <span class="string">b&quot;darkslategrey&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">47</span>, <span class="number">79</span>, <span class="number">79</span>),
-        <span class="string">b&quot;darkturquoise&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">206</span>, <span class="number">209</span>),
-        <span class="string">b&quot;darkviolet&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">148</span>, <span class="number">0</span>, <span class="number">211</span>),
-        <span class="string">b&quot;deeppink&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">20</span>, <span class="number">147</span>),
-        <span class="string">b&quot;deepskyblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">191</span>, <span class="number">255</span>),
-        <span class="string">b&quot;dimgray&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">105</span>, <span class="number">105</span>, <span class="number">105</span>),
-        <span class="string">b&quot;dimgrey&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">105</span>, <span class="number">105</span>, <span class="number">105</span>),
-        <span class="string">b&quot;dodgerblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">30</span>, <span class="number">144</span>, <span class="number">255</span>),
-        <span class="string">b&quot;firebrick&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">178</span>, <span class="number">34</span>, <span class="number">34</span>),
-        <span class="string">b&quot;floralwhite&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">250</span>, <span class="number">240</span>),
-        <span class="string">b&quot;forestgreen&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">34</span>, <span class="number">139</span>, <span class="number">34</span>),
-        <span class="string">b&quot;fuchsia&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">255</span>),
-        <span class="string">b&quot;gainsboro&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">220</span>, <span class="number">220</span>, <span class="number">220</span>),
-        <span class="string">b&quot;ghostwhite&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">248</span>, <span class="number">248</span>, <span class="number">255</span>),
-        <span class="string">b&quot;gold&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">215</span>, <span class="number">0</span>),
-        <span class="string">b&quot;goldenrod&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">218</span>, <span class="number">165</span>, <span class="number">32</span>),
-        <span class="string">b&quot;gray&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>),
-        <span class="string">b&quot;green&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">128</span>, <span class="number">0</span>),
-        <span class="string">b&quot;greenyellow&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">173</span>, <span class="number">255</span>, <span class="number">47</span>),
-        <span class="string">b&quot;grey&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>),
-        <span class="string">b&quot;honeydew&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">240</span>, <span class="number">255</span>, <span class="number">240</span>),
-        <span class="string">b&quot;hotpink&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">105</span>, <span class="number">180</span>),
-        <span class="string">b&quot;indianred&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">205</span>, <span class="number">92</span>, <span class="number">92</span>),
-        <span class="string">b&quot;indigo&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">75</span>, <span class="number">0</span>, <span class="number">130</span>),
-        <span class="string">b&quot;ivory&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">240</span>),
-        <span class="string">b&quot;khaki&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">240</span>, <span class="number">230</span>, <span class="number">140</span>),
-        <span class="string">b&quot;lavender&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">230</span>, <span class="number">230</span>, <span class="number">250</span>),
-        <span class="string">b&quot;lavenderblush&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">240</span>, <span class="number">245</span>),
-        <span class="string">b&quot;lawngreen&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">124</span>, <span class="number">252</span>, <span class="number">0</span>),
-        <span class="string">b&quot;lemonchiffon&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">250</span>, <span class="number">205</span>),
-        <span class="string">b&quot;lightblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">173</span>, <span class="number">216</span>, <span class="number">230</span>),
-        <span class="string">b&quot;lightcoral&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">240</span>, <span class="number">128</span>, <span class="number">128</span>),
-        <span class="string">b&quot;lightcyan&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">224</span>, <span class="number">255</span>, <span class="number">255</span>),
-        <span class="string">b&quot;lightgoldenrodyellow&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">250</span>, <span class="number">250</span>, <span class="number">210</span>),
-        <span class="string">b&quot;lightgray&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">211</span>, <span class="number">211</span>, <span class="number">211</span>),
-        <span class="string">b&quot;lightgreen&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">144</span>, <span class="number">238</span>, <span class="number">144</span>),
-        <span class="string">b&quot;lightgrey&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">211</span>, <span class="number">211</span>, <span class="number">211</span>),
-        <span class="string">b&quot;lightpink&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">182</span>, <span class="number">193</span>),
-        <span class="string">b&quot;lightsalmon&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">160</span>, <span class="number">122</span>),
-        <span class="string">b&quot;lightseagreen&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">32</span>, <span class="number">178</span>, <span class="number">170</span>),
-        <span class="string">b&quot;lightskyblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">135</span>, <span class="number">206</span>, <span class="number">250</span>),
-        <span class="string">b&quot;lightslategray&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">119</span>, <span class="number">136</span>, <span class="number">153</span>),
-        <span class="string">b&quot;lightslategrey&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">119</span>, <span class="number">136</span>, <span class="number">153</span>),
-        <span class="string">b&quot;lightsteelblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">176</span>, <span class="number">196</span>, <span class="number">222</span>),
-        <span class="string">b&quot;lightyellow&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">224</span>),
-        <span class="string">b&quot;lime&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>),
-        <span class="string">b&quot;limegreen&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">50</span>, <span class="number">205</span>, <span class="number">50</span>),
-        <span class="string">b&quot;linen&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">250</span>, <span class="number">240</span>, <span class="number">230</span>),
-        <span class="string">b&quot;magenta&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">255</span>),
-        <span class="string">b&quot;maroon&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">128</span>, <span class="number">0</span>, <span class="number">0</span>),
-        <span class="string">b&quot;mediumaquamarine&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">102</span>, <span class="number">205</span>, <span class="number">170</span>),
-        <span class="string">b&quot;mediumblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">205</span>),
-        <span class="string">b&quot;mediumorchid&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">186</span>, <span class="number">85</span>, <span class="number">211</span>),
-        <span class="string">b&quot;mediumpurple&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">147</span>, <span class="number">112</span>, <span class="number">219</span>),
-        <span class="string">b&quot;mediumseagreen&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">60</span>, <span class="number">179</span>, <span class="number">113</span>),
-        <span class="string">b&quot;mediumslateblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">123</span>, <span class="number">104</span>, <span class="number">238</span>),
-        <span class="string">b&quot;mediumspringgreen&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">250</span>, <span class="number">154</span>),
-        <span class="string">b&quot;mediumturquoise&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">72</span>, <span class="number">209</span>, <span class="number">204</span>),
-        <span class="string">b&quot;mediumvioletred&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">199</span>, <span class="number">21</span>, <span class="number">133</span>),
-        <span class="string">b&quot;midnightblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">25</span>, <span class="number">25</span>, <span class="number">112</span>),
-        <span class="string">b&quot;mintcream&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">245</span>, <span class="number">255</span>, <span class="number">250</span>),
-        <span class="string">b&quot;mistyrose&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">228</span>, <span class="number">225</span>),
-        <span class="string">b&quot;moccasin&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">228</span>, <span class="number">181</span>),
-        <span class="string">b&quot;navajowhite&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">222</span>, <span class="number">173</span>),
-        <span class="string">b&quot;navy&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">128</span>),
-        <span class="string">b&quot;oldlace&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">253</span>, <span class="number">245</span>, <span class="number">230</span>),
-        <span class="string">b&quot;olive&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>),
-        <span class="string">b&quot;olivedrab&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">107</span>, <span class="number">142</span>, <span class="number">35</span>),
-        <span class="string">b&quot;orange&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">165</span>, <span class="number">0</span>),
-        <span class="string">b&quot;orangered&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">69</span>, <span class="number">0</span>),
-        <span class="string">b&quot;orchid&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">218</span>, <span class="number">112</span>, <span class="number">214</span>),
-        <span class="string">b&quot;palegoldenrod&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">238</span>, <span class="number">232</span>, <span class="number">170</span>),
-        <span class="string">b&quot;palegreen&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">152</span>, <span class="number">251</span>, <span class="number">152</span>),
-        <span class="string">b&quot;paleturquoise&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">175</span>, <span class="number">238</span>, <span class="number">238</span>),
-        <span class="string">b&quot;palevioletred&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">219</span>, <span class="number">112</span>, <span class="number">147</span>),
-        <span class="string">b&quot;papayawhip&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">239</span>, <span class="number">213</span>),
-        <span class="string">b&quot;peachpuff&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">218</span>, <span class="number">185</span>),
-        <span class="string">b&quot;peru&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">205</span>, <span class="number">133</span>, <span class="number">63</span>),
-        <span class="string">b&quot;pink&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">192</span>, <span class="number">203</span>),
-        <span class="string">b&quot;plum&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">221</span>, <span class="number">160</span>, <span class="number">221</span>),
-        <span class="string">b&quot;powderblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">176</span>, <span class="number">224</span>, <span class="number">230</span>),
-        <span class="string">b&quot;purple&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">128</span>, <span class="number">0</span>, <span class="number">128</span>),
-        <span class="string">b&quot;rebeccapurple&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">102</span>, <span class="number">51</span>, <span class="number">153</span>),
-        <span class="string">b&quot;red&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>),
-        <span class="string">b&quot;rosybrown&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">188</span>, <span class="number">143</span>, <span class="number">143</span>),
-        <span class="string">b&quot;royalblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">65</span>, <span class="number">105</span>, <span class="number">225</span>),
-        <span class="string">b&quot;saddlebrown&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">139</span>, <span class="number">69</span>, <span class="number">19</span>),
-        <span class="string">b&quot;salmon&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">250</span>, <span class="number">128</span>, <span class="number">114</span>),
-        <span class="string">b&quot;sandybrown&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">244</span>, <span class="number">164</span>, <span class="number">96</span>),
-        <span class="string">b&quot;seagreen&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">46</span>, <span class="number">139</span>, <span class="number">87</span>),
-        <span class="string">b&quot;seashell&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">245</span>, <span class="number">238</span>),
-        <span class="string">b&quot;sienna&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">160</span>, <span class="number">82</span>, <span class="number">45</span>),
-        <span class="string">b&quot;silver&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">192</span>, <span class="number">192</span>, <span class="number">192</span>),
-        <span class="string">b&quot;skyblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">135</span>, <span class="number">206</span>, <span class="number">235</span>),
-        <span class="string">b&quot;slateblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">106</span>, <span class="number">90</span>, <span class="number">205</span>),
-        <span class="string">b&quot;slategray&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">112</span>, <span class="number">128</span>, <span class="number">144</span>),
-        <span class="string">b&quot;slategrey&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">112</span>, <span class="number">128</span>, <span class="number">144</span>),
-        <span class="string">b&quot;snow&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">250</span>, <span class="number">250</span>),
-        <span class="string">b&quot;springgreen&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">255</span>, <span class="number">127</span>),
-        <span class="string">b&quot;steelblue&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">70</span>, <span class="number">130</span>, <span class="number">180</span>),
-        <span class="string">b&quot;tan&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">210</span>, <span class="number">180</span>, <span class="number">140</span>),
-        <span class="string">b&quot;teal&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">128</span>, <span class="number">128</span>),
-        <span class="string">b&quot;thistle&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">216</span>, <span class="number">191</span>, <span class="number">216</span>),
-        <span class="string">b&quot;tomato&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">99</span>, <span class="number">71</span>),
-        <span class="string">b&quot;turquoise&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">64</span>, <span class="number">224</span>, <span class="number">208</span>),
-        <span class="string">b&quot;violet&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">238</span>, <span class="number">130</span>, <span class="number">238</span>),
-        <span class="string">b&quot;wheat&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">245</span>, <span class="number">222</span>, <span class="number">179</span>),
-        <span class="string">b&quot;white&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>),
-        <span class="string">b&quot;whitesmoke&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">245</span>, <span class="number">245</span>, <span class="number">245</span>),
-        <span class="string">b&quot;yellow&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">0</span>),
-        <span class="string">b&quot;yellowgreen&quot; </span>=&gt; <span class="macro">rgb!</span>(<span class="number">154</span>, <span class="number">205</span>, <span class="number">50</span>),
-        <span class="string">b&quot;transparent&quot; </span>=&gt; Srgb::new(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>),
+        <span class="string">b"aliceblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">240</span>, <span class="number">248</span>, <span class="number">255</span>),
+        <span class="string">b"antiquewhite" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">250</span>, <span class="number">235</span>, <span class="number">215</span>),
+        <span class="string">b"aqua" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">255</span>, <span class="number">255</span>),
+        <span class="string">b"aquamarine" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">127</span>, <span class="number">255</span>, <span class="number">212</span>),
+        <span class="string">b"azure" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">240</span>, <span class="number">255</span>, <span class="number">255</span>),
+        <span class="string">b"beige" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">245</span>, <span class="number">245</span>, <span class="number">220</span>),
+        <span class="string">b"bisque" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">228</span>, <span class="number">196</span>),
+        <span class="string">b"black" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>),
+        <span class="string">b"blanchedalmond" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">235</span>, <span class="number">205</span>),
+        <span class="string">b"blue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>),
+        <span class="string">b"blueviolet" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">138</span>, <span class="number">43</span>, <span class="number">226</span>),
+        <span class="string">b"brown" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">165</span>, <span class="number">42</span>, <span class="number">42</span>),
+        <span class="string">b"burlywood" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">222</span>, <span class="number">184</span>, <span class="number">135</span>),
+        <span class="string">b"cadetblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">95</span>, <span class="number">158</span>, <span class="number">160</span>),
+        <span class="string">b"chartreuse" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">127</span>, <span class="number">255</span>, <span class="number">0</span>),
+        <span class="string">b"chocolate" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">210</span>, <span class="number">105</span>, <span class="number">30</span>),
+        <span class="string">b"coral" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">127</span>, <span class="number">80</span>),
+        <span class="string">b"cornflowerblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">100</span>, <span class="number">149</span>, <span class="number">237</span>),
+        <span class="string">b"cornsilk" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">248</span>, <span class="number">220</span>),
+        <span class="string">b"crimson" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">220</span>, <span class="number">20</span>, <span class="number">60</span>),
+        <span class="string">b"cyan" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">255</span>, <span class="number">255</span>),
+        <span class="string">b"darkblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">139</span>),
+        <span class="string">b"darkcyan" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">139</span>, <span class="number">139</span>),
+        <span class="string">b"darkgoldenrod" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">184</span>, <span class="number">134</span>, <span class="number">11</span>),
+        <span class="string">b"darkgray" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">169</span>, <span class="number">169</span>, <span class="number">169</span>),
+        <span class="string">b"darkgreen" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">100</span>, <span class="number">0</span>),
+        <span class="string">b"darkgrey" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">169</span>, <span class="number">169</span>, <span class="number">169</span>),
+        <span class="string">b"darkkhaki" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">189</span>, <span class="number">183</span>, <span class="number">107</span>),
+        <span class="string">b"darkmagenta" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">139</span>, <span class="number">0</span>, <span class="number">139</span>),
+        <span class="string">b"darkolivegreen" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">85</span>, <span class="number">107</span>, <span class="number">47</span>),
+        <span class="string">b"darkorange" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">140</span>, <span class="number">0</span>),
+        <span class="string">b"darkorchid" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">153</span>, <span class="number">50</span>, <span class="number">204</span>),
+        <span class="string">b"darkred" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">139</span>, <span class="number">0</span>, <span class="number">0</span>),
+        <span class="string">b"darksalmon" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">233</span>, <span class="number">150</span>, <span class="number">122</span>),
+        <span class="string">b"darkseagreen" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">143</span>, <span class="number">188</span>, <span class="number">143</span>),
+        <span class="string">b"darkslateblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">72</span>, <span class="number">61</span>, <span class="number">139</span>),
+        <span class="string">b"darkslategray" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">47</span>, <span class="number">79</span>, <span class="number">79</span>),
+        <span class="string">b"darkslategrey" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">47</span>, <span class="number">79</span>, <span class="number">79</span>),
+        <span class="string">b"darkturquoise" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">206</span>, <span class="number">209</span>),
+        <span class="string">b"darkviolet" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">148</span>, <span class="number">0</span>, <span class="number">211</span>),
+        <span class="string">b"deeppink" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">20</span>, <span class="number">147</span>),
+        <span class="string">b"deepskyblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">191</span>, <span class="number">255</span>),
+        <span class="string">b"dimgray" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">105</span>, <span class="number">105</span>, <span class="number">105</span>),
+        <span class="string">b"dimgrey" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">105</span>, <span class="number">105</span>, <span class="number">105</span>),
+        <span class="string">b"dodgerblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">30</span>, <span class="number">144</span>, <span class="number">255</span>),
+        <span class="string">b"firebrick" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">178</span>, <span class="number">34</span>, <span class="number">34</span>),
+        <span class="string">b"floralwhite" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">250</span>, <span class="number">240</span>),
+        <span class="string">b"forestgreen" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">34</span>, <span class="number">139</span>, <span class="number">34</span>),
+        <span class="string">b"fuchsia" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">255</span>),
+        <span class="string">b"gainsboro" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">220</span>, <span class="number">220</span>, <span class="number">220</span>),
+        <span class="string">b"ghostwhite" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">248</span>, <span class="number">248</span>, <span class="number">255</span>),
+        <span class="string">b"gold" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">215</span>, <span class="number">0</span>),
+        <span class="string">b"goldenrod" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">218</span>, <span class="number">165</span>, <span class="number">32</span>),
+        <span class="string">b"gray" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>),
+        <span class="string">b"green" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">128</span>, <span class="number">0</span>),
+        <span class="string">b"greenyellow" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">173</span>, <span class="number">255</span>, <span class="number">47</span>),
+        <span class="string">b"grey" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">128</span>, <span class="number">128</span>, <span class="number">128</span>),
+        <span class="string">b"honeydew" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">240</span>, <span class="number">255</span>, <span class="number">240</span>),
+        <span class="string">b"hotpink" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">105</span>, <span class="number">180</span>),
+        <span class="string">b"indianred" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">205</span>, <span class="number">92</span>, <span class="number">92</span>),
+        <span class="string">b"indigo" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">75</span>, <span class="number">0</span>, <span class="number">130</span>),
+        <span class="string">b"ivory" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">240</span>),
+        <span class="string">b"khaki" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">240</span>, <span class="number">230</span>, <span class="number">140</span>),
+        <span class="string">b"lavender" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">230</span>, <span class="number">230</span>, <span class="number">250</span>),
+        <span class="string">b"lavenderblush" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">240</span>, <span class="number">245</span>),
+        <span class="string">b"lawngreen" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">124</span>, <span class="number">252</span>, <span class="number">0</span>),
+        <span class="string">b"lemonchiffon" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">250</span>, <span class="number">205</span>),
+        <span class="string">b"lightblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">173</span>, <span class="number">216</span>, <span class="number">230</span>),
+        <span class="string">b"lightcoral" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">240</span>, <span class="number">128</span>, <span class="number">128</span>),
+        <span class="string">b"lightcyan" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">224</span>, <span class="number">255</span>, <span class="number">255</span>),
+        <span class="string">b"lightgoldenrodyellow" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">250</span>, <span class="number">250</span>, <span class="number">210</span>),
+        <span class="string">b"lightgray" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">211</span>, <span class="number">211</span>, <span class="number">211</span>),
+        <span class="string">b"lightgreen" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">144</span>, <span class="number">238</span>, <span class="number">144</span>),
+        <span class="string">b"lightgrey" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">211</span>, <span class="number">211</span>, <span class="number">211</span>),
+        <span class="string">b"lightpink" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">182</span>, <span class="number">193</span>),
+        <span class="string">b"lightsalmon" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">160</span>, <span class="number">122</span>),
+        <span class="string">b"lightseagreen" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">32</span>, <span class="number">178</span>, <span class="number">170</span>),
+        <span class="string">b"lightskyblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">135</span>, <span class="number">206</span>, <span class="number">250</span>),
+        <span class="string">b"lightslategray" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">119</span>, <span class="number">136</span>, <span class="number">153</span>),
+        <span class="string">b"lightslategrey" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">119</span>, <span class="number">136</span>, <span class="number">153</span>),
+        <span class="string">b"lightsteelblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">176</span>, <span class="number">196</span>, <span class="number">222</span>),
+        <span class="string">b"lightyellow" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">224</span>),
+        <span class="string">b"lime" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>),
+        <span class="string">b"limegreen" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">50</span>, <span class="number">205</span>, <span class="number">50</span>),
+        <span class="string">b"linen" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">250</span>, <span class="number">240</span>, <span class="number">230</span>),
+        <span class="string">b"magenta" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">255</span>),
+        <span class="string">b"maroon" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">128</span>, <span class="number">0</span>, <span class="number">0</span>),
+        <span class="string">b"mediumaquamarine" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">102</span>, <span class="number">205</span>, <span class="number">170</span>),
+        <span class="string">b"mediumblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">205</span>),
+        <span class="string">b"mediumorchid" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">186</span>, <span class="number">85</span>, <span class="number">211</span>),
+        <span class="string">b"mediumpurple" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">147</span>, <span class="number">112</span>, <span class="number">219</span>),
+        <span class="string">b"mediumseagreen" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">60</span>, <span class="number">179</span>, <span class="number">113</span>),
+        <span class="string">b"mediumslateblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">123</span>, <span class="number">104</span>, <span class="number">238</span>),
+        <span class="string">b"mediumspringgreen" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">250</span>, <span class="number">154</span>),
+        <span class="string">b"mediumturquoise" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">72</span>, <span class="number">209</span>, <span class="number">204</span>),
+        <span class="string">b"mediumvioletred" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">199</span>, <span class="number">21</span>, <span class="number">133</span>),
+        <span class="string">b"midnightblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">25</span>, <span class="number">25</span>, <span class="number">112</span>),
+        <span class="string">b"mintcream" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">245</span>, <span class="number">255</span>, <span class="number">250</span>),
+        <span class="string">b"mistyrose" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">228</span>, <span class="number">225</span>),
+        <span class="string">b"moccasin" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">228</span>, <span class="number">181</span>),
+        <span class="string">b"navajowhite" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">222</span>, <span class="number">173</span>),
+        <span class="string">b"navy" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">128</span>),
+        <span class="string">b"oldlace" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">253</span>, <span class="number">245</span>, <span class="number">230</span>),
+        <span class="string">b"olive" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">128</span>, <span class="number">128</span>, <span class="number">0</span>),
+        <span class="string">b"olivedrab" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">107</span>, <span class="number">142</span>, <span class="number">35</span>),
+        <span class="string">b"orange" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">165</span>, <span class="number">0</span>),
+        <span class="string">b"orangered" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">69</span>, <span class="number">0</span>),
+        <span class="string">b"orchid" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">218</span>, <span class="number">112</span>, <span class="number">214</span>),
+        <span class="string">b"palegoldenrod" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">238</span>, <span class="number">232</span>, <span class="number">170</span>),
+        <span class="string">b"palegreen" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">152</span>, <span class="number">251</span>, <span class="number">152</span>),
+        <span class="string">b"paleturquoise" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">175</span>, <span class="number">238</span>, <span class="number">238</span>),
+        <span class="string">b"palevioletred" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">219</span>, <span class="number">112</span>, <span class="number">147</span>),
+        <span class="string">b"papayawhip" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">239</span>, <span class="number">213</span>),
+        <span class="string">b"peachpuff" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">218</span>, <span class="number">185</span>),
+        <span class="string">b"peru" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">205</span>, <span class="number">133</span>, <span class="number">63</span>),
+        <span class="string">b"pink" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">192</span>, <span class="number">203</span>),
+        <span class="string">b"plum" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">221</span>, <span class="number">160</span>, <span class="number">221</span>),
+        <span class="string">b"powderblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">176</span>, <span class="number">224</span>, <span class="number">230</span>),
+        <span class="string">b"purple" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">128</span>, <span class="number">0</span>, <span class="number">128</span>),
+        <span class="string">b"rebeccapurple" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">102</span>, <span class="number">51</span>, <span class="number">153</span>),
+        <span class="string">b"red" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>),
+        <span class="string">b"rosybrown" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">188</span>, <span class="number">143</span>, <span class="number">143</span>),
+        <span class="string">b"royalblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">65</span>, <span class="number">105</span>, <span class="number">225</span>),
+        <span class="string">b"saddlebrown" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">139</span>, <span class="number">69</span>, <span class="number">19</span>),
+        <span class="string">b"salmon" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">250</span>, <span class="number">128</span>, <span class="number">114</span>),
+        <span class="string">b"sandybrown" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">244</span>, <span class="number">164</span>, <span class="number">96</span>),
+        <span class="string">b"seagreen" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">46</span>, <span class="number">139</span>, <span class="number">87</span>),
+        <span class="string">b"seashell" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">245</span>, <span class="number">238</span>),
+        <span class="string">b"sienna" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">160</span>, <span class="number">82</span>, <span class="number">45</span>),
+        <span class="string">b"silver" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">192</span>, <span class="number">192</span>, <span class="number">192</span>),
+        <span class="string">b"skyblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">135</span>, <span class="number">206</span>, <span class="number">235</span>),
+        <span class="string">b"slateblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">106</span>, <span class="number">90</span>, <span class="number">205</span>),
+        <span class="string">b"slategray" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">112</span>, <span class="number">128</span>, <span class="number">144</span>),
+        <span class="string">b"slategrey" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">112</span>, <span class="number">128</span>, <span class="number">144</span>),
+        <span class="string">b"snow" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">250</span>, <span class="number">250</span>),
+        <span class="string">b"springgreen" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">255</span>, <span class="number">127</span>),
+        <span class="string">b"steelblue" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">70</span>, <span class="number">130</span>, <span class="number">180</span>),
+        <span class="string">b"tan" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">210</span>, <span class="number">180</span>, <span class="number">140</span>),
+        <span class="string">b"teal" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">0</span>, <span class="number">128</span>, <span class="number">128</span>),
+        <span class="string">b"thistle" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">216</span>, <span class="number">191</span>, <span class="number">216</span>),
+        <span class="string">b"tomato" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">99</span>, <span class="number">71</span>),
+        <span class="string">b"turquoise" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">64</span>, <span class="number">224</span>, <span class="number">208</span>),
+        <span class="string">b"violet" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">238</span>, <span class="number">130</span>, <span class="number">238</span>),
+        <span class="string">b"wheat" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">245</span>, <span class="number">222</span>, <span class="number">179</span>),
+        <span class="string">b"white" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>),
+        <span class="string">b"whitesmoke" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">245</span>, <span class="number">245</span>, <span class="number">245</span>),
+        <span class="string">b"yellow" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">0</span>),
+        <span class="string">b"yellowgreen" </span>=&gt; <span class="macro">rgb!</span>(<span class="number">154</span>, <span class="number">205</span>, <span class="number">50</span>),
+        <span class="string">b"transparent" </span>=&gt; Srgb::new(<span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">0.</span>),
         <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(()),
     })
 }

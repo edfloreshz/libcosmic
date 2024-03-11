@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-0.13.0/src/protocol/randr.rs`."><title>randr.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/x11rb-0.13.0/src/protocol/randr.rs`."><title>randr.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="x11rb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -903,7 +904,7 @@
 <a href="#903" id="903">903</a>
 <a href="#904" id="904">904</a>
 </pre></div><pre class="rust"><code><span class="comment">// This file contains generated code. Do not edit directly.
-// To regenerate this, run &#39;make&#39;.
+// To regenerate this, run 'make'.
 
 </span><span class="doccomment">//! Bindings to the `RandR` X11 extension.
 
@@ -940,7 +941,7 @@
     <span class="prelude-val">Ok</span>(info.major_opcode)
 }
 
-<span class="kw">pub fn </span>query_version&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, major_version: u32, minor_version: u32) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, QueryVersionReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>query_version&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, major_version: u32, minor_version: u32) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, QueryVersionReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -954,7 +955,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_screen_config&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, timestamp: xproto::Timestamp, config_timestamp: xproto::Timestamp, size_id: u16, rotation: Rotation, rate: u16) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, SetScreenConfigReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_screen_config&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, timestamp: xproto::Timestamp, config_timestamp: xproto::Timestamp, size_id: u16, rotation: Rotation, rate: u16) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, SetScreenConfigReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -972,7 +973,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>select_input&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, enable: NotifyMask) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>select_input&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, enable: NotifyMask) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -986,7 +987,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_screen_info&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetScreenInfoReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_screen_info&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetScreenInfoReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -999,7 +1000,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_screen_size_range&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetScreenSizeRangeReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_screen_size_range&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetScreenSizeRangeReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1012,7 +1013,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_screen_size&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, width: u16, height: u16, mm_width: u32, mm_height: u32) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_screen_size&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, width: u16, height: u16, mm_width: u32, mm_height: u32) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1029,7 +1030,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_screen_resources&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetScreenResourcesReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_screen_resources&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetScreenResourcesReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1042,7 +1043,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_output_info&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, output: Output, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetOutputInfoReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_output_info&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, output: Output, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetOutputInfoReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1056,7 +1057,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>list_output_properties&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, output: Output) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, ListOutputPropertiesReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>list_output_properties&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, output: Output) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, ListOutputPropertiesReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1069,7 +1070,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>query_output_property&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, output: Output, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, QueryOutputPropertyReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>query_output_property&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, output: Output, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, QueryOutputPropertyReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1083,7 +1084,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>configure_output_property&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, output: Output, property: xproto::Atom, pending: bool, range: bool, values: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[i32]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>configure_output_property&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, output: Output, property: xproto::Atom, pending: bool, range: bool, values: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[i32]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1100,7 +1101,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>change_output_property&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, output: Output, property: xproto::Atom, type_: xproto::Atom, format: u8, mode: xproto::PropMode, num_units: u32, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>change_output_property&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, output: Output, property: xproto::Atom, type_: xproto::Atom, format: u8, mode: xproto::PropMode, num_units: u32, data: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1119,7 +1120,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>delete_output_property&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, output: Output, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>delete_output_property&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, output: Output, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1133,7 +1134,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_output_property&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, output: Output, property: xproto::Atom, type_: A, long_offset: u32, long_length: u32, delete: bool, pending: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetOutputPropertyReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_output_property&lt;Conn, A&gt;(conn: <span class="kw-2">&amp;</span>Conn, output: Output, property: xproto::Atom, type_: A, long_offset: u32, long_length: u32, delete: bool, pending: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetOutputPropertyReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
     A: Into&lt;xproto::Atom&gt;,
@@ -1154,7 +1155,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>create_mode&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, window: xproto::Window, mode_info: ModeInfo, name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, Conn, CreateModeReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>create_mode&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, window: xproto::Window, mode_info: ModeInfo, name: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, Conn, CreateModeReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1169,7 +1170,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>destroy_mode&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, mode: Mode) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>destroy_mode&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, mode: Mode) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1182,7 +1183,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>add_output_mode&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, output: Output, mode: Mode) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>add_output_mode&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, output: Output, mode: Mode) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1196,7 +1197,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>delete_output_mode&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, output: Output, mode: Mode) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>delete_output_mode&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, output: Output, mode: Mode) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1210,7 +1211,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_crtc_info&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, crtc: Crtc, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetCrtcInfoReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_crtc_info&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, crtc: Crtc, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetCrtcInfoReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1224,7 +1225,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_crtc_config&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, crtc: Crtc, timestamp: xproto::Timestamp, config_timestamp: xproto::Timestamp, x: i16, y: i16, mode: Mode, rotation: Rotation, outputs: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[Output]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, Conn, SetCrtcConfigReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_crtc_config&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, crtc: Crtc, timestamp: xproto::Timestamp, config_timestamp: xproto::Timestamp, x: i16, y: i16, mode: Mode, rotation: Rotation, outputs: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[Output]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, Conn, SetCrtcConfigReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1244,7 +1245,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_crtc_gamma_size&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetCrtcGammaSizeReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_crtc_gamma_size&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetCrtcGammaSizeReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1257,7 +1258,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_crtc_gamma&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetCrtcGammaReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_crtc_gamma&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetCrtcGammaReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1270,7 +1271,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_crtc_gamma&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, crtc: Crtc, red: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u16], green: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u16], blue: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u16]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_crtc_gamma&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, crtc: Crtc, red: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u16], green: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u16], blue: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u16]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1286,7 +1287,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_screen_resources_current&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetScreenResourcesCurrentReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_screen_resources_current&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetScreenResourcesCurrentReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1299,7 +1300,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_crtc_transform&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, crtc: Crtc, transform: render::Transform, filter_name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8], filter_params: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[render::Fixed]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_crtc_transform&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, crtc: Crtc, transform: render::Transform, filter_name: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8], filter_params: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[render::Fixed]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1315,7 +1316,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_crtc_transform&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetCrtcTransformReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_crtc_transform&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetCrtcTransformReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1328,7 +1329,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_panning&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetPanningReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_panning&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetPanningReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1341,7 +1342,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_panning&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, crtc: Crtc, timestamp: xproto::Timestamp, left: u16, top: u16, width: u16, height: u16, track_left: u16, track_top: u16, track_width: u16, track_height: u16, border_left: i16, border_top: i16, border_right: i16, border_bottom: i16) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, SetPanningReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_panning&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, crtc: Crtc, timestamp: xproto::Timestamp, left: u16, top: u16, width: u16, height: u16, track_left: u16, track_top: u16, track_width: u16, track_height: u16, border_left: i16, border_top: i16, border_right: i16, border_bottom: i16) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, SetPanningReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1367,7 +1368,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_output_primary&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, output: Output) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_output_primary&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, output: Output) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1381,7 +1382,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_output_primary&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetOutputPrimaryReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_output_primary&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetOutputPrimaryReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1394,7 +1395,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_providers&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetProvidersReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_providers&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetProvidersReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1407,7 +1408,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_provider_info&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, provider: Provider, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetProviderInfoReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_provider_info&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, provider: Provider, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetProviderInfoReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1421,7 +1422,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_provider_offload_sink&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, provider: Provider, sink_provider: Provider, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_provider_offload_sink&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, provider: Provider, sink_provider: Provider, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1436,7 +1437,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_provider_output_source&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, provider: Provider, source_provider: Provider, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_provider_output_source&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, provider: Provider, source_provider: Provider, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1451,7 +1452,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>list_provider_properties&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, provider: Provider) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, ListProviderPropertiesReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>list_provider_properties&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, provider: Provider) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, ListProviderPropertiesReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1464,7 +1465,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>query_provider_property&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, provider: Provider, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, QueryProviderPropertyReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>query_provider_property&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, provider: Provider, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, QueryProviderPropertyReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1478,7 +1479,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>configure_provider_property&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, provider: Provider, property: xproto::Atom, pending: bool, range: bool, values: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[i32]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>configure_provider_property&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, provider: Provider, property: xproto::Atom, pending: bool, range: bool, values: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[i32]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1495,7 +1496,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>change_provider_property&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, provider: Provider, property: xproto::Atom, type_: xproto::Atom, format: u8, mode: u8, num_items: u32, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>change_provider_property&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, provider: Provider, property: xproto::Atom, type_: xproto::Atom, format: u8, mode: u8, num_items: u32, data: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1514,7 +1515,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>delete_provider_property&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, provider: Provider, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>delete_provider_property&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, provider: Provider, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1528,7 +1529,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_provider_property&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, provider: Provider, property: xproto::Atom, type_: xproto::Atom, long_offset: u32, long_length: u32, delete: bool, pending: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetProviderPropertyReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_provider_property&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, provider: Provider, property: xproto::Atom, type_: xproto::Atom, long_offset: u32, long_length: u32, delete: bool, pending: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetProviderPropertyReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1547,7 +1548,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>get_monitors&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, get_active: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, Conn, GetMonitorsReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>get_monitors&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, get_active: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, Conn, GetMonitorsReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1561,7 +1562,7 @@
     conn.send_request_with_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>set_monitor&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, monitorinfo: MonitorInfo) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>set_monitor&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, monitorinfo: MonitorInfo) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1575,7 +1576,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>delete_monitor&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, name: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>delete_monitor&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, window: xproto::Window, name: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1589,7 +1590,7 @@
     conn.send_request_without_reply(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>create_lease&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span>Conn, window: xproto::Window, lid: Lease, crtcs: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[Crtc], outputs: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[Output]) -&gt; <span class="prelude-ty">Result</span>&lt;CookieWithFds&lt;<span class="lifetime">&#39;c</span>, Conn, CreateLeaseReply&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>create_lease&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>, Conn&gt;(conn: <span class="kw-2">&amp;</span><span class="lifetime">'c </span>Conn, window: xproto::Window, lid: Lease, crtcs: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[Crtc], outputs: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[Output]) -&gt; <span class="prelude-ty">Result</span>&lt;CookieWithFds&lt;<span class="lifetime">'c</span>, Conn, CreateLeaseReply&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1605,7 +1606,7 @@
     conn.send_request_with_reply_with_fds(<span class="kw-2">&amp;</span>slices, fds)
 }
 
-<span class="kw">pub fn </span>free_lease&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, lid: Lease, terminate: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, Conn&gt;, ConnectionError&gt;
+<span class="kw">pub fn </span>free_lease&lt;Conn&gt;(conn: <span class="kw-2">&amp;</span>Conn, lid: Lease, terminate: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, Conn&gt;, ConnectionError&gt;
 <span class="kw">where
     </span>Conn: RequestConnection + <span class="question-mark">?</span>Sized,
 {
@@ -1621,185 +1622,185 @@
 
 <span class="doccomment">/// Extension trait defining the requests of this extension.
 </span><span class="kw">pub trait </span>ConnectionExt: RequestConnection {
-    <span class="kw">fn </span>randr_query_version(<span class="kw-2">&amp;</span><span class="self">self</span>, major_version: u32, minor_version: u32) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, QueryVersionReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_query_version(<span class="kw-2">&amp;</span><span class="self">self</span>, major_version: u32, minor_version: u32) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, QueryVersionReply&gt;, ConnectionError&gt;
     {
         query_version(<span class="self">self</span>, major_version, minor_version)
     }
-    <span class="kw">fn </span>randr_set_screen_config(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, timestamp: xproto::Timestamp, config_timestamp: xproto::Timestamp, size_id: u16, rotation: Rotation, rate: u16) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, SetScreenConfigReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_set_screen_config(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, timestamp: xproto::Timestamp, config_timestamp: xproto::Timestamp, size_id: u16, rotation: Rotation, rate: u16) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, SetScreenConfigReply&gt;, ConnectionError&gt;
     {
         set_screen_config(<span class="self">self</span>, window, timestamp, config_timestamp, size_id, rotation, rate)
     }
-    <span class="kw">fn </span>randr_select_input(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, enable: NotifyMask) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_select_input(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, enable: NotifyMask) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         select_input(<span class="self">self</span>, window, enable)
     }
-    <span class="kw">fn </span>randr_get_screen_info(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetScreenInfoReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_screen_info(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetScreenInfoReply&gt;, ConnectionError&gt;
     {
         get_screen_info(<span class="self">self</span>, window)
     }
-    <span class="kw">fn </span>randr_get_screen_size_range(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetScreenSizeRangeReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_screen_size_range(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetScreenSizeRangeReply&gt;, ConnectionError&gt;
     {
         get_screen_size_range(<span class="self">self</span>, window)
     }
-    <span class="kw">fn </span>randr_set_screen_size(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, width: u16, height: u16, mm_width: u32, mm_height: u32) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_set_screen_size(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, width: u16, height: u16, mm_width: u32, mm_height: u32) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         set_screen_size(<span class="self">self</span>, window, width, height, mm_width, mm_height)
     }
-    <span class="kw">fn </span>randr_get_screen_resources(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetScreenResourcesReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_screen_resources(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetScreenResourcesReply&gt;, ConnectionError&gt;
     {
         get_screen_resources(<span class="self">self</span>, window)
     }
-    <span class="kw">fn </span>randr_get_output_info(<span class="kw-2">&amp;</span><span class="self">self</span>, output: Output, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetOutputInfoReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_output_info(<span class="kw-2">&amp;</span><span class="self">self</span>, output: Output, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetOutputInfoReply&gt;, ConnectionError&gt;
     {
         get_output_info(<span class="self">self</span>, output, config_timestamp)
     }
-    <span class="kw">fn </span>randr_list_output_properties(<span class="kw-2">&amp;</span><span class="self">self</span>, output: Output) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, ListOutputPropertiesReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_list_output_properties(<span class="kw-2">&amp;</span><span class="self">self</span>, output: Output) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, ListOutputPropertiesReply&gt;, ConnectionError&gt;
     {
         list_output_properties(<span class="self">self</span>, output)
     }
-    <span class="kw">fn </span>randr_query_output_property(<span class="kw-2">&amp;</span><span class="self">self</span>, output: Output, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, QueryOutputPropertyReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_query_output_property(<span class="kw-2">&amp;</span><span class="self">self</span>, output: Output, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, QueryOutputPropertyReply&gt;, ConnectionError&gt;
     {
         query_output_property(<span class="self">self</span>, output, property)
     }
-    <span class="kw">fn </span>randr_configure_output_property&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, output: Output, property: xproto::Atom, pending: bool, range: bool, values: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[i32]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_configure_output_property&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, output: Output, property: xproto::Atom, pending: bool, range: bool, values: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[i32]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         configure_output_property(<span class="self">self</span>, output, property, pending, range, values)
     }
-    <span class="kw">fn </span>randr_change_output_property&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, output: Output, property: xproto::Atom, type_: xproto::Atom, format: u8, mode: xproto::PropMode, num_units: u32, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_change_output_property&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, output: Output, property: xproto::Atom, type_: xproto::Atom, format: u8, mode: xproto::PropMode, num_units: u32, data: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         change_output_property(<span class="self">self</span>, output, property, type_, format, mode, num_units, data)
     }
-    <span class="kw">fn </span>randr_delete_output_property(<span class="kw-2">&amp;</span><span class="self">self</span>, output: Output, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_delete_output_property(<span class="kw-2">&amp;</span><span class="self">self</span>, output: Output, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         delete_output_property(<span class="self">self</span>, output, property)
     }
-    <span class="kw">fn </span>randr_get_output_property&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, output: Output, property: xproto::Atom, type_: A, long_offset: u32, long_length: u32, delete: bool, pending: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetOutputPropertyReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_output_property&lt;A&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, output: Output, property: xproto::Atom, type_: A, long_offset: u32, long_length: u32, delete: bool, pending: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetOutputPropertyReply&gt;, ConnectionError&gt;
     <span class="kw">where
         </span>A: Into&lt;xproto::Atom&gt;,
     {
         get_output_property(<span class="self">self</span>, output, property, type_, long_offset, long_length, delete, pending)
     }
-    <span class="kw">fn </span>randr_create_mode&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, window: xproto::Window, mode_info: ModeInfo, name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>, CreateModeReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_create_mode&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, window: xproto::Window, mode_info: ModeInfo, name: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>, CreateModeReply&gt;, ConnectionError&gt;
     {
         create_mode(<span class="self">self</span>, window, mode_info, name)
     }
-    <span class="kw">fn </span>randr_destroy_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, mode: Mode) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_destroy_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, mode: Mode) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         destroy_mode(<span class="self">self</span>, mode)
     }
-    <span class="kw">fn </span>randr_add_output_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, output: Output, mode: Mode) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_add_output_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, output: Output, mode: Mode) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         add_output_mode(<span class="self">self</span>, output, mode)
     }
-    <span class="kw">fn </span>randr_delete_output_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, output: Output, mode: Mode) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_delete_output_mode(<span class="kw-2">&amp;</span><span class="self">self</span>, output: Output, mode: Mode) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         delete_output_mode(<span class="self">self</span>, output, mode)
     }
-    <span class="kw">fn </span>randr_get_crtc_info(<span class="kw-2">&amp;</span><span class="self">self</span>, crtc: Crtc, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetCrtcInfoReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_crtc_info(<span class="kw-2">&amp;</span><span class="self">self</span>, crtc: Crtc, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetCrtcInfoReply&gt;, ConnectionError&gt;
     {
         get_crtc_info(<span class="self">self</span>, crtc, config_timestamp)
     }
-    <span class="kw">fn </span>randr_set_crtc_config&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, crtc: Crtc, timestamp: xproto::Timestamp, config_timestamp: xproto::Timestamp, x: i16, y: i16, mode: Mode, rotation: Rotation, outputs: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[Output]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>, SetCrtcConfigReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_set_crtc_config&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, crtc: Crtc, timestamp: xproto::Timestamp, config_timestamp: xproto::Timestamp, x: i16, y: i16, mode: Mode, rotation: Rotation, outputs: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[Output]) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>, SetCrtcConfigReply&gt;, ConnectionError&gt;
     {
         set_crtc_config(<span class="self">self</span>, crtc, timestamp, config_timestamp, x, y, mode, rotation, outputs)
     }
-    <span class="kw">fn </span>randr_get_crtc_gamma_size(<span class="kw-2">&amp;</span><span class="self">self</span>, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetCrtcGammaSizeReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_crtc_gamma_size(<span class="kw-2">&amp;</span><span class="self">self</span>, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetCrtcGammaSizeReply&gt;, ConnectionError&gt;
     {
         get_crtc_gamma_size(<span class="self">self</span>, crtc)
     }
-    <span class="kw">fn </span>randr_get_crtc_gamma(<span class="kw-2">&amp;</span><span class="self">self</span>, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetCrtcGammaReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_crtc_gamma(<span class="kw-2">&amp;</span><span class="self">self</span>, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetCrtcGammaReply&gt;, ConnectionError&gt;
     {
         get_crtc_gamma(<span class="self">self</span>, crtc)
     }
-    <span class="kw">fn </span>randr_set_crtc_gamma&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, crtc: Crtc, red: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u16], green: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u16], blue: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u16]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_set_crtc_gamma&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, crtc: Crtc, red: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u16], green: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u16], blue: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u16]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         set_crtc_gamma(<span class="self">self</span>, crtc, red, green, blue)
     }
-    <span class="kw">fn </span>randr_get_screen_resources_current(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetScreenResourcesCurrentReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_screen_resources_current(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetScreenResourcesCurrentReply&gt;, ConnectionError&gt;
     {
         get_screen_resources_current(<span class="self">self</span>, window)
     }
-    <span class="kw">fn </span>randr_set_crtc_transform&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, crtc: Crtc, transform: render::Transform, filter_name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8], filter_params: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[render::Fixed]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_set_crtc_transform&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, crtc: Crtc, transform: render::Transform, filter_name: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8], filter_params: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[render::Fixed]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         set_crtc_transform(<span class="self">self</span>, crtc, transform, filter_name, filter_params)
     }
-    <span class="kw">fn </span>randr_get_crtc_transform(<span class="kw-2">&amp;</span><span class="self">self</span>, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetCrtcTransformReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_crtc_transform(<span class="kw-2">&amp;</span><span class="self">self</span>, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetCrtcTransformReply&gt;, ConnectionError&gt;
     {
         get_crtc_transform(<span class="self">self</span>, crtc)
     }
-    <span class="kw">fn </span>randr_get_panning(<span class="kw-2">&amp;</span><span class="self">self</span>, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetPanningReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_panning(<span class="kw-2">&amp;</span><span class="self">self</span>, crtc: Crtc) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetPanningReply&gt;, ConnectionError&gt;
     {
         get_panning(<span class="self">self</span>, crtc)
     }
-    <span class="kw">fn </span>randr_set_panning(<span class="kw-2">&amp;</span><span class="self">self</span>, crtc: Crtc, timestamp: xproto::Timestamp, left: u16, top: u16, width: u16, height: u16, track_left: u16, track_top: u16, track_width: u16, track_height: u16, border_left: i16, border_top: i16, border_right: i16, border_bottom: i16) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, SetPanningReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_set_panning(<span class="kw-2">&amp;</span><span class="self">self</span>, crtc: Crtc, timestamp: xproto::Timestamp, left: u16, top: u16, width: u16, height: u16, track_left: u16, track_top: u16, track_width: u16, track_height: u16, border_left: i16, border_top: i16, border_right: i16, border_bottom: i16) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, SetPanningReply&gt;, ConnectionError&gt;
     {
         set_panning(<span class="self">self</span>, crtc, timestamp, left, top, width, height, track_left, track_top, track_width, track_height, border_left, border_top, border_right, border_bottom)
     }
-    <span class="kw">fn </span>randr_set_output_primary(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, output: Output) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_set_output_primary(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, output: Output) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         set_output_primary(<span class="self">self</span>, window, output)
     }
-    <span class="kw">fn </span>randr_get_output_primary(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetOutputPrimaryReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_output_primary(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetOutputPrimaryReply&gt;, ConnectionError&gt;
     {
         get_output_primary(<span class="self">self</span>, window)
     }
-    <span class="kw">fn </span>randr_get_providers(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetProvidersReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_providers(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetProvidersReply&gt;, ConnectionError&gt;
     {
         get_providers(<span class="self">self</span>, window)
     }
-    <span class="kw">fn </span>randr_get_provider_info(<span class="kw-2">&amp;</span><span class="self">self</span>, provider: Provider, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetProviderInfoReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_provider_info(<span class="kw-2">&amp;</span><span class="self">self</span>, provider: Provider, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetProviderInfoReply&gt;, ConnectionError&gt;
     {
         get_provider_info(<span class="self">self</span>, provider, config_timestamp)
     }
-    <span class="kw">fn </span>randr_set_provider_offload_sink(<span class="kw-2">&amp;</span><span class="self">self</span>, provider: Provider, sink_provider: Provider, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_set_provider_offload_sink(<span class="kw-2">&amp;</span><span class="self">self</span>, provider: Provider, sink_provider: Provider, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         set_provider_offload_sink(<span class="self">self</span>, provider, sink_provider, config_timestamp)
     }
-    <span class="kw">fn </span>randr_set_provider_output_source(<span class="kw-2">&amp;</span><span class="self">self</span>, provider: Provider, source_provider: Provider, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_set_provider_output_source(<span class="kw-2">&amp;</span><span class="self">self</span>, provider: Provider, source_provider: Provider, config_timestamp: xproto::Timestamp) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         set_provider_output_source(<span class="self">self</span>, provider, source_provider, config_timestamp)
     }
-    <span class="kw">fn </span>randr_list_provider_properties(<span class="kw-2">&amp;</span><span class="self">self</span>, provider: Provider) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, ListProviderPropertiesReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_list_provider_properties(<span class="kw-2">&amp;</span><span class="self">self</span>, provider: Provider) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, ListProviderPropertiesReply&gt;, ConnectionError&gt;
     {
         list_provider_properties(<span class="self">self</span>, provider)
     }
-    <span class="kw">fn </span>randr_query_provider_property(<span class="kw-2">&amp;</span><span class="self">self</span>, provider: Provider, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, QueryProviderPropertyReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_query_provider_property(<span class="kw-2">&amp;</span><span class="self">self</span>, provider: Provider, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, QueryProviderPropertyReply&gt;, ConnectionError&gt;
     {
         query_provider_property(<span class="self">self</span>, provider, property)
     }
-    <span class="kw">fn </span>randr_configure_provider_property&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, provider: Provider, property: xproto::Atom, pending: bool, range: bool, values: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[i32]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_configure_provider_property&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, provider: Provider, property: xproto::Atom, pending: bool, range: bool, values: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[i32]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         configure_provider_property(<span class="self">self</span>, provider, property, pending, range, values)
     }
-    <span class="kw">fn </span>randr_change_provider_property&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, provider: Provider, property: xproto::Atom, type_: xproto::Atom, format: u8, mode: u8, num_items: u32, data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_change_provider_property&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, provider: Provider, property: xproto::Atom, type_: xproto::Atom, format: u8, mode: u8, num_items: u32, data: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[u8]) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         change_provider_property(<span class="self">self</span>, provider, property, type_, format, mode, num_items, data)
     }
-    <span class="kw">fn </span>randr_delete_provider_property(<span class="kw-2">&amp;</span><span class="self">self</span>, provider: Provider, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_delete_provider_property(<span class="kw-2">&amp;</span><span class="self">self</span>, provider: Provider, property: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         delete_provider_property(<span class="self">self</span>, provider, property)
     }
-    <span class="kw">fn </span>randr_get_provider_property(<span class="kw-2">&amp;</span><span class="self">self</span>, provider: Provider, property: xproto::Atom, type_: xproto::Atom, long_offset: u32, long_length: u32, delete: bool, pending: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetProviderPropertyReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_provider_property(<span class="kw-2">&amp;</span><span class="self">self</span>, provider: Provider, property: xproto::Atom, type_: xproto::Atom, long_offset: u32, long_length: u32, delete: bool, pending: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetProviderPropertyReply&gt;, ConnectionError&gt;
     {
         get_provider_property(<span class="self">self</span>, provider, property, type_, long_offset, long_length, delete, pending)
     }
-    <span class="kw">fn </span>randr_get_monitors(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, get_active: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>, GetMonitorsReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_get_monitors(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, get_active: bool) -&gt; <span class="prelude-ty">Result</span>&lt;Cookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>, GetMonitorsReply&gt;, ConnectionError&gt;
     {
         get_monitors(<span class="self">self</span>, window, get_active)
     }
-    <span class="kw">fn </span>randr_set_monitor(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, monitorinfo: MonitorInfo) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_set_monitor(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, monitorinfo: MonitorInfo) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         set_monitor(<span class="self">self</span>, window, monitorinfo)
     }
-    <span class="kw">fn </span>randr_delete_monitor(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, name: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_delete_monitor(<span class="kw-2">&amp;</span><span class="self">self</span>, window: xproto::Window, name: xproto::Atom) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         delete_monitor(<span class="self">self</span>, window, name)
     }
-    <span class="kw">fn </span>randr_create_lease&lt;<span class="lifetime">&#39;c</span>, <span class="lifetime">&#39;input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">&#39;c </span><span class="self">self</span>, window: xproto::Window, lid: Lease, crtcs: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[Crtc], outputs: <span class="kw-2">&amp;</span><span class="lifetime">&#39;input </span>[Output]) -&gt; <span class="prelude-ty">Result</span>&lt;CookieWithFds&lt;<span class="lifetime">&#39;c</span>, <span class="self">Self</span>, CreateLeaseReply&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_create_lease&lt;<span class="lifetime">'c</span>, <span class="lifetime">'input</span>&gt;(<span class="kw-2">&amp;</span><span class="lifetime">'c </span><span class="self">self</span>, window: xproto::Window, lid: Lease, crtcs: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[Crtc], outputs: <span class="kw-2">&amp;</span><span class="lifetime">'input </span>[Output]) -&gt; <span class="prelude-ty">Result</span>&lt;CookieWithFds&lt;<span class="lifetime">'c</span>, <span class="self">Self</span>, CreateLeaseReply&gt;, ConnectionError&gt;
     {
         create_lease(<span class="self">self</span>, window, lid, crtcs, outputs)
     }
-    <span class="kw">fn </span>randr_free_lease(<span class="kw-2">&amp;</span><span class="self">self</span>, lid: Lease, terminate: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">&#39;_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
+    <span class="kw">fn </span>randr_free_lease(<span class="kw-2">&amp;</span><span class="self">self</span>, lid: Lease, terminate: u8) -&gt; <span class="prelude-ty">Result</span>&lt;VoidCookie&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt;, ConnectionError&gt;
     {
         free_lease(<span class="self">self</span>, lid, terminate)
     }

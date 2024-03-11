@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/csscolorparser-0.6.2/src/color.rs`."><title>color.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="csscolorparser" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/csscolorparser-0.6.2/src/color.rs`."><title>color.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="csscolorparser" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1068,22 +1069,22 @@
 <a href="#1068" id="1068">1068</a>
 <a href="#1069" id="1069">1069</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>std::convert::TryFrom;
-<span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
 </span><span class="kw">use </span>std::f64::consts::{PI, TAU};
 <span class="kw">use </span>std::fmt;
 <span class="kw">use </span>std::str::FromStr;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;rust-rgb&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"rust-rgb"</span>)]
 </span><span class="kw">use </span>rgb::{RGB, RGBA};
-<span class="attr">#[cfg(feature = <span class="string">&quot;serde&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"serde"</span>)]
 </span><span class="kw">use </span>serde::{Deserialize, Deserializer, Serialize, Serializer};
 
 <span class="kw">use crate</span>::{parse, ParseColorError};
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;named-colors&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"named-colors"</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::parser::NAMED_COLORS;
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
 </span><span class="kw">const </span>PI_3: f64 = PI * <span class="number">3.0</span>;
 
 <span class="attr">#[derive(Debug, Clone, PartialEq, PartialOrd)]
@@ -1141,7 +1142,7 @@
         }
     }
 
-    <span class="attr">#[deprecated = <span class="string">&quot;Use [new](#method.new) instead.&quot;</span>]
+    <span class="attr">#[deprecated = <span class="string">"Use [new](#method.new) instead."</span>]
     </span><span class="doccomment">/// Arguments:
     ///
     /// * `r`: Red value [0..1]
@@ -1151,7 +1152,7 @@
         <span class="self">Self </span>{ r, g, b, a: <span class="number">1.0 </span>}
     }
 
-    <span class="attr">#[deprecated = <span class="string">&quot;Use [new](#method.new) instead.&quot;</span>]
+    <span class="attr">#[deprecated = <span class="string">"Use [new](#method.new) instead."</span>]
     </span><span class="doccomment">/// Arguments:
     ///
     /// * `r`: Red value [0..1]
@@ -1162,7 +1163,7 @@
         <span class="self">Self </span>{ r, g, b, a }
     }
 
-    <span class="attr">#[deprecated = <span class="string">&quot;Use [from_rgba8](#method.from_rgba8) instead.&quot;</span>]
+    <span class="attr">#[deprecated = <span class="string">"Use [from_rgba8](#method.from_rgba8) instead."</span>]
     </span><span class="doccomment">/// Arguments:
     ///
     /// * `r`: Red value [0..255]
@@ -1177,7 +1178,7 @@
         }
     }
 
-    <span class="attr">#[deprecated = <span class="string">&quot;Use [from_rgba8](#method.from_rgba8) instead.&quot;</span>]
+    <span class="attr">#[deprecated = <span class="string">"Use [from_rgba8](#method.from_rgba8) instead."</span>]
     </span><span class="doccomment">/// Arguments:
     ///
     /// * `r`: Red value [0..255]
@@ -1208,7 +1209,7 @@
         }
     }
 
-    <span class="attr">#[deprecated = <span class="string">&quot;Use [from_linear_rgba](#method.from_linear_rgba) instead.&quot;</span>]
+    <span class="attr">#[deprecated = <span class="string">"Use [from_linear_rgba](#method.from_linear_rgba) instead."</span>]
     </span><span class="doccomment">/// Arguments:
     ///
     /// * `r`: Red value [0..1]
@@ -1234,7 +1235,7 @@
         <span class="self">Self</span>::new(from_linear(r), from_linear(g), from_linear(b), a)
     }
 
-    <span class="attr">#[deprecated = <span class="string">&quot;Use [from_linear_rgba8](#method.from_linear_rgba8) instead.&quot;</span>]
+    <span class="attr">#[deprecated = <span class="string">"Use [from_linear_rgba8](#method.from_linear_rgba8) instead."</span>]
     </span><span class="doccomment">/// Arguments:
     ///
     /// * `r`: Red value [0..255]
@@ -1244,7 +1245,7 @@
         <span class="self">Self</span>::from_linear_rgba(r <span class="kw">as </span>f64 / <span class="number">255.0</span>, g <span class="kw">as </span>f64 / <span class="number">255.0</span>, b <span class="kw">as </span>f64 / <span class="number">255.0</span>, <span class="number">1.0</span>)
     }
 
-    <span class="attr">#[deprecated = <span class="string">&quot;Use [from_linear_rgba8](#method.from_linear_rgba8) instead.&quot;</span>]
+    <span class="attr">#[deprecated = <span class="string">"Use [from_linear_rgba8](#method.from_linear_rgba8) instead."</span>]
     </span><span class="doccomment">/// Arguments:
     ///
     /// * `r`: Red value [0..255]
@@ -1275,7 +1276,7 @@
         )
     }
 
-    <span class="attr">#[deprecated = <span class="string">&quot;Use [from_hsva](#method.from_hsva) instead.&quot;</span>]
+    <span class="attr">#[deprecated = <span class="string">"Use [from_hsva](#method.from_hsva) instead."</span>]
     </span><span class="doccomment">/// Arguments:
     ///
     /// * `h`: Hue angle [0..360]
@@ -1296,7 +1297,7 @@
         <span class="self">Self</span>::new(clamp0_1(r), clamp0_1(g), clamp0_1(b), clamp0_1(a))
     }
 
-    <span class="attr">#[deprecated = <span class="string">&quot;Use [from_hsla](#method.from_hsla) instead.&quot;</span>]
+    <span class="attr">#[deprecated = <span class="string">"Use [from_hsla](#method.from_hsla) instead."</span>]
     </span><span class="doccomment">/// Arguments:
     ///
     /// * `h`: Hue angle [0..360]
@@ -1317,7 +1318,7 @@
         <span class="self">Self</span>::new(clamp0_1(r), clamp0_1(g), clamp0_1(b), clamp0_1(a))
     }
 
-    <span class="attr">#[deprecated = <span class="string">&quot;Use [from_hwba](#method.from_hwba) instead.&quot;</span>]
+    <span class="attr">#[deprecated = <span class="string">"Use [from_hwba](#method.from_hwba) instead."</span>]
     </span><span class="doccomment">/// Arguments:
     ///
     /// * `h`: Hue angle [0..360]
@@ -1338,7 +1339,7 @@
         <span class="self">Self</span>::new(clamp0_1(r), clamp0_1(g), clamp0_1(b), a)
     }
 
-    <span class="attr">#[deprecated = <span class="string">&quot;Use [from_oklaba](#method.from_oklaba) instead.&quot;</span>]
+    <span class="attr">#[deprecated = <span class="string">"Use [from_oklaba](#method.from_oklaba) instead."</span>]
     </span><span class="doccomment">/// Arguments:
     ///
     /// * `l`: Perceived lightness
@@ -1366,7 +1367,7 @@
         <span class="self">Self</span>::from_linear_rgba(r, g, b, alpha)
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
     </span><span class="doccomment">/// Arguments:
     ///
     /// * `l`: Lightness
@@ -1383,14 +1384,14 @@
         <span class="self">Self</span>::new(r <span class="kw">as </span>f64, g <span class="kw">as </span>f64, b <span class="kw">as </span>f64, alpha)
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
     </span><span class="doccomment">/// Returns: `(l, a, b, alpha)`
     </span><span class="kw">pub fn </span>to_lab(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (f64, f64, f64, f64) {
         <span class="kw">let </span>lab = lab::Lab::from_rgb_normalized(<span class="kw-2">&amp;</span>[<span class="self">self</span>.r <span class="kw">as </span>f32, <span class="self">self</span>.g <span class="kw">as </span>f32, <span class="self">self</span>.b <span class="kw">as </span>f32]);
         (lab.l <span class="kw">as </span>f64, lab.a <span class="kw">as </span>f64, lab.b <span class="kw">as </span>f64, <span class="self">self</span>.a)
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
     </span><span class="doccomment">/// Blend this color with the other one, in the Lab color-space. `t` in the range [0..1].
     </span><span class="kw">pub fn </span>interpolate_lab(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>Color, t: f64) -&gt; <span class="self">Self </span>{
         <span class="kw">let </span>(l1, a1, b1, alpha1) = <span class="self">self</span>.to_lab();
@@ -1403,7 +1404,7 @@
         )
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
     </span><span class="doccomment">/// Arguments:
     ///
     /// * `l`: Lightness
@@ -1421,7 +1422,7 @@
         <span class="self">Self</span>::new(r <span class="kw">as </span>f64, g <span class="kw">as </span>f64, b <span class="kw">as </span>f64, alpha)
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
     </span><span class="doccomment">/// Returns: `(l, c, h, alpha)`
     </span><span class="kw">pub fn </span>to_lch(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; (f64, f64, f64, f64) {
         <span class="kw">let </span>lch = lab::LCh::from_lab(lab::Lab::from_rgb_normalized(<span class="kw-2">&amp;</span>[
@@ -1432,7 +1433,7 @@
         (lch.l <span class="kw">as </span>f64, lch.c <span class="kw">as </span>f64, lch.h <span class="kw">as </span>f64, <span class="self">self</span>.a)
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
     </span><span class="doccomment">/// Blend this color with the other one, in the LCH color-space. `t` in the range [0..1].
     </span><span class="kw">pub fn </span>interpolate_lch(<span class="kw-2">&amp;</span><span class="self">self</span>, other: <span class="kw-2">&amp;</span>Color, t: f64) -&gt; <span class="self">Self </span>{
         <span class="kw">let </span>(l1, c1, h1, alpha1) = <span class="self">self</span>.to_lch();
@@ -1453,12 +1454,12 @@
     /// # use std::error::Error;
     /// # fn main() -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
     ///
-    /// let c = Color::from_html(&quot;rgb(255,0,0)&quot;)?;
+    /// let c = Color::from_html("rgb(255,0,0)")?;
     ///
     /// assert_eq!(c.to_array(), [1.0, 0.0, 0.0, 1.0]);
     /// assert_eq!(c.to_rgba8(), [255, 0, 0, 255]);
-    /// assert_eq!(c.to_hex_string(), &quot;#ff0000&quot;);
-    /// assert_eq!(c.to_rgb_string(), &quot;rgb(255,0,0)&quot;);
+    /// assert_eq!(c.to_hex_string(), "#ff0000");
+    /// assert_eq!(c.to_rgb_string(), "rgb(255,0,0)");
     /// # Ok(())
     /// # }
     /// ```
@@ -1466,8 +1467,8 @@
         parse(s.as_ref())
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;named-colors&quot;</span>)]
-    </span><span class="kw">pub fn </span>name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt; {
+    <span class="attr">#[cfg(feature = <span class="string">"named-colors"</span>)]
+    </span><span class="kw">pub fn </span>name(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str&gt; {
         <span class="kw">let </span>rgb = <span class="kw-2">&amp;</span><span class="self">self</span>.to_rgba8()[<span class="number">0</span>..<span class="number">3</span>];
         <span class="kw">for </span>(<span class="kw-2">&amp;</span>k, <span class="kw-2">&amp;</span>v) <span class="kw">in </span>NAMED_COLORS.entries() {
             <span class="kw">if </span>v == rgb {
@@ -1485,7 +1486,7 @@
         (<span class="self">self</span>.r, <span class="self">self</span>.g, <span class="self">self</span>.b, <span class="self">self</span>.a)
     }
 
-    <span class="attr">#[deprecated = <span class="string">&quot;Use [to_rgba8](#method.to_rgba8) instead.&quot;</span>]
+    <span class="attr">#[deprecated = <span class="string">"Use [to_rgba8](#method.to_rgba8) instead."</span>]
     </span><span class="doccomment">/// Returns: `(r, g, b, a)`
     ///
     /// * Red, green, blue and alpha in the range [0..255]
@@ -1579,10 +1580,10 @@
         <span class="kw">let </span>[r, g, b, a] = <span class="self">self</span>.to_rgba8();
 
         <span class="kw">if </span>a &lt; <span class="number">255 </span>{
-            <span class="kw">return </span><span class="macro">format!</span>(<span class="string">&quot;#{:02x}{:02x}{:02x}{:02x}&quot;</span>, r, g, b, a);
+            <span class="kw">return </span><span class="macro">format!</span>(<span class="string">"#{:02x}{:02x}{:02x}{:02x}"</span>, r, g, b, a);
         }
 
-        <span class="macro">format!</span>(<span class="string">&quot;#{:02x}{:02x}{:02x}&quot;</span>, r, g, b)
+        <span class="macro">format!</span>(<span class="string">"#{:02x}{:02x}{:02x}"</span>, r, g, b)
     }
 
     <span class="doccomment">/// Get the CSS `rgb()` format string.
@@ -1590,10 +1591,10 @@
         <span class="kw">let </span>[r, g, b, <span class="kw">_</span>] = <span class="self">self</span>.to_rgba8();
 
         <span class="kw">if </span><span class="self">self</span>.a &lt; <span class="number">1.0 </span>{
-            <span class="kw">return </span><span class="macro">format!</span>(<span class="string">&quot;rgba({},{},{},{})&quot;</span>, r, g, b, <span class="self">self</span>.a);
+            <span class="kw">return </span><span class="macro">format!</span>(<span class="string">"rgba({},{},{},{})"</span>, r, g, b, <span class="self">self</span>.a);
         }
 
-        <span class="macro">format!</span>(<span class="string">&quot;rgb({},{},{})&quot;</span>, r, g, b)
+        <span class="macro">format!</span>(<span class="string">"rgb({},{},{})"</span>, r, g, b)
     }
 
     <span class="doccomment">/// Blend this color with the other one, in the RGB color-space. `t` in the range [0..1].
@@ -1654,7 +1655,7 @@
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;cint&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"cint"</span>)]
 </span><span class="kw">mod </span>impl_cint {
     <span class="kw">use super</span>::<span class="kw-2">*</span>;
     <span class="kw">use </span>cint::{Alpha, ColorInterop, EncodedSrgb};
@@ -1772,7 +1773,7 @@
 
 <span class="kw">impl </span>fmt::Display <span class="kw">for </span>Color {
     <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-        <span class="macro">write!</span>(f, <span class="string">&quot;RGBA({},{},{},{})&quot;</span>, <span class="self">self</span>.r, <span class="self">self</span>.g, <span class="self">self</span>.b, <span class="self">self</span>.a)
+        <span class="macro">write!</span>(f, <span class="string">"RGBA({},{},{},{})"</span>, <span class="self">self</span>.r, <span class="self">self</span>.g, <span class="self">self</span>.b, <span class="self">self</span>.a)
     }
 }
 
@@ -1862,16 +1863,16 @@
     }
 }
 
-<span class="doccomment">/// Convert rust-rgb&#39;s `RGB&lt;f64&gt;` type into `Color`.
-</span><span class="attr">#[cfg(feature = <span class="string">&quot;rust-rgb&quot;</span>)]
+<span class="doccomment">/// Convert rust-rgb's `RGB&lt;f64&gt;` type into `Color`.
+</span><span class="attr">#[cfg(feature = <span class="string">"rust-rgb"</span>)]
 </span><span class="kw">impl </span>From&lt;RGB&lt;f64&gt;&gt; <span class="kw">for </span>Color {
     <span class="kw">fn </span>from(item: RGB&lt;f64&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>::new(item.r, item.g, item.b, <span class="number">1.0</span>)
     }
 }
 
-<span class="doccomment">/// Convert rust-rgb&#39;s `RGBA&lt;f64&gt;` type into `Color`.
-</span><span class="attr">#[cfg(feature = <span class="string">&quot;rust-rgb&quot;</span>)]
+<span class="doccomment">/// Convert rust-rgb's `RGBA&lt;f64&gt;` type into `Color`.
+</span><span class="attr">#[cfg(feature = <span class="string">"rust-rgb"</span>)]
 </span><span class="kw">impl </span>From&lt;RGBA&lt;f64&gt;&gt; <span class="kw">for </span>Color {
     <span class="kw">fn </span>from(item: RGBA&lt;f64&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>::new(item.r, item.g, item.b, item.a)
@@ -1879,7 +1880,7 @@
 }
 
 <span class="doccomment">/// Implement Serde serialization into HEX string
-</span><span class="attr">#[cfg(feature = <span class="string">&quot;serde&quot;</span>)]
+</span><span class="attr">#[cfg(feature = <span class="string">"serde"</span>)]
 </span><span class="kw">impl </span>Serialize <span class="kw">for </span>Color {
     <span class="kw">fn </span>serialize&lt;S: Serializer&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, serializer: S) -&gt; <span class="prelude-ty">Result</span>&lt;S::Ok, S::Error&gt; {
         serializer.serialize_str(<span class="kw-2">&amp;</span><span class="self">self</span>.to_hex_string())
@@ -1887,9 +1888,9 @@
 }
 
 <span class="doccomment">/// Implement Serde deserialization from string
-</span><span class="attr">#[cfg(feature = <span class="string">&quot;serde&quot;</span>)]
-</span><span class="kw">impl</span>&lt;<span class="lifetime">&#39;de</span>&gt; Deserialize&lt;<span class="lifetime">&#39;de</span>&gt; <span class="kw">for </span>Color {
-    <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">&#39;de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
+</span><span class="attr">#[cfg(feature = <span class="string">"serde"</span>)]
+</span><span class="kw">impl</span>&lt;<span class="lifetime">'de</span>&gt; Deserialize&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>Color {
+    <span class="kw">fn </span>deserialize&lt;D: Deserializer&lt;<span class="lifetime">'de</span>&gt;&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>, D::Error&gt; {
         <span class="kw">let </span>string = String::deserialize(deserializer)<span class="question-mark">?</span>;
         <span class="self">Self</span>::from_str(<span class="kw-2">&amp;</span>string).map_err(serde::de::Error::custom)
     }
@@ -2054,7 +2055,7 @@
     (a0 + t * delta + <span class="number">360.0</span>) % <span class="number">360.0
 </span>}
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;lab&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"lab"</span>)]
 #[inline]
 </span><span class="kw">fn </span>interp_angle_rad(a0: f64, a1: f64, t: f64) -&gt; f64 {
     <span class="kw">let </span>delta = (((a1 - a0) % TAU) + PI_3) % TAU - PI;
@@ -2106,7 +2107,7 @@
         }
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;rust-rgb&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"rust-rgb"</span>)]
     #[test]
     </span><span class="kw">fn </span>test_convert_rust_rgb_to_color() {
         <span class="kw">let </span>rgb = RGB::new(<span class="number">0.0</span>, <span class="number">0.5</span>, <span class="number">1.0</span>);
@@ -2116,24 +2117,24 @@
         <span class="macro">assert_eq!</span>(Color::new(<span class="number">1.0</span>, <span class="number">0.5</span>, <span class="number">0.0</span>, <span class="number">0.5</span>), Color::from(rgba));
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;serde&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"serde"</span>)]
     #[test]
     </span><span class="kw">fn </span>test_serde_serialize_to_hex() {
         <span class="kw">let </span>color = Color::new(<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">0.5</span>, <span class="number">0.5</span>);
-        serde_test::assert_ser_tokens(<span class="kw-2">&amp;</span>color, <span class="kw-2">&amp;</span>[serde_test::Token::Str(<span class="string">&quot;#ffff8080&quot;</span>)]);
+        serde_test::assert_ser_tokens(<span class="kw-2">&amp;</span>color, <span class="kw-2">&amp;</span>[serde_test::Token::Str(<span class="string">"#ffff8080"</span>)]);
     }
 
-    <span class="attr">#[cfg(all(feature = <span class="string">&quot;serde&quot;</span>, feature = <span class="string">&quot;named-colors&quot;</span>))]
+    <span class="attr">#[cfg(all(feature = <span class="string">"serde"</span>, feature = <span class="string">"named-colors"</span>))]
     #[test]
     </span><span class="kw">fn </span>test_serde_deserialize_from_string() {
         <span class="kw">let </span>named = Color::new(<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>);
-        serde_test::assert_de_tokens(<span class="kw-2">&amp;</span>named, <span class="kw-2">&amp;</span>[serde_test::Token::Str(<span class="string">&quot;yellow&quot;</span>)]);
+        serde_test::assert_de_tokens(<span class="kw-2">&amp;</span>named, <span class="kw-2">&amp;</span>[serde_test::Token::Str(<span class="string">"yellow"</span>)]);
 
         <span class="kw">let </span>hex = Color::new(<span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>);
-        serde_test::assert_de_tokens(<span class="kw-2">&amp;</span>hex, <span class="kw-2">&amp;</span>[serde_test::Token::Str(<span class="string">&quot;#00ff00ff&quot;</span>)]);
+        serde_test::assert_de_tokens(<span class="kw-2">&amp;</span>hex, <span class="kw-2">&amp;</span>[serde_test::Token::Str(<span class="string">"#00ff00ff"</span>)]);
 
         <span class="kw">let </span>rgb = Color::new(<span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>);
-        serde_test::assert_de_tokens(<span class="kw-2">&amp;</span>rgb, <span class="kw-2">&amp;</span>[serde_test::Token::Str(<span class="string">&quot;rgba(0,255,0,1)&quot;</span>)]);
+        serde_test::assert_de_tokens(<span class="kw-2">&amp;</span>rgb, <span class="kw-2">&amp;</span>[serde_test::Token::Str(<span class="string">"rgba(0,255,0,1)"</span>)]);
     }
 }
 </code></pre></div></section></main></body></html>
