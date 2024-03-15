@@ -1,0 +1,3 @@
+(function() {var implementors = {
+"mime":[["impl&lt;T: <a class=\"trait\" href=\"mime/trait.AllowedMimeTypes.html\" title=\"trait mime::AllowedMimeTypes\">AllowedMimeTypes</a>&gt; <a class=\"trait\" href=\"smithay_clipboard/mime/trait.AllowedMimeTypes.html\" title=\"trait smithay_clipboard::mime::AllowedMimeTypes\">AllowedMimeTypes</a> for <a class=\"struct\" href=\"mime/struct.ClipboardLoadData.html\" title=\"struct mime::ClipboardLoadData\">ClipboardLoadData</a>&lt;T&gt;"]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

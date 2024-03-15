@@ -659,7 +659,7 @@
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::event::{<span class="self">self</span>, Event};
 <span class="kw">use </span><span class="kw">crate</span>::id::Id;
 <span class="kw">use </span><span class="kw">crate</span>::layout;
-<span class="kw">use </span><span class="kw">crate</span>::mouse::{<span class="self">self</span>, Cursor};
+<span class="kw">use </span><span class="kw">crate</span>::mouse;
 <span class="kw">use </span><span class="kw">crate</span>::overlay;
 <span class="kw">use </span><span class="kw">crate</span>::renderer;
 <span class="kw">use </span><span class="kw">crate</span>::widget;
@@ -1147,7 +1147,7 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         _layout: Layout&lt;<span class="lifetime">'_</span>&gt;,
         _state: <span class="kw-2">&amp;</span>Tree,
-        _cursor_position: Cursor,
+        _cursor_position: mouse::Cursor,
     ) -&gt; iced_accessibility::A11yTree {
         <span class="self">self</span>.widget.a11y_nodes(_layout, _state, _cursor_position)
     }

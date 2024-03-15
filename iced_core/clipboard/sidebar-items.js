@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["Null"],"trait":["Clipboard"]};
+window.SIDEBAR_ITEMS = {"fn":["read_data","read_primary_data"],"struct":["Null"],"trait":["Clipboard"]};

@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["Clipboard"]};
+window.SIDEBAR_ITEMS = {"mod":["mime"],"struct":["Clipboard"]};

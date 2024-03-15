@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/smithay-clipboard-0.7.1/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="smithay_clipboard" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/smithay-clipboard-af1f647afb2b1656/cc0101c/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="smithay_clipboard" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -103,28 +103,99 @@
 <a href="#102" id="102">102</a>
 <a href="#103" id="103">103</a>
 <a href="#104" id="104">104</a>
+<a href="#105" id="105">105</a>
+<a href="#106" id="106">106</a>
+<a href="#107" id="107">107</a>
+<a href="#108" id="108">108</a>
+<a href="#109" id="109">109</a>
+<a href="#110" id="110">110</a>
+<a href="#111" id="111">111</a>
+<a href="#112" id="112">112</a>
+<a href="#113" id="113">113</a>
+<a href="#114" id="114">114</a>
+<a href="#115" id="115">115</a>
+<a href="#116" id="116">116</a>
+<a href="#117" id="117">117</a>
+<a href="#118" id="118">118</a>
+<a href="#119" id="119">119</a>
+<a href="#120" id="120">120</a>
+<a href="#121" id="121">121</a>
+<a href="#122" id="122">122</a>
+<a href="#123" id="123">123</a>
+<a href="#124" id="124">124</a>
+<a href="#125" id="125">125</a>
+<a href="#126" id="126">126</a>
+<a href="#127" id="127">127</a>
+<a href="#128" id="128">128</a>
+<a href="#129" id="129">129</a>
+<a href="#130" id="130">130</a>
+<a href="#131" id="131">131</a>
+<a href="#132" id="132">132</a>
+<a href="#133" id="133">133</a>
+<a href="#134" id="134">134</a>
+<a href="#135" id="135">135</a>
+<a href="#136" id="136">136</a>
+<a href="#137" id="137">137</a>
+<a href="#138" id="138">138</a>
+<a href="#139" id="139">139</a>
+<a href="#140" id="140">140</a>
+<a href="#141" id="141">141</a>
+<a href="#142" id="142">142</a>
+<a href="#143" id="143">143</a>
+<a href="#144" id="144">144</a>
+<a href="#145" id="145">145</a>
+<a href="#146" id="146">146</a>
+<a href="#147" id="147">147</a>
+<a href="#148" id="148">148</a>
+<a href="#149" id="149">149</a>
+<a href="#150" id="150">150</a>
+<a href="#151" id="151">151</a>
+<a href="#152" id="152">152</a>
+<a href="#153" id="153">153</a>
+<a href="#154" id="154">154</a>
+<a href="#155" id="155">155</a>
+<a href="#156" id="156">156</a>
+<a href="#157" id="157">157</a>
+<a href="#158" id="158">158</a>
+<a href="#159" id="159">159</a>
+<a href="#160" id="160">160</a>
+<a href="#161" id="161">161</a>
+<a href="#162" id="162">162</a>
+<a href="#163" id="163">163</a>
+<a href="#164" id="164">164</a>
+<a href="#165" id="165">165</a>
+<a href="#166" id="166">166</a>
+<a href="#167" id="167">167</a>
+<a href="#168" id="168">168</a>
+<a href="#169" id="169">169</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Smithay Clipboard
 //!
 //! Provides access to the Wayland clipboard for gui applications. The user
 //! should have surface around.
 
 </span><span class="attr">#![deny(clippy::all, clippy::if_not_else, clippy::enum_glob_use)]
-</span><span class="kw">use </span>std::ffi::c_void;
+</span><span class="kw">use </span>std::borrow::Cow;
+<span class="kw">use </span>std::ffi::c_void;
 <span class="kw">use </span>std::io::Result;
 <span class="kw">use </span>std::sync::mpsc::{<span class="self">self</span>, Receiver};
 
 <span class="kw">use </span>sctk::reexports::calloop::channel::{<span class="self">self</span>, Sender};
 <span class="kw">use </span>sctk::reexports::client::backend::Backend;
 <span class="kw">use </span>sctk::reexports::client::Connection;
+<span class="kw">use </span>state::SelectionTarget;
+<span class="kw">use </span>text::Text;
 
-<span class="kw">mod </span>mime;
+<span class="kw">pub mod </span>mime;
 <span class="kw">mod </span>state;
+<span class="kw">mod </span>text;
 <span class="kw">mod </span>worker;
+
+<span class="kw">use </span>mime::{AllowedMimeTypes, AsMimeTypes, MimeType};
 
 <span class="doccomment">/// Access to a Wayland clipboard.
 </span><span class="kw">pub struct </span>Clipboard {
     request_sender: Sender&lt;worker::Command&gt;,
-    request_receiver: Receiver&lt;<span class="prelude-ty">Result</span>&lt;String&gt;&gt;,
+    request_receiver: Receiver&lt;<span class="prelude-ty">Result</span>&lt;(Vec&lt;u8&gt;, MimeType)&gt;&gt;,
     clipboard_thread: <span class="prelude-ty">Option</span>&lt;std::thread::JoinHandle&lt;()&gt;&gt;,
 }
 
@@ -151,49 +222,108 @@
         <span class="self">Self </span>{ request_receiver, request_sender, clipboard_thread }
     }
 
+    <span class="doccomment">/// Load custom clipboard data.
+    ///
+    /// Load the requested type from a clipboard on the last observed seat.
+    </span><span class="kw">pub fn </span>load&lt;T: AllowedMimeTypes + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;T&gt; {
+        <span class="self">self</span>.load_inner(SelectionTarget::Clipboard, T::allowed())
+    }
+
     <span class="doccomment">/// Load clipboard data.
     ///
     /// Loads content from a clipboard on a last observed seat.
-    </span><span class="kw">pub fn </span>load(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
-        <span class="kw">let _ </span>= <span class="self">self</span>.request_sender.send(worker::Command::Load);
-
-        <span class="kw">if let </span><span class="prelude-val">Ok</span>(reply) = <span class="self">self</span>.request_receiver.recv() {
-            reply
-        } <span class="kw">else </span>{
-            <span class="comment">// The clipboard thread is dead, however we shouldn't crash downstream, so
-            // propogating an error.
-            </span><span class="prelude-val">Err</span>(std::io::Error::new(std::io::ErrorKind::Other, <span class="string">"clipboard is dead."</span>))
-        }
+    </span><span class="kw">pub fn </span>load_text(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+        <span class="self">self</span>.load::&lt;Text&gt;().map(|t| t.<span class="number">0</span>)
     }
 
-    <span class="doccomment">/// Store to a clipboard.
+    <span class="doccomment">/// Load custom primary clipboard data.
     ///
-    /// Stores to a clipboard on a last observed seat.
-    </span><span class="kw">pub fn </span>store&lt;T: Into&lt;String&gt;&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, text: T) {
-        <span class="kw">let </span>request = worker::Command::Store(text.into());
-        <span class="kw">let _ </span>= <span class="self">self</span>.request_sender.send(request);
+    /// Load the requested type from a primary clipboard on the last observed
+    /// seat.
+    </span><span class="kw">pub fn </span>load_primary&lt;T: AllowedMimeTypes + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;T&gt; {
+        <span class="self">self</span>.load_inner(SelectionTarget::Primary, T::allowed())
     }
 
     <span class="doccomment">/// Load primary clipboard data.
     ///
     /// Loads content from a  primary clipboard on a last observed seat.
-    </span><span class="kw">pub fn </span>load_primary(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
-        <span class="kw">let _ </span>= <span class="self">self</span>.request_sender.send(worker::Command::LoadPrimary);
+    </span><span class="kw">pub fn </span>load_primary_text(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;String&gt; {
+        <span class="self">self</span>.load_primary::&lt;Text&gt;().map(|t| t.<span class="number">0</span>)
+    }
 
-        <span class="kw">if let </span><span class="prelude-val">Ok</span>(reply) = <span class="self">self</span>.request_receiver.recv() {
-            reply
-        } <span class="kw">else </span>{
-            <span class="comment">// The clipboard thread is dead, however we shouldn't crash downstream, so
-            // propogating an error.
-            </span><span class="prelude-val">Err</span>(std::io::Error::new(std::io::ErrorKind::Other, <span class="string">"clipboard is dead."</span>))
-        }
+    <span class="doccomment">/// Load raw clipboard data.
+    ///
+    /// Loads content from a  primary clipboard on a last observed seat.
+    </span><span class="kw">pub fn </span>load_raw(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        allowed: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'static</span>, [MimeType]&gt;&gt;,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;(Vec&lt;u8&gt;, MimeType)&gt; {
+        <span class="self">self</span>.load_inner(SelectionTarget::Clipboard, allowed)
+    }
+
+    <span class="doccomment">/// Load raw primary clipboard data.
+    ///
+    /// Loads content from a  primary clipboard on a last observed seat.
+    </span><span class="kw">pub fn </span>load_primary_raw(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        allowed: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'static</span>, [MimeType]&gt;&gt;,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;(Vec&lt;u8&gt;, MimeType)&gt; {
+        <span class="self">self</span>.load_inner(SelectionTarget::Primary, allowed)
+    }
+
+    <span class="doccomment">/// Store custom data to a clipboard.
+    ///
+    /// Stores data of the provided type to a clipboard on a last observed seat.
+    </span><span class="kw">pub fn </span>store&lt;T: AsMimeTypes + Send + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, data: T) {
+        <span class="self">self</span>.store_inner(data, SelectionTarget::Clipboard);
+    }
+
+    <span class="doccomment">/// Store to a clipboard.
+    ///
+    /// Stores to a clipboard on a last observed seat.
+    </span><span class="kw">pub fn </span>store_text&lt;T: Into&lt;String&gt;&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, text: T) {
+        <span class="self">self</span>.store(Text(text.into()));
+    }
+
+    <span class="doccomment">/// Store custom data to a primary clipboard.
+    ///
+    /// Stores data of the provided type to a primary clipboard on a last
+    /// observed seat.
+    </span><span class="kw">pub fn </span>store_primary&lt;T: AsMimeTypes + Send + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, data: T) {
+        <span class="self">self</span>.store_inner(data, SelectionTarget::Primary);
     }
 
     <span class="doccomment">/// Store to a primary clipboard.
     ///
     /// Stores to a primary clipboard on a last observed seat.
-    </span><span class="kw">pub fn </span>store_primary&lt;T: Into&lt;String&gt;&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, text: T) {
-        <span class="kw">let </span>request = worker::Command::StorePrimary(text.into());
+    </span><span class="kw">pub fn </span>store_primary_text&lt;T: Into&lt;String&gt;&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, text: T) {
+        <span class="self">self</span>.store_primary(Text(text.into()));
+    }
+
+    <span class="kw">fn </span>load_inner&lt;T: TryFrom&lt;(Vec&lt;u8&gt;, MimeType)&gt; + <span class="lifetime">'static</span>&gt;(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        target: SelectionTarget,
+        allowed: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'static</span>, [MimeType]&gt;&gt;,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;T&gt; {
+        <span class="kw">let _ </span>= <span class="self">self</span>.request_sender.send(worker::Command::Load(allowed.into(), target));
+
+        <span class="kw">match </span><span class="self">self</span>.request_receiver.recv() {
+            <span class="prelude-val">Ok</span>(res) =&gt; res.and_then(|(data, mime)| {
+                T::try_from((data, mime)).map_err(|<span class="kw">_</span>| {
+                    std::io::Error::new(
+                        std::io::ErrorKind::Other,
+                        <span class="string">"Failed to load data of the requested type."</span>,
+                    )
+                })
+            }),
+            <span class="comment">// The clipboard thread is dead, however we shouldn't crash downstream,
+            // so propogating an error.
+            </span><span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="prelude-val">Err</span>(std::io::Error::new(std::io::ErrorKind::Other, <span class="string">"clipboard is dead."</span>)),
+        }
+    }
+
+    <span class="kw">fn </span>store_inner&lt;T: AsMimeTypes + Send + <span class="lifetime">'static</span>&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, data: T, target: SelectionTarget) {
+        <span class="kw">let </span>request = worker::Command::Store(Box::new(data), target);
         <span class="kw">let _ </span>= <span class="self">self</span>.request_sender.send(request);
     }
 }

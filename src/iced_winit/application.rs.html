@@ -1115,6 +1115,32 @@
 <a href="#1114" id="1114">1114</a>
 <a href="#1115" id="1115">1115</a>
 <a href="#1116" id="1116">1116</a>
+<a href="#1117" id="1117">1117</a>
+<a href="#1118" id="1118">1118</a>
+<a href="#1119" id="1119">1119</a>
+<a href="#1120" id="1120">1120</a>
+<a href="#1121" id="1121">1121</a>
+<a href="#1122" id="1122">1122</a>
+<a href="#1123" id="1123">1123</a>
+<a href="#1124" id="1124">1124</a>
+<a href="#1125" id="1125">1125</a>
+<a href="#1126" id="1126">1126</a>
+<a href="#1127" id="1127">1127</a>
+<a href="#1128" id="1128">1128</a>
+<a href="#1129" id="1129">1129</a>
+<a href="#1130" id="1130">1130</a>
+<a href="#1131" id="1131">1131</a>
+<a href="#1132" id="1132">1132</a>
+<a href="#1133" id="1133">1133</a>
+<a href="#1134" id="1134">1134</a>
+<a href="#1135" id="1135">1135</a>
+<a href="#1136" id="1136">1136</a>
+<a href="#1137" id="1137">1137</a>
+<a href="#1138" id="1138">1138</a>
+<a href="#1139" id="1139">1139</a>
+<a href="#1140" id="1140">1140</a>
+<a href="#1141" id="1141">1141</a>
+<a href="#1142" id="1142">1142</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Create interactive, native cross-platform applications.
 </span><span class="kw">mod </span>drag_resize;
 <span class="kw">mod </span>state;
@@ -1124,7 +1150,9 @@
 <span class="kw">use </span>iced_graphics::core::widget::operation::OperationWrapper;
 <span class="kw">use </span>iced_graphics::core::widget::Operation;
 <span class="kw">use </span>iced_runtime::futures::futures::FutureExt;
+<span class="kw">use </span>iced_style::core::Clipboard <span class="kw">as </span>CoreClipboard;
 <span class="kw">pub use </span>state::State;
+<span class="kw">use </span>window_clipboard::mime::ClipboardStoreData;
 
 <span class="kw">use </span><span class="kw">crate</span>::conversion;
 <span class="kw">use </span><span class="kw">crate</span>::core;
@@ -2024,6 +2052,30 @@
                 }
                 clipboard::Action::Write(contents) =&gt; {
                     clipboard.write(contents);
+                }
+                clipboard::Action::WriteData(contents) =&gt; {
+                    clipboard.write_data(ClipboardStoreData(contents))
+                }
+                clipboard::Action::ReadData(allowed, to_msg) =&gt; {
+                    <span class="kw">let </span>contents = clipboard.read_data(allowed);
+                    <span class="kw">let </span>message = to_msg(contents);
+                    <span class="kw">_ </span>= proxy.send_event(UserEventWrapper::Message(message));
+                }
+                clipboard::Action::ReadPrimary(s_to_msg) =&gt; {
+                    <span class="kw">let </span>contents = clipboard.read_primary();
+                    <span class="kw">let </span>message = s_to_msg(contents);
+                    <span class="kw">_ </span>= proxy.send_event(UserEventWrapper::Message(message));
+                }
+                clipboard::Action::WritePrimary(content) =&gt; {
+                    clipboard.write_primary(content)
+                }
+                clipboard::Action::WritePrimaryData(content) =&gt; {
+                    clipboard.write_primary_data(ClipboardStoreData(content))
+                }
+                clipboard::Action::ReadPrimaryData(a, to_msg) =&gt; {
+                    <span class="kw">let </span>contents = clipboard.read_primary_data(a);
+                    <span class="kw">let </span>message = to_msg(contents);
+                    <span class="kw">_ </span>= proxy.send_event(UserEventWrapper::Message(message));
                 }
             },
             command::Action::Window(action) =&gt; <span class="kw">match </span>action {

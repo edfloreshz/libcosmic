@@ -504,7 +504,7 @@
             } <span class="kw">else if </span>child_state_i &lt; id_list.len() {
                 <span class="kw">let </span>c = <span class="kw-2">&amp;mut </span>id_list[child_state_i];
                 <span class="kw">if </span>len_changed {
-                    c.id = new_id.clone();
+                    c.id.clone_from(new_id);
                 }
                 child_state_i += <span class="number">1</span>;
                 c

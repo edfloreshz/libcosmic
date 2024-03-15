@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["Action"],"fn":["read","write"]};
+window.SIDEBAR_ITEMS = {"enum":["Action"],"fn":["read","read_data","read_primary_data","write","write_data","write_primary_data"]};

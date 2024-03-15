@@ -52,8 +52,93 @@
 <a href="#51" id="51">51</a>
 <a href="#52" id="52">52</a>
 <a href="#53" id="53">53</a>
+<a href="#54" id="54">54</a>
+<a href="#55" id="55">55</a>
+<a href="#56" id="56">56</a>
+<a href="#57" id="57">57</a>
+<a href="#58" id="58">58</a>
+<a href="#59" id="59">59</a>
+<a href="#60" id="60">60</a>
+<a href="#61" id="61">61</a>
+<a href="#62" id="62">62</a>
+<a href="#63" id="63">63</a>
+<a href="#64" id="64">64</a>
+<a href="#65" id="65">65</a>
+<a href="#66" id="66">66</a>
+<a href="#67" id="67">67</a>
+<a href="#68" id="68">68</a>
+<a href="#69" id="69">69</a>
+<a href="#70" id="70">70</a>
+<a href="#71" id="71">71</a>
+<a href="#72" id="72">72</a>
+<a href="#73" id="73">73</a>
+<a href="#74" id="74">74</a>
+<a href="#75" id="75">75</a>
+<a href="#76" id="76">76</a>
+<a href="#77" id="77">77</a>
+<a href="#78" id="78">78</a>
+<a href="#79" id="79">79</a>
+<a href="#80" id="80">80</a>
+<a href="#81" id="81">81</a>
+<a href="#82" id="82">82</a>
+<a href="#83" id="83">83</a>
+<a href="#84" id="84">84</a>
+<a href="#85" id="85">85</a>
+<a href="#86" id="86">86</a>
+<a href="#87" id="87">87</a>
+<a href="#88" id="88">88</a>
+<a href="#89" id="89">89</a>
+<a href="#90" id="90">90</a>
+<a href="#91" id="91">91</a>
+<a href="#92" id="92">92</a>
+<a href="#93" id="93">93</a>
+<a href="#94" id="94">94</a>
+<a href="#95" id="95">95</a>
+<a href="#96" id="96">96</a>
+<a href="#97" id="97">97</a>
+<a href="#98" id="98">98</a>
+<a href="#99" id="99">99</a>
+<a href="#100" id="100">100</a>
+<a href="#101" id="101">101</a>
+<a href="#102" id="102">102</a>
+<a href="#103" id="103">103</a>
+<a href="#104" id="104">104</a>
+<a href="#105" id="105">105</a>
+<a href="#106" id="106">106</a>
+<a href="#107" id="107">107</a>
+<a href="#108" id="108">108</a>
+<a href="#109" id="109">109</a>
+<a href="#110" id="110">110</a>
+<a href="#111" id="111">111</a>
+<a href="#112" id="112">112</a>
+<a href="#113" id="113">113</a>
+<a href="#114" id="114">114</a>
+<a href="#115" id="115">115</a>
+<a href="#116" id="116">116</a>
+<a href="#117" id="117">117</a>
+<a href="#118" id="118">118</a>
+<a href="#119" id="119">119</a>
+<a href="#120" id="120">120</a>
+<a href="#121" id="121">121</a>
+<a href="#122" id="122">122</a>
+<a href="#123" id="123">123</a>
+<a href="#124" id="124">124</a>
+<a href="#125" id="125">125</a>
+<a href="#126" id="126">126</a>
+<a href="#127" id="127">127</a>
+<a href="#128" id="128">128</a>
+<a href="#129" id="129">129</a>
+<a href="#130" id="130">130</a>
+<a href="#131" id="131">131</a>
+<a href="#132" id="132">132</a>
+<a href="#133" id="133">133</a>
+<a href="#134" id="134">134</a>
+<a href="#135" id="135">135</a>
+<a href="#136" id="136">136</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Access the clipboard.
-</span><span class="kw">use </span><span class="kw">crate</span>::command::{<span class="self">self</span>, Command};
+</span><span class="kw">use </span>window_clipboard::mime::{AllowedMimeTypes, AsMimeTypes};
+
+<span class="kw">use </span><span class="kw">crate</span>::command::{<span class="self">self</span>, Command};
 <span class="kw">use </span><span class="kw">crate</span>::futures::MaybeSend;
 
 <span class="kw">use </span>std::fmt;
@@ -67,6 +152,26 @@
 
     <span class="doccomment">/// Write the given contents to the clipboard.
     </span>Write(String),
+
+    <span class="doccomment">/// Write the given contents to the clipboard.
+    </span>WriteData(Box&lt;<span class="kw">dyn </span>AsMimeTypes + Send + Sync + <span class="lifetime">'static</span>&gt;),
+
+    <span class="attr">#[allow(clippy::type_complexity)]
+    </span><span class="doccomment">/// Read the clipboard and produce `T` with the result.
+    </span>ReadData(Vec&lt;String&gt;, Box&lt;<span class="kw">dyn </span>Fn(<span class="prelude-ty">Option</span>&lt;(Vec&lt;u8&gt;, String)&gt;) -&gt; T&gt;),
+
+    <span class="doccomment">/// Read the clipboard and produce `T` with the result.
+    </span>ReadPrimary(Box&lt;<span class="kw">dyn </span>Fn(<span class="prelude-ty">Option</span>&lt;String&gt;) -&gt; T&gt;),
+
+    <span class="doccomment">/// Write the given contents to the clipboard.
+    </span>WritePrimary(String),
+
+    <span class="doccomment">/// Write the given contents to the clipboard.
+    </span>WritePrimaryData(Box&lt;<span class="kw">dyn </span>AsMimeTypes + Send + Sync + <span class="lifetime">'static</span>&gt;),
+
+    <span class="attr">#[allow(clippy::type_complexity)]
+    </span><span class="doccomment">/// Read the clipboard and produce `T` with the result.
+    </span>ReadPrimaryData(Vec&lt;String&gt;, Box&lt;<span class="kw">dyn </span>Fn(<span class="prelude-ty">Option</span>&lt;(Vec&lt;u8&gt;, String)&gt;) -&gt; T&gt;),
 }
 
 <span class="kw">impl</span>&lt;T&gt; Action&lt;T&gt; {
@@ -81,6 +186,20 @@
         <span class="kw">match </span><span class="self">self </span>{
             <span class="self">Self</span>::Read(o) =&gt; Action::Read(Box::new(<span class="kw">move </span>|s| f(o(s)))),
             <span class="self">Self</span>::Write(content) =&gt; Action::Write(content),
+            <span class="self">Self</span>::WriteData(content) =&gt; Action::WriteData(content),
+            <span class="self">Self</span>::ReadData(a, o) =&gt; {
+                Action::ReadData(a, Box::new(<span class="kw">move </span>|s| f(o(s))))
+            }
+            <span class="self">Self</span>::ReadPrimary(o) =&gt; {
+                Action::ReadPrimary(Box::new(<span class="kw">move </span>|s| f(o(s))))
+            }
+            <span class="self">Self</span>::WritePrimary(content) =&gt; Action::WritePrimary(content),
+            <span class="self">Self</span>::WritePrimaryData(content) =&gt; {
+                Action::WritePrimaryData(content)
+            }
+            <span class="self">Self</span>::ReadPrimaryData(a, o) =&gt; {
+                Action::ReadPrimaryData(a, Box::new(<span class="kw">move </span>|s| f(o(s))))
+            }
         }
     }
 }
@@ -90,6 +209,12 @@
         <span class="kw">match </span><span class="self">self </span>{
             <span class="self">Self</span>::Read(<span class="kw">_</span>) =&gt; <span class="macro">write!</span>(f, <span class="string">"Action::Read"</span>),
             <span class="self">Self</span>::Write(<span class="kw">_</span>) =&gt; <span class="macro">write!</span>(f, <span class="string">"Action::Write"</span>),
+            <span class="self">Self</span>::WriteData(<span class="kw">_</span>) =&gt; <span class="macro">write!</span>(f, <span class="string">"Action::WriteData"</span>),
+            <span class="self">Self</span>::ReadData(<span class="kw">_</span>, <span class="kw">_</span>) =&gt; <span class="macro">write!</span>(f, <span class="string">"Action::ReadData"</span>),
+            <span class="self">Self</span>::ReadPrimary(<span class="kw">_</span>) =&gt; <span class="macro">write!</span>(f, <span class="string">"Action::ReadPrimary"</span>),
+            <span class="self">Self</span>::WritePrimary(<span class="kw">_</span>) =&gt; <span class="macro">write!</span>(f, <span class="string">"Action::WritePrimary"</span>),
+            <span class="self">Self</span>::WritePrimaryData(<span class="kw">_</span>) =&gt; <span class="macro">write!</span>(f, <span class="string">"Action::WritePrimaryData"</span>),
+            <span class="self">Self</span>::ReadPrimaryData(<span class="kw">_</span>, <span class="kw">_</span>) =&gt; <span class="macro">write!</span>(f, <span class="string">"Action::ReadPrimaryData"</span>),
         }
     }
 }
@@ -104,5 +229,46 @@
 <span class="doccomment">/// Write the given contents to the clipboard.
 </span><span class="kw">pub fn </span>write&lt;Message&gt;(contents: String) -&gt; Command&lt;Message&gt; {
     Command::single(command::Action::Clipboard(Action::Write(contents)))
+}
+
+<span class="doccomment">/// Read the current contents of the clipboard.
+</span><span class="kw">pub fn </span>read_data&lt;T: AllowedMimeTypes + Send + Sync + <span class="lifetime">'static</span>, Message&gt;(
+    f: <span class="kw">impl </span>Fn(<span class="prelude-ty">Option</span>&lt;T&gt;) -&gt; Message + <span class="lifetime">'static</span>,
+) -&gt; Command&lt;Message&gt; {
+    Command::single(command::Action::Clipboard(Action::ReadData(
+        T::allowed().into(),
+        Box::new(<span class="kw">move </span>|d| f(d.and_then(|d| T::try_from(d).ok()))),
+    )))
+}
+
+<span class="doccomment">/// Write the given contents to the clipboard.
+</span><span class="kw">pub fn </span>write_data&lt;Message&gt;(
+    contents: <span class="kw">impl </span>AsMimeTypes + std::marker::Sync + std::marker::Send + <span class="lifetime">'static</span>,
+) -&gt; Command&lt;Message&gt; {
+    Command::single(command::Action::Clipboard(Action::WriteData(Box::new(
+        contents,
+    ))))
+}
+
+<span class="doccomment">/// Read the current contents of the clipboard.
+</span><span class="kw">pub fn </span>read_primary_data&lt;
+    T: AllowedMimeTypes + Send + Sync + <span class="lifetime">'static</span>,
+    Message,
+&gt;(
+    f: <span class="kw">impl </span>Fn(<span class="prelude-ty">Option</span>&lt;T&gt;) -&gt; Message + <span class="lifetime">'static</span>,
+) -&gt; Command&lt;Message&gt; {
+    Command::single(command::Action::Clipboard(Action::ReadPrimaryData(
+        T::allowed().into(),
+        Box::new(<span class="kw">move </span>|d| f(d.and_then(|d| T::try_from(d).ok()))),
+    )))
+}
+
+<span class="doccomment">/// Write the given contents to the clipboard.
+</span><span class="kw">pub fn </span>write_primary_data&lt;Message&gt;(
+    contents: <span class="kw">impl </span>AsMimeTypes + std::marker::Sync + std::marker::Send + <span class="lifetime">'static</span>,
+) -&gt; Command&lt;Message&gt; {
+    Command::single(command::Action::Clipboard(Action::WritePrimaryData(
+        Box::new(contents),
+    )))
 }
 </code></pre></div></section></main></body></html>
