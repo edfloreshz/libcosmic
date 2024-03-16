@@ -66,6 +66,8 @@
 <a href="#65" id="65">65</a>
 <a href="#66" id="66">66</a>
 <a href="#67" id="67">67</a>
+<a href="#68" id="68">68</a>
+<a href="#69" id="69">69</a>
 </pre></div><pre class="rust"><code><span class="comment">// From iced_aw, license MIT
 
 </span><span class="doccomment">//! A [`MenuBar`] widget for displaying [`MenuTree`]s
@@ -122,7 +124,9 @@
 //! ```
 //!
 
-</span><span class="kw">mod </span>flex;
+</span><span class="kw">pub mod </span>action;
+<span class="kw">mod </span>flex;
+<span class="kw">pub mod </span>key_bind;
 <span class="kw">pub mod </span>menu_bar;
 <span class="kw">mod </span>menu_inner;
 <span class="kw">pub mod </span>menu_tree;
