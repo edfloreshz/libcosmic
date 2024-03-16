@@ -200,10 +200,6 @@
 <a href="#199" id="199">199</a>
 <a href="#200" id="200">200</a>
 <a href="#201" id="201">201</a>
-<a href="#202" id="202">202</a>
-<a href="#203" id="203">203</a>
-<a href="#204" id="204">204</a>
-<a href="#205" id="205">205</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2023 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
@@ -246,7 +242,7 @@
                 tooltip: Cow::Borrowed(<span class="string">""</span>),
                 on_press: <span class="prelude-val">None</span>,
                 width: Length::Shrink,
-                height: Length::Fixed(<span class="number">46.0</span>),
+                height: Length::Shrink,
                 padding: Padding::from(padding),
                 spacing: theme.space_xxxs(),
                 icon_size: <span class="kw">if </span>icon.handle.symbolic { <span class="number">16 </span>} <span class="kw">else </span>{ <span class="number">24 </span>},
@@ -269,7 +265,6 @@
             <span class="self">self</span>.font_weight = Weight::Normal;
             <span class="self">self</span>.icon_size = <span class="number">16</span>;
             <span class="self">self</span>.line_height = <span class="number">20</span>;
-            <span class="self">self</span>.height = Length::Fixed(<span class="number">36.0</span>);
             <span class="self">self</span>.padding = Padding::from(theme.space_xxs());
             <span class="self">self</span>.spacing = theme.space_xxxs();
         });
@@ -287,7 +282,6 @@
             <span class="self">self</span>.font_weight = Weight::Normal;
             <span class="self">self</span>.icon_size = <span class="number">32</span>;
             <span class="self">self</span>.line_height = <span class="number">32</span>;
-            <span class="self">self</span>.height = Length::Fixed(<span class="number">56.0</span>);
             <span class="self">self</span>.padding = Padding::from(theme.space_xs());
             <span class="self">self</span>.spacing = theme.space_xxs();
         });
@@ -305,7 +299,6 @@
             <span class="self">self</span>.font_weight = Weight::Normal;
             <span class="self">self</span>.icon_size = <span class="number">40</span>;
             <span class="self">self</span>.line_height = <span class="number">36</span>;
-            <span class="self">self</span>.height = Length::Fixed(<span class="number">64.0</span>);
             <span class="self">self</span>.padding = Padding::from(theme.space_xs());
             <span class="self">self</span>.spacing = theme.space_xxs();
         });
@@ -324,7 +317,6 @@
             <span class="self">self</span>.font_weight = Weight::Light;
             <span class="self">self</span>.icon_size = <span class="number">56</span>;
             <span class="self">self</span>.line_height = <span class="number">44</span>;
-            <span class="self">self</span>.height = Length::Fixed(<span class="number">80.0</span>);
             <span class="self">self</span>.padding = Padding::from(padding);
             <span class="self">self</span>.spacing = theme.space_xxs();
         });

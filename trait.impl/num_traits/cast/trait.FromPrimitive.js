@@ -1,4 +1,5 @@
 (function() {var implementors = {
+"chrono":[["impl <a class=\"trait\" href=\"num_traits/cast/trait.FromPrimitive.html\" title=\"trait num_traits::cast::FromPrimitive\">FromPrimitive</a> for <a class=\"enum\" href=\"chrono/enum.Weekday.html\" title=\"enum chrono::Weekday\">Weekday</a>"],["impl <a class=\"trait\" href=\"num_traits/cast/trait.FromPrimitive.html\" title=\"trait num_traits::cast::FromPrimitive\">FromPrimitive</a> for <a class=\"enum\" href=\"chrono/enum.Month.html\" title=\"enum chrono::Month\">Month</a>"]],
 "fraction":[],
 "iced_core":[["impl <a class=\"trait\" href=\"num_traits/cast/trait.FromPrimitive.html\" title=\"trait num_traits::cast::FromPrimitive\">FromPrimitive</a> for <a class=\"struct\" href=\"iced_core/struct.Radians.html\" title=\"struct iced_core::Radians\">Radians</a>"]],
 "num":[],
