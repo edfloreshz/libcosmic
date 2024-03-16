@@ -236,6 +236,32 @@
 <a href="#235" id="235">235</a>
 <a href="#236" id="236">236</a>
 <a href="#237" id="237">237</a>
+<a href="#238" id="238">238</a>
+<a href="#239" id="239">239</a>
+<a href="#240" id="240">240</a>
+<a href="#241" id="241">241</a>
+<a href="#242" id="242">242</a>
+<a href="#243" id="243">243</a>
+<a href="#244" id="244">244</a>
+<a href="#245" id="245">245</a>
+<a href="#246" id="246">246</a>
+<a href="#247" id="247">247</a>
+<a href="#248" id="248">248</a>
+<a href="#249" id="249">249</a>
+<a href="#250" id="250">250</a>
+<a href="#251" id="251">251</a>
+<a href="#252" id="252">252</a>
+<a href="#253" id="253">253</a>
+<a href="#254" id="254">254</a>
+<a href="#255" id="255">255</a>
+<a href="#256" id="256">256</a>
+<a href="#257" id="257">257</a>
+<a href="#258" id="258">258</a>
+<a href="#259" id="259">259</a>
+<a href="#260" id="260">260</a>
+<a href="#261" id="261">261</a>
+<a href="#262" id="262">262</a>
+<a href="#263" id="263">263</a>
 </pre></div><pre class="rust"><code><span class="comment">// From iced_aw, license MIT
 
 </span><span class="doccomment">//! A tree structure for constructing a hierarchical menu
@@ -375,7 +401,8 @@
     }
 }
 
-<span class="macro">macro_rules! </span>menu_button {
+<span class="doccomment">/// This macro creates a button for a MenuTree.
+</span><span class="macro">macro_rules! </span>menu_button {
     ($(<span class="macro-nonterminal">$x</span>:expr),+ $(,)<span class="question-mark">?</span>) =&gt; (
         widget::button(
             widget::Row::with_children(
@@ -392,12 +419,27 @@
     );
 }
 
-<span class="kw">pub enum </span>MenuItem&lt;A: MenuAction, L: Into&lt;Cow&lt;<span class="lifetime">'static</span>, str&gt;&gt;&gt; {
-    Action(L, A),
-    Separator,
+<span class="doccomment">/// Represents a menu item that performs an action when selected or a separator between menu items.
+///
+/// - `Action` - Represents a menu item that performs an action when selected.
+///     - `L` - The label of the menu item.
+///     - `A` - The action to perform when the menu item is selected, the action must implement the `MenuAction` trait.
+/// - `Separator` - Represents a separator between menu items.
+</span><span class="kw">pub enum </span>MenuItem&lt;A: MenuAction, L: Into&lt;Cow&lt;<span class="lifetime">'static</span>, str&gt;&gt;&gt; {
+    <span class="doccomment">/// Represents a menu item that performs an action when selected.
+    </span>Action(L, A),
+    <span class="doccomment">/// Represents a separator between menu items.
+    </span>Separator,
 }
 
-<span class="kw">pub fn </span>menu_root&lt;<span class="lifetime">'a</span>, Message, Renderer: renderer::Renderer&gt;(
+<span class="doccomment">/// Create a root menu item.
+///
+/// # Arguments
+/// - `label` - The label of the menu item.
+///
+/// # Returns
+/// - A button for the root menu item.
+</span><span class="kw">pub fn </span>menu_root&lt;<span class="lifetime">'a</span>, Message, Renderer: renderer::Renderer&gt;(
     label: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt; + <span class="lifetime">'a</span>,
 ) -&gt; iced::Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;
 <span class="kw">where
@@ -410,7 +452,17 @@
         .into()
 }
 
-<span class="kw">pub fn </span>menu_items&lt;
+<span class="doccomment">/// Create a list of menu items from a vector of `MenuItem`.
+///
+/// The `MenuItem` can be either an action or a separator.
+///
+/// # Arguments
+/// - `key_binds` - A reference to a `HashMap` that maps `KeyBind` to `A`.
+/// - `children` - A vector of `MenuItem`.
+///
+/// # Returns
+/// - A vector of `MenuTree`.
+</span><span class="kw">pub fn </span>menu_items&lt;
     <span class="lifetime">'a</span>,
     A: MenuAction&lt;Message = Message&gt;,
     L: Into&lt;Cow&lt;<span class="lifetime">'static</span>, str&gt;&gt; + <span class="lifetime">'static</span>,
