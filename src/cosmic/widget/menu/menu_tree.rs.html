@@ -287,6 +287,13 @@
 <a href="#286" id="286">286</a>
 <a href="#287" id="287">287</a>
 <a href="#288" id="288">288</a>
+<a href="#289" id="289">289</a>
+<a href="#290" id="290">290</a>
+<a href="#291" id="291">291</a>
+<a href="#292" id="292">292</a>
+<a href="#293" id="293">293</a>
+<a href="#294" id="294">294</a>
+<a href="#295" id="295">295</a>
 </pre></div><pre class="rust"><code><span class="comment">// From iced_aw, license MIT
 
 </span><span class="doccomment">//! A tree structure for constructing a hierarchical menu
@@ -452,13 +459,20 @@
 /// - `Action` - Represents a menu item that performs an action when selected.
 ///     - `L` - The label of the menu item.
 ///     - `A` - The action to perform when the menu item is selected, the action must implement the `MenuAction` trait.
+/// - `CheckBox` - Represents a checkbox menu item.
+///     - `L` - The label of the menu item.
+///     - `bool` - The state of the checkbox.
+///     - `A` - The action to perform when the menu item is selected, the action must implement the `MenuAction` trait.
+/// - `Folder` - Represents a folder menu item.
+///     - `L` - The label of the menu item.
+///     - `Vec&lt;MenuItem&lt;A, L&gt;&gt;` - A vector of menu items.
 /// - `Divider` - Represents a divider between menu items.
 </span><span class="kw">pub enum </span>MenuItem&lt;A: MenuAction, L: Into&lt;Cow&lt;<span class="lifetime">'static</span>, str&gt;&gt;&gt; {
     <span class="doccomment">/// Represents a button menu item.
     </span>Button(L, A),
     <span class="doccomment">/// Represents a checkbox menu item.
     </span>CheckBox(L, bool, A),
-    <span class="doccomment">/// Represents a checkbox menu item.
+    <span class="doccomment">/// Represents a folder menu item.
     </span>Folder(L, Vec&lt;MenuItem&lt;A, L&gt;&gt;),
     <span class="doccomment">/// Represents a divider between menu items.
     </span>Divider,
