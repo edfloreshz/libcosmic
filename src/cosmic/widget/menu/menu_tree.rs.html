@@ -301,13 +301,13 @@
 </span><span class="kw">use </span>std::borrow::Cow;
 <span class="kw">use </span>std::collections::HashMap;
 
-<span class="kw">use </span>iced_widget::core::{Element, renderer};
+<span class="kw">use </span>iced_widget::core::{renderer, Element};
 <span class="kw">use </span>iced_widget::horizontal_rule;
 
-<span class="kw">use crate</span>::{theme, widget};
 <span class="kw">use </span><span class="kw">crate</span>::iced_core::{Alignment, Length};
 <span class="kw">use </span><span class="kw">crate</span>::widget::menu::action::MenuAction;
 <span class="kw">use </span><span class="kw">crate</span>::widget::menu::key_bind::KeyBind;
+<span class="kw">use crate</span>::{theme, widget};
 
 <span class="doccomment">/// Nested menu is essentially a tree of items, a menu is a collection of items
 /// a menu itself can also be an item of another menu.
@@ -334,8 +334,8 @@
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message, Renderer&gt; MenuTree&lt;<span class="lifetime">'a</span>, Message, Renderer&gt;
-    <span class="kw">where
-        </span>Renderer: renderer::Renderer,
+<span class="kw">where
+    </span>Renderer: renderer::Renderer,
 {
     <span class="doccomment">/// Create a new menu tree from a widget
     </span><span class="kw">pub fn </span>new(item: <span class="kw">impl </span>Into&lt;Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;&gt;) -&gt; <span class="self">Self </span>{
@@ -428,9 +428,9 @@
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message, Renderer&gt; From&lt;Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;&gt;
-<span class="kw">for </span>MenuTree&lt;<span class="lifetime">'a</span>, Message, Renderer&gt;
-    <span class="kw">where
-        </span>Renderer: renderer::Renderer,
+    <span class="kw">for </span>MenuTree&lt;<span class="lifetime">'a</span>, Message, Renderer&gt;
+<span class="kw">where
+    </span>Renderer: renderer::Renderer,
 {
     <span class="kw">fn </span>from(value: Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>::new(value)
@@ -488,8 +488,8 @@
 </span><span class="kw">pub fn </span>menu_root&lt;<span class="lifetime">'a</span>, Message, Renderer: renderer::Renderer&gt;(
     label: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt; + <span class="lifetime">'a</span>,
 ) -&gt; iced::Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;
-    <span class="kw">where
-        </span>Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;:
+<span class="kw">where
+    </span>Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;:
         From&lt;widget::button::Button&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, iced::Renderer&gt;&gt;,
 {
     widget::button(widget::text(label))
@@ -510,7 +510,7 @@
 /// - A vector of `MenuTree`.
 </span><span class="kw">pub fn </span>menu_items&lt;
     <span class="lifetime">'a</span>,
-    A: MenuAction&lt;Message=Message&gt;,
+    A: MenuAction&lt;Message = Message&gt;,
     L: Into&lt;Cow&lt;<span class="lifetime">'static</span>, str&gt;&gt; + <span class="lifetime">'static</span>,
     Message: <span class="lifetime">'a</span>,
     Renderer: renderer::Renderer + <span class="lifetime">'a</span>,
@@ -518,8 +518,8 @@
     key_binds: <span class="kw-2">&amp;</span>HashMap&lt;KeyBind, A&gt;,
     children: Vec&lt;MenuItem&lt;A, L&gt;&gt;,
 ) -&gt; Vec&lt;MenuTree&lt;<span class="lifetime">'a</span>, Message, Renderer&gt;&gt;
-    <span class="kw">where
-        </span>Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;:
+<span class="kw">where
+    </span>Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;:
         From&lt;widget::button::Button&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, iced::Renderer&gt;&gt;,
 {
     <span class="kw">fn </span>find_key&lt;A: MenuAction&gt;(action: <span class="kw-2">&amp;</span>A, key_binds: <span class="kw-2">&amp;</span>HashMap&lt;KeyBind, A&gt;) -&gt; String {
@@ -546,14 +546,9 @@
                         widget::horizontal_space(Length::Fill),
                         widget::text(key),
                     )
-                        .on_press(action.message(<span class="prelude-val">None</span>));
+                    .on_press(action.message(<span class="prelude-val">None</span>));
 
                     trees.push(MenuTree::&lt;Message, Renderer&gt;::new(menu_button));
-                }
-                MenuItem::Divider =&gt; {
-                    <span class="kw">if </span>i != size - <span class="number">1 </span>{
-                        trees.push(MenuTree::&lt;Message, Renderer&gt;::new(horizontal_rule(<span class="number">1</span>)));
-                    }
                 }
                 MenuItem::CheckBox(label, value, action) =&gt; {
                     <span class="kw">let </span>key = find_key(<span class="kw-2">&amp;</span>action, <span class="kw-2">&amp;</span>key_binds);
@@ -570,7 +565,7 @@
                             widget::horizontal_space(Length::Fill),
                             widget::text(key)
                         )
-                            .on_press(action.message(<span class="prelude-val">None</span>)),
+                        .on_press(action.message(<span class="prelude-val">None</span>)),
                     ));
                 }
                 MenuItem::Folder(label, children) =&gt; {
@@ -583,6 +578,11 @@
                         ),
                         menu_items(key_binds, children),
                     ));
+                }
+                MenuItem::Divider =&gt; {
+                    <span class="kw">if </span>i != size - <span class="number">1 </span>{
+                        trees.push(MenuTree::&lt;Message, Renderer&gt;::new(horizontal_rule(<span class="number">1</span>)));
+                    }
                 }
             }
             trees
