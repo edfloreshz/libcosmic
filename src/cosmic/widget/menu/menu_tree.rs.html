@@ -262,17 +262,45 @@
 <a href="#261" id="261">261</a>
 <a href="#262" id="262">262</a>
 <a href="#263" id="263">263</a>
+<a href="#264" id="264">264</a>
+<a href="#265" id="265">265</a>
+<a href="#266" id="266">266</a>
+<a href="#267" id="267">267</a>
+<a href="#268" id="268">268</a>
+<a href="#269" id="269">269</a>
+<a href="#270" id="270">270</a>
+<a href="#271" id="271">271</a>
+<a href="#272" id="272">272</a>
+<a href="#273" id="273">273</a>
+<a href="#274" id="274">274</a>
+<a href="#275" id="275">275</a>
+<a href="#276" id="276">276</a>
+<a href="#277" id="277">277</a>
+<a href="#278" id="278">278</a>
+<a href="#279" id="279">279</a>
+<a href="#280" id="280">280</a>
+<a href="#281" id="281">281</a>
+<a href="#282" id="282">282</a>
+<a href="#283" id="283">283</a>
+<a href="#284" id="284">284</a>
+<a href="#285" id="285">285</a>
+<a href="#286" id="286">286</a>
+<a href="#287" id="287">287</a>
+<a href="#288" id="288">288</a>
 </pre></div><pre class="rust"><code><span class="comment">// From iced_aw, license MIT
 
 </span><span class="doccomment">//! A tree structure for constructing a hierarchical menu
 
-</span><span class="kw">use </span><span class="kw">crate</span>::widget::menu::action::MenuAction;
-<span class="kw">use </span><span class="kw">crate</span>::widget::menu::key_bind::KeyBind;
-<span class="kw">use crate</span>::{theme, widget};
-<span class="kw">use </span>iced_widget::core::{renderer, Element};
-<span class="kw">use </span>iced_widget::horizontal_rule;
-<span class="kw">use </span>std::borrow::Cow;
+</span><span class="kw">use </span>std::borrow::Cow;
 <span class="kw">use </span>std::collections::HashMap;
+
+<span class="kw">use </span>iced_widget::core::{Element, renderer};
+<span class="kw">use </span>iced_widget::horizontal_rule;
+
+<span class="kw">use crate</span>::{theme, widget};
+<span class="kw">use </span><span class="kw">crate</span>::iced_core::{Alignment, Length};
+<span class="kw">use </span><span class="kw">crate</span>::widget::menu::action::MenuAction;
+<span class="kw">use </span><span class="kw">crate</span>::widget::menu::key_bind::KeyBind;
 
 <span class="doccomment">/// Nested menu is essentially a tree of items, a menu is a collection of items
 /// a menu itself can also be an item of another menu.
@@ -297,9 +325,10 @@
     <span class="doccomment">/// The height of the menu tree
     </span><span class="kw">pub</span>(<span class="kw">super</span>) height: <span class="prelude-ty">Option</span>&lt;u16&gt;,
 }
+
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message, Renderer&gt; MenuTree&lt;<span class="lifetime">'a</span>, Message, Renderer&gt;
-<span class="kw">where
-    </span>Renderer: renderer::Renderer,
+    <span class="kw">where
+        </span>Renderer: renderer::Renderer,
 {
     <span class="doccomment">/// Create a new menu tree from a widget
     </span><span class="kw">pub fn </span>new(item: <span class="kw">impl </span>Into&lt;Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;&gt;) -&gt; <span class="self">Self </span>{
@@ -392,9 +421,9 @@
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message, Renderer&gt; From&lt;Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;&gt;
-    <span class="kw">for </span>MenuTree&lt;<span class="lifetime">'a</span>, Message, Renderer&gt;
-<span class="kw">where
-    </span>Renderer: renderer::Renderer,
+<span class="kw">for </span>MenuTree&lt;<span class="lifetime">'a</span>, Message, Renderer&gt;
+    <span class="kw">where
+        </span>Renderer: renderer::Renderer,
 {
     <span class="kw">fn </span>from(value: Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">Self</span>::new(value)
@@ -402,15 +431,14 @@
 }
 
 <span class="doccomment">/// This macro creates a button for a MenuTree.
+</span><span class="attr">#[macro_export]
 </span><span class="macro">macro_rules! </span>menu_button {
     ($(<span class="macro-nonterminal">$x</span>:expr),+ $(,)<span class="question-mark">?</span>) =&gt; (
         widget::button(
-            widget::Row::with_children(
-                <span class="macro">vec!</span>[$(Element::from(<span class="macro-nonterminal">$x</span>)),+]
-            )
+            widget::Row::with_children(<span class="macro">vec!</span>[$(<span class="macro-nonterminal">$x</span>.into()),+])
             .align_items(Alignment::Center)
             .height(Length::Fill)
-            .width(Length::Fill)
+            .width(Length::Fill),
         )
         .height(Length::Fixed(<span class="number">36.0</span>))
         .padding([<span class="number">4</span>, <span class="number">16</span>])
@@ -424,12 +452,16 @@
 /// - `Action` - Represents a menu item that performs an action when selected.
 ///     - `L` - The label of the menu item.
 ///     - `A` - The action to perform when the menu item is selected, the action must implement the `MenuAction` trait.
-/// - `Separator` - Represents a separator between menu items.
+/// - `Divider` - Represents a divider between menu items.
 </span><span class="kw">pub enum </span>MenuItem&lt;A: MenuAction, L: Into&lt;Cow&lt;<span class="lifetime">'static</span>, str&gt;&gt;&gt; {
-    <span class="doccomment">/// Represents a menu item that performs an action when selected.
-    </span>Action(L, A),
-    <span class="doccomment">/// Represents a separator between menu items.
-    </span>Separator,
+    <span class="doccomment">/// Represents a button menu item.
+    </span>Button(L, A),
+    <span class="doccomment">/// Represents a checkbox menu item.
+    </span>CheckBox(L, bool, A),
+    <span class="doccomment">/// Represents a checkbox menu item.
+    </span>Folder(L, Vec&lt;MenuItem&lt;A, L&gt;&gt;),
+    <span class="doccomment">/// Represents a divider between menu items.
+    </span>Divider,
 }
 
 <span class="doccomment">/// Create a root menu item.
@@ -442,8 +474,8 @@
 </span><span class="kw">pub fn </span>menu_root&lt;<span class="lifetime">'a</span>, Message, Renderer: renderer::Renderer&gt;(
     label: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt; + <span class="lifetime">'a</span>,
 ) -&gt; iced::Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;
-<span class="kw">where
-    </span>Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;:
+    <span class="kw">where
+        </span>Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;:
         From&lt;widget::button::Button&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, iced::Renderer&gt;&gt;,
 {
     widget::button(widget::text(label))
@@ -464,7 +496,7 @@
 /// - A vector of `MenuTree`.
 </span><span class="kw">pub fn </span>menu_items&lt;
     <span class="lifetime">'a</span>,
-    A: MenuAction&lt;Message = Message&gt;,
+    A: MenuAction&lt;Message=Message&gt;,
     L: Into&lt;Cow&lt;<span class="lifetime">'static</span>, str&gt;&gt; + <span class="lifetime">'static</span>,
     Message: <span class="lifetime">'a</span>,
     Renderer: renderer::Renderer + <span class="lifetime">'a</span>,
@@ -472,8 +504,8 @@
     key_binds: <span class="kw-2">&amp;</span>HashMap&lt;KeyBind, A&gt;,
     children: Vec&lt;MenuItem&lt;A, L&gt;&gt;,
 ) -&gt; Vec&lt;MenuTree&lt;<span class="lifetime">'a</span>, Message, Renderer&gt;&gt;
-<span class="kw">where
-    </span>Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;:
+    <span class="kw">where
+        </span>Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt;:
         From&lt;widget::button::Button&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, iced::Renderer&gt;&gt;,
 {
     <span class="kw">fn </span>find_key&lt;A: MenuAction&gt;(action: <span class="kw-2">&amp;</span>A, key_binds: <span class="kw-2">&amp;</span>HashMap&lt;KeyBind, A&gt;) -&gt; String {
@@ -493,32 +525,50 @@
         .flat_map(|(i, item)| {
             <span class="kw">let </span><span class="kw-2">mut </span>trees = <span class="macro">vec!</span>[];
             <span class="kw">match </span>item {
-                MenuItem::Action(label, action) =&gt; {
+                MenuItem::Button(label, action) =&gt; {
                     <span class="kw">let </span>key = find_key(<span class="kw-2">&amp;</span>action, key_binds);
-                    <span class="kw">let </span>menu_button: iced::Element&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, Renderer&gt; =
-                        widget::button::&lt;Message, <span class="kw">crate</span>::Theme&gt;(
-                            widget::Row::with_children(<span class="macro">vec!</span>[
-                                widget::text(label).into(),
-                                widget::horizontal_space(iced_core::Length::Fill).into(),
-                                widget::text(key).into(),
-                            ])
-                            .align_items(iced_core::Alignment::Center)
-                            .height(iced_core::Length::Fill)
-                            .width(iced_core::Length::Fill),
-                        )
-                        .on_press(action.message(<span class="prelude-val">None</span>))
-                        .height(iced_core::Length::Fixed(<span class="number">36.0</span>))
-                        .padding([<span class="number">4</span>, <span class="number">16</span>])
-                        .width(iced_core::Length::Fill)
-                        .style(theme::Button::MenuItem)
-                        .into();
+                    <span class="kw">let </span>menu_button = <span class="macro">menu_button!</span>(
+                        widget::text(label),
+                        widget::horizontal_space(Length::Fill),
+                        widget::text(key),
+                    )
+                        .on_press(action.message(<span class="prelude-val">None</span>));
 
                     trees.push(MenuTree::&lt;Message, Renderer&gt;::new(menu_button));
                 }
-                MenuItem::Separator =&gt; {
+                MenuItem::Divider =&gt; {
                     <span class="kw">if </span>i != size - <span class="number">1 </span>{
                         trees.push(MenuTree::&lt;Message, Renderer&gt;::new(horizontal_rule(<span class="number">1</span>)));
                     }
+                }
+                MenuItem::CheckBox(label, value, action) =&gt; {
+                    <span class="kw">let </span>key = find_key(<span class="kw-2">&amp;</span>action, <span class="kw-2">&amp;</span>key_binds);
+                    trees.push(MenuTree::new(
+                        <span class="macro">menu_button!</span>(
+                            <span class="kw">if </span>value {
+                                <span class="comment">// TODO: add a object-select-symbolic icon, `Message: 'static` is required when using an icon widget.
+                                </span>widget::container(widget::text(<span class="string">"✓"</span>))
+                            } <span class="kw">else </span>{
+                                widget::container(widget::Space::with_width(Length::Fixed(<span class="number">16.0</span>)))
+                            },
+                            widget::Space::with_width(Length::Fixed(<span class="number">8.0</span>)),
+                            widget::text(label),
+                            widget::horizontal_space(Length::Fill),
+                            widget::text(key)
+                        )
+                            .on_press(action.message(<span class="prelude-val">None</span>)),
+                    ));
+                }
+                MenuItem::Folder(label, children) =&gt; {
+                    trees.push(MenuTree::&lt;Message, Renderer&gt;::with_children(
+                        <span class="macro">menu_button!</span>(
+                            widget::text(label),
+                            widget::horizontal_space(Length::Fill),
+                            <span class="comment">// TODO: add a pan-end-symbolic icon, `Message: 'static` is required when using an icon widget.
+                            </span>widget::text(<span class="string">"▶"</span>),
+                        ),
+                        menu_items(key_binds, children),
+                    ));
                 }
             }
             trees
