@@ -593,6 +593,13 @@
 <a href="#592" id="592">592</a>
 <a href="#593" id="593">593</a>
 <a href="#594" id="594">594</a>
+<a href="#595" id="595">595</a>
+<a href="#596" id="596">596</a>
+<a href="#597" id="597">597</a>
+<a href="#598" id="598">598</a>
+<a href="#599" id="599">599</a>
+<a href="#600" id="600">600</a>
+<a href="#601" id="601">601</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2023 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
@@ -1158,6 +1165,13 @@
             </span>}
 
             Message::ToolkitConfig(config) =&gt; {
+                <span class="comment">// Change the icon theme if not defined by the application.
+                </span><span class="kw">if </span>!<span class="self">self</span>.app.core().icon_theme_override
+                    &amp;&amp; <span class="kw">crate</span>::icon_theme::default() != config.icon_theme
+                {
+                    <span class="kw">crate</span>::icon_theme::set_default(config.icon_theme.clone());
+                }
+
                 <span class="self">self</span>.app.core_mut().toolkit_config = config;
             }
 

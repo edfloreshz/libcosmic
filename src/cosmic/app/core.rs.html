@@ -304,6 +304,15 @@
 <a href="#303" id="303">303</a>
 <a href="#304" id="304">304</a>
 <a href="#305" id="305">305</a>
+<a href="#306" id="306">306</a>
+<a href="#307" id="307">307</a>
+<a href="#308" id="308">308</a>
+<a href="#309" id="309">309</a>
+<a href="#310" id="310">310</a>
+<a href="#311" id="311">311</a>
+<a href="#312" id="312">312</a>
+<a href="#313" id="313">313</a>
+<a href="#314" id="314">314</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2023 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
@@ -351,6 +360,9 @@
 </span><span class="kw">pub struct </span>Core {
     <span class="doccomment">/// Enables debug features in cosmic/iced.
     </span><span class="kw">pub </span>debug: bool,
+
+    <span class="doccomment">/// Disables loading the icon theme from cosmic-config.
+    </span><span class="kw">pub</span>(<span class="kw">super</span>) icon_theme_override: bool,
 
     <span class="doccomment">/// Whether the window is too small for the nav bar + main content.
     </span>is_condensed: bool,
@@ -401,6 +413,7 @@
     <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
         <span class="self">Self </span>{
             debug: <span class="bool-val">false</span>,
+            icon_theme_override: <span class="bool-val">false</span>,
             is_condensed: <span class="bool-val">false</span>,
             keyboard_nav: <span class="bool-val">true</span>,
             nav_bar: NavBar {
@@ -525,6 +538,11 @@
 
     <span class="kw">pub fn </span>nav_bar_toggle_condensed(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
         <span class="self">self</span>.nav_bar_set_toggled_condensed(!<span class="self">self</span>.nav_bar.toggled_condensed);
+    }
+
+    <span class="kw">pub fn </span>nav_bar_set_toggled(<span class="kw-2">&amp;mut </span><span class="self">self</span>, toggled: bool) {
+        <span class="self">self</span>.nav_bar.toggled = toggled;
+        <span class="self">self</span>.nav_bar_set_toggled_condensed(<span class="self">self</span>.nav_bar.toggled);
     }
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>nav_bar_set_toggled_condensed(<span class="kw-2">&amp;mut </span><span class="self">self</span>, toggled: bool) {

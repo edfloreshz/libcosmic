@@ -368,6 +368,10 @@
 <a href="#367" id="367">367</a>
 <a href="#368" id="368">368</a>
 <a href="#369" id="369">369</a>
+<a href="#370" id="370">370</a>
+<a href="#371" id="371">371</a>
+<a href="#372" id="372">372</a>
+<a href="#373" id="373">373</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2022 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
@@ -481,6 +485,10 @@
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message: Clone + <span class="lifetime">'static</span>&gt; Widget&lt;Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt;
     <span class="kw">for </span>HeaderBarWidget&lt;<span class="lifetime">'a</span>, Message&gt;
 {
+    <span class="kw">fn </span>diff(<span class="kw-2">&amp;mut </span><span class="self">self</span>, tree: <span class="kw-2">&amp;mut </span>tree::Tree) {
+        tree.diff_children(<span class="kw-2">&amp;mut </span>[<span class="kw-2">&amp;mut </span><span class="self">self</span>.header_bar_inner]);
+    }
+
     <span class="kw">fn </span>children(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Vec&lt;tree::Tree&gt; {
         <span class="macro">vec!</span>[tree::Tree::new(<span class="kw-2">&amp;</span><span class="self">self</span>.header_bar_inner)]
     }

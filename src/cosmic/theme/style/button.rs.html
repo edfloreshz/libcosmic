@@ -252,6 +252,8 @@
 <a href="#251" id="251">251</a>
 <a href="#252" id="252">252</a>
 <a href="#253" id="253">253</a>
+<a href="#254" id="254">254</a>
+<a href="#255" id="255">255</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2023 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
@@ -293,6 +295,7 @@
 <span class="kw">pub fn </span>appearance(
     theme: <span class="kw-2">&amp;</span><span class="kw">crate</span>::Theme,
     focused: bool,
+    selected: bool,
     style: <span class="kw-2">&amp;</span>Button,
     color: <span class="kw">impl </span>Fn(<span class="kw-2">&amp;</span>Component) -&gt; (Color, <span class="prelude-ty">Option</span>&lt;Color&gt;, <span class="prelude-ty">Option</span>&lt;Color&gt;),
 ) -&gt; Appearance {
@@ -340,7 +343,7 @@
             corner_radii = <span class="kw-2">&amp;</span>cosmic.corner_radii.radius_s;
             appearance.border_radius = (<span class="kw-2">*</span>corner_radii).into();
 
-            <span class="kw">if </span>focused {
+            <span class="kw">if </span>focused || selected {
                 appearance.border_width = <span class="number">2.0</span>;
                 appearance.border_color = cosmic.accent.base.into();
             }
@@ -407,7 +410,7 @@
         }
         <span class="kw">let </span>accent = <span class="self">self</span>.cosmic().accent_color();
 
-        appearance(<span class="self">self</span>, focused, style, |component| {
+        appearance(<span class="self">self</span>, focused, selected, style, |component| {
             <span class="kw">let </span>text_color = <span class="kw">if </span><span class="macro">matches!</span>(
                 style,
                 Button::Icon | Button::IconVertical | Button::HeaderBar
@@ -431,7 +434,7 @@
             <span class="kw">return </span>disabled(<span class="self">self</span>);
         }
 
-        appearance(<span class="self">self</span>, <span class="bool-val">false</span>, style, |component| {
+        appearance(<span class="self">self</span>, <span class="bool-val">false</span>, <span class="bool-val">false</span>, style, |component| {
             <span class="kw">let </span><span class="kw-2">mut </span>background = Color::from(component.base);
             background.a <span class="kw-2">*</span>= <span class="number">0.5</span>;
             (
@@ -455,6 +458,7 @@
         appearance(
             <span class="self">self</span>,
             focused || <span class="macro">matches!</span>(style, Button::Image),
+            selected,
             style,
             |component| {
                 <span class="kw">let </span>text_color = <span class="kw">if </span><span class="macro">matches!</span>(
@@ -482,7 +486,7 @@
         }
         <span class="kw">let </span>accent = <span class="self">self</span>.cosmic().accent_button.pressed;
 
-        appearance(<span class="self">self</span>, focused, style, |component| {
+        appearance(<span class="self">self</span>, focused, selected, style, |component| {
             <span class="kw">let </span>text_color = <span class="kw">if </span><span class="macro">matches!</span>(
                 style,
                 Button::Icon | Button::IconVertical | Button::HeaderBar
