@@ -77,7 +77,6 @@
 <a href="#76" id="76">76</a>
 <a href="#77" id="77">77</a>
 <a href="#78" id="78">78</a>
-<a href="#79" id="79">79</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2022 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
@@ -91,8 +90,7 @@
 }
 
 <span class="attr">#[must_use]
-</span><span class="kw">pub struct </span>ListColumn&lt;<span class="lifetime">'a</span>, Message&gt;
-{
+</span><span class="kw">pub struct </span>ListColumn&lt;<span class="lifetime">'a</span>, Message&gt; {
     spacing: u16,
     padding: Padding,
     style: &lt;<span class="kw">crate</span>::Theme <span class="kw">as </span>StyleSheet&gt;::Style,
@@ -104,7 +102,7 @@
         <span class="self">Self </span>{
             spacing: <span class="number">12</span>,
             padding: Padding::from(<span class="number">0</span>),
-            style: &lt;<span class="kw">crate</span>::Theme <span class="kw">as </span>StyleSheet&gt;::Style::default(),
+            style: &lt;<span class="kw">crate</span>::Theme <span class="kw">as </span>StyleSheet&gt;::Style::List,
             children: Vec::with_capacity(<span class="number">4</span>),
         }
     }
