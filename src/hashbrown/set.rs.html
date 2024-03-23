@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/hashbrown-0.14.4/src/set.rs`."><title>set.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="hashbrown" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/hashbrown-0.14.3/src/set.rs`."><title>set.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="hashbrown" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
@@ -2960,13 +2960,21 @@
 <a href="#2959" id="2959">2959</a>
 <a href="#2960" id="2960">2960</a>
 <a href="#2961" id="2961">2961</a>
+<a href="#2962" id="2962">2962</a>
+<a href="#2963" id="2963">2963</a>
+<a href="#2964" id="2964">2964</a>
+<a href="#2965" id="2965">2965</a>
+<a href="#2966" id="2966">2966</a>
+<a href="#2967" id="2967">2967</a>
+<a href="#2968" id="2968">2968</a>
+<a href="#2969" id="2969">2969</a>
 </pre></div><pre class="rust"><code><span class="attr">#[cfg(feature = <span class="string">"raw"</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::raw::RawTable;
 <span class="kw">use crate</span>::{Equivalent, TryReserveError};
 <span class="kw">use </span>alloc::borrow::ToOwned;
 <span class="kw">use </span>core::fmt;
 <span class="kw">use </span>core::hash::{BuildHasher, Hash};
-<span class="kw">use </span>core::iter::{Chain, FusedIterator};
+<span class="kw">use </span>core::iter::{Chain, FromIterator, FusedIterator};
 <span class="kw">use </span>core::ops::{BitAnd, BitOr, BitXor, Sub};
 
 <span class="kw">use </span><span class="kw">super</span>::map::{<span class="self">self</span>, DefaultHashBuilder, HashMap, Keys};
@@ -3064,7 +3072,7 @@
 /// use hashbrown::HashSet;
 ///
 /// let viking_names: HashSet&lt;&amp;'static str&gt; =
-///     [ "Einar", "Olaf", "Harald" ].into_iter().collect();
+///     [ "Einar", "Olaf", "Harald" ].iter().cloned().collect();
 /// // use the values stored in the set
 /// ```
 ///
@@ -3297,7 +3305,7 @@
     /// ```
     /// use hashbrown::HashSet;
     ///
-    /// let mut set: HashSet&lt;_&gt; = [1, 2, 3].into_iter().collect();
+    /// let mut set: HashSet&lt;_&gt; = [1, 2, 3].iter().cloned().collect();
     /// assert!(!set.is_empty());
     ///
     /// // print 1, 2, 3 in an arbitrary order
@@ -3324,7 +3332,7 @@
     /// use hashbrown::HashSet;
     ///
     /// let xs = [1,2,3,4,5,6];
-    /// let mut set: HashSet&lt;i32&gt; = xs.into_iter().collect();
+    /// let mut set: HashSet&lt;i32&gt; = xs.iter().cloned().collect();
     /// set.retain(|&amp;k| k % 2 == 0);
     /// assert_eq!(set.len(), 3);
     /// ```
@@ -3686,8 +3694,8 @@
     ///
     /// ```
     /// use hashbrown::HashSet;
-    /// let a: HashSet&lt;_&gt; = [1, 2, 3].into_iter().collect();
-    /// let b: HashSet&lt;_&gt; = [4, 2, 3, 4].into_iter().collect();
+    /// let a: HashSet&lt;_&gt; = [1, 2, 3].iter().cloned().collect();
+    /// let b: HashSet&lt;_&gt; = [4, 2, 3, 4].iter().cloned().collect();
     ///
     /// // Can be seen as `a - b`.
     /// for x in a.difference(&amp;b) {
@@ -3717,8 +3725,8 @@
     ///
     /// ```
     /// use hashbrown::HashSet;
-    /// let a: HashSet&lt;_&gt; = [1, 2, 3].into_iter().collect();
-    /// let b: HashSet&lt;_&gt; = [4, 2, 3, 4].into_iter().collect();
+    /// let a: HashSet&lt;_&gt; = [1, 2, 3].iter().cloned().collect();
+    /// let b: HashSet&lt;_&gt; = [4, 2, 3, 4].iter().cloned().collect();
     ///
     /// // Print 1, 4 in arbitrary order.
     /// for x in a.symmetric_difference(&amp;b) {
@@ -3745,8 +3753,8 @@
     ///
     /// ```
     /// use hashbrown::HashSet;
-    /// let a: HashSet&lt;_&gt; = [1, 2, 3].into_iter().collect();
-    /// let b: HashSet&lt;_&gt; = [4, 2, 3, 4].into_iter().collect();
+    /// let a: HashSet&lt;_&gt; = [1, 2, 3].iter().cloned().collect();
+    /// let b: HashSet&lt;_&gt; = [4, 2, 3, 4].iter().cloned().collect();
     ///
     /// // Print 2, 3 in arbitrary order.
     /// for x in a.intersection(&amp;b) {
@@ -3776,8 +3784,8 @@
     ///
     /// ```
     /// use hashbrown::HashSet;
-    /// let a: HashSet&lt;_&gt; = [1, 2, 3].into_iter().collect();
-    /// let b: HashSet&lt;_&gt; = [4, 2, 3, 4].into_iter().collect();
+    /// let a: HashSet&lt;_&gt; = [1, 2, 3].iter().cloned().collect();
+    /// let b: HashSet&lt;_&gt; = [4, 2, 3, 4].iter().cloned().collect();
     ///
     /// // Print 1, 2, 3, 4 in arbitrary order.
     /// for x in a.union(&amp;b) {
@@ -3812,7 +3820,7 @@
     /// ```
     /// use hashbrown::HashSet;
     ///
-    /// let set: HashSet&lt;_&gt; = [1, 2, 3].into_iter().collect();
+    /// let set: HashSet&lt;_&gt; = [1, 2, 3].iter().cloned().collect();
     /// assert_eq!(set.contains(&amp;1), true);
     /// assert_eq!(set.contains(&amp;4), false);
     /// ```
@@ -3838,7 +3846,7 @@
     /// ```
     /// use hashbrown::HashSet;
     ///
-    /// let set: HashSet&lt;_&gt; = [1, 2, 3].into_iter().collect();
+    /// let set: HashSet&lt;_&gt; = [1, 2, 3].iter().cloned().collect();
     /// assert_eq!(set.get(&amp;2), Some(&amp;2));
     /// assert_eq!(set.get(&amp;4), None);
     /// ```
@@ -3865,7 +3873,7 @@
     /// ```
     /// use hashbrown::HashSet;
     ///
-    /// let mut set: HashSet&lt;_&gt; = [1, 2, 3].into_iter().collect();
+    /// let mut set: HashSet&lt;_&gt; = [1, 2, 3].iter().cloned().collect();
     /// assert_eq!(set.len(), 3);
     /// assert_eq!(set.get_or_insert(2), &amp;2);
     /// assert_eq!(set.get_or_insert(100), &amp;100);
@@ -3965,7 +3973,7 @@
     ///         match singles.entry(ch) {
     ///             Vacant(single_entry) =&gt; {
     ///                 // We found a new character for the first time.
-    ///                 single_entry.insert();
+    ///                 single_entry.insert()
     ///             }
     ///             Occupied(single_entry) =&gt; {
     ///                 // We've already seen this once, "move" it to dupes.
@@ -3996,7 +4004,7 @@
     /// ```
     /// use hashbrown::HashSet;
     ///
-    /// let a: HashSet&lt;_&gt; = [1, 2, 3].into_iter().collect();
+    /// let a: HashSet&lt;_&gt; = [1, 2, 3].iter().cloned().collect();
     /// let mut b = HashSet::new();
     ///
     /// assert_eq!(a.is_disjoint(&amp;b), true);
@@ -4017,7 +4025,7 @@
     /// ```
     /// use hashbrown::HashSet;
     ///
-    /// let sup: HashSet&lt;_&gt; = [1, 2, 3].into_iter().collect();
+    /// let sup: HashSet&lt;_&gt; = [1, 2, 3].iter().cloned().collect();
     /// let mut set = HashSet::new();
     ///
     /// assert_eq!(set.is_subset(&amp;sup), true);
@@ -4038,7 +4046,7 @@
     /// ```
     /// use hashbrown::HashSet;
     ///
-    /// let sub: HashSet&lt;_&gt; = [1, 2].into_iter().collect();
+    /// let sub: HashSet&lt;_&gt; = [1, 2].iter().cloned().collect();
     /// let mut set = HashSet::new();
     ///
     /// assert_eq!(set.is_superset(&amp;sub), false);
@@ -4167,7 +4175,7 @@
     /// ```
     /// use hashbrown::HashSet;
     ///
-    /// let mut set: HashSet&lt;_&gt; = [1, 2, 3].into_iter().collect();
+    /// let mut set: HashSet&lt;_&gt; = [1, 2, 3].iter().cloned().collect();
     /// assert_eq!(set.take(&amp;2), Some(2));
     /// assert_eq!(set.take(&amp;2), None);
     /// ```
@@ -5173,7 +5181,7 @@
 ///
 /// // Nonexistent key (insert)
 /// match set.entry("b") {
-///     Entry::Vacant(view) =&gt; { view.insert(); },
+///     Entry::Vacant(view) =&gt; view.insert(),
 ///     Entry::Occupied(_) =&gt; unreachable!(),
 /// }
 /// assert!(set.contains("b") &amp;&amp; set.len() == 2);
@@ -5209,7 +5217,7 @@
     {
         <span class="kw">match </span><span class="self">self </span>{
             Entry::Occupied(entry) =&gt; entry,
-            Entry::Vacant(entry) =&gt; entry.insert(),
+            Entry::Vacant(entry) =&gt; entry.insert_entry(),
         }
     }
 
@@ -5404,7 +5412,16 @@
     /// assert!(set.contains("poneyland"));
     /// ```
     </span><span class="attr">#[cfg_attr(feature = <span class="string">"inline-more"</span>, inline)]
-    </span><span class="kw">pub fn </span>insert(<span class="self">self</span>) -&gt; OccupiedEntry&lt;<span class="lifetime">'a</span>, T, S, A&gt;
+    </span><span class="kw">pub fn </span>insert(<span class="self">self</span>)
+    <span class="kw">where
+        </span>T: Hash,
+        S: BuildHasher,
+    {
+        <span class="self">self</span>.inner.insert(());
+    }
+
+    <span class="attr">#[cfg_attr(feature = <span class="string">"inline-more"</span>, inline)]
+    </span><span class="kw">fn </span>insert_entry(<span class="self">self</span>) -&gt; OccupiedEntry&lt;<span class="lifetime">'a</span>, T, S, A&gt;
     <span class="kw">where
         </span>T: Hash,
         S: BuildHasher,
@@ -5773,7 +5790,7 @@
                 <span class="macro">assert_eq!</span>(last_i, <span class="number">49</span>);
             }
 
-            <span class="kw">if </span>!s.is_empty() {
+            <span class="kw">for _ in </span><span class="kw-2">&amp;</span>s {
                 <span class="macro">panic!</span>(<span class="string">"s should be empty!"</span>);
             }
 
@@ -5787,7 +5804,6 @@
         <span class="kw">use </span>core::hash;
 
         <span class="attr">#[derive(Debug)]
-        #[allow(dead_code)]
         </span><span class="kw">struct </span>Foo(<span class="kw-2">&amp;</span><span class="lifetime">'static </span>str, i32);
 
         <span class="kw">impl </span>PartialEq <span class="kw">for </span>Foo {

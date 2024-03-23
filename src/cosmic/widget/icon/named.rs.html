@@ -148,6 +148,11 @@
 <a href="#147" id="147">147</a>
 <a href="#148" id="148">148</a>
 <a href="#149" id="149">149</a>
+<a href="#150" id="150">150</a>
+<a href="#151" id="151">151</a>
+<a href="#152" id="152">152</a>
+<a href="#153" id="153">153</a>
+<a href="#154" id="154">154</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2023 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
@@ -206,43 +211,48 @@
     </span><span class="kw">pub fn </span>path(<span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;PathBuf&gt; {
         <span class="kw">let </span>name = <span class="kw-2">&amp;*</span><span class="self">self</span>.name;
         <span class="kw">let </span>fallback = <span class="kw-2">&amp;</span><span class="self">self</span>.fallback;
+        <span class="kw">let </span>locate = |theme: <span class="kw-2">&amp;</span>str, name| {
+            <span class="kw">let </span><span class="kw-2">mut </span>lookup = freedesktop_icons::lookup(name)
+                .with_theme(theme.as_ref())
+                .with_cache();
+
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(scale) = <span class="self">self</span>.scale {
+                lookup = lookup.with_scale(scale);
+            }
+
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(size) = <span class="self">self</span>.size {
+                lookup = lookup.with_size(size);
+            }
+
+            <span class="kw">if </span><span class="self">self</span>.prefer_svg {
+                lookup = lookup.force_svg();
+            }
+            lookup.find()
+        };
+
         <span class="kw">crate</span>::icon_theme::DEFAULT.with(|theme| {
             <span class="kw">let </span>theme = theme.borrow();
 
-            <span class="kw">let </span>locate = |name| {
-                <span class="kw">let </span><span class="kw-2">mut </span>lookup = freedesktop_icons::lookup(name)
-                    .with_theme(theme.as_ref())
-                    .with_cache();
-
-                <span class="kw">if let </span><span class="prelude-val">Some</span>(scale) = <span class="self">self</span>.scale {
-                    lookup = lookup.with_scale(scale);
-                }
-
-                <span class="kw">if let </span><span class="prelude-val">Some</span>(size) = <span class="self">self</span>.size {
-                    lookup = lookup.with_size(size);
-                }
-
-                <span class="kw">if </span><span class="self">self</span>.prefer_svg {
-                    lookup = lookup.force_svg();
-                }
-
-                lookup.find()
+            <span class="kw">let </span>themes = <span class="kw">if </span>theme.as_ref() == <span class="kw">crate</span>::icon_theme::COSMIC {
+                <span class="macro">vec!</span>[theme.as_ref()]
+            } <span class="kw">else </span>{
+                <span class="macro">vec!</span>[theme.as_ref(), <span class="kw">crate</span>::icon_theme::COSMIC]
             };
 
-            <span class="kw">let </span><span class="kw-2">mut </span>result = locate(name);
+            <span class="kw">let </span><span class="kw-2">mut </span>result = themes.iter().find_map(|t| locate(t, name));
 
             <span class="comment">// On failure, attempt to locate fallback icon.
             </span><span class="kw">if </span>result.is_none() {
                 <span class="kw">if </span><span class="macro">matches!</span>(fallback, <span class="prelude-val">Some</span>(IconFallback::Default)) {
                     <span class="kw">for </span>new_name <span class="kw">in </span>name.rmatch_indices(<span class="string">'-'</span>).map(|(pos, <span class="kw">_</span>)| <span class="kw-2">&amp;</span>name[..pos]) {
-                        result = locate(new_name);
+                        result = themes.iter().find_map(|t| locate(t, new_name));
                         <span class="kw">if </span>result.is_some() {
                             <span class="kw">break</span>;
                         }
                     }
                 } <span class="kw">else if let </span><span class="prelude-val">Some</span>(IconFallback::Names(fallbacks)) = fallback {
                     <span class="kw">for </span>fallback <span class="kw">in </span>fallbacks {
-                        result = locate(fallback);
+                        result = themes.iter().find_map(|t| locate(t, fallback));
                         <span class="kw">if </span>result.is_some() {
                             <span class="kw">break</span>;
                         }

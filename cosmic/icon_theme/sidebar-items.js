@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["default","set_default"]};
+window.SIDEBAR_ITEMS = {"constant":["COSMIC"],"fn":["default","set_default"]};
