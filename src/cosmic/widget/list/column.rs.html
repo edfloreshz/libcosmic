@@ -67,10 +67,22 @@
 <a href="#66" id="66">66</a>
 <a href="#67" id="67">67</a>
 <a href="#68" id="68">68</a>
+<a href="#69" id="69">69</a>
+<a href="#70" id="70">70</a>
+<a href="#71" id="71">71</a>
+<a href="#72" id="72">72</a>
+<a href="#73" id="73">73</a>
+<a href="#74" id="74">74</a>
+<a href="#75" id="75">75</a>
+<a href="#76" id="76">76</a>
+<a href="#77" id="77">77</a>
+<a href="#78" id="78">78</a>
+<a href="#79" id="79">79</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2022 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
 </span><span class="kw">use </span>iced_core::Padding;
+<span class="kw">use </span>iced_style::container::StyleSheet;
 
 <span class="kw">use crate</span>::{widget::divider, Apply, Element};
 
@@ -79,9 +91,11 @@
 }
 
 <span class="attr">#[must_use]
-</span><span class="kw">pub struct </span>ListColumn&lt;<span class="lifetime">'a</span>, Message&gt; {
+</span><span class="kw">pub struct </span>ListColumn&lt;<span class="lifetime">'a</span>, Message&gt;
+{
     spacing: u16,
     padding: Padding,
+    style: &lt;<span class="kw">crate</span>::Theme <span class="kw">as </span>StyleSheet&gt;::Style,
     children: Vec&lt;Element&lt;<span class="lifetime">'a</span>, Message&gt;&gt;,
 }
 
@@ -90,6 +104,7 @@
         <span class="self">Self </span>{
             spacing: <span class="number">12</span>,
             padding: Padding::from(<span class="number">0</span>),
+            style: &lt;<span class="kw">crate</span>::Theme <span class="kw">as </span>StyleSheet&gt;::Style::default(),
             children: Vec::with_capacity(<span class="number">4</span>),
         }
     }
@@ -115,6 +130,12 @@
         <span class="self">self
     </span>}
 
+    <span class="doccomment">/// Sets the style variant of this [`Circular`].
+    </span><span class="kw">pub fn </span>style(<span class="kw-2">mut </span><span class="self">self</span>, style: &lt;<span class="kw">crate</span>::Theme <span class="kw">as </span>StyleSheet&gt;::Style) -&gt; <span class="self">Self </span>{
+        <span class="self">self</span>.style = style;
+        <span class="self">self
+    </span>}
+
     <span class="kw">pub fn </span>padding(<span class="kw-2">mut </span><span class="self">self</span>, padding: <span class="kw">impl </span>Into&lt;Padding&gt;) -&gt; <span class="self">Self </span>{
         <span class="self">self</span>.padding = padding.into();
         <span class="self">self
@@ -126,6 +147,7 @@
             .spacing(<span class="self">self</span>.spacing)
             .padding(<span class="self">self</span>.padding)
             .apply(<span class="kw">super</span>::container)
+            .style(<span class="self">self</span>.style)
             .into()
     }
 }
