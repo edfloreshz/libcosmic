@@ -83,7 +83,8 @@ where
                 .into(),
         )
 }
-/// Creates a new search [`TextInput`].
+
+/// Creates a new secure [`TextInput`].
 ///
 /// [`TextInput`]: widget::TextInput
 pub fn secure_input<'a, Message>(
@@ -124,6 +125,39 @@ where
     }
 }
 
+/// Creates a new editable [`TextInput`].
+///
+/// [`TextInput`]: widget::TextInput
+pub fn editable_input<'a, Message>(
+    placeholder: impl Into<Cow<'a, str>>,
+    value: impl Into<Cow<'a, str>>,
+    on_edit_toggle: Option<Message>,
+    editable: bool,
+) -> TextInput<'a, Message>
+    where
+        Message: Clone + 'static,
+{
+    let space_xxs = THEME.with(|t| t.borrow().cosmic().space_xxs());
+    let space_xxxs = THEME.with(|t| t.borrow().cosmic().space_xxxs());
+    let mut input = TextInput::new(placeholder, value)
+        .padding([space_xxxs, space_xxxs, space_xxxs, space_xxs])
+        .style(crate::theme::TextInput::Default)
+        .disabled(!editable);
+
+    let Some(msg) = on_edit_toggle else {
+        return input;
+    };
+
+    input.trailing_icon(
+        crate::widget::icon::from_name("edit-symbolic")
+            .size(16)
+            .apply(crate::widget::button)
+            .style(crate::theme::Button::Icon)
+            .on_press(msg)
+            .into(),
+    )
+}
+
 /// Creates a new inline [`TextInput`].
 ///
 /// [`TextInput`]: widget::TextInput
@@ -161,6 +195,7 @@ pub struct TextInput<'a, Message> {
     placeholder: Cow<'a, str>,
     value: Value,
     is_secure: bool,
+    is_disabled: bool,
     font: Option<<crate::Renderer as iced_core::text::Renderer>::Font>,
     width: Length,
     padding: Padding,
@@ -201,6 +236,7 @@ where
             placeholder: placeholder.into(),
             value: Value::new(v.as_ref()),
             is_secure: false,
+            is_disabled: false,
             font: None,
             width: Length::Fill,
             padding: [spacing, spacing, spacing, spacing].into(),
@@ -257,6 +293,12 @@ where
     /// Converts the [`TextInput`] into a secure password input.
     pub fn password(mut self) -> Self {
         self.is_secure = true;
+        self
+    }
+
+    /// Sets the [`TextInput`] state to disable.
+    pub fn disabled(mut self, disabled: bool) -> Self {
+        self.is_disabled = disabled;
         self
     }
 
@@ -367,7 +409,7 @@ where
             &self.placeholder,
             self.size,
             self.font,
-            self.on_input.is_none(),
+            self.on_input.is_none() || self.is_disabled,
             self.is_secure,
             self.leading_icon.as_ref(),
             self.trailing_icon.as_ref(),
@@ -465,7 +507,7 @@ where
         let state = tree.state.downcast_mut::<State>();
 
         // Unfocus text input if it becomes disabled
-        if self.on_input.is_none() {
+        if self.on_input.is_none() || self.is_disabled {
             state.last_click = None;
             state.is_focused = None;
             state.is_pasting = None;
@@ -773,7 +815,7 @@ where
             &self.placeholder,
             self.size,
             self.font,
-            self.on_input.is_none(),
+            self.on_input.is_none() || self.is_disabled,
             self.is_secure,
             self.leading_icon.as_ref(),
             self.trailing_icon.as_ref(),
@@ -842,7 +884,7 @@ where
         }
         let mut children = layout.children();
         let layout = children.next().unwrap();
-        mouse_interaction(layout, cursor_position, self.on_input.is_none())
+        mouse_interaction(layout, cursor_position, self.on_input.is_none() || self.is_disabled)
     }
 }
 
