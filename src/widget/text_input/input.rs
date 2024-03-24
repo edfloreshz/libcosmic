@@ -18,7 +18,7 @@ pub use super::value::Value;
 use apply::Apply;
 use iced::Limits;
 use iced_core::event::{self, Event};
-use iced_core::mouse::{self, click};
+use iced_core::mouse::{self, click, Interaction};
 use iced_core::overlay::Group;
 use iced_core::renderer::{self, Renderer as CoreRenderer};
 use iced_core::text::{self, Paragraph, Renderer, Text};
@@ -161,6 +161,8 @@ pub struct TextInput<'a, Message> {
     placeholder: Cow<'a, str>,
     value: Value,
     is_secure: bool,
+    is_editable: bool,
+    is_disabled: bool,
     font: Option<<crate::Renderer as iced_core::text::Renderer>::Font>,
     width: Length,
     padding: Padding,
@@ -172,6 +174,7 @@ pub struct TextInput<'a, Message> {
     on_input: Option<Box<dyn Fn(String) -> Message + 'a>>,
     on_paste: Option<Box<dyn Fn(String) -> Message + 'a>>,
     on_submit: Option<Message>,
+    on_toggle_edit: Option<Box<dyn Fn(bool) -> Message + 'a>>,
     leading_icon: Option<Element<'a, Message, crate::Theme, crate::Renderer>>,
     trailing_icon: Option<Element<'a, Message, crate::Theme, crate::Renderer>>,
     style: <crate::Theme as StyleSheet>::Style,
@@ -201,6 +204,8 @@ where
             placeholder: placeholder.into(),
             value: Value::new(v.as_ref()),
             is_secure: false,
+            is_editable: false,
+            is_disabled: false,
             font: None,
             width: Length::Fill,
             padding: [spacing, spacing, spacing, spacing].into(),
@@ -210,6 +215,7 @@ where
             on_input: None,
             on_paste: None,
             on_submit: None,
+            on_toggle_edit: None,
             leading_icon: None,
             trailing_icon: None,
             error: None,
@@ -260,6 +266,12 @@ where
         self
     }
 
+    pub fn editable(mut self) -> Self {
+        self.is_editable = true;
+        self.is_disabled = true;
+        self
+    }
+
     /// Sets the message that should be produced when some text is typed into
     /// the [`TextInput`].
     ///
@@ -284,6 +296,15 @@ where
         self.on_submit = message;
         self
     }
+
+    pub fn on_toggle_edit<F>(mut self, callback: F) -> Self
+        where
+            F: 'a + Fn(bool) -> Message,
+    {
+        self.on_toggle_edit = Some(Box::new(callback));
+        self
+    }
+
 
     /// Sets the message that should be produced when some text is pasted into
     /// the [`TextInput`].
@@ -367,7 +388,7 @@ where
             &self.placeholder,
             self.size,
             self.font,
-            self.on_input.is_none(),
+            self.on_input.is_none() || self.is_disabled,
             self.is_secure,
             self.leading_icon.as_ref(),
             self.trailing_icon.as_ref(),
@@ -458,14 +479,14 @@ where
     }
 
     fn state(&self) -> tree::State {
-        tree::State::new(State::new(self.is_secure))
+        tree::State::new(State::new(self.is_secure, self.is_disabled))
     }
 
     fn diff(&mut self, tree: &mut Tree) {
         let state = tree.state.downcast_mut::<State>();
 
         // Unfocus text input if it becomes disabled
-        if self.on_input.is_none() {
+        if self.on_input.is_none() || self.is_disabled {
             state.last_click = None;
             state.is_focused = None;
             state.is_pasting = None;
@@ -500,6 +521,10 @@ where
         {
             state.is_secure = self.is_secure;
             state.dirty = true;
+        }
+
+        if state.is_disabled != self.is_disabled {
+            self.is_disabled = state.is_disabled;
         }
 
         let mut children: Vec<_> = self
@@ -668,35 +693,38 @@ where
         let font = self.font.unwrap_or_else(|| renderer.default_font());
         let size = self.size.unwrap_or_else(|| renderer.default_size().0);
         let line_height = self.line_height;
-
+        let mut leading_icon_layout = None;
+        let mut trailing_icon_layout = None;
         if let (Some(leading_icon), Some(tree)) =
             (self.leading_icon.as_mut(), tree.children.get_mut(index))
         {
             let mut children = text_layout.children();
             children.next();
-            let leading_icon_layout = children.next().unwrap();
+            leading_icon_layout = Some(children.next().unwrap());
 
-            if cursor_position.is_over(leading_icon_layout.bounds())
-                || matches!(
+            if let Some(leading_layout) = leading_icon_layout {
+                if cursor_position.is_over(leading_layout.bounds())
+                    || matches!(
                     event,
                     Event::Mouse(mouse::Event::CursorMoved { .. } | mouse::Event::CursorLeft)
                 )
-            {
-                let res = leading_icon.as_widget_mut().on_event(
-                    tree,
-                    event.clone(),
-                    leading_icon_layout,
-                    cursor_position,
-                    renderer,
-                    clipboard,
-                    shell,
-                    viewport,
-                );
-                if res == event::Status::Captured {
-                    return res;
+                {
+                    let res = leading_icon.as_widget_mut().on_event(
+                        tree,
+                        event.clone(),
+                        leading_layout,
+                        cursor_position,
+                        renderer,
+                        clipboard,
+                        shell,
+                        viewport,
+                    );
+                    if res == event::Status::Captured {
+                        return res;
+                    }
                 }
+                index += 1;
             }
-            index += 1;
         }
         if let (Some(trailing_icon), Some(tree)) =
             (self.trailing_icon.as_mut(), tree.children.get_mut(index))
@@ -706,26 +734,23 @@ where
             if self.leading_icon.is_some() {
                 children.next();
             }
-            let trailing_icon_layout = children.next().unwrap();
+            trailing_icon_layout = Some(children.next().unwrap());
 
-            if cursor_position.is_over(trailing_icon_layout.bounds())
-                | matches!(
-                    event,
-                    Event::Mouse(mouse::Event::CursorMoved { .. } | mouse::Event::CursorLeft)
-                )
-            {
-                let res = trailing_icon.as_widget_mut().on_event(
-                    tree,
-                    event.clone(),
-                    trailing_icon_layout,
-                    cursor_position,
-                    renderer,
-                    clipboard,
-                    shell,
-                    viewport,
-                );
-                if res == event::Status::Captured {
-                    return res;
+            if let Some(trailing_layout) = trailing_icon_layout {
+                if cursor_position.is_over(trailing_layout.bounds()) {
+                    let res = trailing_icon.as_widget_mut().on_event(
+                        tree,
+                        event.clone(),
+                        trailing_layout,
+                        cursor_position,
+                        renderer,
+                        clipboard,
+                        shell,
+                        viewport,
+                    );
+                    if res == event::Status::Captured {
+                        return res;
+                    }
                 }
             }
         }
@@ -733,6 +758,8 @@ where
         update(
             event,
             text_layout.children().next().unwrap(),
+            leading_icon_layout,
+            trailing_icon_layout,
             cursor_position,
             clipboard,
             shell,
@@ -740,9 +767,11 @@ where
             size,
             font,
             self.is_secure,
+            self.is_editable,
             self.on_input.as_deref(),
             self.on_paste.as_deref(),
             &self.on_submit,
+            self.on_toggle_edit.as_deref(),
             || tree.state.downcast_mut::<State>(),
             self.on_create_dnd_source.as_deref(),
             self.dnd_icon,
@@ -773,7 +802,7 @@ where
             &self.placeholder,
             self.size,
             self.font,
-            self.on_input.is_none(),
+            self.on_input.is_none() || self.is_disabled,
             self.is_secure,
             self.leading_icon.as_ref(),
             self.trailing_icon.as_ref(),
@@ -842,7 +871,7 @@ where
         }
         let mut children = layout.children();
         let layout = children.next().unwrap();
-        mouse_interaction(layout, cursor_position, self.on_input.is_none())
+        mouse_interaction(layout, cursor_position, self.on_input.is_none() || self.is_disabled)
     }
 }
 
@@ -1093,6 +1122,8 @@ pub fn layout<Message>(
 pub fn update<'a, Message>(
     event: Event,
     text_layout: Layout<'_>,
+    leading_icon_layout: Option<Layout<'_>>,
+    trailing_icon_layout: Option<Layout<'_>>,
     cursor_position: mouse::Cursor,
     clipboard: &mut dyn Clipboard,
     shell: &mut Shell<'_, Message>,
@@ -1100,9 +1131,11 @@ pub fn update<'a, Message>(
     size: f32,
     font: <crate::Renderer as iced_core::text::Renderer>::Font,
     is_secure: bool,
+    is_editable: bool,
     on_input: Option<&dyn Fn(String) -> Message>,
     on_paste: Option<&dyn Fn(String) -> Message>,
     on_submit: &Option<Message>,
+    on_toggle_edit: Option<&dyn Fn(bool) -> Message>,
     state: impl FnOnce() -> &'a mut State,
     #[allow(unused_variables)] on_start_dnd_source: Option<&dyn Fn(State) -> Message>,
     #[allow(unused_variables)] dnd_icon: bool,
@@ -1132,7 +1165,7 @@ where
             let state = state();
             let is_clicked = cursor_position.is_over(text_layout.bounds()) && on_input.is_some();
 
-            state.is_focused = if is_clicked {
+            state.is_focused = if is_clicked && !state.is_disabled {
                 state.is_focused.or_else(|| {
                     let now = Instant::now();
                     Some(Focus {
@@ -1300,6 +1333,66 @@ where
 
                 return event::Status::Captured;
             }
+
+            if is_editable {
+                if let Some(leading_layout) = leading_icon_layout {
+                    let is_leading_clicked = cursor_position.is_over(leading_layout.bounds()) && on_toggle_edit.is_some();
+
+                    if is_leading_clicked {
+                        let Some(pos) = cursor_position.position() else {
+                            return event::Status::Ignored;
+                        };
+
+                        let click = mouse::Click::new(pos, state.last_click);
+
+                        match (
+                            &state.dragging_state,
+                            click.kind(),
+                            state.cursor().state(value),
+                        ) {
+                            (None, click::Kind::Single, _) => {
+                                state.is_disabled = !state.is_disabled;
+                                if let Some(on_toggle_edit) = on_toggle_edit {
+                                    let message = (on_toggle_edit)(state.is_disabled);
+                                    shell.publish(message);
+                                }
+                            }
+                            _ => {
+                                state.dragging_state = None;
+                            }
+                        }
+                    }
+                }
+
+                if let Some(trailing_layout) = trailing_icon_layout {
+                    let is_leading_clicked = cursor_position.is_over(trailing_layout.bounds()) && on_toggle_edit.is_some();
+
+                    if is_leading_clicked {
+                        let Some(pos) = cursor_position.position() else {
+                            return event::Status::Ignored;
+                        };
+
+                        let click = mouse::Click::new(pos, state.last_click);
+
+                        match (
+                            &state.dragging_state,
+                            click.kind(),
+                            state.cursor().state(value),
+                        ) {
+                            (None, click::Kind::Single, _) => {
+                                state.is_disabled = !state.is_disabled;
+                                if let Some(on_toggle_edit) = on_toggle_edit {
+                                    let message = (on_toggle_edit)(state.is_disabled);
+                                    shell.publish(message);
+                                }
+                            }
+                            _ => {
+                                state.dragging_state = None;
+                            }
+                        }
+                    }
+                }
+            }
         }
         Event::Mouse(mouse::Event::ButtonReleased(mouse::Button::Left))
         | Event::Touch(touch::Event::FingerLifted { .. } | touch::Event::FingerLost { .. }) => {
@@ -1331,6 +1424,10 @@ where
                 let Some(on_input) = on_input else {
                     return event::Status::Ignored;
                 };
+
+                if state.is_disabled {
+                    return event::Status::Ignored;
+                }
 
                 let modifiers = state.keyboard_modifiers;
                 focus.updated_at = Instant::now();
@@ -2263,6 +2360,7 @@ pub struct State {
     pub helper_text: crate::Paragraph,
     pub dirty: bool,
     pub is_secure: bool,
+    pub is_disabled: bool,
     is_focused: Option<Focus>,
     dragging_state: Option<DraggingState>,
     #[cfg(feature = "wayland")]
@@ -2282,9 +2380,10 @@ struct Focus {
 
 impl State {
     /// Creates a new [`State`], representing an unfocused [`TextInput`].
-    pub fn new(is_secure: bool) -> Self {
+    pub fn new(is_secure: bool, is_disabled: bool) -> Self {
         Self {
             is_secure,
+            is_disabled,
             ..Self::default()
         }
     }
@@ -2314,14 +2413,14 @@ impl State {
     }
 
     /// Creates a new [`State`], representing a focused [`TextInput`].
-    pub fn focused(is_secure: bool) -> Self {
+    pub fn focused(is_secure: bool, is_disabled: bool) -> Self {
         Self {
             is_secure,
             value: crate::Paragraph::new(),
             placeholder: crate::Paragraph::new(),
             label: crate::Paragraph::new(),
             helper_text: crate::Paragraph::new(),
-
+            is_disabled,
             is_focused: None,
             dragging_state: None,
             #[cfg(feature = "wayland")]
