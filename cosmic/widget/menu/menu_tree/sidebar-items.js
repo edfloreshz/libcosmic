@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["MenuItem"],"fn":["menu_items","menu_root"],"struct":["MenuTree"]};

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/theme/style/segmented_button.rs`."><title>segmented_button.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0 (aedd173a2 2024-03-17)" data-channel="1.77.0" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/theme/style/segmented_button.rs`."><title>segmented_button.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../../cosmic/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -269,6 +269,26 @@
 <a href="#267" id="267">267</a>
 <a href="#268" id="268">268</a>
 <a href="#269" id="269">269</a>
+<a href="#270" id="270">270</a>
+<a href="#271" id="271">271</a>
+<a href="#272" id="272">272</a>
+<a href="#273" id="273">273</a>
+<a href="#274" id="274">274</a>
+<a href="#275" id="275">275</a>
+<a href="#276" id="276">276</a>
+<a href="#277" id="277">277</a>
+<a href="#278" id="278">278</a>
+<a href="#279" id="279">279</a>
+<a href="#280" id="280">280</a>
+<a href="#281" id="281">281</a>
+<a href="#282" id="282">282</a>
+<a href="#283" id="283">283</a>
+<a href="#284" id="284">284</a>
+<a href="#285" id="285">285</a>
+<a href="#286" id="286">286</a>
+<a href="#287" id="287">287</a>
+<a href="#288" id="288">288</a>
+<a href="#289" id="289">289</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2022 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
@@ -276,6 +296,7 @@
 
 </span><span class="kw">use </span><span class="kw">crate</span>::widget::segmented_button::{Appearance, ItemAppearance, StyleSheet};
 <span class="kw">use crate</span>::{theme::Theme, widget::segmented_button::ItemStatusAppearance};
+<span class="kw">use </span>cosmic_theme::{Component, Container};
 <span class="kw">use </span>iced_core::{border::Radius, Background};
 
 <span class="attr">#[derive(Default)]
@@ -294,6 +315,8 @@
 
     <span class="attr">#[allow(clippy::too_many_lines)]
     </span><span class="kw">fn </span>horizontal(<span class="kw-2">&amp;</span><span class="self">self</span>, style: <span class="kw-2">&amp;</span><span class="self">Self</span>::Style) -&gt; Appearance {
+        <span class="kw">let </span>container = <span class="kw-2">&amp;</span><span class="self">self</span>.current_container();
+
         <span class="kw">match </span>style {
             SegmentedButton::TabBar =&gt; {
                 <span class="kw">let </span>cosmic = <span class="self">self</span>.cosmic();
@@ -317,25 +340,24 @@
                             border_bottom: <span class="prelude-val">Some</span>((<span class="number">1.0</span>, cosmic.accent.base.into())),
                             ..Default::default()
                         },
-                        text_color: cosmic.on_bg_color().into(),
+                        text_color: container.component.on.into(),
                     },
-                    hover: hover(cosmic, <span class="kw-2">&amp;</span>active),
-                    focus: focus(cosmic, <span class="kw-2">&amp;</span>active),
+                    hover: hover(cosmic, <span class="kw-2">&amp;</span>container.component, <span class="kw-2">&amp;</span>active),
+                    focus: focus(cosmic, container, <span class="kw-2">&amp;</span>active),
                     active,
                     ..Default::default()
                 }
             }
             SegmentedButton::Control =&gt; {
                 <span class="kw">let </span>cosmic = <span class="self">self</span>.cosmic();
-                <span class="kw">let </span>active = horizontal::selection_active(cosmic);
-                <span class="kw">let </span><span class="kw-2">mut </span>neutral_5 = cosmic.palette.neutral_5;
-                neutral_5.alpha = <span class="number">0.2</span>;
+                <span class="kw">let </span>active = horizontal::selection_active(cosmic, <span class="kw-2">&amp;</span>container.component);
                 <span class="kw">let </span>rad_m = cosmic.corner_radii.radius_m;
                 <span class="kw">let </span>rad_0 = cosmic.corner_radii.radius_0;
                 Appearance {
-                    border_radius: cosmic.corner_radii.radius_0.into(),
+                    background: <span class="prelude-val">Some</span>(Background::Color(container.small_widget.into())),
+                    border_radius: rad_m.into(),
                     inactive: ItemStatusAppearance {
-                        background: <span class="prelude-val">Some</span>(Background::Color(cosmic.small_container_widget().into())),
+                        background: <span class="prelude-val">None</span>,
                         first: ItemAppearance {
                             border_radius: Radius::from([rad_m[<span class="number">0</span>], rad_0[<span class="number">1</span>], rad_0[<span class="number">2</span>], rad_m[<span class="number">3</span>]]),
                             ..Default::default()
@@ -348,10 +370,10 @@
                             border_radius: Radius::from([rad_0[<span class="number">0</span>], rad_m[<span class="number">1</span>], rad_m[<span class="number">2</span>], rad_0[<span class="number">3</span>]]),
                             ..Default::default()
                         },
-                        text_color: cosmic.on_bg_color().into(),
+                        text_color: container.component.on.into(),
                     },
-                    hover: hover(cosmic, <span class="kw-2">&amp;</span>active),
-                    focus: focus(cosmic, <span class="kw-2">&amp;</span>active),
+                    hover: hover(cosmic, <span class="kw-2">&amp;</span>container.component, <span class="kw-2">&amp;</span>active),
+                    focus: focus(cosmic, container, <span class="kw-2">&amp;</span>active),
                     active,
                     ..Default::default()
                 }
@@ -367,28 +389,29 @@
         <span class="kw">let </span>rad_0 = cosmic.corner_radii.radius_0;
         <span class="kw">match </span>style {
             SegmentedButton::TabBar =&gt; {
+                <span class="kw">let </span>container = <span class="kw-2">&amp;</span><span class="self">self</span>.cosmic().primary;
                 <span class="kw">let </span>active = vertical::tab_bar_active(cosmic);
                 Appearance {
                     border_radius: cosmic.corner_radii.radius_0.into(),
                     inactive: ItemStatusAppearance {
                         background: <span class="prelude-val">None</span>,
-                        text_color: cosmic.on_bg_color().into(),
+                        text_color: container.component.on.into(),
                         ..active
                     },
-                    hover: hover(cosmic, <span class="kw-2">&amp;</span>active),
-                    focus: focus(cosmic, <span class="kw-2">&amp;</span>active),
+                    hover: hover(cosmic, <span class="kw-2">&amp;</span>container.component, <span class="kw-2">&amp;</span>active),
+                    focus: focus(cosmic, container, <span class="kw-2">&amp;</span>active),
                     active,
                     ..Default::default()
                 }
             }
             SegmentedButton::Control =&gt; {
-                <span class="kw">let </span>active = vertical::selection_active(cosmic);
-                <span class="kw">let </span><span class="kw-2">mut </span>neutral_5 = cosmic.palette.neutral_5;
-                neutral_5.alpha = <span class="number">0.2</span>;
+                <span class="kw">let </span>container = <span class="self">self</span>.current_container();
+                <span class="kw">let </span>active = vertical::selection_active(cosmic, <span class="kw-2">&amp;</span>container.component);
                 Appearance {
-                    border_radius: cosmic.corner_radii.radius_0.into(),
+                    background: <span class="prelude-val">Some</span>(Background::Color(container.small_widget.into())),
+                    border_radius: rad_m.into(),
                     inactive: ItemStatusAppearance {
-                        background: <span class="prelude-val">Some</span>(Background::Color(neutral_5.into())),
+                        background: <span class="prelude-val">None</span>,
                         first: ItemAppearance {
                             border_radius: Radius::from([rad_m[<span class="number">0</span>], rad_m[<span class="number">1</span>], rad_0[<span class="number">0</span>], rad_0[<span class="number">0</span>]]),
                             ..Default::default()
@@ -401,10 +424,10 @@
                             border_radius: Radius::from([rad_0[<span class="number">0</span>], rad_0[<span class="number">1</span>], rad_m[<span class="number">2</span>], rad_m[<span class="number">3</span>]]),
                             ..Default::default()
                         },
-                        text_color: cosmic.on_bg_color().into(),
+                        text_color: container.component.on.into(),
                     },
-                    hover: hover(cosmic, <span class="kw-2">&amp;</span>active),
-                    focus: focus(cosmic, <span class="kw-2">&amp;</span>active),
+                    hover: hover(cosmic, <span class="kw-2">&amp;</span>container.component, <span class="kw-2">&amp;</span>active),
+                    focus: focus(cosmic, container, <span class="kw-2">&amp;</span>active),
                     active,
                     ..Default::default()
                 }
@@ -416,15 +439,21 @@
 
 <span class="kw">mod </span>horizontal {
     <span class="kw">use </span><span class="kw">crate</span>::widget::segmented_button::{ItemAppearance, ItemStatusAppearance};
+    <span class="kw">use </span>cosmic_theme::Component;
     <span class="kw">use </span>iced_core::{border::Radius, Background};
 
-    <span class="kw">pub fn </span>selection_active(cosmic: <span class="kw-2">&amp;</span>cosmic_theme::Theme) -&gt; ItemStatusAppearance {
-        <span class="kw">let </span><span class="kw-2">mut </span>neutral_5 = cosmic.palette.neutral_5;
-        neutral_5.alpha = <span class="number">0.2</span>;
+    <span class="kw">pub fn </span>selection_active(
+        cosmic: <span class="kw-2">&amp;</span>cosmic_theme::Theme,
+        component: <span class="kw-2">&amp;</span>Component,
+    ) -&gt; ItemStatusAppearance {
+        <span class="kw">let </span><span class="kw-2">mut </span>color = cosmic.palette.neutral_5;
+        color.alpha = <span class="number">0.2</span>;
+
         <span class="kw">let </span>rad_m = cosmic.corner_radii.radius_m;
         <span class="kw">let </span>rad_0 = cosmic.corner_radii.radius_0;
+
         ItemStatusAppearance {
-            background: <span class="prelude-val">Some</span>(Background::Color(neutral_5.into())),
+            background: <span class="prelude-val">Some</span>(Background::Color(color.into())),
             first: ItemAppearance {
                 border_radius: Radius::from([rad_m[<span class="number">0</span>], rad_0[<span class="number">1</span>], rad_0[<span class="number">2</span>], rad_m[<span class="number">3</span>]]),
                 ..Default::default()
@@ -468,23 +497,28 @@
     }
 }
 
-<span class="kw">pub fn </span>focus(cosmic: <span class="kw-2">&amp;</span>cosmic_theme::Theme, default: <span class="kw-2">&amp;</span>ItemStatusAppearance) -&gt; ItemStatusAppearance {
-    <span class="comment">// TODO: This is a hack to make the hover color lighter than the selected color
-    // I'm not sure why the alpha is being applied differently here than in figma
-    </span><span class="kw">let </span><span class="kw-2">mut </span>neutral_5 = cosmic.palette.neutral_5;
-    neutral_5.alpha = <span class="number">0.2</span>;
+<span class="kw">pub fn </span>focus(
+    cosmic: <span class="kw-2">&amp;</span>cosmic_theme::Theme,
+    container: <span class="kw-2">&amp;</span>Container,
+    default: <span class="kw-2">&amp;</span>ItemStatusAppearance,
+) -&gt; ItemStatusAppearance {
+    <span class="kw">let </span>color = container.small_widget;
     ItemStatusAppearance {
-        background: <span class="prelude-val">Some</span>(Background::Color(neutral_5.into())),
+        background: <span class="prelude-val">Some</span>(Background::Color(color.into())),
         text_color: cosmic.accent.base.into(),
         ..<span class="kw-2">*</span>default
     }
 }
 
-<span class="kw">pub fn </span>hover(cosmic: <span class="kw-2">&amp;</span>cosmic_theme::Theme, default: <span class="kw-2">&amp;</span>ItemStatusAppearance) -&gt; ItemStatusAppearance {
-    <span class="kw">let </span><span class="kw-2">mut </span>neutral_10 = cosmic.palette.neutral_10;
-    neutral_10.alpha = <span class="number">0.1</span>;
+<span class="kw">pub fn </span>hover(
+    cosmic: <span class="kw-2">&amp;</span>cosmic_theme::Theme,
+    component: <span class="kw-2">&amp;</span>Component,
+    default: <span class="kw-2">&amp;</span>ItemStatusAppearance,
+) -&gt; ItemStatusAppearance {
+    <span class="kw">let </span><span class="kw-2">mut </span>color = cosmic.palette.neutral_8;
+    color.alpha = <span class="number">0.2</span>;
     ItemStatusAppearance {
-        background: <span class="prelude-val">Some</span>(Background::Color(neutral_10.into())),
+        background: <span class="prelude-val">Some</span>(Background::Color(color.into())),
         text_color: cosmic.accent.base.into(),
         ..<span class="kw-2">*</span>default
     }
@@ -492,15 +526,21 @@
 
 <span class="kw">mod </span>vertical {
     <span class="kw">use </span><span class="kw">crate</span>::widget::segmented_button::{ItemAppearance, ItemStatusAppearance};
+    <span class="kw">use </span>cosmic_theme::Component;
     <span class="kw">use </span>iced_core::{border::Radius, Background};
 
-    <span class="kw">pub fn </span>selection_active(cosmic: <span class="kw-2">&amp;</span>cosmic_theme::Theme) -&gt; ItemStatusAppearance {
-        <span class="kw">let </span><span class="kw-2">mut </span>neutral_5 = cosmic.palette.neutral_5;
-        neutral_5.alpha = <span class="number">0.2</span>;
+    <span class="kw">pub fn </span>selection_active(
+        cosmic: <span class="kw-2">&amp;</span>cosmic_theme::Theme,
+        component: <span class="kw-2">&amp;</span>Component,
+    ) -&gt; ItemStatusAppearance {
+        <span class="kw">let </span><span class="kw-2">mut </span>color = component.selected_state_color();
+        color.alpha = <span class="number">0.3</span>;
+
         <span class="kw">let </span>rad_0 = cosmic.corner_radii.radius_0;
         <span class="kw">let </span>rad_m = cosmic.corner_radii.radius_m;
+
         ItemStatusAppearance {
-            background: <span class="prelude-val">Some</span>(Background::Color(neutral_5.into())),
+            background: <span class="prelude-val">Some</span>(Background::Color(color.into())),
             first: ItemAppearance {
                 border_radius: Radius::from([rad_m[<span class="number">0</span>], rad_m[<span class="number">1</span>], rad_0[<span class="number">2</span>], rad_0[<span class="number">3</span>]]),
                 ..Default::default()

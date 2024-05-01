@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/read-fonts-0.16.0/src/tables/../../generated/generated_cmap.rs`."><title>generated_cmap.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="read_fonts" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0 (aedd173a2 2024-03-17)" data-channel="1.77.0" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/read-fonts-0.19.1/src/tables/../../generated/generated_cmap.rs`."><title>generated_cmap.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="read_fonts" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../read_fonts/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -1924,55 +1924,6 @@
 <a href="#1922" id="1922">1922</a>
 <a href="#1923" id="1923">1923</a>
 <a href="#1924" id="1924">1924</a>
-<a href="#1925" id="1925">1925</a>
-<a href="#1926" id="1926">1926</a>
-<a href="#1927" id="1927">1927</a>
-<a href="#1928" id="1928">1928</a>
-<a href="#1929" id="1929">1929</a>
-<a href="#1930" id="1930">1930</a>
-<a href="#1931" id="1931">1931</a>
-<a href="#1932" id="1932">1932</a>
-<a href="#1933" id="1933">1933</a>
-<a href="#1934" id="1934">1934</a>
-<a href="#1935" id="1935">1935</a>
-<a href="#1936" id="1936">1936</a>
-<a href="#1937" id="1937">1937</a>
-<a href="#1938" id="1938">1938</a>
-<a href="#1939" id="1939">1939</a>
-<a href="#1940" id="1940">1940</a>
-<a href="#1941" id="1941">1941</a>
-<a href="#1942" id="1942">1942</a>
-<a href="#1943" id="1943">1943</a>
-<a href="#1944" id="1944">1944</a>
-<a href="#1945" id="1945">1945</a>
-<a href="#1946" id="1946">1946</a>
-<a href="#1947" id="1947">1947</a>
-<a href="#1948" id="1948">1948</a>
-<a href="#1949" id="1949">1949</a>
-<a href="#1950" id="1950">1950</a>
-<a href="#1951" id="1951">1951</a>
-<a href="#1952" id="1952">1952</a>
-<a href="#1953" id="1953">1953</a>
-<a href="#1954" id="1954">1954</a>
-<a href="#1955" id="1955">1955</a>
-<a href="#1956" id="1956">1956</a>
-<a href="#1957" id="1957">1957</a>
-<a href="#1958" id="1958">1958</a>
-<a href="#1959" id="1959">1959</a>
-<a href="#1960" id="1960">1960</a>
-<a href="#1961" id="1961">1961</a>
-<a href="#1962" id="1962">1962</a>
-<a href="#1963" id="1963">1963</a>
-<a href="#1964" id="1964">1964</a>
-<a href="#1965" id="1965">1965</a>
-<a href="#1966" id="1966">1966</a>
-<a href="#1967" id="1967">1967</a>
-<a href="#1968" id="1968">1968</a>
-<a href="#1969" id="1969">1969</a>
-<a href="#1970" id="1970">1970</a>
-<a href="#1971" id="1971">1971</a>
-<a href="#1972" id="1972">1972</a>
-<a href="#1973" id="1973">1973</a>
 </pre></div><pre class="rust"><code><span class="comment">// THIS FILE IS AUTOGENERATED.
 // Any changes to this file will be overwritten.
 // For more information about how codegen works, see font-codegen/README.md
@@ -2072,7 +2023,7 @@
 }
 
 <span class="doccomment">/// [Encoding Record](https://docs.microsoft.com/en-us/typography/opentype/spec/cmap#encoding-records-and-encodings)
-</span><span class="attr">#[derive(Clone, Debug, Copy)]
+</span><span class="attr">#[derive(Clone, Debug, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>EncodingRecord {
@@ -2115,13 +2066,6 @@
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>EncodingRecord {
     <span class="kw">const </span>RAW_BYTE_LEN: usize =
         PlatformId::RAW_BYTE_LEN + u16::RAW_BYTE_LEN + Offset32::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>EncodingRecord {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>EncodingRecord {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]
@@ -2473,7 +2417,7 @@
 }
 
 <span class="doccomment">/// Part of [Cmap2]
-</span><span class="attr">#[derive(Clone, Debug, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+</span><span class="attr">#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>SubHeader {
@@ -2512,13 +2456,6 @@
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>SubHeader {
     <span class="kw">const </span>RAW_BYTE_LEN: usize =
         u16::RAW_BYTE_LEN + u16::RAW_BYTE_LEN + i16::RAW_BYTE_LEN + u16::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>SubHeader {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>SubHeader {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]
@@ -3013,7 +2950,7 @@
 }
 
 <span class="doccomment">/// Used in [Cmap8] and [Cmap12]
-</span><span class="attr">#[derive(Clone, Debug, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+</span><span class="attr">#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>SequentialMapGroup {
@@ -3052,13 +2989,6 @@
 
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>SequentialMapGroup {
     <span class="kw">const </span>RAW_BYTE_LEN: usize = u32::RAW_BYTE_LEN + u32::RAW_BYTE_LEN + u32::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>SequentialMapGroup {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>SequentialMapGroup {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]
@@ -3443,7 +3373,7 @@
 }
 
 <span class="doccomment">/// Part of [Cmap13]
-</span><span class="attr">#[derive(Clone, Debug, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+</span><span class="attr">#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>ConstantMapGroup {
@@ -3476,13 +3406,6 @@
 
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>ConstantMapGroup {
     <span class="kw">const </span>RAW_BYTE_LEN: usize = u32::RAW_BYTE_LEN + u32::RAW_BYTE_LEN + u32::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>ConstantMapGroup {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>ConstantMapGroup {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]
@@ -3609,7 +3532,7 @@
 }
 
 <span class="doccomment">/// Part of [Cmap14]
-</span><span class="attr">#[derive(Clone, Debug, Copy)]
+</span><span class="attr">#[derive(Clone, Debug, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>VariationSelector {
@@ -3666,13 +3589,6 @@
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>VariationSelector {
     <span class="kw">const </span>RAW_BYTE_LEN: usize =
         Uint24::RAW_BYTE_LEN + Offset32::RAW_BYTE_LEN + Offset32::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>VariationSelector {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>VariationSelector {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]
@@ -3847,7 +3763,7 @@
 }
 
 <span class="doccomment">/// Part of [Cmap14]
-</span><span class="attr">#[derive(Clone, Debug, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+</span><span class="attr">#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>UvsMapping {
@@ -3873,13 +3789,6 @@
     <span class="kw">const </span>RAW_BYTE_LEN: usize = Uint24::RAW_BYTE_LEN + u16::RAW_BYTE_LEN;
 }
 
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>UvsMapping {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>UvsMapping {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
-}
-
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]
 </span><span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; SomeRecord&lt;<span class="lifetime">'a</span>&gt; <span class="kw">for </span>UvsMapping {
     <span class="kw">fn </span>traverse(<span class="self">self</span>, data: FontData&lt;<span class="lifetime">'a</span>&gt;) -&gt; RecordResolver&lt;<span class="lifetime">'a</span>&gt; {
@@ -3896,7 +3805,7 @@
 }
 
 <span class="doccomment">/// Part of [Cmap14]
-</span><span class="attr">#[derive(Clone, Debug, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+</span><span class="attr">#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>UnicodeRange {
@@ -3920,13 +3829,6 @@
 
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>UnicodeRange {
     <span class="kw">const </span>RAW_BYTE_LEN: usize = Uint24::RAW_BYTE_LEN + u8::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>UnicodeRange {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>UnicodeRange {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]

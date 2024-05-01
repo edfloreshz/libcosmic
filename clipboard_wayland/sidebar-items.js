@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["MimeType"],"struct":["Clipboard"],"trait":["AllowedMimeTypes","AsMimeTypes"]};
+window.SIDEBAR_ITEMS = {"enum":["MimeType"],"struct":["Clipboard","DndSender","RectangleWrapper"],"trait":["AllowedMimeTypes","AsMimeTypes"]};

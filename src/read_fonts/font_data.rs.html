@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/read-fonts-0.16.0/src/font_data.rs`."><title>font_data.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="read_fonts" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0 (aedd173a2 2024-03-17)" data-channel="1.77.0" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/read-fonts-0.19.1/src/font_data.rs`."><title>font_data.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="read_fonts" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../read_fonts/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -299,45 +299,15 @@
 <a href="#297" id="297">297</a>
 <a href="#298" id="298">298</a>
 <a href="#299" id="299">299</a>
-<a href="#300" id="300">300</a>
-<a href="#301" id="301">301</a>
-<a href="#302" id="302">302</a>
-<a href="#303" id="303">303</a>
-<a href="#304" id="304">304</a>
-<a href="#305" id="305">305</a>
-<a href="#306" id="306">306</a>
-<a href="#307" id="307">307</a>
-<a href="#308" id="308">308</a>
-<a href="#309" id="309">309</a>
-<a href="#310" id="310">310</a>
-<a href="#311" id="311">311</a>
-<a href="#312" id="312">312</a>
-<a href="#313" id="313">313</a>
-<a href="#314" id="314">314</a>
-<a href="#315" id="315">315</a>
-<a href="#316" id="316">316</a>
-<a href="#317" id="317">317</a>
-<a href="#318" id="318">318</a>
-<a href="#319" id="319">319</a>
-<a href="#320" id="320">320</a>
-<a href="#321" id="321">321</a>
-<a href="#322" id="322">322</a>
-<a href="#323" id="323">323</a>
-<a href="#324" id="324">324</a>
-<a href="#325" id="325">325</a>
-<a href="#326" id="326">326</a>
-<a href="#327" id="327">327</a>
-<a href="#328" id="328">328</a>
-<a href="#329" id="329">329</a>
-<a href="#330" id="330">330</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! raw font bytes
 
 </span><span class="kw">use </span>std::ops::{Range, RangeBounds};
 
+<span class="kw">use </span>bytemuck::AnyBitPattern;
 <span class="kw">use </span>types::{BigEndian, FixedSize, Scalar};
 
 <span class="kw">use </span><span class="kw">crate</span>::array::ComputedArray;
-<span class="kw">use </span><span class="kw">crate</span>::read::{ComputeSize, FontReadWithArgs, FromBytes, ReadError};
+<span class="kw">use </span><span class="kw">crate</span>::read::{ComputeSize, FontReadWithArgs, ReadError};
 <span class="kw">use </span><span class="kw">crate</span>::table_ref::TableRef;
 <span class="kw">use </span><span class="kw">crate</span>::FontRead;
 
@@ -364,6 +334,9 @@
 }
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; FontData&lt;<span class="lifetime">'a</span>&gt; {
+    <span class="doccomment">/// Empty data, useful for some tests and examples
+    </span><span class="kw">pub const </span>EMPTY: FontData&lt;<span class="lifetime">'static</span>&gt; = FontData { bytes: <span class="kw-2">&amp;</span>[] };
+
     <span class="doccomment">/// Create a new `FontData` with these bytes.
     ///
     /// You generally don't need to do this? It is handled for you when loading
@@ -447,33 +420,14 @@
     /// other than one, or has any internal padding.
     ///
     /// [`read_ref_unchecked`]: [Self::read_ref_unchecked]
-    </span><span class="kw">pub fn </span>read_ref_at&lt;T: FromBytes&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: usize) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>T, ReadError&gt; {
-        <span class="macro">assert_ne!</span>(std::mem::size_of::&lt;T&gt;(), <span class="number">0</span>);
-        <span class="comment">// assert we have no padding.
-        // `T::RAW_BYTE_LEN` is computed by recursively taking the raw length of
-        // any fields of `T`; if `size_of::&lt;T&gt;() == T::RAW_BYTE_LEN`` we know that
-        // `T` contains no padding.
-        </span><span class="macro">assert_eq!</span>(std::mem::size_of::&lt;T&gt;(), T::RAW_BYTE_LEN);
-        <span class="macro">assert_eq!</span>(std::mem::align_of::&lt;T&gt;(), <span class="number">1</span>);
+    </span><span class="kw">pub fn </span>read_ref_at&lt;T: AnyBitPattern + FixedSize&gt;(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        offset: usize,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>T, ReadError&gt; {
         <span class="self">self</span>.bytes
             .get(offset..offset + T::RAW_BYTE_LEN)
-            .ok_or(ReadError::OutOfBounds)<span class="question-mark">?</span>;
-
-        <span class="comment">// SAFETY: if we have reached this point without hitting an assert or
-        // returning an error, our invariants are met.
-        </span><span class="kw">unsafe </span>{ <span class="prelude-val">Ok</span>(<span class="self">self</span>.read_ref_unchecked(offset)) }
-    }
-
-    <span class="doccomment">/// Interpret the bytes at `offset` as a reference to some type `T`.
-    ///
-    /// # Safety
-    ///
-    /// `T` must be a struct or scalar that has alignment of 1, a non-zero size,
-    /// and no internal padding, and offset must point to a slice of bytes that
-    /// has length &gt;= `size_of::&lt;T&gt;()`.
-    </span><span class="kw">unsafe fn </span>read_ref_unchecked&lt;T: FromBytes&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, offset: usize) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'a </span>T {
-        <span class="kw">let </span>bytes = <span class="self">self</span>.bytes.get_unchecked(offset..offset + T::RAW_BYTE_LEN);
-        <span class="kw-2">&amp;*</span>(bytes.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span>T)
+            .ok_or(ReadError::OutOfBounds)
+            .map(bytemuck::from_bytes)
     }
 
     <span class="doccomment">/// Interpret the bytes at the provided offset as a slice of `T`.
@@ -490,14 +444,10 @@
     /// other than one, or has any internal padding.
     ///
     /// [`read_array_unchecked`]: [Self::read_array_unchecked]
-    </span><span class="kw">pub fn </span>read_array&lt;T: FromBytes&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, range: Range&lt;usize&gt;) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[T], ReadError&gt; {
-        <span class="macro">assert_ne!</span>(std::mem::size_of::&lt;T&gt;(), <span class="number">0</span>);
-        <span class="comment">// assert we have no padding.
-        // `T::RAW_BYTE_LEN` is computed by recursively taking the raw length of
-        // any fields of `T`; if `size_of::&lt;T&gt;() == T::RAW_BYTE_LEN`` we know that
-        // `T` contains no padding.
-        </span><span class="macro">assert_eq!</span>(std::mem::size_of::&lt;T&gt;(), T::RAW_BYTE_LEN);
-        <span class="macro">assert_eq!</span>(std::mem::align_of::&lt;T&gt;(), <span class="number">1</span>);
+    </span><span class="kw">pub fn </span>read_array&lt;T: AnyBitPattern + FixedSize&gt;(
+        <span class="kw-2">&amp;</span><span class="self">self</span>,
+        range: Range&lt;usize&gt;,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[T], ReadError&gt; {
         <span class="kw">let </span>bytes = <span class="self">self
             </span>.bytes
             .get(range.clone())
@@ -505,22 +455,7 @@
         <span class="kw">if </span>bytes.len() % std::mem::size_of::&lt;T&gt;() != <span class="number">0 </span>{
             <span class="kw">return </span><span class="prelude-val">Err</span>(ReadError::InvalidArrayLen);
         };
-        <span class="comment">// SAFETY: if we have reached this point without hitting an assert or
-        // returning an error, our invariants are met.
-        </span><span class="kw">unsafe </span>{ <span class="prelude-val">Ok</span>(<span class="self">self</span>.read_array_unchecked(range)) }
-    }
-
-    <span class="doccomment">/// Interpret the bytes at `offset` as a reference to some type `T`.
-    ///
-    /// # Safety
-    ///
-    /// `T` must be a struct or scalar that has alignment of 1, a non-zero size,
-    /// and no internal padding, and `range` must have a length that is non-zero
-    /// and is a multiple of `size_of::&lt;T&gt;()`.
-    </span><span class="kw">unsafe fn </span>read_array_unchecked&lt;T: FromBytes&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>, range: Range&lt;usize&gt;) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'a </span>[T] {
-        <span class="kw">let </span>bytes = <span class="self">self</span>.bytes.get_unchecked(range);
-        <span class="kw">let </span>elems = bytes.len() / std::mem::size_of::&lt;T&gt;();
-        std::slice::from_raw_parts(bytes.as_ptr() <span class="kw">as </span><span class="kw-2">*const </span><span class="kw">_</span>, elems)
+        <span class="prelude-val">Ok</span>(bytemuck::cast_slice(bytes))
     }
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>cursor(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Cursor&lt;<span class="lifetime">'a</span>&gt; {
@@ -584,7 +519,10 @@
         temp
     }
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>read_array&lt;T: FromBytes&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, n_elem: usize) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[T], ReadError&gt; {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>read_array&lt;T: AnyBitPattern + FixedSize&gt;(
+        <span class="kw-2">&amp;mut </span><span class="self">self</span>,
+        n_elem: usize,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">'a </span>[T], ReadError&gt; {
         <span class="kw">let </span>len = n_elem * T::RAW_BYTE_LEN;
         <span class="kw">let </span>temp = <span class="self">self</span>.data.read_array(<span class="self">self</span>.pos..<span class="self">self</span>.pos + len);
         <span class="self">self</span>.pos += len;

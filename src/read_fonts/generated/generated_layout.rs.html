@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/read-fonts-0.16.0/src/tables/../../generated/generated_layout.rs`."><title>generated_layout.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="read_fonts" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0 (aedd173a2 2024-03-17)" data-channel="1.77.0" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/read-fonts-0.19.1/src/tables/../../generated/generated_layout.rs`."><title>generated_layout.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="read_fonts" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../read_fonts/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -4694,62 +4694,6 @@
 <a href="#4692" id="4692">4692</a>
 <a href="#4693" id="4693">4693</a>
 <a href="#4694" id="4694">4694</a>
-<a href="#4695" id="4695">4695</a>
-<a href="#4696" id="4696">4696</a>
-<a href="#4697" id="4697">4697</a>
-<a href="#4698" id="4698">4698</a>
-<a href="#4699" id="4699">4699</a>
-<a href="#4700" id="4700">4700</a>
-<a href="#4701" id="4701">4701</a>
-<a href="#4702" id="4702">4702</a>
-<a href="#4703" id="4703">4703</a>
-<a href="#4704" id="4704">4704</a>
-<a href="#4705" id="4705">4705</a>
-<a href="#4706" id="4706">4706</a>
-<a href="#4707" id="4707">4707</a>
-<a href="#4708" id="4708">4708</a>
-<a href="#4709" id="4709">4709</a>
-<a href="#4710" id="4710">4710</a>
-<a href="#4711" id="4711">4711</a>
-<a href="#4712" id="4712">4712</a>
-<a href="#4713" id="4713">4713</a>
-<a href="#4714" id="4714">4714</a>
-<a href="#4715" id="4715">4715</a>
-<a href="#4716" id="4716">4716</a>
-<a href="#4717" id="4717">4717</a>
-<a href="#4718" id="4718">4718</a>
-<a href="#4719" id="4719">4719</a>
-<a href="#4720" id="4720">4720</a>
-<a href="#4721" id="4721">4721</a>
-<a href="#4722" id="4722">4722</a>
-<a href="#4723" id="4723">4723</a>
-<a href="#4724" id="4724">4724</a>
-<a href="#4725" id="4725">4725</a>
-<a href="#4726" id="4726">4726</a>
-<a href="#4727" id="4727">4727</a>
-<a href="#4728" id="4728">4728</a>
-<a href="#4729" id="4729">4729</a>
-<a href="#4730" id="4730">4730</a>
-<a href="#4731" id="4731">4731</a>
-<a href="#4732" id="4732">4732</a>
-<a href="#4733" id="4733">4733</a>
-<a href="#4734" id="4734">4734</a>
-<a href="#4735" id="4735">4735</a>
-<a href="#4736" id="4736">4736</a>
-<a href="#4737" id="4737">4737</a>
-<a href="#4738" id="4738">4738</a>
-<a href="#4739" id="4739">4739</a>
-<a href="#4740" id="4740">4740</a>
-<a href="#4741" id="4741">4741</a>
-<a href="#4742" id="4742">4742</a>
-<a href="#4743" id="4743">4743</a>
-<a href="#4744" id="4744">4744</a>
-<a href="#4745" id="4745">4745</a>
-<a href="#4746" id="4746">4746</a>
-<a href="#4747" id="4747">4747</a>
-<a href="#4748" id="4748">4748</a>
-<a href="#4749" id="4749">4749</a>
-<a href="#4750" id="4750">4750</a>
 </pre></div><pre class="rust"><code><span class="comment">// THIS FILE IS AUTOGENERATED.
 // Any changes to this file will be overwritten.
 // For more information about how codegen works, see font-codegen/README.md
@@ -4833,7 +4777,7 @@
 }
 
 <span class="doccomment">/// [Script Record](https://docs.microsoft.com/en-us/typography/opentype/spec/chapter2#script-list-table-and-script-record)
-</span><span class="attr">#[derive(Clone, Debug, Copy)]
+</span><span class="attr">#[derive(Clone, Debug, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>ScriptRecord {
@@ -4865,13 +4809,6 @@
 
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>ScriptRecord {
     <span class="kw">const </span>RAW_BYTE_LEN: usize = Tag::RAW_BYTE_LEN + Offset16::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>ScriptRecord {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>ScriptRecord {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]
@@ -4990,7 +4927,7 @@
     }
 }
 
-<span class="attr">#[derive(Clone, Debug, Copy)]
+<span class="attr">#[derive(Clone, Debug, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>LangSysRecord {
@@ -5022,13 +4959,6 @@
 
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>LangSysRecord {
     <span class="kw">const </span>RAW_BYTE_LEN: usize = Tag::RAW_BYTE_LEN + Offset16::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>LangSysRecord {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>LangSysRecord {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]
@@ -5219,7 +5149,7 @@
 }
 
 <span class="doccomment">/// Part of [FeatureList]
-</span><span class="attr">#[derive(Clone, Debug, Copy)]
+</span><span class="attr">#[derive(Clone, Debug, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>FeatureRecord {
@@ -5252,13 +5182,6 @@
 
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>FeatureRecord {
     <span class="kw">const </span>RAW_BYTE_LEN: usize = Tag::RAW_BYTE_LEN + Offset16::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>FeatureRecord {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>FeatureRecord {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]
@@ -5871,7 +5794,7 @@
 }
 
 <span class="doccomment">/// Used in [CoverageFormat2]
-</span><span class="attr">#[derive(Clone, Debug, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+</span><span class="attr">#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>RangeRecord {
@@ -5902,13 +5825,6 @@
 
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>RangeRecord {
     <span class="kw">const </span>RAW_BYTE_LEN: usize = GlyphId::RAW_BYTE_LEN + GlyphId::RAW_BYTE_LEN + u16::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>RangeRecord {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>RangeRecord {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]
@@ -6174,7 +6090,7 @@
 }
 
 <span class="doccomment">/// Used in [ClassDefFormat2]
-</span><span class="attr">#[derive(Clone, Debug, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+</span><span class="attr">#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>ClassRangeRecord {
@@ -6205,13 +6121,6 @@
 
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>ClassRangeRecord {
     <span class="kw">const </span>RAW_BYTE_LEN: usize = GlyphId::RAW_BYTE_LEN + GlyphId::RAW_BYTE_LEN + u16::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>ClassRangeRecord {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>ClassRangeRecord {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]
@@ -6286,7 +6195,7 @@
 }
 
 <span class="doccomment">/// [Sequence Lookup Record](https://docs.microsoft.com/en-us/typography/opentype/spec/chapter2#sequence-lookup-record)
-</span><span class="attr">#[derive(Clone, Debug, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+</span><span class="attr">#[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>SequenceLookupRecord {
@@ -6310,13 +6219,6 @@
 
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>SequenceLookupRecord {
     <span class="kw">const </span>RAW_BYTE_LEN: usize = u16::RAW_BYTE_LEN + u16::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>SequenceLookupRecord {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>SequenceLookupRecord {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]
@@ -8731,7 +8633,7 @@
 }
 
 <span class="doccomment">/// Part of [FeatureVariations]
-</span><span class="attr">#[derive(Clone, Debug, Copy)]
+</span><span class="attr">#[derive(Clone, Debug, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>FeatureVariationRecord {
@@ -8783,13 +8685,6 @@
 
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>FeatureVariationRecord {
     <span class="kw">const </span>RAW_BYTE_LEN: usize = Offset32::RAW_BYTE_LEN + Offset32::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>FeatureVariationRecord {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>FeatureVariationRecord {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]
@@ -9094,7 +8989,7 @@
 }
 
 <span class="doccomment">/// Used in [FeatureTableSubstitution]
-</span><span class="attr">#[derive(Clone, Debug, Copy)]
+</span><span class="attr">#[derive(Clone, Debug, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>FeatureTableSubstitutionRecord {
@@ -9120,13 +9015,6 @@
 
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>FeatureTableSubstitutionRecord {
     <span class="kw">const </span>RAW_BYTE_LEN: usize = u16::RAW_BYTE_LEN + Offset32::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>FeatureTableSubstitutionRecord {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>FeatureTableSubstitutionRecord {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]

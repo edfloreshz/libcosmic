@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/read-fonts-0.16.0/src/tables/../../generated/generated_gpos.rs`."><title>generated_gpos.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="read_fonts" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0 (aedd173a2 2024-03-17)" data-channel="1.77.0" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/read-fonts-0.19.1/src/tables/../../generated/generated_gpos.rs`."><title>generated_gpos.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="read_fonts" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../read_fonts/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -3770,19 +3770,6 @@
 <a href="#3768" id="3768">3768</a>
 <a href="#3769" id="3769">3769</a>
 <a href="#3770" id="3770">3770</a>
-<a href="#3771" id="3771">3771</a>
-<a href="#3772" id="3772">3772</a>
-<a href="#3773" id="3773">3773</a>
-<a href="#3774" id="3774">3774</a>
-<a href="#3775" id="3775">3775</a>
-<a href="#3776" id="3776">3776</a>
-<a href="#3777" id="3777">3777</a>
-<a href="#3778" id="3778">3778</a>
-<a href="#3779" id="3779">3779</a>
-<a href="#3780" id="3780">3780</a>
-<a href="#3781" id="3781">3781</a>
-<a href="#3782" id="3782">3782</a>
-<a href="#3783" id="3783">3783</a>
 </pre></div><pre class="rust"><code><span class="comment">// THIS FILE IS AUTOGENERATED.
 // Any changes to this file will be overwritten.
 // For more information about how codegen works, see font-codegen/README.md
@@ -4031,8 +4018,9 @@
 }
 
 <span class="doccomment">/// See [ValueRecord]
-</span><span class="attr">#[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash)]
+</span><span class="attr">#[derive(Clone, Copy, Default, PartialEq, Eq, PartialOrd, Ord, Hash, bytemuck :: AnyBitPattern)]
 #[cfg_attr(feature = <span class="string">"serde"</span>, derive(serde::Serialize, serde::Deserialize))]
+#[repr(transparent)]
 </span><span class="kw">pub struct </span>ValueFormat {
     bits: u16,
 }
@@ -4822,7 +4810,7 @@
 }
 
 <span class="doccomment">/// Part of [MarkArray]
-</span><span class="attr">#[derive(Clone, Debug, Copy)]
+</span><span class="attr">#[derive(Clone, Debug, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>MarkRecord {
@@ -4854,13 +4842,6 @@
 
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>MarkRecord {
     <span class="kw">const </span>RAW_BYTE_LEN: usize = u16::RAW_BYTE_LEN + Offset16::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>MarkRecord {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>MarkRecord {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]
@@ -6116,7 +6097,7 @@
 }
 
 <span class="doccomment">/// Part of [CursivePosFormat1]
-</span><span class="attr">#[derive(Clone, Debug, Copy)]
+</span><span class="attr">#[derive(Clone, Debug, Copy, bytemuck :: AnyBitPattern)]
 #[repr(C)]
 #[repr(packed)]
 </span><span class="kw">pub struct </span>EntryExitRecord {
@@ -6168,13 +6149,6 @@
 
 <span class="kw">impl </span>FixedSize <span class="kw">for </span>EntryExitRecord {
     <span class="kw">const </span>RAW_BYTE_LEN: usize = Offset16::RAW_BYTE_LEN + Offset16::RAW_BYTE_LEN;
-}
-
-<span class="kw">impl </span>sealed::Sealed <span class="kw">for </span>EntryExitRecord {}
-
-<span class="doccomment">/// SAFETY: see the [`FromBytes`] trait documentation.
-</span><span class="kw">unsafe impl </span>FromBytes <span class="kw">for </span>EntryExitRecord {
-    <span class="kw">fn </span>this_trait_should_only_be_implemented_in_generated_code() {}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">"traversal"</span>)]

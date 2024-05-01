@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/theme/style/iced.rs`."><title>iced.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0 (aedd173a2 2024-03-17)" data-channel="1.77.0" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/theme/style/iced.rs`."><title>iced.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../../cosmic/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -1330,6 +1330,14 @@
 <a href="#1328" id="1328">1328</a>
 <a href="#1329" id="1329">1329</a>
 <a href="#1330" id="1330">1330</a>
+<a href="#1331" id="1331">1331</a>
+<a href="#1332" id="1332">1332</a>
+<a href="#1333" id="1333">1333</a>
+<a href="#1334" id="1334">1334</a>
+<a href="#1335" id="1335">1335</a>
+<a href="#1336" id="1336">1336</a>
+<a href="#1337" id="1337">1337</a>
+<a href="#1338" id="1338">1338</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2022 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
@@ -1768,6 +1776,7 @@
     <span class="attr">#[allow(clippy::too_many_lines)]
     </span><span class="kw">fn </span>appearance(<span class="kw-2">&amp;</span><span class="self">self</span>, style: <span class="kw-2">&amp;</span><span class="self">Self</span>::Style) -&gt; container::Appearance {
         <span class="kw">let </span>cosmic = <span class="self">self</span>.cosmic();
+
         <span class="kw">match </span>style {
             Container::Transparent =&gt; container::Appearance::default(),
 
@@ -1791,13 +1800,7 @@
             },
 
             Container::List =&gt; {
-                <span class="comment">// TODO: The primary component has the wrong color on the light theme.
-                </span><span class="kw">let </span>component = <span class="kw">if </span>cosmic.is_dark {
-                    <span class="kw-2">&amp;</span><span class="self">self</span>.current_container().component
-                } <span class="kw">else </span>{
-                    <span class="kw-2">&amp;</span>cosmic.background.component
-                };
-
+                <span class="kw">let </span>component = <span class="kw-2">&amp;</span><span class="self">self</span>.current_container().component;
                 container::Appearance {
                     icon_color: <span class="prelude-val">Some</span>(component.on.into()),
                     text_color: <span class="prelude-val">Some</span>(component.on.into()),
@@ -1974,7 +1977,11 @@
                     },
 
                     handle: slider::Handle {
-                        shape: slider::HandleShape::Circle { radius: <span class="number">10.0 </span>},
+                        shape: slider::HandleShape::Rectangle {
+                            height: <span class="number">20</span>,
+                            width: <span class="number">20</span>,
+                            border_radius: cosmic.corner_radii.radius_m.into(),
+                        },
                         color: cosmic.accent.base.into(),
                         border_color: Color::TRANSPARENT,
                         border_width: <span class="number">0.0</span>,
@@ -1992,9 +1999,15 @@
     <span class="kw">fn </span>hovered(<span class="kw-2">&amp;</span><span class="self">self</span>, style: <span class="kw-2">&amp;</span><span class="self">Self</span>::Style) -&gt; slider::Appearance {
         <span class="kw">match </span>style {
             Slider::Standard =&gt; {
+                <span class="kw">let </span>cosmic: <span class="kw-2">&amp;</span>cosmic_theme::Theme = <span class="self">self</span>.cosmic();
+
                 <span class="kw">let </span><span class="kw-2">mut </span>style = <span class="self">self</span>.active(style);
-                style.handle.shape = slider::HandleShape::Circle { radius: <span class="number">16.0 </span>};
-                style.handle.border_width = <span class="number">6.0</span>;
+                style.handle.shape = slider::HandleShape::Rectangle {
+                    height: <span class="number">26</span>,
+                    width: <span class="number">26</span>,
+                    border_radius: cosmic.corner_radii.radius_m.into(),
+                };
+                style.handle.border_width = <span class="number">3.0</span>;
                 <span class="kw">let </span><span class="kw-2">mut </span>border_color = <span class="self">self</span>.cosmic().palette.neutral_10;
                 border_color.alpha = <span class="number">0.1</span>;
                 style.handle.border_color = border_color.into();
@@ -2143,6 +2156,9 @@
             background_border: <span class="prelude-val">None</span>,
             foreground: theme.palette.neutral_2.into(),
             foreground_border: <span class="prelude-val">None</span>,
+            border_radius: theme.radius_xl().into(),
+            handle_radius: theme.radius_xl().into(),
+            handle_margin: <span class="number">2.0</span>,
         }
     }
 

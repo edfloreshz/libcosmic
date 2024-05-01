@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["platform"],"struct":["ClipboardLoadData","ClipboardStoreData","Error"],"trait":["AllowedMimeTypes","AsMimeTypes"]};
+window.SIDEBAR_ITEMS = {"mod":["platform"],"struct":["ClipboardData","ClipboardLoadData","ClipboardStoreData","Error"],"trait":["AllowedMimeTypes","AsMimeTypes"]};

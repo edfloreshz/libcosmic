@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/palette_derive-0.7.5/src/convert/from_color_unclamped.rs`."><title>from_color_unclamped.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="palette_derive" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0 (aedd173a2 2024-03-17)" data-channel="1.77.0" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/palette_derive-0.7.6/src/convert/from_color_unclamped.rs`."><title>from_color_unclamped.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="palette_derive" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../palette_derive/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -348,21 +348,35 @@
 <a href="#346" id="346">346</a>
 <a href="#347" id="347">347</a>
 <a href="#348" id="348">348</a>
-</pre></div><pre class="rust"><code><span class="kw">use </span>std::collections::HashSet;
-
-<span class="kw">use </span>proc_macro::TokenStream;
+<a href="#349" id="349">349</a>
+<a href="#350" id="350">350</a>
+<a href="#351" id="351">351</a>
+<a href="#352" id="352">352</a>
+<a href="#353" id="353">353</a>
+<a href="#354" id="354">354</a>
+<a href="#355" id="355">355</a>
+<a href="#356" id="356">356</a>
+<a href="#357" id="357">357</a>
+<a href="#358" id="358">358</a>
+<a href="#359" id="359">359</a>
+<a href="#360" id="360">360</a>
+<a href="#361" id="361">361</a>
+<a href="#362" id="362">362</a>
+<a href="#363" id="363">363</a>
+</pre></div><pre class="rust"><code><span class="kw">use </span>proc_macro::TokenStream;
 <span class="kw">use </span>proc_macro2::{Span, TokenStream <span class="kw">as </span>TokenStream2};
 <span class="kw">use </span>quote::quote;
 <span class="kw">use </span>syn::{parse_quote, DeriveInput, Generics, Ident, <span class="prelude-ty">Result</span>, Type};
 
-<span class="kw">use </span><span class="kw">crate</span>::convert::util::WhitePointSource;
-<span class="kw">use </span><span class="kw">crate</span>::meta::{
-    parse_field_attributes, parse_namespaced_attributes, FieldAttributes, IdentOrIndex,
-    TypeItemAttributes,
+<span class="kw">use crate</span>::{
+    color_types::{ColorInfo, MetaTypeSource, XYZ_COLORS},
+    convert::util::{InputUser, WhitePointSource},
+    meta::{
+        parse_field_attributes, parse_namespaced_attributes, FieldAttributes, IdentOrIndex,
+        TypeItemAttributes,
+    },
+    util,
 };
-<span class="kw">use </span><span class="kw">crate</span>::util;
-
-<span class="kw">use </span><span class="kw">crate</span>::COLOR_TYPES;
 
 <span class="kw">use </span><span class="kw">super</span>::util::{component_type, find_nearest_color, get_convert_color_type, white_point_type};
 
@@ -375,11 +389,11 @@
         ..
     } = syn::parse(item).map_err(|error| <span class="macro">vec!</span>[error])<span class="question-mark">?</span>;
 
-    <span class="kw">let </span><span class="kw-2">mut </span>item_meta: TypeItemAttributes = parse_namespaced_attributes(attrs)<span class="question-mark">?</span>;
+    <span class="kw">let </span>(<span class="kw-2">mut </span>item_meta, item_errors) = parse_namespaced_attributes::&lt;TypeItemAttributes&gt;(attrs);
 
-    <span class="kw">let </span>fields_meta: FieldAttributes = <span class="kw">if let </span>syn::Data::Struct(struct_data) = data {
-        parse_field_attributes(struct_data.fields)<span class="question-mark">?
-    </span>} <span class="kw">else </span>{
+    <span class="kw">let </span>(fields_meta, field_errors) = <span class="kw">if let </span>syn::Data::Struct(struct_data) = data {
+        parse_field_attributes::&lt;FieldAttributes&gt;(struct_data.fields)
+    } <span class="kw">else </span>{
         <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">vec!</span>[syn::Error::new(
             Span::call_site(),
             <span class="string">"only structs are supported"</span>,
@@ -387,7 +401,7 @@
     };
 
     <span class="kw">let </span>component = component_type(item_meta.component.clone());
-    <span class="kw">let </span>(white_point, white_point_source) = white_point_type(
+    <span class="kw">let </span>white_point = white_point_type(
         item_meta.white_point.as_ref(),
         item_meta.rgb_standard.as_ref(),
         item_meta.luma_standard.as_ref(),
@@ -396,20 +410,19 @@
 
     <span class="kw">let </span>alpha_field = fields_meta.alpha_property;
 
-    <span class="comment">// Assume conversion from Xyz by default
-    </span><span class="kw">if </span>item_meta.skip_derives.is_empty() {
-        item_meta.skip_derives.insert(<span class="string">"Xyz"</span>.into());
+    <span class="comment">// Assume conversion from the root type (Xyz for the base group) by default
+    </span><span class="kw">if </span>item_meta.color_groups.is_empty() {
+        item_meta.color_groups.insert((<span class="kw-2">&amp;</span>XYZ_COLORS).into());
     }
 
-    <span class="kw">let </span>all_from_impl_params = prepare_from_impl(
-        <span class="kw-2">&amp;</span>item_meta.skip_derives,
-        <span class="kw-2">&amp;</span>component,
-        <span class="kw-2">&amp;</span>white_point,
-        <span class="kw-2">&amp;</span>item_meta,
-        <span class="kw-2">&amp;</span>generics,
-        white_point_source,
-    )
-    .map_err(|error| <span class="macro">vec!</span>[error])<span class="question-mark">?</span>;
+    <span class="kw">if </span>item_meta.skip_derives.is_empty() {
+        <span class="kw">for </span>group <span class="kw">in </span><span class="kw-2">&amp;</span>item_meta.color_groups {
+            item_meta.skip_derives.insert(group.root_type.name.into());
+        }
+    }
+
+    <span class="kw">let </span>(all_from_impl_params, impl_params_errors) =
+        prepare_from_impl(<span class="kw-2">&amp;</span>component, white_point, <span class="kw-2">&amp;</span>item_meta, <span class="kw-2">&amp;</span>generics);
 
     <span class="kw">let </span><span class="kw-2">mut </span>implementations =
         generate_from_implementations(<span class="kw-2">&amp;</span>ident, <span class="kw-2">&amp;</span>generics, <span class="kw-2">&amp;</span>item_meta, <span class="kw-2">&amp;</span>all_from_impl_params);
@@ -428,117 +441,134 @@
         ));
     }
 
-    <span class="prelude-val">Ok</span>(TokenStream::from(<span class="macro">quote! </span>{
+    <span class="kw">let </span>item_errors = item_errors
+        .into_iter()
+        .map(|error| error.into_compile_error());
+    <span class="kw">let </span>field_errors = field_errors
+        .into_iter()
+        .map(|error| error.into_compile_error());
+    <span class="kw">let </span>impl_params_errors = impl_params_errors
+        .into_iter()
+        .map(|error| error.into_compile_error());
+
+    <span class="prelude-val">Ok</span>(<span class="macro">quote! </span>{
+        #(#item_errors)*
+        #(#field_errors)*
+        #(#impl_params_errors)*
+
         #(#implementations)*
-    }))
+    }
+    .into())
 }
 
 <span class="kw">fn </span>prepare_from_impl(
-    skip: <span class="kw-2">&amp;</span>HashSet&lt;String&gt;,
     component: <span class="kw-2">&amp;</span>Type,
-    white_point: <span class="kw-2">&amp;</span>Type,
+    white_point: <span class="prelude-ty">Option</span>&lt;(Type, WhitePointSource)&gt;,
     meta: <span class="kw-2">&amp;</span>TypeItemAttributes,
     generics: <span class="kw-2">&amp;</span>Generics,
-    white_point_source: <span class="prelude-ty">Option</span>&lt;WhitePointSource&gt;,
-) -&gt; <span class="prelude-ty">Result</span>&lt;Vec&lt;FromImplParameters&gt;&gt; {
-    <span class="kw">let </span>included_colors = COLOR_TYPES.iter().filter(|&amp;&amp;color| !skip.contains(color));
-    <span class="kw">let </span>linear_path = util::path([<span class="string">"encoding"</span>, <span class="string">"Linear"</span>], meta.internal);
+) -&gt; (Vec&lt;FromImplParameters&gt;, Vec&lt;syn::Error&gt;) {
+    <span class="kw">let </span>included_colors = meta
+        .color_groups
+        .iter()
+        .flat_map(|group| group.color_names())
+        .filter(|<span class="kw-2">&amp;</span>color| !meta.skip_derives.contains(color.name));
 
     <span class="kw">let </span><span class="kw-2">mut </span>parameters = Vec::new();
+    <span class="kw">let </span><span class="kw-2">mut </span>errors = Vec::new();
 
-    <span class="kw">for </span><span class="kw-2">&amp;</span>color_name <span class="kw">in </span>included_colors {
-        <span class="kw">let </span>nearest_color_name = find_nearest_color(color_name, skip)<span class="question-mark">?</span>;
-
-        <span class="kw">let </span><span class="kw-2">mut </span>generics = generics.clone();
-
-        <span class="kw">let </span>(color_ty, <span class="kw-2">mut </span>used_input) = get_convert_color_type(
-            color_name,
-            white_point,
+    <span class="kw">for </span>color <span class="kw">in </span>included_colors {
+        <span class="kw">let </span>impl_params = prepare_from_impl_for_pair(
+            color,
             component,
-            meta.rgb_standard.as_ref(),
-            meta.luma_standard.as_ref(),
-            <span class="kw-2">&amp;mut </span>generics,
-            meta.internal,
+            white_point.clone(),
+            meta,
+            generics.clone(),
         );
 
-        <span class="kw">let </span>nearest_color_path = util::color_path(nearest_color_name, meta.internal);
-        <span class="kw">let </span>target_color_rgb_standard = <span class="kw">match </span>color_name {
-            <span class="string">"Rgb" </span>| <span class="string">"Hsl" </span>| <span class="string">"Hsv" </span>| <span class="string">"Hwb" </span>=&gt; <span class="prelude-val">Some</span>(<span class="macro">parse_quote!</span>(_S)),
-            <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
-        };
-
-        <span class="kw">let </span>nearest_color_ty: Type = <span class="kw">match </span>nearest_color_name {
-            <span class="string">"Rgb" </span>| <span class="string">"Hsl" </span>| <span class="string">"Hsv" </span>| <span class="string">"Hwb" </span>=&gt; {
-                <span class="kw">let </span>rgb_standard = meta.rgb_standard
-                    .clone()
-                    .or(target_color_rgb_standard)
-                    .ok_or_else(|| {
-                        syn::parse::Error::new(
-                            Span::call_site(),
-                            <span class="macro">format!</span>(
-                                <span class="string">"could not determine which RGB standard to use when converting to and from `{}` via `{}`"</span>,
-                                color_name,
-                                nearest_color_name
-                            ),
-                        )
-                    })<span class="question-mark">?</span>;
-
-                <span class="macro">parse_quote!</span>(#nearest_color_path::&lt;#rgb_standard, #component&gt;)
-            }
-            <span class="string">"Luma" </span>=&gt; {
-                <span class="kw">if let </span><span class="prelude-val">Some</span>(luma_standard) = meta.luma_standard.as_ref() {
-                    <span class="macro">parse_quote!</span>(#nearest_color_path::&lt;#luma_standard, #component&gt;)
-                } <span class="kw">else </span>{
-                    used_input.white_point = <span class="bool-val">true</span>;
-                    <span class="macro">parse_quote!</span>(#nearest_color_path::&lt;#linear_path&lt;#white_point&gt;, #component&gt;)
-                }
-            }
-            <span class="string">"Oklab" </span>| <span class="string">"Oklch" </span>| <span class="string">"Okhsv" </span>| <span class="string">"Okhsl" </span>| <span class="string">"Okhwb" </span>=&gt; {
-                <span class="macro">parse_quote!</span>(#nearest_color_path::&lt;#component&gt;)
-            }
-            <span class="kw">_ </span>=&gt; {
-                used_input.white_point = <span class="bool-val">true</span>;
-                <span class="macro">parse_quote!</span>(#nearest_color_path::&lt;#white_point, #component&gt;)
-            }
-        };
-
-        <span class="kw">if </span>used_input.white_point {
-            <span class="kw">match </span>white_point_source {
-                <span class="prelude-val">Some</span>(WhitePointSource::WhitePoint) =&gt; {
-                    <span class="kw">let </span>white_point_path = util::path([<span class="string">"white_point"</span>, <span class="string">"WhitePoint"</span>], meta.internal);
-                    generics
-                        .make_where_clause()
-                        .predicates
-                        .push(<span class="macro">parse_quote!</span>(#white_point: #white_point_path&lt;#component&gt;))
-                }
-                <span class="prelude-val">Some</span>(WhitePointSource::RgbStandard) =&gt; {
-                    <span class="kw">let </span>rgb_standard_path = util::path([<span class="string">"rgb"</span>, <span class="string">"RgbStandard"</span>], meta.internal);
-                    <span class="kw">let </span>rgb_standard = meta.rgb_standard.as_ref();
-                    generics
-                        .make_where_clause()
-                        .predicates
-                        .push(<span class="macro">parse_quote!</span>(#rgb_standard: #rgb_standard_path));
-                }
-                <span class="prelude-val">Some</span>(WhitePointSource::LumaStandard) =&gt; {
-                    <span class="kw">let </span>luma_standard_path = util::path([<span class="string">"luma"</span>, <span class="string">"LumaStandard"</span>], meta.internal);
-                    <span class="kw">let </span>luma_standard = meta.luma_standard.as_ref();
-                    generics
-                        .make_where_clause()
-                        .predicates
-                        .push(<span class="macro">parse_quote!</span>(#luma_standard: #luma_standard_path));
-                }
-                <span class="prelude-val">None </span>=&gt; {}
-            }
+        <span class="kw">match </span>impl_params {
+            <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(impl_params)) =&gt; parameters.push(impl_params),
+            <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>) =&gt; {}
+            <span class="prelude-val">Err</span>(error) =&gt; errors.push(error),
         }
-
-        parameters.push(FromImplParameters {
-            generics,
-            color_ty,
-            nearest_color_ty,
-        });
     }
 
-    <span class="prelude-val">Ok</span>(parameters)
+    (parameters, errors)
+}
+
+<span class="kw">fn </span>prepare_from_impl_for_pair(
+    color: <span class="kw-2">&amp;</span>ColorInfo,
+    component: <span class="kw-2">&amp;</span>Type,
+    white_point: <span class="prelude-ty">Option</span>&lt;(Type, WhitePointSource)&gt;,
+    meta: <span class="kw-2">&amp;</span>TypeItemAttributes,
+    <span class="kw-2">mut </span>generics: Generics,
+) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;FromImplParameters&gt;&gt; {
+    <span class="kw">let </span>nearest_color = find_nearest_color(color, meta)<span class="question-mark">?</span>;
+
+    <span class="comment">// Figures out which white point the target type prefers, unless it's specified in `white_point`.
+    </span><span class="kw">let </span>(white_point, white_point_source) = <span class="kw">if let </span><span class="prelude-val">Some</span>((white_point, source)) = white_point {
+        (white_point, source)
+    } <span class="kw">else </span>{
+        color.get_default_white_point(meta.internal)
+    };
+
+    <span class="kw">let </span>(color_ty, <span class="kw-2">mut </span>used_input) =
+        get_convert_color_type(color, <span class="kw-2">&amp;</span>white_point, component, meta, <span class="kw-2">&amp;mut </span>generics)<span class="question-mark">?</span>;
+
+    <span class="kw">let </span>nearest_color_ty = nearest_color.get_type(
+        MetaTypeSource::OtherColor(color),
+        component,
+        <span class="kw-2">&amp;</span>white_point,
+        <span class="kw-2">&amp;mut </span>used_input,
+        InputUser::Nearest,
+        meta,
+    )<span class="question-mark">?</span>;
+
+    <span class="comment">// Skip implementing the trait where it wouldn't be able to constrain the
+    // white point. This is only happening when certain optional features are
+    // enabled.
+    </span><span class="kw">if </span>used_input.white_point.is_unconstrained()
+        &amp;&amp; <span class="macro">matches!</span>(white_point_source, WhitePointSource::GeneratedGeneric)
+    {
+        <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>);
+    }
+
+    <span class="kw">if </span>used_input.white_point.is_used() {
+        <span class="kw">match </span>white_point_source {
+            WhitePointSource::WhitePoint =&gt; {
+                <span class="kw">let </span>white_point_path = util::path([<span class="string">"white_point"</span>, <span class="string">"WhitePoint"</span>], meta.internal);
+                generics
+                    .make_where_clause()
+                    .predicates
+                    .push(<span class="macro">parse_quote!</span>(#white_point: #white_point_path&lt;#component&gt;))
+            }
+            WhitePointSource::RgbStandard =&gt; {
+                <span class="kw">let </span>rgb_standard_path = util::path([<span class="string">"rgb"</span>, <span class="string">"RgbStandard"</span>], meta.internal);
+                <span class="kw">let </span>rgb_standard = meta.rgb_standard.as_ref();
+                generics
+                    .make_where_clause()
+                    .predicates
+                    .push(<span class="macro">parse_quote!</span>(#rgb_standard: #rgb_standard_path));
+            }
+            WhitePointSource::LumaStandard =&gt; {
+                <span class="kw">let </span>luma_standard_path = util::path([<span class="string">"luma"</span>, <span class="string">"LumaStandard"</span>], meta.internal);
+                <span class="kw">let </span>luma_standard = meta.luma_standard.as_ref();
+                generics
+                    .make_where_clause()
+                    .predicates
+                    .push(<span class="macro">parse_quote!</span>(#luma_standard: #luma_standard_path));
+            }
+            WhitePointSource::ConcreteType =&gt; {}
+            WhitePointSource::GeneratedGeneric =&gt; {
+                generics.params.push(<span class="macro">parse_quote!</span>(_Wp));
+            }
+        }
+    }
+
+    <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(FromImplParameters {
+        generics,
+        color_ty,
+        nearest_color_ty,
+    }))
 }
 
 <span class="kw">struct </span>FromImplParameters {

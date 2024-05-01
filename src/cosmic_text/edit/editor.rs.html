@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/cosmic-text-92dc585b4973ff15/ff5501d/src/edit/editor.rs`."><title>editor.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="cosmic_text" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0 (aedd173a2 2024-03-17)" data-channel="1.77.0" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/git/checkouts/cosmic-text-92dc585b4973ff15/2f5f2c6/src/edit/editor.rs`."><title>editor.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="cosmic_text" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../cosmic_text/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -893,6 +893,17 @@
 <a href="#891" id="891">891</a>
 <a href="#892" id="892">892</a>
 <a href="#893" id="893">893</a>
+<a href="#894" id="894">894</a>
+<a href="#895" id="895">895</a>
+<a href="#896" id="896">896</a>
+<a href="#897" id="897">897</a>
+<a href="#898" id="898">898</a>
+<a href="#899" id="899">899</a>
+<a href="#900" id="900">900</a>
+<a href="#901" id="901">901</a>
+<a href="#902" id="902">902</a>
+<a href="#903" id="903">903</a>
+<a href="#904" id="904">904</a>
 </pre></div><pre class="rust"><code><span class="comment">// SPDX-License-Identifier: MIT OR Apache-2.0
 
 </span><span class="attr">#[cfg(not(feature = <span class="string">"std"</span>))]
@@ -1257,8 +1268,14 @@
 
             <span class="comment">// Ensure there are enough lines in the buffer to handle this cursor
             </span><span class="kw">while </span>cursor.line &gt;= buffer.lines.len() {
+                <span class="kw">let </span>ending = buffer
+                    .lines
+                    .last()
+                    .map(|line| line.ending())
+                    .unwrap_or_default();
                 <span class="kw">let </span>line = BufferLine::new(
                     String::new(),
+                    ending,
                     AttrsList::new(attrs_list.as_ref().map_or_else(
                         || {
                             buffer
@@ -1275,6 +1292,7 @@
 
             <span class="kw">let </span>line: <span class="kw-2">&amp;mut </span>BufferLine = <span class="kw-2">&amp;mut </span>buffer.lines[cursor.line];
             <span class="kw">let </span>insert_line = cursor.line + <span class="number">1</span>;
+            <span class="kw">let </span>ending = line.ending();
 
             <span class="comment">// Collect text after insertion as a line
             </span><span class="kw">let </span>after: BufferLine = line.split_off(cursor.index);
@@ -1287,6 +1305,7 @@
 
             <span class="comment">// Append the inserted text, line by line
             // we want to see a blank entry if the string ends with a newline
+            //TODO: adjust this to get line ending from data?
             </span><span class="kw">let </span>addendum = once(<span class="string">""</span>).filter(|<span class="kw">_</span>| data.ends_with(<span class="string">'\n'</span>));
             <span class="kw">let </span><span class="kw-2">mut </span>lines_iter = data.split_inclusive(<span class="string">'\n'</span>).chain(addendum);
             <span class="kw">if let </span><span class="prelude-val">Some</span>(data_line) = lines_iter.next() {
@@ -1297,6 +1316,7 @@
                     data_line
                         .strip_suffix(char::is_control)
                         .unwrap_or(data_line),
+                    ending,
                     these_attrs,
                     Shaping::Advanced,
                 ));
@@ -1309,6 +1329,7 @@
                     data_line
                         .strip_suffix(char::is_control)
                         .unwrap_or(data_line),
+                    ending,
                     final_attrs.split_off(remaining_split_len),
                     Shaping::Advanced,
                 );
@@ -1324,6 +1345,7 @@
                     data_line
                         .strip_suffix(char::is_control)
                         .unwrap_or(data_line),
+                    ending,
                     final_attrs.split_off(remaining_split_len),
                     Shaping::Advanced,
                 );

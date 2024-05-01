@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/palette_derive-0.7.5/src/meta/type_item_attributes.rs`."><title>type_item_attributes.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="palette_derive" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0 (aedd173a2 2024-03-17)" data-channel="1.77.0" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/palette_derive-0.7.6/src/meta/type_item_attributes.rs`."><title>type_item_attributes.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="palette_derive" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../palette_derive/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -149,39 +149,14 @@
 <a href="#147" id="147">147</a>
 <a href="#148" id="148">148</a>
 <a href="#149" id="149">149</a>
-<a href="#150" id="150">150</a>
-<a href="#151" id="151">151</a>
-<a href="#152" id="152">152</a>
-<a href="#153" id="153">153</a>
-<a href="#154" id="154">154</a>
-<a href="#155" id="155">155</a>
-<a href="#156" id="156">156</a>
-<a href="#157" id="157">157</a>
-<a href="#158" id="158">158</a>
-<a href="#159" id="159">159</a>
-<a href="#160" id="160">160</a>
-<a href="#161" id="161">161</a>
-<a href="#162" id="162">162</a>
-<a href="#163" id="163">163</a>
-<a href="#164" id="164">164</a>
-<a href="#165" id="165">165</a>
-<a href="#166" id="166">166</a>
-<a href="#167" id="167">167</a>
-<a href="#168" id="168">168</a>
-<a href="#169" id="169">169</a>
-<a href="#170" id="170">170</a>
-<a href="#171" id="171">171</a>
-<a href="#172" id="172">172</a>
-<a href="#173" id="173">173</a>
-<a href="#174" id="174">174</a>
-<a href="#175" id="175">175</a>
-<a href="#176" id="176">176</a>
-<a href="#177" id="177">177</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>std::collections::HashSet;
 
+<span class="kw">use </span>by_address::ByAddress;
 <span class="kw">use </span>quote::quote;
 <span class="kw">use </span>syn::{punctuated::Punctuated, spanned::Spanned, token::Comma, Expr, ExprLit};
-<span class="kw">use </span>syn::{Ident, Lit, Meta, MetaNameValue, <span class="prelude-ty">Result</span>, Type};
+<span class="kw">use </span>syn::{Ident, Lit, Meta, MetaNameValue, Type};
+
+<span class="kw">use </span><span class="kw">crate</span>::color_types::{ColorGroup, COLOR_GROUPS};
 
 <span class="kw">use </span><span class="kw">super</span>::AttributeArgumentParser;
 
@@ -194,164 +169,133 @@
     <span class="kw">pub </span>white_point: <span class="prelude-ty">Option</span>&lt;Type&gt;,
     <span class="kw">pub </span>rgb_standard: <span class="prelude-ty">Option</span>&lt;Type&gt;,
     <span class="kw">pub </span>luma_standard: <span class="prelude-ty">Option</span>&lt;Type&gt;,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) color_groups: HashSet&lt;ByAddress&lt;<span class="kw-2">&amp;</span><span class="lifetime">'static </span>ColorGroup&gt;&gt;,
 }
 
 <span class="kw">impl </span>AttributeArgumentParser <span class="kw">for </span>TypeItemAttributes {
-    <span class="kw">fn </span>argument(<span class="kw-2">&amp;mut </span><span class="self">self</span>, argument: Meta) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
+    <span class="kw">fn </span>argument(<span class="kw-2">&amp;mut </span><span class="self">self</span>, argument: Meta) -&gt; <span class="prelude-ty">Result</span>&lt;(), Vec&lt;syn::Error&gt;&gt; {
         <span class="kw">let </span>argument_name = argument.path().get_ident().map(ToString::to_string);
 
         <span class="kw">match </span>argument_name.as_deref() {
             <span class="prelude-val">Some</span>(<span class="string">"skip_derives"</span>) =&gt; {
                 <span class="kw">if let </span>Meta::List(list) = argument {
-                    <span class="kw">let </span>skipped =
-                        list.parse_args_with(Punctuated::&lt;Ident, Comma&gt;::parse_terminated)<span class="question-mark">?</span>;
+                    <span class="kw">let </span>skipped = list
+                        .parse_args_with(Punctuated::&lt;Ident, Comma&gt;::parse_terminated)
+                        .map_err(|error| <span class="macro">vec!</span>[error])<span class="question-mark">?</span>;
 
-                    <span class="self">self</span>.skip_derives
-                        .extend(skipped.into_iter().map(|ident| ident.to_string()));
+                    <span class="kw">let </span><span class="kw-2">mut </span>errors = Vec::new();
+                    <span class="kw">for </span>skipped_color <span class="kw">in </span>skipped {
+                        <span class="kw">let </span>color_name = skipped_color.to_string();
+                        <span class="self">self</span>.skip_derives.insert(color_name.clone());
+
+                        <span class="kw">let </span>color_group = COLOR_GROUPS
+                            .iter()
+                            .find(|group| group.check_availability(<span class="kw-2">&amp;</span>color_name).is_ok());
+
+                        <span class="kw">let </span>group = <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span>group) = color_group {
+                            group
+                        } <span class="kw">else </span>{
+                            errors.push(syn::Error::new(
+                                skipped_color.span(),
+                                <span class="macro">format!</span>(<span class="string">"`{}` is not a valid color type"</span>, skipped_color),
+                            ));
+                            <span class="kw">continue</span>;
+                        };
+
+                        <span class="kw">let </span>infer_group = group
+                            .find_type_by_name(<span class="kw-2">&amp;</span>color_name)
+                            .map_or(<span class="bool-val">true</span>, |ty| ty.infer_group);
+
+                        <span class="kw">if </span>infer_group {
+                            <span class="self">self</span>.color_groups.insert(group.into());
+                        }
+                    }
+
+                    <span class="kw">if </span>!errors.is_empty() {
+                        <span class="kw">return </span><span class="prelude-val">Err</span>(errors);
+                    }
                 } <span class="kw">else </span>{
-                    <span class="kw">return </span><span class="prelude-val">Err</span>(::syn::parse::Error::new(
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">vec!</span>[syn::Error::new(
                         argument.span(),
                         <span class="string">"expected `skip_derives` to have a list of color type names, like `skip_derives(Xyz, Luma, Rgb)`"</span>,
-                    ));
+                    )]);
                 }
             }
             <span class="prelude-val">Some</span>(<span class="string">"component"</span>) =&gt; {
-                <span class="kw">if </span><span class="self">self</span>.component.is_none() {
-                    <span class="kw">let </span>result = <span class="kw">if let </span>Meta::NameValue(MetaNameValue {
-                        value:
-                            Expr::Lit(ExprLit {
-                                lit: Lit::Str(ty), ..
-                            }),
-                        ..
-                    }) = argument
-                    {
-                        <span class="self">self</span>.component = <span class="prelude-val">Some</span>(ty.parse()<span class="question-mark">?</span>);
-                        <span class="prelude-val">Ok</span>(())
-                    } <span class="kw">else </span>{
-                        <span class="prelude-val">Err</span>(argument.span())
-                    };
-
-                    <span class="kw">if let </span><span class="prelude-val">Err</span>(span) = result {
-                        <span class="kw">let </span>message = <span class="string">"expected `component` to be a type or type parameter in a string, like `component = \"T\"`"</span>;
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(::syn::parse::Error::new(span, message));
-                    }
-                } <span class="kw">else </span>{
-                    <span class="kw">return </span><span class="prelude-val">Err</span>(::syn::parse::Error::new(
-                        argument.span(),
-                        <span class="string">"`component` appears more than once"</span>,
-                    ));
-                }
+                get_meta_type_argument(argument, <span class="kw-2">&amp;mut </span><span class="self">self</span>.component)<span class="question-mark">?</span>;
             }
             <span class="prelude-val">Some</span>(<span class="string">"white_point"</span>) =&gt; {
-                <span class="kw">if </span><span class="self">self</span>.white_point.is_none() {
-                    <span class="kw">let </span>result = <span class="kw">if let </span>Meta::NameValue(MetaNameValue {
-                        value:
-                            Expr::Lit(ExprLit {
-                                lit: Lit::Str(ty), ..
-                            }),
-                        ..
-                    }) = argument
-                    {
-                        <span class="self">self</span>.white_point = <span class="prelude-val">Some</span>(ty.parse()<span class="question-mark">?</span>);
-                        <span class="prelude-val">Ok</span>(())
-                    } <span class="kw">else </span>{
-                        <span class="prelude-val">Err</span>(argument.span())
-                    };
-
-                    <span class="kw">if let </span><span class="prelude-val">Err</span>(span) = result {
-                        <span class="kw">let </span>message = <span class="string">"expected `white_point` to be a type or type parameter in a string, like `white_point = \"T\"`"</span>;
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(::syn::parse::Error::new(span, message));
-                    }
-                } <span class="kw">else </span>{
-                    <span class="kw">return </span><span class="prelude-val">Err</span>(::syn::parse::Error::new(
-                        argument.span(),
-                        <span class="string">"`white_point` appears more than once"</span>,
-                    ));
-                }
+                get_meta_type_argument(argument, <span class="kw-2">&amp;mut </span><span class="self">self</span>.white_point)<span class="question-mark">?</span>;
             }
             <span class="prelude-val">Some</span>(<span class="string">"rgb_standard"</span>) =&gt; {
-                <span class="kw">if </span><span class="self">self</span>.rgb_standard.is_none() {
-                    <span class="kw">let </span>result = <span class="kw">if let </span>Meta::NameValue(MetaNameValue {
-                        value:
-                            Expr::Lit(ExprLit {
-                                lit: Lit::Str(ty), ..
-                            }),
-                        ..
-                    }) = argument
-                    {
-                        <span class="self">self</span>.rgb_standard = <span class="prelude-val">Some</span>(ty.parse()<span class="question-mark">?</span>);
-                        <span class="prelude-val">Ok</span>(())
-                    } <span class="kw">else </span>{
-                        <span class="prelude-val">Err</span>(argument.span())
-                    };
-
-                    <span class="kw">if let </span><span class="prelude-val">Err</span>(span) = result {
-                        <span class="kw">let </span>message = <span class="string">"expected `rgb_standard` to be a type or type parameter in a string, like `rgb_standard = \"T\"`"</span>;
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(::syn::parse::Error::new(span, message));
-                    }
-                } <span class="kw">else </span>{
-                    <span class="kw">return </span><span class="prelude-val">Err</span>(::syn::parse::Error::new(
-                        argument.span(),
-                        <span class="string">"`rgb_standard` appears more than once"</span>,
-                    ));
-                }
+                get_meta_type_argument(argument, <span class="kw-2">&amp;mut </span><span class="self">self</span>.rgb_standard)<span class="question-mark">?</span>;
             }
             <span class="prelude-val">Some</span>(<span class="string">"luma_standard"</span>) =&gt; {
-                <span class="kw">if </span><span class="self">self</span>.luma_standard.is_none() {
-                    <span class="kw">let </span>result = <span class="kw">if let </span>Meta::NameValue(MetaNameValue {
-                        value:
-                            Expr::Lit(ExprLit {
-                                lit: Lit::Str(ty), ..
-                            }),
-                        ..
-                    }) = argument
-                    {
-                        <span class="self">self</span>.luma_standard = <span class="prelude-val">Some</span>(ty.parse()<span class="question-mark">?</span>);
-                        <span class="prelude-val">Ok</span>(())
-                    } <span class="kw">else </span>{
-                        <span class="prelude-val">Err</span>(argument.span())
-                    };
-
-                    <span class="kw">if let </span><span class="prelude-val">Err</span>(span) = result {
-                        <span class="kw">let </span>message = <span class="string">"expected `luma_standard` to be a type or type parameter in a string, like `luma_standard = \"T\"`"</span>;
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(::syn::parse::Error::new(span, message));
-                    }
-                } <span class="kw">else </span>{
-                    <span class="kw">return </span><span class="prelude-val">Err</span>(::syn::parse::Error::new(
-                        argument.span(),
-                        <span class="string">"`luma_standard` appears more than once"</span>,
-                    ));
-                }
+                get_meta_type_argument(argument, <span class="kw-2">&amp;mut </span><span class="self">self</span>.luma_standard)<span class="question-mark">?</span>;
             }
             <span class="prelude-val">Some</span>(<span class="string">"palette_internal"</span>) =&gt; {
                 <span class="kw">if let </span>Meta::Path(<span class="kw">_</span>) = argument {
                     <span class="self">self</span>.internal = <span class="bool-val">true</span>;
                 } <span class="kw">else </span>{
-                    <span class="kw">return </span><span class="prelude-val">Err</span>(::syn::parse::Error::new(
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">vec!</span>[syn::Error::new(
                         argument.span(),
                         <span class="string">"expected `palette_internal` to a literal without value"</span>,
-                    ));
+                    )]);
                 }
             }
             <span class="prelude-val">Some</span>(<span class="string">"palette_internal_not_base_type"</span>) =&gt; {
                 <span class="kw">if let </span>Meta::Path(<span class="kw">_</span>) = argument {
                     <span class="self">self</span>.internal_not_base_type = <span class="bool-val">true</span>;
                 } <span class="kw">else </span>{
-                    <span class="kw">return </span><span class="prelude-val">Err</span>(::syn::parse::Error::new(
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">vec!</span>[syn::Error::new(
                         argument.span(),
                         <span class="string">"expected `palette_internal` to a literal without value"</span>,
-                    ));
+                    )]);
                 }
             }
             <span class="kw">_ </span>=&gt; {
-                <span class="kw">return </span><span class="prelude-val">Err</span>(::syn::parse::Error::new(
+                <span class="kw">return </span><span class="prelude-val">Err</span>(<span class="macro">vec!</span>[syn::Error::new(
                     argument.span(),
                     <span class="macro">format!</span>(<span class="string">"`{}` is not a known type item attribute"</span>, <span class="macro">quote!</span>(#argument)),
-                ));
+                )]);
             }
         }
 
         <span class="prelude-val">Ok</span>(())
+    }
+}
+
+<span class="kw">fn </span>get_meta_type_argument(
+    argument: Meta,
+    attribute: <span class="kw-2">&amp;mut </span><span class="prelude-ty">Option</span>&lt;Type&gt;,
+) -&gt; <span class="prelude-ty">Result</span>&lt;(), Vec&lt;syn::Error&gt;&gt; {
+    <span class="kw">if </span>attribute.is_none() {
+        <span class="kw">let </span>result = <span class="kw">if let </span>Meta::NameValue(MetaNameValue {
+            value: Expr::Lit(ExprLit {
+                lit: Lit::Str(ty), ..
+            }),
+            ..
+        }) = argument
+        {
+            <span class="kw-2">*</span>attribute = <span class="prelude-val">Some</span>(ty.parse().map_err(|error| <span class="macro">vec!</span>[error])<span class="question-mark">?</span>);
+            <span class="prelude-val">Ok</span>(())
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>((argument.span(), argument.path()))
+        };
+
+        <span class="kw">if let </span><span class="prelude-val">Err</span>((span, path)) = result {
+            <span class="kw">let </span>name = path.get_ident().unwrap();
+            <span class="kw">let </span>message = <span class="macro">format!</span>(<span class="string">"expected `{name}` to be a type or type parameter in a string, like `{name} = \"T\"`"</span>);
+            <span class="prelude-val">Err</span>(<span class="macro">vec!</span>[syn::Error::new(span, message)])
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Ok</span>(())
+        }
+    } <span class="kw">else </span>{
+        <span class="kw">let </span>name = argument.path().get_ident().unwrap();
+        <span class="prelude-val">Err</span>(<span class="macro">vec!</span>[syn::Error::new(
+            argument.span(),
+            <span class="macro">format!</span>(<span class="string">"`{name}` appears more than once"</span>),
+        )])
     }
 }
 </code></pre></div></section></main></body></html>

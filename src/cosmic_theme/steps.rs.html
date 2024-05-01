@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `cosmic-theme/src/steps.rs`."><title>steps.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cosmic_theme" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0 (aedd173a2 2024-03-17)" data-channel="1.77.0" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `cosmic-theme/src/steps.rs`."><title>steps.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cosmic_theme" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../cosmic_theme/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -203,9 +203,6 @@
 <a href="#201" id="201">201</a>
 <a href="#202" id="202">202</a>
 <a href="#203" id="203">203</a>
-<a href="#204" id="204">204</a>
-<a href="#205" id="205">205</a>
-<a href="#206" id="206">206</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span>std::num::NonZeroUsize;
 
 <span class="kw">use </span>almost::equal;
@@ -248,19 +245,18 @@
     fallback: <span class="kw-2">&amp;</span>Srgba,
 ) -&gt; Srgba {
     <span class="macro">assert!</span>(step_array.len() == <span class="number">100</span>);
-    <span class="kw">if </span>!is_dark &amp;&amp; base_index &gt;= <span class="number">88 </span>{
-        is_dark = <span class="bool-val">true</span>;
-    }
-    get_index(base_index, steps, step_array.len(), is_dark)
-        .and_then(|i| step_array.get(i).cloned())
-        .unwrap_or_else(|| fallback.to_owned())
+
+    is_dark = is_dark || base_index &lt; <span class="number">91</span>;
+
+    <span class="kw-2">*</span>get_index(base_index, steps, step_array.len(), is_dark)
+        .and_then(|i| step_array.get(i))
+        .unwrap_or(fallback)
 }
 
 <span class="doccomment">/// get text color given a base background color
 </span><span class="kw">pub fn </span>get_text(
     base_index: usize,
     step_array: <span class="kw-2">&amp;</span>Vec&lt;Srgba&gt;,
-    is_dark: bool,
     fallback: <span class="kw-2">&amp;</span>Srgba,
     tint_array: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Vec&lt;Srgba&gt;&gt;,
 ) -&gt; Srgba {
@@ -271,16 +267,14 @@
     } <span class="kw">else </span>{
         step_array
     };
-    <span class="kw">let </span><span class="prelude-val">Some</span>(index) = get_index(base_index, <span class="number">70</span>, step_array.len(), is_dark)
-        .or_else(|| get_index(base_index, <span class="number">50</span>, step_array.len(), is_dark))
-    <span class="kw">else </span>{
-        <span class="kw">return </span>fallback.to_owned();
-    };
 
-    step_array
-        .get(index)
-        .cloned()
-        .unwrap_or_else(|| fallback.to_owned())
+    <span class="kw">let </span>is_dark = base_index &lt; <span class="number">60</span>;
+
+    <span class="kw">let </span>index = get_index(base_index, <span class="number">70</span>, step_array.len(), is_dark)
+        .or_else(|| get_index(base_index, <span class="number">50</span>, step_array.len(), is_dark))
+        .unwrap_or_else(|| <span class="kw">if </span>is_dark { <span class="number">99 </span>} <span class="kw">else </span>{ <span class="number">0 </span>});
+
+    <span class="kw-2">*</span>step_array.get(index).unwrap_or(fallback)
 }
 
 <span class="doccomment">/// get the index into the steps array for a given color

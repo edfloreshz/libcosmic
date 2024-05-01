@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `iced/widget/src/toggler.rs`."><title>toggler.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="iced_widget" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.0 (aedd173a2 2024-03-17)" data-channel="1.77.0" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `iced/widget/src/toggler.rs`."><title>toggler.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="iced_widget" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../iced_widget/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -511,21 +511,6 @@
 <a href="#509" id="509">509</a>
 <a href="#510" id="510">510</a>
 <a href="#511" id="511">511</a>
-<a href="#512" id="512">512</a>
-<a href="#513" id="513">513</a>
-<a href="#514" id="514">514</a>
-<a href="#515" id="515">515</a>
-<a href="#516" id="516">516</a>
-<a href="#517" id="517">517</a>
-<a href="#518" id="518">518</a>
-<a href="#519" id="519">519</a>
-<a href="#520" id="520">520</a>
-<a href="#521" id="521">521</a>
-<a href="#522" id="522">522</a>
-<a href="#523" id="523">523</a>
-<a href="#524" id="524">524</a>
-<a href="#525" id="525">525</a>
-<a href="#526" id="526">526</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! Show toggle controls using togglers.
 </span><span class="attr">#[cfg(feature = <span class="string">"a11y"</span>)]
 </span><span class="kw">use </span>std::borrow::Cow;
@@ -771,12 +756,7 @@
         layout::next_to_each_other(
             <span class="kw-2">&amp;</span>limits,
             <span class="self">self</span>.spacing,
-            |<span class="kw">_</span>| {
-                layout::Node::new(<span class="kw">crate</span>::core::Size::new(
-                    <span class="number">2.0 </span>* <span class="self">self</span>.size,
-                    <span class="self">self</span>.size,
-                ))
-            },
+            |<span class="kw">_</span>| layout::Node::new(<span class="kw">crate</span>::core::Size::new(<span class="number">48.</span>, <span class="number">24.</span>)),
             |limits| {
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(label) = <span class="self">self</span>.label.as_deref() {
                     <span class="kw">let </span>state = tree
@@ -857,13 +837,6 @@
         cursor: mouse::Cursor,
         viewport: <span class="kw-2">&amp;</span>Rectangle,
     ) {
-        <span class="doccomment">/// Makes sure that the border radius of the toggler looks good at every size.
-        </span><span class="kw">const </span>BORDER_RADIUS_RATIO: f32 = <span class="number">32.0 </span>/ <span class="number">13.0</span>;
-
-        <span class="doccomment">/// The space ratio between the background Quad and the Toggler bounds, and
-        /// between the background Quad and foreground Quad.
-        </span><span class="kw">const </span>SPACE_RATIO: f32 = <span class="number">0.05</span>;
-
         <span class="kw">let </span><span class="kw-2">mut </span>children = layout.children();
         <span class="kw">let </span>toggler_layout = children.next().unwrap();
 
@@ -889,23 +862,21 @@
             theme.active(<span class="kw-2">&amp;</span><span class="self">self</span>.style, <span class="self">self</span>.is_toggled)
         };
 
-        <span class="kw">let </span>border_radius = bounds.height / BORDER_RADIUS_RATIO;
-        <span class="kw">let </span>space = SPACE_RATIO * bounds.height;
+        <span class="kw">let </span>space = style.handle_margin;
 
         <span class="kw">let </span>toggler_background_bounds = Rectangle {
-            x: bounds.x + space,
-            y: bounds.y + space,
-            width: bounds.width - (<span class="number">2.0 </span>* space),
-            height: bounds.height - (<span class="number">2.0 </span>* space),
+            x: bounds.x,
+            y: bounds.y,
+            width: bounds.width,
+            height: bounds.height,
         };
 
         renderer.fill_quad(
             renderer::Quad {
                 bounds: toggler_background_bounds,
                 border: Border {
-                    radius: border_radius.into(),
-                    width: <span class="number">1.0</span>,
-                    color: style.background_border.unwrap_or(style.background),
+                    radius: style.border_radius,
+                    ..Default::default()
                 },
                 ..renderer::Quad::default()
             },
@@ -915,22 +886,21 @@
         <span class="kw">let </span>toggler_foreground_bounds = Rectangle {
             x: bounds.x
                 + <span class="kw">if </span><span class="self">self</span>.is_toggled {
-                    bounds.width - <span class="number">2.0 </span>* space - (bounds.height - (<span class="number">4.0 </span>* space))
+                    bounds.width - space - (bounds.height - (<span class="number">2.0 </span>* space))
                 } <span class="kw">else </span>{
-                    <span class="number">2.0 </span>* space
+                    space
                 },
-            y: bounds.y + (<span class="number">2.0 </span>* space),
-            width: bounds.height - (<span class="number">4.0 </span>* space),
-            height: bounds.height - (<span class="number">4.0 </span>* space),
+            y: bounds.y + space,
+            width: bounds.height - (<span class="number">2.0 </span>* space),
+            height: bounds.height - (<span class="number">2.0 </span>* space),
         };
 
         renderer.fill_quad(
             renderer::Quad {
                 bounds: toggler_foreground_bounds,
                 border: Border {
-                    radius: border_radius.into(),
-                    width: <span class="number">1.0</span>,
-                    color: style.foreground_border.unwrap_or(style.foreground),
+                    radius: style.handle_radius,
+                    ..Default::default()
                 },
                 ..renderer::Quad::default()
             },

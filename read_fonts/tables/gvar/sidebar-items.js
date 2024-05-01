@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"struct":["DeltaIter","GlyphDelta","GlyphVariationData","GvarFlags","TupleVariation","TupleVariationIter","U16Or32"],"type":["GlyphVariationDataHeader","Gvar","SharedTuples"]};
+window.SIDEBAR_ITEMS = {"struct":["GlyphDelta","GvarFlags","U16Or32"],"type":["GlyphVariationData","GlyphVariationDataHeader","Gvar","SharedTuples"]};

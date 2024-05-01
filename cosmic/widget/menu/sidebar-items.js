@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":["ItemHeight","ItemWidth","PathHighlight"],"mod":["action","key_bind","menu_bar","menu_tree"],"struct":["CloseCondition"],"type":["MenuBar","MenuTree"]};
+window.SIDEBAR_ITEMS = {"enum":["Item","ItemHeight","ItemWidth","PathHighlight"],"fn":["items","root"],"mod":["action","key_bind"],"struct":["CloseCondition","MenuBar","Tree"]};
