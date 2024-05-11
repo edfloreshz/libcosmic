@@ -839,6 +839,18 @@
 <a href="#837" id="837">837</a>
 <a href="#838" id="838">838</a>
 <a href="#839" id="839">839</a>
+<a href="#840" id="840">840</a>
+<a href="#841" id="841">841</a>
+<a href="#842" id="842">842</a>
+<a href="#843" id="843">843</a>
+<a href="#844" id="844">844</a>
+<a href="#845" id="845">845</a>
+<a href="#846" id="846">846</a>
+<a href="#847" id="847">847</a>
+<a href="#848" id="848">848</a>
+<a href="#849" id="849">849</a>
+<a href="#850" id="850">850</a>
+<a href="#851" id="851">851</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2023 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
@@ -1000,12 +1012,24 @@
 <span class="doccomment">/// Default to rendering the application with the low power GPU preference.
 </span><span class="attr">#[cfg(feature = <span class="string">"wgpu"</span>)]
 </span><span class="kw">fn </span>wgpu_power_pref() {
+    <span class="kw">fn </span>is_desktop() -&gt; bool {
+        <span class="kw">let </span>chassis = std::fs::read_to_string(<span class="string">"/sys/class/dmi/id/chassis_type"</span>).unwrap_or_default();
+
+        chassis.trim() == <span class="string">"3"
+    </span>}
+
+    <span class="comment">// Ignore if the system is a desktop.
+    </span><span class="kw">if </span>is_desktop() {
+        <span class="kw">return</span>;
+    }
+
     <span class="comment">// Ignore if requested to run on NVIDIA GPU
     </span><span class="kw">if </span>std::env::var(<span class="string">"__NV_PRIME_RENDER_OFFLOAD"</span>).ok().as_deref() == <span class="prelude-val">Some</span>(<span class="string">"1"</span>) {
         <span class="kw">return</span>;
     }
 
-    <span class="kw">const </span>VAR: <span class="kw-2">&amp;</span>str = <span class="string">"WGPU_POWER_PREF"</span>;
+    <span class="attr">#[allow(clippy::items_after_statements)]
+    </span><span class="kw">const </span>VAR: <span class="kw-2">&amp;</span>str = <span class="string">"WGPU_POWER_PREF"</span>;
     <span class="kw">if </span>std::env::var(VAR).is_err() {
         std::env::set_var(VAR, <span class="string">"low"</span>);
     }
