@@ -2619,6 +2619,8 @@
 <a href="#2617" id="2617">2617</a>
 <a href="#2618" id="2618">2618</a>
 <a href="#2619" id="2619">2619</a>
+<a href="#2620" id="2620">2620</a>
+<a href="#2621" id="2621">2621</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2019 H�ctor Ram�n, Iced contributors
 // Copyright 2023 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MIT
@@ -3350,28 +3352,30 @@
             }
         }
 
-        <span class="kw">let </span>index = tree.children.len() - <span class="number">1</span>;
-        <span class="kw">if let </span>(<span class="prelude-val">Some</span>(trailing_icon), <span class="prelude-val">Some</span>(tree)) =
-            (<span class="self">self</span>.trailing_icon.as_mut(), tree.children.get_mut(index))
-        {
-            <span class="kw">let </span>children = text_layout.children();
-            trailing_icon_layout = <span class="prelude-val">Some</span>(children.last().unwrap());
+        <span class="kw">if </span>tree.children.len() &gt; <span class="number">0 </span>{
+            <span class="kw">let </span>index = tree.children.len() - <span class="number">1</span>;
+            <span class="kw">if let </span>(<span class="prelude-val">Some</span>(trailing_icon), <span class="prelude-val">Some</span>(tree)) =
+                (<span class="self">self</span>.trailing_icon.as_mut(), tree.children.get_mut(index))
+            {
+                <span class="kw">let </span>children = text_layout.children();
+                trailing_icon_layout = <span class="prelude-val">Some</span>(children.last().unwrap());
 
-            <span class="kw">if let </span><span class="prelude-val">Some</span>(trailing_layout) = trailing_icon_layout {
-                <span class="kw">if </span>cursor_position.is_over(trailing_layout.bounds()) {
-                    <span class="kw">let </span>res = trailing_icon.as_widget_mut().on_event(
-                        tree,
-                        event.clone(),
-                        trailing_layout,
-                        cursor_position,
-                        renderer,
-                        clipboard,
-                        shell,
-                        viewport,
-                    );
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(trailing_layout) = trailing_icon_layout {
+                    <span class="kw">if </span>cursor_position.is_over(trailing_layout.bounds()) {
+                        <span class="kw">let </span>res = trailing_icon.as_widget_mut().on_event(
+                            tree,
+                            event.clone(),
+                            trailing_layout,
+                            cursor_position,
+                            renderer,
+                            clipboard,
+                            shell,
+                            viewport,
+                        );
 
-                    <span class="kw">if </span>res == event::Status::Captured {
-                        <span class="kw">return </span>res;
+                        <span class="kw">if </span>res == event::Status::Captured {
+                            <span class="kw">return </span>res;
+                        }
                     }
                 }
             }
