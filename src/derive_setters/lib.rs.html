@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_setters-0.1.6/src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="derive_setters" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_setters-0.1.6/src/lib.rs`."><title>lib.rs - source</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="derive_setters" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../derive_setters/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -390,7 +390,7 @@
 
 <span class="attr">#[cfg(not(feature = <span class="string">"nightly"</span>))]
 </span><span class="kw">fn </span>error(<span class="kw">_</span>: Span, data: <span class="kw-2">&amp;</span>str) -&gt; SynTokenStream {
-    <span class="macro">quote! </span>{ <span class="macro">compile_error!</span>(#data); }
+    <span class="macro">quote!</span> { <span class="macro">compile_error!</span>(#data); }
 }
 
 <span class="attr">#[derive(Debug, Clone, FromMeta)]
@@ -524,7 +524,7 @@
 
     <span class="kw">let </span>ident = <span class="kw-2">&amp;</span>darling_attrs.ident;
     <span class="kw">let </span>(<span class="kw">_</span>, generics_ty, <span class="kw">_</span>) = darling_attrs.generics.split_for_impl();
-    <span class="kw">let </span>ty = <span class="macro">quote! </span>{ #ident #generics_ty };
+    <span class="kw">let </span>ty = <span class="macro">quote!</span> { #ident #generics_ty };
 
     <span class="kw">let </span>generate = darling_attrs.generate.unwrap_or(<span class="bool-val">true</span>);
     <span class="prelude-val">Ok</span>(ContainerDef {
@@ -575,10 +575,10 @@
         field_doc: <span class="kw">if let </span>Visibility::Public(<span class="kw">_</span>) = field.vis {
             <span class="kw">let </span>doc_str =
                 <span class="macro">format!</span>(<span class="string">"Sets the [`{}`](#structfield.{}) field of this struct."</span>, ident, ident);
-            <span class="macro">quote! </span>{ <span class="attr">#[doc = #doc_str] </span>}
+            <span class="macro">quote!</span> { <span class="attr">#[doc = #doc_str] </span>}
         } <span class="kw">else </span>{
             <span class="kw">let </span>attrs = darling_attrs.attrs;
-            <span class="macro">quote! </span>{ #( #attrs )* }
+            <span class="macro">quote!</span> { #( #attrs )* }
         },
         setter_name: darling_attrs.rename.unwrap_or_else(||
             Ident::new(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"{}{}"</span>, container.prefix, ident), ident.span())
@@ -617,40 +617,40 @@
 
     <span class="comment">// The type the setter accepts.
     </span><span class="kw">let </span>value_ty = <span class="kw">if </span>def.uses_into {
-        <span class="macro">quote! </span>{ <span class="kw">impl </span>::#std::convert::Into&lt;#field_ty&gt; }
+        <span class="macro">quote!</span> { <span class="kw">impl </span>::#std::convert::Into&lt;#field_ty&gt; }
     } <span class="kw">else </span>{
-        <span class="macro">quote! </span>{ #field_ty }
+        <span class="macro">quote!</span> { #field_ty }
     };
 
     <span class="comment">// The expression actually stored into the field.
-    </span><span class="kw">let </span><span class="kw-2">mut </span>expr = <span class="macro">quote! </span>{ value };
-    <span class="kw">if </span>def.uses_into { expr = <span class="macro">quote! </span>{ #expr.into() }; }
-    <span class="kw">if </span>def.bool { expr = <span class="macro">quote! </span>{ <span class="bool-val">true </span>}; }
-    <span class="kw">if </span>stripped_option { expr = <span class="macro">quote! </span>{ <span class="prelude-val">Some</span>(#expr) }; }
+    </span><span class="kw">let </span><span class="kw-2">mut </span>expr = <span class="macro">quote!</span> { value };
+    <span class="kw">if </span>def.uses_into { expr = <span class="macro">quote!</span> { #expr.into() }; }
+    <span class="kw">if </span>def.bool { expr = <span class="macro">quote!</span> { <span class="bool-val">true </span>}; }
+    <span class="kw">if </span>stripped_option { expr = <span class="macro">quote!</span> { <span class="prelude-val">Some</span>(#expr) }; }
 
     <span class="comment">// Handle the parameters when bool is enabled.
     </span><span class="kw">let </span>params = <span class="kw">if </span>def.bool {
         SynTokenStream::new()
     } <span class="kw">else </span>{
-        <span class="macro">quote! </span>{ value: #value_ty }
+        <span class="macro">quote!</span> { value: #value_ty }
     };
 
     <span class="comment">// Generates the setter method itself.
     </span><span class="kw">let </span>container_name = <span class="kw-2">&amp;</span>container.name;
     <span class="kw">if let </span><span class="prelude-val">Some</span>(delegate) = delegate_toks {
         <span class="kw">let </span>_self = <span class="kw">if </span>def.borrow_self {
-            <span class="macro">quote! </span>{ <span class="kw-2">&amp;mut </span><span class="self">self </span>}
+            <span class="macro">quote!</span> { <span class="kw-2">&amp;mut </span><span class="self">self </span>}
         } <span class="kw">else </span>{
-            <span class="macro">quote! </span>{ <span class="kw-2">mut </span><span class="self">self </span>}
+            <span class="macro">quote!</span> { <span class="kw-2">mut </span><span class="self">self </span>}
         };
 
         <span class="kw">let </span>return_self = <span class="kw">if </span>def.borrow_self {
-            <span class="macro">quote! </span>{ <span class="kw-2">&amp;mut </span><span class="self">Self </span>}
+            <span class="macro">quote!</span> { <span class="kw-2">&amp;mut </span><span class="self">Self </span>}
         } <span class="kw">else </span>{
-            <span class="macro">quote! </span>{ <span class="self">Self </span>}
+            <span class="macro">quote!</span> { <span class="self">Self </span>}
         };
 
-        <span class="prelude-val">Ok</span>(<span class="macro">quote! </span>{
+        <span class="prelude-val">Ok</span>(<span class="macro">quote!</span> {
             #field_doc
             <span class="kw">pub fn </span>#setter_name (#_self, #params) -&gt; #return_self {
                 <span class="self">self</span>.#delegate.#field_name = #expr;
@@ -659,7 +659,7 @@
         })
     } <span class="kw">else </span>{
         <span class="kw">if </span>def.borrow_self {
-            <span class="prelude-val">Ok</span>(<span class="macro">quote! </span>{
+            <span class="prelude-val">Ok</span>(<span class="macro">quote!</span> {
                 #field_doc
                 <span class="kw">pub fn </span>#setter_name (<span class="kw-2">&amp;mut </span><span class="self">self</span>, #params) -&gt; <span class="kw-2">&amp;mut </span><span class="self">Self </span>{
                     <span class="self">self</span>.#field_name = #expr;
@@ -667,7 +667,7 @@
                 </span>}
             })
         } <span class="kw">else </span>{
-            <span class="prelude-val">Ok</span>(<span class="macro">quote! </span>{
+            <span class="prelude-val">Ok</span>(<span class="macro">quote!</span> {
                 #field_doc
                 <span class="kw">pub fn </span>#setter_name (<span class="self">self</span>, #params) -&gt; <span class="self">Self </span>{
                     #container_name { #field_name: #expr, ..<span class="self">self </span>}
@@ -691,7 +691,7 @@
     }
 
     <span class="kw">let </span>(generics_bound, <span class="kw">_</span>, generics_where) = generics.split_for_impl();
-    <span class="prelude-val">Ok</span>(<span class="macro">quote! </span>{
+    <span class="prelude-val">Ok</span>(<span class="macro">quote!</span> {
         <span class="kw">impl </span>#generics_bound #ty #generics_where {
             #toks
         }
@@ -704,19 +704,19 @@
     <span class="kw">let </span><span class="kw-2">mut </span>toks = SynTokenStream::new();
     <span class="kw">let </span>container_ty = <span class="kw-2">&amp;</span>container_def.ty;
     toks.extend(generate_setters_for(
-        input, data, <span class="kw-2">&amp;</span>container_def.generics, <span class="macro">quote! </span>{ #container_ty }, <span class="prelude-val">None</span>,
+        input, data, <span class="kw-2">&amp;</span>container_def.generics, <span class="macro">quote!</span> { #container_ty }, <span class="prelude-val">None</span>,
     ));
     <span class="kw">for </span>delegate <span class="kw">in </span>container_def.generate_delegates {
         <span class="kw">let </span>delegate_ty = delegate.ty;
         toks.extend(generate_setters_for(
-            input, data, <span class="kw-2">&amp;</span>Generics::default(), <span class="macro">quote! </span>{ #delegate_ty },
+            input, data, <span class="kw-2">&amp;</span>Generics::default(), <span class="macro">quote!</span> { #delegate_ty },
             <span class="kw">if </span>delegate.field.is_some() &amp;&amp; delegate.method.is_some() {
                 <span class="kw">return </span><span class="prelude-val">Err</span>(error(input.span(),
                                  <span class="string">"Cannot set both `method` and `field` on a delegate."</span>).into());
             } <span class="kw">else if let </span><span class="prelude-val">Some</span>(field) = <span class="kw-2">&amp;</span>delegate.field {
-                <span class="prelude-val">Some</span>(<span class="macro">quote! </span>{ #field })
+                <span class="prelude-val">Some</span>(<span class="macro">quote!</span> { #field })
             } <span class="kw">else if let </span><span class="prelude-val">Some</span>(method) = <span class="kw-2">&amp;</span>delegate.method {
-                <span class="prelude-val">Some</span>(<span class="macro">quote! </span>{ #method() })
+                <span class="prelude-val">Some</span>(<span class="macro">quote!</span> { #method() })
             } <span class="kw">else </span>{
                 <span class="kw">return </span><span class="prelude-val">Err</span>(error(input.span(),
                                  <span class="string">"Must set either `method` or `field` on a delegate."</span>).into());

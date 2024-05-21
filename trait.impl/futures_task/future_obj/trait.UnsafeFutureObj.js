@@ -1,4 +1,5 @@
 (function() {var implementors = {
+"cosmic":[],
 "futures":[],
 "futures_task":[],
 "futures_util":[]

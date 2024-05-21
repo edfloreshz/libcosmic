@@ -1,4 +1,5 @@
 (function() {var implementors = {
+"cosmic":[],
 "euclid":[],
 "iced":[],
 "iced_widget":[]

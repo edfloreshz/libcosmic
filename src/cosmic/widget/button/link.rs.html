@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/button/link.rs`."><title>link.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/widget/button/link.rs`."><title>link.rs - source</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../../cosmic/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -102,8 +102,12 @@
 <a href="#100" id="100">100</a>
 <a href="#101" id="101">101</a>
 <a href="#102" id="102">102</a>
+<a href="#103" id="103">103</a>
+<a href="#104" id="104">104</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2023 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
+
+</span><span class="doccomment">//! Hyperlink button widget
 
 </span><span class="kw">use </span><span class="kw">super</span>::Builder;
 <span class="kw">use </span><span class="kw">super</span>::Style;
@@ -121,7 +125,8 @@
     trailing_icon: bool,
 }
 
-<span class="kw">pub fn </span>link&lt;<span class="lifetime">'a</span>, Message&gt;(label: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt; + <span class="lifetime">'static</span>) -&gt; Button&lt;<span class="lifetime">'a</span>, Message&gt; {
+<span class="doccomment">/// A hyperlink button.
+</span><span class="kw">pub fn </span>link&lt;<span class="lifetime">'a</span>, Message&gt;(label: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt; + <span class="lifetime">'static</span>) -&gt; Button&lt;<span class="lifetime">'a</span>, Message&gt; {
     Button::new(
         label,
         Hyperlink {
@@ -162,33 +167,32 @@
 
 <span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, Message: Clone + <span class="lifetime">'static</span>&gt; From&lt;Button&lt;<span class="lifetime">'a</span>, Message&gt;&gt; <span class="kw">for </span>Element&lt;<span class="lifetime">'a</span>, Message&gt; {
     <span class="kw">fn </span>from(<span class="kw-2">mut </span>builder: Button&lt;<span class="lifetime">'a</span>, Message&gt;) -&gt; Element&lt;<span class="lifetime">'a</span>, Message&gt; {
-        <span class="kw">let </span>button: <span class="kw">super</span>::Button&lt;<span class="lifetime">'a</span>, Message, <span class="kw">crate</span>::Theme, <span class="kw">crate</span>::Renderer&gt; =
-            row::with_capacity(<span class="number">2</span>)
-                .push({
-                    <span class="kw">let </span><span class="kw-2">mut </span>font = <span class="kw">crate</span>::font::DEFAULT;
-                    font.weight = builder.font_weight;
+        <span class="kw">let </span>button: <span class="kw">super</span>::Button&lt;<span class="lifetime">'a</span>, Message&gt; = row::with_capacity(<span class="number">2</span>)
+            .push({
+                <span class="kw">let </span><span class="kw-2">mut </span>font = <span class="kw">crate</span>::font::DEFAULT;
+                font.weight = builder.font_weight;
 
-                    <span class="comment">// TODO: Avoid allocation
-                    </span><span class="kw">crate</span>::widget::text(builder.label.to_string())
-                        .size(builder.font_size)
-                        .line_height(LineHeight::Absolute(builder.line_height.into()))
-                        .font(font)
-                })
-                .push_maybe(<span class="kw">if </span>builder.variant.trailing_icon {
-                    <span class="prelude-val">Some</span>(icon().icon().size(builder.icon_size))
-                } <span class="kw">else </span>{
-                    <span class="prelude-val">None
-                </span>})
-                .padding(builder.padding)
-                .width(builder.width)
-                .height(builder.height)
-                .spacing(builder.spacing)
-                .align_items(Alignment::Center)
-                .apply(button)
-                .padding(<span class="number">0</span>)
-                .id(builder.id)
-                .on_press_maybe(builder.on_press.take())
-                .style(builder.style);
+                <span class="comment">// TODO: Avoid allocation
+                </span><span class="kw">crate</span>::widget::text(builder.label.to_string())
+                    .size(builder.font_size)
+                    .line_height(LineHeight::Absolute(builder.line_height.into()))
+                    .font(font)
+            })
+            .push_maybe(<span class="kw">if </span>builder.variant.trailing_icon {
+                <span class="prelude-val">Some</span>(icon().icon().size(builder.icon_size))
+            } <span class="kw">else </span>{
+                <span class="prelude-val">None
+            </span>})
+            .padding(builder.padding)
+            .width(builder.width)
+            .height(builder.height)
+            .spacing(builder.spacing)
+            .align_items(Alignment::Center)
+            .apply(button)
+            .padding(<span class="number">0</span>)
+            .id(builder.id)
+            .on_press_maybe(builder.on_press.take())
+            .style(builder.style);
 
         <span class="kw">if </span>builder.tooltip.is_empty() {
             button.into()

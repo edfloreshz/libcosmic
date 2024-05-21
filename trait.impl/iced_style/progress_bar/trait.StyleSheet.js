@@ -1,5 +1,5 @@
 (function() {var implementors = {
-"cosmic":[["impl <a class=\"trait\" href=\"cosmic/widget/progress_bar/trait.StyleSheet.html\" title=\"trait cosmic::widget::progress_bar::StyleSheet\">StyleSheet</a> for <a class=\"struct\" href=\"cosmic/theme/struct.Theme.html\" title=\"struct cosmic::theme::Theme\">Theme</a>"]],
+"cosmic":[["impl <a class=\"trait\" href=\"cosmic/iced_winit/style/progress_bar/trait.StyleSheet.html\" title=\"trait cosmic::iced_winit::style::progress_bar::StyleSheet\">StyleSheet</a> for <a class=\"struct\" href=\"cosmic/struct.Theme.html\" title=\"struct cosmic::Theme\">Theme</a>"]],
 "iced":[],
 "iced_style":[],
 "iced_widget":[]

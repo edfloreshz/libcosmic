@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":["toolkit"]};
+window.SIDEBAR_ITEMS = {"mod":["toolkit"],"struct":["CosmicTk"]};

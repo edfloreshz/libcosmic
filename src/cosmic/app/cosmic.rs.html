@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/app/cosmic.rs`."><title>cosmic.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/app/cosmic.rs`."><title>cosmic.rs - source</title><script> if (window.location.protocol !== "file:") document.write(`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">`)</script><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-e935ef01ae1c1829.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="cosmic" data-themes="" data-resource-suffix="" data-rustdoc-version="1.78.0 (9b00956e5 2024-04-29)" data-channel="1.78.0" data-search-js="search-42d8da7a6b9792c2.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-12cf3b4f4f9dc36d.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
             <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
     <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../cosmic/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
@@ -608,6 +608,43 @@
 <a href="#606" id="606">606</a>
 <a href="#607" id="607">607</a>
 <a href="#608" id="608">608</a>
+<a href="#609" id="609">609</a>
+<a href="#610" id="610">610</a>
+<a href="#611" id="611">611</a>
+<a href="#612" id="612">612</a>
+<a href="#613" id="613">613</a>
+<a href="#614" id="614">614</a>
+<a href="#615" id="615">615</a>
+<a href="#616" id="616">616</a>
+<a href="#617" id="617">617</a>
+<a href="#618" id="618">618</a>
+<a href="#619" id="619">619</a>
+<a href="#620" id="620">620</a>
+<a href="#621" id="621">621</a>
+<a href="#622" id="622">622</a>
+<a href="#623" id="623">623</a>
+<a href="#624" id="624">624</a>
+<a href="#625" id="625">625</a>
+<a href="#626" id="626">626</a>
+<a href="#627" id="627">627</a>
+<a href="#628" id="628">628</a>
+<a href="#629" id="629">629</a>
+<a href="#630" id="630">630</a>
+<a href="#631" id="631">631</a>
+<a href="#632" id="632">632</a>
+<a href="#633" id="633">633</a>
+<a href="#634" id="634">634</a>
+<a href="#635" id="635">635</a>
+<a href="#636" id="636">636</a>
+<a href="#637" id="637">637</a>
+<a href="#638" id="638">638</a>
+<a href="#639" id="639">639</a>
+<a href="#640" id="640">640</a>
+<a href="#641" id="641">641</a>
+<a href="#642" id="642">642</a>
+<a href="#643" id="643">643</a>
+<a href="#644" id="644">644</a>
+<a href="#645" id="645">645</a>
 </pre></div><pre class="rust"><code><span class="comment">// Copyright 2023 System76 &lt;info@system76.com&gt;
 // SPDX-License-Identifier: MPL-2.0
 
@@ -817,11 +854,22 @@
                 }),
             <span class="self">self</span>.app
                 .core()
-                .watch_config::&lt;cosmic_theme::Theme&gt;(<span class="kw">if </span><span class="self">self</span>.app.core().system_theme_mode.is_dark {
-                    cosmic_theme::DARK_THEME_ID
-                } <span class="kw">else </span>{
-                    cosmic_theme::LIGHT_THEME_ID
-                })
+                .watch_config::&lt;cosmic_theme::Theme&gt;(
+                    <span class="kw">if </span>THEME
+                        .with(|t| {
+                            <span class="kw">if let </span>ThemeType::System { prefer_dark, .. } = t.borrow().theme_type {
+                                prefer_dark
+                            } <span class="kw">else </span>{
+                                <span class="prelude-val">None
+                            </span>}
+                        })
+                        .unwrap_or_else(|| <span class="self">self</span>.app.core().system_theme_mode.is_dark)
+                    {
+                        cosmic_theme::DARK_THEME_ID
+                    } <span class="kw">else </span>{
+                        cosmic_theme::LIGHT_THEME_ID
+                    },
+                )
                 .map(|update| {
                     <span class="kw">for </span>why <span class="kw">in </span>update.errors {
                         <span class="macro">tracing::error!</span>(<span class="question-mark">?</span>why, <span class="string">"cosmic theme config update error"</span>);
@@ -1008,7 +1056,7 @@
 
             Message::AppThemeChange(<span class="kw-2">mut </span>theme) =&gt; {
                 <span class="comment">// Apply last-known system theme if the system theme is preferred.
-                </span><span class="kw">if let </span>ThemeType::System(<span class="kw">_</span>) = theme.theme_type {
+                </span><span class="kw">if let </span>ThemeType::System { theme: <span class="kw">_</span>, .. } = theme.theme_type {
                     <span class="self">self</span>.app.core_mut().theme_sub_counter += <span class="number">1</span>;
 
                     theme = <span class="self">self</span>.app.core().system_theme.clone();
@@ -1036,8 +1084,12 @@
                     <span class="kw">let </span><span class="kw-2">mut </span>cosmic_theme = t.borrow_mut();
 
                     <span class="comment">// Only apply update if the theme is set to load a system theme
-                    </span><span class="kw">if let </span>ThemeType::System(<span class="kw">_</span>) = cosmic_theme.theme_type {
-                        <span class="kw">let </span>new_theme = <span class="kw">if let </span><span class="prelude-val">Some</span>(a) = portal_accent {
+                    </span><span class="kw">if let </span>ThemeType::System {
+                        theme: <span class="kw">_</span>,
+                        prefer_dark,
+                    } = cosmic_theme.theme_type
+                    {
+                        <span class="kw">let </span><span class="kw-2">mut </span>new_theme = <span class="kw">if let </span><span class="prelude-val">Some</span>(a) = portal_accent {
                             <span class="kw">let </span>t_inner = theme.cosmic();
                             <span class="kw">if </span>a.distance_squared(<span class="kw-2">*</span>t_inner.accent_color()) &gt; <span class="number">0.00001 </span>{
                                 Theme::system(Arc::new(t_inner.with_accent(a)))
@@ -1047,6 +1099,8 @@
                         } <span class="kw">else </span>{
                             theme
                         };
+                        new_theme.theme_type.prefer_dark(prefer_dark);
+
                         cosmic_theme.set_theme(new_theme.theme_type);
                     }
                 });
@@ -1059,10 +1113,21 @@
             }
 
             Message::Close =&gt; {
-                <span class="self">self</span>.app.on_app_exit();
-                <span class="kw">return </span><span class="self">self</span>.close();
+                <span class="kw">return match </span><span class="self">self</span>.app.on_app_exit() {
+                    <span class="prelude-val">Some</span>(message) =&gt; <span class="self">self</span>.app.update(message),
+                    <span class="prelude-val">None </span>=&gt; <span class="self">self</span>.close(),
+                };
             }
             Message::SystemThemeModeChange(keys, mode) =&gt; {
+                <span class="kw">if </span>THEME.with(|t| <span class="kw">match </span>t.borrow().theme_type {
+                    ThemeType::System {
+                        theme: <span class="kw">_</span>,
+                        prefer_dark,
+                    } =&gt; prefer_dark.is_some(),
+                    <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
+                }) {
+                    <span class="kw">return </span>iced::Command::none();
+                }
                 <span class="kw">let </span><span class="kw-2">mut </span>cmds = <span class="macro">vec!</span>[<span class="self">self</span>.app.system_theme_mode_update(<span class="kw-2">&amp;</span>keys, <span class="kw-2">&amp;</span>mode)];
 
                 <span class="kw">let </span>core = <span class="self">self</span>.app.core_mut();
@@ -1094,9 +1159,8 @@
                     core.system_theme = new_theme.clone();
                     THEME.with(<span class="kw">move </span>|t| {
                         <span class="kw">let </span><span class="kw-2">mut </span>cosmic_theme = t.borrow_mut();
-
                         <span class="comment">// Only apply update if the theme is set to load a system theme
-                        </span><span class="kw">if let </span>ThemeType::System(<span class="kw">_</span>) = cosmic_theme.theme_type {
+                        </span><span class="kw">if let </span>ThemeType::System { theme: <span class="kw">_</span>, .. } = cosmic_theme.theme_type {
                             cosmic_theme.set_theme(new_theme.theme_type);
                         }
                     });
@@ -1123,6 +1187,15 @@
             <span class="attr">#[cfg(feature = <span class="string">"xdg-portal"</span>)]
             </span>Message::DesktopSettings(<span class="kw">crate</span>::theme::portal::Desktop::ColorScheme(s)) =&gt; {
                 <span class="kw">use </span>ashpd::desktop::settings::ColorScheme;
+                <span class="kw">if </span>THEME.with(|t| <span class="kw">match </span>t.borrow().theme_type {
+                    ThemeType::System {
+                        theme: <span class="kw">_</span>,
+                        prefer_dark,
+                    } =&gt; prefer_dark.is_some(),
+                    <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
+                }) {
+                    <span class="kw">return </span>iced::Command::none();
+                }
                 <span class="kw">let </span>is_dark = <span class="kw">match </span>s {
                     ColorScheme::NoPreference =&gt; <span class="prelude-val">None</span>,
                     ColorScheme::PreferDark =&gt; <span class="prelude-val">Some</span>(<span class="bool-val">true</span>),
@@ -1145,7 +1218,7 @@
                         <span class="kw">let </span><span class="kw-2">mut </span>cosmic_theme = t.borrow_mut();
 
                         <span class="comment">// Only apply update if the theme is set to load a system theme
-                        </span><span class="kw">if let </span>ThemeType::System(<span class="kw">_</span>) = cosmic_theme.theme_type {
+                        </span><span class="kw">if let </span>ThemeType::System { theme: <span class="kw">_</span>, .. } = cosmic_theme.theme_type {
                             cosmic_theme.set_theme(new_theme.theme_type);
                         }
                     });
@@ -1154,7 +1227,6 @@
             <span class="attr">#[cfg(feature = <span class="string">"xdg-portal"</span>)]
             </span>Message::DesktopSettings(<span class="kw">crate</span>::theme::portal::Desktop::Accent(c)) =&gt; {
                 <span class="kw">use </span>palette::Srgba;
-
                 <span class="kw">let </span>c = Srgba::new(c.red() <span class="kw">as </span>f32, c.green() <span class="kw">as </span>f32, c.blue() <span class="kw">as </span>f32, <span class="number">1.0</span>);
                 <span class="kw">let </span>core = <span class="self">self</span>.app.core_mut();
                 core.portal_accent = <span class="prelude-val">Some</span>(c);
@@ -1169,8 +1241,15 @@
                     <span class="kw">let </span><span class="kw-2">mut </span>cosmic_theme = t.borrow_mut();
 
                     <span class="comment">// Only apply update if the theme is set to load a system theme
-                    </span><span class="kw">if let </span>ThemeType::System(t) = cosmic_theme.theme_type.clone() {
-                        cosmic_theme.set_theme(ThemeType::System(Arc::new(t.with_accent(c))));
+                    </span><span class="kw">if let </span>ThemeType::System {
+                        theme: t,
+                        prefer_dark,
+                    } = cosmic_theme.theme_type.clone()
+                    {
+                        cosmic_theme.set_theme(ThemeType::System {
+                            theme: Arc::new(t.with_accent(c)),
+                            prefer_dark,
+                        });
                     }
                 });
             }
@@ -1196,12 +1275,7 @@
 
             Message::Unfocus(id) =&gt; {
                 <span class="kw">let </span>core = <span class="self">self</span>.app.core_mut();
-                <span class="kw">if </span>core
-                    .focused_window
-                    .as_ref()
-                    .map(|cur| <span class="kw-2">*</span>cur == id)
-                    .unwrap_or_default()
-                {
+                <span class="kw">if </span>core.focused_window.as_ref().is_some_and(|cur| <span class="kw-2">*</span>cur == id) {
                     core.focused_window = <span class="prelude-val">None</span>;
                 }
             }

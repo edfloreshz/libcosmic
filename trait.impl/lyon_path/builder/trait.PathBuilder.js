@@ -1,4 +1,5 @@
 (function() {var implementors = {
+"cosmic":[],
 "iced":[],
 "iced_widget":[],
 "lyon_path":[]
